@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+  <!-- Link Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tiếng Anh Dễ Lắm</title>
+
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Quicksand, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1, h2, h3 {
+      font-family: "Baloo Bhaina 2", serif;
+      font-weight: Bold;
+      color: #4b1e8a;
+    }
+
+    /* Header */
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header .logo {
+      width: 200px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+
+/* Banner */
+.banner-container {
+  width: 98%;
+  max-height: 50%;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  animation: drop 1s;
+  margin: 0 auto;
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+  display: block;
+
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-100vh); /* Bắt đầu từ phía trên màn hình */
+  }
+  40% {
+    transform: translateY(30px); /* Rơi xuống và vượt qua đáy một chút */
+  }
+  55% {
+    transform: translateY(-50px) rotate(-3deg); /* Tưng lên */
+  }
+  70% {
+    transform: translateY(20px) rotate(2deg); /* Tưng xuống */
+  }
+  85% {
+    transform: translateY(-10px) rotate(-1deg); /* Tưng lên nhẹ */
+  }
+  100% {
+    transform: translateY(0); /* Dừng lại ở vị trí ban đầu */
+  }
+}
+
+/* Container cho logo và nút CTA */
+.floating-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 1000;
+}
+
+/* Logo */
+.floating-logo {
+  width: 150px;
+  height: auto;
+  animation: shake 5s infinite;
+}
+
+/* Hiệu ứng lúc lắc */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px) rotate(-3deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px) rotate(3deg);
+  }
+}
+
+/* Nút CTA */
+.floating-cta-button {
+  background: linear-gradient(to bottom, #FFFFFF, #f5b536);
+  color: #333;
+  padding: 15px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.floating-cta-button:hover {
+  background: #e0a800;
+}
+
+    /* Giới thiệu */
+    .intro {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 28px;
+
+      margin-bottom: 20px;
+    }
+
+    .intro p {
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    /* Lợi ích */
+    .benefits {
+      background-color: #fcf4e1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .benefits .benefit-card {
+      background-color: #fccb68;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+
+    .benefits .benefit-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .benefits .benefit-card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Cảm nhận từ phụ huynh */
+    .testimonials {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .testimonials .testimonial-card {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .testimonials .testimonial-card img {
+      width: 200px;
+      max-height: 300px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .testimonials .testimonial-card img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+.video-container {
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+    /* Form đăng ký */
+    .registration {
+  background: linear-gradient(to bottom, #FFFFFF, #dbb467);
+      color: #6600ff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .registration h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .registration form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .registration input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .registration button {
+      background-color: #FFC107;
+      color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .registration button:hover {
+      background-color: #e0a800;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #FFC107;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="banner-container">
+  <img src="banner.jpg" alt="Banner Học Tiếng Anh Dễ Lắm" class="banner">
+</div>
+
+<!-- Nút CTA luôn hiển thị
+<a href="#registration" class="floating-cta-button">Đăng ký học thử ngay!</a> -->
+
+  <!-- Giới thiệu -->
+  <div class="intro">
+    <h2>Giới Thiệu Về Lớp Học</h2>
+    <p>Chúng tôi mang đến phương pháp học tiếng Anh online hiệu quả,<br> giúp bé phát triển toàn diện kỹ năng ngôn ngữ và tự tin giao tiếp.</p>
+  <!-- Thêm video vào đây -->
+  <div class="video-container">
+    <video controls width="50%" height="auto">
+      <source src="video-lop-hoc.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+  </div>  
+</div>
+
+  <!-- Lợi ích -->
+  <div class="benefits">
+    <h2>"Học Tiếng Anh Dễ Lắm" bởi vì</h2>
+    <div class="benefit-card">
+      <h3>Lớp Học Nhỏ</h3>
+      <p>Chỉ 5 học viên/lớp, giáo viên theo sát từng bé.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Phương Pháp Cá Nhân Hóa</h3>
+      <p>Đánh giá từng loại trí thông minh <br>để thiết kế lộ trình học phù hợp.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Lớp học không biên giới</h3>
+      <p>Giáo viên từ khắp nơi trên thế giới<br> kết hợp với giáo viên Việt Nam tận tâm.</p>
+    </div>
+  </div>
+
+  <!-- Cảm nhận từ phụ huynh -->
+  <div class="testimonials">
+    <h2>Phụ Huynh Nói Gì Về Chúng Tôi?</h2>
+    <div class="testimonial-card" onclick="openLightbox('tin-nhan-1.jpg')">
+      <img src="tin-nhan-1.jpg" alt="Tin nhắn từ phụ huynh 1">
+    </div>
+    <div class="testimonial-card" onclick="openLightbox('tin-nhan-2.jpg')">
+      <img src="tin-nhan-2.jpg" alt="Tin nhắn từ phụ huynh 2">
+    </div>
+    <div class="testimonial-card" onclick="openLightbox('tin-nhan-3.jpg')">
+      <img src="tin-nhan-3.jpg" alt="Tin nhắn từ phụ huynh 3">
+    </div>
+    <div class="testimonial-card" onclick="openLightbox('tin-nhan-4.jpg')">
+      <img src="tin-nhan-4.jpg" alt="Tin nhắn từ phụ huynh 4">
+    </div>
+    <div class="testimonial-card" onclick="openLightbox('tin-nhan-5.jpg')">
+      <img src="tin-nhan-5.jpg" alt="Tin nhắn từ phụ huynh 5">
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+  </div>
+
+  <!-- Form đăng ký -->
+  <div class="registration" id="registration">
+    <h2>Đăng Ký Học Thử Miễn Phí</h2>
+<form id="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfd3-jq0yB1sOVzUo-ynxH-vgN36yc--lh3g0QviiJG_dJBrQ/formResponse" method="POST">
+  <input type="text" name="entry.1904311514" placeholder="Tên phụ huynh" required>
+  <input type="tel" name="entry.1055270928" placeholder="Số điện thoại" required>
+  <input type="email" name="entry.738983665" placeholder="Email (không bắt buộc)" >
+  <button type="submit">Đăng ký ngay!</button>
+</form>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Liên hệ: <a href="mailto:HocTiengAnhDeLam001@gmail.com">HocTiengAnhDeLam001@gmail.com</a> | SĐT: 0346 28 12 92</p>
+    <p>© 2023 Học Tiếng Anh Dễ Lắm. All rights reserved.</p>
+  </div>
+
+  <!-- JavaScript cho Lightbox -->
+  <script>
+    function openLightbox(imageSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imageSrc;
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+    }
+  </script>
+
+<!-- Logo và nút CTA luôn hiển thị -->
+<div class="floating-container">
+  <img src="logo.png" alt="Logo Học Tiếng Anh Dễ Lắm" class="floating-logo">
+  <a href="#registration" class="floating-cta-button">Đăng ký học thử ngay!</a>
+</div>
+<script>
+  document.getElementById('registration-form').addEventListener('submit', async function (event) {
+    // Ngăn chặn form submit mặc định
+    event.preventDefault();
+
+    // Gửi dữ liệu đến Google Form
+    const form = event.target;
+    const formData = new FormData(form);
+    try {
+      // Gửi dữ liệu mà không cần kiểm tra phản hồi
+      await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors', // Thêm mode 'no-cors' để tránh lỗi CORS
+      });
+
+      // Hiển thị thông báo thành công
+      alert("Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ với bạn sớm.");
+
+      // Xóa form sau khi gửi thành công (tùy chọn)
+      form.reset();
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      alert("Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại!");
+    }
+  });
+</script>
+</body>
+</html>
