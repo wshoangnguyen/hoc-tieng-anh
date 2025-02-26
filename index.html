@@ -214,6 +214,78 @@ video {
   color: #555;
   line-height: 1.6;
 }
+
+/* Chương trình học */
+.curriculum {
+  padding: 50px 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #FFFFFF,  #dbb467, #FFFFFF);
+}
+
+.curriculum h2 {
+  font-size: 28px;
+  color: #4b1e8a;
+  margin-bottom: 40px;
+}
+
+.curriculum-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.curriculum-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.curriculum-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.curriculum-text {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.curriculum-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.curriculum-text p strong {
+  color: #4b1e8a;
+}
+
+.curriculum-image {
+  flex: 1;
+  text-align: center;
+}
+
+.curriculum-image img {
+  max-height: 250px;
+  transition: transform 0.3s ease;
+}
+
+
+.curriculum-image2 img {
+  max-height: 450px;
+  transition: transform 0.3s ease;
+}
+
+.curriculum-image img:hover {
+  transform: scale(1.25); /* Hiệu ứng phóng to khi di chuột qua */
+      cursor: pointer;
+}
+
+.curriculum-image2 img:hover {
+  transform: scale(1.5); /* Hiệu ứng phóng to khi di chuột qua */
+      cursor: pointer;
+}
     /* Cảm nhận từ phụ huynh */
     .testimonials {
       padding: 40px 20px;
@@ -236,8 +308,8 @@ video {
     }
 
     .testimonials .testimonial-card img {
-      width: 200px;
-      max-height: 250px;
+      width: 400px;
+      max-height: 350px;
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.3s ease;
@@ -303,7 +375,6 @@ video {
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
-
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       font-size: 16px;
       cursor: pointer;
@@ -395,6 +466,53 @@ video {
       <h3>Lớp học không biên giới</h3>
       <p>Giáo viên từ khắp nơi trên thế giới<br> kết hợp với giáo viên Việt Nam,<br>giúp trẻ vững vàng bước ra thế giới.</p>
     </div>
+  </div>
+</div>
+
+<!-- Chương trình học -->
+<div class="curriculum">
+  <h2>Chương Trình Học</h2>
+  <div class="curriculum-content">
+    <div class="curriculum-item">
+      <div class="curriculum-text">
+        <p>Các bé được học với sách của đại học Cambridge.</p>
+        <p><strong>Super Minds 1-6</strong> dành cho lứa tuổi tiểu học. Với nội dung gần gũi nhưng cũng hấp dẫn nhờ những câu chuyện hóm hỉnh, kết hợp các kĩ năng khác nhau như ca hát, khoa học, toán học, làm thủ công… giúp bé phát triển toàn diện, không chỉ tiếng Anh mà còn có thể ứng dụng tiếng Anh vào cuộc sống.</p>
+      </div>
+      <div class="curriculum-image">
+        <img src="super-minds.png" alt="Sách Super Minds" onclick="openLightbox('super-minds.png')">
+      </div>
+    </div>
+    <div class="curriculum-item">
+      <div class="curriculum-text">
+        <p>Ngoài ra, để hỗ trợ các bé thi lấy chứng chỉ Cambridge và làm quen với các kì thi quốc tế, sau khi học xong <strong>Super Minds 2</strong> các bé sẽ học sách <strong>Fun for Starters</strong>, và sau sách <strong>Super Minds 4</strong> là sách <strong>Fun for Flyers</strong>.</p>
+      </div>
+      <div class="curriculum-image" onclick="openLightbox('fun-for-starters.png')">
+        <img src="fun-for-starters.png" alt="Sách Fun for Starters">
+      </div>
+    </div>
+    <div class="curriculum-item">
+      <div class="curriculum-text">
+        <p>Sau khi học xong các sách bổ trợ này, các bé có thể tự tin tham gia thi các kì thi của Cambridge, qua đó các bậc cha mẹ cũng sẽ nắm rõ hơn về năng lực của các bé dựa trên thang đo năng lực của Cambridge.</p>
+      </div>
+      <div class="curriculum-image2" onclick="openLightbox('cambridge-exams.jpg')">
+        <img src="cambridge-exams.jpg" alt="Kì thi Cambridge">
+      </div>
+    </div>
+    <div class="curriculum-item">
+  <div class="curriculum-text">
+    <p>Đối với các bạn tuổi teen, chúng tôi sử dụng hai bộ sách của Cambridge: <strong>Prepare</strong> và <strong>Open World</strong>.</p>
+    <p><strong>Prepare</strong> tập trung vào kiến thức trường lớp, gần gũi với các bạn học sinh. Với nội dung phong phú và thiết thực, các bạn sẽ cảm thấy thoải mái và tự tin hơn khi học tiếng Anh, đồng thời áp dụng được ngay vào các môn học khác.</p>
+    <p><strong>Open World</strong> mang đến những kiến thức về thế giới rộng lớn, với các chủ đề thực tế và tự nhiên. Bộ sách này không chỉ giúp các bạn nâng cao khả năng tiếng Anh mà còn kích thích tính tò mò, khám phá và mở rộng hiểu biết về thế giới xung quanh.</p>
+    <p>Cả hai bộ sách đều được thiết kế để phát triển toàn diện các kỹ năng nghe, nói, đọc, viết, giúp các bạn tự tin sử dụng tiếng Anh trong mọi tình huống.</p>
+  </div>
+  <div class="curriculum-image">
+    <img src="prepare.png" alt="Sách Prepare" onclick="openLightbox('prepare.png')">
+    <img src="open-world.png" alt="Sách Open World" onclick="openLightbox('open-world.png')">
+  </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </div>
 
