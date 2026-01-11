@@ -1508,6 +1508,51 @@ video {
         color: #2a0055;
       }
     }
+    /* Thêm CSS cho dropdown mobile */
+@media (max-width: 768px) {
+  .dropdown.active .dropdown-content {
+    display: block !important;
+    position: static;
+    box-shadow: none;
+    background: #f8f9fa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    animation: none;
+    padding: 15px 0;
+  }
+  
+  .dropdown > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .dropdown > a span {
+    font-size: 12px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown.active > a span {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-content a {
+    padding: 15px 25px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+  }
+  
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-content a:hover {
+    padding-left: 30px;
+  }
+}
   </style>
 </head>
 <body>
@@ -1529,8 +1574,8 @@ video {
       <li><a href="#curriculum" class="nav-link">Chương trình</a></li>
       <li><a href="#testimonials" class="nav-link">Phản hồi</a></li>
       <li><a href="#registration" class="nav-link">Đăng ký</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="nav-link">Trò chơi <span>▼</span></a>
+        <!-- THÊM class "dropdown-toggle" vào đây -->
+        <a href="javascript:void(0)" class="nav-link dropdown-toggle">Trò chơi <span class="hot-badge">HOT</span></a>
         <div class="dropdown-content">
           <a href="https://wshoangnguyen.github.io/scrambledword/word-find.html" target="_blank">
             <img src="word-find.png" alt="Word Find Icon" class="game-icon" loading="lazy">
@@ -2101,28 +2146,353 @@ video {
 
 <!-- Google Analytics Placeholder -->
 <script>
-  // This is a placeholder for Google Analytics
-  // Replace with your actual GA4 measurement ID
-  /*
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-  */
+  // DOM Elements
+  const navbar = document.getElementById('navbar');
+  const navMenu = document.getElementById('navMenu');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const registrationForm = document.getElementById('registration-form');
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  const exitPopup = document.getElementById('exitPopup');
+  const currentYearSpan = document.getElementById('currentYear');
   
-  // Facebook Pixel placeholder
-  /*
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR_PIXEL_ID');
-  fbq('track', 'PageView');
-  */
+  // Set current year in footer
+  currentYearSpan.textContent = new Date().getFullYear();
+  
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    
+    // Update active nav link
+    const scrollPos = window.scrollY + 100;
+    navLinks.forEach(link => {
+      const section = document.querySelector(link.hash);
+      if (section) {
+        if (section.offsetTop <= scrollPos && 
+            section.offsetTop + section.offsetHeight > scrollPos) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  });
+  
+  // Mobile menu toggle
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    // Đóng tất cả dropdown khi mở/đóng menu
+    if (!navMenu.classList.contains('active')) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+  });
+  
+  // Xử lý click cho các link thông thường
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Nếu link có hash (link nội bộ), đóng menu mobile
+      if (link.hash || link.getAttribute('href') === 'blog.html') {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+  });
+  
+  // Xử lý dropdown toggle trên mobile
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      // Trên mobile: toggle dropdown
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Đóng tất cả dropdown khác
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          if (dropdown !== this.parentElement) {
+            dropdown.classList.remove('active');
+          }
+        });
+        
+        // Toggle dropdown hiện tại
+        this.parentElement.classList.toggle('active');
+      }
+    });
+  });
+  
+  // Đóng dropdown khi click bên ngoài (trên mobile)
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      // Nếu click không phải vào dropdown hoặc toggle
+      if (!e.target.closest('.dropdown') && !e.target.closest('.dropdown-toggle')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    }
+  });
+  
+  // Đóng dropdown và menu khi click vào item trong dropdown (trên mobile)
+  document.querySelectorAll('.dropdown-content a').forEach(item => {
+    item.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      }
+    });
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        const offsetTop = targetElement.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Lightbox functions
+  function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = imageSrc;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+  
+  // Close lightbox with ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+  
+  // Exit popup functions
+  function showExitPopup() {
+    // Only show if user hasn't submitted the form
+    if (!localStorage.getItem('formSubmitted')) {
+      exitPopup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeExitPopup() {
+    exitPopup.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  
+  // Form submission with loading spinner
+  registrationForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    
+    // Show loading spinner
+    loadingSpinner.style.display = 'block';
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    try {
+      // Send data to Google Form
+      await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors',
+      });
+      
+      // Hide loading spinner
+      loadingSpinner.style.display = 'none';
+      
+      // Show success message
+      alert("🎉 Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
+      
+      // Mark form as submitted
+      localStorage.setItem('formSubmitted', 'true');
+      
+      // Reset form
+      form.reset();
+      
+      // Track conversion (for analytics - placeholder)
+      trackConversion();
+      
+    } catch (error) {
+      loadingSpinner.style.display = 'none';
+      alert("❌ Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi qua số điện thoại!");
+    }
+  });
+  
+  // Mobile detection
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add touch device class
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      document.body.classList.add('touch-device');
+    }
+    
+    // Animate stats counter
+    animateStatsCounter();
+    
+    // Setup exit intent detection
+    setupExitIntent();
+  });
+  
+  // Animate stats counter
+  function animateStatsCounter() {
+    const stats = {
+      studentCount: { element: document.getElementById('studentCount'), target: 1000, duration: 2000 },
+      classCount: { element: document.getElementById('classCount'), target: 100, duration: 2000 },
+      successRate: { element: document.getElementById('successRate'), target: 95, duration: 2000 }
+    };
+    
+    // Check if element is in viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0
+      );
+    }
+    
+    // Animate number
+    function animateNumber(element, target, duration) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          element.textContent = target + (target === 95 ? '%' : '+');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(start) + (target === 95 ? '%' : '+');
+        }
+      }, 16);
+    }
+    
+    // Check on scroll
+    let animated = false;
+    window.addEventListener('scroll', function() {
+      if (!animated && isInViewport(document.querySelector('.social-proof'))) {
+        animated = true;
+        for (const key in stats) {
+          if (stats[key].element) {
+            animateNumber(stats[key].element, stats[key].target, stats[key].duration);
+          }
+        }
+      }
+    });
+    
+    // Initial check
+    if (isInViewport(document.querySelector('.social-proof'))) {
+      animated = true;
+      for (const key in stats) {
+        if (stats[key].element) {
+          animateNumber(stats[key].element, stats[key].target, stats[key].duration);
+        }
+      }
+    }
+  }
+  
+  // Exit intent detection
+  function setupExitIntent() {
+    let mouseY = 0;
+    let shownPopup = false;
+    
+    document.addEventListener('mousemove', function(e) {
+      mouseY = e.clientY;
+    });
+    
+    document.addEventListener('mouseleave', function(e) {
+      if (!shownPopup && e.clientY < 50 && mouseY < 50) {
+        shownPopup = true;
+        setTimeout(showExitPopup, 500);
+      }
+    });
+    
+    // Also detect when user tries to go back/close
+    window.addEventListener('beforeunload', function(e) {
+      if (!localStorage.getItem('formSubmitted') && !shownPopup) {
+        shownPopup = true;
+        // We can't show popup here due to browser restrictions
+      }
+    });
+  }
+  
+  // Track conversion (placeholder for analytics)
+  function trackConversion() {
+    // This is where you would add Google Analytics conversion tracking
+    console.log('🎯 Conversion tracked: Form submission');
+    
+    // Example GA4 event
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-123456789/AbC-D_efGhIjKlMnOpQrS',
+        'value': 1.0,
+        'currency': 'VND'
+      });
+    }
+  }
+  
+  // Input validation
+  const phoneInput = document.querySelector('input[type="tel"]');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9+]/g, '');
+    });
+  }
+  
+  // Lazy loading enhancement
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px'
+    });
+    
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+  
+  // Detect iOS for special handling
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS) {
+    document.body.classList.add('ios-device');
+  }
 </script>
 
 </body>
