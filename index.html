@@ -1843,12 +1843,19 @@ video {
   });
   
   // Close mobile menu when clicking a link
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-    });
+// Tìm đoạn code xử lý click cho navLinks và sửa như sau:
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    // Nếu là dropdown toggle, không đóng menu
+    if (link.parentElement.classList.contains('dropdown')) {
+      e.stopPropagation(); // Quan trọng: ngăn sự kiện lan truyền
+      return;
+    }
+    
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
   });
+});
   
   // Close menu when clicking outside on mobile
   document.addEventListener('click', (e) => {
