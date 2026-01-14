@@ -1,0 +1,1357 @@
+=== Super Minds 0 ===
+[Unit 0]
+blue
+green
+yellow
+orange
+red
+pink
+Hello
+Bye
+Goodbye
+
+[Unit 1]
+window
+chair
+book
+pencil
+table
+door
+Stand up
+Sit down
+
+[Unit 2]
+eyes
+ears
+arms
+legs
+mouth
+nose
+head 
+
+[Unit 3]
+mum
+dad
+sister
+brother
+grandpa
+grandma
+hen
+dog
+duck
+cat
+baby
+kitten
+puppy
+chick
+duckling
+
+[Unit 4]
+parrot
+lion
+fish
+zebra
+monkey
+frog
+tree
+pond
+big
+small
+
+[Unit 5]
+milk
+oranges
+cakes
+tomatoes
+chocolate
+pears
+potatoes
+carrots
+bananas
+ground
+fruit
+vegetables
+grow
+come from
+
+[Unit 6]
+bus stop
+school
+cinema
+hospital
+toy shop
+park
+café
+playground
+sports centre
+map
+
+[Unit 7]
+teacher
+fire fighter
+gardener
+police officer
+vet
+doctor
+farmer
+shop assistant
+dentist
+inside
+outside
+
+[Unit 8]
+hat
+coat
+scarf
+boots
+sweater
+gloves
+jeans
+T-shirt
+soft
+hard
+belt
+sunglasses
+
+[Unit 9]
+play football
+run
+paint a picture
+swim
+read
+dance
+my turn
+sorry
+guess
+slowly
+quickly
+hobby
+
+=== Super Minds 1 ===
+[Unit 0]
+yellow
+red
+orange
+purple
+green
+blue 
+bag
+balloon
+cat
+power
+
+[Unit 1]
+ruler
+pen
+book
+rubber
+pencil case
+pencil
+desk
+notebook
+bag
+paper
+
+[Unit 2]
+computer game
+kite
+plane
+bike
+doll
+monster
+train
+go-kart
+car
+ball 
+big
+small
+old
+new
+long
+short
+ugly
+beautiful
+
+[Unit 3]
+donkey
+elephant
+spider
+cat
+rat
+frog
+duck
+lizard
+dog
+in
+on
+under
+
+[Unit 4]
+apple
+banana
+cake
+pizza
+sausage
+cheese sandwich
+fish
+chicken
+peas
+steak
+carrots
+lunch
+fridge
+fruit
+vegetables
+plant
+soil
+
+[Unit 5]
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+go fishing
+play football
+watch TV
+play games
+
+[Unit 6]
+bedroom
+bathroom
+living room
+kitchen
+hall
+stairs
+cellar
+dining room
+
+[Unit 7]
+sweater
+skirt
+shorts
+trousers
+jacket
+socks
+jeans
+shoes
+baseball cap
+T-shirt
+
+[Unit 8]
+arm
+hand
+knee
+fingers
+leg
+foot
+feet
+toes
+head
+
+[Unit 9]
+paint a picture
+listen to music
+catch a fish
+take a photo
+eat ice cream
+play the guitar
+read a book
+make a sandcastle
+look for shells
+
+=== Super Minds 2 ===
+[Unit 0]
+bookcase 
+wall 
+board 
+clock 
+door 
+cupboard 
+window 
+chair 
+crayon 
+floor
+
+burglar 
+drop 
+quick
+check out
+Great work 
+Well done
+
+[Unit 1]
+get up
+get dressed
+have breakfast
+brush your teeth
+go to school
+have lunch
+play in the park
+have dinner
+go to bed
+yawn
+keys
+bedtime
+bad day
+firefighter
+
+sun
+shadow
+
+[Unit 2]
+polar bear
+bear
+zebra
+crocodile
+hippo
+tiger
+parrot
+monkey
+snake
+
+zoo keeper
+throw
+hungry
+peel
+
+habitat
+grassland
+ocean
+polar habitat
+rainforest
+
+[Unit 3]
+train station
+hospital
+cinema
+playground
+café
+shop
+street
+bus stop
+park
+school
+swimming pool
+town
+between
+behind
+in front of
+next to
+
+[Unit 4]
+tomatoes
+beans
+greens
+potatoes
+kiwis
+lemons
+bread
+mangos
+grapes
+eggs
+watermelons
+
+[Unit 5]
+poster
+wardrobe
+mirror
+armchair
+lamp
+bed
+table
+sofa
+rug
+tidy up
+messy
+lovely
+comfortable
+seat
+
+[Unit 6]
+eyes
+face
+glasses
+hair
+cheeks
+ears
+nose
+tears
+chin
+mouth
+sad
+excited
+scared
+tired
+angry
+happy
+blond
+blonde
+curly
+
+[Unit 7]
+helicopter
+ship
+lorry
+boat
+scooter
+skateboard
+motorbike
+taxi
+bus
+sail
+drive
+ride
+fly
+
+[Unit 8]
+badminton
+table tennis
+tennis
+basketball
+baseball
+volleyball
+swimming
+football
+hockey
+athletics
+sports club
+join
+team
+goal
+boring
+fun
+difficult
+easy
+
+[Unit 9]
+read a comic
+go hiking
+visit cousins
+help in the garden
+take riding lessons
+build a tree house
+keep a scrapbook
+learn to swim
+go camping
+bake a cake
+rest
+have a break
+
+=== Super Minds 3 ===
+[Unit 0]
+upstairs
+downstairs
+cellar
+explorer
+meet
+lost treasure
+museum
+adventure
+castle
+secret
+only
+
+[Unit 1]
+Art
+English
+Geography
+Music
+I.T.
+History
+Maths
+Science
+P.E.
+in code
+easy
+keep
+dark
+probably
+No way
+yet
+follow
+
+[Unit 2]
+apple juice
+cheese
+lemonade
+salad
+rolls
+soup
+vegetables
+water
+ill
+bite
+bit
+medicine
+hut
+top
+waterfall
+golden
+get better
+fool
+Just you wait
+
+[Unit 3]
+wash up
+tidy up
+sweep
+cook
+feed the dog
+dry the dishes
+do the shopping
+take the dog for a walk
+tea
+moon
+at night
+pilot
+flight
+spaceship
+
+[Unit 4]
+map
+bank
+bus station
+tower
+library
+market square
+sports centre
+supermarket
+funfair
+car park
+higher than
+Pirate Ship
+the wrong place
+
+[Unit 5]
+seahorse
+dolphin
+seal
+shell
+octopus
+anchor
+starfish
+turtle
+trap
+chase
+giant
+have a look
+get my arm out
+stuck
+my beauty
+stupid
+cage
+helpful
+fourth
+
+[Unit 6]
+games console
+electric fan
+walkie-talkie
+electric toothbrush
+tablet
+torch
+mobile phone
+lift
+laptop
+fabulous
+fan
+van
+
+[Unit 7]
+doctor
+nurse
+cold
+cough
+headache
+toothache
+earache
+stomach-ache
+quietly
+woke up
+felt
+had
+went
+gave
+said
+terrible
+
+[Unit 8]
+Mexico
+Spain
+Argentina
+Egypt
+Chile
+China
+Turkey
+Brazil
+Australia
+India
+North America
+South America
+Europe
+Asia
+Africa
+canyon
+harbour
+volcano
+
+[Unit 9]
+thunderstorm
+lightning
+rain
+rainy
+wind
+windy
+cloud
+cloudy
+fog
+foggy
+umbrella
+raincoat
+boots
+because of
+so much
+seaside
+steam train
+crowded
+basket
+cart
+wore
+
+=== Super Minds 4 ===
+[Unit 0]
+big wheel
+rollercoaster
+roundabout
+mayor
+dodgem cars
+microphone
+band
+photographer
+journalist
+well done
+try out
+excitement
+explore
+treasure
+museum
+
+[Unit 1]
+queen
+knight
+crown
+helmet
+necklace
+bracelet
+shield
+sword
+map
+dinosaur
+touch
+brilliant
+hide
+storyteller
+timeline
+
+[Unit 2]
+mountain
+forest
+village
+lake
+island
+field
+river
+path
+picnic
+scare
+rescue
+continent
+satellite
+country
+world
+
+[Unit 3]
+fire
+flood
+emergency services
+police car
+fire engine
+ambulance
+paramedic
+accident
+hurt
+shark
+extinguisher
+operator
+tsunami
+danger
+rescue
+
+[Unit 4]
+station
+platform
+escalator
+ticket office
+train driver
+suitcase
+train track
+return ticket
+single ticket
+tunnel
+disappear
+conductor
+imagination
+eco-friendly
+pollute
+
+[Unit 5]
+dark
+blonde
+fair
+moustache
+curly
+beard
+scar
+straight
+criminal
+mysterious
+uniform
+walkie-talkie
+rob
+sketch
+police
+
+[Unit 6]
+tail
+horn
+scales
+wing
+feathers
+tongue
+mythical beast
+dinosaur
+mermaid
+unicorn
+centaur
+treasure chest
+omnivore
+herbivore
+carnivore
+
+[Unit 7]
+tambourine
+triangle
+trumpet
+trombone
+drums
+harp
+saxophone
+violin
+orchestra
+instrument
+concert
+conductor
+percussion
+string
+wind
+
+[Unit 8]
+planet
+rocket
+UFO
+star
+comet
+telescope
+astronaut
+moon
+space station
+planetarium
+outer space
+asteroid
+orbit
+spacesuit
+universe
+
+[Unit 9]
+sail a boat
+swing on a rope
+dive into the water
+row a boat
+put up a tent
+make a fire
+collect wood
+sleeping bag
+tent
+campfire
+campsite
+adventure
+holiday
+nature
+explore
+
+=== Super Minds 5 ===
+[Unit 0]
+bubbles
+explosion
+instructions
+liquid
+goggles
+apron
+powder
+gloves
+test tube
+shelf
+science
+laboratory
+experiment
+safety
+measure
+
+[Unit 1]
+volcano
+earthquake
+flood
+hurricane
+tsunami
+forest fire
+smoke
+temple
+statue
+fountain
+magma
+lava
+ash
+destroy
+erupt
+
+[Unit 2]
+rainforest
+beak
+toucan
+sloth
+branch
+anaconda
+jaguar
+anteater
+beetle
+ecosystem
+oxygen
+species
+carbon dioxide
+Amazon
+monkey
+
+[Unit 3]
+spotlight
+electric guitar
+fans
+dancer
+bass guitar
+drum kit
+stage
+backing singers
+bodyguards
+album
+record
+jukebox
+genre
+jazz
+concert
+
+[Unit 4]
+waiter
+strawberries
+biscuits
+spoon
+fork
+knife
+chopsticks
+pepper
+salt
+recipe
+ingredients
+chocolate
+cacao
+melt
+restaurant
+
+[Unit 5]
+robbers
+jail
+wagon
+sheriff
+saddle
+pistol
+handcuffs
+rope
+barrel
+Native American
+bison
+tribe
+gold rush
+cowboy
+arrest
+
+[Unit 6]
+flag
+carpet
+sunglasses
+cushion
+earrings
+souvenir
+tourist
+mosque
+mosaic
+tiles
+Istanbul
+Turkey
+basket
+market
+travel
+
+[Unit 7]
+mask
+wig
+actor
+costume
+audience
+theatre
+play
+Shakespeare
+tragedy
+comedy
+prop
+applause
+stage
+perform
+character
+
+[Unit 8]
+farmer
+engineer
+dentist
+artist
+designer
+computer programmer
+mechanic
+businesswoman
+businessman
+cleaner
+future
+career
+job
+profession
+skills
+
+[Unit 9]
+sail
+sailor
+captain
+mast
+lifeboat
+cabin
+porthole
+ocean
+sea
+ship
+voyage
+mystery
+adventure
+navigation
+compass
+
+=== Super Minds 6 ===
+[Unit 0]
+basketball hoop
+bell
+net
+football pitch
+running track
+gym
+tennis court
+bike rack
+railings
+litter bin
+school
+adventure
+time travel
+playground
+sports
+
+[Unit 1]
+palm tree
+hook
+eye-patch
+binoculars
+key
+hammock
+coins
+spade
+treasure chest
+hole
+pirate
+anchor
+bury
+rob
+steal
+
+[Unit 2]
+hang-glider
+parachute
+monorail
+solar panel
+microlight
+wind turbine
+cable car
+jet pack
+surfboard
+inline skates
+unicycle
+future
+transport
+pollute
+driverless
+
+[Unit 3]
+Sphinx
+pharaoh
+pyramid
+chariot
+hieroglyphics
+mummy
+tomb
+Egypt
+slaves
+archaeologist
+mystery
+UFO
+restore
+civilisation
+BC
+
+[Unit 4]
+Olympics
+long jump
+hurdles
+high jump
+boxing
+archery
+wrestling
+weightlifting
+rowing
+gymnastics
+fencing
+athlete
+compete
+stadium
+medal
+
+[Unit 5]
+carpenter's
+jeweller's
+butcher's
+grocer's
+baker's
+barber's
+tailor's
+chemist's
+London
+shop
+stunt
+rescue
+square
+pop
+market
+
+[Unit 6]
+screwdriver
+hammer
+drill
+saw
+lever
+spanner
+paintbrush
+button
+switch
+nails
+inventor
+invent
+invention
+tool
+machine
+
+[Unit 7]
+countdown clock
+lunar module
+space capsule
+spacesuit
+launch pad
+crater
+control panel
+headset
+screen
+moon
+astronaut
+mission
+space
+NASA
+Houston
+
+[Unit 8]
+Northern Lights
+iceberg
+polar bear
+ice floe
+seal
+igloo
+mittens
+sledge
+Arctic
+North Pole
+freezing
+aurora borealis
+cold
+snow
+ice
+
+[Unit 9]
+sunrise
+horizon
+pond
+grassland
+valley
+bush
+stream
+swamp
+dinosaur
+Jurassic
+T-rex
+triceratops
+meadow
+nature
+extinct
+
+=== Expansion ===
+some
+work
+leave
+arrive
+he
+she
+it
+I
+you
+we
+they
+him
+her
+me
+my
+your
+his
+its
+us
+them
+their
+our
+a
+an
+the
+and
+but
+or
+for
+on
+in
+at
+to
+of
+by
+with
+from
+as
+is
+are
+was
+were
+be
+been
+have
+has
+had
+do
+does
+did
+can
+could
+will
+would
+should
+may
+might
+must
+day
+night
+time
+year
+month
+week
+hour
+minute
+second
+home
+house
+room
+city
+place
+thing
+person
+people
+child
+children
+man
+men
+woman
+women
+family
+friend
+go
+come
+see
+look
+watch
+read
+write
+draw
+paint
+sing
+dance
+play
+run
+walk
+jump
+swim
+eat
+drink
+cook
+make
+take
+give
+find
+think
+know
+learn
+study
+teach
+good
+bad
+happy
+sad
+big
+small
+long
+short
+hot
+cold
+new
+old
+young
+fast
+slow
+high
+low
+first
+last
+right
+wrong
+black
+white
+brown
+gray
+class
+lesson
+test
+exam
+grade
+mark
+score
+board
+desk
+teacher
+student
+pupil
+school
+book
+page
+line
+word
+letter
+number
+fun
+game
+win
+lose
+play
+score
+point
+level
+star
+prize
+gold
+silver
+bronze
+medal
+cup
+trophy
+champion
+winner
+sun
+moon
+star
+sky
+earth
+water
+fire
+air
+land
+tree
+flower
+grass
+stone
+rock
+sand
+wind
+rain
+snow
+ice
+am
+so
+no
+yes
+ok
+hi
+bye
+now
+then
+here
+there
+how
+why
+who
+what
+when
+where
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+zero
