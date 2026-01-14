@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrambled Word Game - Advanced</title>
+    <style>
+        /* ... (giữ nguyên tất cả CSS cũ) ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 850px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .game-title-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .game-title-logo img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .mode-section {
+            margin-bottom: 20px;
+        }
+
+        .mode-section h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #555;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .mode-btn.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .mode-btn.solo {
+            border-color: #27ae60;
+        }
+
+        .mode-btn.solo.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .mode-btn.team {
+            border-color: #3498db;
+        }
+
+        .mode-btn.team.selected {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .mode-info {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .setup-section {
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .setup-section h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #555;
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .difficulty-btn.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .difficulty-btn.easy {
+            border-color: #27ae60;
+        }
+
+        .difficulty-btn.easy.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .difficulty-btn.normal {
+            border-color: #f39c12;
+        }
+
+        .difficulty-btn.normal.selected {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .difficulty-btn.hard {
+            border-color: #e74c3c;
+        }
+
+        .difficulty-btn.hard.selected {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .difficulty-info {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-red {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-blue {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-gift {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            animation: giftPulse 1.5s infinite;
+        }
+
+        @keyframes giftPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ========== PHẦN GAME MỚI - COMPACT ========== */
+        .game-section {
+            display: none;
+        }
+
+        /* Header chứa scoreboard và timer */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .scoreboard {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .team {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-width: 140px;
+        }
+
+        .team-red {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .team-blue {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .solo-score {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .team-score {
+            font-size: 36px;
+            margin-top: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Timer và bonus points */
+        .timer-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-width: 180px;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .bonus-points {
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .timer.warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .timer.danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        /* Progress và info */
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .progress {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            color: white;
+        }
+
+        .badge-easy {
+            background: #27ae60;
+        }
+
+        .badge-normal {
+            background: #f39c12;
+        }
+
+        .badge-hard {
+            background: #e74c3c;
+        }
+
+        .vocab-info-display {
+            background: #e8f6f3;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #27ae60;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Hint box */
+        .hint-box {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px dashed #f39c12;
+            text-align: center;
+        }
+
+        .hint-label {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .hint-text {
+            color: #333;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Letters container */
+        .letters-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            min-height: 60px;
+        }
+
+        .letter-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+
+        .letter-btn:hover:not(:disabled) {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .letter-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Answer container */
+        .answer-container {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #34495e;
+        }
+
+        .answer-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .answer-letter {
+            display: inline-block;
+            min-width: 25px;
+        }
+
+        .answer-letter.prefilled {
+            color: #27ae60;
+        }
+
+        /* Feedback */
+        .feedback {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            min-height: 25px;
+        }
+
+        .feedback.correct {
+            color: #27ae60;
+        }
+
+        .feedback.wrong {
+            color: #e74c3c;
+        }
+
+        /* Buttons section */
+        .buttons-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 15px 0;
+            position: relative; /* Thêm position relative */
+        }
+
+        .team-buttons, .solo-buttons {
+            display: none;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            animation: slideDown 0.5s ease;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .next-button-container {
+            text-align: center;
+            margin: 15px 0;
+            display: none;
+        }
+
+        /* BIG NEXT BUTTON - THÊM MỚI */
+        .big-next-button-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .big-next-button {
+            padding: 20px 50px;
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        .big-next-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes timerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        .bounce {
+            animation: bounce 0.5s;
+        }
+
+        .pulse {
+            animation: pulse 0.5s;
+        }
+
+        /* Modal */
+        .gift-modal, .winner-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .gift-content, .winner-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            animation: bounce 1s;
+        }
+
+        /* Vocabulary section */
+        .vocabulary-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+        }
+
+        .vocab-controls {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vocab-select {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background: white;
+            min-width: 150px;
+        }
+
+        .load-vocab-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .load-vocab-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .vocab-info {
+            background: #e8f4fc;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+
+        .vocab-preview {
+            background: #e8f6f3;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #27ae60;
+            text-align: center;
+        }
+
+        .vocab-status {
+            padding: 8px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* Word List in Winner Modal - THÊM MỚI */
+        .word-list-container {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .word-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .word-item.correct {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .word-item.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .word-number {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 30px;
+        }
+
+        .word-text {
+            flex-grow: 1;
+        }
+
+        .word-hint {
+            font-size: 14px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Logo */
+        .logo-container {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 999;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .logo-container img {
+            width: 70px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @keyframes swing {
+            0%, 100% { 
+                transform: rotate(0deg);
+            }
+            25% { 
+                transform: rotate(10deg);
+            }
+            75% { 
+                transform: rotate(-10deg);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .game-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .scoreboard {
+                min-width: 100%;
+            }
+
+            .team {
+                min-width: 120px;
+                padding: 12px;
+                font-size: 18px;
+            }
+
+            .team-score {
+                font-size: 32px;
+            }
+
+            .timer-section {
+                justify-content: center;
+                padding: 8px 15px;
+            }
+
+            .timer {
+                font-size: 28px;
+            }
+
+            .letter-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .answer-text {
+                font-size: 28px;
+                letter-spacing: 3px;
+            }
+
+            .hint-text {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .logo-container img {
+                width: 60px;
+            }
+
+            .difficulty-btn, .mode-btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+
+            .vocab-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .vocab-select {
+                width: 100%;
+            }
+
+            .big-next-button {
+                padding: 15px 30px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-buttons, .solo-buttons, .game-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .letter-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .answer-text {
+                font-size: 24px;
+            }
+
+            .big-next-button {
+                padding: 12px 25px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Mode Selection Section -->
+        <div class="mode-section" id="modeSection">
+            <div class="game-title-logo">
+                <img src="scrambled-word.png" alt="Scrambled Word Game Logo">
+                <h1>Scrambled Word Game</h1>
+            </div>
+            
+            <h2>👥 Select Game Mode</h2>
+            <div class="mode-selector">
+                <button class="mode-btn solo" onclick="selectMode('solo')">
+                    🎯 SOLO PLAYER
+                </button>
+                <button class="mode-btn team selected" onclick="selectMode('team')">
+                    👥 2 TEAMS
+                </button>
+            </div>
+            <div class="mode-info" id="modeInfo">
+                <strong>2 TEAMS:</strong> Compete in teams - Red vs Blue
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="proceedToSetup()">➡️ CONTINUE</button>
+            </div>
+        </div>
+
+        <!-- Setup Section -->
+        <div class="setup-section" id="setupSection">
+            <h2>🎯 Select Difficulty Level</h2>
+            <div class="difficulty-selector">
+                <button class="difficulty-btn easy" onclick="selectDifficulty('easy')">
+                    😊 EASY
+                </button>
+                <button class="difficulty-btn normal selected" onclick="selectDifficulty('normal')">
+                    😐 NORMAL
+                </button>
+                <button class="difficulty-btn hard" onclick="selectDifficulty('hard')">
+                    😈 HARD
+                </button>
+            </div>
+            <div class="difficulty-info" id="difficultyInfo">
+                <strong>NORMAL:</strong> Standard game mode
+            </div>
+
+            <!-- Vocabulary section -->
+            <div class="vocabulary-section">
+                <h2>📚 Select Vocabulary</h2>
+                <div id="vocabStatus" class="vocab-status status-loading">
+                    ⏳ Loading vocabulary from file...
+                </div>
+                
+                <div class="vocab-controls">
+                    <select id="levelSelect" class="vocab-select" disabled>
+                        <option value="">-- Select Level --</option>
+                    </select>
+                    
+                    <select id="unitSelect" class="vocab-select" disabled>
+                        <option value="">-- Select Unit --</option>
+                    </select>
+                    
+                    <button class="load-vocab-btn" onclick="loadVocabulary()" disabled>
+                        📥 LOAD VOCABULARY
+                    </button>
+                </div>
+                
+                <div id="vocabPreview" class="vocab-preview" style="display: none;">
+                    ✅ Vocabulary loaded! Click START GAME to play.
+                </div>
+                
+                <div class="vocab-info">
+                    <strong>Vocabulary source:</strong> vocabulary.txt file
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="startGame()" id="startGameBtn" disabled>🚀 START GAME</button>
+                <button class="btn btn-secondary" onclick="goBackToModeSelection()">⬅️ BACK</button>
+            </div>
+        </div>
+
+        <!-- Game Section (Compact Layout) -->
+        <div class="game-section" id="gameSection">
+            <!-- Game Header: Scoreboard + Timer -->
+            <div class="game-header" id="gameHeader">
+                <!-- Scoreboard will be inserted here -->
+            </div>
+
+            <!-- Game Info: Progress + Vocabulary Info -->
+            <div class="game-info">
+                <div class="progress" id="progress">
+                    Word 1 / 10
+                    <span class="difficulty-badge" id="difficultyBadge"></span>
+                </div>
+                
+                <div id="currentVocabInfo" class="vocab-info-display" style="display: none;">
+                    📚 <span id="currentLevelDisplay">-</span> | 📖 <span id="currentUnitDisplay">-</span>
+                </div>
+            </div>
+
+            <!-- Hint -->
+            <div class="hint-box">
+                <div class="hint-label">💡 HINT:</div>
+                <div class="hint-text" id="hintText">...</div>
+            </div>
+
+            <!-- Scrambled Letters -->
+            <div class="letters-container" id="lettersContainer"></div>
+
+            <!-- Answer -->
+            <div class="answer-container">
+                <div class="answer-text" id="answerText">___</div>
+            </div>
+
+            <!-- Feedback -->
+            <div class="feedback" id="feedback"></div>
+
+            <!-- Buttons Section -->
+            <div class="buttons-section">
+                <!-- BIG NEXT BUTTON OVERLAY - THÊM MỚI -->
+                <div class="big-next-button-overlay" id="bigNextOverlay">
+                    <button class="big-next-button" onclick="nextWord()">➡️ NEXT WORD ➡️</button>
+                </div>
+
+                <!-- Team/Solo Selection Buttons -->
+                <div class="team-buttons" id="teamButtons">
+                    <button class="btn btn-red" onclick="addToTeam('red')">➕ ADD TO RED</button>
+                    <button class="btn btn-blue" onclick="addToTeam('blue')">➕ ADD TO BLUE</button>
+                    <button class="btn btn-gift" onclick="openGiftBox()">🎁 GIFT</button>
+                </div>
+
+                <!-- Solo Player Buttons -->
+                <div class="solo-buttons" id="soloButtons">
+                    <button class="btn btn-success" onclick="addToSolo()">➕ ADD TO SCORE</button>
+                    <button class="btn btn-gift" onclick="openGiftBox()">🎁 GIFT</button>
+                </div>
+
+                <!-- Game Controls -->
+                <div class="game-controls">
+                    <button class="btn btn-success" onclick="checkAnswer()">✓ CHECK</button>
+                    <button class="btn btn-secondary" onclick="clearAnswer()">🔄 CLEAR</button>
+                    <button class="btn btn-secondary" onclick="skipWord()">⏭️ SKIP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gift Modal -->
+        <div class="gift-modal" id="giftModal">
+            <div class="gift-content">
+                <h2>🎁</h2>
+                <div class="gift-result" id="giftResult"></div>
+                <div class="gift-description" id="giftDescription"></div>
+                
+                <div class="gift-team-select" id="giftTeamSelect" style="display: none;">
+                    <p style="margin-bottom: 15px; font-size: 16px;">Choose team:</p>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <button class="btn btn-red" onclick="applyGiftToTeam('red')">🔴 RED</button>
+                        <button class="btn btn-blue" onclick="applyGiftToTeam('blue')">🔵 BLUE</button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="giftOkButton" onclick="applyGift()">OK</button>
+            </div>
+        </div>
+
+        <!-- Winner Modal -->
+        <div class="winner-modal" id="winnerModal">
+            <div class="winner-content">
+                <h2>🎉 CONGRATULATIONS!</h2>
+                <div class="winner-team" id="winnerTeam"></div>
+                
+                <div id="vocabularyInfo" class="vocab-info-display" style="margin: 20px 0; font-size: 18px; padding: 15px;">
+                    📚 <strong>Vocabulary:</strong> <span id="finalLevel">-</span> | 📖 <strong>Unit:</strong> <span id="finalUnit">-</span>
+                </div>
+                
+                <!-- Word List Display - THÊM MỚI -->
+                <div id="wordListContainer" class="word-list-container">
+                    <!-- Word list sẽ được hiển thị ở đây -->
+                </div>
+                
+                <div class="game-mode-info" id="gameModeInfo"></div>
+                <div class="final-scores" id="finalScores"></div>
+                <button class="btn btn-primary" onclick="playAgain()">🔄 PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <script>
+        let words = [];
+        let currentIndex = 0;
+        let currentWord = '';
+        let currentAnswer = '';
+        let redTeamScore = 0;
+        let blueTeamScore = 0;
+        let soloScore = 0;
+        let correctAnswer = false;
+        let currentPoints = 0;
+        let difficulty = 'normal';
+        let gameMode = 'team';
+        let prefilledPositions = [];
+        let giftType = '';
+        let selectedTeam = '';
+        let timeLeft = 30;
+        let timerInterval = null;
+        let bonusPoints = 0;
+        
+        // Biến mới để theo dõi kết quả từng từ
+        let gameResults = []; // Mảng lưu kết quả từng từ: {word, hint, correct, points}
+        
+        // Biến cho từ điển
+        let vocabularyData = "";
+        let selectedLevel = "";
+        let selectedUnit = "";
+        let vocabularyLoaded = false;
+        let vocabularyStructure = {}; // Lưu cấu trúc từ điển
+
+        // Audio elements
+        const rightSound = new Audio('right.mp3');
+        const wrongSound = new Audio('wrong.mp3');
+        const winSound = new Audio('win.mp3');
+
+        // Khởi tạo - Tự động tải vocabulary.txt
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVocabularyFile();
+        });
+
+        // Hàm tải file vocabulary.txt
+        async function loadVocabularyFile() {
+            const statusDiv = document.getElementById('vocabStatus');
+            const levelSelect = document.getElementById('levelSelect');
+            const unitSelect = document.getElementById('unitSelect');
+            const loadBtn = document.querySelector('.load-vocab-btn');
+            const startBtn = document.getElementById('startGameBtn');
+            
+            try {
+                statusDiv.className = 'vocab-status status-loading';
+                statusDiv.textContent = '⏳ Loading vocabulary from file...';
+                
+                // Tải file vocabulary.txt
+                const response = await fetch('vocabulary.txt');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const fileContent = await response.text();
+                
+                if (!fileContent.trim()) {
+                    throw new Error('File is empty');
+                }
+                
+                vocabularyData = fileContent;
+                vocabularyLoaded = true;
+                
+                // Parse cấu trúc từ điển
+                parseVocabularyStructure();
+                
+                // Cập nhật status
+                statusDiv.className = 'vocab-status status-success';
+                statusDiv.textContent = '✅ Vocabulary file loaded successfully!';
+                
+                // Enable các control
+                levelSelect.disabled = false;
+                levelSelect.innerHTML = '<option value="">-- Select Level --</option>';
+                
+                // Thêm các level vào dropdown
+                for (const level in vocabularyStructure) {
+                    const option = document.createElement('option');
+                    option.value = level;
+                    option.textContent = level;
+                    levelSelect.appendChild(option);
+                }
+                
+                // Event listener cho level select
+                levelSelect.addEventListener('change', function() {
+                    if (this.value) {
+                        // Update unit select
+                        unitSelect.disabled = false;
+                        loadBtn.disabled = false;
+                        
+                        // Clear và thêm units
+                        unitSelect.innerHTML = '<option value="">-- Select Unit --</option>';
+                        const units = Object.keys(vocabularyStructure[this.value]);
+                        units.forEach(unit => {
+                            const option = document.createElement('option');
+                            option.value = unit;
+                            option.textContent = unit;
+                            unitSelect.appendChild(option);
+                        });
+                    } else {
+                        unitSelect.disabled = true;
+                        loadBtn.disabled = true;
+                    }
+                });
+                
+                console.log('Vocabulary file loaded successfully');
+                
+            } catch (error) {
+                console.error('Error loading vocabulary file:', error);
+                vocabularyLoaded = false;
+                
+                statusDiv.className = 'vocab-status status-error';
+                statusDiv.textContent = '❌ Error loading vocabulary file. Please ensure vocabulary.txt exists in the same folder.';
+                
+                // Disable tất cả
+                levelSelect.disabled = true;
+                unitSelect.disabled = true;
+                loadBtn.disabled = true;
+                startBtn.disabled = true;
+            }
+        }
+
+        // Parse cấu trúc từ điển để lấy danh sách Level và Unit
+        function parseVocabularyStructure() {
+            vocabularyStructure = {};
+            const lines = vocabularyData.split('\n');
+            let currentLevel = '';
+            let currentUnit = '';
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Tìm level mới
+                if (line.startsWith('===') && line.endsWith('===')) {
+                    currentLevel = line.replace(/===/g, '').trim();
+                    vocabularyStructure[currentLevel] = {};
+                    currentUnit = '';
+                }
+                // Tìm unit mới
+                else if (line.startsWith('[') && line.endsWith(']') && currentLevel) {
+                    currentUnit = line.slice(1, -1).trim();
+                    vocabularyStructure[currentLevel][currentUnit] = [];
+                }
+                // Thêm từ vựng
+                else if (line.includes('|') && currentLevel && currentUnit) {
+                    vocabularyStructure[currentLevel][currentUnit].push(line);
+                }
+            }
+        }
+
+        // Load từ điển từ Level và Unit đã chọn
+        function loadVocabulary() {
+            const level = document.getElementById('levelSelect').value;
+            const unit = document.getElementById('unitSelect').value;
+            const startBtn = document.getElementById('startGameBtn');
+            
+            if (!level || !unit) {
+                alert('Please select both Level and Unit');
+                return;
+            }
+            
+            // Lưu thông tin level và unit đã chọn
+            selectedLevel = level;
+            selectedUnit = unit;
+            
+            // Lấy từ vựng từ cấu trúc
+            const vocabList = vocabularyStructure[level][unit];
+            
+            if (!vocabList || vocabList.length === 0) {
+                alert(`No vocabulary found for ${level} - ${unit}`);
+                return;
+            }
+            
+            // Parse từ vựng
+            words = [];
+            for (let line of vocabList) {
+                const parts = line.split('|').map(s => s.trim());
+                if (parts.length >= 2 && parts[0] && parts[1]) {
+                    words.push({
+                        word: parts[0].toLowerCase(),
+                        hint: parts[1]
+                    });
+                }
+            }
+            
+            if (words.length === 0) {
+                alert('No valid words found!');
+                return;
+            }
+            
+            // Reset game results
+            gameResults = [];
+            
+            // Hiển thị thông báo
+            document.getElementById('vocabPreview').style.display = 'block';
+            document.getElementById('vocabPreview').textContent = 
+                `✅ Loaded ${words.length} words from ${level} - ${unit}`;
+            
+            // Enable start game button
+            startBtn.disabled = false;
+            
+            // Scroll đến nút start game
+            startBtn.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectMode(mode) {
+            gameMode = mode;
+            
+            // Update button styles
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+
+            // Update info text
+            const infoText = {
+                'solo': '<strong>SOLO PLAYER:</strong> Play alone and beat your own high score! 🎯',
+                'team': '<strong>2 TEAMS:</strong> Compete with friends - Red team vs Blue team! 👥'
+            };
+            document.getElementById('modeInfo').innerHTML = infoText[mode];
+        }
+
+        function proceedToSetup() {
+            // Kiểm tra xem đã tải được từ điển chưa
+            if (!vocabularyLoaded) {
+                alert('Vocabulary file is still loading or not found. Please ensure vocabulary.txt exists in the same folder.');
+                return;
+            }
+            
+            document.getElementById('modeSection').style.display = 'none';
+            document.getElementById('setupSection').style.display = 'block';
+        }
+
+        function goBackToModeSelection() {
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('modeSection').style.display = 'block';
+        }
+
+        function selectDifficulty(level) {
+            difficulty = level;
+            
+            // Update button styles
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+
+            // Update info text
+            const infoText = {
+                'easy': '<strong>EASY:</strong> First and last letters are revealed! 🎯',
+                'normal': '<strong>NORMAL:</strong> Standard game mode 😊',
+                'hard': '<strong>HARD:</strong> 3 extra random letters added! 😈'
+            };
+            document.getElementById('difficultyInfo').innerHTML = infoText[level];
+        }
+
+        function startGame() {
+            console.log('DEBUG: Starting game with', words.length, 'words');
+            console.log('DEBUG: Game state - currentIndex:', currentIndex, 'currentWord:', currentWord);
+            
+            // KIỂM TRA KỸ: Nếu words rỗng hoặc undefined
+            if (!words || words.length === 0) {
+                console.error('DEBUG: words array is empty!');
+                alert('No vocabulary loaded! Please select Level and Unit, then click LOAD VOCABULARY.');
+                return;
+            }
+
+            // ĐẢM BẢO RESET HOÀN TOÀN TRƯỚC KHI BẮT ĐẦU
+            currentIndex = 0;
+            redTeamScore = 0;
+            blueTeamScore = 0;
+            soloScore = 0;
+            currentWord = '';
+            currentAnswer = '';
+            correctAnswer = false;
+            currentPoints = 0;
+            prefilledPositions = [];
+            giftType = '';
+            selectedTeam = '';
+            timeLeft = 30;
+            bonusPoints = 0;
+            gameResults = []; // Reset game results
+            
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('gameSection').style.display = 'block';
+
+            // Set up scoreboard based on game mode
+            setupScoreboard();
+            
+            // Hiển thị thông tin Level và Unit
+            if (selectedLevel && selectedUnit) {
+                document.getElementById('currentVocabInfo').style.display = 'block';
+                document.getElementById('currentLevelDisplay').textContent = selectedLevel;
+                document.getElementById('currentUnitDisplay').textContent = selectedUnit;
+            }
+
+            // Set difficulty badge
+            const badge = document.getElementById('difficultyBadge');
+            badge.textContent = difficulty.toUpperCase();
+            badge.className = `difficulty-badge badge-${difficulty}`;
+
+            // Ẩn nút next lớn
+            document.getElementById('bigNextOverlay').style.display = 'none';
+
+            loadWord();
+        }
+
+        function setupScoreboard() {
+            const gameHeader = document.getElementById('gameHeader');
+            
+            if (gameMode === 'team') {
+                gameHeader.innerHTML = `
+                    <div class="scoreboard">
+                        <div class="team team-red">
+                            <div>🔴 RED</div>
+                            <div class="team-score" id="redScore">0</div>
+                        </div>
+                        <div class="team team-blue">
+                            <div>🔵 BLUE</div>
+                            <div class="team-score" id="blueScore">0</div>
+                        </div>
+                    </div>
+                    <div class="timer-section">
+                        <div class="timer" id="timer">30</div>
+                        <div class="bonus-points" id="bonusPoints"></div>
+                    </div>
+                `;
+            } else {
+                gameHeader.innerHTML = `
+                    <div class="scoreboard">
+                        <div class="team solo-score">
+                            <div>🎯 SOLO</div>
+                            <div class="team-score" id="soloScore">0</div>
+                        </div>
+                    </div>
+                    <div class="timer-section">
+                        <div class="timer" id="timer">30</div>
+                        <div class="bonus-points" id="bonusPoints"></div>
+                    </div>
+                `;
+            }
+        }
+
+        function loadWord() {
+            // FIX BUG: Clean up trước khi load từ mới
+            stopTimer(); // Đảm bảo timer dừng
+            
+            // Reset answer và letters container
+            currentAnswer = '';
+            correctAnswer = false;
+            prefilledPositions = [];
+            
+            // Xóa các letter buttons cũ
+            const container = document.getElementById('lettersContainer');
+            if (container) {
+                container.innerHTML = '';
+            }
+            
+            // Reset UI elements
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('teamButtons').style.display = 'none';
+            document.getElementById('soloButtons').style.display = 'none';
+            document.getElementById('bigNextOverlay').style.display = 'none'; // Ẩn nút next lớn
+            document.getElementById('bonusPoints').textContent = '';
+            
+            // Reset answer display
+            document.getElementById('answerText').textContent = '___';
+            document.getElementById('answerText').className = 'answer-text';
+            
+            // Mở khóa các nút game controls
+            enableGameControls(true);
+            
+            if (currentIndex >= words.length) {
+                endGame();
+                return;
+            }
+
+            const wordData = words[currentIndex];
+            currentWord = wordData.word;
+            currentAnswer = '';
+            correctAnswer = false;
+            currentPoints = currentWord.length;
+            prefilledPositions = [];
+            timeLeft = 30;
+            bonusPoints = 0;
+
+            // Apply difficulty modifications
+            if (difficulty === 'easy') {
+                // Prefill first and last letters
+                currentAnswer = currentWord[0] + '_'.repeat(currentWord.length - 2) + currentWord[currentWord.length - 1];
+                prefilledPositions = [0, currentWord.length - 1];
+            }
+
+            // Update UI
+            document.getElementById('progress').innerHTML = `
+                Word ${currentIndex + 1} / ${words.length}
+                <span class="difficulty-badge badge-${difficulty}">${difficulty.toUpperCase()}</span>
+            `;
+            document.getElementById('hintText').textContent = wordData.hint;
+            updateAnswerDisplay();
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('teamButtons').style.display = 'none';
+            document.getElementById('soloButtons').style.display = 'none';
+            document.getElementById('bigNextOverlay').style.display = 'none'; // Ẩn nút next lớn
+            document.getElementById('bonusPoints').textContent = '';
+
+            // Start timer
+            startTimer();
+
+            // Scramble and display letters
+            displayScrambledLetters();
+        }
+
+        function startTimer() {
+            // Clear any existing timer
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    // Hiển thị nút next lớn khi hết giờ
+                    showBigNextButton();
+                    document.getElementById('feedback').textContent = '⏰ TIME\'S UP!';
+                    document.getElementById('feedback').className = 'feedback wrong';
+                    
+                    // Ghi lại kết quả (sai) vào gameResults
+                    gameResults.push({
+                        word: currentWord,
+                        hint: document.getElementById('hintText').textContent,
+                        correct: false,
+                        points: 0
+                    });
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const timerDiv = document.getElementById('timer');
+            if (!timerDiv) return;
+            
+            timerDiv.textContent = timeLeft;
+
+            // Remove all classes
+            timerDiv.classList.remove('warning', 'danger');
+
+            // Add appropriate class based on time
+            if (timeLeft <= 10) {
+                timerDiv.classList.add('danger');
+            } else if (timeLeft <= 20) {
+                timerDiv.classList.add('warning');
+            }
+
+            // Calculate bonus points (1 point per 10 seconds remaining)
+            if (timeLeft > 0) {
+                bonusPoints = Math.floor(timeLeft / 10);
+                if (bonusPoints > 0 && correctAnswer) {
+                    document.getElementById('bonusPoints').textContent = `+${bonusPoints} bonus!`;
+                } else {
+                    document.getElementById('bonusPoints').textContent = '';
+                }
+            }
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function displayScrambledLetters() {
+            const container = document.getElementById('lettersContainer');
+            container.innerHTML = '';
+
+            // Get letters to scramble (excluding prefilled ones for easy mode)
+            let lettersToScramble = [];
+            for (let i = 0; i < currentWord.length; i++) {
+                if (!prefilledPositions.includes(i)) {
+                    lettersToScramble.push(currentWord[i]);
+                }
+            }
+
+            // Scramble letters
+            const scrambled = lettersToScramble.sort(() => Math.random() - 0.5);
+
+            // Add fake letters for hard mode
+            if (difficulty === 'hard') {
+                const fakeLetters = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+                for (let i = 0; i < 3; i++) {
+                    const randomLetter = fakeLetters[Math.floor(Math.random() * fakeLetters.length)];
+                    scrambled.splice(Math.floor(Math.random() * scrambled.length), 0, randomLetter);
+                }
+            }
+
+            // Create buttons
+            scrambled.forEach((letter, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'letter-btn';
+                btn.textContent = letter;
+                btn.onclick = () => selectLetter(index);
+                btn.id = `letter-${index}`;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectLetter(index) {
+            const btn = document.getElementById(`letter-${index}`);
+            if (btn.disabled) return;
+
+            const letter = btn.textContent;
+
+            // For easy mode, insert at next available position
+            if (difficulty === 'easy') {
+                let inserted = false;
+                let newAnswer = currentAnswer.split('');
+                for (let i = 1; i < currentWord.length - 1; i++) {
+                    if (newAnswer[i] === '_') {
+                        newAnswer[i] = letter;
+                        inserted = true;
+                        break;
+                    }
+                }
+                if (inserted) {
+                    currentAnswer = newAnswer.join('');
+                    btn.disabled = true;
+                }
+            } else {
+                // Normal and hard mode
+                currentAnswer += letter;
+                btn.disabled = true;
+            }
+
+            updateAnswerDisplay();
+        }
+
+        function updateAnswerDisplay() {
+            const answerDiv = document.getElementById('answerText');
+            
+            if (difficulty === 'easy') {
+                // Display with prefilled letters highlighted
+                let html = '';
+                for (let i = 0; i < currentAnswer.length; i++) {
+                    const char = currentAnswer[i];
+                    if (prefilledPositions.includes(i)) {
+                        html += `<span class="answer-letter prefilled">${char}</span>`;
+                    } else {
+                        html += `<span class="answer-letter">${char === '_' ? '_' : char}</span>`;
+                    }
+                }
+                answerDiv.innerHTML = html;
+            } else {
+                answerDiv.textContent = currentAnswer || '___';
+            }
+        }
+
+        function clearAnswer() {
+            if (difficulty === 'easy') {
+                // Reset to prefilled letters only
+                currentAnswer = currentWord[0] + '_'.repeat(currentWord.length - 2) + currentWord[currentWord.length - 1];
+            } else {
+                currentAnswer = '';
+            }
+            
+            updateAnswerDisplay();
+            
+            // Re-enable all letter buttons
+            const buttons = document.querySelectorAll('.letter-btn');
+            buttons.forEach(btn => btn.disabled = false);
+
+            document.getElementById('feedback').textContent = '';
+        }
+
+        // Hàm enable/disable game controls
+        function enableGameControls(enable) {
+            const buttons = document.querySelectorAll('.game-controls .btn');
+            buttons.forEach(btn => {
+                btn.disabled = !enable;
+                if (!enable) {
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                } else {
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                }
+            });
+            
+            // Enable/disable letter buttons
+            const letterButtons = document.querySelectorAll('.letter-btn');
+            letterButtons.forEach(btn => {
+                btn.disabled = !enable;
+            });
+        }
+
+        // Hàm hiển thị nút next lớn
+        function showBigNextButton() {
+            document.getElementById('bigNextOverlay').style.display = 'flex';
+            enableGameControls(false); // Disable tất cả nút khác
+        }
+
+        function checkAnswer() {
+            if (!currentAnswer || (difficulty === 'easy' && currentAnswer.includes('_'))) {
+                return;
+            }
+
+            const feedback = document.getElementById('feedback');
+            const answerBox = document.getElementById('answerText');
+
+            if (currentAnswer.toLowerCase() === currentWord.toLowerCase()) {
+                // Stop timer
+                stopTimer();
+
+                // Correct answer
+                correctAnswer = true;
+                
+                // Calculate bonus points
+                bonusPoints = Math.floor(timeLeft / 10);
+                
+                let bonusText = bonusPoints > 0 ? ` (+${bonusPoints} bonus!)` : '';
+                feedback.textContent = '🎉 CORRECT!' + bonusText + ' 🎉';
+                feedback.className = 'feedback correct';
+                answerBox.classList.add('bounce');
+                
+                if (bonusPoints > 0) {
+                    document.getElementById('bonusPoints').textContent = `+${bonusPoints} bonus points!`;
+                }
+                
+                rightSound.play().catch(e => console.log('Audio play failed:', e));
+
+                // Show appropriate buttons based on game mode
+                if (gameMode === 'team') {
+                    document.getElementById('teamButtons').style.display = 'flex';
+                } else {
+                    document.getElementById('soloButtons').style.display = 'flex';
+                }
+
+                setTimeout(() => answerBox.classList.remove('bounce'), 500);
+            } else {
+                // Wrong answer
+                feedback.textContent = '❌ WRONG! Try Again!';
+                feedback.className = 'feedback wrong';
+                answerBox.classList.add('shake');
+                
+                wrongSound.play().catch(e => console.log('Audio play failed:', e));
+
+                setTimeout(() => {
+                    answerBox.classList.remove('shake');
+                    clearAnswer();
+                }, 500);
+            }
+        }
+
+        function addToTeam(team) {
+            if (!correctAnswer) return;
+
+            selectedTeam = team;
+            
+            // Add base points + bonus points
+            const totalPoints = currentPoints + bonusPoints;
+
+            if (team === 'red') {
+                redTeamScore += totalPoints;
+                document.getElementById('redScore').textContent = redTeamScore;
+                document.querySelector('.team-red').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-red').classList.remove('pulse'), 500);
+            } else {
+                blueTeamScore += totalPoints;
+                document.getElementById('blueScore').textContent = blueTeamScore;
+                document.querySelector('.team-blue').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-blue').classList.remove('pulse'), 500);
+            }
+
+            // Ghi lại kết quả vào gameResults (đúng)
+            gameResults.push({
+                word: currentWord,
+                hint: document.getElementById('hintText').textContent,
+                correct: true,
+                points: totalPoints
+            });
+
+            // Hiển thị nút next lớn và disable các nút khác
+            showBigNextButton();
+            
+            // Ẩn các nút team
+            document.getElementById('teamButtons').style.display = 'none';
+        }
+
+        function addToSolo() {
+            if (!correctAnswer) return;
+            
+            // Add base points + bonus points
+            const totalPoints = currentPoints + bonusPoints;
+            soloScore += totalPoints;
+            
+            document.getElementById('soloScore').textContent = soloScore;
+            document.querySelector('.solo-score').classList.add('pulse');
+            setTimeout(() => document.querySelector('.solo-score').classList.remove('pulse'), 500);
+
+            // Ghi lại kết quả vào gameResults (đúng)
+            gameResults.push({
+                word: currentWord,
+                hint: document.getElementById('hintText').textContent,
+                correct: true,
+                points: totalPoints
+            });
+
+            // Hiển thị nút next lớn và disable các nút khác
+            showBigNextButton();
+            
+            // Ẩn các nút solo
+            document.getElementById('soloButtons').style.display = 'none';
+        }
+
+        function openGiftBox() {
+            if (!correctAnswer) return;
+
+            // Random gift: 0 = half points, 1 = double points, 2 = add points + continue
+            const gifts = [
+                {
+                    type: 'half',
+                    emoji: '😢',
+                    title: 'OOPS!',
+                    description: 'You lose half of the points from this answer!'
+                },
+                {
+                    type: 'double',
+                    emoji: '🎊',
+                    title: 'JACKPOT!',
+                    description: 'Your points are DOUBLED!'
+                },
+                {
+                    type: 'continue',
+                    emoji: '🌟',
+                    title: 'BONUS!',
+                    description: 'Get the points AND write the word again!'
+                }
+            ];
+
+            const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+            giftType = randomGift.type;
+
+            document.getElementById('giftResult').textContent = randomGift.emoji + ' ' + randomGift.title;
+            document.getElementById('giftDescription').textContent = randomGift.description;
+            document.getElementById('giftModal').style.display = 'flex';
+            
+            // Hiển thị phần chọn đội nếu là chế độ team, ẩn nút OK
+            if (gameMode === 'team') {
+                document.getElementById('giftTeamSelect').style.display = 'flex';
+                document.getElementById('giftOkButton').style.display = 'none';
+            } else {
+                document.getElementById('giftTeamSelect').style.display = 'none';
+                document.getElementById('giftOkButton').style.display = 'block';
+            }
+        }
+
+        function applyGift() {
+            document.getElementById('giftModal').style.display = 'none';
+
+            // Chỉ gọi cho solo mode
+            if (gameMode === 'solo') {
+                applyGiftToSolo();
+                return;
+            }
+        }
+
+        function applyGiftToTeam(team) {
+            document.getElementById('giftModal').style.display = 'none';
+            
+            // Calculate base points (with bonus)
+            let basePoints = currentPoints + bonusPoints;
+            let pointsToAdd = basePoints;
+
+            if (giftType === 'half') {
+                pointsToAdd = Math.floor(basePoints / 2);
+            } else if (giftType === 'double') {
+                pointsToAdd = basePoints * 2;
+            }
+
+            // Apply points to selected team
+            if (team === 'red') {
+                redTeamScore += pointsToAdd;
+                document.getElementById('redScore').textContent = redTeamScore;
+                document.querySelector('.team-red').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-red').classList.remove('pulse'), 500);
+            } else {
+                blueTeamScore += pointsToAdd;
+                document.getElementById('blueScore').textContent = blueTeamScore;
+                document.querySelector('.team-blue').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-blue').classList.remove('pulse'), 500);
+            }
+
+            // Ghi lại kết quả vào gameResults (đúng)
+            gameResults.push({
+                word: currentWord,
+                hint: document.getElementById('hintText').textContent,
+                correct: true,
+                points: pointsToAdd
+            });
+
+            // Hiển thị nút next lớn và disable các nút khác
+            showBigNextButton();
+            
+            // Hide team buttons
+            document.getElementById('teamButtons').style.display = 'none';
+            
+            // For 'continue' gift type, we'll handle it in nextWord function
+            if (giftType === 'continue') {
+                alert('BONUS! You can play the next word now!');
+            }
+        }
+
+        function applyGiftToSolo() {
+            // Calculate base points (with bonus)
+            let basePoints = currentPoints + bonusPoints;
+            let pointsToAdd = basePoints;
+
+            if (giftType === 'half') {
+                pointsToAdd = Math.floor(basePoints / 2);
+            } else if (giftType === 'double') {
+                pointsToAdd = basePoints * 2;
+            }
+
+            // Apply points to solo player
+            soloScore += pointsToAdd;
+            document.getElementById('soloScore').textContent = soloScore;
+            document.querySelector('.solo-score').classList.add('pulse');
+            setTimeout(() => document.querySelector('.solo-score').classList.remove('pulse'), 500);
+
+            // Ghi lại kết quả vào gameResults (đúng)
+            gameResults.push({
+                word: currentWord,
+                hint: document.getElementById('hintText').textContent,
+                correct: true,
+                points: pointsToAdd
+            });
+
+            // Hiển thị nút next lớn và disable các nút khác
+            showBigNextButton();
+            
+            // Hide solo buttons
+            document.getElementById('soloButtons').style.display = 'none';
+            
+            // For 'continue' gift type, we'll handle it in nextWord function
+            if (giftType === 'continue') {
+                alert('BONUS! You can play the next word now!');
+            }
+        }
+
+        function skipWord() {
+            stopTimer();
+            
+            // Ghi lại kết quả (sai) vào gameResults khi skip
+            gameResults.push({
+                word: currentWord,
+                hint: document.getElementById('hintText').textContent,
+                correct: false,
+                points: 0
+            });
+            
+            // Hiển thị feedback và nút next lớn
+            document.getElementById('feedback').textContent = '⏭️ WORD SKIPPED!';
+            document.getElementById('feedback').className = 'feedback wrong';
+            showBigNextButton();
+        }
+
+        function nextWord() {
+            // Ẩn nút next lớn
+            document.getElementById('bigNextOverlay').style.display = 'none';
+            
+            // Move to next word (or reload if continue gift)
+            if (giftType === 'continue') {
+                // Reset gift type and reload current word
+                giftType = '';
+                loadWord();
+            } else {
+                currentIndex++;
+                loadWord();
+            }
+        }
+
+        function endGame() {
+            stopTimer();
+            
+            const modal = document.getElementById('winnerModal');
+            const winnerTeam = document.getElementById('winnerTeam');
+            const finalScores = document.getElementById('finalScores');
+            const gameModeInfo = document.getElementById('gameModeInfo');
+            const finalLevel = document.getElementById('finalLevel');
+            const finalUnit = document.getElementById('finalUnit');
+            const wordListContainer = document.getElementById('wordListContainer');
+
+            let winner = '';
+            let winnerColor = '';
+
+            // Hiển thị thông tin Level và Unit
+            if (selectedLevel && selectedUnit) {
+                finalLevel.textContent = selectedLevel;
+                finalUnit.textContent = selectedUnit;
+                document.getElementById('vocabularyInfo').style.display = 'block';
+            } else {
+                document.getElementById('vocabularyInfo').style.display = 'none';
+            }
+
+            // Hiển thị danh sách từ vựng đã chơi
+            displayWordList(wordListContainer);
+
+            if (gameMode === 'team') {
+                // Hiển thị thông tin chế độ chơi
+                gameModeInfo.innerHTML = `<strong>Game Mode:</strong> 2 Teams | <strong>Difficulty:</strong> ${difficulty.toUpperCase()}`;
+                
+                if (redTeamScore > blueTeamScore) {
+                    winner = '🔴 RED TEAM WINS! 🔴';
+                    winnerColor = '#e74c3c';
+                } else if (blueTeamScore > redTeamScore) {
+                    winner = '🔵 BLUE TEAM WINS! 🔵';
+                    winnerColor = '#3498db';
+                } else {
+                    winner = '🤝 IT\'S A DRAW! 🤝';
+                    winnerColor = '#f39c12';
+                }
+                
+                finalScores.innerHTML = `
+                    <div>🔴 Red Team: <strong>${redTeamScore}</strong> points</div>
+                    <div>🔵 Blue Team: <strong>${blueTeamScore}</strong> points</div>
+                    <div style="margin-top: 10px; font-size: 18px;">Total words played: <strong>${words.length}</strong></div>
+                    <div>Correct words: <strong>${gameResults.filter(r => r.correct).length}</strong></div>
+                `;
+            } else {
+                // SOLO MODE
+                gameModeInfo.innerHTML = `<strong>Game Mode:</strong> Solo Player | <strong>Difficulty:</strong> ${difficulty.toUpperCase()}`;
+                
+                winner = 'Well done!';
+                winnerColor = '#27ae60';
+                finalScores.innerHTML = `
+                    <div>🎯 Your Final Score: <strong>${soloScore}</strong> points</div>
+                    <div style="margin-top: 10px;">Total words completed: <strong>${words.length}</strong></div>
+                    <div>Correct words: <strong>${gameResults.filter(r => r.correct).length}</strong></div>
+                    <div>Average score per word: <strong>${(soloScore / words.length).toFixed(1)}</strong> points</div>
+                `;
+            }
+
+            winnerTeam.textContent = winner;
+            winnerTeam.style.color = winnerColor;
+
+            modal.style.display = 'flex';
+            
+            winSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+
+        // Hàm hiển thị danh sách từ vựng
+        function displayWordList(container) {
+            container.innerHTML = '';
+            
+            if (gameResults.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6c757d;">No words were played.</p>';
+                return;
+            }
+            
+            gameResults.forEach((result, index) => {
+                const wordItem = document.createElement('div');
+                wordItem.className = `word-item ${result.correct ? 'correct' : 'incorrect'}`;
+                
+                wordItem.innerHTML = `
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <div class="word-number">${index + 1}</div>
+                        <div style="flex-grow: 1;">
+                            <div class="word-text"><strong>${result.word.toUpperCase()}</strong></div>
+                            <div class="word-hint">${result.hint}</div>
+                        </div>
+                        <div style="font-weight: bold; font-size: 16px;">
+                            ${result.correct ? `✅ +${result.points} pts` : '❌ 0 pts'}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(wordItem);
+            });
+        }
+
+        function playAgain() {
+            // Thay vì reset phức tạp, đơn giản là refresh trang
+            location.reload();
+        }
+    </script>
+</body>
+</html>
