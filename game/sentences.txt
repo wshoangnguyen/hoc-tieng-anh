@@ -137,7 +137,6 @@ Where are the apples? They're on the table. | Where are the apples? They're on t
 Where is the red pen? I don't know. | Where is the red pen? I don't know. | Where + is + the + adj + N? | Cái bút mực đỏ đâu? Tôi không biết.
 
 === Super Minds 2 ===
-=== Super Minds 2 ===
 [U0.1: There's a/an... / There are some...]
 There's a clock on the wall. | There's a clock on the wall. | There's + a + N + on + the + N | Có một cái đồng hồ trên tường.
 There's an open window. | There's an open window. | There's + an + adj + N | Có một cửa sổ đang mở.
@@ -179,7 +178,7 @@ Does he like polar bears? Yes, he does. | Does he like polar bears? Yes, he does
 Does she like snakes? No, she doesn't. | Does she like snakes? No, she doesn't. | Does + he/she + like + N(s)? | Cô ấy có thích rắn không? Không, cô ấy không thích.
 What animal does she like? She likes hippos. | What animal does she like? She likes hippos. | What animal + does + he/she + like? | Cô ấy thích con vật nào? Cô ấy thích những con hà mã.
 Does the zookeeper like his job? Yes, he does. | Does the zookeeper like his job? Yes, he does. | Does + the + N + like + his/her + N? | Người trông sở thú có thích công việc của anh ấy không? Có, anh ấy thích.
-Do you like monkeys? Yes, I do. / No, I don't. | Do you like monkeys? Yes, I do. / No, I don't. | Do + you + like + N(s)? | Bạn có thích khỉ không? Có, tôi thích. / Không, tôi không thích.
+Do you like monkeys? Yes, I do. | Do you like monkeys? Yes, I do. | Do + you + like + N(s)? | Bạn có thích khỉ không? Có, tôi thích.
 
 [U3.1: Has your town got a...? / Yes, it has. / No, it hasn't.]
 Has your town got a cinema? Yes, it has. | Has your town got a cinema? Yes, it has. | Has + your + town + got + a + N? | Thị trấn của bạn có rạp chiếu phim không? Có, nó có.
@@ -218,16 +217,16 @@ This mirror is big. That mirror is small. | This mirror is big. That mirror is s
 
 [U5.2: Whose ... is this? / Whose ... are these?]
 Whose lamp is this? It's my lamp. / It's mine. | Whose lamp is this? It's my lamp. / It's mine. | Whose + N + is + this? It's + my + N. / It's + mine. | Cái đèn ngủ này của ai? Nó là đèn của tôi.
-Whose T-shirt is that? It's his T-shirt. / It's his. | Whose T-shirt is that? It's his T-shirt. / It's his. | Whose + N + is + that? It's + his + N. / It's + his. | Cái áo phông kia của ai? Nó là áo của anh ấy.
-Whose socks are these? They're her socks. / They're hers. | Whose socks are these? They're her socks. / They're hers. | Whose + N(s) + are + these? They're + her + N(s). / They're + hers. | Những đôi tất này của ai? Chúng là tất của cô ấy.
-Whose toys are those? They're our toys. / They're ours. | Whose toys are those? They're our toys. / They're ours. | Whose + N(s) + are + those? They're + our + N(s). / They're + ours. | Những món đồ chơi kia của ai? Chúng là đồ chơi của chúng tôi.
+Whose T-shirt is that? It's his. | Whose T-shirt is that? It's his. | Whose + N + is + that? It's + his + N. / It's + his. | Cái áo phông kia của ai? Nó là áo của anh ấy.
+Whose socks are these? They're hers. | Whose socks are these? They're hers. | Whose + N(s) + are + these? They're + her + N(s). / They're + hers. | Những đôi tất này của ai? Chúng là tất của cô ấy.
+Whose toys are those? They're ours. | Whose toys are those? They're ours. | Whose + N(s) + are + those? They're + our + N(s). / They're + ours. | Những món đồ chơi kia của ai? Chúng là đồ chơi của chúng tôi.
 Is this your rug? Yes, it's mine. | Is this your rug? Yes, it's mine. | Is this + your + N? Yes, it's + mine. | Cái thảm này có phải của bạn không? Đúng, nó là của tôi.
 
 [U6.1: I am / He is / She is + Adjective (Feelings)]
 I am happy today. | I am happy today. | I + am + adj. | Hôm nay tôi vui.
 He is angry because he lost his game. | He is angry because he lost his game. | He + is + adj + because + clause. | Anh ấy tức giận vì thua trò chơi.
 She is tired. She wants to go to bed. | She is tired. She wants to go to bed. | She + is + adj. She + wants to + V. | Cô ấy mệt. Cô ấy muốn đi ngủ.
-Are you excited about the holiday? Yes, I am. | Are you excited about the holiday? Yes, I am. | Are + you + adj + about + the + N? | Bạn có hào hứng về kỳ nghỉ không? Có, tôi có.
+Are you excited about the holiday? | Are you excited about the holiday? | Are + you + adj + about + the + N? | Bạn có hào hứng về kỳ nghỉ không? Có, tôi có.
 Is he scared of spiders? Yes, he is. | Is he scared of spiders? Yes, he is. | Is + he/she + adj + of + N(s)? | Anh ấy có sợ nhện không? Có, anh ấy sợ.
 
 [U6.2: Our / Their + Noun]
@@ -248,7 +247,7 @@ They'd like to go by taxi. | They'd like to go by taxi. | They'd like to + V + b
 What are you doing? I'm painting a picture. | What are you doing? I'm painting a picture. | What + are + you + V-ing? I'm + V-ing + a + N. | Bạn đang làm gì vậy? Tôi đang vẽ một bức tranh.
 He is riding his scooter to the park. | He is riding his scooter to the park. | He/She + is + V-ing + his/her + N + to + the + N. | Anh ấy đang đi xe tay ga đến công viên.
 She is not driving. She is flying a plane! | She is not driving. She is flying a plane! | He/She + is + not + V-ing. He/She + is + V-ing + a + N! | Cô ấy không đang lái xe. Cô ấy đang lái máy bay!
-Are they taking the bus? No, they aren't. They are walking. | Are they taking the bus? No, they aren't. They are walking. | Are + they + V-ing + the + N? No, they + are + V-ing. | Họ đang bắt xe buýt phải không? Không, họ không. Họ đang đi bộ.
+Are they taking the bus? No, they aren't. | Are they taking the bus? No, they aren't. | Are + they + V-ing + the + N? No, they + are + V-ing. | Họ đang bắt xe buýt phải không? Không, họ không.
 Look! That man is skating on a skateboard. | Look! That man is skating on a skateboard. | Look! That + N + is + V-ing + on + a + N. | Nhìn kìa! Người đàn ông kia đang trượt ván.
 
 [U8.1: V-ing as Subject (Swimming is fun.)]
@@ -260,10 +259,10 @@ Watching football is boring. I like playing it. | Watching football is boring. I
 
 [U8.2: What sport do you like doing? / So do I. / I don't.]
 What sport do you like doing? I like playing badminton. | What sport do you like doing? I like playing badminton. | What sport + do + you + like + V-ing? I like + V-ing + N. | Bạn thích chơi môn thể thao nào? Tôi thích chơi cầu lông.
-I like playing volleyball. So do I! / Me too! | I like playing volleyball. So do I! / Me too! | I like + V-ing + N. So do I! | Tôi thích chơi bóng chuyền. Tôi cũng vậy!
-He likes doing athletics. | He likes doing athletics. | He/She + likes + V-ing + N. | Anh ấy thích tập điền kinh.
-I don't like playing hockey. I don't like it either. | I don't like playing hockey. I don't like it either. | I don't like + V-ing + N. I don't like + it + either. | Tôi không thích chơi khúc côn cầu. Tôi cũng không thích nó.
-Do you like playing table tennis? Yes, I do. It's easy. | Do you like playing table tennis? Yes, I do. It's easy. | Do + you + like + V-ing + N? Yes, I do. It's + adj. | Bạn có thích chơi bóng bàn không? Có, tôi thích. Nó dễ.
+You like playing volleyball. So do I! | I like playing volleyball. So do I! | You like + V-ing + N. So do I! | Bạn thích chơi bóng chuyền. Tôi cũng vậy!
+He likes doing athletics. So do I! | He likes doing athletics. So do I! | He/She + likes + V-ing + N. | Anh ấy thích tập điền kinh. Tôi cũng vậy!
+You don't like playing hockey. I don't like it either. | You don't like playing hockey. I don't like it either. | You don't like + V-ing + N. I don't like + it + either. | Bạn không thích chơi khúc côn cầu. Tôi cũng không thích nó.
+Do you like playing table tennis? Yes, I do. It's easy.  | Do you like playing table tennis? Yes, I do. It's easy. | Do + you + like + V-ing + N? Yes, I do. It's + adj. | Bạn có thích chơi bóng bàn không? Có, tôi thích. Nó dễ.
 
 [U9.1: Can I / we ...? (Asking for permission)]
 Can I read your comic? Yes, you can. | Can I read your comic? Yes, you can. | Can + I + V + your + N? | Tôi có thể đọc truyện tranh của bạn không? Được, bạn có thể.
@@ -278,3 +277,778 @@ Has your town got a library? Yes, it has. | Has your town got a library? Yes, it
 Where are my cousins? They are in the living room. | Where are my cousins? They are in the living room. | Where + are + my + N(s)? They + are + in + the + N. | Những người anh em họ của tôi đâu? Họ ở trong phòng khách.
 Whose swimming goggles are these? They're his. | Whose swimming goggles are these? They're his. | Whose + N(s) + are + these? They're + his/hers. | Cái kính bơi này của ai? Chúng là của anh ấy.
 What time does the holiday start? It starts on Saturday. | What time does the holiday start? It starts on Saturday. | What time + does + the + N + V? | Kỳ nghỉ bắt đầu lúc mấy giờ? Nó bắt đầu vào thứ Bảy.
+
+=== Super Minds 3 ===
+[U0.1: be good at + V-ing / not good at + V-ing]
+I am good at exploring. | I am good at exploring. | I + am + good at + V-ing | Tôi giỏi khám phá.
+She is good at counting numbers. | She is good at counting numbers. | He/She + is + good at + V-ing | Cô ấy giỏi đếm số.
+He is not good at finding the cellar. | He is not good at finding the cellar. | He/She + is + not good at + V-ing | Anh ấy không giỏi tìm hầm.
+Are you good at exploring upstairs? | Are you good at exploring upstairs? | Are + you + good at + V-ing + N? | Bạn có giỏi khám phá tầng trên không?
+My uncle is good at finding lost treasure. | My uncle is good at finding lost treasure. | My + N + is + good at + V-ing + N | Chú tôi giỏi tìm kho báu thất lạc.
+
+[U0.2: Possessive apostrophe ('s)]
+This is Tom's adventure map. | This is Tom's adventure map. | This + is + name's + N | Đây là bản đồ phiêu lưu của Tom.
+That is the explorer's secret castle. | That is the explorer's secret castle. | That + is + the + N's + N | Kia là lâu đài bí mật của nhà thám hiểm.
+Is this Mike's museum? | Is this Mike's museum? | Is + this + name's + N? | Đây có phải là bảo tàng của Mike không?
+Whose cellar is this? It's Emma's. | Whose cellar is this? It's Emma's. | Whose + N + is + this? It's + name's. | Hầm này của ai? Nó là của Emma.
+The castle's treasure is only for explorers. | The castle's treasure is only for explorers. | The + N's + N + is + only for + N(s) | Kho báu của lâu đài chỉ dành cho các nhà thám hiểm.
+
+[U1.1: Like / Love / Don't like + V-ing]
+I love studying Maths. | I love studying Maths. | I + love + V-ing + N | Tôi yêu thích học Toán.
+She likes drawing in Art class. | She likes drawing in Art class. | He/She + likes + V-ing + in + N | Cô ấy thích vẽ trong giờ Mỹ thuật.
+He doesn't like reading History books. | He doesn't like reading History books. | He/She + doesn't + like + V-ing + N(s) | Anh ấy không thích đọc sách Lịch sử.
+Do you like singing in Music? | Do you like singing in Music? | Do + you + like + V-ing + in + N? | Bạn có thích hát trong giờ Âm nhạc không?
+We love playing games in I.T. | We love playing games in I.T. | We/They + love + V-ing + N(s) + in + N | Chúng tôi yêu thích chơi trò chơi trong giờ Tin học.
+
+[U1.2: Have to + V-inf]
+You have to wear a uniform for P.E. | You have to wear a uniform for P.E. | You + have to + V + a + N + for + N | Bạn phải mặc đồng phục cho giờ Thể dục.
+She has to keep her Science book dark. | She has to keep her Science book dark. | He/She + has to + V + his/her + N + adj | Cô ấy phải giữ cuốn sách Khoa học của mình ở nơi tối.
+Do we have to follow the teacher yet? | Do we have to follow the teacher yet? | Do + we + have to + V + the + N + yet? | Chúng ta đã phải đi theo giáo viên chưa?
+I have to do my English homework. | I have to do my English homework. | I + have to + V + my + N | Tôi phải làm bài tập Tiếng Anh.
+No way! I don't have to go to Geography. | No way! I don't have to go to Geography. | I + don't + have to + V + to + N | Không đời nào! Tôi không phải đi học Địa lý.
+
+[U2.1: Is/Are there any...? There is some... / There isn't any...]
+Is there any apple juice? | Is there any apple juice? | Is + there + any + N? | Có chút nước ép táo nào không?
+There is some cheese on the rolls. | There is some cheese on the rolls. | There + is + some + N + on + the + N(s) | Có một ít phô mai trên những cái bánh cuộn.
+There isn't any soup in the hut. | There isn't any soup in the hut. | There + isn't + any + N + in + the + N | Không có chút súp nào trong túp lều.
+Are there any vegetables? Yes, there are. | Are there any vegetables? Yes, there are. | Are + there + any + N(s)? | Có chút rau củ nào không? Có, có.
+There is some water at the top of the waterfall. | There is some water at the top of the waterfall. | There + is + some + N + at + the + N + of + the + N | Có một ít nước ở đỉnh thác.
+
+[U2.2: Suggestions: Shall we...? / How about...?]
+Shall we make some lemonade? | Shall we make some lemonade? | Shall + we + V + some + N? | Chúng ta làm một ít nước chanh nhé?
+How about eating a golden apple? | How about eating a golden apple? | How about + V-ing + a/an + adj + N? | Còn việc ăn một quả táo vàng thì sao?
+Shall we go to the doctor? I feel ill. | Shall we go to the doctor? I feel ill. | Shall + we + V + to + the + N? | Chúng ta đi gặp bác sĩ nhé? Tôi cảm thấy ốm.
+How about having a salad for lunch? | How about having a salad for lunch? | How about + V-ing + a + N + for + N? | Còn việc ăn sa-lát cho bữa trưa thì sao?
+Shall we take some medicine? | Shall we take some medicine? | Shall + we + V + some + N? | Chúng ta uống một ít thuốc nhé?
+
+[U3.1: Telling the time: It's quarter past/to..., half past...]
+It's quarter past seven. Time to wash up. | It's quarter past seven. Time to wash up. | It's + quarter past + số. Time to + V. | Bây giờ là bảy giờ mười lăm. Đến giờ rửa bát.
+It's half past eight. I have to sweep the floor. | It's half past eight. I have to sweep the floor. | It's + half past + số. I + have to + V + the + N. | Bây giờ là tám giờ rưỡi. Tôi phải quét sàn.
+It's quarter to nine. Let's cook dinner. | It's quarter to nine. Let's cook dinner. | It's + quarter to + số. Let's + V + N. | Bây giờ là chín giờ kém mười lăm. Chúng ta hãy nấu bữa tối.
+Is it half past six? Time to feed the dog. | Is it half past six? Time to feed the dog. | Is it + half past + số? Time to + V + the + N. | Có phải là sáu giờ rưỡi không? Đến giờ cho chó ăn.
+The moon is beautiful at night. It's quarter past ten. | The moon is beautiful at night. It's quarter past ten. | The + N + is + adj + at night. It's + quarter past + số. | Mặt trăng thật đẹp vào ban đêm. Bây giờ là mười giờ mười lăm.
+
+[U3.2: Adverbs of frequency: always, usually, sometimes, never]
+I always tidy up my room. | I always tidy up my room. | I + always + V + my + N. | Tôi luôn luôn dọn dẹp phòng của mình.
+She usually dries the dishes. | She usually dries the dishes. | He/She + usually + V(s/es) + the + N(s). | Cô ấy thường xuyên lau khô bát đĩa.
+He sometimes takes the dog for a walk. | He sometimes takes the dog for a walk. | He/She + sometimes + V(s/es) + the + N + for + a + N. | Anh ấy thỉnh thoảng dắt chó đi dạo.
+We never do the shopping on Monday. | We never do the shopping on Monday. | We/They + never + V + the + N + on + day. | Chúng tôi không bao giờ đi mua sắm vào thứ Hai.
+My dad is a pilot. He is always busy. | My dad is a pilot. He is always busy. | My + N + is + a + N. He + is + always + adj. | Bố tôi là phi công. Ông ấy luôn luôn bận rộn.
+
+[U4.1: Prepositions of place: opposite, near, above, below]
+The bank is opposite the library. | The bank is opposite the library. | The + N + is + opposite + the + N. | Ngân hàng đối diện thư viện.
+The funfair is near the market square. | The funfair is near the market square. | The + N + is + near + the + N. | Hội chợ vui chơi gần quảng trường chợ.
+The clock is above the door. | The clock is above the door. | The + N + is + above + the + N. | Đồng hồ ở phía trên cửa.
+The car park is below the supermarket. | The car park is below the supermarket. | The + N + is + below + the + N. | Bãi đỗ xe ở phía dưới siêu thị.
+The sports centre is near the bus station. | The sports centre is near the bus station. | The + N + is + near + the + N. | Trung tâm thể thao gần bến xe buýt.
+
+[U4.2: Be going to + place + to + V-inf]
+I'm going to the tower to see the view. | I'm going to the tower to see the view. | I'm + going to + the + N + to + V + the + N. | Tôi sẽ đi đến tháp để ngắm cảnh.
+She is going to the bank to get money. | She is going to the bank to get money. | He/She + is + going to + the + N + to + V + N. | Cô ấy sẽ đi đến ngân hàng để lấy tiền.
+Are you going to the funfair to ride the Pirate Ship? | Are you going to the funfair to ride the Pirate Ship? | Are + you + going to + the + N + to + V + the + N? | Bạn có định đi đến hội chợ để chơi tàu cướp biển không?
+We are going to the wrong place! | We are going to the wrong place! | We + are + going to + the + adj + place! | Chúng ta đang đi nhầm chỗ rồi!
+He is going to the map to find the way. | He is going to the map to find the way. | He + is + going to + the + N + to + V + the + N. | Anh ấy sẽ đi đến tấm bản đồ để tìm đường.
+
+[U5.1: Past simple of "be": was/were, wasn't/weren't]
+I was in the sea yesterday. | I was in the sea yesterday. | I + was + in + the + N + time. | Tôi đã ở trong biển ngày hôm qua.
+The dolphin was beautiful. | The dolphin was beautiful. | The + N + was + adj. | Con cá heo đã rất đẹp.
+We were not scared of the octopus. | We were not scared of the octopus. | We/They + were + not + adj + of + the + N. | Chúng tôi đã không sợ con bạch tuộc.
+Were you on the boat? Yes, I was. | Were you on the boat? Yes, I was. | Were + you + on + the + N? | Bạn đã ở trên thuyền phải không? Đúng vậy.
+The seahorse wasn't in the cage. | The seahorse wasn't in the cage. | The + N + wasn't + in + the + N. | Con cá ngựa đã không ở trong lồng.
+
+[U5.2: Past questions with "be": Were you...? Was he...?]
+Was the turtle giant? No, it wasn't. | Was the turtle giant? No, it wasn't. | Was + the + N + adj? | Con rùa biển có khổng lồ không? Không, nó không.
+Were you stuck in a trap? | Were you stuck in a trap? | Were + you + adj + in + a + N? | Bạn có bị kẹt trong một cái bẫy không?
+Was she helpful? Yes, she was. | Was she helpful? Yes, she was. | Was + he/she + adj? | Cô ấy có hay giúp đỡ không? Có, cô ấy có.
+Were the starfish on the shell? | Were the starfish on the shell? | Were + the + N(s) + on + the + N? | Những con sao biển có ở trên vỏ sò không?
+Was it the fourth seal you saw? | Was it the fourth seal you saw? | Was + it + the + số thứ tự + N + you + V? | Có phải đó là con hải cẩu thứ tư bạn nhìn thấy không?
+
+[U6.1: Comparative adjectives: adj + -er + than]
+The tablet is smaller than the laptop. | The tablet is smaller than the laptop. | The + N + is + adj-er + than + the + N. | Máy tính bảng nhỏ hơn máy tính xách tay. 📱💻
+My torch is brighter than your torch. | My torch is brighter than your torch. | My + N + is + adj-er + than + your + N. | Đèn pin của tôi sáng hơn đèn pin của bạn. 🔦✨
+Is the games console bigger than the walkie-talkie? | Is the games console bigger than the walkie-talkie? | Is + the + N + adj-er + than + the + N? | Máy chơi game có to hơn bộ đàm không? 🎮📻
+This mobile phone is newer than that one. | This mobile phone is newer than that one. | This + N + is + adj-er + than + that + one. | Chiếc điện thoại di động này mới hơn chiếc kia. 📱🆕➡️📱
+The lift is slower than the stairs. | The lift is slower than the stairs. | The + N + is + adj-er + than + the + N(s). | Thang máy chậm hơn cầu thang. 🛗🐌🪜
+
+[U6.2: Superlative adjectives: the + adj-est]
+This is the biggest electric fan. | This is the biggest electric fan. | This + is + the + adj-est + N. | Đây là cái quạt điện to nhất. 💨🌀
+That is the most fabulous tablet. | That is the most fabulous tablet. | That + is + the + most + adj + N. | Kia là chiếc máy tính bảng tuyệt vời nhất. 📱🌟
+He has the smallest mobile phone. | He has the smallest mobile phone. | He/She + has + the + adj-est + N. | Anh ấy có chiếc điện thoại di động nhỏ nhất. 👦📱
+Is this the newest games console? | Is this the newest games console? | Is + this + the + adj-est + N? | Đây có phải là máy chơi game mới nhất không? 🎮🆕❓
+Our school has got the most expensive laptop. | Our school has got the most expensive laptop. | Our + N + has got + the + most + adj + N. | Trường chúng tôi có chiếc máy tính xách tay đắt nhất. 🏫💻💰
+
+[U7.1: Past simple regular verbs: V-ed]
+The nurse helped the doctor. | The nurse helped the doctor. | The + N + V-ed + the + N. | Y tá đã giúp đỡ bác sĩ. 👩⚕️🤝👨⚕️
+I coughed all night. | I coughed all night. | I + V-ed + all night. | Tôi đã ho cả đêm. 😷🌙
+He cleaned the hospital room quietly. | He cleaned the hospital room quietly. | He/She + V-ed + the + N + adv. | Anh ấy đã dọn phòng bệnh viện một cách yên lặng. 🧹🏥🤫
+We talked about the headache. | We talked about the headache. | We/They + V-ed + about + the + N. | Chúng tôi đã nói về chứng đau đầu. 👥🗣️🤕
+The boy played and shouted. | The boy played and shouted. | The + N + V-ed + and + V-ed. | Cậu bé đã chơi và la hét. 👦🎉🗣️
+
+[U7.2: Past simple irregular verbs]
+I woke up early. | I woke up early. | I + V2 (irregular) + adv. | Tôi đã thức dậy sớm. ⏰☀️
+She felt terrible yesterday. | She felt terrible yesterday. | He/She + V2 (irregular) + adj + time. | Cô ấy đã cảm thấy khủng khiếp ngày hôm qua. 😔📅
+He had a cold last week. | He had a cold last week. | He/She + V2 (irregular) + a + N + time. | Anh ấy đã bị cảm lạnh tuần trước. 🤒🗓️
+We went to see the dentist. | We went to see the dentist. | We/They + V2 (irregular) + to + V + the + N. | Chúng tôi đã đi gặp nha sĩ. 👥🦷
+The doctor gave me medicine. | The doctor gave me medicine. | The + N + V2 (irregular) + me + N. | Bác sĩ đã đưa cho tôi thuốc. 👨⚕️💊
+
+[U8.1: Past simple negative: didn't + V-inf]
+I didn't go to Mexico. | I didn't go to Mexico. | I + didn't + V + to + place. | Tôi đã không đi đến Mê-hi-cô. 🇲🇽❌
+She didn't visit the pyramids in Egypt. | She didn't visit the pyramids in Egypt. | He/She + didn't + V + the + N(s) + in + place. | Cô ấy đã không thăm các kim tự tháp ở Ai Cập. 🗿🇪🇬❌
+We didn't see the volcano. | We didn't see the volcano. | We/They + didn't + V + the + N. | Chúng tôi đã không nhìn thấy núi lửa. 🌋👀❌
+He didn't travel to South America. | He didn't travel to South America. | He/She + didn't + V + to + place. | Anh ấy đã không du lịch đến Nam Mỹ. 🌎✈️❌
+They didn't sail to the harbour. | They didn't sail to the harbour. | They + didn't + V + to + the + N. | Họ đã không đi thuyền đến bến cảng. ⛵⚓❌
+
+[U8.2: Past simple questions: Did you...? When did you...?]
+Did you visit Spain? | Did you visit Spain? | Did + you + V + place? | Bạn đã đến thăm Tây Ban Nha phải không? 🇪🇸❓
+When did you go to China? | When did you go to China? | When + did + you + V + to + place? | Bạn đã đi đến Trung Quốc khi nào? 🇨🇳🗓️❓
+Did she see the canyon? | Did she see the canyon? | Did + he/she + V + the + N? | Cô ấy đã nhìn thấy hẻm núi phải không? 🏞️👀❓
+What did you eat in Turkey? | What did you eat in Turkey? | What + did + you + V + in + place? | Bạn đã ăn gì ở Thổ Nhĩ Kỳ? 🇹🇷🍽️❓
+Did they like Australia? | Did they like Australia? | Did + they + V + place? | Họ có thích nước Úc không? 🇦🇺👍❓
+
+[U9.1: Be going to (future): Be going to + V-inf]
+It's going to rain. Take your umbrella. | It's going to rain. Take your umbrella. | It's + going to + V. | Trời sắp mưa. Hãy mang ô của bạn đi. 🌧️☂️
+We are going to visit the seaside. | We are going to visit the seaside. | We + are + going to + V + the + N. | Chúng tôi sẽ đi thăm bờ biển. 🌊🏖️
+Is he going to wear his raincoat? | Is he going to wear his raincoat? | Is + he/she + going to + V + his/her + N? | Anh ấy có định mặc áo mưa của mình không? 🧥❓
+They are not going to go because of the fog. | They are not going to go because of the fog. | They + are + not + going to + V + because of + the + N. | Họ sẽ không đi vì sương mù. 🌫️❌
+I am going to draw a picture of the steam train. | I am going to draw a picture of the steam train. | I + am + going to + V + a + N + of + the + N. | Tôi sẽ vẽ một bức tranh về tàu hơi nước. 🚂🎨
+
+[U9.2: Future questions: Are you going to...? What are you going to do?]
+Are you going to pack your boots? | Are you going to pack your boots? | Are + you + going to + V + your + N(s)? | Bạn có định đóng gói đôi ủng của bạn không? 👢🎒❓
+What are you going to do in the thunderstorm? | What are you going to do in the thunderstorm? | What + are + you + going to + do + in + the + N? | Bạn sẽ làm gì trong cơn bão sấm sét? ⛈️❓
+Is she going to buy a new basket? | Is she going to buy a new basket? | Is + he/she + going to + V + a/an + adj + N? | Cô ấy có định mua một cái giỏ mới không? 🧺🆕❓
+Where are they going to put the cart? | Where are they going to put the cart? | Where + are + they + going to + V + the + N? | Họ sẽ để cái xe đẩy ở đâu? 🛒📍❓
+Are we going to see so much lightning? | Are we going to see so much lightning? | Are + we + going to + V + so much + N? | Chúng ta sẽ nhìn thấy rất nhiều tia chớp phải không? ⚡👀❓
+=== Super Minds 4 ===
+[U0.1: Present simple questions (Do/Does...?)]
+Do you like the big wheel? | Do you like the big wheel? | Do + you + like + the + N? | Bạn có thích vòng quay khổng lồ không?
+Does Lucy like the dodgem cars? | Does Lucy like the dodgem cars? | Does + name + like + the + N(s)? | Lucy có thích xe điện đụng không?
+Where do you live? | Where do you live? | Where + do + you + live? | Bạn sống ở đâu?
+Do you like reading comics? | Do you like reading comics? | Do + you + like + V-ing + N(s)? | Bạn có thích đọc truyện tranh không?
+Does Ben like the rollercoaster? | Does Ben like the rollercoaster? | Does + name + like + the + N? | Ben có thích tàu lượn siêu tốc không?
+
+[U0.2: Past simple questions (What did...? / Did...?)]
+What did you do at the weekend? | What did you do at the weekend? | What + did + you + do + at + the + weekend? | Bạn đã làm gì vào cuối tuần?
+Did you find the treasure? | Did you find the treasure? | Did + you + V + the + N? | Bạn đã tìm thấy kho báu chưa?
+Did you explore the museum? | Did you explore the museum? | Did + you + V + the + N? | Bạn đã khám phá bảo tàng chưa?
+What did the mayor say? | What did the mayor say? | What + did + the + N + V? | Thị trưởng đã nói gì?
+Did you take a photo with the band? | Did you take a photo with the band? | Did + you + V + a + N + with + the + N? | Bạn đã chụp ảnh với ban nhạc chưa?
+
+[U1.1: Must / Mustn't]
+I must wear a helmet. | I must wear a helmet. | I + must + V + a + N. | Tôi phải đội mũ bảo hiểm.
+You mustn't touch the crown. | You mustn't touch the crown. | You + mustn't + V + the + N. | Bạn không được chạm vào vương miện.
+She must be quiet in the museum. | She must be quiet in the museum. | He/She + must + be + adj + in + the + N. | Cô ấy phải giữ yên lặng trong bảo tàng.
+We mustn't run near the dinosaur. | We mustn't run near the dinosaur. | We + mustn't + V + near + the + N. | Chúng ta không được chạy gần con khủng long.
+He must hide the map. | He must hide the map. | He/She + must + V + the + N. | Anh ấy phải giấu tấm bản đồ.
+
+[U1.2: Direct and indirect objects (Give me the... / Give the... to me)]
+Give me the sword, please. | Give me the sword, please. | V + me + the + N, please. | Làm ơn đưa cho tôi thanh kiếm.
+Give the necklace to the queen. | Give the necklace to the queen. | V + the + N + to + the + N. | Hãy đưa vòng cổ cho nữ hoàng.
+I gave her the bracelet. | I gave her the bracelet. | I + gave + her + the + N. | Tôi đã đưa cho cô ấy chiếc vòng tay.
+Pass me the shield. | Pass me the shield. | V + me + the + N. | Chuyển cho tôi cái khiên.
+Give the storyteller the book. | Give the storyteller the book. | V + the + N + the + N. | Hãy đưa cho người kể chuyện cuốn sách.
+
+[U2.1: Connectors (and, but, because, so)]
+I like the forest and the lake. | I like the forest and the lake. | I + like + the + N + and + the + N. | Tôi thích khu rừng và hồ nước.
+I was tired, so I went home. | I was tired, so I went home. | I + was + adj, so + I + V2 + N. | Tôi mệt, vì vậy tôi đã về nhà.
+I went home because I was tired. | I went home because I was tired. | I + V2 + N + because + I + was + adj. | Tôi đã về nhà vì tôi mệt.
+The island is small but beautiful. | The island is small but beautiful. | The + N + is + adj + but + adj. | Hòn đảo nhỏ nhưng đẹp.
+We had a picnic, but it rained. | We had a picnic, but it rained. | We + V2 + a + N, but + it + V2. | Chúng tôi đã có một buổi dã ngoại, nhưng trời mưa.
+
+[U2.2: Could / Couldn't (past ability)]
+When I was young, I could climb trees. | When I was young, I could climb trees. | When + I + was + adj, I + could + V + N(s). | Khi tôi còn nhỏ, tôi có thể trèo cây.
+I couldn't swim in the river. | I couldn't swim in the river. | I + couldn't + V + in + the + N. | Tôi không thể bơi ở con sông.
+Could you see the mountain? | Could you see the mountain? | Could + you + V + the + N? | Bạn có thể nhìn thấy ngọn núi không?
+She could run in the field. | She could run in the field. | He/She + could + V + in + the + N. | Cô ấy có thể chạy trên cánh đồng.
+They couldn't find the path. | They couldn't find the path. | They + couldn't + V + the + N. | Họ không thể tìm thấy con đường.
+
+[U3.1: Past continuous (was/were + V-ing)]
+I was climbing a tree. | I was climbing a tree. | I + was + V-ing + a + N. | Tôi đang trèo một cái cây.
+We were playing tennis. | We were playing tennis. | We + were + V-ing + N. | Chúng tôi đang chơi quần vợt.
+She was calling the emergency services. | She was calling the emergency services. | He/She + was + V-ing + the + N(s). | Cô ấy đang gọi các dịch vụ khẩn cấp.
+They were watching the flood. | They were watching the flood. | They + were + V-ing + the + N. | Họ đang xem trận lũ lụt.
+The fire engine was coming. | The fire engine was coming. | The + N + was + V-ing. | Xe cứu hỏa đang đến.
+
+[U3.2: Past continuous questions (What was... doing? / Were...?)]
+What was she doing? | What was she doing? | What + was + he/she + V-ing? | Cô ấy đang làm gì vậy?
+Were they playing? | Were they playing? | Were + they + V-ing? | Họ đang chơi phải không?
+What were you eating? | What were you eating? | What + were + you + V-ing? | Bạn đang ăn gì vậy?
+Was he using the extinguisher? | Was he using the extinguisher? | Was + he/she + V-ing + the + N? | Anh ấy có đang dùng bình cứu hỏa không?
+Where were you going? | Where were you going? | Where + were + you + V-ing? | Bạn đang đi đâu vậy?
+
+[U4.1: Prepositions of time (at, in, on)]
+The train leaves at eight o'clock. | The train leaves at eight o'clock. | The + N + V(s) + at + time. | Tàu khởi hành lúc 8 giờ.
+My birthday is in September. | My birthday is in September. | My + N + is + in + month. | Sinh nhật của tôi vào tháng Chín.
+We travel on Sunday. | We travel on Sunday. | We + V + on + day. | Chúng tôi đi du lịch vào Chủ nhật.
+I go to bed at ten o'clock. | I go to bed at ten o'clock. | I + V + to + bed + at + time. | Tôi đi ngủ lúc 10 giờ.
+The funfair opens in the morning. | The funfair opens in the morning. | The + N + V(s) + in + the + N. | Hội chợ vui chơi mở cửa vào buổi sáng.
+
+[U4.2: Past continuous & past simple (interrupted action)]
+I was having dinner when you phoned me. | I was having dinner when you phoned me. | I + was + V-ing + N + when + you + V2 + me. | Tôi đang ăn tối thì bạn gọi điện cho tôi.
+She was buying a ticket when she saw him. | She was buying a ticket when she saw him. | He/She + was + V-ing + a + N + when + he/she + V2 + him/her. | Cô ấy đang mua vé thì nhìn thấy anh ấy.
+We were waiting on the platform when the train arrived. | We were waiting on the platform when the train arrived. | We + were + V-ing + on + the + N + when + the + N + V2. | Chúng tôi đang đợi ở sân ga thì tàu đến.
+He was carrying a suitcase when he fell. | He was carrying a suitcase when he fell. | He/She + was + V-ing + a + N + when + he/she + V2. | Anh ấy đang mang va li thì bị ngã.
+They were talking when the conductor appeared. | They were talking when the conductor appeared. | They + were + V-ing + when + the + N + V2. | Họ đang nói chuyện thì người soát vé xuất hiện.
+
+[U5.1: Used to]
+He used to be a police officer. | He used to be a police officer. | He/She + used to + be + a + N. | Anh ấy đã từng là một cảnh sát.
+I used to play football. | I used to play football. | I + used to + V + N. | Tôi đã từng chơi bóng đá.
+She used to have long, straight hair. | She used to have long, straight hair. | He/She + used to + have + adj + N. | Cô ấy đã từng có mái tóc dài thẳng.
+Did you use to wear a uniform? | Did you use to wear a uniform? | Did + you + use to + V + a + N? | Bạn đã từng mặc đồng phục phải không?
+They used to live in a village. | They used to live in a village. | They + used to + V + in + a + N. | Họ đã từng sống trong một ngôi làng.
+
+[U5.2: Had to]
+We had to be really careful. | We had to be really careful. | We + had to + be + adv + adj. | Chúng tôi đã phải thực sự cẩn thận.
+I had to do my homework. | I had to do my homework. | I + had to + V + my + N. | Tôi đã phải làm bài tập về nhà.
+She had to call the police. | She had to call the police. | He/She + had to + V + the + N. | Cô ấy đã phải gọi cảnh sát.
+Did you have to wear a walkie-talkie? | Did you have to wear a walkie-talkie? | Did + you + have to + V + a + N? | Bạn đã phải đeo bộ đàm phải không?
+He had to draw a sketch of the criminal. | He had to draw a sketch of the criminal. | He/She + had to + V + a + N + of + the + N. | Anh ấy đã phải vẽ một bản phác thảo của tên tội phạm.
+
+[U6.1: Comparatives & Superlatives (long adj & good/bad)]
+A dragon is more dangerous than a unicorn. | A dragon is more dangerous than a unicorn. | A + N + is + more adj + than + a + N. | Một con rồng nguy hiểm hơn một con kỳ lân. 🐉⚔️🦄
+This is the most beautiful feather. | This is the most beautiful feather. | This + is + the + most + adj + N. | Đây là chiếc lông vũ đẹp nhất. 🪶✨
+The T-rex was the worst dinosaur. | The T-rex was the worst dinosaur. | The + N + was + the + worst + N. | Khủng long bạo chúa là loài khủng long tệ nhất. 🦖👎
+Is a centaur more interesting than a mermaid? | Is a centaur more interesting than a mermaid? | Is + a + N + more adj + than + a + N? | Một nhân mã có thú vị hơn một nàng tiên cá không? 🐎🧔‍♂️ vs 🧜‍♀️
+This treasure chest is the best. | This treasure chest is the best. | This + N + is + the + best. | Rương kho báu này là tốt nhất. 💰📦👑
+
+[U6.2: It looks like...]
+What does a unicorn look like? | What does a unicorn look like? | What + does + a + N + look like? | Một con kỳ lân trông như thế nào? 🦄❓
+It looks like a horse with a horn. | It looks like a horse with a horn. | It + looks like + a + N + with + a + N. | Nó trông giống một con ngựa với một cái sừng. 🐴➕🦄
+The scales look like shiny armour. | The scales look like shiny armour. | The + N(s) + look like + adj + N. | Những cái vảy trông giống như áo giáp sáng bóng. 🐟✨🛡️
+That mythical beast looks scary. | That mythical beast looks scary. | That + N + looks + adj. | Con quái thú huyền thoại kia trông đáng sợ. 👹😨
+Does it look like a carnivore? | Does it look like a carnivore? | Does + it + look like + a + N? | Nó trông có giống một động vật ăn thịt không? 🦁🍖❓
+
+[U7.1: Possessive pronouns (mine, yours, his, hers...)]
+That trumpet is mine. | That trumpet is mine. | That + N + is + mine. | Cái kèn trompet kia là của tôi. 🎺👉😊
+Is this violin yours? | Is this violin yours? | Is + this + N + yours? | Cây đàn vĩ cầm này có phải của bạn không? 🎻❓👉😊
+The saxophone is his. | The saxophone is his. | The + N + is + his/hers. | Cây kèn saxophone là của anh ấy. 🎷👉👦
+These drums are theirs. | These drums are theirs. | These + N(s) + are + theirs. | Những cái trống này là của họ. 🥁👉👥
+That beautiful harp is hers. | That beautiful harp is hers. | That + adj + N + is + hers. | Cây đàn hạc đẹp đó là của cô ấy. 🪕✨👉👩
+
+[U7.2: Relative pronouns (who, which, where)]
+Connor is the boy who plays the recorder. | Connor is the boy who plays the recorder. | Name + is + the + N + who + V(s) + the + N. | Connor là cậu bé chơi sáo dọc. 👦🎶
+The instrument which Vicky plays is the trombone. | The instrument which Vicky plays is the trombone. | The + N + which + name + V(s) + is + the + N. | Nhạc cụ mà Vicky chơi là kèn trombon. 🎷👉👧
+This is the room where we practice. | This is the room where we practice. | This + is + the + N + where + we + V. | Đây là căn phòng nơi chúng tôi tập luyện. 🚪🎵🎼
+She is the conductor who leads the orchestra. | She is the conductor who leads the orchestra. | He/She + is + the + N + who + V(s) + the + N. | Cô ấy là nhạc trưởng người chỉ huy dàn nhạc. 👩🦳🎼
+Is this the string which is broken? | Is this the string which is broken? | Is + this + the + N + which + is + adj? | Đây có phải là dây đàn bị đứt không? 🎻🧵❌
+
+[U8.1: Future with Will (predictions)]
+What will you be when you grow up? | What will you be when you grow up? | What + will + you + be + when + you + V? | Bạn sẽ làm gì khi lớn lên? 👨🚀👩🔬❓
+I'll be an astronaut. | I'll be an astronaut. | I'll + be + a/an + N. | Tôi sẽ là một phi hành gia. 🚀👨🚀
+He will fly a rocket. | He will fly a rocket. | He/She + will + V + a + N. | Anh ấy sẽ lái một tên lửa. 👦🚀🛸
+Will we see a comet? | Will we see a comet? | Will + we + V + a + N? | Chúng ta sẽ nhìn thấy một sao chổi phải không? ☄️👀❓
+They will visit the planetarium. | They will visit the planetarium. | They + will + V + the + N. | Họ sẽ đến thăm cung thiên văn. 🛰️👥
+
+[U8.2: Adverbs of manner]
+Please play the triangle quietly. | Please play the triangle quietly. | Please + V + the + N + adv. | Làm ơn chơi kẻng tam giác một cách yên lặng. 🔺🎶🤫
+She sings happily in the concert. | She sings happily in the concert. | He/She + V(s) + adv + in + the + N. | Cô ấy hát một cách vui vẻ trong buổi hòa nhạc. 👩🎤😄🎵
+He drives the spaceship carefully. | He drives the spaceship carefully. | He/She + V(s) + the + N + adv. | Anh ấy lái con tàu vũ trụ một cách cẩn thận. 👨🚀🚀🤲
+Walk slowly in the space station. | Walk slowly in the space station. | V + adv + in + the + N. | Hãy đi bộ chậm rãi trong trạm vũ trụ. 🚶🐌🛰️
+They talked loudly about the UFO. | They talked loudly about the UFO. | They + V2 + adv + about + the + N. | Họ đã nói chuyện ồn ào về vật thể bay không xác định. 👥🗣️🔊🛸
+
+[U9.1: Expressions of quantity (a bottle of, a packet of...)]
+We need a bottle of water. | We need a bottle of water. | We + need + a + bottle of + N. | Chúng tôi cần một chai nước. 💧🧃
+Can I have a packet of biscuits? | Can I have a packet of biscuits? | Can + I + have + a + packet of + N(s)? | Tôi có thể có một gói bánh quy không? 🍪📦🙏
+She bought a loaf of bread. | She bought a loaf of bread. | He/She + V2 + a + loaf of + N. | Cô ấy đã mua một ổ bánh mì. 🍞🛒
+Pass me a can of lemonade, please. | Pass me a can of lemonade, please. | V + me + a + can of + N, please. | Làm ơn chuyển cho tôi một lon nước chanh. 🍋🥤🙏
+We have a piece of cheese for the picnic. | We have a piece of cheese for the picnic. | We + have + a + piece of + N + for + the + N. | Chúng tôi có một miếng phô mai cho buổi dã ngoại. 🧀🧺
+
+[U9.2: How much / How many?]
+How much cheese do we need? | How much cheese do we need? | How much + N + do + we + V? | Chúng ta cần bao nhiêu phô mai? 🧀❓
+How many bottles of water? | How many bottles of water? | How many + N(s) + of + N? | Bao nhiêu chai nước? 💧💧❓
+How much wood is in the basket? | How much wood is in the basket? | How much + N + is + in + the + N? | Có bao nhiêu củi trong cái giỏ? 🪵🧺❓
+How many sleeping bags are there? | How many sleeping bags are there? | How many + N(s) + are + there? | Có bao nhiêu túi ngủ? 🛌🎒❓
+How much time do we have? | How much time do we have? | How much + N + do + we + have? | Chúng ta có bao nhiêu thời gian? ⏰❓
+
+=== Super Minds 5 ===
+[U0.1: Lab safety & equipment]
+Put on your goggles and apron. | Put on your goggles and apron. | V + on + your + N(s) and + N. | Hãy đeo kính bảo hộ và tạp dề vào. 🥽🧤
+You must wear gloves in the laboratory. | You must wear gloves in the laboratory. | You + must + V + N(s) in + the + N. | Bạn phải đeo găng tay trong phòng thí nghiệm. 🧤⚗️
+Don't touch the test tubes. | Don't touch the test tubes. | Don't + V + the + N(s). | Đừng chạm vào các ống nghiệm. 🧪❌
+We need to measure the liquid carefully. | We need to measure the liquid carefully. | We + need to + V + the + N + adv. | Chúng ta cần đo chất lỏng một cách cẩn thận. 💧📏
+Safety is important in science. | Safety is important in science. | N + is + adj + in + N. | Sự an toàn là quan trọng trong khoa học. 🛡️🔬
+
+[U0.2: Explaining a process (First, then, next...)]
+First, put on your safety equipment. | First, put on your safety equipment. | First, + V + on + your + N. | Đầu tiên, hãy mặc thiết bị an toàn vào. 1️⃣🛡️
+Then, pour the powder into the water. | Then, pour the powder into the water. | Then, + V + the + N + into + the + N. | Sau đó, đổ bột vào nước. 🧂➡️💧
+Next, stir the liquid slowly. | Next, stir the liquid slowly. | Next, + V + the + N + adv. | Tiếp theo, khuấy chất lỏng chậm rãi. 🥄🌀
+After that, watch the bubbles. | After that, watch the bubbles. | After that, + V + the + N(s). | Sau đó, hãy quan sát những bong bóng. 👀🫧
+Finally, write down the instructions. | Finally, write down the instructions. | Finally, + V + down + the + N(s). | Cuối cùng, hãy viết lại các hướng dẫn. 📝✅
+
+[U1.1: Natural disasters (volcano, earthquake, flood...)]
+The volcano erupted yesterday. | The volcano erupted yesterday. | The + N + V2 + time. | Núi lửa đã phun trào ngày hôm qua. 🌋📅
+The earthquake destroyed many houses. | The earthquake destroyed many houses. | The + N + V2 + many + N(s). | Trận động đất đã phá hủy nhiều ngôi nhà. 🌍🏚️
+There was a big flood in the village. | There was a big flood in the village. | There + was + a + adj + N + in + the + N. | Đã có một trận lũ lớn trong làng. 🌊🏡
+Look at the smoke from the forest fire. | Look at the smoke from the forest fire. | V + at + the + N + from + the + N. | Hãy nhìn khói từ đám cháy rừng. 👀🔥💨
+The hurricane was very powerful. | The hurricane was very powerful. | The + N + was + very + adj. | Cơn bão rất mạnh. 🌪️💨
+
+[U1.2: Describing effects (Past simple & Past continuous)]
+Lava was flowing down the mountain. | Lava was flowing down the mountain. | N + was + V-ing + down + the + N. | Dung nham đang chảy xuống núi. 🌋⬇️⛰️
+People were running when the tsunami came. | People were running when the tsunami came. | N(s) + were + V-ing + when + the + N + V2. | Mọi người đang chạy khi sóng thần ập đến. 👥🏃‍♂️🌊
+Ash covered everything after the eruption. | Ash covered everything after the eruption. | N + V2 + everything + after + the + N. | Tro bụi phủ lên mọi thứ sau vụ phun trào. 💨🏙️
+We heard a loud noise during the earthquake. | We heard a loud noise during the earthquake. | We + V2 + a + adj + N + during + the + N. | Chúng tôi nghe thấy một tiếng ồn lớn trong trận động đất. 👂📢🌍
+The statue fell because of the flood. | The statue fell because of the flood. | The + N + V2 + because of + the + N. | Bức tượng đã đổ vì trận lũ. 🗿🌊
+
+[U2.1: Rainforest ecosystem]
+Toucans use their big beaks to eat fruit. | Toucans use their big beaks to eat fruit. | N(s) + V + their + adj + N(s) + to + V + N. | Chim toucan dùng cái mỏ to của chúng để ăn trái cây. 🦜🍎
+Sloths move slowly on the branches. | Sloths move slowly on the branches. | N(s) + V + adv + on + the + N(s). | Con lười di chuyển chậm chạp trên các cành cây. 🦥🐌🌿
+The Amazon rainforest produces a lot of oxygen. | The Amazon rainforest produces a lot of oxygen. | The + N + V(s) + a lot of + N. | Rừng mưa Amazon tạo ra rất nhiều khí ô-xy. 🌳💨
+Jaguars are dangerous carnivores. | Jaguars are dangerous carnivores. | N(s) + are + adj + N(s). | Báo đốm là những động vật ăn thịt nguy hiểm. 🐆🍖
+We must protect this ecosystem. | We must protect this ecosystem. | We + must + V + this + N. | Chúng ta phải bảo vệ hệ sinh thái này. 🤲🌿
+
+[U2.2: Making suggestions about the environment]
+Why don't we plant more trees? | Why don't we plant more trees? | Why + don't + we + V + more + N(s)? | Tại sao chúng ta không trồng thêm cây? 🌳❓
+We could use less plastic. | We could use less plastic. | We + could + V + less + N. | Chúng ta có thể sử dụng ít nhựa hơn. 🛍️⬇️
+How about saving water every day? | How about saving water every day? | How about + V-ing + N + every day? | Còn việc tiết kiệm nước mỗi ngày thì sao? 💧🗓️
+Let's recycle paper and bottles. | Let's recycle paper and bottles. | Let's + V + N and + N(s). | Hãy tái chế giấy và chai lọ. 📄♻️🍶
+You should turn off the lights. | You should turn off the lights. | You + should + V + off + the + N(s). | Bạn nên tắt đèn. 💡🔌
+
+[U3.1: Music & performances]
+The guitarist played an electric guitar. | The guitarist played an electric guitar. | The + N + V2 + an + adj + N. | Người chơi ghi-ta đã chơi một cây đàn ghi-ta điện. 🎸⚡
+The fans cheered loudly for the band. | The fans cheered loudly for the band. | The + N(s) + V2 + adv + for + the + N. | Những người hâm mộ đã cổ vũ ồn ào cho ban nhạc. 🥰📣🎶
+She is a talented backing singer. | She is a talented backing singer. | He/She + is + a + adj + N. | Cô ấy là một ca sĩ hát bè tài năng. 👩🎤🎵
+They danced on the big stage. | They danced on the big stage. | They + V2 + on + the + adj + N. | Họ đã nhảy múa trên sân khấu lớn. 💃🎭
+I love listening to jazz music. | I love listening to jazz music. | I + love + V-ing + to + N + N. | Tôi yêu thích nghe nhạc jazz. ❤️🎷
+
+[U3.2: Expressing opinions about music]
+I think this album is brilliant. | I think this album is brilliant. | I + think + this + N + is + adj. | Tôi nghĩ album này thật xuất sắc. 💿✨
+In my opinion, the concert was too loud. | In my opinion, the concert was too loud. | In my opinion, + the + N + was + too + adj. | Theo tôi, buổi hòa nhạc quá ồn. 🎵🔊
+What genre of music do you like? | What genre of music do you like? | What + N + of + N + do + you + V? | Bạn thích thể loại nhạc nào? 🎶❓
+This song is more exciting than that one. | This song is more exciting than that one. | This + N + is + more + adj + than + that + one. | Bài hát này hào hứng hơn bài kia. 🎵⚡
+He is the best drummer in the world. | He is the best drummer in the world. | He/She + is + the + best + N + in + the + N. | Anh ấy là tay trống giỏi nhất thế giới. 🥁🌎
+
+[U4.1: Cooking & recipes]
+We need some strawberries for the dessert. | We need some strawberries for the dessert. | We + need + some + N(s) + for + the + N. | Chúng ta cần một ít dâu tây cho món tráng miệng. 🍓🍰
+Chop the onions with this knife. | Chop the onions with this knife. | V + the + N(s) + with + this + N. | Hãy băm hành tây với con dao này. 🧅🔪
+First, melt the chocolate in a bowl. | First, melt the chocolate in a bowl. | First, + V + the + N + in + a + N. | Đầu tiên, làm tan chảy sô-cô-la trong một cái bát. 🍫🫕
+Then, add a spoon of sugar. | Then, add a spoon of sugar. | Then, + V + a + N + of + N. | Sau đó, thêm một thìa đường. 🥄🍬
+Finally, bake the cake in the oven. | Finally, bake the cake in the oven. | Finally, + V + the + N + in + the + N. | Cuối cùng, nướng bánh trong lò. 🍰🔥
+
+[U4.2: At the restaurant]
+Would you like some pepper on your pasta? | Would you like some pepper on your pasta? | Would + you + like + some + N + on + your + N? | Bạn có muốn một ít tiêu lên mì Ý của bạn không? 🌶️🍝
+Can I have the bill, please? | Can I have the bill, please? | Can + I + have + the + N, please? | Làm ơn cho tôi hóa đơn được không? 💸🙏
+I'd like to order a cheese sandwich. | I'd like to order a cheese sandwich. | I'd like to + V + a + N + N. | Tôi muốn gọi một cái bánh mì kẹp phô mai. 🥪🧀
+The waiter brought us some chopsticks. | The waiter brought us some chopsticks. | The + N + V2 + us + some + N(s). | Người bồi bàn đã mang cho chúng tôi một ít đũa. 🧑‍🍳🥢
+This recipe has five ingredients. | This recipe has five ingredients. | This + N + has + number + N(s). | Công thức này có năm nguyên liệu. 📜🥦5️⃣
+
+[U5.1: Wild West history]
+The sheriff arrested the robbers with handcuffs. | The sheriff arrested the robbers with handcuffs. | The + N + V2 + the + N(s) + with + N(s). | Cảnh sát trưởng đã bắt giữ những tên cướp bằng còng số 8. 🤠🔗🦹
+Cowboys used to ride horses and carry pistols. | Cowboys used to ride horses and carry pistols. | N(s) + used to + V + N(s) and + V + N(s). | Cao bồi đã từng cưỡi ngựa và mang súng lục. 🐎🔫
+They put the gold in the wagon. | They put the gold in the wagon. | They + V2 + the + N + in + the + N. | Họ đã để vàng vào xe ngựa. 🏆🛻
+Native Americans lived in tribes. | Native Americans lived in tribes. | N(s) + V2 + in + N(s). | Người bản địa Mỹ sống trong các bộ lạc. 🏹👨‍👩‍👧‍👦
+During the gold rush, many people travelled west. | During the gold rush, many people travelled west. | During + the + N, + many + N(s) + V2 + west. | Trong cơn sốt vàng, nhiều người đã đi về phía tây. 🏆🧳➡️
+
+[U5.2: Talking about past habits (used to) & obligations (had to)]
+He used to wear a big hat. | He used to wear a big hat. | He/She + used to + V + a + adj + N. | Anh ấy đã từng đội một cái mũ to. 🎩
+Did they use to live in a jail? | Did they use to live in a jail? | Did + they + use to + V + in + a + N? | Họ đã từng sống trong nhà tù phải không? 🏚️❓
+We had to be careful of the bison. | We had to be careful of the bison. | We + had to + be + adj + of + the + N. | Chúng tôi đã phải cẩn thận với con bò rừng. 🐂⚠️
+She had to cook food on the fire. | She had to cook food on the fire. | He/She + had to + V + N + on + the + N. | Cô ấy đã phải nấu thức ăn trên lửa. 👩🍳🔥
+They didn't have to use a saddle. | They didn't have to use a saddle. | They + didn't + have to + V + a + N. | Họ đã không phải sử dụng yên ngựa. 🐎❌
+
+[U6.1: Tourism & souvenirs]
+Tourists often buy souvenirs from the market. | Tourists often buy souvenirs from the market. | N(s) + adv + V + N(s) + from + the + N. | Khách du lịch thường mua quà lưu niệm từ chợ. 🧳🎁🛍️
+This beautiful carpet is from Turkey. | This beautiful carpet is from Turkey. | This + adj + N + is + from + place. | Tấm thảm đẹp này đến từ Thổ Nhĩ Kỳ. 🧶🇹🇷
+I'd like to visit the mosque in Istanbul. | I'd like to visit the mosque in Istanbul. | I'd like to + V + the + N + in + place. | Tôi muốn đến thăm nhà thờ Hồi giáo ở Istanbul. 🕌
+She wore sunglasses and a colourful cushion. | She wore sunglasses and a colourful cushion. | He/She + V2 + N(s) and + a + adj + N. | Cô ấy đã đeo kính râm và một cái gối tựa nhiều màu. 🕶️🛋️
+We took many photos of the mosaic. | We took many photos of the mosaic. | We + V2 + many + N(s) + of + the + N. | Chúng tôi đã chụp nhiều ảnh của bức tranh khảm. 📸🎨
+
+[U6.2: Giving travel advice (should/shouldn't)]
+You should try the local food. | You should try the local food. | You + should + V + the + adj + N. | Bạn nên thử thức ăn địa phương. 🍽️👍
+You shouldn't forget your passport. | You shouldn't forget your passport. | You + shouldn't + V + your + N. | Bạn không nên quên hộ chiếu của mình. 📘❌
+It's a good idea to wear comfortable shoes. | It's a good idea to wear comfortable shoes. | It's + a + good + idea + to + V + adj + N(s). | Đó là một ý kiến hay khi mang giày thoải mái. 👟😊
+Why don't you take a hop-on hop-off bus? | Why don't you take a hop-on hop-off bus? | Why + don't + you + V + a + N? | Tại sao bạn không đi xe buýt du lịch lên xuống tự do? 🚌❓
+Remember to take a map with you. | Remember to take a map with you. | V + to + V + a + N + with + you. | Hãy nhớ mang theo một tấm bản đồ. 🗺️🧭
+
+[U7.1: Theatre & acting]
+The actor wore a funny wig and a mask. | The actor wore a funny wig and a mask. | The + N + V2 + a + adj + N and + a + N. | Diễn viên đã đội một bộ tóc giả buồn cười và một cái mặt nạ. 🎭😄
+Shakespeare wrote many famous plays. | Shakespeare wrote many famous plays. | Name + V2 + many + adj + N(s). | Shakespeare đã viết nhiều vở kịch nổi tiếng. 📜🎬
+The audience clapped their hands loudly. | The audience clapped their hands loudly. | The + N + V2 + their + N(s) + adv. | Khán giả đã vỗ tay rất to. 👏🔊
+We need some props for the comedy. | We need some props for the comedy. | We + need + some + N(s) for + the + N. | Chúng ta cần một vài đạo cụ cho vở hài kịch. 🎩🎭
+She is performing her favourite character. | She is performing her favourite character. | He/She + is + V-ing + his/her + adj + N. | Cô ấy đang biểu diễn nhân vật yêu thích của mình. 👩🎤🎬
+
+[U7.2: Types of performances (tragedy, comedy, musical)]
+This play is a tragedy, not a comedy. | This play is a tragedy, not a comedy. | This + N + is + a + N, + not + a + N. | Vở kịch này là một bi kịch, không phải hài kịch. 😢❌😂
+The musical has dancing and singing. | The musical has dancing and singing. | The + N + has + V-ing and + V-ing. | Vở nhạc kịch có múa và hát. 💃🎤
+I prefer comedies because they are funny. | I prefer comedies because they are funny. | I + prefer + N(s) + because + they + are + adj. | Tôi thích hài kịch hơn vì chúng vui. 😄❤️
+He is a talented songwriter and guitarist. | He is a talented songwriter and guitarist. | He/She + is + a + adj + N and + N. | Anh ấy là một người sáng tác bài hát và nghệ sĩ ghi-ta tài năng. 🎵🎸
+They gave her flowers after the performance. | They gave her flowers after the performance. | They + V2 + her + N(s) + after + the + N. | Họ đã tặng cô ấy hoa sau buổi biểu diễn. 💐🎭
+
+[U8.1: Jobs & future careers]
+My mum is a businesswoman. She travels a lot. | My mum is a businesswoman. She travels a lot. | My + N + is + a + N. He/She + V(s) + a lot. | Mẹ tôi là một nữ doanh nhân. Bà ấy đi du lịch rất nhiều. 👩💼✈️
+I want to be a computer programmer. | I want to be a computer programmer. | I + want to + be + a + N. | Tôi muốn trở thành một lập trình viên máy tính. 💻👨💻
+Engineers need good maths skills. | Engineers need good maths skills. | N(s) + need + adj + N + N(s). | Các kỹ sư cần có kỹ năng toán học tốt. 👷➗🛠️
+Being a farmer is hard work. | Being a farmer is hard work. | V-ing + a + N + is + adj + N. | Làm nông dân là công việc vất vả. 👩🌾🌾
+What profession are you interested in? | What profession are you interested in? | What + N + are + you + interested in? | Bạn quan tâm đến nghề nghiệp gì? 💼❓
+
+[U8.2: Making predictions about the future (will/won't)]
+Robots will do many jobs in the future. | Robots will do many jobs in the future. | N(s) + will + V + many + N(s) in + the + N. | Người máy sẽ làm nhiều công việc trong tương lai. 🤖💼🔮
+We won't use cash anymore. | We won't use cash anymore. | We + won't + V + N + anymore. | Chúng ta sẽ không dùng tiền mặt nữa. 💵❌
+Will there be more cleaners or fewer? | Will there be more cleaners or fewer? | Will + there + be + more + N(s) or + fewer? | Sẽ có nhiều nhân viên vệ sinh hơn hay ít hơn? 🧹❓
+People might work from home. | People might work from home. | N(s) + might + V + from + home. | Mọi người có thể làm việc từ nhà. 👨💻🏠
+I think my future career will be exciting. | I think my future career will be exciting. | I + think + my + adj + N + will + be + adj. | Tôi nghĩ sự nghiệp tương lai của tôi sẽ rất hào hứng. 🔮🎉
+
+[U9.1: Sailing & sea adventures]
+The captain stood on the deck. | The captain stood on the deck. | The + N + V2 + on + the + N. | Thuyền trưởng đứng trên boong tàu. 🧑‍✈️🚢
+We need to check the lifeboat. | We need to check the lifeboat. | We + need to + V + the + N. | Chúng ta cần kiểm tra thuyền cứu sinh. 🚤✅
+Look through the porthole! | Look through the porthole! | V + through + the + N! | Hãy nhìn qua cửa sổ tàu! 👀🪟
+They sailed across the ocean for months. | They sailed across the ocean for months. | They + V2 + across + the + N + for + N(s). | Họ đã đi thuyền vượt qua đại dương trong nhiều tháng. ⛵🌊🗓️
+The mast is very tall. | The mast is very tall. | The + N + is + very + adj. | Cột buồm rất cao. ⛵📏
+
+[U9.2: Solving a mystery (past modals: might have, could have)]
+They might have seen a pirate ship. | They might have seen a pirate ship. | They + might have + V3 + a + N + N. | Họ có thể đã nhìn thấy một con tàu cướp biển. 🏴‍☠️🚢❓
+He could have lost the compass. | He could have lost the compass. | He/She + could have + V3 + the + N. | Anh ấy có thể đã làm mất la bàn. 🧭❓
+The treasure must have been here. | The treasure must have been here. | The + N + must have + been + here. | Kho báu chắc hẳn đã từng ở đây. 💰📍
+Who could have taken the map? | Who could have taken the map? | Who + could have + V3 + the + N? | Ai có thể đã lấy tấm bản đồ? 🗺️❓
+It was a great adventure. | It was a great adventure. | It + was + a + adj + N. | Đó là một cuộc phiêu lưu tuyệt vời. 🗺️🌟
+
+=== Super Minds 6 ===
+[U0.1: Present Perfect with already & yet]
+Have you had some food yet? | Have you had some food yet? | Have + you + V3 + some + N + yet? | Bạn đã ăn chút thức ăn nào chưa? 🍽️❓
+We have already met. | We have already met. | We + have + already + V3. | Chúng tôi đã gặp nhau rồi. 👋✅
+She has already finished her homework. | She has already finished her homework. | He/She + has + already + V3 + his/her + N. | Cô ấy đã hoàn thành bài tập về nhà rồi. 📚✅
+Have they seen the new bike rack yet? | Have they seen the new bike rack yet? | Have + they + V3 + the + adj + N + yet? | Họ đã nhìn thấy giá để xe đạp mới chưa? 🚲🆕❓
+I haven't cleaned the litter bin yet. | I haven't cleaned the litter bin yet. | I + haven't + V3 + the + N + yet. | Tôi chưa dọn thùng rác. 🗑️❌
+
+[U0.2: Relative Clauses (who, which, where)]
+I’m the leopard who likes to rap. | I’m the leopard who likes to rap. | I’m + the + N + who + V(s) + to + V. | Tôi là con báo thích đọc rap. 🐆🎤
+This is the basketball hoop which is new. | This is the basketball hoop which is new. | This + is + the + N + which + is + adj. | Đây là rổ bóng rổ mới. 🏀🆕
+That is the running track where we exercise. | That is the running track where we exercise. | That + is + the + N + where + we + V. | Kia là đường chạy nơi chúng tôi tập thể dục. 🏃‍♂️📍
+He is the student who found the bell. | He is the student who found the bell. | He/She + is + the + N + who + V2 + the + N. | Anh ấy là học sinh đã tìm thấy cái chuông. 👦🔔
+Is this the net which is broken? | Is this the net which is broken? | Is + this + the + N + which + is + adj? | Đây có phải là tấm lưới bị rách không? 🕸️❓
+
+[U1.1: Present Perfect with for & since]
+I’ve had these lovely spots since I was a cub. | I’ve had these lovely spots since I was a cub. | I’ve + V3 + these + adj + N(s) + since + I + was + a + N. | Tôi đã có những đốm đáng yêu này từ khi tôi còn là con non. 🐆👶
+She has lived here for eleven weeks. | She has lived here for eleven weeks. | He/She + has + V3 + here + for + time. | Cô ấy đã sống ở đây được mười một tuần. 🏠🗓️
+We have been friends for a long time. | We have been friends for a long time. | We + have + V3 + N(s) + for + a + adj + time. | Chúng tôi đã là bạn trong một thời gian dài. 👫⏳
+He has known the secret since yesterday. | He has known the secret since yesterday. | He/She + has + V3 + the + N + since + time. | Anh ấy đã biết bí mật từ hôm qua. 🤫📅
+Have you had this treasure map for years? | Have you had this treasure map for years? | Have + you + V3 + this + N + N + for + N(s)? | Bạn đã có tấm bản đồ kho báu này nhiều năm rồi phải không? 🗺️💰❓
+
+[U1.2: Questions with How long...?]
+How long have you had them? | How long have you had them? | How long + have + you + V3 + them? | Bạn đã có chúng bao lâu rồi? ⏳❓
+How long has he been a pirate? | How long has he been a pirate? | How long + has + he/she + V3 + a + N? | Anh ấy đã là cướp biển bao lâu rồi? 🏴‍☠️⏳
+How long have they buried the chest? | How long have they buried the chest? | How long + have + they + V3 + the + N? | Họ đã chôn rương kho báu bao lâu rồi? ⚰️💰❓
+How long have you been on this island? | How long have you been on this island? | How long + have + you + V3 + on + this + N? | Bạn đã ở trên đảo này bao lâu rồi? 🏝️⏳
+How long has the anchor been here? | How long has the anchor been here? | How long + has + the + N + V3 + here? | Mỏ neo đã ở đây bao lâu rồi? ⚓📍❓
+
+[U2.1: Need to (necessity)]
+You don’t need to drive a car. | You don’t need to drive a car. | You + don’t + need to + V + a + N. | Bạn không cần phải lái xe ô tô. 🚗❌
+All you need to do is climb. | All you need to do is climb. | All + you + need to + do + is + V. | Tất cả những gì bạn cần làm là leo trèo. 🧗✅
+We need to protect the environment. | We need to protect the environment. | We + need to + V + the + N. | Chúng ta cần bảo vệ môi trường. 🌍🤲
+Do I need to wear a helmet? | Do I need to wear a helmet? | Do + I + need to + V + a + N? | Tôi có cần đội mũ bảo hiểm không? ⛑️❓
+She needs to catch the cable car. | She needs to catch the cable car. | He/She + needs to + V + the + N. | Cô ấy cần bắt cáp treo. 🚠🏃‍♀️
+
+[U2.2: Future predictions with will / won’t]
+There will be a lot of noise. | There will be a lot of noise. | There + will + be + a lot of + N. | Sẽ có rất nhiều tiếng ồn. 📢🔮
+There won’t be any trees left. | There won’t be any trees left. | There + won’t + be + any + N(s) + left. | Sẽ không còn cây nào cả. 🌳❌
+Solar panels will power our homes. | Solar panels will power our homes. | N(s) + will + V + our + N(s). | Các tấm pin mặt trời sẽ cung cấp năng lượng cho nhà chúng ta. ☀️🏠
+Will jet packs be popular? | Will jet packs be popular? | Will + N(s) + be + adj? | Ba lô phản lực sẽ phổ biến chứ? 🚀❓
+People won't use petrol cars. | People won't use petrol cars. | N(s) + won't + V + N + N(s). | Mọi người sẽ không dùng xe chạy xăng nữa. 🚗⛽❌
+
+[U3.1: Past Passive]
+Who was this den built by? | Who was this den built by? | Who + was + this + N + V3 + by? | Hang động này được xây bởi ai? 🏚️❓
+The walls weren’t built so well. | The walls weren’t built so well. | The + N(s) + weren't + V3 + so + adv. | Những bức tường không được xây quá tốt. 🧱❌
+This tomb was discovered by an archaeologist. | This tomb was discovered by an archaeologist. | This + N + was + V3 + by + a + N. | Ngôi mộ này được phát hiện bởi một nhà khảo cổ. ⚰️🧭
+Were the pyramids built by slaves? | Were the pyramids built by slaves? | Were + the + N(s) + V3 + by + N(s)? | Các kim tự tháp được xây bởi nô lệ phải không? 🗿👷❓
+The chariot was made of wood. | The chariot was made of wood. | The + N + was + made + of + N. | Cỗ xe chiến mã được làm từ gỗ. 🐎🪵
+
+[U3.2: Quantifiers (a lot of, lots of, a few, a little)]
+There were lots of trees in this jungle. | There were lots of trees in this jungle. | There + were + lots of + N(s) + in + this + N. | Đã có rất nhiều cây trong khu rừng này. 🌳🌿
+I need a little time to think. | I need a little time to think. | I + need + a little + N + to + V. | Tôi cần một chút thời gian để suy nghĩ. ⏳🤔
+We have a few hieroglyphics to translate. | We have a few hieroglyphics to translate. | We + have + a few + N(s) + to + V. | Chúng tôi có một vài chữ tượng hình cần dịch. 🔤📜
+There isn't a lot of water in the desert. | There isn't a lot of water in the desert. | There + isn't + a lot of + N + in + the + N. | Không có nhiều nước trong sa mạc. 🏜️💧
+He has a little knowledge about mummies. | He has a little knowledge about mummies. | He/She + has + a little + N + about + N(s). | Anh ấy có một chút kiến thức về xác ướp. ⚰️🧠
+
+[U4.1: Possibility with could]
+We could play some volleyball. | We could play some volleyball. | We + could + V + some + N. | Chúng ta có thể chơi một ít bóng chuyền. 🏐🤔
+You could try to teach me archery. | You could try to teach me archery. | You + could + try to + V + me + N. | Bạn có thể thử dạy tôi bắn cung. 🏹👨‍🏫
+She could be a great gymnast. | She could be a great gymnast. | He/She + could + be + a + adj + N. | Cô ấy có thể là một vận động viên thể dục tuyệt vời. 🤸‍♀️🌟
+Could we watch the fencing match? | Could we watch the fencing match? | Could + we + V + the + N + N? | Chúng ta có thể xem trận đấu kiếm không? 🤺👀❓
+They could win a medal. | They could win a medal. | They + could + V + a + N. | Họ có thể giành được huy chương. 🏅🎖️
+
+[U4.2: Present Continuous for future arrangements]
+I’m running in the morning. | I’m running in the morning. | I’m + V-ing + in + the + N. | Tôi sẽ chạy bộ vào buổi sáng. 🏃‍♂️🌅
+She is cycling on her bike later. | She is cycling on her bike later. | He/She + is + V-ing + on + his/her + N + later. | Cô ấy sẽ đi xe đạp sau. 🚲⏳
+Are they playing basketball tomorrow? | Are they playing basketball tomorrow? | Are + they + V-ing + N + tomorrow? | Họ sẽ chơi bóng rổ vào ngày mai phải không? 🏀📅❓
+We aren't going to the stadium on Sunday. | We aren't going to the stadium on Sunday. | We + aren't + V-ing + to + the + N + on + day. | Chúng tôi sẽ không đến sân vận động vào Chủ nhật. 🏟️❌
+Is he competing in the long jump? | Is he competing in the long jump? | Is + he/she + V-ing + in + the + N? | Anh ấy sẽ thi đấu môn nhảy xa phải không? 🦘🏅❓
+
+[U5.1: Present Perfect with ever & never]
+Have you ever been to London Zoo? | Have you ever been to London Zoo? | Have + you + ever + V3 + to + place? | Bạn đã từng đến Sở thú Luân Đôn chưa? 🦁🇬🇧❓
+No, she hasn’t. She’s never been. | No, she hasn’t. She’s never been. | No, + he/she + hasn’t. He/She + 's + never + V3. | Không, cô ấy chưa. Cô ấy chưa từng đến. ❌👧
+Have you ever eaten fish and chips? | Have you ever eaten fish and chips? | Have + you + ever + V3 + N and + N(s)? | Bạn đã từng ăn cá và khoai tây chiên chưa? 🐟🍟❓
+I have never seen the Tower of London. | I have never seen the Tower of London. | I + have + never + V3 + the + N + of + place. | Tôi chưa bao giờ nhìn thấy Tháp Luân Đôn. 🗼🇬🇧❌
+Has he ever bought anything from a grocer's? | Has he ever bought anything from a grocer's? | Has + he/she + ever + V3 + anything + from + a + N? | Anh ấy đã từng mua gì từ cửa hàng tạp hóa chưa? 🛒❓
+
+[U5.2: Present Perfect & Past Simple together]
+I went to the butcher's yesterday. | I went to the butcher's yesterday. | I + V2 + to + the + N + time. | Tôi đã đến cửa hàng thịt hôm qua. 🥩📅
+Have you ever had a stunt in a film? | Have you ever had a stunt in a film? | Have + you + ever + V3 + a + N + in + a + N? | Bạn đã từng làm pha mạo hiểm trong phim chưa? 🎬🤸‍♂️❓
+She has visited London, but she didn't see Big Ben. | She has visited London, but she didn't see Big Ben. | He/She + has + V3 + place, but + he/she + didn't + V + N. | Cô ấy đã đến thăm Luân Đôn, nhưng cô ấy không nhìn thấy Big Ben. 🇬🇧🗼❌
+We have never tried Indian food. | We have never tried Indian food. | We + have + never + V3 + adj + N. | Chúng tôi chưa bao giờ thử đồ ăn Ấn Độ. 🇮🇳🍛❌
+Did you enjoy the pop concert? | Did you enjoy the pop concert? | Did + you + V + the + N + N? | Bạn có thích buổi hòa nhạc pop không? 🎵🎤❓
+
+[U6.1: too many / not enough]
+I’ve got too many jobs to do. | I’ve got too many jobs to do. | I’ve + got + too many + N(s) + to + V. | Tôi có quá nhiều việc phải làm. 💼📚
+I haven’t got enough time. | I haven’t got enough time. | I + haven’t + got + enough + N. | Tôi không có đủ thời gian. ⏰❌
+There are too many screws here. | There are too many screws here. | There + are + too many + N(s) + here. | Có quá nhiều ốc vít ở đây. 🔩
+We don't have enough tools. | We don't have enough tools. | We + don't + have + enough + N(s). | Chúng tôi không có đủ dụng cụ. 🛠️❌
+He has too many inventions in his mind. | He has too many inventions in his mind. | He/She + has + too many + N(s) + in + his/her + N. | Anh ấy có quá nhiều phát minh trong đầu. 💡🧠
+
+[U6.2: Functional questions: Can you tell me what...?]
+Can you tell me what this machine is? | Can you tell me what this machine is? | Can + you + tell me + what + this + N + is? | Bạn có thể cho tôi biết cái máy này là gì không? ⚙️❓
+Can you tell me what this button does? | Can you tell me what this button does? | Can + you + tell me + what + this + N + V(s)? | Bạn có thể cho tôi biết nút này làm gì không? 🔘❓
+Can you tell me what the drill is for? | Can you tell me what the drill is for? | Can + you + tell me + what + the + N + is + for? | Bạn có thể cho tôi biết cái máy khoan dùng để làm gì không? 🛠️❓
+Can you tell me who invented this? | Can you tell me who invented this? | Can + you + tell me + who + V3 + this? | Bạn có thể cho tôi biết ai đã phát minh ra cái này? 👨🔬💡❓
+Can you tell me where the hammer is? | Can you tell me where the hammer is? | Can + you + tell me + where + the + N + is? | Bạn có thể cho tôi biết cái búa ở đâu không? 🔨📍❓
+
+[U7.1: Gerunds (V-ing as subject/object)]
+Going on a space trip is exciting! | Going on a space trip is exciting! | V-ing + on + a + N + N + is + adj! | Đi du hành vũ trụ thật hào hứng! 🚀🌟
+Staying up late is really tiring. | Staying up late is really tiring. | V-ing + up + late + is + really + adj. | Thức khuya thực sự mệt mỏi. 🌙😴
+I love watching the stars. | I love watching the stars. | I + love + V-ing + the + N(s). | Tôi yêu thích ngắm sao. ⭐❤️
+Walking on the moon must be amazing. | Walking on the moon must be amazing. | V-ing + on + the + N + must + be + adj. | Đi bộ trên mặt trăng hẳn là tuyệt vời. 🌕👨🚀
+His favourite activity is checking the control panel. | His favourite activity is checking the control panel. | His/Her + adj + N + is + V-ing + the + N. | Hoạt động yêu thích của anh ấy là kiểm tra bảng điều khiển. 🎛️❤️
+
+[U7.2: Reported speech]
+He said that he was back from the stars. | He said that he was back from the stars. | He/She + said + that + he/she + was + back + from + the + N(s). | Anh ấy nói rằng anh ấy đã trở về từ các vì sao. 👨🚀⭐
+She told me that the mission was successful. | She told me that the mission was successful. | He/She + told + me + that + the + N + was + adj. | Cô ấy nói với tôi rằng nhiệm vụ đã thành công. 🎯✅
+They said they saw a UFO. | They said they saw a UFO. | They + said + they + V2 + a + N. | Họ nói họ đã nhìn thấy một UFO. 🛸👀
+He told us that Houston called. | He told us that Houston called. | He/She + told + us + that + place + V2. | Anh ấy nói với chúng tôi rằng Houston đã gọi. 📞🇺🇸
+She said she wanted to be an astronaut. | She said she wanted to be an astronaut. | He/She + said + he/she + wanted to + be + an + N. | Cô ấy nói cô ấy muốn trở thành phi hành gia. 👩🚀🚀
+
+[U8.1: Question tags with be]
+It’s cold at the poles, isn’t it? | It’s cold at the poles, isn’t it? | It + 's + adj + at + the + N(s), + isn't + it? | Ở các cực thì lạnh, phải không? 🧊❓
+And the nights are dark, aren’t they? | And the nights are dark, aren’t they? | And + the + N(s) + are + adj, + aren't + they? | Và những đêm thì tối, phải không? 🌌❓
+You're from the Arctic, aren't you? | You're from the Arctic, aren't you? | You + 're + from + the + N, + aren't + you? | Bạn đến từ Bắc Cực, phải không? 🧊👤❓
+The iceberg is huge, isn't it? | The iceberg is huge, isn't it? | The + N + is + adj, + isn't + it? | Tảng băng trôi thật to lớn, phải không? 🧊🐋❓
+Polar bears are strong, aren't they? | Polar bears are strong, aren't they? | N(s) + are + adj, + aren't + they? | Gấu Bắc Cực rất khỏe, phải không? 🐻❄️💪❓
+
+[U8.2: Modals may / might (possibility)]
+The jungle may be in danger. | The jungle may be in danger. | The + N + may + be + in + N. | Khu rừng có thể gặp nguy hiểm. 🌳⚠️
+They might take our home away. | They might take our home away. | They + might + V + our + N + away. | Họ có thể lấy đi nhà của chúng ta. 🏠👋
+We might see the Northern Lights tonight. | We might see the Northern Lights tonight. | We + might + V + the + N + N + time. | Chúng ta có thể nhìn thấy Bắc Cực quang tối nay. 🌌✨
+She may need warmer mittens. | She may need warmer mittens. | He/She + may + V + adj + N(s). | Cô ấy có thể cần đôi găng tay ấm hơn. 🧤🔥
+It might snow tomorrow. | It might snow tomorrow. | It + might + V + tomorrow. | Ngày mai trời có thể có tuyết. ❄️📅
+
+[U9.1: 2nd Conditional]
+If I had a time machine, I’d go back to the past. | If I had a time machine, I’d go back to the past. | If + I + had + a + N + N, + I'd + V + back + to + the + N. | Nếu tôi có một cỗ máy thời gian, tôi sẽ quay về quá khứ. ⏳🚀
+If I met a dinosaur, I wouldn’t stop to say ‘hello’. | If I met a dinosaur, I wouldn’t stop to say ‘hello’. | If + I + V2 + a + N, + I + wouldn't + V + to + V. | Nếu tôi gặp một con khủng long, tôi sẽ không dừng lại để chào. 🦖👋❌
+If you saw a T-rex, what would you do? | If you saw a T-rex, what would you do? | If + you + V2 + a + N, + what + would + you + do? | Nếu bạn nhìn thấy một con T-rex, bạn sẽ làm gì? 🦖❓
+I would run quickly if I saw a triceratops. | I would run quickly if I saw a triceratops. | I + would + V + adv + if + I + V2 + a + N. | Tôi sẽ chạy thật nhanh nếu tôi nhìn thấy một con khủng long ba sừng. 🦕🏃‍♂️
+If we lived in the Jurassic Age, life would be different. | If we lived in the Jurassic Age, life would be different. | If + we + V2 + in + the + N + N, + N + would + be + adj. | Nếu chúng ta sống ở Kỷ Jura, cuộc sống sẽ khác. 🦕🌿
+
+[U9.2: Questions with 2nd Conditional]
+What would you do if you saw a dinosaur? | What would you do if you saw a dinosaur? | What + would + you + do + if + you + V2 + a + N? | Bạn sẽ làm gì nếu bạn nhìn thấy một con khủng long? 🦖❓
+Where would you go if you could travel in time? | Where would you go if you could travel in time? | Where + would + you + V + if + you + could + V + in + N? | Bạn sẽ đi đâu nếu bạn có thể du hành thời gian? ⏳✈️❓
+Would you be scared if a dinosaur chased you? | Would you be scared if a dinosaur chased you? | Would + you + be + adj + if + a + N + V2 + you? | Bạn có sợ hãi không nếu một con khủng long đuổi theo bạn? 🦖🏃‍♂️😨❓
+If you found a dinosaur egg, would you keep it? | If you found a dinosaur egg, would you keep it? | If + you + V2 + a + N + N, + would + you + V + it? | Nếu bạn tìm thấy một quả trứng khủng long, bạn có giữ nó không? 🥚🦕❓
+What would a dinosaur eat if it lived today? | What would a dinosaur eat if it lived today? | What + would + a + N + V + if + it + V2 + today? | Một con khủng long sẽ ăn gì nếu nó sống ngày nay? 🦖🍖❓
+
+=== Open world A2 ===
+[0.1: be, have got (giới thiệu bản thân)]
+My nationality is Vietnamese. | My nationality is Vietnamese. | My + nationality + is + country. | Quốc tịch của tôi là Việt Nam. 🇻🇳
+I have got two cousins in Australia. | I have got two cousins in Australia. | I + have got + number + N(s) + in + place. | Tôi có hai người anh em họ ở Úc. 👫🇦🇺
+She has got a big family. | She has got a big family. | He/She + has got + a + adj + N. | Cô ấy có một gia đình lớn. 👨‍👩‍👧‍👦
+What is your address? | What is your address? | What + is + your + N? | Địa chỉ của bạn là gì? 🏠
+This is my grandparent's passport. | This is my grandparent's passport. | This + is + my + N's + N. | Đây là hộ chiếu của ông bà tôi. 👵📘
+
+[0.2: can & Present Simple (he/she/it)]
+My nephew can ride a bike. | My nephew can ride a bike. | My + N + can + V + a + N. | Cháu trai tôi có thể đi xe đạp. 👦🚲
+Can your niece speak English? | Can your niece speak English? | Can + your + N + V + language? | Cháu gái của bạn có thể nói tiếng Anh không? 👧🇬🇧❓
+He lives in London. | He lives in London. | He/She + V(s) + in + place. | Anh ấy sống ở Luân Đôn. 🇬🇧
+She wants an identity card. | She wants an identity card. | He/She + V(s) + a/an + N. | Cô ấy muốn một chứng minh nhân dân. 🪪
+It costs a lot of money. | It costs a lot of money. | It + V(s) + a lot of + N. | Nó tốn rất nhiều tiền. 💰
+
+[1.1: Present Simple (thói quen)]
+I always wake up early. | I always wake up early. | I + adverb of frequency + V + adv. | Tôi luôn thức dậy sớm. ⏰
+A pilot often leaves the house very early. | A pilot often leaves the house very early. | A + job + adverb of frequency + V(s) + the + N + very + adv. | Một phi công thường rời nhà rất sớm. ✈️🚪
+She usually spends time alone at the weekend. | She usually spends time alone at the weekend. | He/She + adverb of frequency + V(s) + N + at + the + N. | Cô ấy thường dành thời gian một mình vào cuối tuần. 🧘📅
+Does a police officer wear a uniform? | Does a police officer wear a uniform? | Does + a + job + V + a + N? | Một cảnh sát có mặc đồng phục không? 👮👔❓
+He doesn't relax at home. He goes shopping. | He doesn't relax at home. He goes shopping. | He/She + doesn't + V + at home. He/She + V(s) + N. | Anh ấy không thư giãn ở nhà. Anh ấy đi mua sắm. 🛋️❌🛍️
+
+[1.2: Questions in Present Simple]
+What time do you get dressed? | What time do you get dressed? | What time + do + you + V? | Bạn mặc quần áo lúc mấy giờ? 👕⏰❓
+Where does a mechanic work? | Where does a mechanic work? | Where + does + a + job + V? | Một thợ máy làm việc ở đâu? 🔧📍❓
+Do you like your job? | Do you like your job? | Do + you + like + your + N? | Bạn có thích công việc của bạn không? 💼❓
+Does she work in an office? | Does she work in an office? | Does + he/she + V + in + an + N? | Cô ấy có làm việc trong văn phòng không? 🏢❓
+How do you go to work? | How do you go to work? | How + do + you + V + to + N? | Bạn đi làm bằng cách nào? 🚗💼❓
+
+[2.1: Present Continuous (hành động ngay lúc nói)]
+Look! It is snowing in winter! | Look! It is snowing in winter! | Look! It + is + V-ing + in + season! | Nhìn kìa! Trời đang có tuyết rơi vào mùa đông! ❄️👀
+The temperature is dropping quickly. | The temperature is dropping quickly. | The + N + is + V-ing + adv. | Nhiệt độ đang giảm nhanh. 🌡️⬇️
+She is wearing a coat because it is freezing. | She is wearing a coat because it is freezing. | He/She + is + V-ing + a + N + because + it + is + adj. | Cô ấy đang mặc áo khoác vì trời rất lạnh. 🧥🥶
+Are they swimming at the coast? | Are they swimming at the coast? | Are + they + V-ing + at + the + N? | Họ có đang bơi ở bờ biển không? 🏊🏖️❓
+I am not going out. It is foggy. | I am not going out. It is foggy. | I + am + not + V-ing. It + is + adj. | Tôi không ra ngoài đâu. Trời có sương mù. 🌫️❌
+
+[2.2: Present Simple vs Present Continuous]
+It usually rains in autumn. | It usually rains in autumn. | It + adverb of frequency + V(s) + in + season. | Trời thường mưa vào mùa thu. 🍂
+But today, the sun is shining. | But today, the sun is shining. | But + today, + the + N + is + V-ing. | Nhưng hôm nay, mặt trời đang chiếu sáng. ☀️📅
+I often visit mountains in summer. | I often visit mountains in summer. | I + adverb of frequency + V + N(s) + in + season. | Tôi thường đến thăm núi vào mùa hè. ⛰️☀️
+Right now, I am looking at a waterfall. | Right now, I am looking at a waterfall. | Right now, + I + am + V-ing + at + a + N. | Ngay bây giờ, tôi đang ngắm một thác nước. 🌊👀
+He doesn't like stormy weather. He is staying inside. | He doesn't like stormy weather. He is staying inside. | He/She + doesn't + like + adj + N. He/She + is + V-ing + adv. | Anh ấy không thích thời tiết có bão. Anh ấy đang ở trong nhà. ⛈️❌🏠
+
+[3.1: Past Simple (was/were)]
+I was at the cinema yesterday. | I was at the cinema yesterday. | I + was + at + the + N + time. | Tôi đã ở rạp chiếu phim ngày hôm qua. 🎬📅
+The documentary was very interesting. | The documentary was very interesting. | The + N + was + very + adj. | Bộ phim tài liệu rất thú vị. 🎬🧠
+We were on social media all evening. | We were on social media all evening. | We/They + were + on + N + all + N. | Chúng tôi đã dùng mạng xã hội cả buổi tối. 📱🌙
+Were you at home last night? | Were you at home last night? | Were + you + at + N + time? | Tối qua bạn có ở nhà không? 🏠🌙❓
+My friends weren't at the competition. | My friends weren't at the competition. | My + N(s) + weren't + at + the + N. | Bạn bè tôi không có ở cuộc thi. 👥🏆❌
+
+[3.2: Past Simple (động từ thường)]
+I downloaded a new video game last week. | I downloaded a new video game last week. | I + V2 (regular) + a + adj + N + time. | Tôi đã tải xuống một trò chơi điện tử mới tuần trước. 🎮⬇️📅
+She watched three episodes of a series. | She watched three episodes of a series. | He/She + V2 (regular) + number + N(s) + of + a + N. | Cô ấy đã xem ba tập của một bộ phim. 📺3️⃣🎞️
+He read a science fiction book. | He read a science fiction book. | He/She + V2 (irregular) + a + N + N. | Anh ấy đã đọc một cuốn sách khoa học viễn tưởng. 🚀📖
+Did you stream that comedy? | Did you stream that comedy? | Did + you + V (base) + that + N? | Bạn có phát trực tuyến vở hài kịch đó không? 😂📺❓
+They didn't like the horror film. | They didn't like the horror film. | They + didn't + V (base) + the + N + N. | Họ không thích bộ phim kinh dị. 👻🎬❌
+
+[4.1: can/could (khả năng)]
+I can swim one kilometre. | I can swim one kilometre. | I + can + V + measurement. | Tôi có thể bơi một kilômét. 🏊📏
+She could ride a bike when she was four. | She could ride a bike when she was four. | He/She + could + V + a + N + when + he/she + was + age. | Cô ấy có thể đi xe đạp khi cô ấy 4 tuổi. 🚲4️⃣
+Can you lift this heavy box? | Can you lift this heavy box? | Can + you + V + this + adj + N? | Bạn có thể nâng cái hộp nặng này không? 📦💪❓
+He couldn't speak after the sore throat. | He couldn't speak after the sore throat. | He/She + couldn't + V + after + the + N. | Anh ấy không thể nói sau cơn đau họng. 🗣️❌
+My brain can learn new things quickly. | My brain can learn new things quickly. | My + N + can + V + adj + N(s) + adv. | Bộ não của tôi có thể học những điều mới nhanh chóng. 🧠💡
+
+[4.2: should/shouldn't (lời khuyên)]
+You should see a doctor for your headache. | You should see a doctor for your headache. | You + should + V + a + N + for + your + N. | Bạn nên đi gặp bác sĩ vì chứng đau đầu của bạn. 👨⚕️🤕
+She shouldn't eat chocolate with a stomach-ache. | She shouldn't eat chocolate with a stomach-ache. | He/She + shouldn't + V + N + with + a + N. | Cô ấy không nên ăn sô-cô-la khi bị đau dạ dày. 🍫🤢❌
+Should I take these painkillers? | Should I take these painkillers? | Should + I + V + these + N(s)? | Tôi có nên uống những viên thuốc giảm đau này không? 💊❓
+He should make an appointment with the dentist. | He should make an appointment with the dentist. | He/She + should + V + a/an + N + with + the + N. | Anh ấy nên đặt lịch hẹn với nha sĩ. 🦷📅
+You shouldn't call an ambulance for a small cough. | You shouldn't call an ambulance for a small cough. | You + shouldn't + V + an + N + for + a + adj + N. | Bạn không nên gọi xe cứu thương vì một cơn ho nhỏ. 🚑🤧❌
+
+[5.1: Past Continuous]
+I was sleeping when the flight landed. | I was sleeping when the flight landed. | I + was + V-ing + when + the + N + V2. | Tôi đang ngủ khi chuyến bay hạ cánh. 😴✈️
+We were having lunch when the tour guide arrived. | We were having lunch when the tour guide arrived. | We + were + V-ing + N + when + the + N + V2. | Chúng tôi đang ăn trưa khi hướng dẫn viên du lịch đến. 🍽️🧭
+She was packing her suitcase while he was checking the map. | She was packing her suitcase while he was checking the map. | He/She + was + V-ing + his/her + N + while + pronoun + was + V-ing + the + N. | Cô ấy đang đóng gói vali trong khi anh ấy đang kiểm tra bản đồ. 🧳🗺️
+Were you sightseeing when it started to rain? | Were you sightseeing when it started to rain? | Were + you + V-ing + when + it + V2 + to + V? | Bạn có đang tham quan khi trời bắt đầu mưa không? 🏛️🌧️❓
+They weren't waiting at the bus stop. They were at the hotel. | They weren't waiting at the bus stop. They were at the hotel. | They + weren't + V-ing + at + the + N. They + were + at + the + N. | Họ không đang đợi ở trạm xe buýt. Họ ở khách sạn. 🚏❌🏨
+
+[5.2: Past Continuous with Past Simple (when/while/as)]
+While I was looking for my passport, I found an old souvenir. | While I was looking for my passport, I found an old souvenir. | While + I + was + V-ing + for + my + N, + I + V2 + an + adj + N. | Trong khi tôi đang tìm hộ chiếu, tôi tìm thấy một món quà lưu niệm cũ. 📘🎁
+The bus was delayed as we were leaving the accommodation. | The bus was delayed as we were leaving the accommodation. | The + N + was + V2 (adj) + as + we + were + V-ing + the + N. | Xe buýt bị trì hoãn khi chúng tôi đang rời khỏi chỗ ở. 🚌⏳🏨
+What were you doing when you heard the discount announcement? | What were you doing when you heard the discount announcement? | What + were + you + V-ing + when + you + V2 + the + N + N? | Bạn đang làm gì khi bạn nghe thấy thông báo giảm giá? 🏷️💰❓
+He was taking a photo when he dropped his backpack. | He was taking a photo when he dropped his backpack. | He/She + was + V-ing + a + N + when + he/she + V2 + his/her + N. | Anh ấy đang chụp ảnh khi làm rơi ba lô của mình. 📸🎒
+As we were getting on the hop-on hop-off bus, it started to move. | As we were getting on the hop-on hop-off bus, it started to move. | As + we + were + V-ing + on + the + N, + it + V2 + to + V. | Khi chúng tôi đang lên xe buýt du lịch, nó bắt đầu chuyển bánh. 🚌➡️
+
+[6.1: Countable & Uncountable nouns, a/an/some/any]
+There is some yoghurt in the fridge. | There is some yoghurt in the fridge. | There + is + some + N + in + the + N. | Có một ít sữa chua trong tủ lạnh. 🥛🧊
+There aren't any eggs. | There aren't any eggs. | There + aren't + any + N(s). | Không có quả trứng nào. 🥚❌
+Would you like an omelette for breakfast? | Would you like an omelette for breakfast? | Would + you + like + a/an + N + for + N? | Bạn có muốn một phần trứng cuộn cho bữa sáng không? 🍳🌅❓
+Can I have some cereal, please? | Can I have some cereal, please? | Can + I + have + some + N, please? | Tôi có thể xin một ít ngũ cốc được không? 🥣🙏
+We need a lot of vegetables but we don't need any meat. | We need a lot of vegetables but we don't need any meat. | We + need + a lot of + N(s) + but + we + don't + need + any + N. | Chúng tôi cần nhiều rau củ nhưng không cần thịt. 🥦🍖❌
+
+[6.2: Expressions of quantity & cooking verbs]
+We need a bottle of water and a packet of biscuits. | We need a bottle of water and a packet of biscuits. | We + need + a + N + of + N + and + a + N + of + N(s). | Chúng tôi cần một chai nước và một gói bánh quy. 💧🧃🍪📦
+First, peel the bananas and chop the chilli. | First, peel the bananas and chop the chilli. | First, + V (imperative) + the + N(s) + and + V + the + N. | Đầu tiên, bóc vỏ chuối và băm nhỏ ớt. 🍌🌶️
+Then, fry the onions and steam the rice. | Then, fry the onions and steam the rice. | Then, + V + the + N(s) + and + V + the + N. | Sau đó, chiên hành tây và hấp cơm. 🧅🍳🍚
+Finally, grill the chicken for the curry. | Finally, grill the chicken for the curry. | Finally, + V + the + N + for + the + N. | Cuối cùng, nướng gà cho món cà ri. 🍗🍛
+The restaurant gives generous portions. | The restaurant gives generous portions. | The + N + V(s) + adj + N(s). | Nhà hàng phục vụ những khẩu phần ăn hậu hĩnh. 🍽️🍗
+
+[7.1: Present Perfect (Have you ever...?)]
+Have you ever been to a music festival? | Have you ever been to a music festival? | Have + you + ever + V3 + to + a + N? | Bạn đã từng đến một lễ hội âm nhạc chưa? 🎤🎉❓
+I have never played the drums. | I have never played the drums. | I + have + never + V3 + the + N(s). | Tôi chưa bao giờ chơi trống. 🥁❌
+She has already seen that guitarist in concert. | She has already seen that guitarist in concert. | He/She + has + already + V3 + that + N + in + N. | Cô ấy đã xem nghệ sĩ ghi-ta đó trong buổi hòa nhạc rồi. 🎸🎵✅
+Has he ever written a song? | Has he ever written a song? | Has + he/she + ever + V3 + a + N? | Anh ấy đã từng viết một bài hát chưa? 🎵✍️❓
+We have never tried baking. | We have never tried baking. | We + have + never + V3 + V-ing. | Chúng tôi chưa bao giờ thử nướng bánh. 🍰❌
+
+[7.2: Present Perfect with just]
+I have just bought tickets for the gig. | I have just bought tickets for the gig. | I + have + just + V3 + N(s) + for + the + N. | Tôi vừa mới mua vé cho buổi biểu diễn. 🎫🎤
+She has just finished her photography course. | She has just finished her photography course. | He/She + has + just + V3 + his/her + N + N. | Cô ấy vừa mới hoàn thành khóa học nhiếp ảnh của mình. 📸✅
+Have they just had a rehearsal? | Have they just had a rehearsal? | Have + they + just + V3 + a + N? | Họ vừa mới có một buổi tổng duyệt phải không? 🎭✅❓
+He hasn't just cleaned his costume. He cleaned it yesterday. | He hasn't just cleaned his costume. He cleaned it yesterday. | He/She + hasn't + just + V3 + his/her + N. He/She + V2 + it + time. | Anh ấy không vừa mới giặt trang phục của mình. Anh ấy đã giặt nó ngày hôm qua. 👗🧼📅
+The audience has just arrived. | The audience has just arrived. | The + N + has + just + V3. | Khán giả vừa mới đến. 👥✅
+
+[8.1: Present Perfect with for/since]
+We have rented this cottage for six months. | We have rented this cottage for six months. | We + have + V3 + this + N + for + time. | Chúng tôi đã thuê ngôi nhà tranh này được sáu tháng. 🏡🗓️
+She has lived in that villa since 2020. | She has lived in that villa since 2020. | He/She + has + V3 + in + that + N + since + time. | Cô ấy đã sống trong biệt thự đó từ năm 2020. 🏰📅
+I have known my neighbour for years. | I have known my neighbour for years. | I + have + V3 + my + N + for + N(s). | Tôi đã biết hàng xóm của tôi nhiều năm rồi. 👨‍👩‍👧‍👦⏳
+Has he had this houseboat since last summer? | Has he had this houseboat since last summer? | Has + he/she + V3 + this + N + since + last + season? | Anh ấy đã có chiếc nhà thuyền này từ mùa hè năm ngoái phải không? 🛶☀️❓
+They haven't used the basement for a long time. | They haven't used the basement for a long time. | They + haven't + V3 + the + N + for + a + adj + time. | Họ đã không sử dụng tầng hầm trong một thời gian dài rồi. 🏚️⏳
+
+[8.2: Present Perfect vs Past Simple]
+I have already paid the rent for this month. | I have already paid the rent for this month. | I + have + already + V3 + the + N + for + this + N. | Tôi đã trả tiền thuê nhà cho tháng này rồi. 💰✅
+I paid the rent last week. | I paid the rent last week. | I + V2 + the + N + time. | Tôi đã trả tiền thuê nhà tuần trước. 💰📅
+She has lived here for five years. | She has lived here for five years. | He/She + has + V3 + here + for + time. | Cô ấy đã sống ở đây được năm năm. 🏠🗓️
+She moved here in 2019. | She moved here in 2019. | He/She + V2 + here + in + year. | Cô ấy chuyển đến đây vào năm 2019. 🏠➡️📅
+Have you finished your homework yet? | Have you finished your homework yet? | Have + you + V3 + your + N + yet? | Bạn đã hoàn thành bài tập về nhà chưa? 📚❓
+Yes, I finished it an hour ago. | Yes, I finished it an hour ago. | Yes, + I + V2 + it + time + ago. | Có, tôi đã hoàn thành nó một giờ trước. 📚✅⏰
+
+[9.1: Verbs/Adjectives + to infinitive]
+It's important to be confident. | It's important to be confident. | It's + adj + to + be + adj. | Thật quan trọng để tự tin. 💪
+She is too shy to speak in public. | She is too shy to speak in public. | He/She + is + too + adj + to + V + in + public. | Cô ấy quá nhút nhát để nói trước công chúng. 😳🗣️❌
+He is very reliable to do the volunteer work. | He is very reliable to do the volunteer work. | He/She + is + very + adj + to + V + the + N + N. | Anh ấy rất đáng tin cậy để làm công việc tình nguyện. 🤝✅
+My goal is to enroll in a new course. | My goal is to enroll in a new course. | My + N + is + to + V + in + a + adj + N. | Mục tiêu của tôi là đăng ký vào một khóa học mới. 🎯📝
+It's not easy to get on well with everyone. | It's not easy to get on well with everyone. | It's + not + adj + to + V + adv + with + everyone. | Không dễ để hòa thuận với tất cả mọi người. ☺️👥
+
+[9.2: Verbs + -ing]
+I don't mind arguing sometimes. | I don't mind arguing sometimes. | I + don't mind + V-ing + adv. | Tôi không ngại tranh cãi đôi khi. 🗣️
+She enjoys helping people. | She enjoys helping people. | He/She + enjoys + V-ing + N(s). | Cô ấy thích giúp đỡ mọi người. 🤝😊
+He stopped worrying about the exam. | He stopped worrying about the exam. | He/She + stopped + V-ing + about + the + N. | Anh ấy đã ngừng lo lắng về bài kiểm tra. 😟📝❌
+We finished doing the volunteer work at five. | We finished doing the volunteer work at five. | We/They + finished + V-ing + the + N + N + at + time. | Chúng tôi đã hoàn thành công việc tình nguyện lúc 5 giờ. 🤝5️⃣
+Do you like being in a bad mood? | Do you like being in a bad mood? | Do + you + like + V-ing + in + a + adj + N? | Bạn có thích ở trong tâm trạng tồi tệ không? 😠❓
+
+[10.1: will/may/might (khả năng tương lai)]
+I think it will rain later. | I think it will rain later. | I + think + it + will + V + later. | Tôi nghĩ trời sẽ mưa sau. 🌧️🔮
+She may visit the castle tomorrow. | She may visit the castle tomorrow. | He/She + may + V + the + N + time. | Cô ấy có thể sẽ thăm lâu đài vào ngày mai. 🏰📅
+They might be at the fountain. | They might be at the fountain. | They + might + be + at + the + N. | Họ có thể đang ở đài phun nước. ⛲📍
+The pedestrian will cross at the crossing. | The pedestrian will cross at the crossing. | The + N + will + V + at + the + N. | Người đi bộ sẽ băng qua ở vạch sang đường. 🚶‍♂️➡️
+It might not be crowded at the statue today. | It might not be crowded at the statue today. | It + might + not + be + adj + at + the + N + time. | Có thể không đông đúc ở bức tượng hôm nay. 🗿👥❌
+
+[10.2: will/shall (đề nghị, hứa hẹn)]
+I will help you find the stadium. | I will help you find the stadium. | I + will + V + you + V + the + N. | Tôi sẽ giúp bạn tìm sân vận động. 🏟️🤝
+Shall we meet at the roundabout? | Shall we meet at the roundabout? | Shall + we + V + at + the + N? | Chúng ta gặp nhau ở vòng xuyến nhé? 🚦📍❓
+He will wait for you near the skyscraper. | He will wait for you near the skyscraper. | He/She + will + V + for + you + near + the + N. | Anh ấy sẽ đợi bạn gần tòa nhà chọc trời. 🏙️⏳
+I promise I will be careful with the traffic lights. | I promise I will be careful with the traffic lights. | I + promise + I + will + be + adj + with + the + N(s). | Tôi hứa tôi sẽ cẩn thận với đèn giao thông. 🚥🤲
+Shall I show you the way to the square? | Shall I show you the way to the square? | Shall + I + V + you + the + N + to + the + N? | Tôi chỉ cho bạn đường đến quảng trường nhé? 🛣️🏛️❓
+
+[11.1: Present Continuous (kế hoạch cố định) & Present Simple (lịch trình)]
+I am meeting my friend at the shop at 3 PM. | I am meeting my friend at the shop at 3 PM. | I + am + V-ing + my + N + at + the + N + at + time. | Tôi sẽ gặp bạn tôi ở cửa hàng lúc 3 giờ chiều. 🛍️👫3️⃣
+The train leaves at 10:15. | The train leaves at 10:15. | The + N + V(s) + at + time. | Tàu khởi hành lúc 10:15. 🚂🕙
+She is buying a new handbag tomorrow. | She is buying a new handbag tomorrow. | He/She + is + V-ing + a + adj + N + time. | Cô ấy sẽ mua một chiếc túi xách mới vào ngày mai. 👜🆕📅
+The shop assistant starts work at nine. | The shop assistant starts work at nine. | The + N + V(s) + N + at + time. | Nhân viên bán hàng bắt đầu làm việc lúc 9 giờ. 💁⏰
+We aren't going to the market on Monday. It's closed. | We aren't going to the market on Monday. It's closed. | We + aren't + V-ing + to + the + N + on + day. It + 's + adj. | Chúng tôi sẽ không đi chợ vào thứ Hai. Nó đóng cửa. 🛍️❌📅
+
+[11.2: Going to & Shopping vocabulary]
+I am going to pay by credit card. | I am going to pay by credit card. | I + am + going to + V + by + N. | Tôi sẽ thanh toán bằng thẻ tín dụng. 💳
+Are you going to ask for a discount? | Are you going to ask for a discount? | Are + you + going to + V + for + a + N? | Bạn có định yêu cầu giảm giá không? 💰❓
+He is going to waste his salary on games. | He is going to waste his salary on games. | He/She + is + going to + V + his/her + N + on + N(s). | Anh ấy sẽ lãng phí lương của mình vào trò chơi. 💵🎮❌
+Can I try this on in the changing room? | Can I try this on in the changing room? | Can + I + V + this + on + in + the + N? | Tôi có thể thử cái này trong phòng thay đồ được không? 🛋️👗❓
+Remember to keep the receipt. | Remember to keep the receipt. | V + to + V + the + N. | Hãy nhớ giữ hóa đơn. 🧾💾
+
+[12.1: Zero & First Conditional]
+If you heat water to 100°C, it boils. | If you heat water to 100°C, it boils. | If + you + V + N + to + temp, + it + V(s). | Nếu bạn đun nước đến 100°C, nó sôi. 💧🔥
+If I pass my exams, I will get a diploma. | If I pass my exams, I will get a diploma. | If + I + V + my + N(s), + I + will + V + a + N. | Nếu tôi vượt qua các kỳ thi, tôi sẽ nhận được bằng tốt nghiệp. 📜🎓
+If she studies hard, she gets good grades. | If she studies hard, she gets good grades. | If + he/she + V(s) + adv, + he/she + V(s) + adj + N(s). | Nếu cô ấy học chăm chỉ, cô ấy nhận được điểm tốt. 📚⭐
+If we don't hurry, we will miss the bus. | If we don't hurry, we will miss the bus. | If + we + don't + V, + we + will + V + the + N. | Nếu chúng ta không nhanh lên, chúng ta sẽ lỡ xe buýt. 🚌❌
+If the experiment is dangerous, wear goggles. | If the experiment is dangerous, wear goggles. | If + the + N + is + adj, + V (imperative) + N(s). | Nếu thí nghiệm nguy hiểm, hãy đeo kính bảo hộ. 🧪🥽
+
+[12.2: The Passive (Present Simple)]
+Biology is taught in this classroom. | Biology is taught in this classroom. | N + is + V3 + in + this + N. | Sinh học được dạy trong lớp học này. 🧬🏫
+CVs are checked by the boss. | CVs are checked by the boss. | N(s) + are + V3 + by + the + N. | CV được kiểm tra bởi sếp. 📄👨💼
+The staff are paid every month. | The staff are paid every month. | The + N + are + V3 + every + N. | Nhân viên được trả lương mỗi tháng. 👥💰🗓️
+Is Physics studied in Year 7? | Is Physics studied in Year 7? | Is + N + V3 + in + Year + number? | Vật lý có được học ở Năm 7 không? ⚛️7️⃣❓
+Qualifications are not given easily. | Qualifications are not given easily. | N(s) + are + not + V3 + adv. | Bằng cấp không được trao một cách dễ dàng. 📜🎓❌
+
+[13.1: Comparative adjectives]
+My brother is taller than me. | My brother is taller than me. | My + N + is + adj-er + than + me. | Anh trai tôi cao hơn tôi. 👦📏
+This handbag is more expensive than that one. | This handbag is more expensive than that one. | This + N + is + more + adj + than + that + one. | Chiếc túi xách này đắt hơn chiếc kia. 👜💰
+She is kinder than her friend. | She is kinder than her friend. | He/She + is + adj-er + than + his/her + N. | Cô ấy tử tế hơn bạn của cô ấy. 🤗👫
+Is driving a car more difficult than riding a bike? | Is driving a car more difficult than riding a bike? | Is + V-ing + a + N + more + adj + than + V-ing + a + N? | Lái xe ô tô có khó hơn đi xe đạp không? 🚗🚲❓
+He is less serious than he looks. | He is less serious than he looks. | He/She + is + less + adj + than + he/she + V(s). | Anh ấy ít nghiêm túc hơn vẻ ngoài của anh ấy. 🧐👦
+
+[13.2: Superlative adjectives & as...as]
+He is the most brilliant student in the class. | He is the most brilliant student in the class. | He/She + is + the + most + adj + N + in + the + N. | Anh ấy là học sinh thông minh nhất trong lớp. 🧠🌟🏫
+These are the most fashionable trainers. | These are the most fashionable trainers. | These + are + the + most + adj + N(s). | Đây là những đôi giày thể thao hợp thời trang nhất. 👟👗
+She is not as sociable as her sister. | She is not as sociable as her sister. | He/She + is + not + as + adj + as + his/her + N. | Cô ấy không hòa đồng như chị gái của cô ấy. 😊👧❌
+Is this jewellery as expensive as it looks? | Is this jewellery as expensive as it looks? | Is + this + N + as + adj + as + it + V(s)? | Món trang sức này có đắt như vẻ ngoài của nó không? 💎💰❓
+Yesterday was the hottest day of the year. | Yesterday was the hottest day of the year. | Time + was + the + adj-est + N + of + the + N. | Hôm qua là ngày nóng nhất trong năm. 🌡️📅
+
+[14.1: Modals: can, must, have to, need to]
+You must wear a helmet for rugby. | You must wear a helmet for rugby. | You + must + V + a + N + for + N. | Bạn phải đội mũ bảo hiểm để chơi bóng bầu dục. 🏉⛑️
+Players have to follow the referee's decision. | Players have to follow the referee's decision. | N(s) + have to + V + the + N's + N. | Các cầu thủ phải tuân theo quyết định của trọng tài. 👨‍⚖️✅
+You can score a goal by kicking the ball into the net. | You can score a goal by kicking the ball into the net. | You + can + V + a + N + by + V-ing + the + N + into + the + N. | Bạn có thể ghi bàn bằng cách đá bóng vào lưới. ⚽🥅
+Do I need to bring my own racket for tennis? | Do I need to bring my own racket for tennis? | Do + I + need to + V + my + own + N + for + N? | Tôi có cần mang vợt riêng để chơi quần vợt không? 🎾❓
+We don't have to win every match. | We don't have to win every match. | We + don't + have to + V + every + N. | Chúng tôi không phải thắng mọi trận đấu. 🤼❌
+
+[14.2: Tenses review (Present, Past, Future)]
+I usually play football on the pitch. | I usually play football on the pitch. | I + adverb of frequency + V + N + on + the + N. | Tôi thường chơi bóng đá trên sân cỏ. ⚽🏟️
+I am watching the tournament now. | I am watching the tournament now. | I + am + V-ing + the + N + now. | Tôi đang xem giải đấu bây giờ. 🏆👀
+I watched the athletics competition yesterday. | I watched the athletics competition yesterday. | I + V2 + the + N + N + time. | Tôi đã xem cuộc thi điền kinh ngày hôm qua. 🏃‍♂️📅
+I have never tried archery.| I have never tried archery. | I + have + never + V3 + N. | Tôi chưa bao giờ thử bắn cung. 🏹❌
+I will go to the stadium afterwards. | I will go to the stadium afterwards. | I + will + V + to + the + N + afterwards. | Tôi sẽ đến sân vận động sau đó. 🏟️⏭️
