@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Builder Game</title>
+    <style>
+        /* ========== BRAND STYLES (Giữ từ game cũ) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+            min-height: 690px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .game-title-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-title-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* ========== MODE SELECTION ========== */
+        .mode-section {
+            margin-bottom: 25px;
+        }
+
+        .mode-section h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #555;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .mode-btn.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .mode-btn.solo {
+            border-color: #27ae60;
+        }
+
+        .mode-btn.solo.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .mode-btn.team {
+            border-color: #3498db;
+        }
+
+        .mode-btn.team.selected {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        /* ========== DIFFICULTY SELECTION ========== */
+        .difficulty-section {
+            margin-bottom: 15px;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #555;
+            min-width: 120px;
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .difficulty-btn.selected {
+            transform: scale(1.05);
+        }
+
+        .difficulty-btn.easy {
+            border-color: #27ae60;
+        }
+
+        .difficulty-btn.easy.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .difficulty-btn.normal {
+            border-color: #3498db;
+        }
+
+        .difficulty-btn.normal.selected {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .difficulty-btn.hard {
+            border-color: #e74c3c;
+        }
+
+        .difficulty-btn.hard.selected {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .mode-info {
+            background: #f0f4ff;
+            padding: 8px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* ========== VOCABULARY SECTION ========== */
+        .vocabulary-section {
+            margin: 10px 0;
+            padding: 10px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+        }
+
+        .vocab-controls {
+            display: flex;
+            gap: 15px;
+            margin: 5px 0;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vocab-select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background: white;
+            min-width: 180px;
+            cursor: pointer;
+        }
+
+        .vocab-select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== BUTTONS BRAND STYLE ========== */
+        .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-help {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .btn-gift {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            animation: giftPulse 1.5s infinite;
+        }
+
+        /* ========== STATUS BOXES ========== */
+        /* ========== VOCAB STATUS WRAPPER ========== */
+.vocab-status-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+        .vocab-status {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .status-loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .vocab-preview {
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+            display: none;
+        }
+
+
+
+        /* ========== GAME SECTION ========== */
+        .game-section {
+            display: none;
+        }
+
+        /* Header với Scoreboard và Timer - ĐÃ GIẢM KÍCH THƯỚC 70% */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .scoreboard {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            min-width: 300px;
+            transform: scale(0.7);
+            transform-origin: left center;
+        }
+
+        .team {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-width: 140px;
+        }
+
+        .team-red {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .team-blue {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .solo-score {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .team-score {
+            font-size: 36px;
+            margin-top: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .timer-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(0deg, #f5deb3 0%, #faebd7 100%);
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: #6b4ba2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-width: 180px;
+            transform: scale(0.7);
+            transform-origin: right center;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .bonus-points {
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .timer.warning {
+            color: #f39c12;
+            animation: timerPulse 1s infinite;
+        }
+
+        .timer.danger {
+            color: #e74c3c;
+            animation: timerPulse 0.5s infinite;
+        }
+
+        /* Game Info - ĐÃ TÁI CẤU TRÚC */
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            min-height: 120px;
+        }
+
+        .game-info-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .game-info-right {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+        }
+
+        .progress {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            color: white;
+        }
+
+        .badge-normal {
+            background: #f39c12;
+        }
+
+        /* Grammar Hint Box */
+        .grammar-hint-box {
+            background: #e8f6f3;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 5px solid #27ae60;
+            display: inline-block;
+        }
+
+        .hint-label {
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Example Section */
+        .example-section {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #f39c12;
+            display: inline-block;
+            max-width: 400px;
+        }
+
+        .example-label {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .example-text {
+            font-size: 18px;
+            color: #333;
+            font-style: italic;
+        }
+
+        /* ========== FEEDBACK OVERLAY (NEW) ========== */
+        .feedback-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            animation: popIn 0.5s ease-out;
+            max-width: 90%;
+        }
+
+        .feedback-overlay.correct {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border: 4px solid #229954;
+        }
+
+        .feedback-overlay.wrong {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: 4px solid #c0392b;
+        }
+
+        .feedback-overlay.skip {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border: 4px solid #e67e22;
+        }
+
+        .feedback-overlay.timeup {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: 4px solid #7f8c8d;
+        }
+
+        /* ========== WORD POOL (Từ để chọn) ========== */
+        .word-pool {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px 0;
+            padding: 5px;
+            background: #f1f8ff;
+            border-radius: 15px;
+            border: 2px dashed #3498db;
+        }
+
+        .word-tile {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            /* FIX: Thêm touch-action để hỗ trợ di động */
+            touch-action: manipulation;
+        }
+
+        .word-tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .word-tile.selected {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px white, 0 0 0 6px #667eea, 0 6px 12px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* Từ thêm vào đã có cùng màu với các từ khác */
+        .word-tile.extra {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 1;
+        }
+
+        .word-tile.used {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .word-tile.used:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ========== SENTENCE BUILDER AREA ========== */
+        .sentence-builder-area {
+            background: #f8f9fa;
+            border: 3px dashed #3498db;
+            border-radius: 15px;
+            padding: 5px;
+            margin: 5px 0;
+            min-height: 80px;
+            position: relative;
+        }
+
+        .sentence-slots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 70px;
+            padding: 5px;
+        }
+
+        .slot {
+            width: 100px;
+            height: 50px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            transition: all 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+            /* FIX: Thêm touch-action cho slot trên di động */
+            touch-action: manipulation;
+        }
+
+        .slot.filled {
+            border-color: #27ae60;
+            background: #d4edda;
+            transform: scale(1.05);
+        }
+
+        .slot.available {
+            border-color: #3498db;
+            background: #ebf5fb;
+            transform: scale(1.05);
+            animation: pulse-slot 1.5s infinite;
+            cursor: pointer;
+        }
+
+        .slot:hover:not(.filled) {
+            border-color: #3498db;
+            background: #ebf5fb;
+        }
+
+        /* ĐÃ LOẠI BỎ PHẦN HIỂN THỊ CÂU ĐANG GHÉP */
+
+        /* ========== GAME CONTROLS ========== */
+        .buttons-section {
+            position: relative;
+            margin: 25px 0;
+            min-height: 20px;
+        }
+
+        .team-buttons, .solo-buttons {
+            display: none;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        /* Floating Controls - CHỈNH SỬA: Sắp xếp 3 nút ngang hàng */
+        .floating-controls {
+            position: relative;
+            display: flex;
+            justify-content: center; /* Căn giữa các nút */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa các nút */
+            width: 100%;
+            margin-top: 20px;
+            flex-wrap: nowrap; /* Đảm bảo các nút không bị xuống dòng */
+        }
+
+        /* Check Button - Kích thước bằng với các nút khác */
+        .btn-check-large {
+            padding: 15px 30px !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%) !important;
+            color: white !important;
+            border-radius: 12px !important;
+            border: none !important;
+            box-shadow: 0 8px 15px rgba(39, 174, 96, 0.3) !important;
+            transition: all 0.3s !important;
+            min-width: 150px;
+            animation: pulse-green 2s infinite;
+        }
+
+        /* Hint và Skip Buttons - Kích thước tương tự Check */
+        .btn-help-small, .btn-warning-small {
+            padding: 15px 30px !important;
+            font-size: 18px !important;
+            min-width: 150px;
+            height: auto;
+        }
+
+        /* Mobile icon-only buttons */
+        .mobile-icon {
+            display: none;
+            font-size: 20px;
+        }
+
+        /* ========== NEXT BUTTON OVERLAY ========== */
+        .next-button-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .big-next-button {
+            padding: 20px 50px;
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        /* ========== SHOW ANSWER EFFECT ========== */
+        .answer-reveal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(52, 152, 219, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            border-radius: 15px;
+            animation: flash 2s forwards;
+        }
+
+        .reveal-text {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* ========== MODALS ========== */
+        .gift-modal, .winner-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .gift-content, .winner-content {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: bounce 1s;
+        }
+
+        /* ========== WORD LIST IN WINNER MODAL ========== */
+        .sentence-list-container {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .sentence-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sentence-item.correct {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .sentence-item.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .sentence-number {
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .sentence-text {
+            flex-grow: 1;
+            font-family: monospace;
+        }
+
+        .sentence-points {
+            font-weight: bold;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* ========== LOGO CORNER ========== */
+        .logo-container {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 999;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .logo-container img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes giftPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes timerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes flash {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        @keyframes pulse-slot {
+            0%, 100% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            70% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 5px;
+                min-height: 600px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .game-header {
+                flex-direction: row;
+                align-items: end;
+                gap: 0px;
+            }
+
+            .game-title-logo img {
+            height: 90px;
+            }
+
+            .logo-container {
+                bottom: 01px;
+                right: 01px;
+            }
+
+            .logo-container img {
+                width: 90px;
+            }
+
+            .scoreboard {
+                min-width: 100px;
+                transform: scale(0.9);
+                transform-origin: center;
+            }
+
+            .team {
+                min-width: 20px;
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .team-score {
+                font-size: 32px;
+            }
+
+            .timer-section {
+                justify-content: center;
+                padding: 8px 15px;
+                transform: scale(0.9);
+                transform-origin: center;
+                margin-top: 10px;
+                min-width: 100px;
+            }
+
+            .timer {
+                font-size: 28px;
+            }
+
+            .game-info {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0px;
+                margin-bottom: 0px;
+                padding: 5px;
+            }
+
+            .game-info-left, .game-info-right {
+                font-size: 14px;
+                min-width: 100%;
+                text-align: center;
+            }
+
+            .difficulty-selector, .mode-selector {
+                gap: 5px;
+            }
+
+            .mode-info, .difficulty-info {
+                display: none;
+            }
+
+            .example-section {
+                max-width: 100%;
+                margin-top: 5px;
+                padding: 5px;
+            }
+
+            .word-pool {
+                padding: 5px;
+                min-height: 50px;
+                gap: 5px;
+            }
+
+
+            .word-tile {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+
+            .slot {
+                width: 70px;
+                height: 45px;
+                font-size: 14px;
+            }
+
+            .feedback-overlay {
+                padding: 15px 30px;
+                font-size: 20px;
+            }
+
+            /* Floating controls for mobile */
+            .floating-controls {
+        flex-direction: row; /* THAY ĐỔI: column -> row */
+        align-items: center; /* Thay align-items: stretch -> center */
+        justify-content: center; /* Căn giữa các nút */
+        gap: 8px; /* Giảm khoảng cách một chút */
+        margin-top: 15px;
+        flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+            }
+
+            .btn-check-large {
+        padding: 12px 20px !important; /* Giảm padding */
+        font-size: 16px !important;
+        min-width: auto; /* Bỏ min-width cố định */
+        flex: 1; /* Chiếm không gian đều */
+        margin-bottom: 0;
+            }
+
+            /* Hide text on mobile, show icons only */
+            .mobile-icon {
+                display: inline;
+            }
+
+            .btn-text {
+                display: none;
+            }
+
+            .btn-help-small, .btn-warning-small {
+        padding: 12px 15px !important;
+        font-size: 16px !important;
+        min-width: auto; /* Bỏ min-width cố định */
+        flex: 1; /* Chiếm không gian đều */
+            }
+
+            .vocab-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .vocab-select {
+                width: 100%;
+            }
+
+            .big-next-button {
+                padding: 15px 30px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-buttons, .solo-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .difficulty-btn {
+                padding: 10px 10px;
+                font-size: 13px;
+                min-width: 20px;
+            }
+
+            .word-tile {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .slot {
+                width: 70px;
+                height: 35px;
+            }
+
+            .sentence-slots {
+                gap: 5px;
+                padding: 0px;
+            }
+
+            .example-label {
+                display: none;
+            }
+
+            .example-text {
+                font-size: 14px;
+            }
+
+            .feedback-overlay {
+                padding: 12px 20px;
+                font-size: 18px;
+            }
+            .floating-controls {
+        flex-direction: row; /* THAY ĐỔI: column -> row */
+        align-items: center; /* Thay align-items: stretch -> center */
+        justify-content: center; /* Căn giữa các nút */
+        gap: 8px; /* Giảm khoảng cách một chút */
+        margin-top: 15px;
+        flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+            }
+            .btn-check-large {
+                padding: 12px 20px !important;
+                font-size: 16px !important;
+                min-width: auto;
+            }
+
+            .btn-help-small, .btn-warning-small {
+                padding: 12px !important;
+                min-width: auto;
+            }
+
+            .big-next-button {
+                padding: 12px 25px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ========== SETUP SECTION ========== -->
+        <div class="setup-section" id="setupSection">
+            <div class="game-title-logo">
+                <img src="sentence-builder.png" alt="Sentence Builder Logo">
+                <h1>Sentence Builder</h1>
+            </div>
+
+            <!-- Mode Selection -->
+            <div class="mode-section">
+                <div class="mode-selector">
+                    <button class="mode-btn solo" onclick="selectMode('solo')">
+                        🎯 SOLO PLAYER
+                    </button>
+                    <button class="mode-btn team selected" onclick="selectMode('team')">
+                        👥 2 TEAMS
+                    </button>
+                </div>
+                <div class="mode-info" id="modeInfo">
+                    <strong>2 TEAMS:</strong> Compete in teams - Red vs Blue
+                </div>
+            </div>
+
+            <!-- Difficulty Selection -->
+            <div class="difficulty-section">
+                <div class="difficulty-selector">
+                    <button class="difficulty-btn easy selected" onclick="selectDifficulty('easy')">
+                        😊 EASY
+                    </button>
+                    <button class="difficulty-btn normal" onclick="selectDifficulty('normal')">
+                        😐 NORMAL
+                    </button>
+                    <button class="difficulty-btn hard" onclick="selectDifficulty('hard')">
+                        😰 HARD
+                    </button>
+                </div>
+                <div class="mode-info" id="difficultyInfo">
+                    <strong>EASY:</strong> First 2 words are already placed
+                </div>
+            </div>
+
+            <!-- Vocabulary/Sentences Selection -->
+            <div class="vocabulary-section">
+                <div class="vocab-status-wrapper">
+                <div id="vocabStatus" class="vocab-status status-loading">
+                    ⏳ Loading sentences from file...
+                </div>
+                <div id="sentencePreview" class="vocab-preview">
+            <!-- Preview sẽ hiện ở đây -->
+        </div>
+    </div>
+                
+                <div class="vocab-controls">
+                    <select id="levelSelect" class="vocab-select" disabled>
+                        <option value="">-- Select Level --</option>
+                    </select>
+                    
+                    <select id="unitSelect" class="vocab-select" disabled>
+                        <option value="">-- Select Unit --</option>
+                    </select>
+                    
+
+                </div>
+
+                                    <button class="btn btn-primary" onclick="loadSentences()" id="loadBtn" disabled>
+                        📥 LOAD SENTENCES
+                    </button>
+                
+                <div id="sentencePreview" class="vocab-preview">
+                    ✅ Select Level and Unit, then click LOAD SENTENCES
+                </div>
+            </div>
+
+            <!-- Start Button -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button class="btn btn-success" onclick="startGame()" id="startBtn" disabled>
+                    🚀 START BUILDING!
+                </button>
+            </div>
+        </div>
+
+        <!-- ========== GAME SECTION ========== -->
+        <div class="game-section" id="gameSection">
+            <!-- Game Header: Scoreboard + Timer -->
+            <div class="game-header" id="gameHeader">
+                <!-- Scoreboard sẽ được thêm bằng JavaScript -->
+            </div>
+
+            <!-- Game Info - ĐÃ TÁI CẤU TRÚC -->
+            <div class="game-info">
+                
+                <!-- Feedback Overlay (New) -->
+                <div id="feedbackOverlay" class="feedback-overlay"></div>
+                
+                <div class="game-info-left">
+                    <div class="progress" id="progress">
+                        Sentence 1 / 10
+                        <span class="difficulty-badge badge-normal">GRAMMAR</span>
+                    </div>
+                    
+                    <div class="grammar-hint-box">
+                        <span class="hint-label">📝 FORMULA:</span>
+                        <span id="grammarFormula">S + V + O</span>
+                    </div>
+                </div>
+                
+                <div class="game-info-right">
+                    <div class="example-section">
+                        <div class="example-label">💡 EXAMPLE:</div>
+                        <div class="example-text" id="exampleText">I study English every day.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Pool (Từ để chọn) -->
+            <div class="word-pool" id="wordPool">
+                <!-- Các từ sẽ được thêm bằng JavaScript -->
+            </div>
+
+            <!-- Sentence Builder Area -->
+            <div class="sentence-builder-area" id="sentenceArea">
+                <!-- Next Button Overlay -->
+                <div class="next-button-overlay" id="nextOverlay">
+                    <button class="big-next-button" onclick="nextSentence()">
+                        ➡️ NEXT SENTENCE ➡️
+                    </button>
+                </div>
+
+                <!-- Show Answer Effect (tạm thời ẩn) -->
+                <div id="answerReveal" class="answer-reveal" style="display: none;"></div>
+
+                <div class="sentence-slots" id="sentenceSlots">
+                    <!-- Các slot sẽ được thêm bằng JavaScript -->
+                </div>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="buttons-section">
+                <!-- Team/Solo Selection Buttons -->
+                <div class="team-buttons" id="teamButtons">
+                    <button class="btn btn-red" onclick="addToTeam('red')">➕ ADD TO RED</button>
+                    <button class="btn btn-blue" onclick="addToTeam('blue')">➕ ADD TO BLUE</button>
+                    <button class="btn btn-gift" onclick="openGiftBox()">🎁 GIFT</button>
+                </div>
+
+                <!-- Solo Player Buttons -->
+                <div class="solo-buttons" id="soloButtons">
+                    <button class="btn btn-success" onclick="addToSolo()">➕ ADD TO SCORE</button>
+                    <button class="btn btn-gift" onclick="openGiftBox()">🎁 GIFT</button>
+                </div>
+
+                <!-- Floating Controls - ĐÃ CHỈNH SỬA -->
+                <div class="floating-controls" id="floatingControls">
+                    <button class="btn btn-check-large" onclick="checkSentence()" id="checkButton">
+                        <span class="mobile-icon">✅</span>
+                        <span class="btn-text">CHECK</span>
+                    </button>
+                    <button class="btn btn-help btn-help-small" onclick="showAnswerHint()" id="hintButton">
+                        <span class="mobile-icon">🔍</span>
+                        <span class="btn-text">HINT</span>
+                    </button>
+                    <button class="btn btn-warning btn-warning-small" onclick="skipSentence()" id="skipButton">
+                        <span class="mobile-icon">⏭️</span>
+                        <span class="btn-text">SKIP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== MODALS ========== -->
+        <!-- Gift Modal -->
+        <div class="gift-modal" id="giftModal">
+            <div class="gift-content">
+                <h2>🎁</h2>
+                <div class="gift-result" id="giftResult"></div>
+                <div class="gift-description" id="giftDescription"></div>
+                
+                <div class="gift-team-select" id="giftTeamSelect" style="display: none;">
+                    <p style="margin-bottom: 15px; font-size: 16px;">Choose team:</p>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <button class="btn btn-red" onclick="applyGiftToTeam('red')">🔴 RED</button>
+                        <button class="btn btn-blue" onclick="applyGiftToTeam('blue')">🔵 BLUE</button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="giftOkButton" onclick="applyGift()">OK</button>
+            </div>
+        </div>
+
+        <!-- Winner Modal -->
+        <div class="winner-modal" id="winnerModal">
+            <div class="winner-content">
+                <div class="winner-team" id="winnerTeam"></div>
+                
+                <div id="vocabularyInfo" class="vocab-preview" style="margin: 15px 0; font-size: 16px; padding: 15px;"></div>
+                <div>
+                    📚  <span id="finalLevel">-</span> | 
+                    📖  <span id="finalUnit">-</span>
+                </div>
+                
+                <!-- Sentence List Display -->
+                <div id="sentenceListContainer" class="sentence-list-container">
+                    <!-- Danh sách câu sẽ được hiển thị ở đây -->
+                </div>
+                
+                <!-- FIX: Thay thế gameModeInfo bằng difficultyInfo -->
+                <div class="difficulty-info" id="difficultyInfoDisplay" style="margin: 15px 0; font-size: 18px;"></div>
+                
+                <!-- FIX: Cập nhật hiển thị điểm cho chế độ team -->
+                <div class="final-scores" id="finalScores" style="font-size: 18px; margin: 15px 0;"></div>
+                
+                <button class="btn btn-primary" onclick="playAgain()">🔄 PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Corner -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Brand Logo">
+    </div>
+
+    <script>
+        // ========== GAME VARIABLES ==========
+        let sentences = [];
+        let currentIndex = 0;
+        let currentSentence = {};
+        let currentCorrectSentence = '';
+        let currentWords = [];
+        let extraWords = [];
+        let redTeamScore = 0;
+        let blueTeamScore = 0;
+        let soloScore = 0;
+        let correctAnswer = false;
+        let currentPoints = 0;
+        let gameMode = 'team';
+        let difficulty = 'easy'; // Mặc định là easy
+        let timeLeft = 60;
+        let timerInterval = null;
+        let bonusPoints = 0;
+        let selectedTeam = '';
+        let giftType = '';
+        
+        // Variables for vocabulary
+        let vocabularyData = "";
+        let selectedLevel = "";
+        let selectedUnit = "";
+        let vocabularyLoaded = false;
+        let vocabularyStructure = {};
+        
+        // Game results tracking
+        let gameResults = [];
+        
+        // Word selection variables
+        let selectedWord = null;
+        let slots = [];
+        let usedWords = new Set();
+        
+        // Thêm biến để theo dõi trạng thái câu hỏi
+        let questionAnswered = false;
+        
+        // Audio elements
+        const rightSound = new Audio('right.mp3');
+        const wrongSound = new Audio('wrong.mp3');
+        const winSound = new Audio('win.mp3');
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVocabularyFile();
+            setupEventListeners();
+            setupWordSelection(); // Đồng bộ cơ chế chọn từ cho tất cả thiết bị
+        });
+
+        // ========== SETUP WORD SELECTION (CHO TẤT CẢ THIẾT BỊ) ==========
+        function setupWordSelection() {
+            // Sự kiện sẽ được gắn khi tải từ mới
+        }
+
+        function attachWordSelectionEvents() {
+            const wordTiles = document.querySelectorAll('.word-tile');
+            const slots = document.querySelectorAll('.slot');
+            
+            // 1. Nhấn vào từ để chọn
+            wordTiles.forEach(tile => {
+                // Xóa event listeners cũ
+                tile.removeEventListener('click', handleWordClick);
+                // Thêm event listener mới
+                tile.addEventListener('click', handleWordClick);
+            });
+            
+            // 2. Nhấn vào slot để đặt từ
+            slots.forEach(slot => {
+                // Xóa event listeners cũ
+                slot.removeEventListener('click', handleSlotClick);
+                // Thêm event listener mới
+                slot.addEventListener('click', handleSlotClick);
+            });
+        }
+
+        function handleWordClick(e) {
+            const tile = e.currentTarget;
+            if (tile.classList.contains('used')) return;
+            
+            // Bỏ chọn từ cũ
+            document.querySelectorAll('.word-tile.selected').forEach(w => {
+                w.classList.remove('selected');
+            });
+            
+            // Chọn từ mới
+            tile.classList.add('selected');
+            selectedWord = tile;
+            
+            // Highlight các slot trống
+            document.querySelectorAll('.slot').forEach(slot => {
+                if (!slot.classList.contains('filled')) {
+                    slot.classList.add('available');
+                }
+            });
+            
+            // Ngăn sự kiện click lan ra
+            e.stopPropagation();
+        }
+
+        function handleSlotClick(e) {
+            const slot = e.currentTarget;
+            
+            // Nếu slot đã có từ và không có từ nào đang được chọn -> xóa từ
+            if (slot.classList.contains('filled') && !selectedWord) {
+                removeWordFromSlot(slot);
+                e.stopPropagation();
+                return;
+            }
+            
+            // Nếu có từ được chọn và slot trống -> đặt từ
+            if (selectedWord && !slot.classList.contains('filled')) {
+                // Đặt từ vào slot
+                const word = selectedWord.dataset.word;
+                slot.textContent = word;
+                slot.dataset.word = word;
+                slot.classList.add('filled');
+                slot.classList.remove('available');
+                
+                // Đánh dấu từ đã dùng
+                selectedWord.classList.add('used');
+                selectedWord.classList.remove('selected');
+                selectedWord.style.cursor = 'not-allowed';
+                usedWords.add(selectedWord.id);
+                
+                // Reset selection
+                selectedWord = null;
+                
+                // Xóa highlight khỏi các slot
+                document.querySelectorAll('.slot').forEach(s => {
+                    s.classList.remove('available');
+                });
+                
+                e.stopPropagation();
+            }
+        }
+
+        // ========== SHOW FEEDBACK OVERLAY ==========
+        function showFeedback(message, type) {
+            const feedbackOverlay = document.getElementById('feedbackOverlay');
+            feedbackOverlay.textContent = message;
+            feedbackOverlay.className = `feedback-overlay ${type}`;
+            feedbackOverlay.style.display = 'block';
+            
+            // Tự động ẩn sau 3 giây
+            setTimeout(() => {
+                feedbackOverlay.style.display = 'none';
+            }, 3000);
+        }
+
+        // ========== REMOVE WORD FROM SLOT ==========
+        function removeWordFromSlot(slot) {
+            const word = slot.dataset.word;
+            
+            // Clear slot
+            slot.textContent = '';
+            slot.dataset.word = '';
+            slot.classList.remove('filled');
+            
+            // Find the word tile and mark it as unused
+            const wordTiles = document.querySelectorAll('.word-tile');
+            wordTiles.forEach(tile => {
+                if (tile.dataset.word === word && tile.classList.contains('used')) {
+                    tile.classList.remove('used');
+                    tile.style.cursor = 'pointer';
+                    
+                    // Remove from usedWords set
+                    usedWords.delete(tile.id);
+                    return;
+                }
+            });
+        }
+
+        // ========== LOAD VOCABULARY FILE ==========
+        async function loadVocabularyFile() {
+            const statusDiv = document.getElementById('vocabStatus');
+            const levelSelect = document.getElementById('levelSelect');
+            const unitSelect = document.getElementById('unitSelect');
+            const loadBtn = document.getElementById('loadBtn');
+            const startBtn = document.getElementById('startBtn');
+            
+            try {
+                statusDiv.className = 'vocab-status status-loading';
+                statusDiv.textContent = '⏳ Loading sentences from file...';
+                
+                // Try to load sentences.txt first, then vocabulary.txt as fallback
+                let response = await fetch('sentences.txt');
+                if (!response.ok) {
+                    response = await fetch('vocabulary.txt');
+                }
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const fileContent = await response.text();
+                
+                if (!fileContent.trim()) {
+                    throw new Error('File is empty');
+                }
+                
+                vocabularyData = fileContent;
+                vocabularyLoaded = true;
+                
+                // Parse vocabulary structure
+                parseVocabularyStructure();
+                
+                // Update status
+                statusDiv.className = 'vocab-status status-success';
+                statusDiv.textContent = '✅ File loaded!';
+                
+                // Enable controls
+                levelSelect.disabled = false;
+                levelSelect.innerHTML = '<option value="">-- Select Level --</option>';
+                
+                // Add levels to dropdown
+                for (const level in vocabularyStructure) {
+                    const option = document.createElement('option');
+                    option.value = level;
+                    option.textContent = level;
+                    levelSelect.appendChild(option);
+                }
+                
+                // Event listener for level select
+                levelSelect.addEventListener('change', function() {
+                    if (this.value) {
+                        // Update unit select
+                        unitSelect.disabled = false;
+                        loadBtn.disabled = false;
+                        
+                        // Clear and add units
+                        unitSelect.innerHTML = '<option value="">-- Select Unit --</option>';
+                        const units = Object.keys(vocabularyStructure[this.value]);
+                        units.forEach(unit => {
+                            const option = document.createElement('option');
+                            option.value = unit;
+                            option.textContent = unit;
+                            unitSelect.appendChild(option);
+                        });
+                    } else {
+                        unitSelect.disabled = true;
+                        loadBtn.disabled = true;
+                        startBtn.disabled = true;
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading sentences file:', error);
+                vocabularyLoaded = false;
+                
+                statusDiv.className = 'vocab-status status-error';
+                statusDiv.textContent = '❌ Error loading sentences. ';
+                
+                // Disable all controls
+                levelSelect.disabled = true;
+                unitSelect.disabled = true;
+                loadBtn.disabled = true;
+                startBtn.disabled = true;
+            }
+        }
+
+        // ========== PARSE VOCABULARY STRUCTURE ==========
+        function parseVocabularyStructure() {
+            vocabularyStructure = {};
+            const lines = vocabularyData.split('\n');
+            let currentLevel = '';
+            let currentUnit = '';
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Find new level
+                if (line.startsWith('===') && line.endsWith('===')) {
+                    currentLevel = line.replace(/===/g, '').trim();
+                    vocabularyStructure[currentLevel] = {};
+                    currentUnit = '';
+                }
+                // Find new unit
+                else if (line.startsWith('[') && line.endsWith(']') && currentLevel) {
+                    currentUnit = line.slice(1, -1).trim();
+                    vocabularyStructure[currentLevel][currentUnit] = [];
+                }
+                // Add sentence
+                else if (line.includes('|') && currentLevel && currentUnit) {
+                    vocabularyStructure[currentLevel][currentUnit].push(line);
+                }
+            }
+        }
+
+        // ========== LOAD SENTENCES ==========
+        function loadSentences() {
+            const level = document.getElementById('levelSelect').value;
+            const unit = document.getElementById('unitSelect').value;
+            const startBtn = document.getElementById('startBtn');
+            const preview = document.getElementById('sentencePreview');
+            
+            if (!level || !unit) {
+                alert('Please select both Level and Unit');
+                return;
+            }
+            
+            // Save selected level and unit
+            selectedLevel = level;
+            selectedUnit = unit;
+            
+            // Get sentences from structure
+            const sentenceList = vocabularyStructure[level][unit];
+            
+            if (!sentenceList || sentenceList.length === 0) {
+                alert(`No sentences found for ${level} - ${unit}`);
+                return;
+            }
+            
+            // Parse sentences
+            sentences = [];
+            for (let line of sentenceList) {
+                const parts = line.split('|').map(s => s.trim());
+                if (parts.length >= 4 && parts[0] && parts[1]) {
+                    sentences.push({
+                        words: parts[0],
+                        correctSentence: parts[1],
+                        formula: parts[2] || 'S + V + O',
+                        example: parts[3] || 'Example sentence'
+                    });
+                }
+            }
+            
+            if (sentences.length === 0) {
+                alert('No valid sentences found!');
+                return;
+            }
+            
+            // Reset game results
+            gameResults = [];
+            
+            // Show preview
+            preview.style.display = 'block';
+            preview.textContent = `✅ ${sentences.length} sentences`;
+            
+            // Enable start button
+            startBtn.disabled = false;
+            
+            // Scroll to start button
+            startBtn.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ========== SETUP EVENT LISTENERS ==========
+        function setupEventListeners() {
+            // Bỏ chọn từ khi nhấn ra ngoài
+            document.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('word-tile') && 
+                    !e.target.classList.contains('slot')) {
+                    
+                    // Bỏ chọn từ
+                    document.querySelectorAll('.word-tile.selected').forEach(w => {
+                        w.classList.remove('selected');
+                    });
+                    
+                    // Xóa highlight slot
+                    document.querySelectorAll('.slot').forEach(s => {
+                        s.classList.remove('available');
+                    });
+                    
+                    selectedWord = null;
+                }
+            });
+        }
+
+        // ========== MODE SELECTION ==========
+        function selectMode(mode) {
+            gameMode = mode;
+            
+            // Update button styles
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+
+            // Update info text
+            const infoText = {
+                'solo': '<strong>SOLO PLAYER:</strong> Build sentences alone and beat your high score! 🎯',
+                'team': '<strong>2 TEAMS:</strong> Compete with friends - Red team vs Blue team! 👥'
+            };
+            document.getElementById('modeInfo').innerHTML = infoText[mode];
+        }
+
+        // ========== DIFFICULTY SELECTION ==========
+        function selectDifficulty(level) {
+            difficulty = level;
+            
+            // Update button styles
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+
+            // Update info text
+            const infoText = {
+                'easy': '<strong>EASY:</strong> First 2 words are already placed to help you get started',
+                'normal': '<strong>NORMAL:</strong> Standard difficulty - build sentences from scratch',
+                'hard': '<strong>HARD:</strong> Word pool contains 3 extra random words to increase difficulty'
+            };
+            document.getElementById('difficultyInfo').innerHTML = infoText[level];
+        }
+
+        // ========== START GAME ==========
+        function startGame() {
+            // Check if sentences are loaded
+            if (!sentences || sentences.length === 0) {
+                alert('No sentences loaded! Please select Level and Unit, then click LOAD SENTENCES.');
+                return;
+            }
+
+            // Reset game state
+            currentIndex = 0;
+            redTeamScore = 0;
+            blueTeamScore = 0;
+            soloScore = 0;
+            correctAnswer = false;
+            currentPoints = 0;
+            timeLeft = 60;
+            bonusPoints = 0;
+            gameResults = [];
+            usedWords.clear();
+            selectedWord = null;
+            questionAnswered = false;
+            
+            // Switch to game section
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('gameSection').style.display = 'block';
+
+            // Setup scoreboard
+            setupScoreboard();
+            
+            // Hide next button overlay
+            document.getElementById('nextOverlay').style.display = 'none';
+            
+            // Load first sentence
+            loadSentence();
+        }
+
+        // ========== SETUP SCOREBOARD ==========
+        function setupScoreboard() {
+            const gameHeader = document.getElementById('gameHeader');
+            
+            if (gameMode === 'team') {
+                gameHeader.innerHTML = `
+                    <div class="scoreboard">
+                        <div class="team team-red">
+                            <div>🔴 RED</div>
+                            <div class="team-score" id="redScore">0</div>
+                        </div>
+                        <div class="team team-blue">
+                            <div>🔵 BLUE</div>
+                            <div class="team-score" id="blueScore">0</div>
+                        </div>
+                    </div>
+                    <div class="timer-section">
+                        <div class="timer" id="timer">60</div>
+                        <div class="bonus-points" id="bonusPoints"></div>
+                    </div>
+                `;
+            } else {
+                gameHeader.innerHTML = `
+                    <div class="scoreboard">
+                        <div class="team solo-score">
+                            <div>🎯 SOLO</div>
+                            <div class="team-score" id="soloScore">0</div>
+                        </div>
+                    </div>
+                    <div class="timer-section">
+                        <div class="timer" id="timer">60</div>
+                        <div class="bonus-points" id="bonusPoints"></div>
+                    </div>
+                `;
+            }
+        }
+
+        // ========== LOAD SENTENCE ==========
+        function loadSentence() {
+            // Stop timer if running
+            stopTimer();
+            
+            // Reset variables
+            currentSentence = sentences[currentIndex];
+            currentCorrectSentence = currentSentence.correctSentence;
+            currentWords = currentCorrectSentence.split(' ');
+            correctAnswer = false;
+            usedWords.clear();
+            selectedWord = null;
+            questionAnswered = false;
+            
+            // Reset UI
+            document.getElementById('feedbackOverlay').style.display = 'none';
+            document.getElementById('teamButtons').style.display = 'none';
+            document.getElementById('soloButtons').style.display = 'none';
+            document.getElementById('nextOverlay').style.display = 'none';
+            document.getElementById('bonusPoints').textContent = '';
+            
+            // HIỂN THỊ lại 3 nút CHECK, HINT, SKIP
+            document.getElementById('floatingControls').style.display = 'flex';
+            document.getElementById('checkButton').disabled = false;
+            document.getElementById('hintButton').disabled = false;
+            document.getElementById('skipButton').disabled = false;
+            
+            // Bỏ chọn tất cả từ
+            document.querySelectorAll('.word-tile.selected').forEach(w => {
+                w.classList.remove('selected');
+            });
+            
+            // Xóa highlight slot
+            document.querySelectorAll('.slot').forEach(s => {
+                s.classList.remove('available');
+            });
+            
+            // Update progress
+            document.getElementById('progress').innerHTML = `
+                Sentence ${currentIndex + 1} / ${sentences.length}
+                <span class="difficulty-badge badge-normal">GRAMMAR</span>
+            `;
+            
+            // Update grammar formula and example
+            document.getElementById('grammarFormula').textContent = currentSentence.formula;
+            document.getElementById('exampleText').textContent = currentSentence.example;
+            
+            // Calculate points (1 point per word)
+            const correctWords = currentCorrectSentence.split(' ');
+            currentPoints = currentWords.length;
+            
+            // Prepare word pool with extra words
+            prepareWordPool();
+            
+            // Prepare sentence slots
+            prepareSentenceSlots();
+            
+            // Gắn sự kiện cho từ và slot
+            attachWordSelectionEvents();
+            
+            // Start timer
+            timeLeft = 60;
+            startTimer();
+        }
+
+        // ========== PREPARE WORD POOL ==========
+        function prepareWordPool() {
+    const wordPool = document.getElementById('wordPool');
+    wordPool.innerHTML = '';
+    
+    // Tạo mảng từ từ phần 1 (có thể có từ thừa)
+    let wordsFromPart1 = currentSentence.words.split(' ');
+    let wordsToShow = [...wordsFromPart1];
+    
+    // Adjust based on difficulty
+    if (difficulty === 'hard') {
+        // Add 3 extra random words for hard difficulty
+        extraWords = ['the', 'a', 'an', 'some', 'my', 'your', 'his', 'her', 'very', 'really', 'always', 'sometimes', 'never', 'can', 'will', 'do', 'does', 'is', 'am', 'are'];
+        const numExtra = 3;
+        
+        for (let i = 0; i < numExtra; i++) {
+            const randomExtra = extraWords[Math.floor(Math.random() * extraWords.length)];
+            // Kiểm tra xem từ đã có trong mảng chưa
+            const exists = wordsToShow.some(w => w.toLowerCase() === randomExtra.toLowerCase());
+            if (!exists) {
+                wordsToShow.push(randomExtra);
+            }
+        }
+    }
+    
+    // Shuffle the words
+    wordsToShow = shuffleArray(wordsToShow);
+    
+    // Create word tiles
+    wordsToShow.forEach((word, index) => {
+        const wordTile = document.createElement('div');
+        wordTile.className = 'word-tile';
+        wordTile.textContent = word;
+        wordTile.dataset.word = word;
+        wordTile.dataset.index = index;
+        wordTile.id = `word-${index}`;
+        
+        // Mark extra words (for hard mode hoặc từ thừa trong phần 1)
+        const isCorrectWord = currentWords.some(w => w === word);
+        const isExtra = !isCorrectWord;
+        
+        if (isExtra) {
+            wordTile.classList.add('extra');
+        }
+        
+        wordPool.appendChild(wordTile);
+    });
+}
+
+// ========== PREPARE SENTENCE SLOTS ==========
+function prepareSentenceSlots() {
+    const sentenceSlots = document.getElementById('sentenceSlots');
+    sentenceSlots.innerHTML = '';
+    slots = [];
+    
+    // Lấy số từ trong CÂU ĐÚNG
+    const numSlots = currentWords.length;  // Đã sửa thành currentWords từ câu đúng
+    
+    // Create slots cho mỗi từ trong câu đúng
+    for (let i = 0; i < numSlots; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'slot';
+        slot.dataset.index = i;
+        slot.dataset.word = '';
+        slot.id = `slot-${i}`;
+        
+        sentenceSlots.appendChild(slot);
+        slots.push(slot);
+    }
+    
+    // For easy difficulty, auto-fill first 2 slots
+    if (difficulty === 'easy' && currentWords.length >= 2) {
+        // Find the first two CORRECT words in the word pool
+        const wordTiles = document.querySelectorAll('.word-tile');
+        const firstCorrectWord = currentWords[0];
+        const secondCorrectWord = currentWords[1];
+        
+        let firstTile = null;
+        let secondTile = null;
+        
+        // Find the tiles (so sánh chính xác)
+        wordTiles.forEach(tile => {
+            if (tile.dataset.word === firstCorrectWord && !firstTile) {
+                firstTile = tile;
+            }
+            if (tile.dataset.word === secondCorrectWord && !secondTile) {
+                secondTile = tile;
+            }
+        });
+        
+        // Auto-fill first slot
+        if (firstTile && slots[0]) {
+            slots[0].textContent = firstCorrectWord;
+            slots[0].dataset.word = firstCorrectWord;
+            slots[0].classList.add('filled');
+            firstTile.classList.add('used');
+            firstTile.style.cursor = 'not-allowed';
+            usedWords.add(firstTile.id);
+        }
+        
+        // Auto-fill second slot
+        if (secondTile && slots[1]) {
+            slots[1].textContent = secondCorrectWord;
+            slots[1].dataset.word = secondCorrectWord;
+            slots[1].classList.add('filled');
+            secondTile.classList.add('used');
+            secondTile.style.cursor = 'not-allowed';
+            usedWords.add(secondTile.id);
+        }
+    }
+}
+
+        // ========== TIMER FUNCTIONS ==========
+        function startTimer() {
+            // Clear any existing timer
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timeUp();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const timerDiv = document.getElementById('timer');
+            if (!timerDiv) return;
+            
+            timerDiv.textContent = timeLeft;
+            
+            // Remove all classes
+            timerDiv.classList.remove('warning', 'danger');
+            
+            // Add appropriate class based on time
+            if (timeLeft <= 10) {
+                timerDiv.classList.add('danger');
+            } else if (timeLeft <= 20) {
+                timerDiv.classList.add('warning');
+            }
+            
+            // Calculate bonus points (1 point per 15 seconds remaining)
+            if (timeLeft > 0) {
+                bonusPoints = Math.floor(timeLeft / 15);
+                if (bonusPoints > 0 && correctAnswer) {
+                    document.getElementById('bonusPoints').textContent = `+${bonusPoints} bonus!`;
+                } else {
+                    document.getElementById('bonusPoints').textContent = '';
+                }
+            }
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function timeUp() {
+            showFeedback('⏰ TIME\'S UP!', 'timeup');
+            
+            // Kiểm tra xem câu hỏi đã được trả lời chưa
+            if (!questionAnswered) {
+                // Record result as incorrect
+                gameResults.push({
+                    sentence: currentCorrectSentence,
+                    formula: currentSentence.formula,
+                    correct: false,
+                    points: 0
+                });
+            }
+            
+            // Ẩn 3 nút CHECK, HINT, SKIP
+            document.getElementById('floatingControls').style.display = 'none';
+            
+            // Show next button
+            showNextButton();
+        }
+
+        // ========== CHECK SENTENCE ==========
+        function checkSentence() {
+    // Nếu câu hỏi đã được trả lời rồi, không làm gì cả
+    if (questionAnswered) return;
+    
+    const filledSlots = document.querySelectorAll('.slot.filled');
+    
+    // Check if all slots are filled
+    if (filledSlots.length !== currentWords.length) {
+        showFeedback('❌ Please fill all slots!', 'wrong');
+        return;
+    }
+    
+    // Build user's sentence
+    let userSentence = '';
+    filledSlots.forEach(slot => {
+        userSentence += slot.dataset.word + ' ';
+    });
+    userSentence = userSentence.trim();
+    
+    // Stop timer
+    stopTimer();
+    
+    // Check if correct
+    if (userSentence === currentCorrectSentence) {
+        // Correct answer
+        correctAnswer = true;
+        questionAnswered = true;
+        
+        // Calculate total points
+        const totalPoints = currentPoints + bonusPoints;
+        
+        // Show success feedback
+        showFeedback(`✅ PERFECT! +${totalPoints} points`, 'correct');
+        
+        // Play sound
+        rightSound.play().catch(e => console.log('Audio play failed:', e));
+        
+        // Show team/solo buttons
+        if (gameMode === 'team') {
+            document.getElementById('teamButtons').style.display = 'flex';
+        } else {
+            document.getElementById('soloButtons').style.display = 'flex';
+        }
+        
+        // ẨN 3 NÚT CHECK, HINT, SKIP
+        document.getElementById('floatingControls').style.display = 'none';
+        
+        // Record result
+        gameResults.push({
+            sentence: currentCorrectSentence,
+            formula: currentSentence.formula,
+            correct: true,
+            points: totalPoints
+        });
+        
+    } else {
+        // Wrong answer
+        showFeedback('❌ Not quite right. Try again!', 'wrong');
+        
+        // Play sound
+        wrongSound.play().catch(e => console.log('Audio play failed:', e));
+    }
+}
+
+        // ========== SHOW ANSWER HINT ==========
+        function showAnswerHint() {
+            // Nếu câu hỏi đã được trả lời, không cho xem hint
+            if (questionAnswered) return;
+            
+            const answerReveal = document.getElementById('answerReveal');
+            answerReveal.style.display = 'flex';
+            answerReveal.innerHTML = `<div class="reveal-text">${currentCorrectSentence}</div>`;
+            
+            // Hide after 2 seconds
+            setTimeout(() => {
+                answerReveal.style.display = 'none';
+            }, 2000);
+        }
+
+        // ========== ADD TO TEAM/SCORE ==========
+        function addToTeam(team) {
+            if (!correctAnswer) return;
+            
+            selectedTeam = team;
+            const totalPoints = currentPoints + bonusPoints;
+            
+            if (team === 'red') {
+                redTeamScore += totalPoints;
+                document.getElementById('redScore').textContent = redTeamScore;
+                document.querySelector('.team-red').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-red').classList.remove('pulse'), 500);
+            } else {
+                blueTeamScore += totalPoints;
+                document.getElementById('blueScore').textContent = blueTeamScore;
+                document.querySelector('.team-blue').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-blue').classList.remove('pulse'), 500);
+            }
+            
+            showNextButton();
+        }
+
+        function addToSolo() {
+            if (!correctAnswer) return;
+            
+            const totalPoints = currentPoints + bonusPoints;
+            soloScore += totalPoints;
+            
+            document.getElementById('soloScore').textContent = soloScore;
+            document.querySelector('.solo-score').classList.add('pulse');
+            setTimeout(() => document.querySelector('.solo-score').classList.remove('pulse'), 500);
+            
+            showNextButton();
+        }
+
+        // ========== SHOW NEXT BUTTON ==========
+        function showNextButton() {
+            document.getElementById('nextOverlay').style.display = 'flex';
+            document.getElementById('teamButtons').style.display = 'none';
+            document.getElementById('soloButtons').style.display = 'none';
+        }
+
+        // ========== NEXT SENTENCE ==========
+        function nextSentence() {
+            currentIndex++;
+            
+            if (currentIndex >= sentences.length) {
+                endGame();
+            } else {
+                loadSentence();
+            }
+        }
+
+        // ========== SKIP SENTENCE ==========
+        function skipSentence() {
+            // Nếu câu hỏi đã được trả lời, không cho skip nữa
+            if (questionAnswered) return;
+            
+            stopTimer();
+            
+            // Đánh dấu câu hỏi đã được xử lý
+            questionAnswered = true;
+            
+            // Record as incorrect - CHỈ GHI MỘT LẦN
+            gameResults.push({
+                sentence: currentCorrectSentence,
+                formula: currentSentence.formula,
+                correct: false,
+                points: 0
+            });
+            
+            showFeedback('⏭️ SENTENCE SKIPPED!', 'skip');
+            
+            // ẨN 3 NÚT CHECK, HINT, SKIP
+            document.getElementById('floatingControls').style.display = 'none';
+            
+            showNextButton();
+        }
+
+        // ========== GIFT SYSTEM ==========
+        function openGiftBox() {
+            if (!correctAnswer) return;
+            
+            const gifts = [
+                {
+                    type: 'half',
+                    emoji: '😢',
+                    title: 'OOPS!',
+                    description: 'You lose half of the points from this sentence!'
+                },
+                {
+                    type: 'double',
+                    emoji: '🎊',
+                    title: 'JACKPOT!',
+                    description: 'Your points are DOUBLED!'
+                },
+                {
+                    type: 'continue',
+                    emoji: '🌟',
+                    title: 'BONUS!',
+                    description: 'Get the points AND build another sentence!'
+                }
+            ];
+            
+            const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+            giftType = randomGift.type;
+            
+            document.getElementById('giftResult').textContent = randomGift.emoji + ' ' + randomGift.title;
+            document.getElementById('giftDescription').textContent = randomGift.description;
+            document.getElementById('giftModal').style.display = 'flex';
+            
+            if (gameMode === 'team') {
+                document.getElementById('giftTeamSelect').style.display = 'flex';
+                document.getElementById('giftOkButton').style.display = 'none';
+            } else {
+                document.getElementById('giftTeamSelect').style.display = 'none';
+                document.getElementById('giftOkButton').style.display = 'block';
+            }
+        }
+
+        function applyGift() {
+            document.getElementById('giftModal').style.display = 'none';
+            
+            if (gameMode === 'solo') {
+                applyGiftToSolo();
+            }
+        }
+
+        function applyGiftToTeam(team) {
+            document.getElementById('giftModal').style.display = 'none';
+            
+            let basePoints = currentPoints + bonusPoints;
+            let pointsToAdd = basePoints;
+            
+            if (giftType === 'half') {
+                pointsToAdd = Math.floor(basePoints / 2);
+            } else if (giftType === 'double') {
+                pointsToAdd = basePoints * 2;
+            }
+            
+            if (team === 'red') {
+                redTeamScore += pointsToAdd;
+                document.getElementById('redScore').textContent = redTeamScore;
+                document.querySelector('.team-red').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-red').classList.remove('pulse'), 500);
+            } else {
+                blueTeamScore += pointsToAdd;
+                document.getElementById('blueScore').textContent = blueTeamScore;
+                document.querySelector('.team-blue').classList.add('pulse');
+                setTimeout(() => document.querySelector('.team-blue').classList.remove('pulse'), 500);
+            }
+            
+            // Update game result - CHỈ CẬP NHẬT KẾT QUẢ HIỆN TẠI
+            if (gameResults.length > 0) {
+                const lastResult = gameResults[gameResults.length - 1];
+                if (lastResult && lastResult.correct) {
+                    lastResult.points = pointsToAdd;
+                }
+            }
+            
+            showNextButton();
+        }
+
+        function applyGiftToSolo() {
+            let basePoints = currentPoints + bonusPoints;
+            let pointsToAdd = basePoints;
+            
+            if (giftType === 'half') {
+                pointsToAdd = Math.floor(basePoints / 2);
+            } else if (giftType === 'double') {
+                pointsToAdd = basePoints * 2;
+            }
+            
+            soloScore += pointsToAdd;
+            document.getElementById('soloScore').textContent = soloScore;
+            document.querySelector('.solo-score').classList.add('pulse');
+            setTimeout(() => document.querySelector('.solo-score').classList.remove('pulse'), 500);
+            
+            // Update game result - CHỈ CẬP NHẬT KẾT QUẢ HIỆN TẠI
+            if (gameResults.length > 0) {
+                const lastResult = gameResults[gameResults.length - 1];
+                if (lastResult && lastResult.correct) {
+                    lastResult.points = pointsToAdd;
+                }
+            }
+            
+            showNextButton();
+        }
+
+        // ========== END GAME ==========
+        function endGame() {
+            stopTimer();
+            
+            const modal = document.getElementById('winnerModal');
+            const winnerTeam = document.getElementById('winnerTeam');
+            const finalScores = document.getElementById('finalScores');
+            const difficultyInfoDisplay = document.getElementById('difficultyInfoDisplay');
+            const finalLevel = document.getElementById('finalLevel');
+            const finalUnit = document.getElementById('finalUnit');
+            const sentenceListContainer = document.getElementById('sentenceListContainer');
+            
+            // Display level and unit info
+            if (selectedLevel && selectedUnit) {
+                finalLevel.textContent = selectedLevel;
+                finalUnit.textContent = selectedUnit;
+            }
+            
+            // Hiển thị thông tin độ khó
+            difficultyInfoDisplay.innerHTML = `<strong>Difficulty:</strong> ${difficulty.toUpperCase()}`;
+            
+            // Display sentence list
+            displaySentenceList(sentenceListContainer);
+            
+            // Determine winner
+            let winner = '';
+            let winnerColor = '';
+            
+            // Cập nhật hiển thị điểm
+            if (gameMode === 'team') {
+                if (redTeamScore > blueTeamScore) {
+                    winner = '🔴 RED TEAM WINS! 🔴';
+                    winnerColor = '#e74c3c';
+                } else if (blueTeamScore > redTeamScore) {
+                    winner = '🔵 BLUE TEAM WINS! 🔵';
+                    winnerColor = '#3498db';
+                } else {
+                    winner = '🤝 IT\'S A DRAW! 🤝';
+                    winnerColor = '#f39c12';
+                }
+                
+                // Hiển thị điểm trên cùng một hàng
+                finalScores.innerHTML = `
+                    <div style="display: flex; justify-content: center; gap: 30px; margin: 15px 0;">
+                        <div style="text-align: center;">
+                            <div style="color: #e74c3c; font-weight: bold;">🔴 Red Team</div>
+                            <div style="font-size: 18px; font-weight: bold;">${redTeamScore} points</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="color: #3498db; font-weight: bold;">🔵 Blue Team</div>
+                            <div style="font-size: 18px; font-weight: bold;">${blueTeamScore} points</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <div>Total sentences: <strong>${sentences.length}</strong></div>
+                        <div>Correct sentences: <strong>${gameResults.filter(r => r.correct).length}</strong></div>
+                        <div>Accuracy: <strong>${Math.round((gameResults.filter(r => r.correct).length / sentences.length) * 100)}%</strong></div>
+                    </div>
+                `;
+            } else {
+                winner = '🏆 WELL DONE! 🏆';
+                winnerColor = '#27ae60';
+                finalScores.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <div style="font-size: 18px; font-weight: bold; color: #27ae60;">🎯 Your Final Score: ${soloScore} points</div>
+                    </div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <div>Total sentences: <strong>${sentences.length}</strong></div>
+                        <div>Correct sentences: <strong>${gameResults.filter(r => r.correct).length}</strong></div>
+                        <div>Accuracy: <strong>${Math.round((gameResults.filter(r => r.correct).length / sentences.length) * 100)}%</strong></div>
+                    </div>
+                `;
+            }
+            
+            winnerTeam.textContent = winner;
+            winnerTeam.style.color = winnerColor;
+            winnerTeam.style.fontSize = '24px';
+            winnerTeam.style.margin = '15px 0';
+            
+            modal.style.display = 'flex';
+            
+            // Play win sound
+            winSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+
+        // ========== DISPLAY SENTENCE LIST ==========
+        function displaySentenceList(container) {
+            container.innerHTML = '';
+            
+            if (gameResults.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6c757d;">No sentences were attempted.</p>';
+                return;
+            }
+            
+            gameResults.forEach((result, index) => {
+                const sentenceItem = document.createElement('div');
+                sentenceItem.className = `sentence-item ${result.correct ? 'correct' : 'incorrect'}`;
+                
+                sentenceItem.innerHTML = `
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <div class="sentence-number">${index + 1}</div>
+                        <div style="flex-grow: 1;">
+                            <div class="sentence-text"><strong>"${result.sentence}"</strong></div>
+                            <div style="font-size: 12px; color: #6c757d;">${result.formula}</div>
+                        </div>
+                        <div class="sentence-points">
+                            ${result.correct ? `✅ +${result.points} pts` : '❌ 0 pts'}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(sentenceItem);
+            });
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // ========== PLAY AGAIN ==========
+        function playAgain() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

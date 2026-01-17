@@ -1,0 +1,280 @@
+=== Super Minds 1 ===
+[U0.1: What's your name?]
+I am Misty | I am Misty | I + am + name | Tôi là Misty.
+I am Whisper | I am Whisper | I + am + name | Tôi là Whisper.
+I'm Whisper | I'm Whisper | I'm + name | Tôi là Whisper.
+Hello, I'm Whisper | Hello, I'm Whisper | I'm + name | Xin chào, tôi là Whisper.
+[U0.2: How old are you?]
+I am seven | I am seven | I + am + number | Tôi 7 (tuổi)
+I am eight | I am eight | I + am + number | Tôi 8 (tuổi)
+I'm seven | I'm seven | I'm + number | Tôi 7 (tuổi)
+Hello, I'm Whisper, I'm eight | Hello, I'm Whisper, I'm eight | I'm + name, I'm + number | Xin chào, tôi là Whisper, tôi 8 (tuổi)
+[U1.1: It's a ...]
+It is a pen | It is a pen | It + is + (a thing) | Nó là một cây bút.
+It is a ruler | It is a ruler | It + is + (a thing) | Nó là một cây thước.
+It is a pencil case | It is a pencil case | It + is + (a thing) | Nó là một cái hộp bút
+Is it a book? | Is it a book? | Is + it + (a thing)? | Nó là cuốn sách phải không?
+Is it a notebook? | Is it a notebook? | Is + it + (a thing)? | Nó là quyển vở phải không?
+
+[U1.2: Imperatives (Câu lệnh)]
+Sit down | Sit down | V(Động từ) + ... | Ngồi xuống!
+Open your book | Open your book | V(Động từ) + ... | Mở sách của bạn ra.
+Close your bag | Close your bag | V(Động từ) + ... | Đóng cặp của bạn lại.
+Pass me a pen | Pass me a pen | V(Động từ) + ... | Đưa cho mình một cái bút.
+Pass me a red pen | Pass me a red pen | V(Động từ) + ... | Đưa cho mình một cái màu đỏ bút.
+
+[U2.1: He/she his/her]
+How old is he? | How old is he? | How old + is + người? | Anh ấy bao nhiêu tuổi.
+He is seven. | He is seven. | S(chủ ngữ) + am/is/are + tuổi | Anh ấy 7 (tuổi)
+How old is she? | How old is she? | How old + is + người? | Cô ấy bao nhiêu tuổi.
+She is seven. | She is seven. | S(chủ ngữ) + am/is/are + tuổi | Cô ấy 7 (tuổi)
+What's his name? | What's his name? | his (của anh ấy) + name (tên) | Tên của anh ấy là gì?
+His name is Whisper. | His name is Whisper. | his (của anh ấy) + name (tên) | Tên của anh ấy là Whisper.
+What's her name? | What's her name? | her (của cô ấy) + name (tên) | Tên của cô ấy là gì?
+Her name is Misty. | Her name is Misty. | her (của cô ấy) + name (tên) | Tên của cô ấy là Misty.
+
+[U2.2: adj + N]
+a big ball | a big ball | adj (tính từ) + N (danh từ) | một quả bóng to
+a big black bike | a big black bike | adj (tính từ) + adj + N (danh từ) | một cái xe đạp to đen
+It is a new doll. | It is a new doll. | S (chủ ngữ) + am/is/are + adj + N | Nó là một con búp bê mới.
+It is a beautiful kite. | It is a beautiful kite. | S (chủ ngữ) + am/is/are + adj + N | Nó là một con diều đẹp.
+It is a long blue train. | It is a long blue train. | S (chủ ngữ) + am/is/are + adj + adj + N | Nó là một con tàu dài màu xanh.
+[U3.1: on, in, under]
+The cat is on the table. | The cat is on the table. | S + is + on + the + N | Con mèo ở trên bàn.
+The frog is in the pond. | The frog is in the pond. | S + is + in + the + N | Con ếch ở trong ao.
+The ball is under the chair. | The ball is under the chair. | S + is + under + the + N | Quả bóng ở dưới ghế.
+Where is the spider? It is on the wall. | Where is the spider? It is on the wall. | Where + is + the + N? | Con nhện ở đâu? Nó ở trên tường.
+Is the rat under the desk? Yes, it is. | Is the rat under the desk? Yes, it is. | Is + the + N + under + the + N? | Con chuột có ở dưới bàn không? Có, đúng vậy.
+
+[U3.2: I like.../ I don't like...]
+I like elephants. | I like elephants. | I + like + N(s) | Tôi thích những con voi.
+I don't like spiders. | I don't like spiders. | I + don't + like + N(s) | Tôi không thích những con nhện.
+Do you like frogs? Yes, I do. | Do you like frogs? Yes, I do. | Do + you + like + N(s)? | Bạn có thích ếch không? Có, tôi thích.
+He likes dogs. | He likes dogs. | He/She + likes + N(s) | Anh ấy thích những con chó.
+She doesn't like lizards. | She doesn't like lizards. | He/She + doesn't + like + N(s) | Cô ấy không thích những con thằn lằn.
+
+[U4.1: I've got.../ I haven't got...]
+I've got an apple. | I've got an apple. | I + have got + a/an + N | Tôi có một quả táo.
+I've got some bananas. | I've got some bananas. | I + have got + some + N(s) | Tôi có một vài quả chuối.
+I haven't got a pizza. | I haven't got a pizza. | I + haven't got + a + N | Tôi không có một cái bánh pizza.
+Have you got a cake? No, I haven't. | Have you got a cake? No, I haven't. | Have + you + got + a + N? | Bạn có một cái bánh ngọt không? Không, tôi không có.
+She has got a cheese sandwich. | She has got a cheese sandwich. | He/She + has got + a + N | Cô ấy có một cái bánh mì kẹp phô mai.
+
+[U4.2: Have we got any...]
+Have we got any carrots? Yes, we have. | Have we got any carrots? Yes, we have. | Have + we + got + any + N(s)? | Chúng ta có chút cà rốt nào không? Có, chúng ta có.
+Have we got any peas? No, we haven't. | Have we got any peas? No, we haven't. | Have + we + got + any + N(s)? | Chúng ta có chút đậu Hà Lan nào không? Không, chúng ta không có.
+We have got some fish in the fridge. | We have got some fish in the fridge. | We + have got + some + N + in + the + N | Chúng ta có một ít cá trong tủ lạnh.
+They haven't got any chicken. | They haven't got any chicken. | They + haven't got + any + N | Họ không có chút thịt gà nào.
+Has she got any fruit? Yes, she has. | Has she got any fruit? Yes, she has. | Has + she/he + got + any + N? | Cô ấy có chút trái cây nào không? Có, cô ấy có.
+
+[U5.1: Simple present(S+V+O) + days]
+I play football on Sundays. | I play football on Sundays. | I + V + N + on + day(s) | Tôi chơi bóng đá vào các ngày Chủ nhật.
+She watches TV on Saturdays. | She watches TV on Saturdays. | He/She + V(s/es) + N + on + day(s) | Cô ấy xem TV vào các ngày thứ Bảy.
+We go fishing on Fridays. | We go fishing on Fridays. | We/They + V + N + on + day(s) | Chúng tôi đi câu cá vào các ngày thứ Sáu.
+He doesn't play games on Mondays. | He doesn't play games on Mondays. | He/She + doesn't + V + N + on + day(s) | Anh ấy không chơi trò chơi vào các ngày thứ Hai.
+What do you do on Tuesdays? I read a book. | What do you do on Tuesdays? I read a book. | What + do + you + do + on + day(s)? | Bạn làm gì vào các ngày thứ Ba? Tôi đọc sách.
+
+[U5.2: Yes/no question Do you...?]
+Do you like chocolate? Yes, I do. | Do you like chocolate? Yes, I do. | Do + you + like + N? | Bạn có thích sô-cô-la không? Có, tôi thích.
+Do you swim on Wednesdays? No, I don't. | Do you swim on Wednesdays? No, I don't. | Do + you + V + on + day(s)? | Bạn có đi bơi vào các ngày thứ Tư không? Không, tôi không.
+Does he ride a bike on Thursdays? Yes, he does. | Does he ride a bike on Thursdays? Yes, he does. | Does + he/she + V + N + on + day(s)? | Anh ấy có đi xe đạp vào các ngày thứ Năm không? Có, anh ấy có.
+Do they play in the park? Yes, they do. | Do they play in the park? Yes, they do. | Do + they + V + in + the + N? | Họ có chơi trong công viên không? Có, họ có.
+
+[U6.1: There's/there are]
+There's a bed in the bedroom. | There's a bed in the bedroom. | There's + a + N + in + the + N | Có một cái giường trong phòng ngủ.
+There are two chairs in the kitchen. | There are two chairs in the kitchen. | There are + number + N(s) + in + the + N | Có hai cái ghế trong nhà bếp.
+There's a big sofa in the living room. | There's a big sofa in the living room. | There's + adj + N + in + the + N | Có một cái ghế sô-pha to trong phòng khách.
+There are some stairs in the hall. | There are some stairs in the hall. | There are + some + N(s) + in + the + N | Có một cầu thang ở sảnh.
+There is a table and four chairs in the dining room. | There is a table and four chairs in the dining room. | There is + N + and + number + N(s) + in + the + N | Có một cái bàn và bốn cái ghế trong phòng ăn.
+
+[U6.2: Is there.../Are there.../ How many...?]
+Is there a bathroom? Yes, there is. | Is there a bathroom? Yes, there is. | Is + there + a + N? | Có một phòng tắm không? Có, có.
+Are there any windows in the cellar? No, there aren't. | Are there any windows in the cellar? No, there aren't. | Are + there + any + N(s) + in + the + N? | Có cửa sổ nào trong tầng hầm không? Không, không có.
+How many bedrooms are there? There are three bedrooms. | How many bedrooms are there? There are three bedrooms. | How many + N(s) + are + there? | Có bao nhiêu phòng ngủ? Có ba phòng ngủ.
+Is there a lamp in your bedroom? Yes, there is. | Is there a lamp in your bedroom? Yes, there is. | Is + there + a + N + in + your + N? | Có một cái đèn ngủ trong phòng ngủ của bạn không? Có, có.
+How many chairs are there in the kitchen? There are four. | How many chairs are there in the kitchen? There are four. | How many + N(s) + are + there + in + the + N? | Có bao nhiêu cái ghế trong nhà bếp? Có bốn.
+
+[U7.1: Do you like this/these...?]
+Do you like this sweater? Yes, I do. It's soft. | Do you like this sweater? Yes, I do. It's soft. | Do + you + like + this + N? | Bạn có thích cái áo len này không? Có, tôi thích. Nó mềm.
+Do you like these jeans? No, I don't. They're old. | Do you like these jeans? No, I don't. They're old. | Do + you + like + these + N(s)? | Bạn có thích cái quần jeans này không? Không, tôi không thích. Chúng cũ rồi.
+Does she like this T-shirt? Yes, she does. It's new. | Does she like this T-shirt? Yes, she does. It's new. | Does + she + like + this + N? | Cô ấy có thích cái áo phông này không? Có, cô ấy thích. Nó mới.
+Do they like these shoes? Yes, they do. They're beautiful. | Do they like these shoes? Yes, they do. They're beautiful. | Do + they + like + these + N(s)? | Họ có thích đôi giày này không? Có, họ thích. Chúng đẹp.
+I don't like this red cap. I like that blue one. | I don't like this red cap. I like that blue one. | I + don't + like + this + adj + N | Tôi không thích cái mũ đỏ này. Tôi thích cái màu xanh kia.
+
+[U7.2: Is he/she wearing...?]
+She is wearing a pink skirt. | She is wearing a pink skirt. | He/She + is + wearing + a/an + adj + N | Cô ấy đang mặc một cái váy màu hồng.
+He is wearing black trousers. | He is wearing black trousers. | He/She + is + wearing + adj + N(s) | Anh ấy đang mặc quần dài màu đen.
+Is she wearing a jacket? No, she isn't. | Is she wearing a jacket? No, she isn't. | Is + he/she + wearing + a + N? | Cô ấy đang mặc áo khoác không? Không, cô ấy không.
+Are they wearing shorts? Yes, they are. | Are they wearing shorts? Yes, they are. | Are + they + wearing + N(s)? | Họ đang mặc quần đùi phải không? Có, đúng vậy.
+What is he wearing? He is wearing a T-shirt and jeans. | What is he wearing? He is wearing a T-shirt and jeans. | What + is + he/she + wearing? | Anh ấy đang mặc gì? Anh ấy đang mặc một cái áo phông và quần jeans.
+
+[U8.1: can / can’t]
+I can swim. | I can swim. | I/You/We/They + can + V | Tôi có thể bơi.
+He can't run quickly. | He can't run quickly. | He/She + can't + V + adv | Anh ấy không thể chạy nhanh.
+Can you touch your toes? Yes, I can. | Can you touch your toes? Yes, I can. | Can + you + V + your + N? | Bạn có thể chạm vào ngón chân của bạn không? Có, tôi có thể.
+She can paint a picture. | She can paint a picture. | He/She + can + V + a + N | Cô ấy có thể vẽ một bức tranh.
+They can't climb the tree. | They can't climb the tree. | They + can't + V + the + N | Họ không thể trèo cây.
+
+[U8.2: Can you...?]
+Can you play football? Yes, I can. | Can you play football? Yes, I can. | Can + you + V + N? | Bạn có thể chơi bóng đá không? Có, tôi có thể.
+Can she play the guitar? No, she can't. | Can she play the guitar? No, she can't. | Can + he/she + V + the + N? | Cô ấy có thể chơi đàn ghi-ta không? Không, cô ấy không thể.
+Can we make a sandcastle? Yes, we can. | Can we make a sandcastle? Yes, we can. | Can + we + V + a + N? | Chúng ta có thể xây một lâu đài cát không? Có, chúng ta có thể.
+Can you read this book? Yes, I can. It's easy. | Can you read this book? Yes, I can. It's easy. | Can + you + V + this + N? | Bạn có thể đọc cuốn sách này không? Có, tôi có thể. Nó dễ.
+Can they catch a fish? I don't know. | Can they catch a fish? I don't know. | Can + they + V + a + N? | Họ có thể bắt một con cá không? Tôi không biết.
+
+[U9.1: Let’s...]
+Let's listen to music. | Let's listen to music. | Let's + V + N | Chúng ta hãy nghe nhạc đi.
+Let's eat ice cream. Good idea! | Let's eat ice cream. Good idea! | Let's + V + N | Chúng ta hãy ăn kem đi. Ý hay đó!
+Let's take a photo. Sorry, I don't want to. | Let's take a photo. Sorry, I don't want to. | Let's + V + a + N | Chúng ta hãy chụp một bức ảnh đi. Xin lỗi, tôi không muốn.
+Let's look for shells on the beach. | Let's look for shells on the beach. | Let's + V + N(s) + on + the + N | Chúng ta hãy tìm vỏ sò trên bãi biển đi.
+Let's read a book under the tree. | Let's read a book under the tree. | Let's + V + a + N + under + the + N | Chúng ta hãy đọc sách dưới gốc cây đi.
+
+[U9.2: Where’s...? / Where are...?]
+Where's my baseball cap? It's on the sofa. | Where's my baseball cap? It's on the sofa. | Where's + my + N? | Cái mũ lưỡi trai của tôi đâu? Nó ở trên ghế sô-pha.
+Where are my socks? They're under the bed. | Where are my socks? They're under the bed. | Where are + my + N(s)? | Đôi tất của tôi đâu? Chúng ở dưới giường.
+Where is the pencil case? It's in the bag. | Where is the pencil case? It's in the bag. | Where + is + the + N? | Cái hộp bút đâu? Nó ở trong cặp.
+Where are the apples? They're on the table. | Where are the apples? They're on the table. | Where + are + the + N(s)? | Những quả táo đâu? Chúng ở trên bàn.
+Where is the red pen? I don't know. | Where is the red pen? I don't know. | Where + is + the + adj + N? | Cái bút mực đỏ đâu? Tôi không biết.
+
+=== Super Minds 2 ===
+=== Super Minds 2 ===
+[U0.1: There's a/an... / There are some...]
+There's a clock on the wall. | There's a clock on the wall. | There's + a + N + on + the + N | Có một cái đồng hồ trên tường.
+There's an open window. | There's an open window. | There's + an + adj + N | Có một cửa sổ đang mở.
+There are some crayons on the floor. | There are some crayons on the floor. | There are + some + N(s) + on + the + N | Có một vài cây bút sáp màu trên sàn.
+There are some books in the bookcase. | There are some books in the bookcase. | There are + some + N(s) + in + the + N | Có một vài quyển sách trong tủ sách.
+Is there a chair? Yes, there is. | Is there a chair? Yes, there is. | Is there + a + N? | Có một cái ghế không? Có, có.
+Are there any doors? No, there aren't. | Are there any doors? No, there aren't. | Are there + any + N(s)? | Có cánh cửa nào không? Không, không có.
+
+[U0.2: Imperatives (Positive & Negative)]
+Open your book, please. | Open your book, please. | V + your + N | Làm ơn mở sách của bạn ra.
+Close the window. | Close the window. | V + the + N | Đóng cửa sổ lại.
+Don't drop the pencils! | Don't drop the pencils! | Don't + V + the + N(s)! | Đừng làm rơi những cây bút chì!
+Don't run in the classroom. | Don't run in the classroom. | Don't + V + in + the + N! | Đừng chạy trong lớp học.
+Sit down and listen. | Sit down and listen. | V + and + V | Ngồi xuống và lắng nghe.
+
+[U1.1: What's the time? / It's ... o'clock.]
+What's the time? It's seven o'clock. | What's the time? It's seven o'clock. | What's the time? It's + số + o'clock. | Mấy giờ rồi? Bây giờ là 7 giờ.
+It's eight o'clock. Time for school. | It's eight o'clock. Time for school. | It's + số + o'clock. Time for + N. | 8 giờ rồi. Đến giờ đi học rồi.
+What time is it? It's nine o'clock. | What time is it? It's nine o'clock. | What time + is + it? | Mấy giờ rồi? 9 giờ rồi.
+Is it ten o'clock? Yes, it is. | Is it ten o'clock? Yes, it is. | Is it + số + o'clock? | Có phải là 10 giờ không? Đúng vậy.
+He gets up at six o'clock. | He gets up at six o'clock. | He/She + V(s/es) + at + số + o'clock. | Anh ấy thức dậy lúc 6 giờ.
+
+[U1.2: Present Simple (3rd person -s)]
+She gets dressed at half past seven. | She gets dressed at half past seven. | He/She + V(s/es) + at + time. | Cô ấy mặc quần áo lúc 7 giờ rưỡi.
+He brushes his teeth every morning. | He brushes his teeth every morning. | He/She + V(s/es) + his/her + N(s) + every morning. | Anh ấy đánh răng mỗi sáng.
+My mum has breakfast at home. | My mum has breakfast at home. | He/She + V(s/es) + N + at + place. | Mẹ tôi ăn sáng ở nhà.
+Does she go to school by bus? Yes, she does. | Does she go to school by bus? Yes, she does. | Does + he/she + V + by + N? | Cô ấy có đi học bằng xe buýt không? Có, cô ấy có.
+He doesn't play in the park in the evening. | He doesn't play in the park in the evening. | He/She + doesn't + V + in + the + N. | Anh ấy không chơi trong công viên vào buổi tối.
+
+[U2.1: He/She likes... / doesn't like...]
+He likes zebras. They are beautiful. | He likes zebras. They are beautiful. | He/She + likes + N(s). | Anh ấy thích những con ngựa vằn. Chúng thật đẹp.
+She doesn't like crocodiles. They are scary. | She doesn't like crocodiles. They are scary. | He/She + doesn't like + N(s). | Cô ấy không thích cá sấu. Chúng thật đáng sợ.
+The monkey likes bananas. | The monkey likes bananas. | The + N + likes + N(s). | Con khỉ thích chuối.
+My sister likes tigers. | My sister likes tigers. | My + N + likes + N(s). | Em gái tôi thích những con hổ.
+Does the parrot like fruit? Yes, it does. | Does the parrot like fruit? Yes, it does. | Does + the + N + like + N? | Con vẹt có thích trái cây không? Có, nó thích.
+
+[U2.2: Does he/she like...? Yes/No questions.]
+Does he like polar bears? Yes, he does. | Does he like polar bears? Yes, he does. | Does + he/she + like + N(s)? | Anh ấy có thích gấu bắc cực không? Có, anh ấy thích.
+Does she like snakes? No, she doesn't. | Does she like snakes? No, she doesn't. | Does + he/she + like + N(s)? | Cô ấy có thích rắn không? Không, cô ấy không thích.
+What animal does she like? She likes hippos. | What animal does she like? She likes hippos. | What animal + does + he/she + like? | Cô ấy thích con vật nào? Cô ấy thích những con hà mã.
+Does the zookeeper like his job? Yes, he does. | Does the zookeeper like his job? Yes, he does. | Does + the + N + like + his/her + N? | Người trông sở thú có thích công việc của anh ấy không? Có, anh ấy thích.
+Do you like monkeys? Yes, I do. / No, I don't. | Do you like monkeys? Yes, I do. / No, I don't. | Do + you + like + N(s)? | Bạn có thích khỉ không? Có, tôi thích. / Không, tôi không thích.
+
+[U3.1: Has your town got a...? / Yes, it has. / No, it hasn't.]
+Has your town got a cinema? Yes, it has. | Has your town got a cinema? Yes, it has. | Has + your + town + got + a + N? | Thị trấn của bạn có rạp chiếu phim không? Có, nó có.
+Has it got a swimming pool? No, it hasn't. | Has it got a swimming pool? No, it hasn't. | Has + it + got + a + N? | Nó có có hồ bơi không? Không, nó không có.
+Our town has got a big park. | Our town has got a big park. | Our + town + has got + a + adj + N. | Thị trấn của chúng tôi có một công viên lớn.
+My street hasn't got a café. | My street hasn't got a café. | My + N + hasn't got + a + N. | Đường phố của tôi không có quán cà phê.
+Has London got a zoo? Yes, it has. | Has London got a zoo? Yes, it has. | Has + place + got + a + N? | Luân Đôn có sở thú không? Có, nó có.
+
+[U3.2: Prepositions of place (next to, behind, between, in front of)]
+The playground is next to the school. | The playground is next to the school. | The + N + is + next to + the + N. | Sân chơi ở bên cạnh trường học.
+The bus stop is behind the hospital. | The bus stop is behind the hospital. | The + N + is + behind + the + N. | Trạm xe buýt ở phía sau bệnh viện.
+The shop is between the café and the cinema. | The shop is between the café and the cinema. | The + N + is + between + N + and + N. | Cửa hàng ở giữa quán cà phê và rạp chiếu phim.
+I am in front of the train station. | I am in front of the train station. | I + am + in front of + the + N. | Tôi đang ở phía trước nhà ga.
+Where is the park? It's next to the river. | Where is the park? It's next to the river. | Where + is + the + N? It's + next to + the + N. | Công viên ở đâu? Nó ở cạnh con sông.
+
+[U4.1: Would you like a/an...? / Would you like some...?]
+Would you like an apple? Yes, please. | Would you like an apple? Yes, please. | Would you like + a/an + N? | Bạn có muốn một quả táo không? Vâng, làm ơn.
+Would you like a lemon? No, thank you. | Would you like a lemon? No, thank you. | Would you like + a/an + N? | Bạn có muốn một quả chanh không? Không, cảm ơn.
+Would you like some bread? Yes, please. | Would you like some bread? Yes, please. | Would you like + some + N? | Bạn có muốn một ít bánh mì không? Vâng, làm ơn.
+Would you like some watermelons? No, thank you. | Would you like some watermelons? No, thank you. | Would you like + some + N(s)? | Bạn có muốn một ít dưa hấu không? Không, cảm ơn.
+I'd like some eggs, please. | I'd like some eggs, please. | I'd like + some + N(s), please. | Tôi muốn một ít trứng, làm ơn.
+
+[U4.2: Is there any...? / Are there any...? (Food)]
+Is there any cheese? Yes, there is. | Is there any cheese? Yes, there is. | Is there + any + N? | Có chút phô mai nào không? Có, có.
+Is there any milk? No, there isn't. | Is there any milk? No, there isn't. | Is there + any + N? | Có chút sữa nào không? Không, không có.
+Are there any tomatoes? Yes, there are. | Are there any tomatoes? Yes, there are. | Are there + any + N(s)? | Có quả cà chua nào không? Có, có.
+Are there any beans in the basket? No, there aren't. | Are there any beans in the basket? No, there aren't. | Are there + any + N(s) + in + the + N? | Có hạt đậu nào trong giỏ không? Không, không có.
+There isn't any bread on the table. | There isn't any bread on the table. | There + isn't + any + N + on + the + N. | Không có chút bánh mì nào trên bàn.
+
+[U5.1: This/These, That/Those + Noun]
+This is my new bed. | This is my new bed. | This + is + my + adj + N. | Đây là cái giường mới của tôi.
+That is your old wardrobe. | That is your old wardrobe. | That + is + your + adj + N. | Kia là cái tủ quần áo cũ của bạn.
+These are my comics. | These are my comics. | These + are + my + N(s). | Đây là những quyển truyện tranh của tôi.
+Those are your shoes under the chair. | Those are your shoes under the chair. | Those + are + your + N(s) + under + the + N. | Kia là đôi giày của bạn dưới ghế.
+This mirror is big. That mirror is small. | This mirror is big. That mirror is small. | This + N + is + adj. That + N + is + adj. | Cái gương này to. Cái gương kia nhỏ.
+
+[U5.2: Whose ... is this? / Whose ... are these?]
+Whose lamp is this? It's my lamp. / It's mine. | Whose lamp is this? It's my lamp. / It's mine. | Whose + N + is + this? It's + my + N. / It's + mine. | Cái đèn ngủ này của ai? Nó là đèn của tôi.
+Whose T-shirt is that? It's his T-shirt. / It's his. | Whose T-shirt is that? It's his T-shirt. / It's his. | Whose + N + is + that? It's + his + N. / It's + his. | Cái áo phông kia của ai? Nó là áo của anh ấy.
+Whose socks are these? They're her socks. / They're hers. | Whose socks are these? They're her socks. / They're hers. | Whose + N(s) + are + these? They're + her + N(s). / They're + hers. | Những đôi tất này của ai? Chúng là tất của cô ấy.
+Whose toys are those? They're our toys. / They're ours. | Whose toys are those? They're our toys. / They're ours. | Whose + N(s) + are + those? They're + our + N(s). / They're + ours. | Những món đồ chơi kia của ai? Chúng là đồ chơi của chúng tôi.
+Is this your rug? Yes, it's mine. | Is this your rug? Yes, it's mine. | Is this + your + N? Yes, it's + mine. | Cái thảm này có phải của bạn không? Đúng, nó là của tôi.
+
+[U6.1: I am / He is / She is + Adjective (Feelings)]
+I am happy today. | I am happy today. | I + am + adj. | Hôm nay tôi vui.
+He is angry because he lost his game. | He is angry because he lost his game. | He + is + adj + because + clause. | Anh ấy tức giận vì thua trò chơi.
+She is tired. She wants to go to bed. | She is tired. She wants to go to bed. | She + is + adj. She + wants to + V. | Cô ấy mệt. Cô ấy muốn đi ngủ.
+Are you excited about the holiday? Yes, I am. | Are you excited about the holiday? Yes, I am. | Are + you + adj + about + the + N? | Bạn có hào hứng về kỳ nghỉ không? Có, tôi có.
+Is he scared of spiders? Yes, he is. | Is he scared of spiders? Yes, he is. | Is + he/she + adj + of + N(s)? | Anh ấy có sợ nhện không? Có, anh ấy sợ.
+
+[U6.2: Our / Their + Noun]
+Our house is blue. | Our house is blue. | Our + N + is + adj. | Nhà của chúng tôi màu xanh dương.
+Their car is red and fast. | Their car is red and fast. | Their + N + is + adj + and + adj. | Xe ô tô của họ màu đỏ và nhanh.
+This is our classroom. | This is our classroom. | This + is + our + N. | Đây là lớp học của chúng tôi.
+Those are their bikes outside. | Those are their bikes outside. | Those + are + their + N(s) + outside. | Kia là những chiếc xe đạp của họ ở bên ngoài.
+Our teacher is very kind. | Our teacher is very kind. | Our + N + is + very + adj. | Giáo viên của chúng tôi rất tử tế.
+
+[U7.1: I'd like to + Verb (want to)]
+I'd like to fly in a helicopter. | I'd like to fly in a helicopter. | I'd like to + V + in + a + N. | Tôi muốn bay trong một chiếc máy bay trực thăng.
+He'd like to drive a big lorry. | He'd like to drive a big lorry. | He'd like to + V + a + adj + N. | Anh ấy muốn lái một chiếc xe tải lớn.
+She'd like to sail a boat across the ocean. | She'd like to sail a boat across the ocean. | She'd like to + V + a + N + across + the + N. | Cô ấy muốn đi thuyền buồm vượt qua đại dương.
+Would you like to ride a motorbike? Yes, I would. | Would you like to ride a motorbike? Yes, I would. | Would you like to + V + a + N? | Bạn có muốn lái xe máy không? Có, tôi muốn.
+They'd like to go by taxi. | They'd like to go by taxi. | They'd like to + V + by + N. | Họ muốn đi bằng taxi.
+
+[U7.2: Present Continuous (What are you doing?)]
+What are you doing? I'm painting a picture. | What are you doing? I'm painting a picture. | What + are + you + V-ing? I'm + V-ing + a + N. | Bạn đang làm gì vậy? Tôi đang vẽ một bức tranh.
+He is riding his scooter to the park. | He is riding his scooter to the park. | He/She + is + V-ing + his/her + N + to + the + N. | Anh ấy đang đi xe tay ga đến công viên.
+She is not driving. She is flying a plane! | She is not driving. She is flying a plane! | He/She + is + not + V-ing. He/She + is + V-ing + a + N! | Cô ấy không đang lái xe. Cô ấy đang lái máy bay!
+Are they taking the bus? No, they aren't. They are walking. | Are they taking the bus? No, they aren't. They are walking. | Are + they + V-ing + the + N? No, they + are + V-ing. | Họ đang bắt xe buýt phải không? Không, họ không. Họ đang đi bộ.
+Look! That man is skating on a skateboard. | Look! That man is skating on a skateboard. | Look! That + N + is + V-ing + on + a + N. | Nhìn kìa! Người đàn ông kia đang trượt ván.
+
+[U8.1: V-ing as Subject (Swimming is fun.)]
+Swimming is my favourite sport. | Swimming is my favourite sport. | V-ing + is + my + favourite + N. | Bơi lội là môn thể thao yêu thích của tôi.
+Playing basketball is fun and exciting. | Playing basketball is fun and exciting. | V-ing + N + is + adj + and + adj. | Chơi bóng rổ thì vui và hào hứng.
+Running is very good for you. | Running is very good for you. | V-ing + is + very + good + for + you. | Chạy bộ rất tốt cho bạn.
+Is playing tennis difficult? Yes, it is. | Is playing tennis difficult? Yes, it is. | Is + V-ing + N + adj? | Chơi quần vợt có khó không? Có, nó khó.
+Watching football is boring. I like playing it. | Watching football is boring. I like playing it. | V-ing + N + is + adj. I + like + V-ing + it. | Xem bóng đá thì chán. Tôi thích chơi nó.
+
+[U8.2: What sport do you like doing? / So do I. / I don't.]
+What sport do you like doing? I like playing badminton. | What sport do you like doing? I like playing badminton. | What sport + do + you + like + V-ing? I like + V-ing + N. | Bạn thích chơi môn thể thao nào? Tôi thích chơi cầu lông.
+I like playing volleyball. So do I! / Me too! | I like playing volleyball. So do I! / Me too! | I like + V-ing + N. So do I! | Tôi thích chơi bóng chuyền. Tôi cũng vậy!
+He likes doing athletics. | He likes doing athletics. | He/She + likes + V-ing + N. | Anh ấy thích tập điền kinh.
+I don't like playing hockey. I don't like it either. | I don't like playing hockey. I don't like it either. | I don't like + V-ing + N. I don't like + it + either. | Tôi không thích chơi khúc côn cầu. Tôi cũng không thích nó.
+Do you like playing table tennis? Yes, I do. It's easy. | Do you like playing table tennis? Yes, I do. It's easy. | Do + you + like + V-ing + N? Yes, I do. It's + adj. | Bạn có thích chơi bóng bàn không? Có, tôi thích. Nó dễ.
+
+[U9.1: Can I / we ...? (Asking for permission)]
+Can I read your comic? Yes, you can. | Can I read your comic? Yes, you can. | Can + I + V + your + N? | Tôi có thể đọc truyện tranh của bạn không? Được, bạn có thể.
+Can we go camping this weekend? Of course! | Can we go camping this weekend? Of course! | Can + we + V + N + this + weekend? | Chúng tôi có thể đi cắm trại vào cuối tuần này không? Tất nhiên rồi!
+Can I help in the garden, Dad? Yes, please. | Can I help in the garden, Dad? Yes, please. | Can + I + V + in + the + N? | Con có thể giúp việc trong vườn được không, Bố? Được, con giúp đi.
+Can we build a tree house here? No, you can't. It's dangerous. | Can we build a tree house here? No, you can't. It's dangerous. | Can + we + V + a + N + here? No, you + can't. | Chúng con có thể xây nhà trên cây ở đây không? Không, các con không thể. Nguy hiểm lắm.
+Can I take a riding lesson? Yes, you can. It's fun. | Can I take a riding lesson? Yes, you can. It's fun. | Can + I + V + a + N + lesson? | Con có thể học một buổi cưỡi ngựa không? Được, con có thể. Nó rất vui.
+
+[U9.2: Revision Questions (Does...?, Has...?, Where...?, Whose...?)]
+Does your sister like hiking? Yes, she does. | Does your sister like hiking? Yes, she does. | Does + your + N + like + V-ing? | Chị gái bạn có thích đi bộ đường dài không? Có, chị ấy thích.
+Has your town got a library? Yes, it has. | Has your town got a library? Yes, it has. | Has + your + town + got + a + N? | Thị trấn của bạn có thư viện không? Có, nó có.
+Where are my cousins? They are in the living room. | Where are my cousins? They are in the living room. | Where + are + my + N(s)? They + are + in + the + N. | Những người anh em họ của tôi đâu? Họ ở trong phòng khách.
+Whose swimming goggles are these? They're his. | Whose swimming goggles are these? They're his. | Whose + N(s) + are + these? They're + his/hers. | Cái kính bơi này của ai? Chúng là của anh ấy.
+What time does the holiday start? It starts on Saturday. | What time does the holiday start? It starts on Saturday. | What time + does + the + N + V? | Kỳ nghỉ bắt đầu lúc mấy giờ? Nó bắt đầu vào thứ Bảy.
