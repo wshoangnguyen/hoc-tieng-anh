@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Chọn Người Trao Quà</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .left-panel {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .right-panel {
+            flex: 2;
+            min-width: 0;
+        }
+        
+        .input-section, .control-section {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .input-section h2, .control-section h2 {
+            margin-bottom: 15px;
+            color: #ffde59;
+            font-size: 1.5rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .settings {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        input[type="number"], select {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        select option {
+            background-color: #333;
+            color: white;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .primary-btn {
+            background-color: #ffde59;
+            color: #333;
+        }
+        
+        .primary-btn:hover {
+            background-color: #ffd32a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 222, 89, 0.4);
+        }
+        
+        .secondary-btn {
+            background-color: #4a9cff;
+            color: white;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #2d8cff;
+            transform: translateY(-3px);
+        }
+        
+        .danger-btn {
+            background-color: #ff4757;
+            color: white;
+        }
+        
+        .danger-btn:hover {
+            background-color: #ff2e43;
+            transform: translateY(-3px);
+        }
+        
+        .result-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .result-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            height: 100%;
+        }
+        
+        .name-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .name-item.selected {
+            background-color: rgba(255, 222, 89, 0.9);
+            color: #333;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 222, 89, 0.7);
+        }
+        
+        .name-item.blinking {
+            animation: blink 0.2s infinite alternate;
+            background-color: rgba(255, 100, 100, 0.9);
+            box-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+        }
+        
+        @keyframes blink {
+            0% { 
+                opacity: 1;
+                background-color: rgba(255, 100, 100, 0.9);
+                box-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+            }
+            100% { 
+                opacity: 0.7;
+                background-color: rgba(100, 100, 255, 0.9);
+                box-shadow: 0 0 15px rgba(100, 100, 255, 0.8);
+            }
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .result-modal {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .result-title {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #ffde59;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .winners-list {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 100px;
+        }
+        
+        .winner-name {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 5px solid #ffde59;
+        }
+        
+        .close-modal {
+            background-color: #ffde59;
+            color: #333;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .close-modal:hover {
+            background-color: #ffd32a;
+        }
+        
+        .history-modal {
+            background: linear-gradient(135deg, #1a2a6c, #1a5c6c);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        .history-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #4a9cff;
+        }
+        
+        .history-list {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .history-item {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 5px solid #4a9cff;
+        }
+        
+        .history-round {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #4a9cff;
+        }
+        
+        .history-winners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .history-winner {
+            background-color: rgba(255, 222, 89, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 222, 89, 0.5);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            z-index: 999;
+        }
+        
+       /* .priority-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #ffde59;
+            font-size: 0.8rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }*/
+        
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                max-width: 100%;
+            }
+            
+            .right-panel {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .result-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 20px;
+                width: 100%;
+            }
+            
+            .names-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            grid-column: 1 / -1;
+        }
+        
+        .empty-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="input-section">
+                <h2><i class="fas fa-users"></i> Danh sách người tham gia</h2>
+                <textarea id="nameList" placeholder="Nhập danh sách tên (mỗi tên một dòng hoặc cách nhau bằng dấu phẩy)&#10;Ví dụ:&#10; Nguyễn Văn A (có dấu cách = ưu tiên)&#10;Trần Thị B&#10; Lê Văn C (có dấu cách = ưu tiên)&#10;Phạm Thị D"></textarea>
+                
+                <div class="settings">
+                    <div class="setting-group">
+                        <label for="numWinners"><i class="fas fa-trophy"></i> Số người được chọn</label>
+                        <input type="number" id="numWinners" min="1" value="1">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="blinkDuration"><i class="fas fa-clock"></i> Thời gian chớp tắt (giây)</label>
+                        <input type="number" id="blinkDuration" min="1" max="10" value="3">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="filterPrevious"><i class="fas fa-filter"></i> Lọc người đã trúng</label>
+                        <select id="filterPrevious">
+                            <option value="true">Có</option>
+                            <option value="false">Không</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="startBtn" class="primary-btn">
+                        <i class="fas fa-play-circle"></i> Bắt đầu quay số
+                    </button>
+                    <button id="resetBtn" class="secondary-btn">
+                        <i class="fas fa-redo"></i> Cập nhật danh sách
+                    </button>
+                    <button id="clearHistoryBtn" class="danger-btn">
+                        <i class="fas fa-trash"></i> Xóa lịch sử
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="control-section">
+                <h2><i class="fas fa-star"></i> Kết quả trực tiếp</h2>
+                <div id="namesContainer" class="names-grid">
+                    <!-- Các tên sẽ được hiển thị ở đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button id="historyBtn" class="result-btn">
+        <i class="fas fa-history"></i> Lịch sử kết quả
+    </button>
+    
+    <!-- Overlay hiển thị kết quả -->
+    <div id="resultOverlay" class="overlay">
+        <div class="result-modal">
+            <h2 class="result-title">🎉 CHÚC MỪNG 🎉</h2>
+            <div id="winnersResult" class="winners-list">
+                <!-- Danh sách người thắng sẽ được hiển thị ở đây -->
+            </div>
+            <button id="closeResultBtn" class="close-modal">Đóng</button>
+        </div>
+    </div>
+    
+    <!-- Overlay hiển thị lịch sử -->
+    <div id="historyOverlay" class="overlay">
+        <div class="history-modal">
+            <h2 class="history-title"><i class="fas fa-history"></i> Lịch sử kết quả</h2>
+            <div id="historyList" class="history-list">
+                <!-- Lịch sử kết quả sẽ được hiển thị ở đây -->
+            </div>
+            <button id="closeHistoryBtn" class="close-modal">Đóng</button>
+        </div>
+    </div>
+    
+    <script>
+        // Dữ liệu ứng dụng
+        const appState = {
+            originalNames: [], // Lưu danh sách gốc
+            currentNames: [], // Danh sách hiện tại (sau khi lọc)
+            winners: [],
+            history: [],
+            isRunning: false,
+            blinkInterval: null
+        };
+        
+        // DOM Elements
+        const nameListTextarea = document.getElementById('nameList');
+        const numWinnersInput = document.getElementById('numWinners');
+        const blinkDurationInput = document.getElementById('blinkDuration');
+        const filterPreviousSelect = document.getElementById('filterPrevious');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+        const historyBtn = document.getElementById('historyBtn');
+        const namesContainer = document.getElementById('namesContainer');
+        const resultOverlay = document.getElementById('resultOverlay');
+        const historyOverlay = document.getElementById('historyOverlay');
+        const winnersResult = document.getElementById('winnersResult');
+        const closeResultBtn = document.getElementById('closeResultBtn');
+        const closeHistoryBtn = document.getElementById('closeHistoryBtn');
+        const historyList = document.getElementById('historyList');
+        
+        // Khởi tạo danh sách mẫu
+        function initSampleData() {
+            const sampleNames = [
+                " Nguyễn Văn A", // Ưu tiên
+                "Trần Thị B", 
+                " Lê Văn C", // Ưu tiên
+                "Phạm Thị D"
+            ];
+            
+            nameListTextarea.value = sampleNames.join('\n');
+            parseNames();
+            updateCurrentNames();
+            renderNames();
+        }
+        
+        // Phân tích danh sách tên từ textarea
+        function parseNames() {
+            const text = nameListTextarea.value;
+            if (!text.trim()) {
+                appState.originalNames = [];
+                appState.currentNames = [];
+                return;
+            }
+            
+            // Tách tên bằng dấu xuống dòng
+            const rawNames = text.split('\n')
+                .filter(name => name.trim().length > 0);
+            
+            // Xử lý tên có dấu cách ở đầu
+            appState.originalNames = rawNames.map(rawName => {
+                // Kiểm tra nếu tên có dấu cách ở đầu
+                const hasLeadingSpace = rawName.startsWith(' ');
+                const name = rawName.trim(); // Loại bỏ dấu cách thừa
+                
+                return {
+                    name: name,
+                    priority: hasLeadingSpace // Đánh dấu ưu tiên
+                };
+            });
+        }
+        
+        // Cập nhật danh sách hiện tại dựa trên bộ lọc
+        function updateCurrentNames() {
+            const filterPrevious = filterPreviousSelect.value === 'true';
+            
+            if (filterPrevious) {
+                // Lọc bỏ những người đã trúng
+                appState.currentNames = appState.originalNames.filter(
+                    item => !appState.winners.includes(item.name)
+                );
+            } else {
+                // Giữ nguyên danh sách
+                appState.currentNames = [...appState.originalNames];
+            }
+        }
+        
+        // Hiển thị danh sách tên
+        function renderNames() {
+            namesContainer.innerHTML = '';
+            
+            updateCurrentNames();
+            
+            if (appState.currentNames.length === 0) {
+                namesContainer.innerHTML = '<div class="empty-message">Danh sách trống. Vui lòng nhập tên hoặc tắt bộ lọc "Lọc người đã trúng".</div>';
+                return;
+            }
+            
+            appState.currentNames.forEach((item, index) => {
+                const nameElement = document.createElement('div');
+                nameElement.className = 'name-item';
+                
+                // Thêm biểu tượng ưu tiên nếu có
+                if (item.priority) {
+                    nameElement.innerHTML = item.name;/* `${item.name} <span class="priority-badge" title="Ưu tiên chọn"><i class="fas fa-star"></i></span>`;*/
+                } else {
+                    nameElement.textContent = item.name;
+                }
+                
+                nameElement.dataset.name = item.name;
+                
+                // Đánh dấu nếu đã được chọn trước đó
+                if (appState.winners.includes(item.name)) {
+                    nameElement.classList.add('selected');
+                }
+                
+                namesContainer.appendChild(nameElement);
+            });
+        }
+        
+        // Cập nhật textarea để loại bỏ dấu cách ở tên đã được chọn
+        function updateTextarea() {
+            const updatedNames = appState.originalNames.map(item => 
+                item.priority ? ` ${item.name}` : item.name
+            );
+            nameListTextarea.value = updatedNames.join('\n');
+        }
+        
+        // Reset priority cho tên đã được chọn
+        function resetPriorityForWinners(winners) {
+            appState.originalNames = appState.originalNames.map(item => {
+                if (winners.includes(item.name) && item.priority) {
+                    return {
+                        ...item,
+                        priority: false // Reset priority sau khi đã được chọn
+                    };
+                }
+                return item;
+            });
+            
+            // Cập nhật lại textarea để loại bỏ dấu cách
+            updateTextarea();
+        }
+        
+        // Bắt đầu quay số
+        function startSelection() {
+            if (appState.isRunning) return;
+            
+            parseNames();
+            updateCurrentNames();
+            
+            if (appState.currentNames.length === 0) {
+                alert('Không có người tham gia phù hợp! Vui lòng tắt bộ lọc "Lọc người đã trúng" hoặc thêm tên mới.');
+                return;
+            }
+            
+            const numWinners = parseInt(numWinnersInput.value) || 1;
+            const blinkDuration = parseInt(blinkDurationInput.value) || 3;
+            
+            // Kiểm tra số người được chọn
+            if (numWinners > appState.currentNames.length) {
+                alert(`Số người được chọn (${numWinners}) vượt quá số người có sẵn (${appState.currentNames.length})!`);
+                return;
+            }
+            
+            appState.isRunning = true;
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang quay số...';
+            
+            // Tạo hiệu ứng chớp tắt
+            const nameElements = document.querySelectorAll('.name-item');
+            let blinkCount = 0;
+            const totalBlinks = blinkDuration * 10;
+            
+            // Xóa class blinking cũ nếu có
+            nameElements.forEach(el => el.classList.remove('blinking'));
+            
+            appState.blinkInterval = setInterval(() => {
+                // Xóa class blinking từ tất cả
+                nameElements.forEach(el => el.classList.remove('blinking'));
+                
+                // Chọn ngẫu nhiên một số phần tử để chớp
+                const numToBlink = Math.min(8, nameElements.length);
+                const usedIndices = new Set();
+                
+                for (let i = 0; i < numToBlink; i++) {
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * nameElements.length);
+                    } while (usedIndices.has(randomIndex) && usedIndices.size < nameElements.length);
+                    
+                    usedIndices.add(randomIndex);
+                    nameElements[randomIndex].classList.add('blinking');
+                }
+                
+                blinkCount++;
+                
+                // Kết thúc hiệu ứng chớp
+                if (blinkCount >= totalBlinks) {
+                    clearInterval(appState.blinkInterval);
+                    
+                    // Xóa hiệu ứng chớp
+                    nameElements.forEach(el => el.classList.remove('blinking'));
+                    
+                    // Chọn người thắng cuộc
+                    const winners = [];
+                    const availableNames = [...appState.currentNames];
+                    
+                    // Phân loại: ưu tiên và không ưu tiên
+                    const priorityNames = availableNames.filter(item => item.priority);
+                    const normalNames = availableNames.filter(item => !item.priority);
+                    
+                    // Chọn từ danh sách ưu tiên trước
+                    const priorityWinnersCount = Math.min(numWinners, priorityNames.length);
+                    for (let i = 0; i < priorityWinnersCount; i++) {
+                        if (priorityNames.length === 0) break;
+                        
+                        const randomIndex = Math.floor(Math.random() * priorityNames.length);
+                        winners.push(priorityNames[randomIndex].name);
+                        
+                        // Loại bỏ người đã được chọn khỏi danh sách ưu tiên
+                        priorityNames.splice(randomIndex, 1);
+                    }
+                    
+                    // Nếu chưa đủ số lượng, chọn thêm từ danh sách thường
+                    const remainingSlots = numWinners - winners.length;
+                    for (let i = 0; i < remainingSlots && normalNames.length > 0; i++) {
+                        const randomIndex = Math.floor(Math.random() * normalNames.length);
+                        winners.push(normalNames[randomIndex].name);
+                        
+                        // Loại bỏ người đã được chọn
+                        normalNames.splice(randomIndex, 1);
+                    }
+                    
+                    // Reset priority cho tên đã được chọn
+                    resetPriorityForWinners(winners);
+                    
+                    // Hiển thị kết quả
+                    displayWinners(winners);
+                }
+            }, 100);
+        }
+        
+        // Hiển thị kết quả
+        function displayWinners(winners) {
+            // Thêm vào lịch sử
+            const historyEntry = {
+                round: appState.history.length + 1,
+                timestamp: new Date().toLocaleString('vi-VN'),
+                winners: [...winners]
+            };
+            
+            appState.history.push(historyEntry);
+            
+            // Thêm vào danh sách người thắng tổng
+            winners.forEach(winner => {
+                if (!appState.winners.includes(winner)) {
+                    appState.winners.push(winner);
+                }
+            });
+            
+            // Cập nhật hiển thị
+            renderNames();
+            
+            // Hiển thị overlay kết quả sau 1 giây
+            setTimeout(() => {
+                // Hiển thị kết quả trong overlay
+                winnersResult.innerHTML = '';
+                winners.forEach(winner => {
+                    const winnerElement = document.createElement('div');
+                    winnerElement.className = 'winner-name';
+                    winnerElement.textContent = winner;
+                    winnersResult.appendChild(winnerElement);
+                });
+                
+                // Hiển thị overlay
+                resultOverlay.style.display = 'flex';
+                
+                // Tạo hiệu ứng pháo hoa
+                createFireworks();
+                
+                // Đặt lại trạng thái
+                appState.isRunning = false;
+                startBtn.disabled = false;
+                startBtn.innerHTML = '<i class="fas fa-play-circle"></i> Bắt đầu quay số';
+            }, 0);
+        }
+        
+        // Tạo hiệu ứng pháo hoa
+        function createFireworks() {
+            const colors = ['#ffde59', '#4a9cff', '#ff4757', '#2ed573', '#ff9ff3'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = Math.random() * 100 + 'vh';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    const size = Math.random() * 15 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animation = confetti.animate([
+                        { opacity: 0, transform: 'translateY(0) rotate(0deg)' },
+                        { opacity: 1, transform: `translateY(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)` },
+                        { opacity: 0, transform: `translateY(${Math.random() * 100 + 50}px) rotate(${Math.random() * 360}deg)` }
+                    ], {
+                        duration: Math.random() * 1000 + 1000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => {
+                        confetti.remove();
+                    };
+                }, i * 50);
+            }
+        }
+        
+        // Làm mới danh sách - RESET về trạng thái ban đầu
+        function resetSelection() {
+            if (appState.isRunning) {
+                clearInterval(appState.blinkInterval);
+                appState.isRunning = false;
+                startBtn.disabled = false;
+                startBtn.innerHTML = '<i class="fas fa-play-circle"></i> Bắt đầu quay số';
+            }
+            
+            // Xóa hiệu ứng chớp
+            document.querySelectorAll('.name-item').forEach(el => {
+                el.classList.remove('blinking');
+            });
+            
+            // Parse lại danh sách từ textarea
+            parseNames();
+            updateCurrentNames();
+            renderNames();
+        }
+        
+        // Xóa toàn bộ lịch sử
+        function clearAllHistory() {
+            if (confirm('Bạn có chắc chắn muốn xóa toàn bộ lịch sử không? Tất cả người đã trúng sẽ được đưa trở lại danh sách.')) {
+                appState.history = [];
+                appState.winners = [];
+                updateCurrentNames();
+                renderNames();
+                
+                // Cập nhật lịch sử nếu đang mở
+                if (historyOverlay.style.display === 'flex') {
+                    showHistory();
+                }
+            }
+        }
+        
+        // Hiển thị lịch sử
+        function showHistory() {
+            historyList.innerHTML = '';
+            
+            if (appState.history.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; padding: 20px;">Chưa có lịch sử kết quả</p>';
+            } else {
+                appState.history.forEach(entry => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    
+                    const roundInfo = document.createElement('div');
+                    roundInfo.className = 'history-round';
+                    roundInfo.textContent = `Lượt ${entry.round} - ${entry.timestamp}`;
+                    
+                    const winnersContainer = document.createElement('div');
+                    winnersContainer.className = 'history-winners';
+                    
+                    entry.winners.forEach(winner => {
+                        const winnerElement = document.createElement('div');
+                        winnerElement.className = 'history-winner';
+                        winnerElement.textContent = winner;
+                        winnersContainer.appendChild(winnerElement);
+                    });
+                    
+                    historyItem.appendChild(roundInfo);
+                    historyItem.appendChild(winnersContainer);
+                    historyList.appendChild(historyItem);
+                });
+            }
+            
+            historyOverlay.style.display = 'flex';
+        }
+        
+        // Event Listeners
+        startBtn.addEventListener('click', startSelection);
+        resetBtn.addEventListener('click', resetSelection);
+        clearHistoryBtn.addEventListener('click', clearAllHistory);
+        historyBtn.addEventListener('click', showHistory);
+        closeResultBtn.addEventListener('click', () => {
+            resultOverlay.style.display = 'none';
+        });
+        closeHistoryBtn.addEventListener('click', () => {
+            historyOverlay.style.display = 'none';
+        });
+        
+        // Khi thay đổi bộ lọc, cập nhật danh sách
+        filterPreviousSelect.addEventListener('change', () => {
+            updateCurrentNames();
+            renderNames();
+        });
+        
+        // Khi người dùng nhập tên, cập nhật danh sách
+        nameListTextarea.addEventListener('input', () => {
+            parseNames();
+            updateCurrentNames();
+            renderNames();
+        });
+        
+        // Đóng overlay khi click bên ngoài
+        window.addEventListener('click', (e) => {
+            if (e.target === resultOverlay) {
+                resultOverlay.style.display = 'none';
+            }
+            if (e.target === historyOverlay) {
+                historyOverlay.style.display = 'none';
+            }
+        });
+        
+        // Khởi tạo ứng dụng
+        initSampleData();
+    </script>
+</body>
+</html>
