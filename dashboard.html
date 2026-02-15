@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Dashboard - Học tiếng Anh</title>
+    <style>
+        @keyframes gentleWave {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            15%, 45%, 75% { transform: translateX(-5px) rotate(-3deg); }
+            30%, 60%, 90% { transform: translateX(5px) rotate(3deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .sidebar-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .menu-item {
+            transition: all 0.2s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-white to-[#ffefd3]">
+    <!-- Logo lắc lư -->
+    <div class="fixed bottom-4 right-4 z-50 cursor-pointer group"
+         onclick="window.location.href='https://hoctienganhdelam.com/'">
+        <img src="logo.png" alt="Logo" 
+             class="h-16 transition-all duration-300 animate-[gentleWave_3s_ease-in-out_infinite] group-hover:scale-125 group-hover:rotate-12">
+        <span class="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Về trang chủ!
+        </span>
+    </div>
+
+    <!-- Container chính với sidebar -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar - Menu bên trái -->
+        <aside class="fixed lg:static w-64 lg:w-72 h-screen lg:h-auto bg-white shadow-2xl lg:shadow-lg sidebar-transition z-40
+                      transform -translate-x-full lg:translate-x-0"
+               id="sidebar">
+            <div class="p-6">
+                <!-- Logo và tiêu đề -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <div>
+                        <img src="banner.jpg" alt="Học tiếng Anh dễ lắm" class="max-w-full h-auto rounded-lg mx-auto">
+                    </div>
+                </div>
+
+                <!-- Menu items -->
+                <nav class="space-y-2">
+                    <a href="#" onclick="setActiveMenu(this, 'home')" 
+                       class="menu-item active flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-home w-6"></i>
+                        <span class="font-medium">Trang chủ</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'students')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-users w-6"></i>
+                        <span class="font-medium">Học sinh</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'grades')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-star w-6"></i>
+                        <span class="font-medium">Đánh giá</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'tuition')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-money-bill-wave w-6"></i>
+                        <span class="font-medium">Học phí</span>
+                    </a>
+                </nav>
+
+                <!-- User info trong sidebar -->
+                <div class="absolute bottom-6 left-6 right-6">
+                    <div class="p-4 bg-gray-50 rounded-xl" id="sidebarUserInfo">
+                        <!-- Sẽ được load bằng JS -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Nút toggle menu cho mobile -->
+        <button onclick="toggleSidebar()" 
+                class="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg hover:bg-gray-50 transition">
+            <i class="fas fa-bars text-gray-600 text-xl"></i>
+        </button>
+
+        <!-- Overlay cho mobile -->
+        <div onclick="toggleSidebar()" 
+             class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden transition-opacity"
+             id="overlay"></div>
+
+        <!-- Nội dung chính -->
+        <main class="flex-1 p-4 lg:p-8 ml-0 lg:ml-0 pt-16 lg:pt-8">
+            <div class="max-w-6xl mx-auto">
+<!-- Header với thông tin user -->
+<div class="bg-white rounded-2xl shadow-lg p-4 lg:p-6 mb-6 fade-in">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+            <h1 class="text-2xl lg:text-3xl font-bold text-gray-800" id="greeting">Xin chào! 👋</h1>
+            <p class="text-gray-600 mt-1" id="welcomeMessage">Chào mừng bạn quay trở lại</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <!-- ĐÃ XÓA phần hiển thị tên ở đây -->
+            <button onclick="logout()"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 lg:px-6 py-2 rounded-xl transition duration-200 flex items-center gap-2">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="hidden lg:inline">Đăng xuất</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+                <!-- Nội dung chính thay đổi theo menu -->
+                <div id="mainContent" class="fade-in">
+                    <!-- Trang chủ content -->
+                    <div id="homeContent" class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Chào mừng đến với hệ thống! 🎉</h2>
+                            <p class="text-gray-600 leading-relaxed">
+                                Đây là hệ thống quản lý học viên dành cho các lớp tiếng Anh Online. 
+                                Bạn có thể quản lý học sinh, theo dõi đánh giá và học phí tại đây.
+                            </p>
+                        </div>
+
+                        <!-- Thống kê nhanh -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-users text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Tổng học sinh</h3>
+                                <p class="text-3xl font-bold">0</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-star text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Đánh giá trung bình</h3>
+                                <p class="text-3xl font-bold">-</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-money-bill-wave text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Học phí tháng này</h3>
+                                <p class="text-3xl font-bold">0đ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Các content khác -->
+                    <div id="studentsContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Quản lý Học sinh 📚</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+
+                    <div id="gradesContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Đánh giá học sinh ⭐</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+
+                    <div id="tuitionContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Quản lý Học phí 💰</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqm6-fzVVqA5DUYZ6Ke_fX9N6ON5pBzVE",
+            authDomain: "quanly-hocvien.firebaseapp.com",
+            projectId: "quanly-hocvien",
+            storageBucket: "quanly-hocvien.firebasestorage.app",
+            messagingSenderId: "1095021882397",
+            appId: "1:1095021882397:web:68038ec5ac0e593ca02af4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Hàm hiển thị thông tin user (không hiển thị email)
+        async function loadUserInfo() {
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    // Thử lấy displayName từ Firestore trước
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    const userData = userDoc.data();
+                    
+                    // Ưu tiên: displayName từ Firestore -> displayName từ localStorage
+                    let displayName = userData?.displayName || 
+                                      localStorage.getItem('userDisplayName') || 
+                                      'Học viên';
+                                     
+                  
+                    // Update greeting based on time
+                    const hour = new Date().getHours();
+                    let greeting = 'Xin chào';
+                    if (hour < 12) greeting = 'Chào buổi sáng';
+                    else if (hour < 18) greeting = 'Chào buổi chiều';
+                    else greeting = 'Chào buổi tối';
+                    
+                    document.getElementById('greeting').innerHTML = `${greeting}, <span class="text-blue-500">${displayName}</span>! 👋`;
+                    document.getElementById('welcomeMessage').textContent = 'Chào mừng bạn quay trở lại hệ thống';
+
+                    // Hiển thị trong sidebar (chỉ tên, không email)
+                    document.getElementById('sidebarUserInfo').innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-blue-500"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-medium text-gray-800 truncate">${displayName}</p>
+                                <p class="text-xs text-gray-500 truncate">Học viên</p>
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Lỗi load user info:', error);
+                    
+                    // Fallback: dùng displayName từ localStorage
+                    const displayName = localStorage.getItem('userDisplayName') || 'Học viên';
+                    document.getElementById('userNameDisplay').textContent = displayName;
+                    document.getElementById('greeting').innerHTML = `Xin chào, <span class="text-blue-500">${displayName}</span>! 👋`;
+                }
+            }
+        }
+
+        // Kiểm tra localStorage trước
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        // Kiểm tra trạng thái đăng nhập từ Firebase
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // Đã đăng nhập
+                localStorage.setItem('isLoggedIn', 'true');
+                await loadUserInfo();
+            } else {
+                // Chưa đăng nhập
+                const hasLocalFlag = localStorage.getItem('isLoggedIn');
+                if (!hasLocalFlag) {
+                    window.location.href = 'login.html';
+                } else {
+                    // Có flag nhưng không có user -> session hết hạn
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userDisplayName');
+                    window.location.href = 'login.html';
+                }
+            }
+        });
+
+        // Hàm đăng xuất
+        window.logout = function() {
+            signOut(auth).then(() => {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userDisplayName');
+                window.location.href = 'login.html';
+            }).catch((error) => {
+                console.error('Lỗi đăng xuất:', error);
+            });
+        };
+
+        // Hàm toggle sidebar cho mobile
+        window.toggleSidebar = function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        };
+
+        // Hàm set active menu
+        window.setActiveMenu = function(element, menuId) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            element.classList.add('active');
+            
+            document.getElementById('homeContent').classList.add('hidden');
+            document.getElementById('studentsContent').classList.add('hidden');
+            document.getElementById('gradesContent').classList.add('hidden');
+            document.getElementById('tuitionContent').classList.add('hidden');
+            
+            document.getElementById(menuId + 'Content').classList.remove('hidden');
+            
+            if (window.innerWidth < 1024) {
+                toggleSidebar();
+            }
+        };
+
+        document.getElementById('overlay').addEventListener('click', toggleSidebar);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                document.getElementById('sidebar').classList.remove('-translate-x-full');
+                document.getElementById('overlay').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
