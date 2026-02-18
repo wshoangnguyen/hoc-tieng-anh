@@ -1,0 +1,35 @@
+=== Super Minds 2 ===
+[Unit 0]
+
+[Unit 1]
+
+[Unit 2]
+
+
+=== Super Minds 3 ===
+[Unit 0]
+[VN] Đây| là| Mike.| Anh ấy| là| anh họ của Tom.| Mike| chín| tuổi.| Cậu ấy| đang ở| trong| ngôi nhà lớn.| Cậu ấy| muốn| đi xuống| tầng dưới| tới tầng hầm.| Mike| thật sự| giỏi| giải| câu đố| và| chơi| đàn ghi-ta.| Nhưng| cậu ấy không| giỏi| trèo| cây.| Nhìn kìa!| Đây| là| cuốn sách cũ của dì của cậu ấy.| Nó| là| số| chín mươi lăm.
+[EN] This| is| Mike.| He| is| Tom’s cousin.| Mike is| nine| years old.| He| is| in |the big house.| He| wants| to go| downstairs| to the cellar.| Mike is| really| good at| doing| puzzles| and| playing| the guitar.| But| he is not| good at| climbing| trees.| Look!| This| is| his aunt’s old book.| It| is| number| ninety-five.
+
+[Unit 1]
+
+[Unit 2]
+
+
+=== Kid stories ====
+[Story 1]
+
+[Story 2]
+
+
+=== Funny stories ====
+[Story 1]
+
+[Story 2]
+
+
+=== Meaningful stories ===
+[Story 1]
+
+[Story 2]
+
