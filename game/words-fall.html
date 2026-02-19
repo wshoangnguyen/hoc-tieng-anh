@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Words Fall - Game dịch thuật</title>
+    <title>Words Fall - Game dịch thuật cho bé</title>
     <style>
-        /* ========== BRAND STYLES (Giữ từ game cũ) ========== */
+        /* ========== BRAND STYLES ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Bỏ highlight khi chạm trên mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -62,9 +62,96 @@
             50% { opacity: 0.8; transform: scale(1.05); }
         }
 
+        /* Easy Mode Switch Styles */
+        .switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0f4ff;
+            padding: 8px 15px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .switch-label {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: '';
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #27ae60;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #27ae60;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        #easyModeStatus {
+            font-size: 14px;
+            font-weight: bold;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .easy-indicator {
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: softPulse 2s infinite;
+        }
+
+        @keyframes softPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
-            /* Hiện warning khi ở chế độ dọc */
             @media (orientation: portrait) {
                 .rotate-warning {
                     display: flex;
@@ -74,7 +161,6 @@
                 }
             }
             
-            /* Landscape mode - tối ưu cho mobile */
             @media (orientation: landscape) {
                 .rotate-warning {
                     display: none;
@@ -92,23 +178,21 @@
                     transform: scale(0.7);
                     transform-origin: top center;
                     padding: 5px;
-                    max-width: 142.857%; /* Bù lại scale (100/0.7) */
+                    max-width: 142.857%;
                     width: 142.857%;
-                    margin-left: -21.4285%; /* Căn giữa (142.857-100)/2 */
+                    margin-left: -21.4285%;
                     height: auto;
                     max-height: 142.857vh;
                     overflow-y: auto;
                     -webkit-overflow-scrolling: touch;
                 }
                 
-                /* Điều chỉnh game area cho landscape */
                 .game-area {
                     flex-direction: row;
                     gap: 5px;
                     min-height: auto;
                 }
                 
-                /* Source area bên trái */
                 .source-area {
                     min-width: 35%;
                     max-height: 280px;
@@ -123,7 +207,6 @@
                     gap: 5px;
                 }
                 
-                /* Word pool bên phải */
                 .word-pool-area {
                     min-width: 60%;
                     max-height: 280px;
@@ -134,7 +217,6 @@
                     height: 230px;
                 }
                 
-                /* Điều chỉnh kích thước tile cho phù hợp với scale 0.7 */
                 .viet-tile {
                     padding: 6px 8px;
                     font-size: 11px;
@@ -150,12 +232,10 @@
                     border-radius: 6px;
                 }
                 
-                /* Điều chỉnh vị trí falling words cho 3 cột với scale 0.7 */
                 .english-tile[data-column="0"] { left: 3% !important; }
                 .english-tile[data-column="1"] { left: 35% !important; }
                 .english-tile[data-column="2"] { left: 67% !important; }
                 
-                /* Header game */
                 .game-header {
                     flex-direction: row;
                     gap: 5px;
@@ -194,14 +274,12 @@
                     font-size: 11px;
                 }
                 
-                /* Game info bar */
                 .game-info-bar {
                     padding: 5px 10px;
                     margin-bottom: 8px;
                     font-size: 11px;
                 }
                 
-                /* Game controls */
                 .game-controls {
                     gap: 5px;
                     margin: 8px 0;
@@ -212,14 +290,35 @@
                     font-size: 11px;
                 }
                 
-                /* Logo góc */
+                .switch {
+                    width: 50px !important;
+                    height: 28px !important;
+                }
+                
+                .slider:before {
+                    height: 22px !important;
+                    width: 22px !important;
+                }
+                
+                .switch-container {
+                    padding: 5px 10px;
+                }
+                
+                .switch-label {
+                    font-size: 11px;
+                }
+                
+                #easyModeStatus {
+                    font-size: 11px;
+                    min-width: 35px;
+                }
+                
                 .logo-container {
                     transform: scale(0.5);
                     bottom: 2px;
                     right: 2px;
                 }
                 
-                /* Modal kết quả */
                 .result-content {
                     transform: scale(0.8);
                     padding: 15px;
@@ -238,7 +337,6 @@
                     font-size: 12px;
                 }
                 
-                /* Preview section */
                 .preview-content {
                     flex-direction: column;
                 }
@@ -253,7 +351,6 @@
                     overflow-y: auto;
                 }
                 
-                /* Mode selection */
                 .mode-section h2 {
                     font-size: 16px;
                 }
@@ -274,7 +371,6 @@
                     padding: 6px;
                 }
                 
-                /* Điều chỉnh stack heights cho scale 0.7 */
                 .stack-level {
                     height: 1px;
                 }
@@ -286,7 +382,6 @@
             }
         }
 
-        /* Tablet styles */
         @media (min-width: 769px) and (max-width: 1024px) {
             .container {
                 transform: scale(0.85);
@@ -294,7 +389,6 @@
             }
         }
 
-        /* Container styles */
         .container {
             background: white;
             border-radius: 20px;
@@ -326,7 +420,6 @@
             object-fit: contain;
         }
 
-        /* ========== MODE SELECTION ========== */
         .mode-section {
             margin-bottom: 25px;
         }
@@ -394,13 +487,13 @@
             text-align: center;
         }
 
-        /* ========== VOCABULARY SECTION ========== */
         .vocabulary-section {
             margin: 10px 0;
             text-align: center;
             background: #f8f9fa;
             border-radius: 10px;
             border: 2px solid #3498db;
+            padding: 15px;
         }
 
         .vocab-status {
@@ -465,7 +558,6 @@
             cursor: not-allowed;
         }
 
-        /* ========== PREVIEW SECTION ========== */
         .preview-section {
             background: #f8f9fa;
             border: 2px solid #3498db;
@@ -518,7 +610,6 @@
             word-break: break-word;
         }
 
-        /* ========== BUTTONS ========== */
         .btn {
             padding: 12px 25px;
             font-size: 16px;
@@ -566,12 +657,10 @@
             color: white;
         }
 
-        /* ========== GAME SECTION ========== */
         .game-section {
             display: none;
         }
 
-        /* Game Header */
         .game-header {
             display: flex;
             justify-content: space-between;
@@ -643,7 +732,6 @@
             font-weight: bold;
         }
 
-        /* Game Info Bar */
         .game-info-bar {
             background: #f8f9fa;
             padding: 10px 20px;
@@ -666,7 +754,6 @@
             font-weight: bold;
         }
 
-        /* Main Game Area */
         .game-area {
             display: flex;
             gap: 20px;
@@ -675,7 +762,6 @@
             flex-wrap: wrap;
         }
 
-        /* Source Area (bên trái) */
         .source-area {
             flex: 1;
             min-width: 350px;
@@ -723,6 +809,11 @@
             user-select: none;
         }
 
+        .viet-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
         .viet-tile.filled {
             background: #d4edda;
             border-color: #27ae60;
@@ -760,7 +851,6 @@
             justify-content: center;
         }
 
-        /* Word Pool Area (bên phải) */
         .word-pool-area {
             flex: 1;
             min-width: 300px;
@@ -818,6 +908,11 @@
             user-select: none;
         }
 
+        .english-tile:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
         .english-tile.selected {
             transform: scale(1.05);
             box-shadow: 0 0 0 3px white, 0 0 0 6px #f39c12, 0 6px 12px rgba(0,0,0,0.3);
@@ -846,7 +941,6 @@
             z-index: 100;
         }
 
-        /* Stack indicators */
         .stack-level {
             position: absolute;
             left: 0;
@@ -857,7 +951,6 @@
             pointer-events: none;
         }
 
-        /* Game Controls */
         .game-controls {
             display: flex;
             justify-content: center;
@@ -866,7 +959,6 @@
             flex-wrap: wrap;
         }
 
-        /* Pause Overlay */
         .pause-overlay {
             position: fixed;
             top: 0;
@@ -894,7 +986,6 @@
             margin-bottom: 20px;
         }
 
-        /* Result Modal */
         .result-modal {
             display: none;
             position: fixed;
@@ -981,7 +1072,6 @@
             color: #721c24;
         }
 
-        /* Logo Corner */
         .logo-container {
             position: fixed;
             bottom: 15px;
@@ -997,7 +1087,6 @@
             border-radius: 8px;
         }
 
-        /* Animations */
         @keyframes timerPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -1036,7 +1125,6 @@
             75% { transform: translateX(5px); }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .container { padding: 10px; }
             .game-title-logo img { height: 90px; }
@@ -1046,7 +1134,6 @@
     </style>
 </head>
 <body>
-    <!-- Rotate Warning -->
     <div class="rotate-warning">
         <div class="warning-content">
             <div class="rotate-icon">🔄</div>
@@ -1057,14 +1144,12 @@
     </div>
 
     <div class="container">
-        <!-- ========== SETUP SECTION ========== -->
         <div class="setup-section" id="setupSection">
             <div class="game-title-logo">
                 <img src="words-fall.png" alt="Words Fall Logo" onerror="this.style.display='none'">
-                <h1>Words Fall</h1>
+                <h1>Words Fall for Kids</h1>
             </div>
 
-            <!-- Translation Mode Selection (VI-EN / EN-VI) -->
             <div class="mode-section">
                 <h2>🌍 Chọn chế độ dịch</h2>
                 <div class="mode-selector">
@@ -1080,18 +1165,17 @@
                 </div>
             </div>
 
-            <!-- Vocabulary Selection -->
             <div class="vocabulary-section">                              
                 <div class="vocab-controls">
                     <div id="vocabStatus" class="vocab-status status-loading">
                         ⏳ Loading stories from file...
                     </div>
                     <select id="levelSelect" class="vocab-select" disabled>
-                        <option value="">-- Select Level --</option>
+                        <option value="">-- Chọn Level --</option>
                     </select>
                     
                     <select id="unitSelect" class="vocab-select" disabled>
-                        <option value="">-- Select Story --</option>
+                        <option value="">-- Chọn Story --</option>
                     </select>
                     
                     <button class="btn btn-primary" onclick="loadStory()" id="loadBtn" disabled>
@@ -1100,7 +1184,6 @@
                 </div>
             </div>
 
-            <!-- Preview Section -->
             <div id="previewSection" class="preview-section" style="display: none;">
                 <div class="preview-title">📋 Preview đoạn văn:</div>
                 <div class="preview-content">
@@ -1115,17 +1198,25 @@
                 </div>
             </div>
 
-            <!-- Start Button -->
             <div style="text-align: center; margin: 20px 0;">
-                <button class="btn btn-success" onclick="startGame()" id="startBtn" disabled>
-                    🚀 BẮT ĐẦU DỊCH!
-                </button>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn btn-success" onclick="startGame()" id="startBtn" disabled>
+                        🚀 BẮT ĐẦU DỊCH!
+                    </button>
+                    
+                    <div class="switch-container">
+                        <span class="switch-label">🌟 Chế độ dễ:</span>
+                        <label class="switch">
+                            <input type="checkbox" id="easyModeSwitch">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="easyModeStatus" style="color: #e74c3c;">TẮT</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ========== GAME SECTION ========== -->
         <div class="game-section" id="gameSection">
-            <!-- Game Header -->
             <div class="game-header">
                 <div class="scoreboard">
                     <div class="score-item">
@@ -1143,31 +1234,26 @@
                 </div>
                 
                 <div class="timer-section">
-                    <div class="timer" id="timer">60</div>
+                    <div class="timer" id="timer">0</div>
                     <div class="hint-count" id="bonusInfo">+0</div>
                 </div>
             </div>
 
-            <!-- Game Info Bar -->
             <div class="game-info-bar">
                 <div class="level-info" id="gameLevel"></div>
                 <div class="progress-info" id="gameProgress">0/0 từ đã dịch</div>
+                <div id="easyModeIndicator" class="easy-indicator" style="display: none;">🌟 DỄ</div>
             </div>
 
-            <!-- Main Game Area -->
             <div class="game-area">
-                <!-- Source Area (bên trái) -->
                 <div class="source-area">
                     <div class="source-title">
                         <span id="sourceLang">🇻🇳 Tiếng Việt</span>
                         <span id="sourceCount">0/0 từ</span>
                     </div>
-                    <div class="source-grid" id="sourceGrid">
-                        <!-- Các ô tiếng Việt sẽ được tạo ở đây -->
-                    </div>
+                    <div class="source-grid" id="sourceGrid"></div>
                 </div>
 
-                <!-- Word Pool Area (bên phải) -->
                 <div class="word-pool-area">
                     <div class="pool-title">
                         <span id="poolLang">🇬🇧 Tiếng Anh rơi</span>
@@ -1175,12 +1261,10 @@
                     <div class="pool-container">
                         <div class="falling-words" id="fallingWords"></div>
                         <div id="poolWarning" class="pool-warning" style="display: none;">⚠️ Sắp đầy!</div>
-                        <!-- Các mức stack sẽ được vẽ bằng JS -->
                     </div>
                 </div>
             </div>
 
-            <!-- Game Controls -->
             <div class="game-controls">
                 <button class="btn btn-info" onclick="useHint()" id="hintBtn">
                     🔍 HINT (<span id="hintCount">3</span>)
@@ -1194,7 +1278,6 @@
             </div>
         </div>
 
-        <!-- ========== PAUSE OVERLAY ========== -->
         <div class="pause-overlay" id="pauseOverlay">
             <div class="pause-content">
                 <h2>⏸️ GAME PAUSED</h2>
@@ -1203,18 +1286,13 @@
             </div>
         </div>
 
-        <!-- ========== RESULT MODAL ========== -->
         <div class="result-modal" id="resultModal">
             <div class="result-content" id="resultContent">
                 <div class="result-title" id="resultTitle">🏆 HOÀN THÀNH!</div>
                 
-                <div id="resultStats" class="result-stats">
-                    <!-- Stats sẽ được fill bằng JS -->
-                </div>
+                <div id="resultStats" class="result-stats"></div>
 
-                <div class="translated-text" id="translatedText">
-                    <!-- Đoạn văn đã dịch sẽ hiện ở đây -->
-                </div>
+                <div class="translated-text" id="translatedText"></div>
 
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <button class="btn btn-primary" onclick="playAgain()">🔄 CHƠI LẠI</button>
@@ -1224,21 +1302,20 @@
         </div>
     </div>
 
-    <!-- Logo Corner -->
     <div class="logo-container">
         <img src="logo.png" alt="Brand Logo" onerror="this.style.display='none'">
     </div>
 
     <script>
         // ========== GAME VARIABLES ==========
-        let translationMode = 'vi-en'; // 'vi-en' hoặc 'en-vi'
+        let translationMode = 'vi-en';
         let vocabularyData = "";
         let vocabularyStructure = {};
         let selectedLevel = "";
         let selectedUnit = "";
-        let currentStory = null; // { vi: [], en: [] }
+        let currentStory = null;
+        let easyMode = false;
         
-        // Game state
         let score = 0;
         let combo = 0;
         let hintCount = 3;
@@ -1247,56 +1324,87 @@
         let isPaused = false;
         let isGameActive = false;
         
-        // Translation state
-        let vietWords = []; // Từ tiếng Việt (hiển thị bên trái)
-        let englishWords = []; // Từ tiếng Anh (sẽ rơi)
-        let remainingEnglishWords = []; // Từ tiếng Anh chưa xuất hiện
-        let activeEnglishWords = []; // Từ đang rơi hoặc trong stack
+        let vietWords = [];
+        let englishWords = [];
+        let remainingEnglishWords = [];
+        let activeEnglishWords = [];
         
-        // Stack management
-        let columns = 3; // Số cột
-        let columnHeights = [0, 0, 0]; // Độ cao mỗi cột (px)
-        let columnWords = [[], [], []]; // Từ trong mỗi cột
+        let columns = 3;
+        let columnHeights = [0, 0, 0];
+        let columnWords = [[], [], []];
         
-        // Selection
         let selectedEnglishTile = null;
         let selectedVietnameseTile = null;
         
-        // Animation
         let fallingInterval = null;
         let animationFrame = null;
         
-        // Mapping
-        let translationMap = {}; // Map từ tiếng Việt -> tiếng Anh và ngược lại
+        let translationMap = {};
         
-        // Audio
         const rightSound = new Audio('right.mp3');
         const wrongSound = new Audio('wrong.mp3');
         const winSound = new Audio('win.mp3');
-        
+
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
             loadVocabularyFile();
             setupMobileTouchEvents();
+            
+            const easySwitch = document.getElementById('easyModeSwitch');
+            if (easySwitch) {
+                easySwitch.addEventListener('change', function() {
+                    easyMode = this.checked;
+                    const statusEl = document.getElementById('easyModeStatus');
+                    statusEl.textContent = easyMode ? 'BẬT' : 'TẮT';
+                    statusEl.style.color = easyMode ? '#27ae60' : '#e74c3c';
+                    
+                    const toast = document.createElement('div');
+                    toast.textContent = easyMode ? '🌟 Chế độ dễ: KHÔNG THUA khi stack đầy' : '🔰 Chế độ thường: Có thể thua khi stack đầy';
+                    toast.style.position = 'fixed';
+                    toast.style.bottom = '20px';
+                    toast.style.left = '50%';
+                    toast.style.transform = 'translateX(-50%)';
+                    toast.style.background = easyMode ? '#27ae60' : '#3498db';
+                    toast.style.color = 'white';
+                    toast.style.padding = '10px 20px';
+                    toast.style.borderRadius = '30px';
+                    toast.style.zIndex = '3000';
+                    toast.style.fontSize = '14px';
+                    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                    document.body.appendChild(toast);
+                    setTimeout(() => toast.remove(), 3000);
+                });
+            }
+
+            // Thêm event listeners cho click chuột (desktop)
+            document.addEventListener('click', function(e) {
+                const tile = e.target.closest('.viet-tile, .english-tile');
+                if (!tile) return;
+                
+                e.preventDefault();
+                
+                if (tile.classList.contains('viet-tile')) {
+                    onVietnameseTileClick(tile);
+                } else if (tile.classList.contains('english-tile')) {
+                    onEnglishTileClick(tile);
+                }
+            });
         });
 
-        // ========== MOBILE TOUCH OPTIMIZATION ==========
         function setupMobileTouchEvents() {
-            // Prevent zoom on double tap
             document.addEventListener('touchstart', (e) => {
                 if (e.touches.length > 1) {
                     e.preventDefault();
                 }
             }, { passive: false });
             
-            // Prevent pull-to-refresh
             document.addEventListener('touchmove', (e) => {
                 if (e.target.closest('.pool-container') || e.target.closest('.source-grid')) {
                     e.preventDefault();
                 }
             }, { passive: false });
             
-            // Improve touch response for tiles (delegation)
+            // Touch events cho mobile
             document.addEventListener('touchstart', (e) => {
                 const tile = e.target.closest('.viet-tile, .english-tile');
                 if (!tile) return;
@@ -1311,7 +1419,6 @@
             }, { passive: false });
         }
         
-        // ========== LOAD VOCABULARY FILE ==========
         async function loadVocabularyFile() {
             const statusDiv = document.getElementById('vocabStatus');
             const levelSelect = document.getElementById('levelSelect');
@@ -1335,19 +1442,14 @@
                 }
                 
                 vocabularyData = fileContent;
-                
-                // Parse vocabulary structure
                 parseVocabularyStructure();
                 
-                // Update status
                 statusDiv.className = 'vocab-status status-success';
                 statusDiv.textContent = '✅ File loaded!';
                 
-                // Enable controls
                 levelSelect.disabled = false;
-                levelSelect.innerHTML = '<option value="">-- Select Level --</option>';
+                levelSelect.innerHTML = '<option value="">-- Chọn Level --</option>';
                 
-                // Add levels to dropdown
                 for (const level in vocabularyStructure) {
                     const option = document.createElement('option');
                     option.value = level;
@@ -1355,13 +1457,10 @@
                     levelSelect.appendChild(option);
                 }
                 
-                // Event listener for level select
                 levelSelect.addEventListener('change', function() {
                     if (this.value) {
                         unitSelect.disabled = false;
-                        
-                        // Clear and add units
-                        unitSelect.innerHTML = '<option value="">-- Select Story --</option>';
+                        unitSelect.innerHTML = '<option value="">-- Chọn Story --</option>';
                         const units = Object.keys(vocabularyStructure[this.value]);
                         units.forEach(unit => {
                             const option = document.createElement('option');
@@ -1376,7 +1475,6 @@
                     }
                 });
                 
-                // Event listener for unit select
                 unitSelect.addEventListener('change', function() {
                     if (levelSelect.value && this.value) {
                         loadBtn.disabled = false;
@@ -1392,7 +1490,6 @@
             }
         }
         
-        // ========== PARSE VOCABULARY STRUCTURE ==========
         function parseVocabularyStructure() {
             vocabularyStructure = {};
             const lines = vocabularyData.split('\n');
@@ -1405,7 +1502,6 @@
                 line = line.trim();
                 
                 if (line.startsWith('===') && line.endsWith('===')) {
-                    // Save previous unit if exists
                     if (currentUnit && currentVi.length > 0 && currentEn.length > 0) {
                         if (!vocabularyStructure[currentLevel]) {
                             vocabularyStructure[currentLevel] = {};
@@ -1422,7 +1518,6 @@
                     currentEn = [];
                 }
                 else if (line.startsWith('[') && line.endsWith(']')) {
-                    // Save previous unit if exists
                     if (currentUnit && currentVi.length > 0 && currentEn.length > 0) {
                         if (!vocabularyStructure[currentLevel]) {
                             vocabularyStructure[currentLevel] = {};
@@ -1447,7 +1542,6 @@
                 }
             }
             
-            // Save last unit
             if (currentUnit && currentVi.length > 0 && currentEn.length > 0) {
                 if (!vocabularyStructure[currentLevel]) {
                     vocabularyStructure[currentLevel] = {};
@@ -1459,7 +1553,6 @@
             }
         }
         
-        // ========== SELECT TRANSLATION MODE ==========
         function selectTranslationMode(mode) {
             translationMode = mode;
             
@@ -1475,7 +1568,6 @@
             document.getElementById('modeInfo').innerHTML = infoText[mode];
         }
         
-        // ========== LOAD STORY ==========
         function loadStory() {
             const level = document.getElementById('levelSelect').value;
             const unit = document.getElementById('unitSelect').value;
@@ -1498,23 +1590,19 @@
             
             currentStory = story;
             
-            // Show preview
             document.getElementById('previewVi').textContent = story.vi.join(' ');
             document.getElementById('previewEn').textContent = story.en.join(' ');
             previewSection.style.display = 'block';
             
-            // Enable start button
             startBtn.disabled = false;
         }
         
-        // ========== START GAME ==========
         function startGame() {
             if (!currentStory) {
                 alert('Please load a story first!');
                 return;
             }
             
-            // Reset game state
             score = 0;
             combo = 0;
             hintCount = 3;
@@ -1524,12 +1612,12 @@
             selectedEnglishTile = null;
             selectedVietnameseTile = null;
             
-            // Reset stack
+            easyMode = document.getElementById('easyModeSwitch').checked;
+            
             columnHeights = [0, 0, 0];
             columnWords = [[], [], []];
             activeEnglishWords = [];
             
-            // Update UI
             document.getElementById('score').textContent = score;
             document.getElementById('combo').textContent = 'x0';
             document.getElementById('hintLeft').textContent = hintCount;
@@ -1539,7 +1627,15 @@
             document.getElementById('fallingWords').innerHTML = '';
             document.getElementById('gameLevel').textContent = `${selectedLevel} - ${selectedUnit}`;
             
-            // Setup based on mode
+            const easyIndicator = document.getElementById('easyModeIndicator');
+            if (easyMode) {
+                easyIndicator.style.display = 'block';
+                easyIndicator.style.background = '#27ae60';
+                easyIndicator.textContent = '🌟 DỄ';
+            } else {
+                easyIndicator.style.display = 'none';
+            }
+            
             if (translationMode === 'vi-en') {
                 vietWords = [...currentStory.vi];
                 englishWords = [...currentStory.en];
@@ -1552,30 +1648,19 @@
                 document.getElementById('poolLang').textContent = '🇻🇳 Tiếng Việt rơi';
             }
             
-            // Create translation map
             createTranslationMap();
-            
-            // Create Vietnamese tiles (hiển thị bên trái)
             createVietnameseTiles();
             
-            // Remaining English words (chưa xuất hiện)
             remainingEnglishWords = [...englishWords];
-            
-            // Shuffle
             remainingEnglishWords = shuffleArray(remainingEnglishWords);
             
-            // Switch to game section
             document.getElementById('setupSection').style.display = 'none';
             document.getElementById('gameSection').style.display = 'block';
             
-            // Start timer
             startTimer();
-            
-            // Start falling words
             startFallingWords();
         }
         
-        // ========== CREATE TRANSLATION MAP ==========
         function createTranslationMap() {
             translationMap = {};
             
@@ -1590,11 +1675,8 @@
                     translationMap[englishWords[i]] = vietWords[i];
                 }
             }
-            
-            console.log('Translation Map:', translationMap);
         }
         
-        // ========== CREATE VIETNAMESE TILES ==========
         function createVietnameseTiles() {
             const sourceGrid = document.getElementById('sourceGrid');
             sourceGrid.innerHTML = '';
@@ -1615,58 +1697,54 @@
             document.getElementById('gameProgress').textContent = `0/${vietWords.length} từ đã dịch`;
         }
         
-        // ========== FALLING WORDS MECHANIC ==========
         function startFallingWords() {
             fallingInterval = setInterval(() => {
                 if (isPaused || !isGameActive) return;
                 
-                // Add new word if there are remaining words
                 if (remainingEnglishWords.length > 0) {
                     const wordIndex = Math.floor(Math.random() * remainingEnglishWords.length);
                     const word = remainingEnglishWords[wordIndex];
                     
                     createFallingWord(word);
-                    
-                    // Remove from remaining
                     remainingEnglishWords.splice(wordIndex, 1);
                 }
                 
-                // Kiểm tra game over (stack quá cao)
                 const maxHeight = Math.max(...columnHeights);
-                // Điều chỉnh threshold cho mobile (scale 0.7)
                 const isMobile = window.innerWidth <= 768;
-                const warningThreshold = isMobile ? 250 : 350; // Cảnh báo khi gần chạm
-                const gameOverThreshold = isMobile ? 300 : 420; // Thua khi chạm khung trên
+                const warningThreshold = isMobile ? 250 : 350;
+                const gameOverThreshold = isMobile ? 300 : 420;
 
                 if (maxHeight > warningThreshold) {
                     document.getElementById('poolWarning').style.display = 'block';
-                    if (maxHeight > gameOverThreshold) {
+                    
+                    if (!easyMode && maxHeight > gameOverThreshold) {
                         endGame('lose');
                     }
                 } else {
                     document.getElementById('poolWarning').style.display = 'none';
                 }
+
+                if (easyMode && maxHeight > warningThreshold) {
+                    document.getElementById('poolWarning').innerHTML = '⚠️ Stack gần đầy! (Chế độ dễ - không thua)';
+                } else {
+                    document.getElementById('poolWarning').innerHTML = '⚠️ Sắp đầy!';
+                }
                 
-            }, 2000); // New word every 2 seconds
+            }, 2000);
             
-            // Start falling animation
             startFallingAnimation();
         }
         
         function createFallingWord(word) {
             const container = document.getElementById('fallingWords');
-            
-            // Chọn cột ngẫu nhiên (0-2)
             const column = Math.floor(Math.random() * columns);
             
-            // Tính vị trí left dựa trên cột (cho 3 cột)
-            // Điều chỉnh % cho mobile
             const isMobile = window.innerWidth <= 768;
             let leftPos;
             if (isMobile) {
-                leftPos = [3, 35, 67][column]; // % cho mobile
+                leftPos = [3, 35, 67][column];
             } else {
-                leftPos = [10, 38, 66][column]; // % cho desktop
+                leftPos = [10, 38, 66][column];
             }
             
             const wordTile = document.createElement('div');
@@ -1680,7 +1758,6 @@
             
             container.appendChild(wordTile);
             
-            // Add to active words
             activeEnglishWords.push({
                 element: wordTile,
                 word: word,
@@ -1700,39 +1777,28 @@
                     for (let i = activeEnglishWords.length - 1; i >= 0; i--) {
                         const item = activeEnglishWords[i];
                         
-                        // Cập nhật vị trí
                         item.top += item.speed;
                         
-                        // Kiểm tra va chạm với stack
                         const column = item.column;
                         
-                        // Điều chỉnh bottom limit cho mobile
                         const isMobile = window.innerWidth <= 768;
-                        let bottomLimit = isMobile ? 280 : 420; // Đáy container mặc định
+                        let bottomLimit = isMobile ? 280 : 420;
                         
-                        // Nếu đã có từ trong cột này
                         if (columnWords[column].length > 0) {
-                            // Lấy từ trên cùng của stack (gần đáy nhất)
                             const topStackWord = columnWords[column][columnWords[column].length - 1];
                             const topStackTop = parseFloat(topStackWord.element.style.top);
-                            bottomLimit = topStackTop - (isMobile ? 28 : 38); // Cách từ dưới (điều chỉnh cho mobile)
+                            bottomLimit = topStackTop - (isMobile ? 28 : 38);
                         } else {
-                            bottomLimit = (isMobile ? 280 : 420) - (isMobile ? 28 : 38); // Đáy container trừ chiều cao từ
+                            bottomLimit = (isMobile ? 280 : 420) - (isMobile ? 28 : 38);
                         }
                         
-                        // Kiểm tra nếu chạm stack hoặc đáy
                         if (item.top >= bottomLimit) {
-                            // Đặt chính xác vị trí
                             item.top = bottomLimit;
                             item.element.style.top = item.top + 'px';
                             
-                            // Thêm vào stack
                             addToStack(item, column);
-                            
-                            // Xóa khỏi active
                             activeEnglishWords.splice(i, 1);
                         } else {
-                            // Cập nhật vị trí nếu chưa chạm
                             item.element.style.top = item.top + 'px';
                         }
                     }
@@ -1744,28 +1810,23 @@
             animate();
         }
         
-        // ========== STACK MANAGEMENT ==========
         function addToStack(item, column) {
             const word = item.word;
             const element = item.element;
             
-            // Điều chỉnh kích thước cho mobile
             const isMobile = window.innerWidth <= 768;
-            const tileHeight = isMobile ? 28 : 38; // Chiều cao tile
-            const containerHeight = isMobile ? 280 : 420; // Chiều cao container
+            const tileHeight = isMobile ? 28 : 38;
+            const containerHeight = isMobile ? 280 : 420;
             
-            // Tính vị trí dựa trên số từ đã có trong cột
             let newTop;
             if (columnWords[column].length === 0) {
-                newTop = containerHeight - tileHeight; // Đáy container - chiều cao từ
+                newTop = containerHeight - tileHeight;
             } else {
-                // Lấy từ trên cùng (gần đáy nhất)
                 const lastWord = columnWords[column][columnWords[column].length - 1];
                 const lastTop = parseFloat(lastWord.element.style.top);
-                newTop = lastTop - tileHeight; // Xếp lên trên từ cuối cùng
+                newTop = lastTop - tileHeight;
             }
             
-            // Cập nhật style cho từ
             element.style.top = newTop + 'px';
             element.style.position = 'absolute';
             element.style.backgroundColor = '#8e44ad';
@@ -1773,34 +1834,24 @@
             element.style.zIndex = '5';
             element.style.cursor = 'pointer';
             
-            // Lưu thông tin vào mảng columnWords
             columnWords[column].push({
                 word: word,
                 element: element,
                 top: newTop
             });
             
-            // Cập nhật độ cao cột
             columnHeights[column] = columnWords[column].length * tileHeight;
-            
-            console.log(`Stack column ${column}: ${columnWords[column].length} words, height: ${columnHeights[column]}px`);
         }
-        
-        // ========== CLICK HANDLERS ==========
 
         function removeFromStack(word, column) {
-            // Điều chỉnh kích thước cho mobile
             const isMobile = window.innerWidth <= 768;
-            const tileHeight = isMobile ? 28 : 38; // Chiều cao tile
-            const containerHeight = isMobile ? 280 : 420; // Chiều cao container
+            const tileHeight = isMobile ? 28 : 38;
+            const containerHeight = isMobile ? 280 : 420;
             
-            // Tìm index của từ cần xóa
             const index = columnWords[column].findIndex(w => w.word === word);
             if (index !== -1) {
-                // Xóa từ khỏi cột
                 columnWords[column].splice(index, 1);
                 
-                // Cập nhật lại vị trí cho tất cả các từ còn lại trong cột
                 for (let i = 0; i < columnWords[column].length; i++) {
                     const item = columnWords[column][i];
                     const newTop = containerHeight - ((i + 1) * tileHeight);
@@ -1808,10 +1859,7 @@
                     item.top = newTop;
                 }
                 
-                // Cập nhật độ cao cột
                 columnHeights[column] = columnWords[column].length * tileHeight;
-                
-                console.log(`Removed from stack column ${column}: ${columnWords[column].length} words left`);
                 return true;
             }
             return false;
@@ -1819,8 +1867,9 @@
 
         function onEnglishTileClick(tile) {
             if (isPaused || !isGameActive) return;
+            if (!tile) return;
             
-            // Bỏ chọn previous
+            // Bỏ chọn tile trước đó
             if (selectedEnglishTile) {
                 selectedEnglishTile.classList.remove('selected');
             }
@@ -1834,66 +1883,53 @@
         
         function onVietnameseTileClick(tile) {
             if (isPaused || !isGameActive) return;
-            if (tile.dataset.matched === 'true') return; // Đã được dịch rồi
+            if (!tile) return;
+            if (tile.dataset.matched === 'true') return;
             
             if (!selectedEnglishTile) {
-                // Thông báo ngắn gọn hơn cho mobile
-                if (window.innerWidth <= 768) {
-                    const toast = document.createElement('div');
-                    toast.textContent = 'Chọn từ Anh trước!';
-                    toast.style.position = 'fixed';
-                    toast.style.bottom = '20px';
-                    toast.style.left = '50%';
-                    toast.style.transform = 'translateX(-50%)';
-                    toast.style.background = '#f39c12';
-                    toast.style.color = 'white';
-                    toast.style.padding = '8px 15px';
-                    toast.style.borderRadius = '20px';
-                    toast.style.zIndex = '3000';
-                    toast.style.fontSize = '12px';
-                    document.body.appendChild(toast);
-                    setTimeout(() => toast.remove(), 1500);
-                } else {
-                    alert('Hãy chọn một từ tiếng Anh trước!');
-                }
+                const toast = document.createElement('div');
+                toast.textContent = 'Chọn từ tiếng Anh trước!';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '20px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.background = '#f39c12';
+                toast.style.color = 'white';
+                toast.style.padding = '8px 15px';
+                toast.style.borderRadius = '20px';
+                toast.style.zIndex = '3000';
+                toast.style.fontSize = '14px';
+                toast.style.fontWeight = 'bold';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 1500);
                 return;
             }
             
             const vietWord = tile.dataset.word;
             const englishWord = selectedEnglishTile.dataset.word;
-            
-            // Kiểm tra xem có đúng không (dùng translation map)
             const expectedEnglish = translationMap[vietWord];
             
             console.log('Checking:', vietWord, '->', englishWord, 'Expected:', expectedEnglish);
             
             if (englishWord === expectedEnglish) {
-                // ĐÚNG!
                 rightSound.play().catch(e => {});
                 
                 // Đánh dấu tile tiếng Việt đã được dịch
                 tile.dataset.matched = 'true';
                 tile.classList.add('matched');
-                tile.style.backgroundColor = '#d4edda';
-                tile.style.borderColor = '#27ae60';
-                tile.style.color = '#155724';
-                tile.textContent = englishWord; // Hiển thị từ tiếng Anh
+                tile.textContent = englishWord;
                 
                 // Xóa từ tiếng Anh khỏi game
                 const column = parseInt(selectedEnglishTile.dataset.column);
                 const word = selectedEnglishTile.dataset.word;
 
-                // Xóa khỏi active hoặc stack
                 const inActive = activeEnglishWords.find(w => w.element === selectedEnglishTile);
                 if (inActive) {
-                    // Đang rơi - xóa khỏi active
                     activeEnglishWords = activeEnglishWords.filter(w => w.element !== selectedEnglishTile);
                 } else {
-                    // Trong stack - xóa khỏi stack và các từ ở trên rơi xuống
                     removeFromStack(word, column);
                 }
                 
-                // Xóa tile
                 selectedEnglishTile.remove();
                 selectedEnglishTile = null;
                 
@@ -1915,17 +1951,22 @@
                     endGame('win');
                 }
             } else {
-                // SAI!
                 wrongSound.play().catch(e => {});
                 
                 // Reset combo
                 combo = 0;
                 document.getElementById('combo').textContent = 'x0';
                 
-                // Flash đỏ
+                // Flash đỏ tile tiếng Việt
                 tile.style.animation = 'shake 0.5s';
                 setTimeout(() => {
                     tile.style.animation = '';
+                }, 500);
+                
+                // Flash đỏ tile tiếng Anh
+                selectedEnglishTile.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    selectedEnglishTile.style.animation = '';
                 }, 500);
                 
                 // Bỏ chọn từ tiếng Anh
@@ -1934,48 +1975,40 @@
             }
         }
         
-        // ========== HINT SYSTEM ==========
         function useHint() {
             if (hintCount <= 0) {
-                if (window.innerWidth <= 768) {
-                    const toast = document.createElement('div');
-                    toast.textContent = 'Hết lượt hint!';
-                    toast.style.position = 'fixed';
-                    toast.style.bottom = '20px';
-                    toast.style.left = '50%';
-                    toast.style.transform = 'translateX(-50%)';
-                    toast.style.background = '#e74c3c';
-                    toast.style.color = 'white';
-                    toast.style.padding = '8px 15px';
-                    toast.style.borderRadius = '20px';
-                    toast.style.zIndex = '3000';
-                    toast.style.fontSize = '12px';
-                    document.body.appendChild(toast);
-                    setTimeout(() => toast.remove(), 1500);
-                } else {
-                    alert('Bạn đã hết lượt hint!');
-                }
+                const toast = document.createElement('div');
+                toast.textContent = 'Hết lượt hint!';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '20px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.background = '#e74c3c';
+                toast.style.color = 'white';
+                toast.style.padding = '8px 15px';
+                toast.style.borderRadius = '20px';
+                toast.style.zIndex = '3000';
+                toast.style.fontSize = '14px';
+                toast.style.fontWeight = 'bold';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 1500);
                 return;
             }
             
             if (isPaused || !isGameActive) return;
             
-            // Tìm các tile tiếng Việt chưa được dịch
             const unmatchedTiles = Array.from(document.querySelectorAll('.viet-tile:not(.matched)'));
             if (unmatchedTiles.length === 0) return;
             
-            // Chọn ngẫu nhiên một tile
             const randomTile = unmatchedTiles[Math.floor(Math.random() * unmatchedTiles.length)];
             const vietWord = randomTile.dataset.word;
             const correctEnglish = translationMap[vietWord];
             
-            // Tìm từ tiếng Anh tương ứng trong active words hoặc stack
             const englishTile = Array.from(document.querySelectorAll('.english-tile')).find(
                 tile => tile.dataset.word === correctEnglish
             );
             
             if (englishTile) {
-                // Highlight cả hai
                 randomTile.classList.add('highlight');
                 englishTile.classList.add('highlight');
                 
@@ -1984,32 +2017,26 @@
                     englishTile.classList.remove('highlight');
                 }, 3000);
                 
-                // Giảm hint count
                 hintCount--;
                 document.getElementById('hintLeft').textContent = hintCount;
                 document.getElementById('hintCount').textContent = hintCount;
             }
         }
         
-        // ========== TIMER FUNCTIONS ==========
         function startTimer() {
             if (timerInterval) clearInterval(timerInterval);
             
             timerInterval = setInterval(() => {
                 if (!isPaused && isGameActive) {
-                    timeElapsed++; // Tăng lên thay vì giảm
+                    timeElapsed++;
                     document.getElementById('timer').textContent = timeElapsed;
                     
-                    // Tính bonus dựa trên thời gian (tùy chọn)
                     const bonus = Math.floor(timeElapsed / 30) * 5;
                     document.getElementById('bonusInfo').textContent = `+${bonus}`;
-                    
-                    // KHÔNG còn điều kiện thua khi hết giờ
                 }
             }, 1000);
         }
         
-        // ========== PAUSE / RESUME ==========
         function pauseGame() {
             isPaused = true;
             document.getElementById('pauseOverlay').style.display = 'flex';
@@ -2020,7 +2047,6 @@
             document.getElementById('pauseOverlay').style.display = 'none';
         }
         
-        // ========== END GAME ==========
         function endGame(result) {
             isGameActive = false;
             clearInterval(timerInterval);
@@ -2029,14 +2055,12 @@
                 cancelAnimationFrame(animationFrame);
             }
             
-            // Play sound
             if (result === 'win') {
                 winSound.play().catch(e => {});
             } else {
                 wrongSound.play().catch(e => {});
             }
             
-            // Show result modal
             const modal = document.getElementById('resultModal');
             const content = document.getElementById('resultContent');
             const title = document.getElementById('resultTitle');
@@ -2046,12 +2070,10 @@
             content.className = `result-content ${result}`;
             title.textContent = result === 'win' ? '🏆 CHIẾN THẮNG!' : '💀 GAME OVER';
             
-            // Calculate stats
             const matchedCount = document.querySelectorAll('.viet-tile.matched').length;
             const totalWords = vietWords.length;
             const accuracy = totalWords > 0 ? Math.round((matchedCount / totalWords) * 100) : 0;
             
-            // Build translated text
             let translatedHtml = '';
             document.querySelectorAll('.viet-tile').forEach(tile => {
                 if (tile.dataset.matched === 'true') {
@@ -2073,6 +2095,10 @@
                 <div class="stat-row">
                     <span>🌍 Chế độ:</span>
                     <span>${translationMode === 'vi-en' ? 'Việt → Anh' : 'Anh → Việt'}</span>
+                </div>
+                <div class="stat-row">
+                    <span>🌟 Chế độ dễ:</span>
+                    <span>${easyMode ? 'BẬT' : 'TẮT'}</span>
                 </div>
                 <div class="stat-row">
                     <span>⏱️ Thời gian:</span>
@@ -2097,7 +2123,6 @@
             modal.style.display = 'flex';
         }
         
-        // ========== UTILITY FUNCTIONS ==========
         function shuffleArray(array) {
             const newArray = [...array];
             for (let i = newArray.length - 1; i > 0; i--) {
@@ -2117,10 +2142,8 @@
             document.getElementById('setupSection').style.display = 'block';
         }
 
-        // ========== HANDLE ORIENTATION CHANGE ==========
         window.addEventListener('orientationchange', function() {
             setTimeout(() => {
-                // Force repaint for mobile
                 document.body.style.display = 'none';
                 document.body.offsetHeight;
                 document.body.style.display = 'flex';
