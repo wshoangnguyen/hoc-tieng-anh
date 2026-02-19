@@ -8,28 +8,81 @@
 
 === Super Minds 3 ===
 [Unit 0]
-[VN] Đây| là| Mike.| Anh ấy| là| anh họ của Tom.| Mike| chín| tuổi.| Cậu ấy| đang ở| trong| ngôi nhà lớn.| Cậu ấy| muốn| đi xuống| tầng dưới| tới tầng hầm.| Mike| thật sự| giỏi| giải| câu đố| và| chơi| đàn ghi-ta.| Nhưng| cậu ấy không| giỏi| trèo| cây.| Nhìn kìa!| Đây| là| cuốn sách cũ của dì của cậu ấy.| Nó| là| số| chín mươi lăm.
-[EN] This| is| Mike.| He| is| Tom’s cousin.| Mike is| nine| years old.| He| is| in |the big house.| He| wants| to go| downstairs| to the cellar.| Mike is| really| good at| doing| puzzles| and| playing| the guitar.| But| he is not| good at| climbing| trees.| Look!| This| is| his aunt’s old book.| It| is| number| ninety-five.
 
 [Unit 1]
 
 [Unit 2]
 
-
-=== Kid stories ====
+=== Kid stories ===
 [Story 1]
+[VN] Đây| là| Ben.| Chú ấy| là| một| chú chó.| Ben| thì| đói bụng.| Whisper| đi đến.| Cậu ấy| có| một| cây xúc xích.| Cậu ấy| đưa| cây xúc xích| cho| Ben.| Ben| ăn| cây xúc xích.| Chú ấy| thích| nó.| Bây giờ,| Ben| thì| rất| hạnh phúc. 
+[EN] This| is| Ben.| He| is| a| dog.| Ben| is| hungry.| Whisper| comes.| He| has got| a| sausage.| He| gives| the sausage| to| Ben.| Ben| eats| the sausage.| He| likes| it.| Now,| Ben| is| very| happy.
+[Story 2]
+[VN] Trong| sở thú,| có| một| chú gấu bắc cực.| Tên của chú| là| Snow.| Hôm nay,| Snow| thì| rất| buồn.| Chú ấy| thì| đói bụng.| Người trông thú| đi đến.| Ông ấy| có| một| quả dưa hấu to.| Ông ấy| đưa| quả dưa hấu| cho| Snow.| Snow| ăn| quả dưa hấu.| Chú ấy| thích| nó.| Bây giờ,| Snow| thì| rất| hạnh phúc. 
+[EN] In| the zoo,| there is| a| polar bear.| His name| is| Snow.| Today,| Snow| is| very| sad.| He| is| hungry.| The zookeeper| comes.| He| has| a| big watermelon.| He| gives| the watermelon| to| Snow.| Snow| eats| the watermelon.| He| likes| it.| Now,| Snow| is| very| happy.
+
+[Story 3]
+[VN] Hôm qua,| Kylie| đã ở| biển.| Bố của cô ấy| đã ở| cùng với cô ấy.| Nước| đã| ấm áp.| Đột nhiên,| đã có| bốn| con cá heo.| Chúng| thì| to| và| màu xám.| Bố| đã| rất| lo lắng.|Đã có| một| con cá mập| ở gần đó!| Con cá mập| thì| đói bụng.| Nhưng| những con cá heo| đã| dũng cảm.| Kylie| và| bố| đã| an toàn. 
+[EN] Yesterday,| Kylie| was| in the sea.| Her dad| was| with her.| The water| was| warm.| Suddenly,| there were| four| dolphins.| They| were| big| and| grey.| Dad| was| very| worried.| There was| a| shark| nearby!| The shark| was| hungry.| But| the dolphins| were| brave.| Kylie| and| dad| were| safe.
+
+[Story 4]
+[VN] Hôm qua,| Tom| đã ở| tại| khu cắm trại.| Mẹ của cậu ấy| đã ở| cùng với| cậu ấy.| Họ| đã dựng| một| cái lều to.| Đột nhiên,| đã có| một| cơn bão.| Cơn mưa| thì| nặng hạt.| Họ| đã chạy| vào trong| cái lều.| Sau đó,| họ| đã nghe thấy| một| tiếng động.| Nó| là| một| con chó nhỏ| ở bên ngoài.| Nó| thì| ướt| và| lạnh.| Tom| đã mang| con chó| vào trong.| Họ| đã cho| con| chó| một ít| thức ăn.| Con chó| đã an toàn| và| vui vẻ. 
+[EN] Yesterday,| Tom| was| at| the campsite.| His mum| was| with| him.| They| put up| a| big tent.| Suddenly,| there was| a| storm.| The rain| was| heavy.| They| ran| inside| the tent.| Then,| they| heard| a| noise.| It| was| a| small dog| outside.| It| was| wet| and| cold.| Tom| brought| the dog| inside.| They| gave| the| dog| some| food.| The dog| was safe| and| happy.
+
+[Story 5]
+[VN] Hôm qua,| Phoebe| đã đi bộ| trong| rừng nhiệt đới.| Cô ấy| đã nhìn thấy| một| con trăn màu xanh lá.| Nó| đã ở| trên| một| cành cây.| Nó| thì| to| và| đáng sợ.| Đột nhiên,| con trăn| đã di chuyển.| Phoebe| đã| rất| lo lắng.| Nhưng| con trăn| đã không| đói bụng.| Nó| chỉ| muốn| ngủ.| Phoebe| đã| an toàn. 
+[EN] Yesterday,| Phoebe| walked| in| the rainforest.| She| saw| a| green anaconda.| It| was| on| a| branch.| It| was| big| and| scary.| Suddenly,| the anaconda| moved.| Phoebe| was| very| worried.| But| the anaconda| wasn't| hungry.| It| just| wanted| to sleep.| Phoebe| was| safe.
+
+[Story 6]
+[VN] Hôm qua,| Alex và Phoebe| đã ở| Bắc Cực.| Thời tiết| đã| lạnh cóng.| Họ| đã thấy| một| con gấu bắc cực.| Nó| thì| to| và| màu trắng.| Đột nhiên,| đã có| một| con hải cẩu con.| Nó| đã ở| trên| một| tảng băng trôi.| Nó| thì| sợ hãi.| Nhưng| những đứa trẻ| đã| dũng cảm.| Họ| đã cứu| con hải cẩu.| Con vật| đã| an toàn. 
+[EN] Yesterday,| Alex and Phoebe| were| in the Arctic.| The weather| was| freezing.| They| saw| a| polar bear.| It| was| big| and| white.| Suddenly,| there was| a| seal pup.| It| was| on| an| ice floe.| It| was| scared.| But| the children| were| brave.| They| rescued| the seal.| The animal| was| safe.
+
+=== Funny stories ===
+[Story 1]
+[VN] Đây| là| Zog.| Zog| là| một| con quái vật.| Chú ấy| thì| to| và| màu xanh lá.| Zog| thì| đói bụng.| Chú ấy| ở| trong| bếp.| Có| một| cái bánh pizza.| Zog| không| thích| pizza.| Có| một| chiếc tất cũ.| Zog| ăn| chiếc tất.| Ngon tuyệt!| Bây giờ,| Zog| thì| hạnh phúc. 
+[EN] This| is| Zog.| Zog| is| a| monster.| He| is| big| and| green.| Zog| is| hungry.| He| is| in| the kitchen.| There is| a| pizza.| Zog| doesn't| like| pizza.| There is| an| old sock.| Zog| eats| the sock.| Yummy!| Now,| Zog| is| happy.
 
 [Story 2]
+[VN] Trong| sở thú,| có| một| chú khỉ| tên là| Bob.| Bob| thức dậy| lúc| tám| giờ.| Chú ấy| đi| vào| phòng ngủ.| Chú ấy| nhìn thấy| quần áo.| Bob| đội| một| chiếc tất| lên| tai của chú.| Chú ấy| đặt| một| chiếc giày| lên| mũi của chú.| Chú ấy| nhìn vào| cái gương.| Chú ấy| nghĩ:| "Mình| thì| rất| đẹp trai!"| Sau đó,| chú ấy| đi| đến| trường học.| Cô giáo| nói:| "Ôi không!| Bob,| em| là| một| con khỉ!"
+[EN] In| the zoo,| there is| a| monkey| named| Bob.| Bob| gets up| at| eight| o'clock.| He| goes| into| the bedroom.| He| sees| clothes.| Bob| puts| a| sock| on| his ear.| He| puts| a| shoe| on| his nose.| He| looks in| the mirror.| He| thinks:| "I| am| very| handsome!"| Then,| he| goes| to| school.| The teacher| says:| "Oh no!| Bob,| you| are| a| monkey!"
 
+[Story 3]
+[VN] Giáo viên:| Ben,| bài tập về nhà của em| rất| tốt.| Có phải| bố của em| giúp| em?| Ben:| Không,| ông ấy| đã không| giúp| em.| Giáo viên:| Em có| chắc chắn không?| Ben:| Vâng.| Ông ấy| đã làm| tất cả! 
+[EN] Teacher:| Ben,| your homework is| very| good.| Did| your father| help| you?| Ben:| No,| he| didn’t| help| me.| Teacher:| Are you| sure?| Ben:| Yes.| He| did| it all!
 
-=== Funny stories ====
-[Story 1]
+[Story 4]
+[VN] Tối qua,| Ben và bố| đã ở| bên trong| cái lều.| Trời| thì| rất| tối.| Đột nhiên,| họ| đã nghe thấy| một| tiếng động lạ.| Bố| đã| rất| sợ hãi.| Ông ấy| đã nghĩ| nó| là| một| con gấu.| Ông ấy| đã bật| cái đèn pin| một cách cẩn thận.| Nó| đã không phải| một| con gấu.| Nó| là| một| con ếch nhỏ| ở trên| túi ngủ.| Ben| đã cười| lớn tiếng,| nhưng| bố| đã không| vui. 
+[EN] Last night,| Ben and Dad| were| inside| the tent.| It| was| very| dark.| Suddenly,| they| heard| a| strange noise.| Dad| was| very| scared.| He| thought| it| was| a| bear.| He| turned on| the torch| carefully.| It| was not| a| bear.| It| was| a| small frog| on| the sleeping bag.| Ben| laughed| loudly,| but| Dad| was not| happy.
 
-[Story 2]
+[Story 5]
+[VN] Tối qua,| Joe| đã ở| trên| sân khấu.| Anh ấy| đã chơi| đàn ghi-ta điện của mình.| Đèn sân khấu| thì| rất| sáng.| Những người hâm mộ| đã la hét.| Joe| muốn| trở thành| một| ngôi sao.| Anh ấy| đã nhảy| lên cao.| Ôi không!| Giày của anh ấy| đã bay mất.| Anh ấy| đã đeo| đôi tất thủng lỗ chỗ.| Mọi người| đã cười.| Đó| đã là| một| thảm họa vui nhộn.
+[EN] Last night,| Joe| was| on| the stage.| He| played| his electric guitar.| The spotlight| was| very| bright.| The fans| shouted.| Joe| wanted| to be| a| star.| He| jumped| high.| Oh no!| His shoes| flew off.| He| wore| holey socks.| Everyone| laughed.| It| was| a| funny disaster.
 
+[Story 6]
+[VN] Hôm qua,| những đứa trẻ| đã ở| phòng thí nghiệm.| Giáo sư Potts| đã có| một| cái máy mới.| Nó| là| một| máy sơn.| Giáo sư| đã muốn sơn| một| cái ghế.| Ông ấy| đã nhấn| một| cái nút.| Đột nhiên,| cái máy| đã quay| nhanh.| Nó| đã không sơn| cái ghế.| Nó| đã sơn| con mèo!| Con mèo| thì| màu xanh lá và xanh dương.| Mọi người| đã cười lớn.
+[EN] Yesterday,| the children| were| in the lab.| Professor Potts| had| a| new machine.| It| was| a| painting machine.| The professor| wanted to paint| a| chair.| He| pressed| a| button.| Suddenly,| the machine| turned| fast.| It| didn't paint| the chair.| It| painted| the cat!| The cat| was| green and blue.| Everyone| laughed.
 
 === Meaningful stories ===
 [Story 1]
+[VN] Đây| là| Jumbo.| Chú ấy| là| một| chú voi.| Chú ấy| thì| to.| Jumbo| thì| buồn.| Chú ấy| không thể| nhảy.| Đây| là| Pip.| Chú ấy| là| một| chú chim.| Chú ấy| thì| nhỏ.| Pip| không thể| bơi.| Jumbo| và| Pip| là| bạn bè.| Jumbo| giúp| Pip| bơi.| Pip| hát| cho| Jumbo.| Bây giờ,| họ| thì| hạnh phúc. 
+[EN] This| is| Jumbo.| He| is| an| elephant.| He| is| big.| Jumbo| is| sad.| He| can't| jump.| This| is| Pip.| He| is| a| bird.| He| is| small.| Pip| can't| swim.| Jumbo| and| Pip| are| friends.| Jumbo| helps| Pip| swim.| Pip| sings| for| Jumbo.| Now,| they| are| happy.
 
 [Story 2]
+[VN] Trong| sở thú,| có| một| chú khỉ| tên là| Mike.| Mike| thức dậy| lúc| bảy| giờ.| Cậu ấy| thích| buổi sáng.| Cậu ấy| ăn| chuối| cho| bữa sáng.| Hôm nay,| Mike| đi| đến| chợ.| Cậu ấy| nhìn thấy| một| con ngựa vằn.| Con ngựa vằn| thì| rất| buồn.| Nó| muốn| một| quả táo.| Mike| có| hai| quả táo.| Cậu ấy| đưa| một| quả táo| cho| con ngựa vằn.| Bây giờ,| con ngựa vằn| thì| hạnh phúc.| Mike| cũng| rất| hạnh phúc| nữa. 
+[EN] In| the zoo,| there is| a| monkey| named| Mike.| Mike| gets up| at| seven| o'clock.| He| likes| the morning.| He| has| bananas| for| breakfast.| Today,| Mike| goes| to| the market.| He| sees| a| zebra.| The zebra| is| very| sad.| It| wants| an| apple.| Mike| has| two| apples.| He| gives| one| apple| to| the zebra.| Now,| the zebra| is| happy.| Mike| is| very| happy| too.
 
+[Story 3]
+[VN] Trong| một| đất nước| xa xôi,| có| một| người thợ đóng giày.| Công việc của ông ấy| thì| không| dễ dàng.| Ông ấy| luôn luôn| thức dậy| lúc| sáu| giờ.| Ông ấy| cắt| da| cho| mười| đôi giày.| Nhưng| ông ấy| thì| rất| mệt.| Ông ấy| để| tấm da| ở trên| cái bàn bếp| và| đi ngủ.| Sáng hôm sau,| người thợ đóng giày| thức dậy.| Ông ấy| nhìn thấy| mười| đôi| giày đẹp.| Ông ấy| thì| rất| hạnh phúc. 
+[EN] In| a| country| far away,| there is| a| shoemaker.| His job| is| not| easy.| He| always| gets up| at| six| o'clock.| He| cuts| the leather| for| ten| pairs of shoes.| But| he| is| very| tired.| He| leaves| the leather| on| the kitchen table| and| goes to bed.| The next morning,| the shoemaker| gets up.| He| sees| ten| pairs of| beautiful shoes.| He| is| very| happy.
+
+[Story 4]
+[VN] Sáng hôm qua,| Anna| đã ở| tại| bảo tàng.| Cô ấy| đã thích| những người hiệp sĩ.| Đột nhiên,| cô ấy| đã nhìn thấy| một| chiếc vòng cổ đẹp| ở trên| sàn nhà.| Nó| không phải là| của cô ấy.| Cô ấy| đã biết| cái mà| cô ấy| phải| làm.| Anna| đã đưa| chiếc vòng cổ| cho| một| sĩ quan cảnh sát.| Người cảnh sát| đã mỉm cười.| Anh ấy| đã nói| "Làm tốt lắm!".| Anna| đã cảm thấy| rất| vui vẻ.
+[EN] Yesterday morning,| Anna| was| at| the museum.| She| liked| the knights.| Suddenly,| she| saw| a| beautiful necklace| on| the floor.| It| was not| hers.| She| knew| what| she| had to| do.| Anna| gave| the necklace| to| a| police officer.| The police officer| smiled.| He| said| "Well done!".| Anna| felt| very| happy.
+
+[Story 5]
+[VN] Tối qua,| Tom| đã là| một| diễn viên.| Anh ấy| đã ở| trên| sân khấu.| Anh ấy| đã mặc| một| bộ trang phục mới.| Nhưng| anh ấy| đã| rất| lo lắng.| Anh ấy| đã làm mất| cây đàn lu-tơ của mình.| "Đừng lo lắng,"| Sam| đã nói.| "Tớ sẽ| tìm| nó."| Sam| đã nhanh chóng| tìm thấy| cây đàn lu-tơ.| Tom| đã chơi| nhạc.| Khán giả| đã vỗ tay.| Sam| đã là| một| người bạn tuyệt vời.
+[EN] Last night,| Tom| was| an| actor.| He| was| on| the stage.| He| wore| a| new costume.| But| he| was| very| worried.| He| lost| his lute.| "Don't worry,"| Sam| said.| "I'll| find| it."| Sam| quickly| found| the lute.| Tom| played| music.| The audience| clapped.| Sam| was| a| great friend.
+
+[Story 6]
+[VN] Hôm qua,| Alex và Patrick| đã ở| trên đảo.| Họ| đã có| một| cái xẻng.| Họ| đã đào| một| cái hố.| Đột nhiên,| họ| đã tìm thấy| một| rương kho báu.| Nó| đã ở| dưới| một| cây cọ.| Bên trong,| đã có| rất nhiều| tiền vàng.| Nhưng| những đứa trẻ| đã| trung thực.| Kho báu| không phải là| của họ.| Cướp biển| đã lấy trộm nó| từ| một gia đình.| Họ| đã trả lại| số vàng.| Đó là| một| việc làm tốt.
+[EN] Yesterday,| Alex and Patrick| were| on the island.| They| had| a| spade.| They| dug| a| hole.| Suddenly,| they| found| a| treasure chest.| It| was| under| a| palm tree.| Inside,| there were| lots of| gold coins.| But| the children| were| honest.| The treasure| was not| theirs.| Pirates| stole it| from| a family.| They| gave back| the gold.| It was| a| good deed.
