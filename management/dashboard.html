@@ -1,0 +1,1170 @@
+<!-- file: dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Dashboard - Học tiếng Anh</title>
+    <style>
+        @keyframes gentleWave {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            15%, 45%, 75% { transform: translateX(-5px) rotate(-3deg); }
+            30%, 60%, 90% { transform: translateX(5px) rotate(3deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .sidebar-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .menu-item {
+            transition: all 0.2s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        .admin-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-white to-[#ffefd3]">
+    <!-- Logo lắc lư -->
+    <div class="fixed bottom-4 right-4 z-50 cursor-pointer group"
+         onclick="window.location.href='https://hoctienganhdelam.com/'">
+        <img src="logo.png" alt="Logo" 
+             class="h-16 transition-all duration-300 animate-[gentleWave_3s_ease-in-out_infinite] group-hover:scale-125 group-hover:rotate-12">
+        <span class="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Về trang chủ!
+        </span>
+    </div>
+
+    <!-- Container chính với sidebar -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar - Menu bên trái -->
+        <aside class="fixed lg:static w-64 lg:w-72 h-screen lg:h-auto bg-white shadow-2xl lg:shadow-lg sidebar-transition z-40
+                      transform -translate-x-full lg:translate-x-0"
+               id="sidebar">
+            <div class="p-6 h-full flex flex-col">
+                <!-- Logo -->
+                <div class="mb-8">
+                    <img src="banner.jpg" alt="Học tiếng Anh dễ lắm" class="w-full h-auto rounded-lg">
+                </div>
+
+                <!-- Menu items -->
+                <nav class="space-y-2 flex-1">
+                    <a href="#" onclick="setActiveMenu(this, 'home')" 
+                       class="menu-item active flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-home w-6"></i>
+                        <span class="font-medium">Trang chủ</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'students')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-users w-6"></i>
+                        <span class="font-medium">Học sinh</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'assessments')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-star w-6"></i>
+                        <span class="font-medium">Đánh giá</span>
+                    </a>
+                    
+                    <a href="#" onclick="setActiveMenu(this, 'payments')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-money-bill-wave w-6"></i>
+                        <span class="font-medium">Học phí</span>
+                    </a>
+
+                    <a href="#" onclick="setActiveMenu(this, 'rewards')" 
+                       class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                        <i class="fas fa-gift w-6"></i>
+                        <span class="font-medium">Điểm thưởng</span>
+                    </a>
+
+                    <!-- Menu admin chỉ hiện với user type = admin -->
+                    <div id="adminMenuSection" class="hidden">
+                        <div class="border-t border-gray-200 my-4"></div>
+                        <a href="#" onclick="setActiveMenu(this, 'users')" 
+                           class="menu-item flex items-center space-x-3 p-3 rounded-xl text-gray-700 hover:bg-blue-50 sidebar-transition">
+                            <i class="fas fa-user-cog w-6"></i>
+                            <span class="font-medium">Quản lý User</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- User info trong sidebar -->
+                <div class="mt-auto pt-6">
+                    <div class="p-4 bg-gray-50 rounded-xl" id="sidebarUserInfo">
+                        <!-- Sẽ được load bằng JS -->
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-blue-500"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-medium text-gray-800 truncate">Đang tải...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Nút toggle menu cho mobile -->
+        <button onclick="toggleSidebar()" 
+                class="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg hover:bg-gray-50 transition">
+            <i class="fas fa-bars text-gray-600 text-xl"></i>
+        </button>
+
+        <!-- Overlay cho mobile -->
+        <div onclick="toggleSidebar()" 
+             class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden transition-opacity"
+             id="overlay"></div>
+
+        <!-- Nội dung chính -->
+        <main class="flex-1 p-4 lg:p-8 ml-0 lg:ml-0 pt-16 lg:pt-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header với thông tin user -->
+                <div class="bg-white rounded-2xl shadow-lg p-4 lg:p-6 mb-6 fade-in">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div>
+                            <h1 class="text-2xl lg:text-3xl font-bold text-gray-800" id="greeting">Xin chào! 👋</h1>
+                            <p class="text-gray-600 mt-1" id="welcomeMessage">Chào mừng bạn quay trở lại</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium" id="userTypeBadge">Đang tải...</span>
+                            <button onclick="logout()"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 lg:px-6 py-2 rounded-xl transition duration-200 flex items-center gap-2">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="hidden lg:inline">Đăng xuất</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nội dung chính thay đổi theo menu -->
+                <div id="mainContent" class="fade-in">
+                    <!-- Trang chủ content -->
+                    <div id="homeContent" class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Chào mừng đến với hệ thống! 🎉</h2>
+                            <p class="text-gray-600 leading-relaxed">
+                                Đây là hệ thống quản lý học viên dành cho các lớp tiếng Anh Online. 
+                                Bạn có thể quản lý học sinh, theo dõi đánh giá và học phí tại đây.
+                            </p>
+                        </div>
+
+                        <!-- Thống kê nhanh -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="statistics">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-users text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Tổng học sinh</h3>
+                                <p class="text-3xl font-bold">0</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-star text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Đánh giá trung bình</h3>
+                                <p class="text-3xl font-bold">-</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white">
+                                <i class="fas fa-money-bill-wave text-3xl mb-3"></i>
+                                <h3 class="text-lg font-medium opacity-90">Học phí tháng này</h3>
+                                <p class="text-3xl font-bold">0đ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quản lý học sinh -->
+                    <div id="studentsContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-800">📚 Quản lý Học sinh</h2>
+                                <button onclick="showAddStudentModal()" 
+                                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center gap-2">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Thêm học sinh</span>
+                                </button>
+                            </div>
+                            <div id="studentsList" class="space-y-4">
+                                <!-- Danh sách học sinh sẽ load bằng JS -->
+                                <p class="text-gray-500 text-center py-8">Đang tải dữ liệu...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quản lý User (chỉ admin) -->
+                    <div id="usersContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">👥 Quản lý Người dùng</h2>
+                            <div id="usersList" class="space-y-4">
+                                <!-- Danh sách users sẽ load bằng JS -->
+                                <p class="text-gray-500 text-center py-8">Đang tải dữ liệu...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Các content khác -->
+                    <div id="assessmentsContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Đánh giá học sinh ⭐</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+
+                    <div id="paymentsContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Quản lý Học phí 💰</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+
+                    <div id="rewardsContent" class="hidden">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Điểm thưởng 🎁</h2>
+                            <p class="text-gray-500">Tính năng đang được phát triển...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========== MODALS ========== -->
+    <!-- Modal thêm học sinh -->
+    <div id="addStudentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+            <h3 class="text-xl font-bold mb-4">Thêm học sinh mới</h3>
+            <form id="addStudentForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Họ và tên <span class="text-red-500">*</span></label>
+                    <input type="text" id="studentFullName" required
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tên tiếng Anh (biệt danh)</label>
+                    <input type="text" id="studentNickname"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ngày sinh</label>
+                    <input type="date" id="studentDob"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại phụ huynh</label>
+                    <input type="tel" id="studentPhone"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Lớp</label>
+                    <select id="studentClass" class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                        <option value="">Chọn lớp</option>
+                        <option value="Family & Friends 1">Family & Friends 1</option>
+                        <option value="Family & Friends 2">Family & Friends 2</option>
+                        <option value="Family & Friends 3">Family & Friends 3</option>
+                        <option value="Flyers">Flyers</option>
+                        <option value="Movers">Movers</option>
+                        <option value="Starters">Starters</option>
+                    </select>
+                </div>
+                <div class="flex gap-2 pt-4">
+                    <button type="submit"
+                            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl">
+                        Thêm
+                    </button>
+                    <button type="button" onclick="hideAddStudentModal()"
+                            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-xl">
+                        Hủy
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal sửa học sinh -->
+    <div id="editStudentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">✏️ Chỉnh sửa Học sinh</h3>
+                <button onclick="hideEditStudentModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="editStudentForm" class="space-y-4">
+                <input type="hidden" id="editStudentId">
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Họ và tên <span class="text-red-500">*</span></label>
+                    <input type="text" id="editStudentFullName" required
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tên tiếng Anh (biệt danh)</label>
+                    <input type="text" id="editStudentNickname"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ngày sinh</label>
+                    <input type="date" id="editStudentDob"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại phụ huynh</label>
+                    <input type="tel" id="editStudentPhone"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Lớp</label>
+                    <select id="editStudentClass" class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                        <option value="">Chọn lớp</option>
+                        <option value="Family & Friends 1">Family & Friends 1</option>
+                        <option value="Family & Friends 2">Family & Friends 2</option>
+                        <option value="Family & Friends 3">Family & Friends 3</option>
+                        <option value="Flyers">Flyers</option>
+                        <option value="Movers">Movers</option>
+                        <option value="Starters">Starters</option>
+                        <option value="Super Minds 1">Super Minds 1</option>
+                        <option value="Super Minds 2">Super Minds 2</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Trạng thái</label>
+                    <select id="editStudentStatus" class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                        <option value="active">Đang học</option>
+                        <option value="inactive">Tạm nghỉ</option>
+                        <option value="graduated">Đã tốt nghiệp</option>
+                    </select>
+                </div>
+                
+                <div class="flex gap-2 pt-4">
+                    <button type="submit"
+                            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl">
+                        <i class="fas fa-save mr-2"></i>Cập nhật
+                    </button>
+                    <button type="button" onclick="hideEditStudentModal()"
+                            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-xl">
+                        Hủy
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal sửa user -->
+    <div id="editUserModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">✏️ Chỉnh sửa User</h3>
+                <button onclick="hideEditUserModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="editUserForm" class="space-y-4">
+                <input type="hidden" id="editUserId">
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tên hiển thị</label>
+                    <input type="text" id="editUserDisplayName" required
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
+                    <input type="tel" id="editUserPhone"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Địa chỉ</label>
+                    <input type="text" id="editUserAddress"
+                           class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Loại tài khoản</label>
+                    <select id="editUserType" class="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                        <option value="parent">Phụ huynh</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                
+                <div class="flex gap-2 pt-4">
+                    <button type="submit"
+                            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl">
+                        <i class="fas fa-save mr-2"></i>Cập nhật
+                    </button>
+                    <button type="button" onclick="hideEditUserModal()"
+                            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-xl">
+                        Hủy
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận xóa -->
+    <div id="deleteConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Xác nhận xóa</h3>
+                <p class="text-gray-600 mb-6">Bạn có chắc muốn xóa học sinh này? Hành động này không thể hoàn tác!</p>
+                <div class="flex gap-3">
+                    <button onclick="confirmDelete()" 
+                            class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl">
+                        <i class="fas fa-trash mr-2"></i>Xóa
+                    </button>
+                    <button onclick="hideDeleteModal()" 
+                            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-xl">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPT ========== -->
+    <script type="module">
+        // IMPORTS
+        import { auth, db } from './firebase-config.js';
+        import { signOut } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+        import { 
+            getUserById, 
+            getAllUsers, 
+            getAllStudents, 
+            createStudent,
+            updateUser,
+            updateUserRole,
+            softDeleteUser,
+            restoreUser,
+            updateLastLogin,
+            deleteStudent,
+            updateStudent
+        } from './firestore-service.js';
+
+        // ========== BIẾN TOÀN CỤC ==========
+        let currentUser = null;
+        let currentUserData = null;
+        let isSubmitting = false;
+        let currentStudentsList = [];
+        let currentUsersList = [];
+        let studentToDelete = null;
+
+        // ========== KIỂM TRA ĐĂNG NHẬP ==========
+        if (!localStorage.getItem('isLoggedIn')) {
+            console.log("Chưa đăng nhập, chuyển về login");
+            window.location.href = 'login.html';
+        }
+
+        // ========== KHỞI TẠO DASHBOARD ==========
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUser = user;
+                console.log("✅ User đã đăng nhập:", user.uid);
+                
+                await loadUserInfo();
+                await loadStatistics();
+            } else {
+                console.log("❌ Chưa đăng nhập, chuyển về login");
+                handleLogout();
+            }
+        });
+
+        // ========== LOAD THÔNG TIN USER ==========
+        async function loadUserInfo() {
+            try {
+                if (!currentUser) {
+                    console.error("Không có currentUser");
+                    return;
+                }
+                
+                console.log("Đang load thông tin user...");
+                const result = await getUserById(currentUser.uid);
+                
+                if (result.success) {
+                    currentUserData = result.data;
+                    console.log("✅ Thông tin user:", currentUserData);
+                    
+                    const displayName = currentUserData.displayName || 'Học viên';
+                    
+                    const hour = new Date().getHours();
+                    let greeting = 'Xin chào';
+                    if (hour < 12) greeting = 'Chào buổi sáng';
+                    else if (hour < 18) greeting = 'Chào buổi chiều';
+                    else greeting = 'Chào buổi tối';
+                    
+                    const greetingElement = document.getElementById('greeting');
+                    if (greetingElement) {
+                        greetingElement.innerHTML = `${greeting}, <span class="text-blue-500 font-bold">${displayName}</span>! 👋`;
+                    }
+                    
+                    const welcomeElement = document.getElementById('welcomeMessage');
+                    if (welcomeElement) {
+                        welcomeElement.textContent = 'Chào mừng bạn quay trở lại hệ thống';
+                    }
+                    
+                    const typeBadge = document.getElementById('userTypeBadge');
+                    if (typeBadge) {
+                        if (currentUserData.type === 'admin') {
+                            typeBadge.textContent = 'Quản trị viên';
+                            typeBadge.className = 'px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium';
+                        } else {
+                            typeBadge.textContent = 'Phụ huynh';
+                            typeBadge.className = 'px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium';
+                        }
+                    }
+                    
+                    const sidebarInfo = document.getElementById('sidebarUserInfo');
+                    if (sidebarInfo) {
+                        sidebarInfo.innerHTML = `
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 ${currentUserData.type === 'admin' ? 'bg-orange-100' : 'bg-blue-100'} rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-${currentUserData.type === 'admin' ? 'orange' : 'blue'}-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-medium text-gray-800 truncate">${displayName}</p>
+                                    <p class="text-xs text-gray-500 truncate">${currentUserData.type === 'admin' ? 'Quản trị viên' : 'Phụ huynh'}</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    const adminMenu = document.getElementById('adminMenuSection');
+                    if (adminMenu) {
+                        if (currentUserData.type === 'admin') {
+                            adminMenu.classList.remove('hidden');
+                        } else {
+                            adminMenu.classList.add('hidden');
+                        }
+                    }
+                    
+                    updateLastLogin(currentUser.uid).catch(err => 
+                        console.log("Không thể cập nhật last login:", err)
+                    );
+                    
+                } else {
+                    console.error("❌ Không tìm thấy thông tin user:", result.error);
+                    
+                    const displayName = localStorage.getItem('userDisplayName') || 'Học viên';
+                    const greetingElement = document.getElementById('greeting');
+                    if (greetingElement) {
+                        greetingElement.innerHTML = `Xin chào, <span class="text-blue-500">${displayName}</span>! 👋`;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Lỗi load user info:', error);
+            }
+        }
+
+        // ========== LOAD THỐNG KÊ ==========
+        async function loadStatistics() {
+            try {
+                const studentsResult = await getAllStudents();
+                const totalStudents = studentsResult.success ? studentsResult.data.length : 0;
+                
+                const statsDiv = document.getElementById('statistics');
+                if (statsDiv) {
+                    statsDiv.innerHTML = `
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white">
+                            <i class="fas fa-users text-3xl mb-3"></i>
+                            <h3 class="text-lg font-medium opacity-90">Tổng học sinh</h3>
+                            <p class="text-3xl font-bold">${totalStudents}</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white">
+                            <i class="fas fa-star text-3xl mb-3"></i>
+                            <h3 class="text-lg font-medium opacity-90">Đánh giá trung bình</h3>
+                            <p class="text-3xl font-bold">-</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white">
+                            <i class="fas fa-money-bill-wave text-3xl mb-3"></i>
+                            <h3 class="text-lg font-medium opacity-90">Học phí tháng này</h3>
+                            <p class="text-3xl font-bold">0đ</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('❌ Lỗi load statistics:', error);
+            }
+        }
+
+        // ========== LOAD DANH SÁCH HỌC SINH ==========
+        async function loadStudents() {
+            const studentsList = document.getElementById('studentsList');
+            if (!studentsList) return;
+            
+            try {
+                studentsList.innerHTML = '<p class="text-gray-500 text-center py-8">Đang tải dữ liệu...</p>';
+                
+                const result = await getAllStudents();
+                
+                if (result.success && result.data.length > 0) {
+                    currentStudentsList = result.data;
+                    
+                    studentsList.innerHTML = result.data.map((student) => `
+                        <div class="p-4 border rounded-lg hover:shadow-md transition bg-white" data-student-id="${student.id}">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">${student.fullName || 'Chưa có tên'}</h3>
+                                    <p class="text-sm text-gray-600 mt-1">
+                                        <span class="font-medium">Nickname:</span> ${student.nickname || 'Chưa có'}
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span class="font-medium">Lớp:</span> ${student.classGroup || 'Chưa xếp lớp'}
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span class="font-medium">SĐT:</span> ${student.phone || 'Chưa có'}
+                                    </p>
+                                </div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <span class="px-3 py-1 ${student.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'} rounded-full text-xs font-medium">
+                                        ${student.status === 'active' ? 'Đang học' : student.status === 'inactive' ? 'Tạm nghỉ' : 'Đã tốt nghiệp'}
+                                    </span>
+                                    <div class="flex gap-2">
+                                        ${currentUserData?.type === 'admin' ? `
+                                            <button onclick="showEditStudentModal('${student.id}')" 
+                                                    class="text-blue-500 hover:text-blue-700 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition">
+                                                <i class="fas fa-edit"></i> Sửa
+                                            </button>
+                                            <button onclick="deleteStudent('${student.id}')" 
+                                                    class="text-red-500 hover:text-red-700 text-sm bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition">
+                                                <i class="fas fa-trash"></i> Xóa
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    studentsList.innerHTML = '<p class="text-gray-500 text-center py-8">Chưa có học sinh nào. Hãy thêm học sinh mới!</p>';
+                }
+            } catch (error) {
+                console.error('❌ Lỗi load students:', error);
+                studentsList.innerHTML = '<p class="text-red-500 text-center py-8">Lỗi tải dữ liệu: ' + error.message + '</p>';
+            }
+        }
+
+        // ========== LOAD DANH SÁCH USERS ==========
+        async function loadUsers() {
+            const usersList = document.getElementById('usersList');
+            if (!usersList) return;
+            
+            if (!currentUserData || currentUserData.type !== 'admin') {
+                usersList.innerHTML = '<p class="text-red-500 text-center py-8">Bạn không có quyền xem trang này</p>';
+                return;
+            }
+            
+            try {
+                usersList.innerHTML = '<p class="text-gray-500 text-center py-8">Đang tải dữ liệu...</p>';
+                
+                const result = await getAllUsers();
+                
+                if (result.success && result.data.length > 0) {
+                    currentUsersList = result.data;
+                    
+                    usersList.innerHTML = result.data.map(user => {
+                        let createdAt = '';
+                        if (user.createdAt) {
+                            try {
+                                const date = user.createdAt.toDate ? user.createdAt.toDate() : new Date(user.createdAt);
+                                createdAt = date.toLocaleDateString('vi-VN');
+                            } catch (e) {
+                                createdAt = 'Không rõ';
+                            }
+                        }
+                        
+                        return `
+                        <div class="p-4 border rounded-lg hover:shadow-md transition bg-white">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">${user.displayName || 'Chưa có tên'}</h3>
+                                    <p class="text-sm text-gray-600 mt-1">
+                                        <span class="font-medium">Username:</span> ${user.username || 'Chưa có'}
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span class="font-medium">Loại:</span>
+                                        <span class="ml-1 px-2 py-1 ${user.type === 'admin' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'} rounded-full text-xs">
+                                            ${user.type === 'admin' ? 'Admin' : 'Phụ huynh'}
+                                        </span>
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span class="font-medium">Trạng thái:</span> 
+                                        <span class="ml-1">${user.isActive ? '✅ Hoạt động' : '❌ Đã xóa'}</span>
+                                    </p>
+                                    <p class="text-xs text-gray-400 mt-1">Tham gia: ${createdAt}</p>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    ${user.id !== currentUser.uid ? `
+                                        <button onclick="showEditUserModal('${user.id}')" 
+                                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                                            <i class="fas fa-edit"></i> Sửa
+                                        </button>
+                                        ${user.type !== 'admin' ? `
+                                            <button onclick="makeAdmin('${user.id}')" 
+                                                    class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                                                <i class="fas fa-crown"></i> Set Admin
+                                            </button>
+                                        ` : `
+                                            <button onclick="removeAdmin('${user.id}')" 
+                                                    class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                                                <i class="fas fa-user"></i> Remove Admin
+                                            </button>
+                                        `}
+                                        ${user.isActive ? `
+                                            <button onclick="deleteUser('${user.id}')" 
+                                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                                                <i class="fas fa-trash"></i> Xóa
+                                            </button>
+                                        ` : `
+                                            <button onclick="restoreUser('${user.id}')" 
+                                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                                                <i class="fas fa-undo"></i> Khôi phục
+                                            </button>
+                                        `}
+                                    ` : `
+                                        <span class="text-sm text-gray-500 italic">Tài khoản của bạn</span>
+                                    `}
+                                </div>
+                            </div>
+                        </div>
+                    `}).join('');
+                } else {
+                    usersList.innerHTML = '<p class="text-gray-500 text-center py-8">Chưa có người dùng nào</p>';
+                }
+            } catch (error) {
+                console.error('❌ Lỗi load users:', error);
+                usersList.innerHTML = '<p class="text-red-500 text-center py-8">Lỗi tải dữ liệu: ' + error.message + '</p>';
+            }
+        }
+
+        // ========== HÀM XỬ LÝ MODAL ==========
+        window.showAddStudentModal = function() {
+            const modal = document.getElementById('addStudentModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        };
+
+        window.hideAddStudentModal = function() {
+            const modal = document.getElementById('addStudentModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+
+        window.showEditStudentModal = function(studentId) {
+            const student = currentStudentsList.find(s => s.id === studentId);
+            if (!student) return;
+            
+            document.getElementById('editStudentId').value = student.id;
+            document.getElementById('editStudentFullName').value = student.fullName || '';
+            document.getElementById('editStudentNickname').value = student.nickname || '';
+            document.getElementById('editStudentPhone').value = student.phone || '';
+            document.getElementById('editStudentClass').value = student.classGroup || '';
+            document.getElementById('editStudentStatus').value = student.status || 'active';
+            
+            if (student.dob) {
+                document.getElementById('editStudentDob').value = student.dob;
+            }
+            
+            const modal = document.getElementById('editStudentModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.hideEditStudentModal = function() {
+            const modal = document.getElementById('editStudentModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('editStudentForm').reset();
+        };
+
+        window.showEditUserModal = function(userId) {
+            if (!currentUsersList || currentUsersList.length === 0) {
+                alert('Danh sách users chưa được load! Vui lòng thử lại.');
+                return;
+            }
+            
+            const user = currentUsersList.find(u => u.id === userId);
+            if (!user) {
+                alert('Không tìm thấy user!');
+                return;
+            }
+            
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('editUserDisplayName').value = user.displayName || '';
+            document.getElementById('editUserPhone').value = user.phone || '';
+            document.getElementById('editUserAddress').value = user.address || '';
+            document.getElementById('editUserType').value = user.type || 'parent';
+            
+            const modal = document.getElementById('editUserModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.hideEditUserModal = function() {
+            const modal = document.getElementById('editUserModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('editUserForm').reset();
+        };
+
+        window.hideDeleteModal = function() {
+            const modal = document.getElementById('deleteConfirmModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+            studentToDelete = null;
+        };
+
+        // ========== XỬ LÝ FORM THÊM HỌC SINH ==========
+        const addStudentForm = document.getElementById('addStudentForm');
+        if (addStudentForm) {
+            addStudentForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (isSubmitting) {
+                    console.log('Đang xử lý, vui lòng đợi...');
+                    return;
+                }
+                
+                const submitButton = addStudentForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                try {
+                    isSubmitting = true;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+                    
+                    const studentData = {
+                        fullName: document.getElementById('studentFullName')?.value.trim(),
+                        nickname: document.getElementById('studentNickname')?.value.trim(),
+                        dob: document.getElementById('studentDob')?.value,
+                        phone: document.getElementById('studentPhone')?.value.trim(),
+                        classGroup: document.getElementById('studentClass')?.value,
+                        status: 'active'
+                    };
+                    
+                    if (!studentData.fullName) {
+                        alert('Vui lòng nhập họ tên học sinh!');
+                        return;
+                    }
+                    
+                    if (!currentUser) {
+                        alert('Bạn chưa đăng nhập!');
+                        return;
+                    }
+                    
+                    const result = await createStudent(studentData, currentUser.uid);
+                    
+                    if (result.success) {
+                        alert('✅ Thêm học sinh thành công!');
+                        hideAddStudentModal();
+                        addStudentForm.reset();
+                        await loadStudents();
+                        await loadStatistics();
+                    } else {
+                        alert('❌ Lỗi: ' + (result.error || 'Không thể thêm học sinh'));
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi thêm học sinh:', error);
+                    alert('❌ Có lỗi xảy ra: ' + error.message);
+                } finally {
+                    isSubmitting = false;
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                }
+            });
+        }
+
+        // ========== XỬ LÝ FORM SỬA HỌC SINH ==========
+        const editStudentForm = document.getElementById('editStudentForm');
+        if (editStudentForm) {
+            editStudentForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const studentId = document.getElementById('editStudentId').value;
+                const updateData = {
+                    fullName: document.getElementById('editStudentFullName').value.trim(),
+                    nickname: document.getElementById('editStudentNickname').value.trim(),
+                    dob: document.getElementById('editStudentDob').value,
+                    phone: document.getElementById('editStudentPhone').value.trim(),
+                    classGroup: document.getElementById('editStudentClass').value,
+                    status: document.getElementById('editStudentStatus').value
+                };
+                
+                try {
+                    const result = await updateStudent(studentId, updateData);
+                    
+                    if (result.success) {
+                        alert('✅ Cập nhật học sinh thành công!');
+                        hideEditStudentModal();
+                        await loadStudents();
+                        await loadStatistics();
+                    } else {
+                        alert('❌ Lỗi: ' + result.error);
+                    }
+                } catch (error) {
+                    alert('❌ Có lỗi xảy ra: ' + error.message);
+                }
+            });
+        }
+
+        // ========== XỬ LÝ FORM SỬA USER ==========
+        const editUserForm = document.getElementById('editUserForm');
+        if (editUserForm) {
+            editUserForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const userId = document.getElementById('editUserId').value;
+                const updateData = {
+                    displayName: document.getElementById('editUserDisplayName').value.trim(),
+                    phone: document.getElementById('editUserPhone').value.trim(),
+                    address: document.getElementById('editUserAddress').value.trim()
+                };
+                
+                const newType = document.getElementById('editUserType').value;
+                
+                try {
+                    const result = await updateUser(userId, updateData);
+                    
+                    if (result.success) {
+                        const currentUserInList = currentUsersList.find(u => u.id === userId);
+                        
+                        if (currentUserInList && newType !== currentUserInList.type) {
+                            await updateUserRole(userId, newType, currentUser.uid);
+                        }
+                        
+                        alert('✅ Cập nhật user thành công!');
+                        hideEditUserModal();
+                        await loadUsers();
+                    } else {
+                        alert('❌ Lỗi: ' + result.error);
+                    }
+                } catch (error) {
+                    alert('❌ Có lỗi xảy ra: ' + error.message);
+                }
+            });
+        }
+
+        // ========== HÀM XÓA HỌC SINH ==========
+        window.deleteStudent = async function(studentId) {
+            if (!currentUserData || currentUserData.type !== 'admin') {
+                alert('❌ Bạn không có quyền xóa học sinh!');
+                return;
+            }
+            
+            studentToDelete = studentId;
+            const modal = document.getElementById('deleteConfirmModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        };
+
+        window.confirmDelete = async function() {
+            if (!studentToDelete) {
+                hideDeleteModal();
+                return;
+            }
+            
+            try {
+                const result = await deleteStudent(studentToDelete);
+                if (result.success) {
+                    alert('✅ Xóa học sinh thành công!');
+                    await loadStudents();
+                    await loadStatistics();
+                } else {
+                    alert('❌ Lỗi: ' + (result.error || 'Không thể xóa học sinh'));
+                }
+            } catch (error) {
+                alert('❌ Có lỗi xảy ra: ' + error.message);
+            } finally {
+                hideDeleteModal();
+            }
+        };
+
+        // ========== HÀM XỬ LÝ ĐĂNG XUẤT ==========
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userDisplayName');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('userId');
+            window.location.href = 'login.html';
+        }
+
+        window.logout = function() {
+            signOut(auth).then(handleLogout).catch((error) => {
+                console.error('❌ Lỗi đăng xuất:', error);
+                handleLogout();
+            });
+        };
+
+        // ========== HÀM TOGGLE SIDEBAR ==========
+        window.toggleSidebar = function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+        };
+
+        // ========== HÀM SET ACTIVE MENU ==========
+        window.setActiveMenu = async function(element, menuId) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (element) {
+                element.classList.add('active');
+            }
+            
+            document.getElementById('homeContent')?.classList.add('hidden');
+            document.getElementById('studentsContent')?.classList.add('hidden');
+            document.getElementById('assessmentsContent')?.classList.add('hidden');
+            document.getElementById('paymentsContent')?.classList.add('hidden');
+            document.getElementById('rewardsContent')?.classList.add('hidden');
+            document.getElementById('usersContent')?.classList.add('hidden');
+            
+            const selectedContent = document.getElementById(menuId + 'Content');
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+            
+            if (menuId === 'students') {
+                await loadStudents();
+            } else if (menuId === 'users' && currentUserData?.type === 'admin') {
+                await loadUsers();
+            }
+            
+            if (window.innerWidth < 1024) {
+                toggleSidebar();
+            }
+        };
+
+        // ========== HÀM ADMIN ==========
+        window.makeAdmin = async function(userId) {
+            if (!currentUser) {
+                alert('Bạn chưa đăng nhập!');
+                return;
+            }
+            
+            if (confirm('Bạn có chắc muốn set user này làm admin?')) {
+                const result = await updateUserRole(userId, 'admin', currentUser.uid);
+                if (result.success) {
+                    alert('✅ Đã cập nhật role thành công!');
+                    await loadUsers();
+                } else {
+                    alert('❌ Lỗi: ' + (result.error || 'Không thể cập nhật role'));
+                }
+            }
+        };
+
+        window.removeAdmin = async function(userId) {
+            if (!currentUser) {
+                alert('Bạn chưa đăng nhập!');
+                return;
+            }
+            
+            if (userId === currentUser.uid) {
+                alert('Bạn không thể tự xóa quyền Admin của chính mình!');
+                return;
+            }
+            
+            if (confirm('Bạn có chắc muốn xóa quyền Admin của user này?')) {
+                const result = await updateUserRole(userId, 'parent', currentUser.uid);
+                if (result.success) {
+                    alert('✅ Đã xóa quyền Admin thành công!');
+                    await loadUsers();
+                } else {
+                    alert('❌ Lỗi: ' + (result.error || 'Không thể xóa quyền Admin'));
+                }
+            }
+        };
+
+        window.deleteUser = async function(userId) {
+            if (!currentUser) {
+                alert('Bạn chưa đăng nhập!');
+                return;
+            }
+            
+            if (confirm('Bạn có chắc muốn xóa user này?')) {
+                const result = await softDeleteUser(userId, currentUser.uid);
+                if (result.success) {
+                    alert('✅ Đã xóa user thành công!');
+                    await loadUsers();
+                } else {
+                    alert('❌ Lỗi: ' + (result.error || 'Không thể xóa user'));
+                }
+            }
+        };
+
+        window.restoreUser = async function(userId) {
+            if (!currentUser) {
+                alert('Bạn chưa đăng nhập!');
+                return;
+            }
+            
+            if (confirm('Bạn có chắc muốn khôi phục user này?')) {
+                const result = await restoreUser(userId, currentUser.uid);
+                if (result.success) {
+                    alert('✅ Đã khôi phục user thành công!');
+                    await loadUsers();
+                } else {
+                    alert('❌ Lỗi: ' + (result.error || 'Không thể khôi phục user'));
+                }
+            }
+        };
+
+        // ========== EVENT LISTENERS ==========
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                if (sidebar && overlay) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.add('hidden');
+                }
+            }
+        });
+
+        const overlay = document.getElementById('overlay');
+        if (overlay) {
+            overlay.addEventListener('click', toggleSidebar);
+        }
+
+        console.log("✅ Dashboard đã sẵn sàng!");
+    </script>
+</body>
+</html>
