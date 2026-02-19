@@ -39,8 +39,8 @@
 
 === Funny stories ===
 [Story 1]
-[VN] Đây| là| Zog.| Zog| là| một| con quái vật.| Chú ấy| thì| to| và| màu xanh lá.| Zog| thì| đói bụng.| Chú ấy| ở| trong| bếp.| Có| một| cái bánh pizza.| Zog| không| thích| pizza.| Có| một| chiếc tất cũ.| Zog| ăn| chiếc tất.| Ngon tuyệt!| Bây giờ,| Zog| thì| hạnh phúc. 
-[EN] This| is| Zog.| Zog| is| a| monster.| He| is| big| and| green.| Zog| is| hungry.| He| is| in| the kitchen.| There is| a| pizza.| Zog| doesn't| like| pizza.| There is| an| old sock.| Zog| eats| the sock.| Yummy!| Now,| Zog| is| happy.
+[VN] Đây| là| Zog.| Zog| là| một| con quái vật.| Chú ấy| thì| to| và| màu xanh lá.| Zog| thì| đói bụng.| Chú ấy| ở| trong| bếp.| Có| một| cái bánh pizza.| Zog| không| thích| pizza.| Có| một chiếc tất cũ.| Zog| ăn| chiếc tất.| Ngon tuyệt!| Bây giờ,| Zog| thì| hạnh phúc. 
+[EN] This| is| Zog.| Zog| is| a| monster.| He| is| big| and| green.| Zog| is| hungry.| He| is| in| the kitchen.| There is| a| pizza.| Zog| doesn't| like| pizza.| There is| an old sock.| Zog| eats| the sock.| Yummy!| Now,| Zog| is| happy.
 
 [Story 2]
 [VN] Trong| sở thú,| có| một| chú khỉ| tên là| Bob.| Bob| thức dậy| lúc| tám| giờ.| Chú ấy| đi| vào| phòng ngủ.| Chú ấy| nhìn thấy| quần áo.| Bob| đội| một| chiếc tất| lên| tai của chú.| Chú ấy| đặt| một| chiếc giày| lên| mũi của chú.| Chú ấy| nhìn vào| cái gương.| Chú ấy| nghĩ:| "Mình| thì| rất| đẹp trai!"| Sau đó,| chú ấy| đi| đến| trường học.| Cô giáo| nói:| "Ôi không!| Bob,| em| là| một| con khỉ!"
@@ -86,3 +86,4 @@
 [Story 6]
 [VN] Hôm qua,| Alex và Patrick| đã ở| trên đảo.| Họ| đã có| một| cái xẻng.| Họ| đã đào| một| cái hố.| Đột nhiên,| họ| đã tìm thấy| một| rương kho báu.| Nó| đã ở| dưới| một| cây cọ.| Bên trong,| đã có| rất nhiều| tiền vàng.| Nhưng| những đứa trẻ| đã| trung thực.| Kho báu| không phải là| của họ.| Cướp biển| đã lấy trộm nó| từ| một gia đình.| Họ| đã trả lại| số vàng.| Đó là| một| việc làm tốt.
 [EN] Yesterday,| Alex and Patrick| were| on the island.| They| had| a| spade.| They| dug| a| hole.| Suddenly,| they| found| a| treasure chest.| It| was| under| a| palm tree.| Inside,| there were| lots of| gold coins.| But| the children| were| honest.| The treasure| was not| theirs.| Pirates| stole it| from| a family.| They| gave back| the gold.| It was| a| good deed.
+
