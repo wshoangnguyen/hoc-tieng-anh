@@ -1009,6 +1009,7 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            overscroll-behavior: contain;
         }
 
         .result-content {
@@ -1019,6 +1020,10 @@
             max-width: 500px;
             width: 90%;
             animation: bounce 1s;
+            max-height: 95vh;  /* Giới hạn chiều cao tối đa */
+            overflow-y: auto;  /* Cho phép cuộn dọc */
+            -webkit-overflow-scrolling: touch;  /* Cuộn mượt trên iOS */
+            margin: 20px auto;  /* Canh giữa và có khoảng cách trên dưới */
         }
 
         .result-content.win {
@@ -1045,8 +1050,8 @@
         .stat-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
+            /*margin-bottom: 10px;
+            padding-bottom: 5px;*/
             border-bottom: 1px solid #ddd;
         }
 
