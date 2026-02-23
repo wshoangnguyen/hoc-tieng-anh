@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Words Fall - Game dịch thuật cho bé</title>
+    <title>Words Fall</title>
     <style>
         /* ========== BRAND STYLES ========== */
         * {
@@ -179,7 +179,7 @@
                     transform: scale(0.7);
                     transform-origin: top center;
                     padding: 5px;
-                    max-width: 142.857%;
+                    /*max-width: 142.857%;*/
                     width: 142.857%;
                     margin-left: -21.4285%;
                     height: auto;
@@ -197,7 +197,7 @@
                 .source-area {
                     min-width: 35%;
                     max-height: 280px;
-                    padding: 8px;
+                   /* padding: 8px;*/
                 }
                 
                 .source-grid {
@@ -221,7 +221,7 @@
                 .viet-tile {
                     padding: 6px 8px;
                     font-size: 11px;
-                    min-width: 45px;
+                    min-width: 35px;
                     min-height: 32px;
                     margin: 2px;
                 }
@@ -233,9 +233,9 @@
                     border-radius: 6px;
                 }
                 
-                .english-tile[data-column="0"] { left: 3% !important; }
-                .english-tile[data-column="1"] { left: 35% !important; }
-                .english-tile[data-column="2"] { left: 67% !important; }
+                .english-tile[data-column="0"] { left: 0% !important; }
+                .english-tile[data-column="1"] { left: 33% !important; }
+                .english-tile[data-column="2"] { left: 65% !important; }
                 
                 .game-header {
                     flex-direction: row;
@@ -385,9 +385,16 @@
 
         @media (min-width: 769px) and (max-width: 1024px) {
             .container {
-                transform: scale(0.85);
+                /*transform: scale(0.85);*/
                 transform-origin: top center;
             }
+
+            .viet-tile {
+                    padding: 6px 8px;
+                    font-size: 13px;
+            }
+
+
         }
 
         .container {
@@ -395,8 +402,8 @@
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 1200px;
-            width: 100%;
+            /*max-width: 1200px;*/
+            /*width: 100%;*/
             transition: all 0.3s;
         }
 
@@ -769,7 +776,7 @@
             background: #f8f9fa;
             border: 3px solid #3498db;
             border-radius: 15px;
-            padding: 15px;
+            padding: 5px;
             /*max-height: 550px;*/
             overflow-y: auto;
         }
@@ -787,23 +794,23 @@
         .source-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            /*gap: 10px;*/
             align-items: center;
         }
 
         .viet-tile {
-            padding: 12px 15px;
+            padding: 8px 8px;
             background: #fff3cd;
             border: 2px solid #f39c12;
             border-radius: 8px;
-            font-size: 16px;
+            /*font-size: 16px;*/
             font-weight: bold;
             color: #856404;
             display: inline-block;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             cursor: pointer;
             transition: all 0.3s;
-            min-width: 80px;
+            min-width: 45px;
             text-align: center;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -855,10 +862,11 @@
         .word-pool-area {
             flex: 1;
             min-width: 300px;
+            max-width: 500px;
             background: #f8f9fa;
             border: 3px solid #e74c3c;
             border-radius: 15px;
-            padding: 15px;
+            padding: 5px;
             position: relative;
             max-height: 550px;
             overflow: hidden;
@@ -889,7 +897,7 @@
 
         .english-tile {
             position: absolute;
-            padding: 10px 15px;
+            padding: 8px 5px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 8px;
@@ -900,8 +908,10 @@
             transition: all 0.1s;
             z-index: 10;
             white-space: nowrap;
+            min-width: 45px;
             max-width: 90%;
             overflow: hidden;
+            text-align: center;
             text-overflow: ellipsis;
             border: 2px solid transparent;
             -webkit-touch-callout: none;
@@ -929,12 +939,13 @@
 
         .pool-warning {
             position: absolute;
-            bottom: 10px;
+            bottom: -5px;
             left: 0;
             right: 0;
             text-align: center;
             color: #e74c3c;
             font-weight: bold;
+            font-size: 13px;
             animation: warningPulse 1s infinite;
             background: rgba(255,255,255,0.8);
             padding: 5px;
@@ -1236,7 +1247,7 @@
         <div class="setup-section" id="setupSection">
             <div class="game-title-logo">
                 <img src="words-fall.png" alt="Words Fall Logo" onerror="this.style.display='none'">
-                <h1>Words Fall for Kids</h1>
+                <h1>Words Fall</h1>
             </div>
 
             <div class="mode-section">
@@ -1349,8 +1360,9 @@
                     </div>
                     <div class="pool-container">
                         <div class="falling-words" id="fallingWords"></div>
-                        <div id="poolWarning" class="pool-warning" style="display: none;">⚠️ Sắp đầy!</div>
+                        
                     </div>
+                        <div id="poolWarning" class="pool-warning" style="display: none;">⚠️ Sắp đầy!</div>
                 </div>
             </div>
 
@@ -1834,9 +1846,9 @@
             const isMobile = window.innerWidth <= 768;
             let leftPos;
             if (isMobile) {
-                leftPos = [3, 35, 67][column];
+                leftPos = [1, 33, 64][column];
             } else {
-                leftPos = [10, 38, 66][column];
+                leftPos = [2, 33, 64][column];
             }
             
             const wordTile = document.createElement('div');
@@ -1874,14 +1886,14 @@
                         const column = item.column;
                         
                         const isMobile = window.innerWidth <= 768;
-                        let bottomLimit = isMobile ? 280 : 420;
+                        let bottomLimit = isMobile ? 280 : 442;
                         
                         if (columnWords[column].length > 0) {
                             const topStackWord = columnWords[column][columnWords[column].length - 1];
                             const topStackTop = parseFloat(topStackWord.element.style.top);
                             bottomLimit = topStackTop - (isMobile ? 28 : 38);
                         } else {
-                            bottomLimit = (isMobile ? 280 : 420) - (isMobile ? 28 : 38);
+                            bottomLimit = (isMobile ? 280 : 442) - (isMobile ? 28 : 38);
                         }
                         
                         if (item.top >= bottomLimit) {
@@ -1908,7 +1920,7 @@
             
             const isMobile = window.innerWidth <= 768;
             const tileHeight = isMobile ? 28 : 38;
-            const containerHeight = isMobile ? 280 : 420;
+            const containerHeight = isMobile ? 280 : 442;
             
             let newTop;
             if (columnWords[column].length === 0) {
@@ -1938,7 +1950,7 @@
         function removeFromStack(word, column) {
             const isMobile = window.innerWidth <= 768;
             const tileHeight = isMobile ? 28 : 38;
-            const containerHeight = isMobile ? 280 : 420;
+            const containerHeight = isMobile ? 280 : 442;
             
             // Tìm index của từ trong stack - chỉ cần tìm theo word
             const index = columnWords[column].findIndex(w => w.word === word);
