@@ -192,6 +192,7 @@
             gap: 12px;
             margin-top: 12px;
             margin-bottom: 10px;
+            flex-wrap: wrap;
         }
         button {
             background: #1e3a5f;
@@ -328,6 +329,7 @@
             display: flex;
             gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
         .back-btn-modern {
             background: #6c757d;
@@ -497,7 +499,7 @@
 </div>
 
 <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwdPqUMye5lsE8BTB0gZpoPDXLxDsUI7IBfxtKiCWS4HySY_vJwrWJXHbuYEeY2FBEi/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzwnwUPGAjBi_r9cosgdyS4MSH10fKwZ3XBM2Hk8h-bGq_hC1U-cvMkqTpCjn6OgyiS/exec";
     
     let currentClass = "";
     let studentsData = [];
@@ -724,37 +726,36 @@
             avatarImg.onerror = () => { avatarImg.src = "https://via.placeholder.com/100?text=👩‍🎓"; };
             avatarContainer.appendChild(avatarImg);
             
-            // Hiển thị sticker mới nhất nếu có
-            // Hiển thị tất cả sticker không giới hạn
-if(student.stickers && student.stickers.length > 0) {
-    const stickerContainer = document.createElement('div');
-    stickerContainer.style.position = 'absolute';
-    stickerContainer.style.bottom = '5px';
-    stickerContainer.style.right = '5px';
-    stickerContainer.style.display = 'flex';
-    stickerContainer.style.flexWrap = 'wrap';
-    stickerContainer.style.gap = '1px';
-    stickerContainer.style.maxWidth = '230px';
-    stickerContainer.style.justifyContent = 'flex-end';
-    
-    student.stickers.forEach(sticker => {
-        const badge = document.createElement('div');
-        badge.style.width = '26px';
-        badge.style.height = '26px';
-        badge.style.fontSize = '1rem';
-        badge.style.background = 'rgba(255,255,255,0.95)';
-        badge.style.borderRadius = '50%';
-        badge.style.display = 'flex';
-        badge.style.alignItems = 'center';
-        badge.style.justifyContent = 'center';
-        badge.style.margin = '1px';
-        badge.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
-        badge.textContent = sticker.emoji;
-        stickerContainer.appendChild(badge);
-    });
-    
-    avatarContainer.appendChild(stickerContainer);
-}
+            // Hiển thị tất cả sticker
+            if(student.stickers && student.stickers.length > 0) {
+                const stickerContainer = document.createElement('div');
+                stickerContainer.style.position = 'absolute';
+                stickerContainer.style.bottom = '5px';
+                stickerContainer.style.right = '5px';
+                stickerContainer.style.display = 'flex';
+                stickerContainer.style.flexWrap = 'wrap';
+                stickerContainer.style.gap = '1px';
+                stickerContainer.style.maxWidth = '230px';
+                stickerContainer.style.justifyContent = 'flex-end';
+                
+                student.stickers.forEach(sticker => {
+                    const badge = document.createElement('div');
+                    badge.style.width = '26px';
+                    badge.style.height = '26px';
+                    badge.style.fontSize = '1rem';
+                    badge.style.background = 'rgba(255,255,255,0.95)';
+                    badge.style.borderRadius = '50%';
+                    badge.style.display = 'flex';
+                    badge.style.alignItems = 'center';
+                    badge.style.justifyContent = 'center';
+                    badge.style.margin = '1px';
+                    badge.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+                    badge.textContent = sticker.emoji;
+                    stickerContainer.appendChild(badge);
+                });
+                
+                avatarContainer.appendChild(stickerContainer);
+            }
             
             const infoDiv = document.createElement("div");
             infoDiv.className = "info";
@@ -806,6 +807,24 @@ if(student.stickers && student.stickers.length > 0) {
                 } else if(newPoint !== null) alert("Vui lòng nhập số");
             };
             btnGroup.appendChild(pointBtn);
+            
+            // Nút sửa tên học sinh
+            const editNameBtn = document.createElement("button");
+            editNameBtn.innerText = "✏️ Sửa tên";
+            editNameBtn.style.background = "#4a627a";
+            editNameBtn.onclick = (e) => {
+                e.stopPropagation();
+                const newName = prompt("Nhập tên mới cho học sinh:", student.name);
+                if (newName && newName.trim() !== "") {
+                    student.name = newName.trim();
+                    renderStudentCards();
+                    // Đánh dấu đã thay đổi để lưu
+                    if (!student.nameChanged) student.nameChanged = true;
+                } else if (newName !== null) {
+                    alert("Tên không được để trống!");
+                }
+            };
+            btnGroup.appendChild(editNameBtn);
             
             infoDiv.appendChild(nameDiv);
             infoDiv.appendChild(skillsDiv);
@@ -859,13 +878,17 @@ if(student.stickers && student.stickers.length > 0) {
         for(let i=0; i<studentsData.length; i++) {
             let curr = studentsData[i];
             let orig = originalStudents[i];
+            
+            // Kiểm tra thay đổi bao gồm cả tên
             if( curr.point !== orig.point ||
                 curr.listen !== orig.listen ||
                 curr.speak !== orig.speak ||
                 curr.read !== orig.read ||
-                curr.write !== orig.write ) {
+                curr.write !== orig.write ||
+                curr.name !== orig.name ) {
                 changedStudents.push({
                     id: curr.id,
+                    name: curr.name,
                     point: curr.point,
                     listen: curr.listen,
                     speak: curr.speak,
@@ -889,8 +912,9 @@ if(student.stickers && student.stickers.length > 0) {
                     body: JSON.stringify(stu)
                 });
             }
+            // Cập nhật lại originalStudents
             originalStudents = JSON.parse(JSON.stringify(studentsData));
-            alert("✅ Đã lưu điểm thành công!");
+            alert("✅ Đã lưu điểm và tên học sinh thành công!");
             playSound();
         } catch (error) {
             console.error("Lỗi lưu:", error);
