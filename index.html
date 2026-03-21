@@ -1557,7 +1557,17 @@ video {
         </div>
       </li>
       <li><a href="blog.html" class="nav-link">Blog</a></li>
-	<li><a href="management/login.html" class="nav-link">Sổ điểm</a></li>
+	    <li class="dropdown">
+        <a href="javascript:void(0)" class="nav-link">Sổ điểm</a>
+        <div class="dropdown-content">
+          <a href="javascript:void(0)" onclick="checkPasswordAndRedirect('student')">
+            Học sinh
+          </a>
+          <a href="javascript:void(0)" onclick="checkPasswordAndRedirect('teacher')">
+            Giáo viên
+          </a>
+        </div>
+      </li>
 			<li><a href="https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1" class="nav-link">Vào lớp</a></li>
     </ul>
     
@@ -2117,6 +2127,27 @@ navLinks.forEach(link => {
       });
     }
   }
+
+  // Function kiểm tra mật khẩu và chuyển hướng
+function checkPasswordAndRedirect(role) {
+  let targetUrl = '';
+  
+  if (role === 'student') {
+    targetUrl = 'https://hoctienganhdelam.com/management/login.html';
+  } else if (role === 'teacher') {
+    targetUrl = 'https://hoctienganhdelam.com/student/point.html';
+  }
+  
+  // Hiển thị prompt nhập mật khẩu
+  const password = prompt('Vui lòng nhập mật khẩu để truy cập:');
+  
+  // Kiểm tra mật khẩu
+  if (password === 'Vuiqua123') {
+    window.location.href = targetUrl;
+  } else if (password !== null) {
+    alert('Mật khẩu không đúng! Vui lòng thử lại.');
+  }
+}
   
   // Input validation
   const phoneInput = document.querySelector('input[type="tel"]');
@@ -2179,6 +2210,7 @@ navLinks.forEach(link => {
   fbq('track', 'PageView');
   */
 </script>
+
 
 </body>
 </html>
