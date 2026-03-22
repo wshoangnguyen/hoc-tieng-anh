@@ -461,6 +461,42 @@
                 right: 12px;
             }
         }
+
+        /* Chia tab lớp*/
+.tab-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffd966;
+    padding-bottom: 10px;
+}
+.tab-btn {
+    background: transparent;
+    color: #1e3a5f;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.tab-btn.active {
+    background: #ffb347;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255,179,71,0.3);
+}
+.tab-btn:hover:not(.active) {
+    background: #eef2fa;
+}
+.today-badge {
+    background: #ff6b6b;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
     </style>
 </head>
 <body>
@@ -499,7 +535,7 @@
 </div>
 
 <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzwnwUPGAjBi_r9cosgdyS4MSH10fKwZ3XBM2Hk8h-bGq_hC1U-cvMkqTpCjn6OgyiS/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyPPfXdvYAQO4a7lZG3eBSs0f4uA9hhPePqMyDODquELjWyYrET2gY9mqm4Kqb29HXy/exec";
     
     let currentClass = "";
     let studentsData = [];
@@ -650,31 +686,131 @@
         };
     }
     
-    async function loadClasses() {
-        showLoading();
-        try {
-            const allStudents = await fetchStudentsByClass("ALL");
-            const uniqueClasses = [...new Set(allStudents.map(s => s.class))];
-            const container = document.getElementById("classList");
-            container.innerHTML = "";
-            if (uniqueClasses.length === 0) {
-                container.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#666;'>Không có dữ liệu lớp học</p>";
-            } else {
-                uniqueClasses.forEach(cls => {
-                    const div = document.createElement("div");
-                    div.className = "class-card";
-                    div.innerText = cls;
-                    div.onclick = () => showClassStudents(cls);
-                    container.appendChild(div);
-                });
+// Thay thế hàm loadClasses() và thêm các hàm helper
+
+// Hàm xác định ngày học từ mã lịch
+function getDaysFromCode(code) {
+    const days = [];
+    const parts = code.split(' ');
+    if (parts.length < 2) return days;
+    
+    const schedule = parts[1];
+    for (let i = 0; i < schedule.length; i++) {
+        const char = schedule[i];
+        if (char === 'C') {
+            if (schedule[i+1] === 'N') {
+                days.push('CN');
+                i++;
             }
-        } catch (error) {
-            console.error("Lỗi tải lớp:", error);
-            document.getElementById("classList").innerHTML = "<p style='grid-column:1/-1; text-align:center; color:red;'>Lỗi kết nối</p>";
-        } finally {
-            hideLoading();
+        } else if (!isNaN(parseInt(char))) {
+            days.push(parseInt(char));
         }
     }
+    return days;
+}
+
+// Hàm lấy số thứ tự ngày hiện tại (2=Thứ2...7=Thứ7, CN=8)
+function getCurrentDayNumber() {
+    const days = ['CN', 2, 3, 4, 5, 6, 7];
+    const today = new Date().getDay(); // 0=Chủ nhật
+    if (today === 0) return 'CN';
+    return today + 1;
+}
+
+// Hàm kiểm tra lớp có học hôm nay không
+function isClassToday(className) {
+    const dayCode = getCurrentDayNumber();
+    const days = getDaysFromCode(className);
+    return days.includes(dayCode);
+}
+
+// Hàm tách tên lớp và hiển thị
+function parseClassName(fullName) {
+    const parts = fullName.split(' ');
+    return {
+        name: parts[0],
+        schedule: parts.slice(1).join(' ')
+    };
+}
+
+// Cập nhật hàm loadClasses
+async function loadClasses() {
+    showLoading();
+    try {
+        const allStudents = await fetchStudentsByClass("ALL");
+        const uniqueClasses = [...new Set(allStudents.map(s => s.class))];
+        
+        // Lưu trữ dữ liệu lớp
+        window.classListData = uniqueClasses.map(cls => ({
+            fullName: cls,
+            name: parseClassName(cls).name,
+            schedule: parseClassName(cls).schedule,
+            isToday: isClassToday(cls)
+        }));
+        
+        renderClassList('today'); // Mặc định hiển thị "Hôm nay"
+        
+    } catch (error) {
+        console.error("Lỗi tải lớp:", error);
+        document.getElementById("classList").innerHTML = "<p style='grid-column:1/-1; text-align:center; color:red;'>Lỗi kết nối</p>";
+    } finally {
+        hideLoading();
+    }
+}
+
+// Hàm render danh sách lớp theo filter
+function renderClassList(filter = 'today') {
+    const container = document.getElementById("classList");
+    container.innerHTML = "";
+    
+    // Tạo tab
+    const tabContainer = document.createElement('div');
+    tabContainer.className = 'tab-container';
+    tabContainer.innerHTML = `
+        <button class="tab-btn ${filter === 'today' ? 'active' : ''}" data-filter="today">📅 Hôm nay</button>
+        <button class="tab-btn ${filter === 'all' ? 'active' : ''}" data-filter="all">📚 Tất cả lớp</button>
+    `;
+    container.appendChild(tabContainer);
+    
+    // Lọc danh sách
+    let filteredClasses = window.classListData;
+    if (filter === 'today') {
+        filteredClasses = window.classListData.filter(cls => cls.isToday);
+    }
+    
+    if (filteredClasses.length === 0) {
+        const emptyMsg = document.createElement('p');
+        emptyMsg.style.gridColumn = '1/-1';
+        emptyMsg.style.textAlign = 'center';
+        emptyMsg.style.color = '#666';
+        emptyMsg.style.padding = '40px';
+        emptyMsg.innerHTML = filter === 'today' ? '🎉 Hôm nay không có lớp học! Nghỉ ngơi thôi nào!' : 'Không có dữ liệu lớp học';
+        container.appendChild(emptyMsg);
+    } else {
+        filteredClasses.forEach(cls => {
+            const div = document.createElement("div");
+            div.className = "class-card";
+            
+            // Hiển thị tên lớp và thời gian
+            div.innerHTML = `
+                <div style="font-size: 1.2rem;">${cls.name}</div>
+                <div style="font-size: 0.8rem; color: #ff9800; margin-top: 5px;">⏰ ${cls.schedule}</div>
+                ${cls.isToday && filter === 'all' ? '<span class="today-badge">Hôm nay</span>' : ''}
+            `;
+            div.onclick = () => showClassStudents(cls.fullName);
+            container.appendChild(div);
+        });
+    }
+    
+    // Gắn sự kiện cho tab
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            const newFilter = btn.dataset.filter;
+            renderClassList(newFilter);
+        };
+    });
+}
     
     async function fetchStudentsByClass(className) {
         let url = `${WEB_APP_URL}?class=${encodeURIComponent(className)}`;
