@@ -172,6 +172,40 @@ button {
     }
 }
 
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2001;
+    background: rgba(255, 251, 240, 0.95);
+    /* White beige */
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #fcbe5d;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
 .floating-container {
     position: fixed;
     bottom: 20px;
@@ -240,4 +274,15 @@ button {
 .fade-leave-to {
     opacity: 0;
     transform: translateY(10px);
+}
+
+.toast-enter-active,
+.toast-leave-active {
+    transition: all 0.5s;
+}
+
+.toast-enter-from,
+.toast-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
 }

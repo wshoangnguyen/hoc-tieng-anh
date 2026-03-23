@@ -203,18 +203,52 @@
       >
         <h2 class="title-section text-white">Đăng Ký Học Thử Miễn Phí</h2>
 
-        <div class="flex flex-col gap-2 mt-4 w-1/2 m-auto">
-          <input type="text" placeholder="Tên phụ huynh" class="input" />
-          <input type="phone" placeholder="Số điện thoại" class="input" />
-          <input
-            type="email"
-            placeholder="Email (không bắt buộc)"
-            class="input"
-          />
-        </div>
-
-        <button class="w-1/2 m-auto mt-4">Đăng Ký</button>
+        <form
+          id="registration-form"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSfd3-jq0yB1sOVzUo-ynxH-vgN36yc--lh3g0QviiJG_dJBrQ/formResponse"
+          method="POST"
+          @submit="handleSubmitForm"
+        >
+          <div class="flex flex-col gap-2 mt-4 w-1/2 m-auto">
+            <input
+              type="text"
+              name="entry.1904311514"
+              placeholder="Tên phụ huynh"
+              required
+              aria-label="Tên phụ huynh"
+            />
+            <input
+              type="tel"
+              name="entry.1055270928"
+              placeholder="Số điện thoại"
+              required
+              aria-label="Số điện thoại"
+            />
+            <input
+              type="email"
+              name="entry.738983665"
+              placeholder="Email (không bắt buộc)"
+              aria-label="Email"
+            />
+          </div>
+          <button class="w-1/2 mt-4">Đăng ký ngay!</button>
+        </form>
       </div>
+
+      <!-- loading -->
+      <Transition name="scale">
+        <div
+          v-if="loadingSpinner"
+          class="fixed top-0 left-0 h-screen w-screen z-50"
+          @click="loadingSpinner"
+        >
+          <div class="absolute top-0 left-0 size-full bg-black opacity-80" />
+          <div class="loading-spinner" id="loading-spinner">
+            <div class="spinner"></div>
+            <p>Đang xử lý đăng ký...</p>
+          </div>
+        </div>
+      </Transition>
 
       <!-- show img -->
       <Transition name="scale">
@@ -243,6 +277,28 @@
         <button @click="onClickItem({ to: 'registration' })">
           Đăng ký học thử ngay!
         </button>
+      </div>
+
+      <!-- toast -->
+      <div
+        class="fixed bottom-5 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-50"
+      >
+        <transition-group name="toast" tag="div">
+          <div
+            v-for="t in toasts"
+            :key="t.id"
+            :class="[
+              'px-4 py-2 rounded-lg shadow-md text-white',
+              t.type === 'success'
+                ? 'bg-green-500'
+                : t.type === 'error'
+                  ? 'bg-red-500'
+                  : 'bg-blue-500',
+            ]"
+          >
+            {{ t.message }}
+          </div>
+        </transition-group>
       </div>
     </UMain>
 
@@ -397,6 +453,7 @@ const dataLectures = ref([
   },
 ]);
 
+const loadingSpinner = ref(false);
 const showImg = ref(null);
 
 const onClickLogo = () => {
@@ -462,6 +519,74 @@ const initScrollSpy = () => {
   );
 
   sections.forEach((section) => observer.observe(section));
+};
+
+const handleSubmitForm = async (event) => {
+  event.preventDefault();
+
+  loadingSpinner.value = true; // show loading
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  try {
+    await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+    });
+
+    loadingSpinner.value = false;
+
+    // hiển thị toast
+    showToast(
+      "🎉 Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ trong vòng 24h.",
+      "success",
+    );
+
+    // lưu trạng thái submit
+    localStorage.setItem("formSubmitted", "true");
+
+    // reset form
+    form.reset();
+
+    // **track conversion**
+    trackConversion();
+  } catch (error) {
+    loadingSpinner.value = false;
+
+    // // hiển thị error toast
+    showToast(
+      "❌ Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại hoặc liên hệ trực tiếp!",
+      "error",
+    );
+  }
+};
+
+// Track conversion (placeholder cho analytics)
+const trackConversion = () => {
+  console.log("🎯 Conversion tracked: Form submission");
+
+  // Ví dụ với GA4 / Google Ads
+  if (typeof gtag !== "undefined") {
+    gtag("event", "conversion", {
+      send_to: "AW-123456789/AbC-D_efGhIjKlMnOpQrS",
+      value: 1.0,
+      currency: "VND",
+    });
+  }
+};
+
+// Vue 3 reactive toast (có thể đặt ở cùng script setup)
+const toasts = ref([]);
+
+const showToast = (message, type = "info", duration = 3000) => {
+  const id = Date.now();
+  toasts.value.push({ id, message, type });
+
+  setTimeout(() => {
+    toasts.value = toasts.value.filter((t) => t.id !== id);
+  }, duration);
 };
 
 onMounted(() => {
