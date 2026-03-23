@@ -1,0 +1,243 @@
+@use "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    color: #555;
+}
+
+.btn-header {
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 4px;
+        background: linear-gradient(to right, #f7d281, #fcbe5d);
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+
+    &.active {
+        color: #f7d281;
+    }
+
+    &.active::after {
+        width: 100%;
+    }
+}
+
+.title-section {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: #f7d281;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #f7d281, #fcbe5d);
+        border-radius: 2px;
+    }
+
+    &.text-white {
+        color: white;
+
+        &::after {
+            background: linear-gradient(to right, #ffffff, #ededed);
+        }
+    }
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.benefits-decoration {
+    &::before {
+        content: '"';
+        color: #fcbe5d;
+        font-size: 80px;
+        position: absolute;
+        top: -40px;
+        left: -40px;
+    }
+
+    &::after {
+        content: '"';
+        color: #fcbe5d;
+        font-size: 80px;
+        position: absolute;
+        bottom: -60px;
+        right: -40px;
+    }
+}
+
+.lectures-text strong {
+    color: #f7d281;
+    background: linear-gradient(transparent 60%, #fff176 60%);
+    padding: 0 3px;
+}
+
+.registration {
+    background: linear-gradient(135deg, #f7d281 0%, #faca7a 100%);
+    color: white;
+}
+
+input {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid transparent;
+    color: #555;
+    outline: none;
+
+    &:focus {
+        border-color: #f7d281;
+    }
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    background: linear-gradient(to bottom, #FFFFFF, #fcbe5d);
+    color: #333;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+
+    // ✨ glow chạy
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                rgba(255, 255, 255, 0.6),
+                transparent);
+        transition: 0.5s;
+    }
+
+    &:hover {
+        background: linear-gradient(to bottom, #fcbe5d, #FFFFFF);
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    &:hover::after {
+        left: 100%;
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 225px;
+    z-index: 999;
+
+    .floating-logo {
+        width: 150px;
+        height: auto;
+        animation: shake 5s infinite;
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0) rotate(0deg);
+        }
+
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+            transform: translateX(-5px) rotate(-3deg);
+        }
+
+        20%,
+        40%,
+        60%,
+        80% {
+            transform: translateX(5px) rotate(3deg);
+        }
+    }
+}
+
+// animation
+.scale-enter-active,
+.scale-leave-active {
+    transition: all 0.5s ease;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.scale-enter-to,
+.scale-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
+}
