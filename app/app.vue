@@ -16,5 +16,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <NuxtPage />
+  <CommonHeader />
+  <div id="nuxt-page" class="overflow-y-auto h-[calc(100vh-64px)]">
+    <NuxtPage />
+  </div>
 </template>

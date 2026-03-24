@@ -1,5 +1,6 @@
 @use "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&family=Quicksand:wght@300..700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -9,6 +10,7 @@
 body {
     font-family: 'Quicksand', sans-serif;
     color: #555;
+    overflow: hidden;
 }
 
 .btn-header {
@@ -40,7 +42,6 @@ body {
 }
 
 .title-section {
-    font-size: 36px;
     font-weight: bold;
     margin-bottom: 50px;
     color: #f7d281;
@@ -79,6 +80,8 @@ body {
 }
 
 .benefits-decoration {
+    font-family: 'Baloo Bhaina 2', cursive;
+
     &::before {
         content: '"';
         color: #fcbe5d;
@@ -95,6 +98,20 @@ body {
         position: absolute;
         bottom: -60px;
         right: -40px;
+    }
+
+    @media (width <64rem) {
+        &::before {
+            font-size: 32px;
+            top: -20px;
+            left: -20px;
+        }
+
+        &::after {
+            font-size: 32px;
+            bottom: -40px;
+            right: -20px;
+        }
     }
 }
 
@@ -243,6 +260,29 @@ button {
         60%,
         80% {
             transform: translateX(5px) rotate(3deg);
+        }
+    }
+}
+
+.footer {
+    background: linear-gradient(135deg, #2d1b69 0%, #f7d281 100%);
+
+    .title-footer {
+        position: relative;
+        color: #fcbe5d;
+        font-weight: bold;
+        margin-bottom: 30px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #fcbe5d, #ffffff67);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
         }
     }
 }

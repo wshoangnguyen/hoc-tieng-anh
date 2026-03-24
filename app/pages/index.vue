@@ -1,313 +1,259 @@
 <template>
-  <UApp>
-    <UHeader
-      class="flex items-center justify-between bg-[#fffbf0fa] backdrop-blur-md px-3 border-b border-[#e8e4da]"
+  <UMain class="screen-full p-3 w-screen lg:max-w-300 m-auto">
+    <!-- banner -->
+    <div class="flex justify-center w-full rounded-3xl overflow-hidden">
+      <img src="/banner.jpg" alt="" />
+    </div>
+
+    <div class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center">
+      <h2 class="title-section text-2xl lg:text-4xl">
+        Hàng Nghìn Phụ Huynh Đã Tin Tưởng
+      </h2>
+
+      <div class="flex flex-wrap justify-between w-full gap-10 text-center">
+        <div class="stat-item">
+          <div class="text-[40px] text-[#fcbe5d] font-bold">1000+</div>
+          <div class="text-lg font-bold">Học Viên Đã Được Hỗ Trợ</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="text-[40px] text-[#fcbe5d] font-bold">100+</div>
+          <div class="text-lg font-bold">Giờ Dạy Hàng Tuần</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="text-[40px] text-[#fcbe5d] font-bold">95%</div>
+          <div class="text-lg font-bold">Hài Lòng & Tiến Bộ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- about -->
+    <div
+      :id="dataHeader[0].to"
+      class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
     >
-      <template #left>
+      <h2 class="title-section text-2xl lg:text-4xl">Giới Thiệu Về Lớp Học</h2>
+
+      <div class="text-lg font-bold">
+        Chúng tôi mang đến phương pháp học tiếng Anh online hiệu quả, giúp bé
+        phát triển toàn diện kỹ năng ngôn ngữ và tự tin giao tiếp.
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
         <div
-          class="flex items-center gap-2 cursor-pointer"
-          @click="onClickLogo"
+          v-for="(item, index) in dataVideo"
+          :key="index"
+          class="rounded-3xl overflow-hidden h-80 bg-black cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
         >
-          <img src="/logo.png" class="w-auto h-11.25" />
-          <div class="text-sm text-[#fcbe5d] font-semibold">
-            TIẾNG ANH CHO TRẺ EM
-          </div>
+          <video :src="item" class="size-full" controls playsinline></video>
         </div>
-      </template>
+      </div>
+    </div>
 
-      <template #right>
-        <div class="flex gap-6 items-center h-15">
+    <!-- feedback -->
+    <div
+      :id="dataHeader[1].to"
+      class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
+    >
+      <h2 class="title-section text-2xl lg:text-4xl">
+        Phụ Huynh Nói Gì Về Chúng Tôi?
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
+        <div
+          v-for="(item, index) in dataImgMsg"
+          :key="index"
+          class="rounded-3xl overflow-hidden h-62.5 bg-white cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
+          @click="onClickImg(item)"
+        >
+          <img :src="item" class="size-full object-cover" />
+        </div>
+      </div>
+    </div>
+
+    <!-- advantages -->
+    <div
+      :id="dataHeader[2].to"
+      class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
+    >
+      <h2 class="title-section text-2xl lg:text-4xl">
+        "Học Tiếng Anh Dễ Lắm" bởi vì
+        <div class="benefits-decoration"></div>
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-25 lg:gap-8 mt-15">
+        <div
+          v-for="(item, index) in dataAdvantages"
+          :key="index"
+          class="group relative rounded-3xl h-62.5 bg-white p-1 cursor-pointer border-2 border-transparent hover:scale-105 hover:border-[#fcbe5d] hover: shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)] flex flex-col justify-end items-center py-10 px-5"
+        >
           <div
-            v-for="(item, index) in dataHeader"
-            :key="index"
-            class="relative h-full"
-            @mouseenter="onHover(item)"
-            @mouseleave="onLeave"
+            class="flex w-36 lg:w-1/2 h-30 lg:h-36.25 absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full bg-white shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)] p-2 border-2 border-transparent group-hover:border-[#fcbe5d]"
           >
-            <!-- main item -->
+            <img :src="item.img" class="w-full m-auto object-cover" />
+          </div>
+          <div class="text-[#fcbe5d] text-xl font-bold mb-4">
+            {{ item.title }}
+          </div>
+          <div class="font-bold">{{ item.content }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- lectures -->
+    <div
+      :id="dataHeader[3].to"
+      class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
+    >
+      <h2 class="title-section text-2xl lg:text-4xl">Chương Trình Học</h2>
+
+      <div class="lectures-text flex flex-col gap-10 lg:mt-10">
+        <div
+          v-for="(item, index) in dataLectures"
+          :key="index"
+          class="flex gap-4 lg:gap-10 flex-col-reverse"
+          :class="index % 2 == 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'"
+        >
+          <div class="flex flex-col gap-4 w-full lg:w-1/2">
             <div
-              :class="[
-                'btn-header flex whitespace-nowrap items-center gap-1 text-[#555] font-semibold hover:text-[#fcbe5d] cursor-pointer h-full',
-                item.isActive && 'active',
-              ]"
-              @click="onClickItem(item)"
+              v-for="(img, index1) in item.imgs"
+              :key="index1"
+              class="w-full rounded-3xl overflow-hidden bg-white cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
+              @click="onClickImg(img)"
             >
-              <div>{{ item.title }}</div>
-              <span v-if="item.tag" class="text-xs text-[#fcbe5d] font-bold">
-                {{ item.tag }}
-              </span>
+              <img :src="img" class="size-full object-cover" />
             </div>
-
-            <!-- dropdown -->
-            <Transition name="fade">
-              <div
-                v-if="item.data && activeDropdown === item.title"
-                class="absolute top-full left-0 w-56 bg-white rounded-2xl shadow-lg border border-[#eee] p-2 z-50"
-              >
-                <div
-                  v-for="(sub, i) in item.data"
-                  :key="i"
-                  class="px-4 py-2 rounded-xl hover:bg-[#fff6e5] flex justify-between items-center cursor-pointer"
-                  @click="onClickItem(sub)"
-                >
-                  <span>{{ sub.title }}</span>
-                  <span v-if="sub.tag" class="text-xs text-[#fcbe5d] font-bold">
-                    {{ sub.tag }}
-                  </span>
-                </div>
-              </div>
-            </Transition>
           </div>
-        </div>
-      </template>
-    </UHeader>
-
-    <UMain class="screen-full p-3 max-w-300 m-auto">
-      <!-- banner -->
-      <div class="flex justify-center w-full rounded-3xl overflow-hidden">
-        <img src="/banner.jpg" alt="" />
-      </div>
-
-      <div class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center">
-        <h2 class="title-section">Hàng Nghìn Phụ Huynh Đã Tin Tưởng</h2>
-
-        <div class="flex justify-between w-full gap-10 text-center">
-          <div class="stat-item">
-            <div class="text-[40px] text-[#fcbe5d] font-bold">1000+</div>
-            <div class="text-lg font-bold">Học Viên Đã Được Hỗ Trợ</div>
-          </div>
-
-          <div class="stat-item">
-            <div class="text-[40px] text-[#fcbe5d] font-bold">100+</div>
-            <div class="text-lg font-bold">Giờ Dạy Hàng Tuần</div>
-          </div>
-
-          <div class="stat-item">
-            <div class="text-[40px] text-[#fcbe5d] font-bold">95%</div>
-            <div class="text-lg font-bold">Hài Lòng & Tiến Bộ</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- about -->
-      <div
-        :id="dataHeader[0].to"
-        class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
-      >
-        <h2 class="title-section">Giới Thiệu Về Lớp Học</h2>
-
-        <div class="text-lg font-bold">
-          Chúng tôi mang đến phương pháp học tiếng Anh online hiệu quả, giúp bé
-          phát triển toàn diện kỹ năng ngôn ngữ và tự tin giao tiếp.
-        </div>
-
-        <div class="grid grid-cols-2 gap-8 mt-10">
           <div
-            v-for="(item, index) in dataVideo"
-            :key="index"
-            class="rounded-3xl overflow-hidden h-80 bg-black cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
-          >
-            <video :src="item" class="size-full" controls playsinline></video>
-          </div>
-        </div>
-      </div>
-
-      <!-- feedback -->
-      <div
-        :id="dataHeader[1].to"
-        class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
-      >
-        <h2 class="title-section">Phụ Huynh Nói Gì Về Chúng Tôi?</h2>
-
-        <div class="grid grid-cols-3 gap-8 mt-10">
-          <div
-            v-for="(item, index) in dataImgMsg"
-            :key="index"
-            class="rounded-3xl overflow-hidden h-62.5 bg-white cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
-            @click="onClickImg(item)"
-          >
-            <img :src="item" class="size-full object-cover" />
-          </div>
-        </div>
-      </div>
-
-      <!-- advantages -->
-      <div
-        :id="dataHeader[2].to"
-        class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
-      >
-        <h2 class="title-section">
-          "Học Tiếng Anh Dễ Lắm" bởi vì
-          <div class="benefits-decoration"></div>
-        </h2>
-
-        <div class="grid grid-cols-3 gap-8 mt-15">
-          <div
-            v-for="(item, index) in dataAdvantages"
-            :key="index"
-            class="group relative rounded-3xl h-62.5 bg-white p-1 cursor-pointer border-2 border-transparent hover:scale-105 hover:border-[#fcbe5d] hover: shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)] flex flex-col justify-end items-center py-10 px-5"
+            class="w-full lg:w-1/2 p-2 lg:p-10 text-left text-lg leading-[1.8] font-medium"
           >
             <div
-              class="flex w-1/2 h-36.25 absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full bg-white shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)] p-2 border-2 border-transparent group-hover:border-[#fcbe5d]"
-            >
-              <img :src="item.img" class="w-full m-auto object-cover" />
-            </div>
-            <div class="text-[#fcbe5d] text-xl font-bold mb-4">
-              {{ item.title }}
-            </div>
-            <div class="font-bold">{{ item.content }}</div>
+              v-for="(value, index2) in item.content"
+              :key="index2"
+              class="mb-4"
+              v-html="value"
+            ></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- lectures -->
-      <div
-        :id="dataHeader[3].to"
-        class="mt-10 bg-[#FFFBF0] rounded-3xl py-17.5 px-5 text-center"
+    <!-- register -->
+    <div
+      id="registration"
+      class="mt-10 registration rounded-3xl py-17.5 px-5 text-center"
+    >
+      <h2 class="title-section text-2xl lg:text-4xl text-white">
+        Đăng Ký Học Thử Miễn Phí
+      </h2>
+
+      <form
+        id="registration-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfd3-jq0yB1sOVzUo-ynxH-vgN36yc--lh3g0QviiJG_dJBrQ/formResponse"
+        method="POST"
+        @submit="handleSubmitForm"
       >
-        <h2 class="title-section">Chương Trình Học</h2>
+        <div class="flex flex-col gap-2 mt-4 w-full lg:w-1/2 m-auto">
+          <input
+            type="text"
+            name="entry.1904311514"
+            placeholder="Tên phụ huynh"
+            required
+            aria-label="Tên phụ huynh"
+          />
+          <input
+            type="tel"
+            name="entry.1055270928"
+            placeholder="Số điện thoại"
+            required
+            aria-label="Số điện thoại"
+          />
+          <input
+            type="email"
+            name="entry.738983665"
+            placeholder="Email (không bắt buộc)"
+            aria-label="Email"
+          />
+        </div>
+        <button class="w-full lg:w-1/2 mt-4">Đăng ký ngay!</button>
+      </form>
+    </div>
 
-        <div class="lectures-text flex flex-col gap-10 mt-10">
-          <div
-            v-for="(item, index) in dataLectures"
-            :key="index"
-            class="flex gap-10"
-            :class="index % 2 == 0 ? 'flex-row-reverse' : 'flex-row'"
-          >
-            <div class="flex flex-col gap-4 w-1/2">
-              <div
-                v-for="(img, index1) in item.imgs"
-                :key="index1"
-                class="w-full rounded-3xl overflow-hidden bg-white cursor-pointer border-2 border-transparent hover:border-[#fcbe5d] hover:scale-105 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1)]"
-                @click="onClickImg(img)"
-              >
-                <img :src="img" class="size-full object-cover" />
-              </div>
-            </div>
-            <div class="w-1/2 p-10 text-left text-lg leading-[1.8] font-medium">
-              <div
-                v-for="(value, index2) in item.content"
-                :key="index2"
-                class="mb-4"
-                v-html="value"
-              ></div>
-            </div>
-          </div>
+    <!-- loading -->
+    <Transition name="scale">
+      <div
+        v-if="loadingSpinner"
+        class="fixed top-0 left-0 h-screen w-screen z-50"
+        @click="loadingSpinner"
+      >
+        <div class="absolute top-0 left-0 size-full bg-black opacity-80" />
+        <div class="loading-spinner" id="loading-spinner">
+          <div class="spinner"></div>
+          <p>Đang xử lý đăng ký...</p>
         </div>
       </div>
+    </Transition>
 
-      <!-- register -->
+    <!-- show img -->
+    <Transition name="scale">
       <div
-        id="registration"
-        class="mt-10 registration rounded-3xl py-17.5 px-5 text-center"
+        v-if="showImg"
+        class="fixed top-0 left-0 h-screen w-screen z-50"
+        @click="showImg = null"
       >
-        <h2 class="title-section text-white">Đăng Ký Học Thử Miễn Phí</h2>
-
-        <form
-          id="registration-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLSfd3-jq0yB1sOVzUo-ynxH-vgN36yc--lh3g0QviiJG_dJBrQ/formResponse"
-          method="POST"
-          @submit="handleSubmitForm"
-        >
-          <div class="flex flex-col gap-2 mt-4 w-1/2 m-auto">
-            <input
-              type="text"
-              name="entry.1904311514"
-              placeholder="Tên phụ huynh"
-              required
-              aria-label="Tên phụ huynh"
-            />
-            <input
-              type="tel"
-              name="entry.1055270928"
-              placeholder="Số điện thoại"
-              required
-              aria-label="Số điện thoại"
-            />
-            <input
-              type="email"
-              name="entry.738983665"
-              placeholder="Email (không bắt buộc)"
-              aria-label="Email"
-            />
-          </div>
-          <button class="w-1/2 mt-4">Đăng ký ngay!</button>
-        </form>
-      </div>
-
-      <!-- loading -->
-      <Transition name="scale">
+        <div class="absolute top-0 left-0 size-full bg-black opacity-80" />
         <div
-          v-if="loadingSpinner"
-          class="fixed top-0 left-0 h-screen w-screen z-50"
-          @click="loadingSpinner"
+          class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-full"
         >
-          <div class="absolute top-0 left-0 size-full bg-black opacity-80" />
-          <div class="loading-spinner" id="loading-spinner">
-            <div class="spinner"></div>
-            <p>Đang xử lý đăng ký...</p>
-          </div>
+          <img :src="showImg" class="size-full object-contain" />
         </div>
-      </Transition>
+      </div>
+    </Transition>
 
-      <!-- show img -->
-      <Transition name="scale">
+    <!-- floating button -->
+    <div v-if="!isMobile" class="floating-container">
+      <img
+        src="/logo.png"
+        alt="Logo Học Tiếng Anh Dễ Lắm"
+        class="floating-logo"
+        loading="lazy"
+      />
+      <button @click="onClickItem({ to: 'registration' })">
+        Đăng ký học thử ngay!
+      </button>
+    </div>
+
+    <!-- toast -->
+    <div
+      class="fixed bottom-5 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-50"
+    >
+      <transition-group name="toast" tag="div">
         <div
-          v-if="showImg"
-          class="fixed top-0 left-0 h-screen w-screen z-50"
-          @click="showImg = null"
+          v-for="t in toasts"
+          :key="t.id"
+          :class="[
+            'px-4 py-2 rounded-lg shadow-md text-white',
+            t.type === 'success'
+              ? 'bg-green-500'
+              : t.type === 'error'
+                ? 'bg-red-500'
+                : 'bg-blue-500',
+          ]"
         >
-          <div class="absolute top-0 left-0 size-full bg-black opacity-80" />
-          <div
-            class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-full"
-          >
-            <img :src="showImg" class="size-full object-contain" />
-          </div>
+          {{ t.message }}
         </div>
-      </Transition>
+      </transition-group>
+    </div>
+  </UMain>
 
-      <!-- floating button -->
-      <div class="floating-container">
-        <img
-          src="/logo.png"
-          alt="Logo Học Tiếng Anh Dễ Lắm"
-          class="floating-logo"
-          loading="lazy"
-        />
-        <button @click="onClickItem({ to: 'registration' })">
-          Đăng ký học thử ngay!
-        </button>
-      </div>
-
-      <!-- toast -->
-      <div
-        class="fixed bottom-5 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-50"
-      >
-        <transition-group name="toast" tag="div">
-          <div
-            v-for="t in toasts"
-            :key="t.id"
-            :class="[
-              'px-4 py-2 rounded-lg shadow-md text-white',
-              t.type === 'success'
-                ? 'bg-green-500'
-                : t.type === 'error'
-                  ? 'bg-red-500'
-                  : 'bg-blue-500',
-            ]"
-          >
-            {{ t.message }}
-          </div>
-        </transition-group>
-      </div>
-    </UMain>
-
-    <UFooter> </UFooter>
-  </UApp>
+  <CommonFooter />
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+
+const isMobile = ref(false);
 
 const dataHeader = ref([
   {
@@ -375,7 +321,7 @@ const dataHeader = ref([
   },
   {
     title: "Vào lớp",
-    to: "https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1#success",
+    to: "https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1",
     isExternal: true,
     isActive: false,
     target: "_blank",
@@ -456,69 +402,8 @@ const dataLectures = ref([
 const loadingSpinner = ref(false);
 const showImg = ref(null);
 
-const onClickLogo = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
-
-const onClickItem = (value) => {
-  if (!value.to || value.isExternal) {
-    window.open(value.to, value.target || "_self");
-    return;
-  }
-
-  if (value.to.startsWith("/")) {
-    window.location.href = value.to;
-    return;
-  }
-
-  const el = document.querySelector(`#${value.to}`);
-  if (!el) return;
-
-  window.scrollTo({
-    top: el.offsetTop - 100,
-    behavior: "smooth",
-  });
-};
-
 const onClickImg = (img) => {
   showImg.value = img;
-};
-
-let observer = null;
-
-const initScrollSpy = () => {
-  const sections = dataHeader.value
-    .filter((item) => {
-      if (!item.to || item.isExternal || item.to.startsWith("/")) return false;
-      return document.querySelector(`#${item.to}`);
-    })
-    .map((item) => document.querySelector(`#${item.to}`));
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      // lấy các section đang visible
-      const visibleSections = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-      if (!visibleSections.length) return;
-
-      const currentId = visibleSections[0].target.id;
-
-      dataHeader.value.forEach((item) => {
-        item.isActive = item.to === currentId;
-      });
-    },
-    {
-      root: null,
-      rootMargin: "-120px 0px -40% 0px", // fix header + ưu tiên top
-    },
-  );
-
-  sections.forEach((section) => observer.observe(section));
 };
 
 const handleSubmitForm = async (event) => {
@@ -590,22 +475,8 @@ const showToast = (message, type = "info", duration = 3000) => {
 };
 
 onMounted(() => {
-  initScrollSpy();
+  isMobile.value = navigator.userAgentData.mobile;
 });
 
-onUnmounted(() => {
-  if (observer) observer.disconnect();
-});
-
-const activeDropdown = ref(null);
-
-const onHover = (item) => {
-  if (item.data) {
-    activeDropdown.value = item.title;
-  }
-};
-
-const onLeave = () => {
-  activeDropdown.value = null;
-};
+onUnmounted(() => {});
 </script>
