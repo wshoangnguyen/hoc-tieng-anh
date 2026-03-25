@@ -37,15 +37,21 @@
     <!-- 2. SELECTION SECTION (CÀI ĐẶT) -->
     <div v-if="!isGameStarted" class="space-y-6 flex flex-col items-center">
       <div
-        class="flex flex-col lg:flex-row gap-4 justify-between items-start w-full lg:w-5xl"
+        class="flex flex-col lg:flex-row gap-4 justify-center items-start w-full lg:w-5xl"
       >
-        <GamesModeSelection
-          :selected-mode="mode"
-          :data-mode="dataMode"
-          @update:mode="mode = $event"
-        />
-        <GamesDifficultyLevelSelection @update:level="level = $event" />
-        <GamesSentencesSelection @update:sentences="handleSentencesLoaded" />
+        <div class="min-w-1/3 w-1/3">
+          <GamesModeSelection
+            :selected-mode="mode"
+            :data-mode="dataMode"
+            @update:mode="mode = $event"
+          />
+        </div>
+        <div class="min-w-1/3 w-1/3">
+          <GamesDifficultyLevelSelection @update:level="level = $event" />
+        </div>
+        <div class="min-w-1/3 w-1/3">
+          <GamesSentencesSelection @update:sentences="handleSentencesLoaded" />
+        </div>
       </div>
 
       <button

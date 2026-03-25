@@ -19,18 +19,20 @@
     <!-- Khung hiển thị (Trigger) -->
     <div
       @click="toggleDropdown"
-      class="size-full flex items-center justify-between px-4 bg-transparent transition-all duration-200 text-left max-w-full truncate"
+      class="size-full flex items-center justify-between px-4 bg-transparent transition-all duration-200 text-left overflow-hidden"
     >
+      <!-- Thêm flex-1 và min-width-0 để ép span không phình to quá mức -->
       <span
-        class="truncate"
+        class="flex-1 truncate min-w-0 mr-2"
         :class="modelValue ? 'text-gray-800 font-medium' : 'text-gray-400'"
       >
         {{ selectedLabel || placeholder }}
       </span>
 
+      <!-- Thêm flex-shrink-0 để icon không bị bóp méo khi text dài -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 text-[#fcbe5d] transition-transform duration-300"
+        class="h-5 w-5 text-[#fcbe5d] transition-transform duration-300 flex-shrink-0"
         :class="{ 'rotate-180': isOpen }"
         fill="none"
         viewBox="0 0 24 24"
