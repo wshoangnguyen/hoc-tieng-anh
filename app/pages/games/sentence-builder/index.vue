@@ -1,5 +1,5 @@
 <template>
-  <div class="game-container relative min-h-150 font-sans selection:bg-none">
+  <div class="game-container relative min-h-150">
     <!-- NÚT QUAY LẠI -->
     <button
       v-if="isGameStarted && !isGameOver"
@@ -592,30 +592,3 @@ const resetGame = () => {
 
 onUnmounted(stopTimer);
 </script>
-
-<style lang="scss" scoped>
-@use "tailwindcss";
-
-.btn-game {
-  @apply py-3 px-4 rounded-2xl text-white font-black shadow-lg border-b-4 active:translate-y-1 active:shadow-none transition-all;
-}
-
-.btn-score {
-  @apply py-2 px-6 rounded-xl text-white font-black shadow-lg hover:scale-105 transition-transform;
-}
-
-.animate-bounce-in {
-  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-</style>

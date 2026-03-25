@@ -37,6 +37,22 @@
     animation: tada 1s infinite;
 }
 
+.animate-bounce-in {
+    animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 /* --- 2. CUSTOM UI ELEMENTS --- */
 .custom-scrollbar {
     &::-webkit-scrollbar {
