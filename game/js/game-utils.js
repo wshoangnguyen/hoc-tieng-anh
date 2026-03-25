@@ -75,12 +75,35 @@ function speakWord(word, lang = 'en-US') {
         return;
     }
     window.speechSynthesis.cancel();
+    
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = lang;
     utterance.rate = 0.85;
     utterance.pitch = 1.0;
+    
+    // THÊM ĐOẠN NÀY: Chọn giọng Samantha
+    const voices = window.speechSynthesis.getVoices();
+    const samanthaVoice = voices.find(voice => 
+        voice.name === 'Samantha' || 
+        voice.name.includes('Samantha') ||
+        (voice.lang === 'en-US' && voice.name.includes('Google') === false && voice.name.includes('Microsoft') === false)
+    );
+    
+    // Nếu tìm thấy giọng Samantha thì dùng, không thì dùng giọng mặc định
+    if (samanthaVoice) {
+        utterance.voice = samanthaVoice;
+    } else {
+        // Fallback: tìm giọng nữ Mỹ khác
+        const femaleVoice = voices.find(voice => 
+            voice.lang === 'en-US' && 
+            (voice.name.includes('Female') || voice.name.includes('Google US English'))
+        );
+        if (femaleVoice) utterance.voice = femaleVoice;
+    }
+    
     window.speechSynthesis.speak(utterance);
 }
+
 
 // Lấy từ vựng theo danh mục
 function getVocabularyByCategory(category) {
