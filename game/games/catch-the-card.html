@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Catch the Card - Bắt thẻ bài tiếng Anh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', sans-serif;
+            min-height: 100vh;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        .game-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            padding: 12px 25px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+        }
+
+        .game-header h1 {
+            font-size: 1.6rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #b45f2b;
+        }
+
+        .game-info {
+            display: flex;
+            gap: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #ff8c1a;
+            transform: translateY(-2px);
+        }
+
+        /* Category Selector */
+        .category-selector {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cat-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #1e5a7a;
+        }
+
+        .cat-btn.active {
+            background: #ffb347;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cat-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Khu vực game chính - sân chơi */
+        .game-area {
+            position: relative;
+            background: rgba(46, 125, 100, 0.2);
+            border-radius: 60px;
+            min-height: 500px;
+            height: 65vh;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 3px dashed #ffb347;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Thẻ bài di chuyển */
+        .moving-card {
+            position: absolute;
+            width: 110px;
+            height: 130px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.05s linear, box-shadow 0.1s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            z-index: 10;
+        }
+
+        .moving-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+        }
+
+        .moving-card img {
+            max-width: 80%;
+            max-height: 70px;
+            object-fit: contain;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .moving-card .card-word {
+            font-weight: bold;
+            font-size: 0.7rem;
+            margin-top: 5px;
+            color: #1e5a7a;
+            background: #fff0d6;
+            padding: 2px 8px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* Khu vực câu hỏi */
+        .question-area {
+            background: rgba(0,0,0,0.6);
+            border-radius: 60px;
+            padding: 15px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .question-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 0 #b45f2b;
+            letter-spacing: 2px;
+        }
+
+        .speak-hint {
+            background: #ffb347;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .speak-hint:hover {
+            background: #ff8c1a;
+            transform: scale(1.02);
+        }
+
+        /* Feedback và điều khiển */
+        .feedback-area {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .game-btn {
+            background: #ffb347;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: white;
+        }
+
+        .game-btn:hover {
+            background: #ff8c1a;
+            transform: translateY(-2px);
+        }
+
+        /* Logo nổi */
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+        @keyframes gentleSwing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(6deg); }
+            75% { transform: rotate(-6deg); }
+        }
+        @media (max-width: 700px) {
+            .brand-logo-float { width: 55px; top: 12px; right: 12px; bottom: auto; }
+            .moving-card { width: 85px; height: 100px; }
+            .moving-card img { max-height: 50px; }
+            .question-text { font-size: 1.5rem; }
+        }
+
+        .win-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2e7d64, #1e5a46);
+            padding: 30px 40px;
+            border-radius: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 200;
+            animation: bounceIn 0.5s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+            80% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="brand-logo-float" id="brandLogoFloat">
+    <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+</div>
+
+<div class="game-container">
+    <div class="game-header">
+        <h1>🐟 Catch the Card · Bắt thẻ bài 🎴</h1>
+        <div class="game-info">
+            <span>🎯 Điểm: <span id="scoreValue">0</span>/<span id="totalValue">0</span></span>
+            <span>⚡ Tốc độ: <span id="speedValue">1.0</span>x</span>
+        </div>
+        <a href="../flashcard.html" class="back-btn">← Về Flashcards</a>
+    </div>
+
+    <div class="category-selector" id="categorySelector">
+        <button class="cat-btn active" data-cat="all">📚 Tất cả</button>
+    </div>
+
+    <div class="question-area">
+        <div class="question-text" id="targetWordDisplay">🐣 Đang tải...</div>
+        <div class="speak-hint" id="speakTargetBtn">🔊 Nghe lại từ</div>
+    </div>
+
+    <div class="game-area" id="gameArea"></div>
+
+    <div class="feedback-area" id="feedbackMsg"></div>
+    <div class="controls">
+        <button class="game-btn" id="resetGameBtn">🔄 Chơi lại</button>
+        <button class="game-btn" id="shuffleCardsBtn">🎲 Đổi thẻ</button>
+    </div>
+</div>
+
+<script src="../js/game-utils.js"></script>
+<script>
+    // ---------- BIẾN TOÀN CỤC ----------
+    let activeCards = [];           // danh sách các thẻ đang di chuyển { element, word, x, y, vx, vy, imgPath }
+    let animationFrame = null;
+    let currentTargetWord = '';     // từ cần bắt
+    let currentTargetMeaning = '';
+    let currentTargetObj = null;
+    
+    let score = 0;
+    let totalAttempts = 0;
+    let gameActive = true;           // khi đã chọn đúng/sai tạm thời khoá click?
+    let waitingForNext = false;      // chờ 0.8s sau khi trả lời
+    let currentCategory = 'all';
+    
+    let container = document.getElementById('gameArea');
+    let targetWordDisplay = document.getElementById('targetWordDisplay');
+    let scoreSpan = document.getElementById('scoreValue');
+    let totalSpan = document.getElementById('totalValue');
+    let speedSpan = document.getElementById('speedValue');
+    let feedbackDiv = document.getElementById('feedbackMsg');
+    
+    // Cài đặt tốc độ di chuyển
+    let currentSpeed = 1.0;
+    const BASE_SPEED = 1.2;         // pixels mỗi frame (tốc độ cơ bản)
+    
+    let gameWidth = 0, gameHeight = 0;
+    let cardWidth = 110, cardHeight = 130;
+    
+    // Giới hạn số thẻ trên sân (5-7)
+    let currentCardCount = 6;
+    
+    // Dữ liệu flashcard từ localStorage
+    let vocabulary = [];
+    
+    // Hàm resize
+    function updateGameDimensions() {
+        const rect = container.getBoundingClientRect();
+        gameWidth = rect.width;
+        gameHeight = rect.height;
+        // Điều chỉnh kích thước thẻ theo màn hình nhỏ
+        if (gameWidth < 500) {
+            cardWidth = 85;
+            cardHeight = 100;
+        } else {
+            cardWidth = 110;
+            cardHeight = 130;
+        }
+    }
+    
+    // Lấy dữ liệu từ vựng (từ localStorage do flashcard.html lưu)
+    function loadVocabularyData() {
+        const stored = localStorage.getItem('flashcard_vocabulary');
+        if (stored) {
+            vocabulary = JSON.parse(stored);
+            return true;
+        }
+        return false;
+    }
+    
+    // Tạo danh mục filter
+    function buildCategoryFilter() {
+        if (!vocabulary.length) return;
+        const categories = new Set();
+        vocabulary.forEach(item => categories.add(item.category));
+        const containerCat = document.getElementById('categorySelector');
+        const allBtn = containerCat.querySelector('.cat-btn');
+        containerCat.innerHTML = '';
+        containerCat.appendChild(allBtn);
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'cat-btn';
+            btn.dataset.cat = cat;
+            btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+            containerCat.appendChild(btn);
+        });
+        // Gắn sự kiện
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.cat;
+                resetGame();
+            });
+        });
+    }
+    
+    // Lấy danh sách từ vựng theo category
+    function getFilteredVocabulary() {
+        if (currentCategory === 'all') return [...vocabulary];
+        return vocabulary.filter(item => item.category === currentCategory);
+    }
+    
+    // Chọn ngẫu nhiên N từ khác nhau để làm thẻ trên sân
+    function selectRandomCards(count) {
+        let filtered = getFilteredVocabulary();
+        if (filtered.length === 0) return [];
+        // đảm bảo count không vượt quá số lượng từ
+        let maxCount = Math.min(count, filtered.length);
+        // xào mảng
+        let shuffled = [...filtered];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, maxCount);
+    }
+    
+    // Tạo một thẻ DOM với vị trí và vận tốc ngẫu nhiên
+    function createCardElement(wordObj) {
+        const div = document.createElement('div');
+        div.className = 'moving-card';
+        const imagePath = getImageBasePath() + wordObj.word;
+        const img = document.createElement('img');
+        img.src = `${imagePath}.png`;
+        img.onerror = function() { this.src = `${imagePath}.jpg`; };
+        const wordSpan = document.createElement('div');
+        wordSpan.className = 'card-word';
+        wordSpan.textContent = wordObj.word;
+        div.appendChild(img);
+        div.appendChild(wordSpan);
+        
+        // Vị trí ban đầu random trong gameArea
+        let x = Math.random() * (gameWidth - cardWidth);
+        let y = Math.random() * (gameHeight - cardHeight);
+        x = Math.max(5, Math.min(x, gameWidth - cardWidth - 5));
+        y = Math.max(5, Math.min(y, gameHeight - cardHeight - 5));
+        div.style.left = x + 'px';
+        div.style.top = y + 'px';
+        
+        // Vận tốc ngẫu nhiên dựa trên tốc độ hiện tại
+        let angle = Math.random() * Math.PI * 2;
+        let spd = BASE_SPEED * currentSpeed * (0.6 + Math.random() * 0.8);
+        let vx = Math.cos(angle) * spd;
+        let vy = Math.sin(angle) * spd;
+        
+        container.appendChild(div);
+        return {
+            element: div,
+            word: wordObj.word,
+            meaning: wordObj.meaning,
+            imgPath: imagePath,
+            x: x, y: y, vx: vx, vy: vy,
+            width: cardWidth, height: cardHeight
+        };
+    }
+    
+    // Cập nhật vị trí từng thẻ, xử lý va chạm tường
+    function updatePositions() {
+        for (let card of activeCards) {
+            card.x += card.vx;
+            card.y += card.vy;
+            // va chạm biên ngang
+            if (card.x <= 0) {
+                card.x = 0;
+                card.vx = Math.abs(card.vx);
+            }
+            if (card.x + cardWidth >= gameWidth) {
+                card.x = gameWidth - cardWidth;
+                card.vx = -Math.abs(card.vx);
+            }
+            // va chạm biên dọc
+            if (card.y <= 0) {
+                card.y = 0;
+                card.vy = Math.abs(card.vy);
+            }
+            if (card.y + cardHeight >= gameHeight) {
+                card.y = gameHeight - cardHeight;
+                card.vy = -Math.abs(card.vy);
+            }
+            // cập nhật DOM
+            card.element.style.left = card.x + 'px';
+            card.element.style.top = card.y + 'px';
+        }
+    }
+    
+    // Vòng lặp animation
+    function animate() {
+        if (!gameActive && waitingForNext) {
+            // Vẫn di chuyển nhưng không cho click? Nhưng vẫn để di chuyển
+            updatePositions();
+            animationFrame = requestAnimationFrame(animate);
+            return;
+        }
+        updatePositions();
+        animationFrame = requestAnimationFrame(animate);
+    }
+    
+    // Chọn mục tiêu mới (từ trong số các thẻ đang có trên sân)
+    function selectNewTarget() {
+        if (activeCards.length === 0) return false;
+        const randomIndex = Math.floor(Math.random() * activeCards.length);
+        const targetCard = activeCards[randomIndex];
+        currentTargetWord = targetCard.word;
+        currentTargetMeaning = targetCard.meaning;
+        currentTargetObj = targetCard;
+        targetWordDisplay.innerHTML = `🎯 BẮT: ${currentTargetWord.toUpperCase()} 🎯`;
+        // Phát âm tự động
+        speakWord(currentTargetWord);
+        return true;
+    }
+    
+    // Xóa tất cả thẻ trên sân
+    function clearCards() {
+        for (let card of activeCards) {
+            if (card.element && card.element.parentNode) card.element.remove();
+        }
+        activeCards = [];
+    }
+    
+    // Khởi tạo lại game: tạo thẻ mới, reset điểm, chọn target
+    function initGame(keepScore = false) {
+        if (!keepScore) {
+            score = 0;
+            totalAttempts = 0;
+            updateScoreUI();
+        }
+        waitingForNext = false;
+        gameActive = true;
+        feedbackDiv.innerHTML = '';
+        // Xóa thẻ cũ
+        clearCards();
+        
+        // Cập nhật kích thước game area
+        updateGameDimensions();
+        
+        // Chọn số lượng thẻ từ 5 đến 7
+        currentCardCount = Math.floor(Math.random() * 3) + 5; // 5,6,7
+        const filteredVocab = getFilteredVocabulary();
+        if (filteredVocab.length < currentCardCount) {
+            currentCardCount = filteredVocab.length;
+        }
+        if (currentCardCount === 0) {
+            targetWordDisplay.innerHTML = '⚠️ Chưa có từ vựng!';
+            return;
+        }
+        
+        // Chọn danh sách từ cho thẻ
+        const selectedWords = selectRandomCards(currentCardCount);
+        if (selectedWords.length === 0) return;
+        
+        // Tạo các thẻ di chuyển
+        for (let w of selectedWords) {
+            let cardData = createCardElement(w);
+            activeCards.push(cardData);
+        }
+        
+        // Sau khi tạo thẻ, chọn mục tiêu
+        if (activeCards.length > 0) {
+            selectNewTarget();
+        }
+        // Cập nhật tốc độ hiển thị
+        speedSpan.innerText = currentSpeed.toFixed(1);
+    }
+    
+    // Xử lý khi click vào thẻ
+    function onCardClick(card) {
+        if (waitingForNext) {
+            feedbackDiv.innerHTML = '⏳ Hãy chờ, đang xử lý...';
+            return;
+        }
+        if (!gameActive) return;
+        
+        const clickedWord = card.word;
+        totalAttempts++;
+        updateScoreUI();
+        
+        if (clickedWord === currentTargetWord) {
+            // Đúng!
+            playBeep('correct');
+            score++;
+            updateScoreUI();
+            feedbackDiv.innerHTML = '🎉 Chính xác! +1 điểm 🎉';
+            feedbackDiv.style.color = '#c3ffb2';
+            speakWord(currentTargetWord); // phát âm lại từ đúng
+            
+            // Kiểm tra win? Không có win vì sẽ liên tục chọn target mới
+            // Xoá thẻ vừa click khỏi sân (bắt được)
+            const index = activeCards.findIndex(c => c.word === clickedWord && c.element === card.element);
+            if (index !== -1) {
+                const removedCard = activeCards[index];
+                removedCard.element.remove();
+                activeCards.splice(index, 1);
+            }
+            
+            // Nếu sau khi bắt mà không còn thẻ nào -> tạo lại bộ thẻ mới
+            if (activeCards.length === 0) {
+                feedbackDiv.innerHTML += ' 🃏 Hết thẻ! Tạo bộ mới!';
+                // tạo lại game nhưng giữ điểm
+                waitingForNext = true;
+                setTimeout(() => {
+                    initGame(true);
+                }, 800);
+                return;
+            }
+            
+            // Chọn mục tiêu mới từ các thẻ còn lại
+            waitingForNext = true;
+            gameActive = false;
+            setTimeout(() => {
+                if (activeCards.length > 0) {
+                    selectNewTarget();
+                } else {
+                    // nếu vẫn 0 thẻ thì reset lại
+                    initGame(true);
+                }
+                gameActive = true;
+                waitingForNext = false;
+                feedbackDiv.innerHTML = '';
+            }, 600);
+        } else {
+            // Sai
+            playBeep('wrong');
+            feedbackDiv.innerHTML = `❌ Sai rồi! Từ cần bắt là "${currentTargetWord}" - ${currentTargetMeaning} ❌`;
+            feedbackDiv.style.color = '#ffc2b3';
+            // Không trừ điểm, nhưng hiệu ứng sai
+            gameActive = false;
+            waitingForNext = true;
+            setTimeout(() => {
+                gameActive = true;
+                waitingForNext = false;
+                feedbackDiv.innerHTML = '';
+            }, 800);
+        }
+        updateScoreUI();
+        
+        // Kiểm tra thành tích cao
+        if (score > 0 && score % 5 === 0 && currentSpeed < 2.2) {
+            // Cứ mỗi 5 điểm, tăng tốc độ lên 0.1
+            currentSpeed = Math.min(2.2, currentSpeed + 0.1);
+            speedSpan.innerText = currentSpeed.toFixed(1);
+            // Cập nhật lại vận tốc của tất cả thẻ hiện tại
+            for (let card of activeCards) {
+                let angle = Math.atan2(card.vy, card.vx);
+                let newSpd = BASE_SPEED * currentSpeed * (0.6 + Math.random() * 0.8);
+                card.vx = Math.cos(angle) * newSpd;
+                card.vy = Math.sin(angle) * newSpd;
+            }
+            feedbackDiv.innerHTML = `⚡ Tốc độ tăng lên ${currentSpeed.toFixed(1)}x! ⚡`;
+            setTimeout(() => {
+                if(feedbackDiv.innerHTML.includes('Tốc độ tăng')) feedbackDiv.innerHTML = '';
+            }, 1500);
+        }
+    }
+    
+    // Gắn sự kiện click cho từng thẻ
+    function bindCardEvents() {
+        for (let card of activeCards) {
+            card.element.onclick = (e) => {
+                e.stopPropagation();
+                onCardClick(card);
+            };
+        }
+    }
+    
+    // Cập nhật UI điểm
+    function updateScoreUI() {
+        scoreSpan.innerText = score;
+        totalSpan.innerText = totalAttempts;
+    }
+    
+    // Reset toàn bộ game
+    function resetGame() {
+        cancelAnimationFrame(animationFrame);
+        clearCards();
+        score = 0;
+        totalAttempts = 0;
+        currentSpeed = 1.0;
+        gameActive = true;
+        waitingForNext = false;
+        updateScoreUI();
+        speedSpan.innerText = '1.0';
+        feedbackDiv.innerHTML = '';
+        // Re-init với cùng category
+        updateGameDimensions();
+        initGame(false);
+        // restart animation
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
+    }
+    
+    // Xào bài: giữ nguyên điểm và số lượt, nhưng đổi toàn bộ thẻ và mục tiêu
+    function shuffleCards() {
+        if (waitingForNext) return;
+        cancelAnimationFrame(animationFrame);
+        clearCards();
+        const filteredVocab = getFilteredVocabulary();
+        if (filteredVocab.length === 0) return;
+        currentCardCount = Math.min(7, Math.max(5, filteredVocab.length));
+        const selectedWords = selectRandomCards(currentCardCount);
+        activeCards = [];
+        for (let w of selectedWords) {
+            let cardData = createCardElement(w);
+            activeCards.push(cardData);
+        }
+        if (activeCards.length > 0) {
+            selectNewTarget();
+        }
+        bindCardEvents();
+        gameActive = true;
+        waitingForNext = false;
+        feedbackDiv.innerHTML = '🃏 Đã xào bài! Tìm từ mới nào!';
+        setTimeout(() => {
+            if(feedbackDiv.innerHTML === '🃏 Đã xào bài! Tìm từ mới nào!') feedbackDiv.innerHTML = '';
+        }, 1200);
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
+    }
+    
+    // Nghe phát âm từ mục tiêu
+    document.getElementById('speakTargetBtn').addEventListener('click', () => {
+        if (currentTargetWord) speakWord(currentTargetWord);
+    });
+    
+    // Xử lý resize window
+    window.addEventListener('resize', () => {
+        updateGameDimensions();
+        // Điều chỉnh lại vị trí thẻ cho không bị tràn (tuỳ chọn)
+        if (activeCards.length) {
+            for (let card of activeCards) {
+                card.x = Math.min(Math.max(card.x, 0), gameWidth - cardWidth);
+                card.y = Math.min(Math.max(card.y, 0), gameHeight - cardHeight);
+                card.element.style.left = card.x + 'px';
+                card.element.style.top = card.y + 'px';
+            }
+        }
+    });
+    
+    // Khởi động game
+    function startGame() {
+        if (!loadVocabularyData()) {
+            targetWordDisplay.innerHTML = '⚠️ Chưa có dữ liệu! Mở flashcard.html trước.';
+            feedbackDiv.innerHTML = '❌ Không tìm thấy từ vựng, hãy vào flashcard.html trước.';
+            return;
+        }
+        buildCategoryFilter();
+        updateGameDimensions();
+        initGame(false);
+        animationFrame = requestAnimationFrame(animate);
+        // Binding lại sự kiện mỗi khi reset / shuffle cần gọi lại bindCardEvents, nhưng initGame gọi clear, nên ta override trong init
+        // Thêm observer để tự bind khi activeCards thay đổi? Dùng cách mỗi lần init game hoặc shuffle gọi bindCardEvents.
+    }
+    
+    // Ghi đè lại bind sau init & shuffle
+    const originalInit = initGame;
+    window.initGame = function(keep) {
+        originalInit(keep);
+        bindCardEvents();
+    };
+    initGame = function(keep) {
+        originalInit(keep);
+        bindCardEvents();
+    };
+    
+    // Gắn nút reset và shuffle
+    document.getElementById('resetGameBtn').addEventListener('click', () => {
+        resetGame();
+    });
+    document.getElementById('shuffleCardsBtn').addEventListener('click', () => {
+        shuffleCards();
+    });
+    
+    // Bắt đầu!
+    startGame();
+</script>
+</body>
+</html>
