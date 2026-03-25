@@ -25,7 +25,6 @@
             margin: 0 auto;
         }
 
-        /* Header */
         .game-header {
             display: flex;
             justify-content: space-between;
@@ -55,6 +54,31 @@
             font-weight: bold;
         }
 
+        .progress-bar-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 50px;
+            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 10px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffb347, #ff8c1a);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
         .back-btn {
             background: #ffb347;
             border: none;
@@ -72,7 +96,6 @@
             transform: translateY(-2px);
         }
 
-        /* Category Selector */
         .category-selector {
             display: flex;
             flex-wrap: wrap;
@@ -102,7 +125,6 @@
             transform: translateY(-2px);
         }
 
-        /* Khu vực game chính - sân chơi */
         .game-area {
             position: relative;
             background: rgba(46, 125, 100, 0.2);
@@ -115,7 +137,6 @@
             box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* Thẻ bài di chuyển */
         .moving-card {
             position: absolute;
             width: 110px;
@@ -157,7 +178,6 @@
             pointer-events: none;
         }
 
-        /* Khu vực câu hỏi */
         .question-area {
             background: rgba(0,0,0,0.6);
             border-radius: 60px;
@@ -191,7 +211,6 @@
             transform: scale(1.02);
         }
 
-        /* Feedback và điều khiển */
         .feedback-area {
             text-align: center;
             font-weight: bold;
@@ -225,7 +244,6 @@
             transform: translateY(-2px);
         }
 
-        /* Logo nổi */
         .brand-logo-float {
             position: fixed;
             bottom: 20px;
@@ -239,36 +257,52 @@
             width: 150px;
             object-fit: contain;
         }
+        
         @keyframes gentleSwing {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(6deg); }
             75% { transform: rotate(-6deg); }
         }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+            80% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
         @media (max-width: 700px) {
             .brand-logo-float { width: 55px; top: 12px; right: 12px; bottom: auto; }
             .moving-card { width: 85px; height: 100px; }
             .moving-card img { max-height: 50px; }
             .question-text { font-size: 1.5rem; }
-        }
-
-        .win-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #2e7d64, #1e5a46);
-            padding: 30px 40px;
-            border-radius: 30px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            z-index: 200;
-            animation: bounceIn 0.5s ease;
-        }
-        @keyframes bounceIn {
-            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-            80% { transform: translate(-50%, -50%) scale(1.05); }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            .progress-bar { width: 80px; }
         }
     </style>
 </head>
@@ -282,8 +316,15 @@
     <div class="game-header">
         <h1>🐟 Catch the Card · Bắt thẻ bài 🎴</h1>
         <div class="game-info">
-            <span>🎯 Điểm: <span id="scoreValue">0</span>/<span id="totalValue">0</span></span>
-            <span>⚡ Tốc độ: <span id="speedValue">1.0</span>x</span>
+            <span>🎯 Điểm: <span id="scoreValue">0</span>/<span id="targetScore">20</span></span>
+            <span>📊 Lượt: <span id="totalValue">0</span></span>
+            <div class="progress-bar-container">
+                <span>⚡</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span id="speedValue">1.0x</span>
+            </div>
         </div>
         <a href="../flashcard.html" class="back-btn">← Về Flashcards</a>
     </div>
@@ -307,19 +348,24 @@
 </div>
 
 <script src="../js/game-utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
     // ---------- BIẾN TOÀN CỤC ----------
-    let activeCards = [];           // danh sách các thẻ đang di chuyển { element, word, x, y, vx, vy, imgPath }
+    let activeCards = [];
     let animationFrame = null;
-    let currentTargetWord = '';     // từ cần bắt
+    let currentTargetWord = '';
     let currentTargetMeaning = '';
     let currentTargetObj = null;
     
     let score = 0;
     let totalAttempts = 0;
-    let gameActive = true;           // khi đã chọn đúng/sai tạm thời khoá click?
-    let waitingForNext = false;      // chờ 0.8s sau khi trả lời
+    let capturedWords = [];
+    let gameActive = true;
+    let waitingForNext = false;
     let currentCategory = 'all';
+    let gameCompleted = false;
+    
+    const WIN_SCORE = 20;
     
     let container = document.getElementById('gameArea');
     let targetWordDisplay = document.getElementById('targetWordDisplay');
@@ -327,26 +373,28 @@
     let totalSpan = document.getElementById('totalValue');
     let speedSpan = document.getElementById('speedValue');
     let feedbackDiv = document.getElementById('feedbackMsg');
+    let progressFill = document.getElementById('progressFill');
     
-    // Cài đặt tốc độ di chuyển
     let currentSpeed = 1.0;
-    const BASE_SPEED = 1.2;         // pixels mỗi frame (tốc độ cơ bản)
+    const BASE_SPEED = 1.2;
     
     let gameWidth = 0, gameHeight = 0;
     let cardWidth = 110, cardHeight = 130;
-    
-    // Giới hạn số thẻ trên sân (5-7)
     let currentCardCount = 6;
-    
-    // Dữ liệu flashcard từ localStorage
     let vocabulary = [];
+    let totalWordsInCategory = 0;     // Tổng số từ trong danh mục hiện tại
+
+    // Cập nhật thanh tiến trình
+    function updateProgressBar() {
+        let percent = (score / WIN_SCORE) * 100;
+        progressFill.style.width = percent + '%';
+    }
     
     // Hàm resize
     function updateGameDimensions() {
         const rect = container.getBoundingClientRect();
         gameWidth = rect.width;
         gameHeight = rect.height;
-        // Điều chỉnh kích thước thẻ theo màn hình nhỏ
         if (gameWidth < 500) {
             cardWidth = 85;
             cardHeight = 100;
@@ -356,7 +404,7 @@
         }
     }
     
-    // Lấy dữ liệu từ vựng (từ localStorage do flashcard.html lưu)
+    // Lấy dữ liệu từ vựng
     function loadVocabularyData() {
         const stored = localStorage.getItem('flashcard_vocabulary');
         if (stored) {
@@ -382,7 +430,6 @@
             btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
             containerCat.appendChild(btn);
         });
-        // Gắn sự kiện
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -393,19 +440,15 @@
         });
     }
     
-    // Lấy danh sách từ vựng theo category
     function getFilteredVocabulary() {
         if (currentCategory === 'all') return [...vocabulary];
         return vocabulary.filter(item => item.category === currentCategory);
     }
     
-    // Chọn ngẫu nhiên N từ khác nhau để làm thẻ trên sân
     function selectRandomCards(count) {
         let filtered = getFilteredVocabulary();
         if (filtered.length === 0) return [];
-        // đảm bảo count không vượt quá số lượng từ
         let maxCount = Math.min(count, filtered.length);
-        // xào mảng
         let shuffled = [...filtered];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -414,7 +457,6 @@
         return shuffled.slice(0, maxCount);
     }
     
-    // Tạo một thẻ DOM với vị trí và vận tốc ngẫu nhiên
     function createCardElement(wordObj) {
         const div = document.createElement('div');
         div.className = 'moving-card';
@@ -428,7 +470,6 @@
         div.appendChild(img);
         div.appendChild(wordSpan);
         
-        // Vị trí ban đầu random trong gameArea
         let x = Math.random() * (gameWidth - cardWidth);
         let y = Math.random() * (gameHeight - cardHeight);
         x = Math.max(5, Math.min(x, gameWidth - cardWidth - 5));
@@ -436,7 +477,6 @@
         div.style.left = x + 'px';
         div.style.top = y + 'px';
         
-        // Vận tốc ngẫu nhiên dựa trên tốc độ hiện tại
         let angle = Math.random() * Math.PI * 2;
         let spd = BASE_SPEED * currentSpeed * (0.6 + Math.random() * 0.8);
         let vx = Math.cos(angle) * spd;
@@ -453,12 +493,10 @@
         };
     }
     
-    // Cập nhật vị trí từng thẻ, xử lý va chạm tường
     function updatePositions() {
         for (let card of activeCards) {
             card.x += card.vx;
             card.y += card.vy;
-            // va chạm biên ngang
             if (card.x <= 0) {
                 card.x = 0;
                 card.vx = Math.abs(card.vx);
@@ -467,7 +505,6 @@
                 card.x = gameWidth - cardWidth;
                 card.vx = -Math.abs(card.vx);
             }
-            // va chạm biên dọc
             if (card.y <= 0) {
                 card.y = 0;
                 card.vy = Math.abs(card.vy);
@@ -476,16 +513,13 @@
                 card.y = gameHeight - cardHeight;
                 card.vy = -Math.abs(card.vy);
             }
-            // cập nhật DOM
             card.element.style.left = card.x + 'px';
             card.element.style.top = card.y + 'px';
         }
     }
     
-    // Vòng lặp animation
     function animate() {
         if (!gameActive && waitingForNext) {
-            // Vẫn di chuyển nhưng không cho click? Nhưng vẫn để di chuyển
             updatePositions();
             animationFrame = requestAnimationFrame(animate);
             return;
@@ -494,7 +528,6 @@
         animationFrame = requestAnimationFrame(animate);
     }
     
-    // Chọn mục tiêu mới (từ trong số các thẻ đang có trên sân)
     function selectNewTarget() {
         if (activeCards.length === 0) return false;
         const randomIndex = Math.floor(Math.random() * activeCards.length);
@@ -503,12 +536,10 @@
         currentTargetMeaning = targetCard.meaning;
         currentTargetObj = targetCard;
         targetWordDisplay.innerHTML = `🎯 BẮT: ${currentTargetWord.toUpperCase()} 🎯`;
-        // Phát âm tự động
         speakWord(currentTargetWord);
         return true;
     }
     
-    // Xóa tất cả thẻ trên sân
     function clearCards() {
         for (let card of activeCards) {
             if (card.element && card.element.parentNode) card.element.remove();
@@ -516,24 +547,243 @@
         activeCards = [];
     }
     
-    // Khởi tạo lại game: tạo thẻ mới, reset điểm, chọn target
+    function updateScoreUI() {
+        scoreSpan.innerText = score;
+        totalSpan.innerText = totalAttempts;
+        updateProgressBar();
+    }
+    
+    function simpleConfetti() {
+        for (let i = 0; i < 80; i++) {
+            const conf = document.createElement('div');
+            conf.style.position = 'fixed';
+            conf.style.left = Math.random() * window.innerWidth + 'px';
+            conf.style.top = '-20px';
+            conf.style.width = Math.random() * 10 + 4 + 'px';
+            conf.style.height = Math.random() * 10 + 4 + 'px';
+            conf.style.backgroundColor = ['#ffb347', '#ff6b6b', '#4ecdc4', '#ffd700'][Math.floor(Math.random() * 4)];
+            conf.style.borderRadius = '50%';
+            conf.style.pointerEvents = 'none';
+            conf.style.zIndex = '9999';
+            conf.style.animation = 'fall 1s ease-out forwards';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
+    
+    function shootConfetti() {
+        if (typeof canvasConfetti === 'undefined') {
+            simpleConfetti();
+            return;
+        }
+        canvasConfetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            startVelocity: 20,
+            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']
+        });
+        setTimeout(() => {
+            canvasConfetti({
+                particleCount: 50,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0, y: 0.7 },
+                startVelocity: 25,
+            });
+            canvasConfetti({
+                particleCount: 50,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1, y: 0.7 },
+                startVelocity: 25,
+            });
+        }, 100);
+    }
+    
+    function shootStrongConfetti() {
+        if (typeof canvasConfetti !== 'undefined') {
+            canvasConfetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 },
+                startVelocity: 30,
+                decay: 0.9,
+                colors: ['#ffd700', '#ffb347', '#ff6b6b', '#4ecdc4', '#45b7d1']
+            });
+            setTimeout(() => {
+                canvasConfetti({
+                    particleCount: 80,
+                    angle: 45,
+                    spread: 60,
+                    origin: { x: 0, y: 0.5 },
+                });
+                canvasConfetti({
+                    particleCount: 80,
+                    angle: 135,
+                    spread: 60,
+                    origin: { x: 1, y: 0.5 },
+                });
+            }, 150);
+        } else {
+            simpleConfetti();
+            setTimeout(() => simpleConfetti(), 150);
+        }
+    }
+    
+    function showWinSummary() {
+        cancelAnimationFrame(animationFrame);
+        playBeep('win');
+        
+            const maxScore = Math.min(WIN_SCORE, totalWordsInCategory);
+    const isCompleteAll = (capturedWords.length >= totalWordsInCategory);
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const accuracy = totalAttempts > 0 ? Math.round((score / totalAttempts) * 100) : 0;
+        
+        let wordsListHtml = '';
+        capturedWords.forEach((item, idx) => {
+            wordsListHtml += `
+                <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px;
+                    margin: 5px 0;
+                    background: rgba(255,179,71,0.2);
+                    border-radius: 20px;
+                    border-left: 4px solid #ffb347;
+                ">
+                    <div style="text-align: left;">
+                        <strong style="color: #1e5a7a; font-size: 1rem;">${item.word}</strong>
+                        <div style="color: #b45f2b; font-size: 0.75rem;">${item.meaning}</div>
+                    </div>
+                    <div style="color: #2e7d64;">✅</div>
+                </div>
+            `;
+        });
+        
+        const summaryBox = document.createElement('div');
+        summaryBox.style.cssText = `
+            background: linear-gradient(135deg, #fff5e6, #ffe8d4);
+            border-radius: 40px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: slideUp 0.4s ease;
+            text-align: center;
+        `;
+        
+        summaryBox.innerHTML = `
+            <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
+            <h2 style="color: #ffb347; font-size: 2rem;">🏆 ${isCompleteAll ? 'CHÚC MỪNG' : 'BẠN ĐÃ THẮNG!'} 🏆</h2>
+            <div style="font-size: 3rem; margin: 10px 0;">${isCompleteAll ? 'Bạn đã thắng trò chơi!' : '🎉✨🎊'}</div>
+        </div>
+        
+        <div style="background: #ffb34720; border-radius: 30px; padding: 15px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                <span style="font-weight: bold;">📊 Điểm số:</span>
+                <span style="color: #2e7d64; font-weight: bold;">${score}/${maxScore}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                <span style="font-weight: bold;">📖 Từ đã học:</span>
+                <span>${capturedWords.length}/${totalWordsInCategory}</span>
+            </div>
+                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                    <span style="font-weight: bold;">⭐ Độ chính xác:</span>
+                    <span style="color: ${accuracy >= 80 ? '#2e7d64' : accuracy >= 60 ? '#ffb347' : '#a1422f'}; font-weight: bold;">${accuracy}%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                    <span style="font-weight: bold;">⚡ Tốc độ cuối:</span>
+                    <span>${currentSpeed.toFixed(1)}x</span>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #1e5a7a; margin-bottom: 10px;">📖 Từ đã bắt được (${capturedWords.length} từ)</h3>
+                <div style="max-height: 300px; overflow-y: auto;">
+                    ${wordsListHtml || '<div style="color: #888; padding: 20px;">Chưa có từ nào</div>'}
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="location.reload()" style="
+                    background: #ffb347;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 40px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    color: white;
+                    font-size: 1rem;
+                ">🔄 Chơi lại</button>
+                <button onclick="window.location.href='../flashcard.html'" style="
+                    background: #2e7d64;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 40px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    color: white;
+                    font-size: 1rem;
+                ">📚 Về Flashcards</button>
+            </div>
+        `;
+        
+        overlay.appendChild(summaryBox);
+        document.body.appendChild(overlay);
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.remove();
+        });
+        
+        setTimeout(() => {
+            speakWord('Congratulations! You won the game!');
+        }, 500);
+    }
+    
     function initGame(keepScore = false) {
         if (!keepScore) {
             score = 0;
             totalAttempts = 0;
+            capturedWords = [];
+            gameCompleted = false;
+            currentSpeed = 1.0;
+            speedSpan.innerText = '1.0';
             updateScoreUI();
+        // LƯU TỔNG SỐ TỪ TRONG DANH MỤC
+        const filteredVocab = getFilteredVocabulary();
+        totalWordsInCategory = filteredVocab.length;
+        
+        // Cập nhật hiển thị mục tiêu
+        document.getElementById('targetScore').innerText = Math.min(WIN_SCORE, totalWordsInCategory);
+    
         }
         waitingForNext = false;
         gameActive = true;
         feedbackDiv.innerHTML = '';
-        // Xóa thẻ cũ
         clearCards();
-        
-        // Cập nhật kích thước game area
         updateGameDimensions();
         
-        // Chọn số lượng thẻ từ 5 đến 7
-        currentCardCount = Math.floor(Math.random() * 3) + 5; // 5,6,7
+        currentCardCount = Math.floor(Math.random() * 3) + 5;
         const filteredVocab = getFilteredVocabulary();
         if (filteredVocab.length < currentCardCount) {
             currentCardCount = filteredVocab.length;
@@ -543,47 +793,70 @@
             return;
         }
         
-        // Chọn danh sách từ cho thẻ
         const selectedWords = selectRandomCards(currentCardCount);
         if (selectedWords.length === 0) return;
         
-        // Tạo các thẻ di chuyển
         for (let w of selectedWords) {
             let cardData = createCardElement(w);
             activeCards.push(cardData);
         }
         
-        // Sau khi tạo thẻ, chọn mục tiêu
         if (activeCards.length > 0) {
             selectNewTarget();
         }
-        // Cập nhật tốc độ hiển thị
         speedSpan.innerText = currentSpeed.toFixed(1);
+        bindCardEvents();
     }
     
-    // Xử lý khi click vào thẻ
-    function onCardClick(card) {
-        if (waitingForNext) {
-            feedbackDiv.innerHTML = '⏳ Hãy chờ, đang xử lý...';
-            return;
+    function bindCardEvents() {
+        for (let card of activeCards) {
+            card.element.onclick = (e) => {
+                e.stopPropagation();
+                onCardClick(card);
+            };
         }
-        if (!gameActive) return;
+    }
+    
+    function onCardClick(card) {
+        if (waitingForNext || !gameActive || gameCompleted) return;
         
         const clickedWord = card.word;
         totalAttempts++;
         updateScoreUI();
         
         if (clickedWord === currentTargetWord) {
-            // Đúng!
             playBeep('correct');
+            shootConfetti();
             score++;
+            
+            capturedWords.push({
+                word: currentTargetWord,
+                meaning: currentTargetMeaning
+            });
+            
             updateScoreUI();
             feedbackDiv.innerHTML = '🎉 Chính xác! +1 điểm 🎉';
             feedbackDiv.style.color = '#c3ffb2';
-            speakWord(currentTargetWord); // phát âm lại từ đúng
+            speakWord(currentTargetWord);
+
+            // KIỂM TRA KẾT THÚC GAME (ĐẠT ĐIỂM TỐI ĐA HOẶC HẾT TỪ)
+    const maxScore = Math.min(WIN_SCORE, totalWordsInCategory);
+    if (score >= maxScore || capturedWords.length >= totalWordsInCategory) {
+        gameCompleted = true;
+        gameActive = false;
+        waitingForNext = true;
+        showWinSummary();
+        return;
+    }
             
-            // Kiểm tra win? Không có win vì sẽ liên tục chọn target mới
-            // Xoá thẻ vừa click khỏi sân (bắt được)
+            if (score >= WIN_SCORE) {
+                gameCompleted = true;
+                gameActive = false;
+                waitingForNext = true;
+                showWinSummary();
+                return;
+            }
+            
             const index = activeCards.findIndex(c => c.word === clickedWord && c.element === card.element);
             if (index !== -1) {
                 const removedCard = activeCards[index];
@@ -591,25 +864,21 @@
                 activeCards.splice(index, 1);
             }
             
-            // Nếu sau khi bắt mà không còn thẻ nào -> tạo lại bộ thẻ mới
             if (activeCards.length === 0) {
                 feedbackDiv.innerHTML += ' 🃏 Hết thẻ! Tạo bộ mới!';
-                // tạo lại game nhưng giữ điểm
                 waitingForNext = true;
                 setTimeout(() => {
-                    initGame(true);
+                    if (!gameCompleted) initGame(true);
                 }, 800);
                 return;
             }
             
-            // Chọn mục tiêu mới từ các thẻ còn lại
             waitingForNext = true;
             gameActive = false;
             setTimeout(() => {
-                if (activeCards.length > 0) {
+                if (!gameCompleted && activeCards.length > 0) {
                     selectNewTarget();
-                } else {
-                    // nếu vẫn 0 thẻ thì reset lại
+                } else if (!gameCompleted && activeCards.length === 0) {
                     initGame(true);
                 }
                 gameActive = true;
@@ -617,11 +886,9 @@
                 feedbackDiv.innerHTML = '';
             }, 600);
         } else {
-            // Sai
             playBeep('wrong');
             feedbackDiv.innerHTML = `❌ Sai rồi! Từ cần bắt là "${currentTargetWord}" - ${currentTargetMeaning} ❌`;
             feedbackDiv.style.color = '#ffc2b3';
-            // Không trừ điểm, nhưng hiệu ứng sai
             gameActive = false;
             waitingForNext = true;
             setTimeout(() => {
@@ -632,12 +899,10 @@
         }
         updateScoreUI();
         
-        // Kiểm tra thành tích cao
-        if (score > 0 && score % 5 === 0 && currentSpeed < 2.2) {
-            // Cứ mỗi 5 điểm, tăng tốc độ lên 0.1
-            currentSpeed = Math.min(2.2, currentSpeed + 0.1);
+        if (score > 0 && score % 5 === 0 && currentSpeed < 2.2 && !gameCompleted) {
+            currentSpeed = Math.min(2.2, currentSpeed + 0.2);
             speedSpan.innerText = currentSpeed.toFixed(1);
-            // Cập nhật lại vận tốc của tất cả thẻ hiện tại
+            shootStrongConfetti();
             for (let card of activeCards) {
                 let angle = Math.atan2(card.vy, card.vx);
                 let newSpd = BASE_SPEED * currentSpeed * (0.6 + Math.random() * 0.8);
@@ -651,45 +916,27 @@
         }
     }
     
-    // Gắn sự kiện click cho từng thẻ
-    function bindCardEvents() {
-        for (let card of activeCards) {
-            card.element.onclick = (e) => {
-                e.stopPropagation();
-                onCardClick(card);
-            };
-        }
-    }
-    
-    // Cập nhật UI điểm
-    function updateScoreUI() {
-        scoreSpan.innerText = score;
-        totalSpan.innerText = totalAttempts;
-    }
-    
-    // Reset toàn bộ game
     function resetGame() {
         cancelAnimationFrame(animationFrame);
         clearCards();
         score = 0;
         totalAttempts = 0;
+        capturedWords = [];
         currentSpeed = 1.0;
         gameActive = true;
         waitingForNext = false;
+        gameCompleted = false;
         updateScoreUI();
         speedSpan.innerText = '1.0';
         feedbackDiv.innerHTML = '';
-        // Re-init với cùng category
         updateGameDimensions();
         initGame(false);
-        // restart animation
         if (animationFrame) cancelAnimationFrame(animationFrame);
         animationFrame = requestAnimationFrame(animate);
     }
     
-    // Xào bài: giữ nguyên điểm và số lượt, nhưng đổi toàn bộ thẻ và mục tiêu
     function shuffleCards() {
-        if (waitingForNext) return;
+        if (waitingForNext || gameCompleted) return;
         cancelAnimationFrame(animationFrame);
         clearCards();
         const filteredVocab = getFilteredVocabulary();
@@ -715,15 +962,12 @@
         animationFrame = requestAnimationFrame(animate);
     }
     
-    // Nghe phát âm từ mục tiêu
     document.getElementById('speakTargetBtn').addEventListener('click', () => {
         if (currentTargetWord) speakWord(currentTargetWord);
     });
     
-    // Xử lý resize window
     window.addEventListener('resize', () => {
         updateGameDimensions();
-        // Điều chỉnh lại vị trí thẻ cho không bị tràn (tuỳ chọn)
         if (activeCards.length) {
             for (let card of activeCards) {
                 card.x = Math.min(Math.max(card.x, 0), gameWidth - cardWidth);
@@ -734,7 +978,6 @@
         }
     });
     
-    // Khởi động game
     function startGame() {
         if (!loadVocabularyData()) {
             targetWordDisplay.innerHTML = '⚠️ Chưa có dữ liệu! Mở flashcard.html trước.';
@@ -745,30 +988,11 @@
         updateGameDimensions();
         initGame(false);
         animationFrame = requestAnimationFrame(animate);
-        // Binding lại sự kiện mỗi khi reset / shuffle cần gọi lại bindCardEvents, nhưng initGame gọi clear, nên ta override trong init
-        // Thêm observer để tự bind khi activeCards thay đổi? Dùng cách mỗi lần init game hoặc shuffle gọi bindCardEvents.
     }
     
-    // Ghi đè lại bind sau init & shuffle
-    const originalInit = initGame;
-    window.initGame = function(keep) {
-        originalInit(keep);
-        bindCardEvents();
-    };
-    initGame = function(keep) {
-        originalInit(keep);
-        bindCardEvents();
-    };
+    document.getElementById('resetGameBtn').addEventListener('click', () => resetGame());
+    document.getElementById('shuffleCardsBtn').addEventListener('click', () => shuffleCards());
     
-    // Gắn nút reset và shuffle
-    document.getElementById('resetGameBtn').addEventListener('click', () => {
-        resetGame();
-    });
-    document.getElementById('shuffleCardsBtn').addEventListener('click', () => {
-        shuffleCards();
-    });
-    
-    // Bắt đầu!
     startGame();
 </script>
 </body>
