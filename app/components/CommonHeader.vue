@@ -26,6 +26,7 @@
             :class="[
               'btn-header flex whitespace-nowrap items-center gap-1 text-[#555] font-semibold hover:text-[#fcbe5d] cursor-pointer h-full',
               item.isActive && 'active',
+              item.to ? 'cursor-pointer' : 'cursor-default',
             ]"
             @click="onClickItem(item)"
           >
@@ -36,7 +37,7 @@
           </div>
 
           <!-- dropdown -->
-          <Transition name="fade">
+          <Transition name="scale">
             <div
               v-if="item.data && activeDropdown === item.title"
               class="absolute top-full left-0 w-75 bg-white rounded-2xl shadow-lg border border-[#eee] p-2 z-50"
@@ -59,7 +60,7 @@
       </div>
     </template>
 
-    <template #body v-else>
+    <template #body v-if="isMobile">
       <div
         class="flex flex-col gap-2 items-center h-[calc(100vh-100px)] text-lg text-white"
       >
@@ -106,6 +107,16 @@
         </div>
       </div>
     </template>
+
+    <template #toggle v-if="isMobile">
+      <button
+        :class="[isOpenMenu ? 'text-white' : 'text-black']"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <UIcon v-if="isOpenMenu" name="lucide:x" class="w-6 h-6" />
+        <UIcon v-else name="lucide:menu" class="w-6 h-6" />
+      </button>
+    </template>
   </UHeader>
 </template>
 
@@ -140,7 +151,6 @@ const dataHeader = ref([
   },
   {
     title: "Games",
-    to: "games",
     isActive: false,
     tag: "hot",
     data: [
@@ -283,15 +293,21 @@ watch(
 );
 
 const onClickItem = (value) => {
+  // CHẶN: Nếu không có đường dẫn (to), không thực hiện bất kỳ hành động nào
+  if (!value.to) {
+    return;
+  }
+
+  // Đóng menu mobile nếu đang mở
   isOpenMenu.value = false;
 
-  // 1. Nếu là link bên ngoài
+  // 1. Nếu là link bên ngoài (External)
   if (value.isExternal) {
     window.open(value.to, value.target || "_blank");
     return;
   }
 
-  // 2. Nếu là route trang con (Games, Word-find...)
+  // 2. Nếu là route trang con (bắt đầu bằng /)
   if (value.to.startsWith("/")) {
     router.push(value.to);
     return;
@@ -299,7 +315,6 @@ const onClickItem = (value) => {
 
   // 3. Nếu là section scroll trên trang chủ
   if (route.path !== "/") {
-    // Nếu đang ở trang khác mà bấm vào section trang chủ -> về trang chủ rồi scroll
     router.push("/").then(() => {
       setTimeout(() => {
         const el = document.querySelector(`#${value.to}`);
@@ -312,7 +327,6 @@ const onClickItem = (value) => {
       }, 300);
     });
   } else {
-    // Đang ở trang chủ sẵn rồi thì scroll luôn
     const el = document.querySelector(`#${value.to}`);
     if (el) {
       document.getElementById("nuxt-page").scrollTo({

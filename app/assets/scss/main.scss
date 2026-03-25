@@ -39,10 +39,6 @@ button {
     }
 }
 
-.btn-game {
-    @apply text-lg lg:text-2xl font-bold py-2 rounded-3xl border-2 w-full;
-}
-
 /* ===== Title ===== */
 .title-section {
     @apply font-bold mb-12.5 text-[#f7d281] relative inline-block;
@@ -181,4 +177,19 @@ input {
 .scale-enter-to,
 .scale-leave-from {
     @apply opacity-100 scale-100;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    @apply transition-all duration-500 ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    @apply opacity-0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    @apply opacity-100;
 }

@@ -10,7 +10,7 @@
         v-for="item in dataMode"
         :key="item.value"
         :class="[
-          'btn-game  text-[#555]',
+          'btn-game text-[#555]',
           item.color.border,
           selectedMode.value === item.value && `${item.color.bg} text-white`,
         ]"
@@ -23,7 +23,7 @@
     <div class="flex justify-center text-lg mt-2">
       <div>
         <span class="font-bold mr-2">
-          {{ pros.selectedMode.label }}
+          {{ `${pros.selectedMode.label}:` }}
         </span>
         <span>
           {{ `${pros.selectedMode.description} ${pros.selectedMode.icon}` }}

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     enabled: true
   },
 
-  css: ['~/assets/css/main.css', '~/assets/scss/main.scss'],
+  css: ['~/assets/css/main.css', '~/assets/scss/main.scss', '~/assets/scss/game.scss'],
 
   postcss: {
     plugins: {

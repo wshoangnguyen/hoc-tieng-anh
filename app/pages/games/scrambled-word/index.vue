@@ -1,12 +1,10 @@
 <template>
-  <div
-    class="relative flex flex-col w-300 bg-[#FFFBF0] m-auto rounded-3xl p-2 lg:p-4 mt-4 border-4 border-[#e8e4da] shadow-2xl"
-  >
-    <!-- NÚT QUAY LẠI (Chỉ hiện khi game đã bắt đầu và chưa kết thúc) -->
+  <div class="game-container relative min-h-150">
+    <!-- NÚT QUAY LẠI -->
     <button
       v-if="isGameStarted && !isGameOver"
-      @click="backToSettings"
-      class="absolute top-4 left-4 p-2 rounded-full hover:bg-white/50 transition-all group z-10"
+      @click="confirmBack = true"
+      class="absolute top-4 left-4 p-2 rounded-full hover:bg-white/50 transition-all group z-40"
       title="Quay lại cài đặt"
     >
       <svg
@@ -25,7 +23,7 @@
       </svg>
     </button>
 
-    <!-- HEADER (Giữ nguyên) -->
+    <!-- HEADER -->
     <div
       class="flex items-center justify-center gap-2 text-4xl font-bold text-[#555] mb-6"
     >
@@ -36,9 +34,11 @@
       Scrambled Word
     </div>
 
-    <!-- SELECTION SECTION (Giữ nguyên) -->
-    <div v-if="!isGameStarted" class="space-y-6">
-      <div class="flex flex-col lg:flex-row gap-4 justify-between items-start">
+    <!-- SELECTION SECTION -->
+    <div v-if="!isGameStarted" class="space-y-6 flex flex-col items-center">
+      <div
+        class="flex flex-col lg:flex-row gap-4 justify-between items-start max-w-5xl"
+      >
         <GamesModeSelection
           :selected-mode="mode"
           :data-mode="dataMode"
@@ -52,7 +52,7 @@
       <button
         @click="startGame"
         :disabled="!words.length"
-        class="w-full py-2 bg-[#fcbe5d] text-white text-3xl font-black rounded-3xl shadow-[0_8px_0_#ff9d00] disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full max-w-4xl py-4 bg-[#fcbe5d] text-white text-3xl font-black rounded-3xl shadow-[0_8px_0_#ff9d00] active:shadow-none active:translate-y-2 transition-all disabled:opacity-50"
       >
         🎮 BẮT ĐẦU CHƠI
       </button>
@@ -68,7 +68,7 @@
         <!-- Team Red -->
         <div
           v-if="mode.value === '2teams'"
-          class="flex-1 bg-red-100 p-4 rounded-2xl border-b-4 border-red-300 text-center"
+          class="flex-1 bg-red-100 p-2 rounded-2xl border-b-4 border-red-300 text-center"
         >
           <div class="text-red-500 font-black text-xl">🔴 RED</div>
           <div class="text-4xl font-black text-red-600">{{ scores.red }}</div>
@@ -77,7 +77,7 @@
         <!-- Solo -->
         <div
           v-else
-          class="flex-1 bg-green-100 p-4 rounded-2xl border-b-4 border-green-300 text-center"
+          class="flex-1 bg-green-100 p-2 rounded-2xl border-b-4 border-green-300 text-center"
         >
           <div class="text-green-500 font-black text-xl">🎯 SCORE</div>
           <div class="text-4xl font-black text-green-600">
@@ -118,11 +118,11 @@
         class="bg-white p-2 rounded-[40px] border-4 border-[#e8e4da] shadow-inner text-center relative overflow-hidden"
       >
         <div
-          class="absolute top-0 left-0 bg-[#fcbe5d] text-white px-4 py-1 text-xs font-black rounded-br-2xl"
+          class="absolute top-0 left-0 bg-[#fcbe5d] text-white px-2 lg:px-4 py-1 text-xs font-black rounded-br-2xl"
         >
           💡 HINT
         </div>
-        <div class="text-4xl lg:text-6xl font-black text-[#555] italic">
+        <div class="text-2xl lg:text-6xl font-black text-[#555] italic">
           {{ currentWordData?.hint }} {{ currentWordData?.icon }}
         </div>
       </div>
@@ -141,7 +141,7 @@
       </div>
 
       <!-- Answer Slots -->
-      <div class="flex justify-center gap-2 min-h-[90px]">
+      <div class="flex justify-center gap-2 min-h-22.5">
         <div
           v-for="(slot, index) in answerSlots"
           :key="index"
@@ -159,7 +159,9 @@
 
       <!-- Feedback & Controls -->
       <div class="space-y-4">
-        <div class="flex justify-center items-center gap-4">
+        <div
+          class="flex flex-col lg:flex-row justify-center items-center gap-4"
+        >
           <div
             v-if="feedback"
             class="text-center font-black text-2xl"
@@ -225,6 +227,38 @@
             class="btn-game bg-gray-400 border-gray-600"
           >
             ⏭️ SKIP
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: CONFIRM BACK -->
+    <div
+      v-if="confirmBack"
+      class="fixed inset-0 z-110 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-center animate-in fade-in zoom-in duration-200"
+      >
+        <div class="text-4xl mb-4">🏠</div>
+        <h3 class="text-2xl font-black text-[#555] mb-2 uppercase italic">
+          Thoát Game?
+        </h3>
+        <p class="text-gray-500 mb-8">
+          Tiến độ hiện tại của bạn sẽ không được lưu lại.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            @click="confirmBack = false"
+            class="py-3 bg-gray-200 text-gray-600 font-bold rounded-xl hover:bg-gray-300 transition-all"
+          >
+            HỦY
+          </button>
+          <button
+            @click="resetGame"
+            class="py-3 bg-red-500 text-white font-bold rounded-xl shadow-[0_4px_0_#b91c1c] active:translate-y-1 active:shadow-none transition-all"
+          >
+            ĐỒNG Ý
           </button>
         </div>
       </div>
@@ -327,7 +361,7 @@ const dataMode = ref([
     icon: "🧍",
     label: "SOLO PLAYER",
     color: {
-      boder: "border-emerald-500",
+      border: "border-emerald-500",
       bg: "bg-emerald-400",
     },
     description: "Play alone and beat your own high score!",
@@ -337,7 +371,7 @@ const dataMode = ref([
     icon: "🧑‍🤝‍🧑",
     label: "2 TEAMS",
     color: {
-      boder: "border-blue-500",
+      border: "border-blue-500",
       bg: "bg-blue-400",
     },
     description: "Compete with friends - Red team vs Blue team!",
@@ -357,6 +391,7 @@ const isCorrect = ref(false);
 const showNextButton = ref(false);
 const showGiftModal = ref(false);
 const isGameOver = ref(false);
+const confirmBack = ref(false); // Popup xác nhận quay lại
 
 const scores = ref({ red: 0, blue: 0, solo: 0 });
 const currentAnswer = ref([]);
@@ -497,7 +532,7 @@ const checkAnswer = () => {
     setTimeout(() => {
       feedback.value = "";
       clearAnswer();
-    }, 800);
+    }, 2000);
   }
 };
 
@@ -561,6 +596,7 @@ const nextWord = () => {
 const resetGame = () => {
   isGameStarted.value = false;
   isGameOver.value = false;
+  confirmBack.value = false;
 };
 
 const startTimer = () => {
@@ -580,45 +616,3 @@ const stopTimer = () => clearInterval(timerInterval.value);
 
 onUnmounted(stopTimer);
 </script>
-
-<style lang="scss">
-@use "tailwindcss";
-.btn-score {
-  @apply px-6 py-3 text-white font-black rounded-2xl shadow-lg hover:scale-110 active:scale-95 transition-all text-lg;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #fcbe5d;
-  border-radius: 10px;
-}
-
-@keyframes tada {
-  0% {
-    transform: scale(1);
-  }
-  10%,
-  20% {
-    transform: scale(0.9) rotate(-3deg);
-  }
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: scale(1.1) rotate(3deg);
-  }
-  40%,
-  60%,
-  80% {
-    transform: scale(1.1) rotate(-3deg);
-  }
-  100% {
-    transform: scale(1) rotate(0);
-  }
-}
-.animate-tada {
-  animation: tada 1s infinite;
-}
-</style>

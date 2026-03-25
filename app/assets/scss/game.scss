@@ -1,0 +1,72 @@
+@use "tailwindcss";
+
+.game-container {
+    @apply relative flex flex-col w-full lg:w-300 bg-[#FFFBF0] m-auto rounded-3xl p-2 lg:p-4 mt-4 border-4 border-[#e8e4da] shadow-2xl;
+}
+
+/* --- 1. ANIMATIONS --- */
+@keyframes tada {
+    0% {
+        transform: scale(1);
+    }
+
+    10%,
+    20% {
+        transform: scale(0.9) rotate(-3deg);
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale(1.1) rotate(3deg);
+    }
+
+    40%,
+    60%,
+    80% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+.animate-tada {
+    animation: tada 1s infinite;
+}
+
+/* --- 2. CUSTOM UI ELEMENTS --- */
+.custom-scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #fcbe5d;
+        border-radius: 10px;
+
+        &:hover {
+            background: #ff9d00;
+        }
+    }
+}
+
+/* --- 3. BUTTON COMPONENTS --- */
+/* Nút tính điểm/chọn quà */
+.btn-score {
+    @apply px-6 py-3 text-white font-black rounded-2xl shadow-lg hover:scale-110 active:scale-95 transition-all text-lg;
+}
+
+.btn-game {
+    @apply text-lg lg:text-2xl font-bold py-2 rounded-3xl border-2 w-full;
+}
+
+.btn-action {
+    @apply py-3 text-white font-black rounded-2xl transition-all active:translate-y-1 active:shadow-none uppercase text-sm;
+}
