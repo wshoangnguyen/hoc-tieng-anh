@@ -1,5 +1,14 @@
 <template>
   <UMain class="screen-full p-3 w-screen lg:max-w-300 m-auto">
+    <!-- Nút Loa ở góc màn hình -->
+    <button
+      @click="toggleMute"
+      class="fixed top-5 right-5 z-50 p-3 bg-white/80 rounded-full shadow-lg hover:scale-110 transition-all"
+    >
+      <span v-if="!isMuted">🔊</span>
+      <span v-else>🔇)</span>
+    </button>
+
     <!-- banner -->
     <div class="flex justify-center w-full rounded-3xl overflow-hidden">
       <img src="/banner.jpg" alt="" />
@@ -474,9 +483,64 @@ const showToast = (message, type = "info", duration = 3000) => {
   }, duration);
 };
 
+/* ================= AUDIO HELPER ================= */
+const bgMusic = ref(null);
+const isMuted = ref(false); // Thêm biến để người dùng có thể tắt/mở
+
+const initBgMusic = () => {
+  // Tạo đối tượng Audio
+  bgMusic.value = new Audio("/mp3/background-music.mp3");
+  bgMusic.value.loop = true;
+  bgMusic.value.volume = 0.4; // Âm lượng vừa phải cho trang chủ
+
+  // Hàm kích hoạt nhạc
+  const startMusic = () => {
+    if (bgMusic.value) {
+      bgMusic.value
+        .play()
+        .then(() => {
+          console.log("Nhạc nền đã bắt đầu!");
+          // Sau khi phát thành công, gỡ bỏ các sự kiện lắng nghe để tránh lặp lại
+          window.removeEventListener("click", startMusic);
+          window.removeEventListener("touchstart", startMusic);
+          window.removeEventListener("scroll", startMusic);
+        })
+        .catch((err) => {
+          // Vẫn bị chặn nếu chưa có tương tác
+          console.log("Đang chờ tương tác người dùng để phát nhạc...");
+        });
+    }
+  };
+
+  // Lắng nghe các tương tác phổ biến nhất
+  window.addEventListener("click", startMusic);
+  window.addEventListener("touchstart", startMusic);
+  window.addEventListener("scroll", startMusic);
+};
+
+// Hàm bật/tắt nhạc (Dùng cho nút bấm trên giao diện)
+const toggleMute = () => {
+  if (!bgMusic.value) return;
+  isMuted.value = !isMuted.value;
+  bgMusic.value.muted = isMuted.value;
+};
+
+const stopBgMusic = () => {
+  if (bgMusic) {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+  }
+};
+
 onMounted(() => {
   isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
+  initBgMusic();
 });
 
-onUnmounted(() => {});
+onUnmounted(() => {
+  if (bgMusic.value) {
+    bgMusic.value.pause();
+    bgMusic.value = null;
+  }
+});
 </script>

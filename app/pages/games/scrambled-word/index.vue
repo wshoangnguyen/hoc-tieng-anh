@@ -37,7 +37,7 @@
     <!-- SELECTION SECTION -->
     <div v-if="!isGameStarted" class="space-y-6 flex flex-col items-center">
       <div
-        class="flex flex-col lg:flex-row gap-4 justify-center items-start w-full lg:w-5xl"
+        class="flex flex-col lg:flex-row gap-4 startGame items-start w-full lg:w-5xl"
       >
         <div class="min-w-1/3 w-1/3">
           <GamesModeSelection
@@ -466,6 +466,7 @@ const handleVocabLoaded = (list) => {
 
 const startGame = () => {
   if (!words.value.length) return;
+  playSound("start");
   isGameStarted.value = true;
   currentIndex.value = 0;
   scores.value = { red: 0, blue: 0, solo: 0 };
@@ -502,6 +503,7 @@ const generateScrambledLetters = () => {
 
 const selectLetter = (letterObj) => {
   if (isCorrect.value) return;
+  playSound("click");
   currentAnswer.value.push(letterObj.char);
   letterObj.used = true;
 };
@@ -516,9 +518,11 @@ const checkAnswer = () => {
   if (ans === target) {
     isCorrect.value = true;
     feedback.value = "🎉 CHÍNH XÁC! TUYỆT VỜI!";
+    playSound("right");
     stopTimer();
   } else {
     feedback.value = "❌ SAI RỒI, THỬ LẠI NHÉ!";
+    playSound("wrong");
     setTimeout(() => {
       feedback.value = "";
       clearAnswer();
@@ -535,6 +539,7 @@ const skipWord = () => {
   stopTimer();
   saveResult(false, 0);
   feedback.value = "⏭️ ĐÃ BỎ QUA TỪ NÀY";
+  playSound("reset");
   showNextButton.value = true;
 };
 
@@ -578,6 +583,7 @@ const nextWord = () => {
     currentIndex.value++;
     loadWord();
   } else {
+    playSound("win");
     isGameOver.value = true;
     stopTimer();
   }
@@ -592,6 +598,7 @@ const resetGame = () => {
   currentIndex.value = 0;
   scores.value = { red: 0, blue: 0, solo: 0 };
   gameResults.value = [];
+  playSound("reset");
 };
 
 const startTimer = () => {
@@ -608,6 +615,11 @@ const startTimer = () => {
 };
 
 const stopTimer = () => clearInterval(timerInterval.value);
+
+const playSound = (type) => {
+  const audio = new Audio(`/mp3/${type}.mp3`);
+  audio.play().catch(() => {});
+};
 
 onUnmounted(stopTimer);
 </script>

@@ -449,6 +449,7 @@ const handleSentencesLoaded = (list) => {
 
 const startGame = () => {
   if (!sentences.value.length) return;
+  playSound("start");
   isGameStarted.value = true;
   currentIndex.value = 0;
   scores.value = { red: 0, blue: 0, solo: 0 };
@@ -485,6 +486,7 @@ const prepareWordPool = () => {
 };
 
 const selectWord = (wordObj) => {
+  playSound("click");
   const targetLen = currentSentenceData.value.en2.split(" ").length;
   const currentTotal = answerSlots.value.filter((s) => s.val !== "").length;
   if (currentTotal < targetLen) {
@@ -514,9 +516,11 @@ const checkAnswer = () => {
   if (user.toLowerCase() === target.toLowerCase()) {
     isCorrect.value = true;
     feedback.value = "🎉 CHÍNH XÁC!";
+    playSound("right");
     stopTimer();
   } else {
     feedback.value = "❌ SAI RỒI!";
+    playSound("wrong");
     setTimeout(() => (feedback.value = ""), 2000);
   }
 };
@@ -562,7 +566,10 @@ const nextSentence = () => {
   if (currentIndex.value < sentences.value.length - 1) {
     currentIndex.value++;
     loadSentence();
-  } else isGameOver.value = true;
+  } else {
+    playSound("win");
+    isGameOver.value = true;
+  }
 };
 
 const startTimer = () => {
@@ -594,6 +601,11 @@ const skipSentence = () => {
 };
 const resetGame = () => {
   location.reload();
+};
+
+const playSound = (type) => {
+  const audio = new Audio(`/mp3/${type}.mp3`);
+  audio.play().catch(() => {});
 };
 
 onUnmounted(stopTimer);

@@ -1,4 +1,5 @@
 <template>
+  <!-- Giữ nguyên phần template của bạn -->
   <div class="game-container relative min-h-150">
     <!-- NÚT QUAY LẠI -->
     <button
@@ -321,6 +322,12 @@
 <script setup>
 import { ref, computed, onUnmounted } from "vue";
 
+/* ================= AUDIO HELPER ================= */
+const playSound = (name) => {
+  const audio = new Audio(`/mp3/${name}.mp3`);
+  audio.play().catch(() => {}); // Tránh lỗi nếu trình duyệt chặn tự động phát
+};
+
 /* ================= STATE ================= */
 const dataMode = ref([
   {
@@ -344,8 +351,8 @@ const words = ref([]);
 const grid = ref([]);
 const isGameStarted = ref(false);
 const isGameOver = ref(false);
-const showStartMission = ref(false); // Popup nhiệm vụ
-const confirmBack = ref(false); // Popup xác nhận quay lại
+const showStartMission = ref(false);
+const confirmBack = ref(false);
 
 const score = ref(0);
 const combo = ref(0);
@@ -377,6 +384,7 @@ const handleVocabLoaded = (list) => {
 
 const startGame = () => {
   if (words.value.length === 0) return;
+  playSound("start"); // Âm thanh bắt đầu game
 
   isGameStarted.value = true;
   isGameOver.value = false;
@@ -390,7 +398,6 @@ const startGame = () => {
   initGrid();
   for (let i = 0; i < 3; i++) spawnRandomWord();
 
-  // Nếu là chế độ trả bài, hiện popup nhiệm vụ trước
   if (mode.value.value === "tra-bai") {
     showStartMission.value = true;
   } else {
@@ -479,6 +486,8 @@ const selectCell = (index) => {
   )
     return;
 
+  playSound("click"); // Âm thanh khi chọn ô chữ
+
   const foundAt = selectedIndices.value.indexOf(index);
   if (foundAt > -1) {
     selectedIndices.value.splice(foundAt, 1);
@@ -493,6 +502,7 @@ const checkWord = () => {
   const input = currentInput.value.toLowerCase();
 
   if (words.value.includes(input) && !completedWords.value.includes(input)) {
+    playSound("right"); // Âm thanh khi đúng từ
     isCorrectFeedback.value = true;
     feedback.value = "🎉 CHÍNH XÁC!";
     completedWords.value.push(input);
@@ -521,6 +531,7 @@ const checkWord = () => {
       else spawnSingleLetter();
     }, 600);
   } else {
+    playSound("wrong"); // Âm thanh khi sai từ
     isCorrectFeedback.value = false;
     feedback.value = "❌ SAI RỒI!";
     combo.value = 0;
@@ -569,6 +580,7 @@ const useHint = () => {
   }
 
   if (targetWord) {
+    playSound("hint"); // Âm thanh khi dùng gợi ý
     if (hintTimer) clearTimeout(hintTimer);
     grid.value.forEach((cell) => (cell.isHint = false));
 
@@ -584,6 +596,7 @@ const useHint = () => {
       if (feedback.value.includes("GỢI Ý")) feedback.value = "";
     }, 8000);
   } else {
+    playSound("wrong");
     isCorrectFeedback.value = false;
     feedback.value = "⏳ CHỜ CHỮ TIẾP THEO!";
     setTimeout(() => (feedback.value = ""), 2000);
@@ -592,6 +605,7 @@ const useHint = () => {
 
 const useReset = () => {
   if (resets.value <= 0) return;
+  playSound("reset"); // Âm thanh khi làm mới bảng chữ
   resets.value--;
   initGrid();
   for (let i = 0; i < 4; i++) spawnRandomWord();
@@ -600,6 +614,11 @@ const useReset = () => {
 const gameOver = () => {
   stopSpawning();
   isGameOver.value = true;
+  if (isFullWin.value) {
+    playSound("win"); // Âm thanh khi thắng hoàn toàn
+  } else {
+    playSound("wrong"); // Âm thanh khi thua
+  }
 };
 
 const resetGame = () => {

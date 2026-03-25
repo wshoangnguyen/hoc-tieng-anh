@@ -269,7 +269,7 @@ const handleStoryLoaded = (data) => {
 
 const startGame = () => {
   if (!story.value) return;
-  console.log(story.value);
+  playSound("start");
 
   isGameStarted.value = true;
   isGameOver.value = false;
@@ -394,7 +394,7 @@ const handleFixedTileClick = (idx) => {
 
   // So sánh text Tiếng Việt rơi với đáp án Tiếng Việt lưu trong Tile Tiếng Anh
   if (fallingWordObj.text === targetTile.target) {
-    playAudio("right");
+    playSound("right");
     targetTile.matched = true;
     matchedCount.value++;
     combo.value++;
@@ -407,7 +407,7 @@ const handleFixedTileClick = (idx) => {
       endGame("win");
     }
   } else {
-    playAudio("wrong");
+    playSound("wrong");
     combo.value = 0;
     selectedFallingId.value = null;
   }
@@ -429,6 +429,7 @@ const removeWordFromGame = (wordObj) => {
 };
 
 const useHint = () => {
+  playSound("hint");
   if (hintCount.value <= 0) return;
 
   const available = activeFallingWords.value;
@@ -458,7 +459,7 @@ const isStackFull = computed(() => {
 const endGame = (result) => {
   isGameOver.value = true;
   gameResult.value = result;
-  playAudio(result === "win" ? "win" : "wrong");
+  playSound(result === "win" ? "win" : "wrong");
   clearAllIntervals();
 };
 
@@ -475,7 +476,7 @@ const clearAllIntervals = () => {
   if (animationId) cancelAnimationFrame(animationId);
 };
 
-const playAudio = (type) => {
+const playSound = (type) => {
   const audio = new Audio(`/mp3/${type}.mp3`);
   audio.play().catch(() => {});
 };
