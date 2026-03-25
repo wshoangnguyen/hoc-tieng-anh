@@ -37,7 +37,7 @@
     <!-- SELECTION SECTION -->
     <div v-if="!isGameStarted" class="space-y-6 flex flex-col items-center">
       <div
-        class="flex flex-col lg:flex-row gap-4 justify-between items-start max-w-5xl"
+        class="flex flex-col lg:flex-row gap-4 justify-between items-start w-full lg:w-5xl"
       >
         <GamesModeSelection
           :selected-mode="mode"
@@ -118,11 +118,11 @@
         class="bg-white p-2 rounded-[40px] border-4 border-[#e8e4da] shadow-inner text-center relative overflow-hidden"
       >
         <div
-          class="absolute top-0 left-0 bg-[#fcbe5d] text-white px-2 lg:px-4 py-1 text-xs font-black rounded-br-2xl"
+          class="absolute top-0 left-0 bg-[#fcbe5d] text-white px-4 py-1 text-xs font-black rounded-br-2xl uppercase"
         >
-          💡 HINT
+          💡 Hint
         </div>
-        <div class="text-2xl lg:text-6xl font-black text-[#555] italic">
+        <div class="text-xl lg:text-3xl font-black text-[#555] italic">
           {{ currentWordData?.hint }} {{ currentWordData?.icon }}
         </div>
       </div>
@@ -190,10 +190,7 @@
             >
               + SCORE
             </button>
-            <button
-              @click="showGiftModal = true"
-              class="btn-score bg-purple-500 italic"
-            >
+            <button @click="openGift()" class="btn-score bg-purple-500 italic">
               🎁 GIFT
             </button>
           </div>
@@ -456,19 +453,6 @@ const winnerInfo = computed(() => {
 });
 
 /* ================= METHODS ================= */
-const backToSettings = () => {
-  if (
-    confirm("Bạn có muốn dừng trò chơi để quay lại màn hình cài đặt không?")
-  ) {
-    stopTimer();
-    isGameStarted.value = false;
-    // Tùy chọn: reset các trạng thái khác nếu muốn
-    currentIndex.value = 0;
-    scores.value = { red: 0, blue: 0, solo: 0 };
-    gameResults.value = [];
-  }
-};
-
 const handleVocabLoaded = (list) => {
   vocabList.value = list;
   words.value = list.map((v) => ({ word: v.en, hint: v.vi, icon: v.emoji }));
@@ -594,9 +578,14 @@ const nextWord = () => {
 };
 
 const resetGame = () => {
+  stopTimer();
   isGameStarted.value = false;
   isGameOver.value = false;
   confirmBack.value = false;
+  // Tùy chọn: reset các trạng thái khác nếu muốn
+  currentIndex.value = 0;
+  scores.value = { red: 0, blue: 0, solo: 0 };
+  gameResults.value = [];
 };
 
 const startTimer = () => {

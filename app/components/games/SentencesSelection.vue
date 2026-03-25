@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="flex flex-col justify-center items-center font-bold">
-      📚 Select Vocabulary
+      📚 Select Sentences
       <div class="mt-1 w-20 h-1 bg-[#fcbe5d] rounded"></div>
     </div>
 
@@ -22,9 +22,9 @@
 </template>
 
 <script setup>
-const { vocabulary } = useVocabulary();
+const { sentences } = useSentences();
 
-const emit = defineEmits(["update:vocabulary"]);
+const emit = defineEmits(["update:sentences"]);
 
 const isMobile = ref(false);
 
@@ -35,7 +35,7 @@ const dataBooks = computed(() => {
   // 1. Lấy ra mảng các tên sách: ["Super Minds 0", "Super Minds 0", "Super Minds 1", ...]
   // 2. Dùng new Set() để lọc trùng: {"Super Minds 0", "Super Minds 1", ...}
   // 3. Chuyển ngược lại thành mảng bằng [... ]
-  const uniqueBooks = [...new Set(vocabulary.map((item) => item.book))];
+  const uniqueBooks = [...new Set(sentences.map((item) => item.book))];
 
   // 4. Map sang định dạng object cho dropdown
   return uniqueBooks.map((book) => ({
@@ -48,7 +48,7 @@ const dataUnits = computed(() => {
   if (!bookSelected.value) return [];
 
   // Lọc dữ liệu an toàn hơn
-  const filtered = vocabulary.filter((item) => {
+  const filtered = sentences.filter((item) => {
     return String(item.book).trim() === String(bookSelected.value).trim();
   });
 
@@ -69,10 +69,10 @@ watch([unitSelected], () => {
 });
 
 const onClickBtn = () => {
-  let vocabularySelected = vocabulary.find((item) => {
+  let sentencesSelected = sentences.find((item) => {
     return item.book === bookSelected.value && item.unit === unitSelected.value;
   });
-  emit("update:vocabulary", vocabularySelected.words);
+  emit("update:sentences", sentencesSelected.sentences);
 };
 
 onMounted(() => {

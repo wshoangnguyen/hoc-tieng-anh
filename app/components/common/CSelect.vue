@@ -19,7 +19,7 @@
     <!-- Khung hiển thị (Trigger) -->
     <div
       @click="toggleDropdown"
-      class="size-full flex items-center justify-between px-4 bg-transparent transition-all duration-200 text-left"
+      class="size-full flex items-center justify-between px-4 bg-transparent transition-all duration-200 text-left max-w-full truncate"
     >
       <span
         class="truncate"

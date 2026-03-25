@@ -32,12 +32,9 @@
     </div>
 
     <!-- SELECTION SECTION -->
-    <div
-      v-if="!isGameStarted"
-      class="space-y-6 animate-in fade-in duration-500 mx-auto"
-    >
+    <div v-if="!isGameStarted" class="space-y-6 flex flex-col items-center">
       <div
-        class="flex flex-col lg:flex-row gap-4 justify-between items-start w-full lg:w-181.25"
+        class="flex flex-col lg:flex-row gap-4 justify-between items-start w-full lg:w-5xl"
       >
         <GamesModeSelection
           :selected-mode="mode"
@@ -47,10 +44,11 @@
         <GamesVocabularySelection @update:vocabulary="handleVocabLoaded" />
       </div>
 
+      <!-- Nút Start to rõ -->
       <button
         @click="startGame"
         :disabled="!words.length"
-        class="w-full py-4 bg-[#fcbe5d] text-white text-3xl font-black rounded-3xl shadow-[0_8px_0_#ff9d00] active:shadow-none active:translate-y-2 transition-all disabled:opacity-50"
+        class="w-full max-w-4xl py-4 bg-[#fcbe5d] text-white text-3xl font-black rounded-3xl shadow-[0_8px_0_#ff9d00] active:shadow-none active:translate-y-2 transition-all disabled:opacity-50"
       >
         🎮 BẮT ĐẦU CHƠI
       </button>
