@@ -95,6 +95,10 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
 const isMobile = ref(false);
 
 const dataFooter = ref([
@@ -153,12 +157,44 @@ const dataGames = ref([
 ]);
 
 const onClickItem = (value) => {
-  const el = document.querySelector(`#${value.to}`);
-  if (!el) return;
+  // CHẶN: Nếu không có đường dẫn (to), không thực hiện bất kỳ hành động nào
+  if (!value.to) {
+    return;
+  }
 
-  document.getElementById("nuxt-page").scrollTo({
-    top: el.offsetTop - 100,
-    behavior: "smooth",
-  });
+  // 1. Nếu là link bên ngoài (External)
+  if (value.isExternal) {
+    window.open(value.to, value.target || "_blank");
+    return;
+  }
+
+  // 2. Nếu là route trang con (bắt đầu bằng /)
+  if (value.to.startsWith("/")) {
+    router.push(value.to);
+    return;
+  }
+
+  // 3. Nếu là section scroll trên trang chủ
+  if (route.path !== "/") {
+    router.push("/").then(() => {
+      setTimeout(() => {
+        const el = document.querySelector(`#${value.to}`);
+        if (el) {
+          document.getElementById("nuxt-page").scrollTo({
+            top: el.offsetTop - 100,
+            behavior: "smooth",
+          });
+        }
+      }, 300);
+    });
+  } else {
+    const el = document.querySelector(`#${value.to}`);
+    if (el) {
+      document.getElementById("nuxt-page").scrollTo({
+        top: el.offsetTop - 100,
+        behavior: "smooth",
+      });
+    }
+  }
 };
 </script>

@@ -6,7 +6,7 @@
       class="fixed top-5 right-5 z-50 p-3 bg-white/80 rounded-full shadow-lg hover:scale-110 transition-all"
     >
       <span v-if="!isMuted">🔊</span>
-      <span v-else>🔇)</span>
+      <span v-else>🔇</span>
     </button>
 
     <!-- banner -->
@@ -410,6 +410,7 @@ const dataLectures = ref([
 
 const loadingSpinner = ref(false);
 const showImg = ref(null);
+const contentBody = ref(null);
 
 const onClickImg = (img) => {
   showImg.value = img;
@@ -488,6 +489,7 @@ const bgMusic = ref(null);
 const isMuted = ref(false); // Thêm biến để người dùng có thể tắt/mở
 
 const initBgMusic = () => {
+  contentBody.value = document.getElementById("nuxt-page");
   // Tạo đối tượng Audio
   bgMusic.value = new Audio("/mp3/background-music.mp3");
   bgMusic.value.loop = true;
@@ -504,6 +506,10 @@ const initBgMusic = () => {
           window.removeEventListener("click", startMusic);
           window.removeEventListener("touchstart", startMusic);
           window.removeEventListener("scroll", startMusic);
+
+          contentBody.value.removeEventListener("click", startMusic);
+          contentBody.value.removeEventListener("touchstart", startMusic);
+          contentBody.value.removeEventListener("scroll", startMusic);
         })
         .catch((err) => {
           // Vẫn bị chặn nếu chưa có tương tác
@@ -516,6 +522,10 @@ const initBgMusic = () => {
   window.addEventListener("click", startMusic);
   window.addEventListener("touchstart", startMusic);
   window.addEventListener("scroll", startMusic);
+
+  contentBody.value.addEventListener("click", startMusic);
+  contentBody.value.addEventListener("touchstart", startMusic);
+  contentBody.value.addEventListener("scroll", startMusic);
 };
 
 // Hàm bật/tắt nhạc (Dùng cho nút bấm trên giao diện)
@@ -538,9 +548,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  if (bgMusic.value) {
-    bgMusic.value.pause();
-    bgMusic.value = null;
-  }
+  stopBgMusic();
 });
 </script>
