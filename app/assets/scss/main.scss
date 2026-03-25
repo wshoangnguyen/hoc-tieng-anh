@@ -1,31 +1,29 @@
 @use "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&family=Quicksand:wght@300..700&display=swap');
 
+/* ===== Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap');
+
+/* ===== Base ===== */
 * {
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
+    @apply box-border transition-all duration-300 ease-in-out;
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
-    color: #555;
-    overflow: hidden;
+    @apply font-[Quicksand] text-[#555] overflow-hidden;
+}
+
+/* ===== Button Header ===== */
+button {
+    @apply cursor-pointer transition-all duration-300 ease-in-out hover:ring-2 hover:ring-[#ffae00] hover:ring-offset-2;
 }
 
 .btn-header {
+    @apply relative;
 
     &::after {
         content: '';
-        position: absolute;
-        bottom: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 4px;
-        background: linear-gradient(to right, #f7d281, #fcbe5d);
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
+        @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-linear-to-r from-[#f7d281] to-[#fcbe5d] rounded-[2px] transition-all duration-300 ease-in-out;
     }
 
     &:hover::after {
@@ -33,20 +31,21 @@ body {
     }
 
     &.active {
-        color: #f7d281;
-    }
+        @apply text-[#f7d281];
 
-    &.active::after {
-        width: 100%;
+        &::after {
+            width: 100%;
+        }
     }
 }
 
+.btn-game {
+    @apply text-lg lg:text-2xl font-bold py-2 rounded-3xl border-2 w-full;
+}
+
+/* ===== Title ===== */
 .title-section {
-    font-weight: bold;
-    margin-bottom: 50px;
-    color: #f7d281;
-    position: relative;
-    display: inline-block;
+    @apply font-bold mb-12.5 text-[#f7d281] relative inline-block;
 
     &::after {
         content: '';
@@ -61,7 +60,7 @@ body {
     }
 
     &.text-white {
-        color: white;
+        @apply text-white;
 
         &::after {
             background: linear-gradient(to right, #ffffff, #ededed);
@@ -69,96 +68,34 @@ body {
     }
 }
 
+/* ===== Card ===== */
 .stat-item {
-    flex: 1;
-    min-width: 200px;
-    padding: 30px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    @apply flex-1 min-w-50 p-7.5 bg-white rounded-[15px] shadow-lg transition-transform duration-300;
 }
 
-.benefits-decoration {
-    font-family: 'Baloo Bhaina 2', cursive;
-
-    &::before {
-        content: '"';
-        color: #fcbe5d;
-        font-size: 80px;
-        position: absolute;
-        top: -40px;
-        left: -40px;
-    }
-
-    &::after {
-        content: '"';
-        color: #fcbe5d;
-        font-size: 80px;
-        position: absolute;
-        bottom: -60px;
-        right: -40px;
-    }
-
-    @media (width <64rem) {
-        &::before {
-            font-size: 32px;
-            top: -20px;
-            left: -20px;
-        }
-
-        &::after {
-            font-size: 32px;
-            bottom: -40px;
-            right: -20px;
-        }
-    }
-}
-
-.lectures-text strong {
-    color: #f7d281;
-    background: linear-gradient(transparent 60%, #fff176 60%);
-    padding: 0 3px;
-}
-
-.registration {
-    background: linear-gradient(135deg, #f7d281 0%, #faca7a 100%);
-    color: white;
-}
-
+/* ===== Input ===== */
 input {
-    width: 100%;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid transparent;
-    color: #555;
-    outline: none;
+    @apply w-full px-5 py-4 mb-5 rounded-xl text-base bg-white/95 border-2 border-transparent outline-none text-[#555];
 
     &:focus {
-        border-color: #f7d281;
+        @apply border-[#f7d281];
     }
 }
 
-button {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-
+/* ===== Button Gradient ===== */
+.btn-gradient {
+    @apply relative overflow-hidden cursor-pointer px-6.25 py-3.75 rounded-full text-base font-bold text-[#333] shadow-md transition-all duration-300;
     background: linear-gradient(to bottom, #FFFFFF, #fcbe5d);
-    color: #333;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-    transition: all 0.3s ease;
+    &:hover {
+        @apply -translate-y-0.75 scale-[1.03] shadow-xl;
+        background: linear-gradient(to bottom, #fcbe5d, #FFFFFF);
+    }
 
-    // ✨ glow chạy
+    &:active {
+        @apply translate-y-0 scale-[0.98] shadow-md;
+    }
+
     &::after {
         content: "";
         position: absolute;
@@ -173,70 +110,22 @@ button {
         transition: 0.5s;
     }
 
-    &:hover {
-        background: linear-gradient(to bottom, #fcbe5d, #FFFFFF);
-        transform: translateY(-3px) scale(1.03);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-    }
-
     &:hover::after {
         left: 100%;
     }
-
-    &:active {
-        transform: translateY(0) scale(0.98);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    }
 }
 
-.loading-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2001;
-    background: rgba(255, 251, 240, 0.95);
-    /* White beige */
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-
-    .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #fcbe5d;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 20px;
-    }
-
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
-        }
-    }
+/* ===== Registration ===== */
+.registration {
+    @apply text-white bg-linear-to-br from-[#f7d281] to-[#faca7a];
 }
 
+/* ===== Floating ===== */
 .floating-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    width: 225px;
-    z-index: 999;
+    @apply fixed bottom-5 right-5 flex flex-col items-center gap-1.5 w-56.25 z-999;
 
     .floating-logo {
-        width: 150px;
-        height: auto;
+        @apply w-[150px] h-auto;
         animation: shake 5s infinite;
     }
 
@@ -264,65 +153,32 @@ button {
     }
 }
 
+/* ===== Footer ===== */
 .footer {
     background: linear-gradient(135deg, #2d1b69 0%, #f7d281 100%);
 
     .title-footer {
-        position: relative;
-        color: #fcbe5d;
-        font-weight: bold;
-        margin-bottom: 30px;
+        @apply relative text-[#fcbe5d] font-bold mb-7.5;
 
         &::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, #fcbe5d, #ffffff67);
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
+            @apply absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-1 bg-linear-to-r from-[#f7d281] to-[#fcbe5d] rounded-[2px] transition-all duration-300 ease-in-out;
         }
     }
 }
 
-// animation
+/* ===== Animation ===== */
 .scale-enter-active,
 .scale-leave-active {
-    transition: all 0.5s ease;
+    @apply transition-all duration-500 ease-in-out;
 }
 
 .scale-enter-from,
 .scale-leave-to {
-    opacity: 0;
-    transform: scale(0.9);
+    @apply opacity-0 scale-90;
 }
 
 .scale-enter-to,
 .scale-leave-from {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: all 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.toast-enter-active,
-.toast-leave-active {
-    transition: all 0.5s;
-}
-
-.toast-enter-from,
-.toast-leave-to {
-    opacity: 0;
-    transform: translateY(20px);
+    @apply opacity-100 scale-100;
 }

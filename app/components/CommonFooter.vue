@@ -95,8 +95,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-
 const isMobile = ref(false);
 
 const dataFooter = ref([

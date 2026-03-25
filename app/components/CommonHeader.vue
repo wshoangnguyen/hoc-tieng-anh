@@ -110,8 +110,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
+const route = useRoute();
 const isMobile = ref(false);
 const isOpenMenu = ref(false);
 
@@ -193,38 +195,48 @@ const dataHeader = ref([
   },
 ]);
 
+let observer = null;
+
 const onClickLogo = () => {
-  window.scrollTo({
+  // Chỉ chạy scroll nếu đang ở trang chủ
+  if (route.path !== "/") {
+    router.push("/");
+    return;
+  }
+  document.getElementById("nuxt-page").scrollTo({
     top: 0,
     behavior: "smooth",
   });
 };
 
-const onClickItem = (value) => {
-  if (!value.to || value.isExternal) {
-    window.open(value.to, value.target || "_self");
-    return;
-  }
-
-  if (value.to.startsWith("/")) {
-    window.location.href = value.to;
-    return;
-  }
-
-  const el = document.querySelector(`#${value.to}`);
-  if (!el) return;
-
-  isOpenMenu.value = false;
-
-  document.getElementById("nuxt-page").scrollTo({
-    top: el.offsetTop - 100,
-    behavior: "smooth",
-  });
+// Hàm xóa trạng thái active cũ
+const clearActive = () => {
+  dataHeader.value.forEach((item) => (item.isActive = false));
 };
 
-let observer = null;
-
 const initScrollSpy = () => {
+  // Ngắt kết nối observer cũ nếu có
+  if (observer) observer.disconnect();
+
+  // Chỉ chạy ScrollSpy nếu đang ở trang chủ
+  if (route.path !== "/") {
+    // Nếu không ở trang chủ, kiểm tra active theo route path (cho Games, Blog...)
+    dataHeader.value.forEach((item) => {
+      if (
+        item.to &&
+        item.to.startsWith("/") &&
+        route.path.startsWith(item.to)
+      ) {
+        item.isActive = true;
+      } else if (item.data) {
+        // Kiểm tra trong submenu
+        const hasChildActive = item.data.some((sub) => route.path === sub.to);
+        if (hasChildActive) item.isActive = true;
+      }
+    });
+    return;
+  }
+
   const sections = dataHeader.value
     .filter((item) => {
       if (!item.to || item.isExternal || item.to.startsWith("/")) return false;
@@ -234,7 +246,6 @@ const initScrollSpy = () => {
 
   observer = new IntersectionObserver(
     (entries) => {
-      // lấy các section đang visible
       const visibleSections = entries
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -242,23 +253,78 @@ const initScrollSpy = () => {
       if (!visibleSections.length) return;
 
       const currentId = visibleSections[0].target.id;
-
       dataHeader.value.forEach((item) => {
         item.isActive = item.to === currentId;
       });
     },
     {
       root: null,
-      rootMargin: "-120px 0px -40% 0px", // fix header + ưu tiên top
+      rootMargin: "-120px 0px -40% 0px",
     },
   );
 
-  sections.forEach((section) => observer.observe(section));
+  sections.forEach((section) => {
+    if (section) observer.observe(section);
+  });
+};
+
+// QUAN TRỌNG: Theo dõi thay đổi route
+watch(
+  () => route.path,
+  async (newPath) => {
+    clearActive();
+    // Đợi DOM cập nhật xong sau khi chuyển route
+    await nextTick();
+    // Chờ thêm một chút để đảm bảo các component đã render hoàn toàn (đặc biệt khi chuyển từ trang khác về Home)
+    setTimeout(() => {
+      initScrollSpy();
+    }, 100);
+  },
+);
+
+const onClickItem = (value) => {
+  isOpenMenu.value = false;
+
+  // 1. Nếu là link bên ngoài
+  if (value.isExternal) {
+    window.open(value.to, value.target || "_blank");
+    return;
+  }
+
+  // 2. Nếu là route trang con (Games, Word-find...)
+  if (value.to.startsWith("/")) {
+    router.push(value.to);
+    return;
+  }
+
+  // 3. Nếu là section scroll trên trang chủ
+  if (route.path !== "/") {
+    // Nếu đang ở trang khác mà bấm vào section trang chủ -> về trang chủ rồi scroll
+    router.push("/").then(() => {
+      setTimeout(() => {
+        const el = document.querySelector(`#${value.to}`);
+        if (el) {
+          document.getElementById("nuxt-page").scrollTo({
+            top: el.offsetTop - 100,
+            behavior: "smooth",
+          });
+        }
+      }, 300);
+    });
+  } else {
+    // Đang ở trang chủ sẵn rồi thì scroll luôn
+    const el = document.querySelector(`#${value.to}`);
+    if (el) {
+      document.getElementById("nuxt-page").scrollTo({
+        top: el.offsetTop - 100,
+        behavior: "smooth",
+      });
+    }
+  }
 };
 
 onMounted(() => {
-  isMobile.value = navigator.userAgentData.mobile;
-
+  isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
   initScrollSpy();
 });
 

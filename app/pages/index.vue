@@ -176,7 +176,7 @@
             aria-label="Email"
           />
         </div>
-        <button class="w-full lg:w-1/2 mt-4">Đăng ký ngay!</button>
+        <button class="btn-gradient w-full lg:w-1/2 mt-4">Đăng ký ngay!</button>
       </form>
     </div>
 
@@ -219,7 +219,7 @@
         class="floating-logo"
         loading="lazy"
       />
-      <button @click="onClickItem({ to: 'registration' })">
+      <button class="btn-gradient" @click="onClickItem({ to: 'registration' })">
         Đăng ký học thử ngay!
       </button>
     </div>
@@ -475,7 +475,7 @@ const showToast = (message, type = "info", duration = 3000) => {
 };
 
 onMounted(() => {
-  isMobile.value = navigator.userAgentData.mobile;
+  isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
 });
 
 onUnmounted(() => {});

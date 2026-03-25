@@ -1,0 +1,1335 @@
+=== Super Minds 0 ===
+[Unit 0]
+blue | màu xanh dương 🔵
+green | màu xanh lá 🟢
+yellow | màu vàng 🟡
+orange | màu cam 🟠
+red | màu đỏ 🔴
+pink | màu hồng 💗
+Hello | Xin chào 👋
+Bye | Tạm biệt 👋
+Goodbye | Tạm biệt 👋
+
+[Unit 1]
+window | cửa sổ 🪟
+chair | cái ghế 🪑
+book | quyển sách 📖
+pencil | bút chì ✏️
+table | cái bàn 🪑
+door | cửa ra vào 🚪
+Stand up | Đứng lên ⬆️
+Sit down | Ngồi xuống ⬇️
+
+[Unit 2]
+eyes | đôi mắt 👀
+ears | đôi tai 👂
+arms | cánh tay 💪
+legs | chân 🦵
+mouth | miệng 👄
+nose | mũi 👃
+head | đầu 👤
+
+[Unit 3]
+mum | mẹ 👩
+dad | bố 👨
+sister | chị/em gái 👧
+brother | anh/em trai 👦
+grandpa | ông 👴
+grandma | bà 👵
+hen | gà mái 🐔
+dog | con chó 🐶
+duck | con vịt 🦆
+cat | con mèo 🐱
+baby | em bé 👶
+kitten | mèo con 🐱
+puppy | chó con 🐶
+chick | gà con 🐥
+duckling | vịt con 🐤
+
+[Unit 4]
+parrot | con vẹt 🦜
+lion | sư tử 🦁
+fish | con cá 🐟
+zebra | ngựa vằn 🦓
+monkey | con khỉ 🐒
+frog | con ếch 🐸
+tree | cái cây 🌳
+pond | cái ao 💧
+big | to 🐘
+small | nhỏ 🐭
+
+[Unit 5]
+milk | sữa 🥛
+oranges | những quả cam 🍊
+cakes | những cái bánh ngọt 🍰
+tomatoes | những quả cà chua 🍅
+chocolate | sô-cô-la 🍫
+pears | những quả lê 🍐
+potatoes | những củ khoai tây 🥔
+carrots | những củ cà rốt 🥕
+bananas | những quả chuối 🍌
+ground | mặt đất 🌍
+fruit | trái cây 🍎
+vegetables | rau củ 🥦
+grow | trồng / mọc 🌱
+come from | đến từ 🗺️
+
+[Unit 6]
+bus stop | trạm xe buýt 🚏
+school | trường học 🏫
+cinema | rạp chiếu phim 🎬
+hospital | bệnh viện 🏥
+toy shop | cửa hàng đồ chơi 🧸
+park | công viên 🏞️
+café | quán cà phê ☕
+playground | sân chơi 🛝
+sports centre | trung tâm thể thao ⚽
+map | bản đồ 🗺️
+
+[Unit 7]
+teacher | giáo viên 👩🏫
+fire fighter | lính cứu hỏa 👨🚒
+gardener | người làm vườn 👨🌾
+police officer | cảnh sát 👮
+vet | bác sĩ thú y 🐕
+doctor | bác sĩ 👨⚕️
+farmer | nông dân 👩🌾
+shop assistant | nhân viên bán hàng 💁
+dentist | nha sĩ 🦷
+inside | bên trong 🏠
+outside | bên ngoài 🌳
+
+[Unit 8]
+hat | cái mũ 🧢
+coat | áo khoác 🧥
+scarf | khăn quàng cổ 🧣
+boots | đôi ủng 👢
+sweater | áo len 🧶
+gloves | đôi găng tay 🧤
+jeans | quần bò 👖
+T-shirt | áo phông 👕
+soft | mềm ☁️
+hard | cứng 💎
+belt | thắt lưng 🪢
+sunglasses | kính râm 🕶️
+
+[Unit 9]
+play football | chơi bóng đá ⚽
+run | chạy 🏃
+paint a picture | vẽ tranh 🎨
+swim | bơi 🏊
+read | đọc 📚
+dance | nhảy múa 💃
+my turn | đến lượt tôi 👈
+sorry | xin lỗi 🙏
+guess | đoán 🤔
+slowly | một cách chậm rãi 🐢
+quickly | một cách nhanh nhẹn 🐇
+hobby | sở thích ♟️
+
+=== Super Minds 1 ===
+[Unit 0]
+yellow | màu vàng 🟡
+red | màu đỏ 🔴
+orange | màu cam 🟠
+purple | màu tím 🟣
+green | màu xanh lá 🟢
+blue | màu xanh dương 🔵
+bag | cái cặp / túi 🎒
+balloon | bóng bay 🎈
+cat | con mèo 🐱
+power | sức mạnh / năng lượng ⚡
+
+[Unit 1]
+ruler | thước kẻ 📏
+pen | bút mực 🖊️
+book | quyển sách 📖
+rubber | cục tẩy 🧽
+pencil case | hộp bút 🗂️
+pencil | bút chì ✏️
+desk | bàn học 🪑
+notebook | vở ghi chép 📓
+bag | cái cặp 🎒
+paper | giấy 📄
+
+[Unit 2]
+computer game | trò chơi máy tính 🎮
+kite | cái diều 🪁
+plane | máy bay ✈️
+bike | xe đạp 🚲
+doll | búp bê 🪆
+monster | quái vật 👾
+train | tàu hỏa 🚂
+go-kart | xe đua nhỏ 🏎️
+car | ô tô 🚗
+ball | quả bóng ⚽
+big | to 🐘
+small | nhỏ 🐭
+old | cũ / già ⌛
+new | mới 🆕
+long | dài 📏
+short | ngắn / thấp 📏
+ugly | xấu xí 👹
+beautiful | xinh đẹp 🌸
+
+[Unit 3]
+donkey | con lừa 🐴
+elephant | con voi 🐘
+spider | con nhện 🕷️
+cat | con mèo 🐱
+rat | con chuột cống 🐀
+frog | con ếch 🐸
+duck | con vịt 🦆
+lizard | thằn lằn 🦎
+dog | con chó 🐶
+in | ở trong 📦
+on | ở trên 📍
+under | ở dưới ⬇️
+
+[Unit 4]
+apple | quả táo 🍎
+banana | quả chuối 🍌
+cake | bánh ngọt 🍰
+pizza | bánh pizza 🍕
+sausage | xúc xích 🌭
+cheese sandwich | bánh mì kẹp phô mai 🥪
+fish | cá 🐟
+chicken | thịt gà 🍗
+peas | đậu hà lan 🫛
+steak | bít tết 🥩
+carrots | cà rốt 🥕
+lunch | bữa trưa 🍽️
+fridge | tủ lạnh 🧊
+fruit | trái cây 🍇
+vegetables | rau củ 🥦
+plant | thực vật / cây 🌱
+soil | đất trồng 🏺
+
+[Unit 5]
+Monday | Thứ hai 📅
+Tuesday | Thứ ba 📅
+Wednesday | Thứ tư 📅
+Thursday | Thứ năm 📅
+Friday | Thứ sáu 📅
+Saturday | Thứ bảy 📅
+Sunday | Chủ nhật 📅
+go fishing | đi câu cá 🎣
+play football | chơi bóng đá ⚽
+watch TV | xem tivi 📺
+play games | chơi trò chơi 🎲
+
+[Unit 6]
+bedroom | phòng ngủ 🛏️
+bathroom | phòng tắm 🛁
+living room | phòng khách 🛋️
+kitchen | nhà bếp 🍳
+hall | hành lang / sảnh 🚪
+stairs | cầu thang 🪜
+cellar | hầm chứa 🏚️
+dining room | phòng ăn 🍽️
+
+[Unit 7]
+sweater | áo len 🧶
+skirt | váy ngắn 👗
+shorts | quần đùi 🩳
+trousers | quần dài 👖
+jacket | áo khoác 🧥
+socks | tất / vớ 🧦
+jeans | quần bò 👖
+shoes | giày 👞
+baseball cap | mũ lưỡi trai 🧢
+T-shirt | áo phông 👕
+
+[Unit 8]
+arm | cánh tay 💪
+hand | bàn tay 🤚
+knee | đầu gối 🦵
+fingers | ngón tay 👆
+leg | chân 🦵
+foot | bàn chân (số ít) 🦶
+feet | bàn chân (số nhiều) 🦶🦶
+toes | ngón chân 👣
+head | đầu 👤
+
+[Unit 9]
+paint a picture | vẽ một bức tranh 🎨
+listen to music | nghe nhạc 🎧
+catch a fish | bắt cá 🐟
+take a photo | chụp ảnh 📸
+eat ice cream | ăn kem 🍦
+play the guitar | chơi đàn ghi-ta 🎸
+read a book | đọc sách 📖
+make a sandcastle | xây lâu đài cát 🏖️
+look for shells | tìm vỏ sò 🐚
+
+=== Super Minds 2 ===
+[Unit 0]
+bookcase | tủ sách 📚
+wall | bức tường 🧱
+board | cái bảng 📋
+clock | đồng hồ treo tường 🕐
+door | cửa ra vào 🚪
+cupboard | tủ đựng đồ 🗄️
+window | cửa sổ 🪟
+chair | cái ghế 🪑
+crayon | bút sáp màu 🖍️
+floor | sàn nha 🏠
+burglar | kẻ trộm 🦹
+drop | làm rơi 📦
+quick | nhanh lên ⚡
+check out | kiểm tra / xem thử 🔍
+Great work | Làm tốt lắm 👏
+Well done | Giỏi lắm 🏆
+
+[Unit 1]
+get up | thức dậy ☀️
+get dressed | mặc quần áo 👕
+have breakfast | ăn sáng 🍞
+brush your teeth | đánh răng 🪥
+go to school | đi học 🎒
+have lunch | ăn trưa 🥪
+play in the park | chơi trong công viên 🛝
+have dinner | ăn tối 🍝
+go to bed | đi ngủ 🛏️
+yawn | ngáp 😪
+keys | chìa khóa 🔑
+bedtime | giờ đi ng� 🌙
+bad day | ngày tồi tệ 🌧️
+firefighter | lính cứu hỏa 👨🚒
+sun | mặt trời ☀️
+shadow | cái bóng 👤
+
+[Unit 2]
+polar bear | gấu bắc cực 🐻❄️
+bear | con gấu 🐻
+zebra | ngựa vằn 🦓
+crocodile | cá sấu 🐊
+hippo | hà mã 🦛
+tiger | con hổ 🐯
+parrot | con vẹt 🦜
+monkey | con khỉ 🐒
+snake | con rắn 🐍
+zoo keeper | người trông sở thú 🦁
+throw | ném 🤾
+hungry | đói bụng 🍽️
+peel | bóc vỏ 🍌
+habitat | môi trường sống 🌍
+grassland | đồng cỏ 🌾
+ocean | đại dương 🌊
+polar habitat | môi trường vùng cực 🏔️
+rainforest | rừng nhiệt đới 🌴
+
+[Unit 3]
+train station | ga tàu hỏa 🚉
+hospital | bệnh viện 🏥
+cinema | rạp chiếu phim 🎬
+playground | sân chơi 🛝
+café | quán cà phê ☕
+shop | cửa hàng 🛍️
+street | đường phố 🛣️
+bus stop | trạm xe buýt 🚏
+park | công viên 🏞️
+school | trường học 🏫
+swimming pool | hồ bơi 🏊
+town | thị trấn 🏘️
+between | ở giữa ↔️
+behind | ở phía sau ↩️
+in front of | ở phía trước ↗️
+next to | bên cạnh ➡️
+
+[Unit 4]
+tomatoes | cà chua 🍅
+beans | hạt đậu 🫘
+greens | rau xanh 🥬
+potatoes | khoai tây 🥔
+kiwis | quả ki-wi 🥝
+lemons | quả chanh vàng 🍋
+bread | bánh mì 🍞
+mangos | quả xoài 🥭
+grapes | quả nho 🍇
+eggs | trứng 🥚
+watermelons | dưa hấu 🍉
+
+[Unit 5]
+poster | áp phích 📰
+wardrobe | tủ quần áo 👔
+mirror | cái gương 🪞
+armchair | ghế bành 🛋️
+lamp | đèn ngủ 💡
+bed | cái giường 🛏️
+table | cái bàn 🪑
+sofa | ghế sô-pha 🛋️
+rug | tấm thảm nhỏ 🧶
+tidy up | dọn dẹp 🧹
+messy | bừa bộn 🤪
+lovely | đáng yêu 😍
+comfortable | thoải mái 😌
+seat | chỗ ngồi 💺
+
+[Unit 6]
+eyes | đôi mắt 👀
+face | khuôn mặt 😀
+glasses | mắt kính 👓
+hair | tóc 💇
+cheeks | má 😊
+ears | tai 👂
+nose | mũi 👃
+tears | nước mắt 😢
+chin | cằm 🤔
+mouth | miệng 👄
+sad | buồn 😔
+excited | hào hứng 🤩
+scared | sợ hãi 😨
+tired | mệt mỏi 😴
+angry | tức giận 😠
+happy | vui vẻ 😊
+blond | vàng hoe (tóc nam) 👱
+blonde | vàng hoe (tóc nữ) 👱‍♀️
+curly | xoăn 🌀
+
+[Unit 7]
+helicopter | trực thăng 🚁
+ship | tàu thủy lớn 🚢
+lorry | xe tải 🚛
+boat | thuyền 🚤
+scooter | xe tay ga / xe trượt 🛴
+skateboard | ván trượt 🛹
+motorbike | xe máy 🏍️
+taxi | xe tắc-xi 🚕
+bus | xe buýt 🚌
+sail | đi thuyền buồm ⛵
+drive | lái xe (ô tô) 🚗
+ride | lái xe (2 bánh) / cưỡi 🏇
+fly | bay ✈️
+
+[Unit 8]
+badminton | cầu lông 🏸
+table tennis | bóng bàn 🏓
+tennis | quần vợt 🎾
+basketball | bóng rổ 🏀
+baseball | bóng chày ⚾
+volleyball | bóng chuyền 🏐
+swimming | bơi lội 🏊
+football | bóng đá ⚽
+hockey | khúc côn cầu 🏒
+athletics | điền kinh 🏃
+sports club | câu lạc bộ thể thao 🏟️
+join | tham gia 🤝
+team | đội 👥
+goal | bàn thắng / khung thành ⚽
+boring | nhàm chán 😴
+fun | vui vẻ 🎉
+difficult | khó khăn 😰
+easy | dễ dàng 😊
+
+[Unit 9]
+read a comic | đọc truyện tranh 📖
+go hiking | đi bộ đường dài 🥾
+visit cousins | thăm anh chị em họ 👨‍👩‍👧‍👦
+help in the garden | giúp làm vườn 🌱
+take riding lessons | học cưỡi ngựa 🏇
+build a tree house | xây nhà trên cây 🌳
+keep a scrapbook | làm sổ lưu niệm 📔
+learn to swim | học bơi 🏊
+go camping | đi cắm trại 🏕️
+bake a cake | nướng bánh 🍰
+rest | nghỉ ngơi 💤
+have a break | nghỉ giải lao ☕
+
+=== Super Minds 3 ===
+[Unit 0]
+upstairs | tầng trên ⬆️
+downstairs | tầng dưới ⬇️
+cellar | hầm chứa 🏚️
+explorer | nhà thám hiểm 🧭
+meet | gặp gỡ 🤝
+lost treasure | kho báu thất lạc 💎
+museum | bảo tàng 🏛️
+adventure | cuộc phiêu lưu 🗺️
+castle | lâu đài 🏰
+secret | bí mật 🤫
+only | duy nhất / chỉ 1️⃣
+
+[Unit 1]
+Art | Mỹ thuật 🎨
+English | Tiếng Anh 🇬🇧
+Geography | Địa lý 🌍
+Music | Âm nhạc 🎵
+I.T. | Tin học 💻
+History | Lịch sử 📜
+Maths | Toán ➗
+Science | Khoa học 🔬
+P.E. | Thể dục ⚽
+in code | bằng mật mã 🔐
+easy | dễ 😊
+keep | giữ 💾
+dark | tối tăm 🌑
+probably | có lẽ 🤔
+No way | Không đời nào 🙅
+yet | chưa ⏳
+follow | đi theo 👣
+
+[Unit 2]
+apple juice | nước ép táo 🧃
+cheese | phô mai 🧀
+lemonade | nước chanh 🍋
+salad | sa-lát 🥗
+rolls | bánh mì cuộn 🥖
+soup | súp / canh 🍲
+vegetables | rau củ 🥦
+water | nước 💧
+ill | ốm / bệnh 🤒
+bite | cắn 🦷
+bit | đã cắn (quá khứ) 🦷
+medicine | thuốc 💊
+hut | túp lều 🛖
+top | đỉnh ⛰️
+waterfall | thác nước 🌊
+golden | bằng vàng 🥇
+get better | hồi phục / khỏe hơn 💪
+fool | kẻ ngốc 🤡
+Just you wait | Hãy đợi đấy ⏳
+
+[Unit 3]
+wash up | rửa bát đĩa 🍽️
+tidy up | dọn dẹp 🧹
+sweep | quét dọn 🧹
+cook | nấu ăn 👨🍳
+feed the dog | cho chó ăn 🐕
+dry the dishes | lau khô bát đĩa 🧽
+do the shopping | đi mua sắm 🛍️
+take the dog for a walk | dắt chó đi dạo 🦮
+tea | trà 🫖
+moon | mặt trăng 🌙
+at night | vào ban đêm 🌃
+pilot | phi công ✈️
+flight | chuyến bay ✈️
+spaceship | tàu vũ trụ 🚀
+
+[Unit 4]
+map | bản đồ 🗺️
+bank | ngân hàng 🏦
+bus station | bến xe buýt 🚌
+tower | tháp 🗼
+library | thư viện 📚
+market square | quảng trường chợ 🏘️
+sports centre | trung tâm thể thao ⚽
+supermarket | siêu thị 🛒
+funfair | hội chợ vui chơi 🎡
+car park | bãi đỗ xe 🅿️
+higher than | cao hơn ⬆️
+Pirate Ship | Tàu cướp biển 🏴‍☠️
+the wrong place | nhầm chỗ ❌
+
+[Unit 5]
+seahorse | cá ngựa 🐠
+dolphin | cá heo 🐬
+seal | hải cẩu 🦭
+shell | vỏ sò 🐚
+octopus | bạch tuộc 🐙
+anchor | mỏ neo ⚓
+starfish | sao biển 🌟
+turtle | rùa biển 🐢
+trap | cái bẫy 🪤
+chase | đuổi theo 🏃‍♂️
+giant | khổng loth 🦍
+have a look | nhìn xem 👀
+get my arm out | rút tay ra 💪
+stuck | bị kẹt 🔒
+my beauty | người đẹp của ta 💃
+stupid | ngu ngốc 🤪
+cage | cái lồng 🐦
+helpful | hay giúp đỡ 🤝
+fourth | thứ tư (số thứ tự) 4️⃣
+
+[Unit 6]
+games console | máy chơi game 🎮
+electric fan | quạt điện 💨
+walkie-talkie | bộ đàm 📻
+electric toothbrush | bàn chải điện 🪥
+tablet | máy tính bảng 📱
+torch | đèn pin 🔦
+mobile phone | điện thoại di động 📱
+lift | thang máy 🛗
+laptop | máy tính xách tay 💻
+fabulous | tuyệt vời 🌟
+fan | cái quạt / người hâm mộ 🥰
+van | xe tải nhỏ 🚐
+
+[Unit 7]
+doctor | bác sĩ 👨⚕️
+nurse | y tá 👩⚕️
+cold | cảm lạnh 🤧
+cough | ho 🤧
+headache | đau đầu 🤕
+toothache | đau răng 🦷
+earache | đau tai 👂
+stomach-ache | đau dạ dày 🤢
+quietly | một cách yên lặng 🤫
+woke up | đã thức dậy ⏰
+felt | đã cảm thấy 🤲
+had | đã có ✔️
+went | đã đi 🚶‍♂️
+gave | đã đưa cho 🎁
+said | đã nói 🗣️
+terrible | khủng khiếp 😨
+
+[Unit 8]
+Mexico | nước Mê-hi-cô 🇲🇽
+Spain | nước Tây Ban Nha 🇪🇸
+Argentina | nước Ác-hen-ti-na 🇦🇷
+Egypt | nước Ai Cập 🇪🇬
+Chile | nước Chi-lê 🇨🇱
+China | nước Trung Quốc 🇨🇳
+Turkey | nước Thổ Nhĩ Kỳ 🇹🇷
+Brazil | nước Bra-xin 🇧🇷
+Australia | nước Úc 🇦🇺
+India | nước Ấn Độ 🇮🇳
+North America | Bắc Mỹ 🌎
+South America | Nam Mỹ 🌎
+Europe | Châu Âu 🇪🇺
+Asia | Châu Á 🌏
+Africa | Châu Phi 🌍
+canyon | hẻm núi 🏞️
+harbour | bến cảng ⚓
+volcano | núi lửa 🌋
+
+[Unit 9]
+thunderstorm | bão sấm sét ⛈️
+lightning | tia chớp ⚡
+rain | mưa 🌧️
+rainy | có mưa 🌧️
+wind | gió 💨
+windy | có gio 💨
+cloud | mây ☁️
+cloudy | có mây ☁️
+fog | sương mù 🌫️
+foggy | có sương mù 🌫️
+umbrella | cái ô ☂️
+raincoat | áo mưa 🧥
+boots | đôi ủng 👢
+because of | bởi vì 🧐
+so much | rất nhiều 💯
+seaside | bờ biển 🏖️
+steam train | tàu hơi nước 🚂
+crowded | đông đúc 👥
+basket | cái giỏ 🧺
+cart | xe đẩy / xe kéo 🛒
+wore | đã mặc 👗
+
+=== Super Minds 4 ===
+[Unit 0]
+big wheel | vòng quay khổng lồ 🎡
+rollercoaster | tàu lượn siêu tốc 🎢
+roundabout | vòng quay ngựa gỗ / bùng binh 🎠
+mayor | thị trưởng 👨💼
+dodgem cars | xe điện đụng 🏎️
+microphone | mi-crô 🎤
+band | ban nhạc 🎶
+photographer | nhiếp ảnh gia 📸
+journalist | nhà báo 📰
+well done | làm tốt lắm 👏
+try out | thử nghiệm 🧪
+excitement | sự phấn khích 🤩
+explore | khám phá 🧭
+treasure | kho báu 💎
+museum | bảo tàng 🏛️
+
+[Unit 1]
+queen | nữ hoàng 👑
+knight | hiệp s 🤺
+crown | vương miện 👑
+helmet | mũ bảo hiểm / mũ giáp ⛑️
+necklace | vòng cổ 📿
+bracelet | vòng tay 📿
+shield | cái khiên 🛡️
+sword | thanh kiếm ⚔️
+map | bản đồ 🗺️
+dinosaur | khủng long 🦖
+touch | chạm vào 👆
+brilliant | xuất sắc / rực rỡ ✨
+hide | trốn / giấu 🙈
+storyteller | người kể chuyện 📖
+timeline | dòng thời gian ⏳
+
+[Unit 2]
+mountain | ngọn núi ⛰️
+forest | khu rừng 🌲
+village | ngôi làng 🏡
+lake | hồ nước 🌊
+island | hòn đảo 🏝️
+field | cánh đồ 🌾
+river | dòng sông 🌊
+path | con đường nhỏ 🛤️
+picnic | dã ngoic 🧺
+scare | làm sợ hãi 😨
+rescue | giải cứu 🚑
+continent | lục địa 🌍
+satellite | vệ tinh 🛰️
+country | đất nước 🇻🇳
+world | thế giới 🌎
+
+[Unit 3]
+fire | ngọn lửa / hỏa hoạn 🔥
+flood | lũ lụt 🌊
+emergency services | dịch vụ khẩn cấp 🚨
+police car | xe cảnh sát 🚓
+fire engine | xe cứu hỏa 🚒
+ambulance | xe cứu thương 🚑
+paramedic | nhân viên y tế 🏥
+accident | tai nạn 🚧
+hurt | bị thương / làm đau 🤕
+shark | cá mập 🦈
+extinguisher | bình cứu hỏa 🧯
+operator | tổng đài viên 📞
+tsunami | sóng thần 🌊
+danger | sự nguy hiểm ⚠️
+rescue | giải cứu 🚑
+
+[Unit 4]
+station | nhà ga 🚉
+platform | sân ga 🛤️
+escalator | thang cuốn ⬆️
+ticket office | phòng bán vé 🎟️
+train driver | người lái tàu 🚂
+suitcase | va li 🧳
+train track | đường ray 🛤️
+return ticket | vé khứ hồi 🎟️
+single ticket | vé một chiều 🎟️
+tunnel | đường hầ 🚇
+disappear | biến mất 👻
+conductor | người soát vé / nhạc trưởng 🎼
+imagination | trí tưởng tượng 🧠
+eco-friendly | thân thiện với môi trường 🌱
+pollute | gây ô nhiễm ☁️
+
+[Unit 5]
+dark | sẫm màu / tối 🌑
+blonde | vàng hoe 👱‍♀️
+fair | sáng màu / trắng trẻo 👱
+moustache | ria mép 🤨
+curly | xoăn 🌀
+beard | râu quai nón 🧔
+scar | vết sẹo 🤕
+straight | thẳng 📏
+criminal | tội phạm 🦹
+mysterious | bí ẩn 🕵️
+uniform | đồng phục 👮
+walkie-talkie | bộ đàm 📻
+rob | cướp 🦹
+sketch | bản phác thảo 🖍️
+police | cảnh sát 👮
+
+[Unit 6]
+tail | cái đuôi 🐒
+horn | cái sừng 🐮
+scales | vảy (cá/rồng) 🐟
+wing | đôi cánh 🦋
+feathers | lông vũ 🪶
+tongue | cái lưỡi 👅
+mythical beast | quái thú huyền thoại 🐉
+dinosaur | khủng long 🦖
+mermaid | nàng tiên cá 🧜‍♀️
+unicorn | kỳ lân 🦄
+centaur | nhân mã 🐎
+treasure chest | rương kho báu 💰
+omnivore | động vật ăn tạp 🍖🥬
+herbivore | động vật ăn cỏ 🌿
+carnivore | động vật ăn thịt 🍖
+
+[Unit 7]
+tambourine | trống lục lạc 🔔
+triangle | kẻng tam giác 🔺
+trumpet | kèn trôm-pét 🎺
+trombone | kèn trôm-bôn 🎷
+drums | trống 🥁
+harp | đàn hạc 🎼
+saxophone | kèn xắc-xô 🎷
+violin | đàn vĩ cầm 🎻
+orchestra | dàn nhạc 🎼
+instrument | nhạc cụ 🎸
+concert | buổi hòa nhạc 🎵
+conductor | nhạc trưởng 🎼
+percussion | bộ gõ 🥁
+string | bộ dây 🎻
+wind | bộ hơi (nhạc cụ) 🎺
+
+[Unit 8]
+planet | hành tinh 🪐
+rocket | tên lửa 🚀
+UFO | vật thể bay không xác định 🛸
+star | ngôi sao ⭐
+comet | sao chổi ☄️
+telescope | kính thiên văn 🔭
+astronaut | phi hành gia 👨🚀
+moon | mặt trăng 🌙
+space station | trạm vũ trụ 🛰️
+planetarium | cung thiên văn 🌌
+outer space | ngoài vũ tr 🌠
+asteroid | tiểu hành tinh 🌑
+orbit | quỹ đạo 🛰️
+spacesuit | bộ đồ phi hành gia 👨🚀
+universe | vũ tr 🌌
+
+[Unit 9]
+sail a boat | lái thuyền buồm ⛵
+swing on a rope | đu dây 🪢
+dive into the water | lặn xuống nước 🤿
+row a boat | chèo thuyền 🛶
+put up a tent | dựng lều ⛺
+make a fire | đốt lửa 🔥
+collect wood | nhặt củi 🪵
+sleeping bag | túi ngủ 🛌
+tent | cái lều ⛺
+campfire | lửa trại 🔥
+campsite | khu cắm trại 🏕️
+adventure | cuộc phiêu lưu 🗺️
+holiday | kỳ nghỉ 🏖️
+nature | thiên nhiên 🌳
+explore | khám phá 🧭
+
+=== Super Minds 5 ===
+[Unit 0]
+bubbles | bong bóng 🫧
+explosion | vụ nổ 💥
+instructions | hướng dẫn 📝
+liquid | chất lỏng 💧
+goggles | kính bảo hộ 🥽
+apron | tạp dề 🧤
+powder | bột 🧂
+gloves | găng tay 🧤
+test tube | ống nghiệm 🧪
+shelf | cái kệ 📚
+science | khoa học 🔬
+laboratory | phòng thí nghiệm 🧪
+experiment | thí nghiệm 🧫
+safety | sự an toàn 🛡️
+measure | đo lường 📏
+
+[Unit 1]
+volcano | núi lửa 🌋
+earthquake | động đất 🌍
+flood | lũ lụt 🌊
+hurricane | bão lớn / cuồng phong 🌪️
+tsunami | sóng thần 🌊
+forest fire | cháy rừng 🔥
+smoke | khói 💨
+temple | ngôi đền 🛕
+statue | bức tượng 🗿
+fountain | đài phun nước ⛲
+magma | mắc-ma (đá nóng chảy trong lòng đất) 🌋
+lava | dung nham 🌋
+ash | tro bụi 💨
+destroy | phá hủy 💥
+erupt | phun trào 🌋
+
+[Unit 2]
+rainforest | rừng mưa nhiệt đới 🌴
+beak | cái mỏ (chim) 🐦
+toucan | chim toucan (chim mỏ to) 🦜
+sloth | con lười 🦥
+branch | cành cây 🌿
+anaconda | trăn anaconda 🐍
+jaguar | báo đốm 🐆
+anteater | thú ăn kiến 🦏
+beetle | bọ cánh cứng 🪲
+ecosystem | hệ sinh thái 🌿
+oxygen | khí ô-xy 💨
+species | giống loài 🐾
+carbon dioxide | khí các-bô-níc (CO2) 💨
+Amazon | rừng A-ma-dôn 🌳
+monkey | con khỉ 🐒
+
+[Unit 3]
+spotlight | đèn sân khấu / tiêu điểm 💡
+electric guitar | đàn ghi-ta điện 🎸
+fans | người hâm mộ 🥰
+dancer | vũ công 💃
+bass guitar | đàn ghi-ta bass 🎸
+drum kit | bộ trống 🥁
+stage | sân khấu 🎭
+backing singers | nhóm hát bè 🎤
+bodyguards | vệ sĩ 💂
+album | an-bum nhạc 💿
+record | bản thu âm / đĩa hát 💿
+jukebox | máy phát nhạc tự động 🎵
+genre | thể loại 🎶
+jazz | nhạc jazz 🎷
+concert | buổi hòa nhạc 🎵
+
+[Unit 4]
+waiter | bồi bàn (nam) 🧑‍🍳
+strawberries | dâu tây 🍓
+biscuits | bánh quy 🍪
+spoon | cái thìa 🥄
+fork | cái nĩa 🍴
+knife | con dao 🔪
+chopsticks | đôi đũa 🥢
+pepper | hạt tiêu 🌶️
+salt | muối 🧂
+recipe | công thức nấu ăn 📜
+ingredients | nguyên liệu 🥦
+chocolate | sô-cô-la 🍫
+cacao | ca cao 🍫
+melt | tan chảy 🫠
+restaurant | nhà hàng 🍽️
+
+[Unit 5]
+robbers | những tên cướp 🦹
+jail | nhà tù 🔒
+wagon | xe ngựa kéo 🛻
+sheriff | cảnh sát trưởng 🤠
+saddle | yên ngựa 🐎
+pistol | súng lục 🔫
+handcuffs | còng số 8 🔗
+rope | dây thừng 🪢
+barrel | cái thùng 🛢️
+Native American | người bản địa Mỹ (da đỏ) 🏹
+bison | bò rừng 🐂
+tribe | bộ lạc 👨‍👩‍👧‍👦
+gold rush | cơn sốt vàng 🏆
+cowboy | cao bồi 🤠
+arrest | bắt giữ 👮
+
+[Unit 6]
+flag | lá cờ 🇻🇳
+carpet | tấm thảm 🧶
+sunglasses | kính râm 🕶️
+cushion | gối tựa / đệm 🛋️
+earrings | bông tai 👂
+souvenir | quà lưu niệm 🎁
+tourist | khách du lịch 🧳
+mosque | nhà thờ Hồi giáo 🕌
+mosaic | tranh khảm 🎨
+tiles | gạch men / ngói 🧱
+Istanbul | thành phố I-x-tan-bun 🕌
+Turkey | nước Thổ Nhĩ Kỳ 🇹🇷
+basket | cái giỏ 🧺
+market | chợ 🛍️
+travel | du lịch 🧭
+
+[Unit 7]
+mask | mặt nạ 🎭
+wig | tóc giá 💇
+actor | diễn viên 🎭
+costume | trang phục diễn 👘
+audience | khán giả 👥
+theatre | nhà hát 🎭
+play | vở kịch 🎬
+Shakespeare | Sếch-xpia (nhà viết kịch) 📜
+tragedy | bi kịch 😢
+comedy | hài kịch 😄
+prop | đạo cụ 🎩
+applause | tràng pháo tay 👏
+stage | sân khấu 🎭
+perform | biểu diễn 💃
+character | nhân vật 🧑‍🎤
+
+[Unit 8]
+farmer | nông dân 👩‍🌾
+engineer | kỹ sư 👷
+dentist | nha sĩ 🦷
+artist | họa sĩ / nghệ sĩ 🎨
+designer | nhà thiết kế 🎨
+computer programmer | lập trình viên máy tính 💻
+mechanic | thợ cơ khí 🔧
+businesswoman | nữ doanh nhân 👩‍💼
+businessman | nam doanh nhân 👨‍💼
+cleaner | nhân viên vệ sinh 🧹
+future | tương lai 🔮
+career | sự nghiệp 📈
+job | công việc 💼
+profession | nghề nghiệp chuyên môn 🎓
+skills | kỹ năng 🛠️
+
+[Unit 9]
+sail | cánh buồm ⛵
+sailor | thủy thủ 🧑‍✈️
+captain | thuyền trưở 🧑‍✈️
+mast | cột buồm ⛵
+lifeboat | thuyền cứu sinh 🚤
+cabin | khoang tàu / ca-bin 🚢
+porthole | cửa sổ tàu thủy (tròn) 🪟
+ocean | đại dương 🌊
+sea | biển 🌊
+ship | tàu thủy 🚢
+voyage | chuyến hải trình 🧭
+mystery | bí ẩn 🕵️
+adventure | cuộc phiêu lưu 🗺️
+navigation | sự định vị / nghề hàng hải 🧭
+compass | la bàn 🧭
+
+=== Super Minds 6 ===
+[Back to School]
+basketball hoop | rổ bóng rổ 🏀
+bell | cái chuông 🔔
+net | lưới 🕸️
+football pitch | sân bóng đá ⚽
+running track | đường chạy điền kinh 🏃‍♂️
+gym | phòng tập thể dục / nhà thi đấu 🏋️‍♂️
+tennis court | sân quần vợt 🎾
+bike rack | giá để xe đạp 🚲
+railings | hàng rào chắn / lan can 🚧
+litter bin | thùng rác 🗑️
+school | trường học 🏫
+adventure | cuộc phiêu lưu 🗺️
+time travel | du hành thời gian ⏳
+playground | sân chơi 🛝
+sports | thể thao ⚽
+
+[Unit 1]
+palm tree | cây cọ / cây dừa 🌴
+hook | cái móc 🪝
+eye-patch | miếng bịt mắt 🏴‍☠️
+binoculars | ống nhòm 🔭
+key | chìa khóa 🔑
+hammock | cái võng 🪢
+coins | tiền xu 💰
+spade | cái xẻng 🪚
+treasure chest | rương kho báu 💰
+hole | cái hố 🕳️
+pirate | cướp biển 🏴‍☠️
+anchor | mỏ neo ⚓
+bury | chôn giấu ⚰️
+rob | cướp 🦹
+steal | trộm cắp 🦹
+
+[Unit 2]
+hang-glider | diều lượn 🪂
+parachute | cái dù 🪂
+monorail | tàu đường ray đơn 🚝
+solar panel | tấm pin năng lượng mặt trời ☀️
+microlight | máy bay siêu nhẹ ✈️
+wind turbine | tua bin gió 💨
+cable car | cáp treo 🚠
+jet pack | ba lô phản lực 🚀
+surfboard | ván lướt sóng 🏄‍♂️
+inline skates | giày trượt pa-tin (bánh dọc) 🛼
+unicycle | xe đạp một bánh 🚲
+future | tương lai 🔮
+transport | giao thông / vận tải 🚗
+pollute | gây ô nhiễm ☁️
+driverless | không người lái 🤖
+
+[Unit 3]
+Sphinx | tượng Nhân sư 🗿
+pharaoh | pharaoh / vua Ai Cập cổ 👑
+pyramid | kim tự tháp 🗿
+chariot | xe chiến mã 🐎
+hieroglyphics | chữ tượng hình 🔤
+mummy | xác ướp ⚰️
+tomb | lăng mộ ⚰️
+Egypt | Ai Cập 🇪🇬
+slaves | nô lệ 🔗
+archaeologist | nhà khảo cổ học 🧭
+mystery | bí ẩn 🕵️
+UFO | vật thể bay không xác định 🛸
+restore | phục hồi / trùng tu 🏛️
+civilisation | nền văn minh 🏛️
+BC | trước Công nguyên ⏳
+
+[Unit 4]
+Olympics | Thế vận hội 🏅
+long jump | nhảy xa 🦘
+hurdles | chạy vượt rào 🏃‍♂️
+high jump | nhảy cao 🦘
+boxing | quyền anh 🥊
+archery | bắn cung 🏹
+wrestling | đấu vật 🤼‍♂️
+weightlifting | cử tạ 🏋️‍♂️
+rowing | chèo thuyền 🚣‍♂️
+gymnastics | thể dục dụng cụ 🤸‍♂️
+fencing | đấu kiếm 🤺
+athlete | vận động viên 🏃‍♂️
+compete | thi đấu 🏆
+stadium | sân vận động 🏟️
+medal | huy chương 🏅
+
+[Unit 5]
+carpenter's | xưởng mộc 🪚
+jeweller's | tiệm kim hoàn 💎
+butcher's | cửa hàng thịt 🥩
+grocer's | cửa hàng tạp hóa 🛒
+baker's | tiệm bánh mì 🍞
+barber's | tiệm cắt tóc (nam) 💇‍♂️
+tailor's | tiệm may 👕
+chemist's | hiệu thuốc 💊
+London | Luân Đôn 🇬🇧
+shop | cửa hàng 🛍️
+stunt | pha mạo hiểm / đóng thế 🤸‍♂️
+rescue | giải cứu 🚑
+square | quảng trường 🏛️
+pop | nhạc pop / tiếng nổ bốp 🎵
+market | chợ 🛍️
+
+[Unit 6]
+screwdriver | tua vít 🔩
+hammer | cái búa 🔨
+drill | máy khoan 🛠️
+saw | cái cưa 🪚
+lever | đòn bẩy 🛠️
+spanner | cờ lê 🔧
+paintbrush | cọ sơn 🖌️
+button | cái nút / khuy áo 🧥
+switch | công tắc 🔌
+nails | cái đinh 🔩
+inventor | nhà phát minh 🧪
+invent | phát minh 💡
+invention | phát minh / sáng chế 💡
+tool | dụng cụ 🛠️
+machine | máy móc ⚙️
+
+[Unit 7]
+countdown clock | đồng hồ đếm ngược ⏰
+lunar module | mô-đun mặt trăng (tàu đổ bộ) 🚀
+space capsule | khoang tàu vũ tr 🚀
+spacesuit | bộ đồ phi hành gia 👨🚀
+launch pad | bệ phóng 🚀
+crater | miệng núi lửa / hố va chạm 🌑
+control panel | bảng điều khiển 🎛️
+headset | tai nghe (kèm mic) 🎧
+screen | màn hình 📺
+moon | mặt trăng 🌙
+astronaut | phi hành gia 👨🚀
+mission | nhiệm vụ / sứ mệnh 🎯
+space | vũ trụ / không gian 🌌
+NASA | cơ quan hàng không vũ trụ Mỹ 🚀
+Houston | trung tâm điều khiển (thành phố Houston) 🛰️
+
+[Unit 8]
+Northern Lights | Bắc cực quang 🌌
+iceberg | tảng băng trôi 🧊
+polar bear | gấu bắc cực 🐻❄️
+ice floe | tảng băng nổi 🧊
+seal | hải cẩu 🦭
+igloo | lều tuyết 🛖
+mittens | găng tay hở ngón (găng tay len) 🧤
+sledge | xe trượt tuyết 🛷
+Arctic | Bắc cực 🧊
+North Pole | Cực Bắc 🧭
+freezing | đóng băng / lạnh cóng 🥶
+aurora borealis | bắc cực quang (tên khoa học) 🌌
+cold | lạnh ❄️
+snow | tuyết ❄️
+ice | băng 🧊
+
+[Unit 9]
+sunrise | bình minh 🌅
+horizon | đường chân trời 🌅
+pond | cái ao 💧
+grassland | đồng cỏ 🌾
+valley | thung lũng 🏞️
+bush | bụi cây 🌿
+stream | dòng suối 💧
+swamp | đầm lầy 🌊
+dinosaur | khủng long 🦖
+Jurassic | kỷ Jura 🦕
+T-rex | khủng long bạo chúa 🦖
+triceratops | khủng long ba sừng 🦕
+meadow | đồng cỏ (thường có hoa) 🌼
+nature | thiên nhiên 🌳
+extinct | tuyệt chủng 🪦
+
+=== Open world A2 ===
+[Starter Unit: Who I am]
+Nationality | Quốc tịch 🇺🇳
+Relative | Họ hàng 👨‍👩‍👧‍👦
+Grandparent | Ông bà 👵👴
+Nephew | Cháu trai (con của anh/chị/em) 👦
+Niece | Cháu gái (con của anh/chị/em) 👧
+Cousin | Anh chị em họ 👫
+Surname | Họ 📝
+Identity card | Chứng minh nhân dân/Thẻ căn cước 🪪
+Passport | Hộ chiếu 📘
+Address | Địa chỉ 🏠
+
+[Unit 1: A busy life]
+Spend time alone | Dành thời gian một mình 🧘
+Go shopping | Đi mua sắm 🛍️
+Relax at home | Thư giãn tại nhà 🛋️
+Mechanic | Thợ máy 🔧
+Photographer | Nhiếp ảnh gia 📸
+Pilot | Phi công ✈️
+Police officer | Cảnh sát 👮
+Waitress | Nữ bồi bàn 👩‍🍳
+Uniform | Đồng phục 👔
+Get dressed | Mặc quần áo 👕
+Wake up | Thức dậy ⏰
+Leave the house | Rời khỏi nhà 🚪
+
+[Unit 2: Changing world]
+Autumn | Mùa thu 🍂
+Spring | Mùa xuân 🌸
+Summer | Mùa hè ☀️
+Winter | Mùa đông ❄️
+Cloudy | Nhiều mây ☁️
+Foggy | Có sương mù 🌫️
+Freezing | Rất lạnh/đông cứng 🥶
+Stormy | Có bão ⛈️
+Temperature | Nhiệt độ 🌡️
+Mountain | Núi ⛰️
+Waterfall | Thác nước 🌊
+Coast | Bờ biển 🏖️
+
+[Unit 3: Free time, screen time?]
+Social media | Mạng xã hội 📱
+Video games | Trò chơi điện tử 🎮
+Download | Tải xuống ⬇️
+Stream | Phát trực tuyến 📺
+Science fiction | Khoa học viễn tưởng 🚀
+Horror | Phim kinh dị 👻
+Comedy | Phim hài 😂
+Documentary | Phim tài liệu 🎬
+Blogger | Người viết blog ✍️
+Episode | Tập (phim) 📺
+Series | Phim bộ 🎞️
+Competition | Cuộc thi 🏆
+
+[Unit 4: Keep fit, feel good]
+Heart | Trái tim ❤️
+Stomach | Dạ dày 🤰
+Brain | Não bộ 🧠
+Headache | Đau đầu 🤕
+Toothache | Đau răng 🦷
+Backache | Đau lưng 🧍
+Sore throat | Đau họng 🗣️
+Painkillers | Thuốc giảm đau 💊
+Prescription | Đơn thuốc 📝
+Ambulance | Xe cứu thương 🚑
+Appointment | Cuộc hẹn (với bác sĩ) 📅
+
+[Unit 5: More than a holiday]
+Destination | Điểm đến 🗺️
+Accommodation | Chỗ ở 🏨
+Tour guide | Hướng dẫn viên du lịch 🧭
+Luggage | Hành lý 🧳
+Suitcase | Vali 🧳
+Backpack | Ba lô 🎒
+Delay | Trì hoãn ⏳
+Sightseeing | Tham quan 🏛️
+Hop-on / hop-off bus | Xe buýt du lịch lên xuống tự do 🚌
+Discount | Giảm giá 💰
+Souvenir | Quà lưu niệm 🎁
+
+[Unit 6: Time for food]
+Omelette | Trứng cuộn 🍳
+Cereal | Ngũ cốc 🥣
+Yoghurt | Sữa chua 🥛
+Chilli | Ớt 🌶️
+Curry | Cà ri 🍛
+Peel | Gọt vỏ 🍌
+Chop | Băm/thái nhỏ 🔪
+Fry | Chiên/rán 🍳
+Grill | Nướng (bằng vỉ) 🥓
+Steam | Hấp 🥘
+Table service | Phục vụ tại bàn 🍽️
+Generous portion | Khẩu phần ăn hậu hĩnh 🍗
+
+[Unit 7: Live life!]
+Baking | Nướng bánh 🍰
+Gig | Buổi biểu diễn âm nhạc 🎤
+Photography | Nhiếp ảnh 📸
+Audience | Khán giả 👥
+Rehearsal | Buổi tổng duyệt 🎭
+Costume | Trang phục biểu diễn 👗
+Stage | Sân khấu 🎪
+Songwriter | Người sáng tác bài hát 🎵
+Guitarist | Người chơi ghi-ta 🎸
+Drummer | Người chơi trống 🥁
+Leaflet | Tờ rơi 📄
+Festival | Lễ hội 🎉
+
+[Unit 8: Feels like home]
+Cottage | Nhà tranh/nhà nhỏ ở nông thôn 🏡
+Houseboat | Nhà thuyền 🛶
+Villa | Biệt thự 🏰
+Balcony | Ban công 🌿
+Basement | Tầng hầm 🏚️
+Garage | Nhà để xe 🚗
+Rent | Thuê/Tiền thuê nhà 💰
+Neighbour | Hàng xóm 👨‍👩‍👧‍👦
+Sink | Bồn rửa 🚰
+Cooker | Bếp nấu 🍳
+Fridge | Tủ lạnh 🧊
+Cupboard | Tủ chạn/tủ chén 🗄️
+
+[Unit 9: Getting along]
+Confident | Tự tin 💪
+Shy | Nhút nhát 😳
+Reliable | Đáng tin cậy 🤝
+Generous | Rộng lượng 🤲
+Worried | Lo lắng 😟
+Stressed | Căng thẳng 😫
+Bad mood | Tâm trạng tồi tệ 😠
+Argue | Tranh cãi 🗣️
+Get on well | Hòa thuận với nhau ☺️
+Enroll | Đăng ký học 📝
+Volunteer work | Công việc tình nguyện 🤝
+
+[Unit 10: Out and about]
+Statue | Bức tượng 🗿
+Fountain | Đài phun nước ⛲
+Stadium | Sân vận động 🏟️
+Castle | Lâu đài 🏰
+Roundabout | Vòng xuyến 🚦
+Crossing | Vạch sang đường 🚶‍♂️
+Traffic lights | Đèn giao thông 🚥
+Pedestrian | Người đi bộ 🚶
+Pavement | Vỉa hè 🛣️
+Skyscraper | Tòa nhà chọc trời 🏙️
+Square | Quảng trường 🏛️
+
+[Unit 11: Saving and spending]
+Salary | Tiền lương 💵
+Discount | Chiết khấu/Giảm giá 💰
+Receipt | Hóa đơn/Biên lai 🧾
+Bill | Hóa đơn thanh toán 💸
+Earn | Kiếm tiền 💼
+Borrow | Mượn 🤲
+Waste | Lãng phí 🗑️
+Changing room | Phòng thay đồ 🛋️
+Shop assistant | Nhân viên bán hàng 💁
+Cash | Tiền mặt 💵
+Credit card | Thẻ tín dụng 💳
+Currency | Tiền tệ 💱
+
+[Unit 12: Through life]
+Biology | Sinh học 🧬
+Chemistry | Hóa học 🧪
+Physics | Vật lý ⚛️
+Experiment | Thí nghiệm 🔬
+Essay | Bài tiểu luận 📝
+Degree | Bằng cấp (Đại học) 🎓
+Qualification | Bằng cấp/Chứng chỉ 📜
+Diploma | Bằng cấp 📄
+CV (Curriculum Vitae) | Sơ yếu lý lịch 📄
+Boss | Sếp/Chủ 👨‍💼
+Staff | Nhân viên 👥
+
+[Unit 13: About me]
+Sociable | Hòa đồng 😊
+Kind | Tử tế 🤗
+Brilliant | Rất thông minh/tài giỏi 🌟
+Clever | Thông minh 🧠
+Lazy | Lười biếng 😴
+Serious | Nghiêm túc 🧐
+Handbag | Túi xách 👜
+Jewellery | Đồ trang sức 💎
+Sandals | Dép xăng đan 👡
+Tie | Cà vạt 👔
+Trainers | Giày thể thao 👟
+Fashionable | Hợp thời trang 👗
+
+[Unit 14: Play it, watch it, love it]
+Athletics | Điền kinh 🏃‍♂️
+Rugby | Bóng bầu dục 🏉
+Net | Lưới 🕸️
+Racket | Vợt 🎾
+Goal | Khung thành/Bàn thắng ⚽
+Match | Trận đấu 🤼
+Pitch | Sân cỏ (bóng đá) ⚽
+Referee | Trọng tài 👨‍⚖️
+Tournament | Giải đấu 🏆
+Afterwards | Sau đó ⏭️
+Surprisingly | Đáng ngạc nhiên 😲
+Luckily | May mắn thay 🍀

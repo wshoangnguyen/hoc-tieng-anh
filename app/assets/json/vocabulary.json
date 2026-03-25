@@ -1,0 +1,6302 @@
+[
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "blue",
+                "vi": "màu xanh dương",
+                "emoji": "🔵"
+            },
+            {
+                "en": "green",
+                "vi": "màu xanh lá",
+                "emoji": "🟢"
+            },
+            {
+                "en": "yellow",
+                "vi": "màu vàng",
+                "emoji": "🟡"
+            },
+            {
+                "en": "orange",
+                "vi": "màu cam",
+                "emoji": "🟠"
+            },
+            {
+                "en": "red",
+                "vi": "màu đỏ",
+                "emoji": "🔴"
+            },
+            {
+                "en": "pink",
+                "vi": "màu hồng",
+                "emoji": "💗"
+            },
+            {
+                "en": "Hello",
+                "vi": "Xin chào",
+                "emoji": "👋"
+            },
+            {
+                "en": "Bye",
+                "vi": "Tạm biệt",
+                "emoji": "👋"
+            },
+            {
+                "en": "Goodbye",
+                "vi": "Tạm biệt",
+                "emoji": "👋"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "window",
+                "vi": "cửa sổ",
+                "emoji": "🪟"
+            },
+            {
+                "en": "chair",
+                "vi": "cái ghế",
+                "emoji": "🪑"
+            },
+            {
+                "en": "book",
+                "vi": "quyển sách",
+                "emoji": "📖"
+            },
+            {
+                "en": "pencil",
+                "vi": "bút chì",
+                "emoji": "✏️"
+            },
+            {
+                "en": "table",
+                "vi": "cái bàn",
+                "emoji": "🪑"
+            },
+            {
+                "en": "door",
+                "vi": "cửa ra vào",
+                "emoji": "🚪"
+            },
+            {
+                "en": "Stand up",
+                "vi": "Đứng lên",
+                "emoji": "⬆️"
+            },
+            {
+                "en": "Sit down",
+                "vi": "Ngồi xuống",
+                "emoji": "⬇️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "eyes",
+                "vi": "đôi mắt",
+                "emoji": "👀"
+            },
+            {
+                "en": "ears",
+                "vi": "đôi tai",
+                "emoji": "👂"
+            },
+            {
+                "en": "arms",
+                "vi": "cánh tay",
+                "emoji": "💪"
+            },
+            {
+                "en": "legs",
+                "vi": "chân",
+                "emoji": "🦵"
+            },
+            {
+                "en": "mouth",
+                "vi": "miệng",
+                "emoji": "👄"
+            },
+            {
+                "en": "nose",
+                "vi": "mũi",
+                "emoji": "👃"
+            },
+            {
+                "en": "head",
+                "vi": "đầu",
+                "emoji": "👤"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "mum",
+                "vi": "mẹ",
+                "emoji": "👩"
+            },
+            {
+                "en": "dad",
+                "vi": "bố",
+                "emoji": "👨"
+            },
+            {
+                "en": "sister",
+                "vi": "chị/em gái",
+                "emoji": "👧"
+            },
+            {
+                "en": "brother",
+                "vi": "anh/em trai",
+                "emoji": "👦"
+            },
+            {
+                "en": "grandpa",
+                "vi": "ông",
+                "emoji": "👴"
+            },
+            {
+                "en": "grandma",
+                "vi": "bà",
+                "emoji": "👵"
+            },
+            {
+                "en": "hen",
+                "vi": "gà mái",
+                "emoji": "🐔"
+            },
+            {
+                "en": "dog",
+                "vi": "con chó",
+                "emoji": "🐶"
+            },
+            {
+                "en": "duck",
+                "vi": "con vịt",
+                "emoji": "🦆"
+            },
+            {
+                "en": "cat",
+                "vi": "con mèo",
+                "emoji": "🐱"
+            },
+            {
+                "en": "baby",
+                "vi": "em bé",
+                "emoji": "👶"
+            },
+            {
+                "en": "kitten",
+                "vi": "mèo con",
+                "emoji": "🐱"
+            },
+            {
+                "en": "puppy",
+                "vi": "chó con",
+                "emoji": "🐶"
+            },
+            {
+                "en": "chick",
+                "vi": "gà con",
+                "emoji": "🐥"
+            },
+            {
+                "en": "duckling",
+                "vi": "vịt con",
+                "emoji": "🐤"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "parrot",
+                "vi": "con vẹt",
+                "emoji": "🦜"
+            },
+            {
+                "en": "lion",
+                "vi": "sư tử",
+                "emoji": "🦁"
+            },
+            {
+                "en": "fish",
+                "vi": "con cá",
+                "emoji": "🐟"
+            },
+            {
+                "en": "zebra",
+                "vi": "ngựa vằn",
+                "emoji": "🦓"
+            },
+            {
+                "en": "monkey",
+                "vi": "con khỉ",
+                "emoji": "🐒"
+            },
+            {
+                "en": "frog",
+                "vi": "con ếch",
+                "emoji": "🐸"
+            },
+            {
+                "en": "tree",
+                "vi": "cái cây",
+                "emoji": "🌳"
+            },
+            {
+                "en": "pond",
+                "vi": "cái ao",
+                "emoji": "💧"
+            },
+            {
+                "en": "big",
+                "vi": "to",
+                "emoji": "🐘"
+            },
+            {
+                "en": "small",
+                "vi": "nhỏ",
+                "emoji": "🐭"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "milk",
+                "vi": "sữa",
+                "emoji": "🥛"
+            },
+            {
+                "en": "oranges",
+                "vi": "những quả cam",
+                "emoji": "🍊"
+            },
+            {
+                "en": "cakes",
+                "vi": "những cái bánh ngọt",
+                "emoji": "🍰"
+            },
+            {
+                "en": "tomatoes",
+                "vi": "những quả cà chua",
+                "emoji": "🍅"
+            },
+            {
+                "en": "chocolate",
+                "vi": "sô-cô-la",
+                "emoji": "🍫"
+            },
+            {
+                "en": "pears",
+                "vi": "những quả lê",
+                "emoji": "🍐"
+            },
+            {
+                "en": "potatoes",
+                "vi": "những củ khoai tây",
+                "emoji": "🥔"
+            },
+            {
+                "en": "carrots",
+                "vi": "những củ cà rốt",
+                "emoji": "🥕"
+            },
+            {
+                "en": "bananas",
+                "vi": "những quả chuối",
+                "emoji": "🍌"
+            },
+            {
+                "en": "ground",
+                "vi": "mặt đất",
+                "emoji": "🌍"
+            },
+            {
+                "en": "fruit",
+                "vi": "trái cây",
+                "emoji": "🍎"
+            },
+            {
+                "en": "vegetables",
+                "vi": "rau củ",
+                "emoji": "🥦"
+            },
+            {
+                "en": "grow",
+                "vi": "trồng / mọc",
+                "emoji": "🌱"
+            },
+            {
+                "en": "come from",
+                "vi": "đến từ",
+                "emoji": "🗺️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "bus stop",
+                "vi": "trạm xe buýt",
+                "emoji": "🚏"
+            },
+            {
+                "en": "school",
+                "vi": "trường học",
+                "emoji": "🏫"
+            },
+            {
+                "en": "cinema",
+                "vi": "rạp chiếu phim",
+                "emoji": "🎬"
+            },
+            {
+                "en": "hospital",
+                "vi": "bệnh viện",
+                "emoji": "🏥"
+            },
+            {
+                "en": "toy shop",
+                "vi": "cửa hàng đồ chơi",
+                "emoji": "🧸"
+            },
+            {
+                "en": "park",
+                "vi": "công viên",
+                "emoji": "🏞️"
+            },
+            {
+                "en": "café",
+                "vi": "quán cà phê",
+                "emoji": "☕"
+            },
+            {
+                "en": "playground",
+                "vi": "sân chơi",
+                "emoji": "🛝"
+            },
+            {
+                "en": "sports centre",
+                "vi": "trung tâm thể thao",
+                "emoji": "⚽"
+            },
+            {
+                "en": "map",
+                "vi": "bản đồ",
+                "emoji": "🗺️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "teacher",
+                "vi": "giáo viên",
+                "emoji": "👩🏫"
+            },
+            {
+                "en": "fire fighter",
+                "vi": "lính cứu hỏa",
+                "emoji": "👨🚒"
+            },
+            {
+                "en": "gardener",
+                "vi": "người làm vườn",
+                "emoji": "👨🌾"
+            },
+            {
+                "en": "police officer",
+                "vi": "cảnh sát",
+                "emoji": "👮"
+            },
+            {
+                "en": "vet",
+                "vi": "bác sĩ thú y",
+                "emoji": "🐕"
+            },
+            {
+                "en": "doctor",
+                "vi": "bác sĩ",
+                "emoji": "👨⚕️"
+            },
+            {
+                "en": "farmer",
+                "vi": "nông dân",
+                "emoji": "👩🌾"
+            },
+            {
+                "en": "shop assistant",
+                "vi": "nhân viên bán hàng",
+                "emoji": "💁"
+            },
+            {
+                "en": "dentist",
+                "vi": "nha sĩ",
+                "emoji": "🦷"
+            },
+            {
+                "en": "inside",
+                "vi": "bên trong",
+                "emoji": "🏠"
+            },
+            {
+                "en": "outside",
+                "vi": "bên ngoài",
+                "emoji": "🌳"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "hat",
+                "vi": "cái mũ",
+                "emoji": "🧢"
+            },
+            {
+                "en": "coat",
+                "vi": "áo khoác",
+                "emoji": "🧥"
+            },
+            {
+                "en": "scarf",
+                "vi": "khăn quàng cổ",
+                "emoji": "🧣"
+            },
+            {
+                "en": "boots",
+                "vi": "đôi ủng",
+                "emoji": "👢"
+            },
+            {
+                "en": "sweater",
+                "vi": "áo len",
+                "emoji": "🧶"
+            },
+            {
+                "en": "gloves",
+                "vi": "đôi găng tay",
+                "emoji": "🧤"
+            },
+            {
+                "en": "jeans",
+                "vi": "quần bò",
+                "emoji": "👖"
+            },
+            {
+                "en": "T-shirt",
+                "vi": "áo phông",
+                "emoji": "👕"
+            },
+            {
+                "en": "soft",
+                "vi": "mềm",
+                "emoji": "☁️"
+            },
+            {
+                "en": "hard",
+                "vi": "cứng",
+                "emoji": "💎"
+            },
+            {
+                "en": "belt",
+                "vi": "thắt lưng",
+                "emoji": "🪢"
+            },
+            {
+                "en": "sunglasses",
+                "vi": "kính râm",
+                "emoji": "🕶️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 0",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "play football",
+                "vi": "chơi bóng đá",
+                "emoji": "⚽"
+            },
+            {
+                "en": "run",
+                "vi": "chạy",
+                "emoji": "🏃"
+            },
+            {
+                "en": "paint a picture",
+                "vi": "vẽ tranh",
+                "emoji": "🎨"
+            },
+            {
+                "en": "swim",
+                "vi": "bơi",
+                "emoji": "🏊"
+            },
+            {
+                "en": "read",
+                "vi": "đọc",
+                "emoji": "📚"
+            },
+            {
+                "en": "dance",
+                "vi": "nhảy múa",
+                "emoji": "💃"
+            },
+            {
+                "en": "my turn",
+                "vi": "đến lượt tôi",
+                "emoji": "👈"
+            },
+            {
+                "en": "sorry",
+                "vi": "xin lỗi",
+                "emoji": "🙏"
+            },
+            {
+                "en": "guess",
+                "vi": "đoán",
+                "emoji": "🤔"
+            },
+            {
+                "en": "slowly",
+                "vi": "một cách chậm rãi",
+                "emoji": "🐢"
+            },
+            {
+                "en": "quickly",
+                "vi": "một cách nhanh nhẹn",
+                "emoji": "🐇"
+            },
+            {
+                "en": "hobby",
+                "vi": "sở thích",
+                "emoji": "♟️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "yellow",
+                "vi": "màu vàng",
+                "emoji": "🟡"
+            },
+            {
+                "en": "red",
+                "vi": "màu đỏ",
+                "emoji": "🔴"
+            },
+            {
+                "en": "orange",
+                "vi": "màu cam",
+                "emoji": "🟠"
+            },
+            {
+                "en": "purple",
+                "vi": "màu tím",
+                "emoji": "🟣"
+            },
+            {
+                "en": "green",
+                "vi": "màu xanh lá",
+                "emoji": "🟢"
+            },
+            {
+                "en": "blue",
+                "vi": "màu xanh dương",
+                "emoji": "🔵"
+            },
+            {
+                "en": "bag",
+                "vi": "cái cặp / túi",
+                "emoji": "🎒"
+            },
+            {
+                "en": "balloon",
+                "vi": "bóng bay",
+                "emoji": "🎈"
+            },
+            {
+                "en": "cat",
+                "vi": "con mèo",
+                "emoji": "🐱"
+            },
+            {
+                "en": "power",
+                "vi": "sức mạnh / năng lượng",
+                "emoji": "⚡"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "ruler",
+                "vi": "thước kẻ",
+                "emoji": "📏"
+            },
+            {
+                "en": "pen",
+                "vi": "bút mực",
+                "emoji": "🖊️"
+            },
+            {
+                "en": "book",
+                "vi": "quyển sách",
+                "emoji": "📖"
+            },
+            {
+                "en": "rubber",
+                "vi": "cục tẩy",
+                "emoji": "🧽"
+            },
+            {
+                "en": "pencil case",
+                "vi": "hộp bút",
+                "emoji": "🗂️"
+            },
+            {
+                "en": "pencil",
+                "vi": "bút chì",
+                "emoji": "✏️"
+            },
+            {
+                "en": "desk",
+                "vi": "bàn học",
+                "emoji": "🪑"
+            },
+            {
+                "en": "notebook",
+                "vi": "vở ghi chép",
+                "emoji": "📓"
+            },
+            {
+                "en": "bag",
+                "vi": "cái cặp",
+                "emoji": "🎒"
+            },
+            {
+                "en": "paper",
+                "vi": "giấy",
+                "emoji": "📄"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "computer game",
+                "vi": "trò chơi máy tính",
+                "emoji": "🎮"
+            },
+            {
+                "en": "kite",
+                "vi": "cái diều",
+                "emoji": "🪁"
+            },
+            {
+                "en": "plane",
+                "vi": "máy bay",
+                "emoji": "✈️"
+            },
+            {
+                "en": "bike",
+                "vi": "xe đạp",
+                "emoji": "🚲"
+            },
+            {
+                "en": "doll",
+                "vi": "búp bê",
+                "emoji": "🪆"
+            },
+            {
+                "en": "monster",
+                "vi": "quái vật",
+                "emoji": "👾"
+            },
+            {
+                "en": "train",
+                "vi": "tàu hỏa",
+                "emoji": "🚂"
+            },
+            {
+                "en": "go-kart",
+                "vi": "xe đua nhỏ",
+                "emoji": "🏎️"
+            },
+            {
+                "en": "car",
+                "vi": "ô tô",
+                "emoji": "🚗"
+            },
+            {
+                "en": "ball",
+                "vi": "quả bóng",
+                "emoji": "⚽"
+            },
+            {
+                "en": "big",
+                "vi": "to",
+                "emoji": "🐘"
+            },
+            {
+                "en": "small",
+                "vi": "nhỏ",
+                "emoji": "🐭"
+            },
+            {
+                "en": "old",
+                "vi": "cũ / già",
+                "emoji": "⌛"
+            },
+            {
+                "en": "new",
+                "vi": "mới",
+                "emoji": "🆕"
+            },
+            {
+                "en": "long",
+                "vi": "dài",
+                "emoji": "📏"
+            },
+            {
+                "en": "short",
+                "vi": "ngắn / thấp",
+                "emoji": "📏"
+            },
+            {
+                "en": "ugly",
+                "vi": "xấu xí",
+                "emoji": "👹"
+            },
+            {
+                "en": "beautiful",
+                "vi": "xinh đẹp",
+                "emoji": "🌸"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "donkey",
+                "vi": "con lừa",
+                "emoji": "🐴"
+            },
+            {
+                "en": "elephant",
+                "vi": "con voi",
+                "emoji": "🐘"
+            },
+            {
+                "en": "spider",
+                "vi": "con nhện",
+                "emoji": "🕷️"
+            },
+            {
+                "en": "cat",
+                "vi": "con mèo",
+                "emoji": "🐱"
+            },
+            {
+                "en": "rat",
+                "vi": "con chuột cống",
+                "emoji": "🐀"
+            },
+            {
+                "en": "frog",
+                "vi": "con ếch",
+                "emoji": "🐸"
+            },
+            {
+                "en": "duck",
+                "vi": "con vịt",
+                "emoji": "🦆"
+            },
+            {
+                "en": "lizard",
+                "vi": "thằn lằn",
+                "emoji": "🦎"
+            },
+            {
+                "en": "dog",
+                "vi": "con chó",
+                "emoji": "🐶"
+            },
+            {
+                "en": "in",
+                "vi": "ở trong",
+                "emoji": "📦"
+            },
+            {
+                "en": "on",
+                "vi": "ở trên",
+                "emoji": "📍"
+            },
+            {
+                "en": "under",
+                "vi": "ở dưới",
+                "emoji": "⬇️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "apple",
+                "vi": "quả táo",
+                "emoji": "🍎"
+            },
+            {
+                "en": "banana",
+                "vi": "quả chuối",
+                "emoji": "🍌"
+            },
+            {
+                "en": "cake",
+                "vi": "bánh ngọt",
+                "emoji": "🍰"
+            },
+            {
+                "en": "pizza",
+                "vi": "bánh pizza",
+                "emoji": "🍕"
+            },
+            {
+                "en": "sausage",
+                "vi": "xúc xích",
+                "emoji": "🌭"
+            },
+            {
+                "en": "cheese sandwich",
+                "vi": "bánh mì kẹp phô mai",
+                "emoji": "🥪"
+            },
+            {
+                "en": "fish",
+                "vi": "cá",
+                "emoji": "🐟"
+            },
+            {
+                "en": "chicken",
+                "vi": "thịt gà",
+                "emoji": "🍗"
+            },
+            {
+                "en": "peas",
+                "vi": "đậu hà lan",
+                "emoji": "🫛"
+            },
+            {
+                "en": "steak",
+                "vi": "bít tết",
+                "emoji": "🥩"
+            },
+            {
+                "en": "carrots",
+                "vi": "cà rốt",
+                "emoji": "🥕"
+            },
+            {
+                "en": "lunch",
+                "vi": "bữa trưa",
+                "emoji": "🍽️"
+            },
+            {
+                "en": "fridge",
+                "vi": "tủ lạnh",
+                "emoji": "🧊"
+            },
+            {
+                "en": "fruit",
+                "vi": "trái cây",
+                "emoji": "🍇"
+            },
+            {
+                "en": "vegetables",
+                "vi": "rau củ",
+                "emoji": "🥦"
+            },
+            {
+                "en": "plant",
+                "vi": "thực vật / cây",
+                "emoji": "🌱"
+            },
+            {
+                "en": "soil",
+                "vi": "đất trồng",
+                "emoji": "🏺"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "Monday",
+                "vi": "Thứ hai",
+                "emoji": "📅"
+            },
+            {
+                "en": "Tuesday",
+                "vi": "Thứ ba",
+                "emoji": "📅"
+            },
+            {
+                "en": "Wednesday",
+                "vi": "Thứ tư",
+                "emoji": "📅"
+            },
+            {
+                "en": "Thursday",
+                "vi": "Thứ năm",
+                "emoji": "📅"
+            },
+            {
+                "en": "Friday",
+                "vi": "Thứ sáu",
+                "emoji": "📅"
+            },
+            {
+                "en": "Saturday",
+                "vi": "Thứ bảy",
+                "emoji": "📅"
+            },
+            {
+                "en": "Sunday",
+                "vi": "Thứ chủ nhật",
+                "emoji": "📅"
+            },
+            {
+                "en": "go fishing",
+                "vi": "đi câu cá",
+                "emoji": "🎣"
+            },
+            {
+                "en": "play football",
+                "vi": "chơi bóng đá",
+                "emoji": "⚽"
+            },
+            {
+                "en": "watch TV",
+                "vi": "xem tivi",
+                "emoji": "📺"
+            },
+            {
+                "en": "play games",
+                "vi": "chơi trò chơi",
+                "emoji": "🎲"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "bedroom",
+                "vi": "phòng ngủ",
+                "emoji": "🛏️"
+            },
+            {
+                "en": "bathroom",
+                "vi": "phòng tắm",
+                "emoji": "🛁"
+            },
+            {
+                "en": "living room",
+                "vi": "phòng khách",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "kitchen",
+                "vi": "nhà bếp",
+                "emoji": "🍳"
+            },
+            {
+                "en": "hall",
+                "vi": "hành lang / sảnh",
+                "emoji": "🚪"
+            },
+            {
+                "en": "stairs",
+                "vi": "cầu thang",
+                "emoji": "🪜"
+            },
+            {
+                "en": "cellar",
+                "vi": "hầm chứa",
+                "emoji": "🏚️"
+            },
+            {
+                "en": "dining room",
+                "vi": "phòng ăn",
+                "emoji": "🍽️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "sweater",
+                "vi": "áo len",
+                "emoji": "🧶"
+            },
+            {
+                "en": "skirt",
+                "vi": "váy ngắn",
+                "emoji": "👗"
+            },
+            {
+                "en": "shorts",
+                "vi": "quần đùi",
+                "emoji": "🩳"
+            },
+            {
+                "en": "trousers",
+                "vi": "quần dài",
+                "emoji": "👖"
+            },
+            {
+                "en": "jacket",
+                "vi": "áo khoác",
+                "emoji": "🧥"
+            },
+            {
+                "en": "socks",
+                "vi": "tất / vớ",
+                "emoji": "🧦"
+            },
+            {
+                "en": "jeans",
+                "vi": "quần bò",
+                "emoji": "👖"
+            },
+            {
+                "en": "shoes",
+                "vi": "giày",
+                "emoji": "👞"
+            },
+            {
+                "en": "baseball cap",
+                "vi": "mũ lưỡi trai",
+                "emoji": "🧢"
+            },
+            {
+                "en": "T-shirt",
+                "vi": "áo phông",
+                "emoji": "👕"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "arm",
+                "vi": "cánh tay",
+                "emoji": "💪"
+            },
+            {
+                "en": "hand",
+                "vi": "bàn tay",
+                "emoji": "🤚"
+            },
+            {
+                "en": "knee",
+                "vi": "đầu gối",
+                "emoji": "🦵"
+            },
+            {
+                "en": "fingers",
+                "vi": "ngón tay",
+                "emoji": "👆"
+            },
+            {
+                "en": "leg",
+                "vi": "chân",
+                "emoji": "🦵"
+            },
+            {
+                "en": "foot",
+                "vi": "bàn chân (số ít)",
+                "emoji": "🦶"
+            },
+            {
+                "en": "feet",
+                "vi": "bàn chân (số nhiều)",
+                "emoji": "🦶🦶"
+            },
+            {
+                "en": "toes",
+                "vi": "ngón chân",
+                "emoji": "👣"
+            },
+            {
+                "en": "head",
+                "vi": "đầu",
+                "emoji": "👤"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 1",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "paint a picture",
+                "vi": "vẽ một bức tranh",
+                "emoji": "🎨"
+            },
+            {
+                "en": "listen to music",
+                "vi": "nghe nhạc",
+                "emoji": "🎧"
+            },
+            {
+                "en": "catch a fish",
+                "vi": "bắt cá",
+                "emoji": "🐟"
+            },
+            {
+                "en": "take a photo",
+                "vi": "chụp ảnh",
+                "emoji": "📸"
+            },
+            {
+                "en": "eat ice cream",
+                "vi": "ăn kem",
+                "emoji": "🍦"
+            },
+            {
+                "en": "play the guitar",
+                "vi": "chơi đàn ghi-ta",
+                "emoji": "🎸"
+            },
+            {
+                "en": "read a book",
+                "vi": "đọc sách",
+                "emoji": "📖"
+            },
+            {
+                "en": "make a sandcastle",
+                "vi": "xây lâu đài cát",
+                "emoji": "🏖️"
+            },
+            {
+                "en": "look for shells",
+                "vi": "tìm vỏ sò",
+                "emoji": "🐚"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "bookcase",
+                "vi": "tủ sách",
+                "emoji": "📚"
+            },
+            {
+                "en": "wall",
+                "vi": "bức tường",
+                "emoji": "🧱"
+            },
+            {
+                "en": "board",
+                "vi": "cái bảng",
+                "emoji": "📋"
+            },
+            {
+                "en": "clock",
+                "vi": "đồng hồ treo tường",
+                "emoji": "🕐"
+            },
+            {
+                "en": "door",
+                "vi": "cửa ra vào",
+                "emoji": "🚪"
+            },
+            {
+                "en": "cupboard",
+                "vi": "tủ đựng đồ",
+                "emoji": "🗄️"
+            },
+            {
+                "en": "window",
+                "vi": "cửa sổ",
+                "emoji": "🪟"
+            },
+            {
+                "en": "chair",
+                "vi": "cái ghế",
+                "emoji": "🪑"
+            },
+            {
+                "en": "crayon",
+                "vi": "bút sáp màu",
+                "emoji": "🖍️"
+            },
+            {
+                "en": "floor",
+                "vi": "sàn nha",
+                "emoji": "🏠"
+            },
+            {
+                "en": "burglar",
+                "vi": "kẻ trộm",
+                "emoji": "🦹"
+            },
+            {
+                "en": "drop",
+                "vi": "làm rơi",
+                "emoji": "📦"
+            },
+            {
+                "en": "quick",
+                "vi": "nhanh lên",
+                "emoji": "⚡"
+            },
+            {
+                "en": "check out",
+                "vi": "kiểm tra / xem thử",
+                "emoji": "🔍"
+            },
+            {
+                "en": "Great work",
+                "vi": "Làm tốt lắm",
+                "emoji": "👏"
+            },
+            {
+                "en": "Well done",
+                "vi": "Giỏi lắm",
+                "emoji": "🏆"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "get up",
+                "vi": "thức dậy",
+                "emoji": "☀️"
+            },
+            {
+                "en": "get dressed",
+                "vi": "mặc quần áo",
+                "emoji": "👕"
+            },
+            {
+                "en": "have breakfast",
+                "vi": "ăn sáng",
+                "emoji": "🍞"
+            },
+            {
+                "en": "brush your teeth",
+                "vi": "đánh răng",
+                "emoji": "🪥"
+            },
+            {
+                "en": "go to school",
+                "vi": "đi học",
+                "emoji": "🎒"
+            },
+            {
+                "en": "have lunch",
+                "vi": "ăn trưa",
+                "emoji": "🥪"
+            },
+            {
+                "en": "play in the park",
+                "vi": "chơi trong công viên",
+                "emoji": "🛝"
+            },
+            {
+                "en": "have dinner",
+                "vi": "ăn tối",
+                "emoji": "🍝"
+            },
+            {
+                "en": "go to bed",
+                "vi": "đi ngủ",
+                "emoji": "🛏️"
+            },
+            {
+                "en": "yawn",
+                "vi": "ngáp",
+                "emoji": "😪"
+            },
+            {
+                "en": "keys",
+                "vi": "chìa khóa",
+                "emoji": "🔑"
+            },
+            {
+                "en": "bedtime",
+                "vi": "giờ đi ng",
+                "emoji": "🌙"
+            },
+            {
+                "en": "bad day",
+                "vi": "ngày tồi tệ",
+                "emoji": "🌧️"
+            },
+            {
+                "en": "firefighter",
+                "vi": "lính cứu hỏa",
+                "emoji": "👨🚒"
+            },
+            {
+                "en": "sun",
+                "vi": "mặt trời",
+                "emoji": "☀️"
+            },
+            {
+                "en": "shadow",
+                "vi": "cái bóng",
+                "emoji": "👤"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "polar bear",
+                "vi": "gấu bắc cực",
+                "emoji": "🐻❄️"
+            },
+            {
+                "en": "bear",
+                "vi": "con gấu",
+                "emoji": "🐻"
+            },
+            {
+                "en": "zebra",
+                "vi": "ngựa vằn",
+                "emoji": "🦓"
+            },
+            {
+                "en": "crocodile",
+                "vi": "cá sấu",
+                "emoji": "🐊"
+            },
+            {
+                "en": "hippo",
+                "vi": "hà mã",
+                "emoji": "🦛"
+            },
+            {
+                "en": "tiger",
+                "vi": "con hổ",
+                "emoji": "🐯"
+            },
+            {
+                "en": "parrot",
+                "vi": "con vẹt",
+                "emoji": "🦜"
+            },
+            {
+                "en": "monkey",
+                "vi": "con khỉ",
+                "emoji": "🐒"
+            },
+            {
+                "en": "snake",
+                "vi": "con rắn",
+                "emoji": "🐍"
+            },
+            {
+                "en": "zoo keeper",
+                "vi": "người trông sở thú",
+                "emoji": "🦁"
+            },
+            {
+                "en": "throw",
+                "vi": "ném",
+                "emoji": "🤾"
+            },
+            {
+                "en": "hungry",
+                "vi": "đói bụng",
+                "emoji": "🍽️"
+            },
+            {
+                "en": "peel",
+                "vi": "bóc vỏ",
+                "emoji": "🍌"
+            },
+            {
+                "en": "habitat",
+                "vi": "môi trường sống",
+                "emoji": "🌍"
+            },
+            {
+                "en": "grassland",
+                "vi": "đồng cỏ",
+                "emoji": "🌾"
+            },
+            {
+                "en": "ocean",
+                "vi": "đại dương",
+                "emoji": "🌊"
+            },
+            {
+                "en": "polar habitat",
+                "vi": "môi trường vùng cực",
+                "emoji": "🏔️"
+            },
+            {
+                "en": "rainforest",
+                "vi": "rừng nhiệt đới",
+                "emoji": "🌴"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "train station",
+                "vi": "ga tàu hỏa",
+                "emoji": "🚉"
+            },
+            {
+                "en": "hospital",
+                "vi": "bệnh viện",
+                "emoji": "🏥"
+            },
+            {
+                "en": "cinema",
+                "vi": "rạp chiếu phim",
+                "emoji": "🎬"
+            },
+            {
+                "en": "playground",
+                "vi": "sân chơi",
+                "emoji": "🛝"
+            },
+            {
+                "en": "café",
+                "vi": "quán cà phê",
+                "emoji": "☕"
+            },
+            {
+                "en": "shop",
+                "vi": "cửa hàng",
+                "emoji": "🛍️"
+            },
+            {
+                "en": "street",
+                "vi": "đường phố",
+                "emoji": "🛣️"
+            },
+            {
+                "en": "bus stop",
+                "vi": "trạm xe buýt",
+                "emoji": "🚏"
+            },
+            {
+                "en": "park",
+                "vi": "công viên",
+                "emoji": "🏞️"
+            },
+            {
+                "en": "school",
+                "vi": "trường học",
+                "emoji": "🏫"
+            },
+            {
+                "en": "swimming pool",
+                "vi": "hồ bơi",
+                "emoji": "🏊"
+            },
+            {
+                "en": "town",
+                "vi": "thị trấn",
+                "emoji": "🏘️"
+            },
+            {
+                "en": "between",
+                "vi": "ở giữa",
+                "emoji": "↔️"
+            },
+            {
+                "en": "behind",
+                "vi": "ở phía sau",
+                "emoji": "↩️"
+            },
+            {
+                "en": "in front of",
+                "vi": "ở phía trước",
+                "emoji": "↗️"
+            },
+            {
+                "en": "next to",
+                "vi": " bên cạnh",
+                "emoji": "➡️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "tomatoes",
+                "vi": "cà chua",
+                "emoji": "🍅"
+            },
+            {
+                "en": "beans",
+                "vi": "hạt đậu",
+                "emoji": "🫘"
+            },
+            {
+                "en": "greens",
+                "vi": "rau xanh",
+                "emoji": "🥬"
+            },
+            {
+                "en": "potatoes",
+                "vi": "khoai tây",
+                "emoji": "🥔"
+            },
+            {
+                "en": "kiwis",
+                "vi": "quả ki-wi",
+                "emoji": "🥝"
+            },
+            {
+                "en": "lemons",
+                "vi": "quả chanh vàng",
+                "emoji": "🍋"
+            },
+            {
+                "en": "bread",
+                "vi": "bánh mì",
+                "emoji": "🍞"
+            },
+            {
+                "en": "mangos",
+                "vi": "quả xoài",
+                "emoji": "🥭"
+            },
+            {
+                "en": "grapes",
+                "vi": "quả nho",
+                "emoji": "🍇"
+            },
+            {
+                "en": "eggs",
+                "vi": "trứng",
+                "emoji": "🥚"
+            },
+            {
+                "en": "watermelons",
+                "vi": "dưa hấu",
+                "emoji": "🍉"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "poster",
+                "vi": "áp phích",
+                "emoji": "📰"
+            },
+            {
+                "en": "wardrobe",
+                "vi": "tủ quần áo",
+                "emoji": "👔"
+            },
+            {
+                "en": "mirror",
+                "vi": "cái gương",
+                "emoji": "🪞"
+            },
+            {
+                "en": "armchair",
+                "vi": "ghế bành",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "lamp",
+                "vi": "đèn ngủ",
+                "emoji": "💡"
+            },
+            {
+                "en": "bed",
+                "vi": "cái giường",
+                "emoji": "🛏️"
+            },
+            {
+                "en": "table",
+                "vi": "cái bàn",
+                "emoji": "🪑"
+            },
+            {
+                "en": "sofa",
+                "vi": "ghế sô-pha",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "rug",
+                "vi": "tấm thảm nhỏ",
+                "emoji": "🧶"
+            },
+            {
+                "en": "tidy up",
+                "vi": "dọn dẹp",
+                "emoji": "🧹"
+            },
+            {
+                "en": "messy",
+                "vi": "bừa bộn",
+                "emoji": "🤪"
+            },
+            {
+                "en": "lovely",
+                "vi": "đáng yêu",
+                "emoji": "😍"
+            },
+            {
+                "en": "comfortable",
+                "vi": "thoải mái",
+                "emoji": "😌"
+            },
+            {
+                "en": "seat",
+                "vi": "chỗ ngồi",
+                "emoji": "💺"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "eyes",
+                "vi": "đôi mắt",
+                "emoji": "👀"
+            },
+            {
+                "en": "face",
+                "vi": "khuôn mặt",
+                "emoji": "😀"
+            },
+            {
+                "en": "glasses",
+                "vi": "mắt kính",
+                "emoji": "👓"
+            },
+            {
+                "en": "hair",
+                "vi": "tóc",
+                "emoji": "💇"
+            },
+            {
+                "en": "cheeks",
+                "vi": "má",
+                "emoji": "😊"
+            },
+            {
+                "en": "ears",
+                "vi": "tai",
+                "emoji": "👂"
+            },
+            {
+                "en": "nose",
+                "vi": "mũi",
+                "emoji": "👃"
+            },
+            {
+                "en": "tears",
+                "vi": "nước mắt",
+                "emoji": "😢"
+            },
+            {
+                "en": "chin",
+                "vi": "cằm",
+                "emoji": "🤔"
+            },
+            {
+                "en": "mouth",
+                "vi": "miệng",
+                "emoji": "👄"
+            },
+            {
+                "en": "sad",
+                "vi": "buồn",
+                "emoji": "😔"
+            },
+            {
+                "en": "excited",
+                "vi": "hào hứng",
+                "emoji": "🤩"
+            },
+            {
+                "en": "scared",
+                "vi": "sợ hãi",
+                "emoji": "😨"
+            },
+            {
+                "en": "tired",
+                "vi": "mệt mỏi",
+                "emoji": "😴"
+            },
+            {
+                "en": "angry",
+                "vi": "tức giận",
+                "emoji": "😠"
+            },
+            {
+                "en": "happy",
+                "vi": "vui vẻ",
+                "emoji": "😊"
+            },
+            {
+                "en": "blond",
+                "vi": "vàng hoe (tóc nam)",
+                "emoji": "👱"
+            },
+            {
+                "en": "blonde",
+                "vi": "vàng hoe (tóc nữ)",
+                "emoji": "👱‍♀️"
+            },
+            {
+                "en": "curly",
+                "vi": "xoăn",
+                "emoji": "🌀"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "helicopter",
+                "vi": "trực thăng",
+                "emoji": "🚁"
+            },
+            {
+                "en": "ship",
+                "vi": "tàu thủy lớn",
+                "emoji": "🚢"
+            },
+            {
+                "en": "lorry",
+                "vi": "xe tải",
+                "emoji": "🚛"
+            },
+            {
+                "en": "boat",
+                "vi": "thuyền",
+                "emoji": "🚤"
+            },
+            {
+                "en": "scooter",
+                "vi": "xe tay ga / xe trượt",
+                "emoji": "🛴"
+            },
+            {
+                "en": "skateboard",
+                "vi": "ván trượt",
+                "emoji": "🛹"
+            },
+            {
+                "en": "motorbike",
+                "vi": "xe máy",
+                "emoji": "🏍️"
+            },
+            {
+                "en": "taxi",
+                "vi": "xe tắc-xi",
+                "emoji": "🚕"
+            },
+            {
+                "en": "bus",
+                "vi": "xe buýt",
+                "emoji": "🚌"
+            },
+            {
+                "en": "sail",
+                "vi": "đi thuyền buồm",
+                "emoji": "⛵"
+            },
+            {
+                "en": "drive",
+                "vi": " lái xe (ô tô)",
+                "emoji": "🚗"
+            },
+            {
+                "en": "ride",
+                "vi": " lái xe (2 bánh) / cưỡi",
+                "emoji": "🏇"
+            },
+            {
+                "en": "fly",
+                "vi": "bay",
+                "emoji": "✈️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "badminton",
+                "vi": "cầu lông",
+                "emoji": "🏸"
+            },
+            {
+                "en": "table tennis",
+                "vi": "bóng bàn",
+                "emoji": "🏓"
+            },
+            {
+                "en": "tennis",
+                "vi": "quần vợt",
+                "emoji": "🎾"
+            },
+            {
+                "en": "basketball",
+                "vi": "bóng rổ",
+                "emoji": "🏀"
+            },
+            {
+                "en": "baseball",
+                "vi": "bóng chày",
+                "emoji": "⚾"
+            },
+            {
+                "en": "volleyball",
+                "vi": "bóng chuyền",
+                "emoji": "🏐"
+            },
+            {
+                "en": "swimming",
+                "vi": "bơi lội",
+                "emoji": "🏊"
+            },
+            {
+                "en": "football",
+                "vi": "bóng đá",
+                "emoji": "⚽"
+            },
+            {
+                "en": "hockey",
+                "vi": "khúc côn cầu",
+                "emoji": "🏒"
+            },
+            {
+                "en": "athletics",
+                "vi": "điền kinh",
+                "emoji": "🏃"
+            },
+            {
+                "en": "sports club",
+                "vi": "câu lạc bộ thể thao",
+                "emoji": "🏟️"
+            },
+            {
+                "en": "join",
+                "vi": "tham gia",
+                "emoji": "🤝"
+            },
+            {
+                "en": "team",
+                "vi": "đội",
+                "emoji": "👥"
+            },
+            {
+                "en": "goal",
+                "vi": "bàn thắng / khung thành",
+                "emoji": "⚽"
+            },
+            {
+                "en": "boring",
+                "vi": "nhàm chán",
+                "emoji": "😴"
+            },
+            {
+                "en": "fun",
+                "vi": "vui vẻ",
+                "emoji": "🎉"
+            },
+            {
+                "en": "difficult",
+                "vi": "khó khăn",
+                "emoji": "😰"
+            },
+            {
+                "en": "easy",
+                "vi": "dễ dàng",
+                "emoji": "😊"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 2",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "read a comic",
+                "vi": "đọc truyện tranh",
+                "emoji": "📖"
+            },
+            {
+                "en": "go hiking",
+                "vi": "đi bộ đường dài",
+                "emoji": "🥾"
+            },
+            {
+                "en": "visit cousins",
+                "vi": "thăm anh chị em họ",
+                "emoji": "👨‍👩‍👧‍👦"
+            },
+            {
+                "en": "help in the garden",
+                "vi": "giúp làm vườn",
+                "emoji": "🌱"
+            },
+            {
+                "en": "take riding lessons",
+                "vi": "học cưỡi ngựa",
+                "emoji": "🏇"
+            },
+            {
+                "en": "build a tree house",
+                "vi": "xây nhà trên cây",
+                "emoji": "🌳"
+            },
+            {
+                "en": "keep a scrapbook",
+                "vi": "làm sổ lưu niệm",
+                "emoji": "📔"
+            },
+            {
+                "en": "learn to swim",
+                "vi": "học bơi",
+                "emoji": "🏊"
+            },
+            {
+                "en": "go camping",
+                "vi": "đi cắm trại",
+                "emoji": "🏕️"
+            },
+            {
+                "en": "bake a cake",
+                "vi": "nướng bánh",
+                "emoji": "🍰"
+            },
+            {
+                "en": "rest",
+                "vi": "nghỉ ngơi",
+                "emoji": "💤"
+            },
+            {
+                "en": "have a break",
+                "vi": "nghỉ giải lao",
+                "emoji": "☕"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "upstairs",
+                "vi": "tầng trên",
+                "emoji": "⬆️"
+            },
+            {
+                "en": "downstairs",
+                "vi": "tầng dưới",
+                "emoji": "⬇️"
+            },
+            {
+                "en": "cellar",
+                "vi": "hầm chứa",
+                "emoji": "🏚️"
+            },
+            {
+                "en": "explorer",
+                "vi": "nhà thám hiểm",
+                "emoji": "🧭"
+            },
+            {
+                "en": "meet",
+                "vi": "gặp gỡ",
+                "emoji": "🤝"
+            },
+            {
+                "en": "lost treasure",
+                "vi": "kho báu thất lạc",
+                "emoji": "💎"
+            },
+            {
+                "en": "museum",
+                "vi": "bảo tàng",
+                "emoji": "🏛️"
+            },
+            {
+                "en": "adventure",
+                "vi": "cuộc phiêu lưu",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "castle",
+                "vi": "lâu đài",
+                "emoji": "🏰"
+            },
+            {
+                "en": "secret",
+                "vi": "bí mật",
+                "emoji": "🤫"
+            },
+            {
+                "en": "only",
+                "vi": "duy nhất / chỉ 1",
+                "emoji": "1️⃣"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "Art",
+                "vi": "Mỹ thuật",
+                "emoji": "🎨"
+            },
+            {
+                "en": "English",
+                "vi": "Tiếng Anh",
+                "emoji": "🇬🇧"
+            },
+            {
+                "en": "Geography",
+                "vi": "Địa lý",
+                "emoji": "🌍"
+            },
+            {
+                "en": "Music",
+                "vi": "Âm nhạc",
+                "emoji": "🎵"
+            },
+            {
+                "en": "I.T.",
+                "vi": "Tin học",
+                "emoji": "💻"
+            },
+            {
+                "en": "History",
+                "vi": "Lịch sử",
+                "emoji": "📜"
+            },
+            {
+                "en": "Maths",
+                "vi": "Toán",
+                "emoji": "➗"
+            },
+            {
+                "en": "Science",
+                "vi": "Khoa học",
+                "emoji": "🔬"
+            },
+            {
+                "en": "P.E.",
+                "vi": "Thể dục",
+                "emoji": "⚽"
+            },
+            {
+                "en": "in code",
+                "vi": "bằng mật mã",
+                "emoji": "🔐"
+            },
+            {
+                "en": "easy",
+                "vi": "dễ",
+                "emoji": "😊"
+            },
+            {
+                "en": "keep",
+                "vi": "giữ",
+                "emoji": "💾"
+            },
+            {
+                "en": "dark",
+                "vi": "tối tăm",
+                "emoji": "🌑"
+            },
+            {
+                "en": "probably",
+                "vi": "có lẽ",
+                "emoji": "🤔"
+            },
+            {
+                "en": "No way",
+                "vi": "Không đời nào",
+                "emoji": "🙅"
+            },
+            {
+                "en": "yet",
+                "vi": "chưa",
+                "emoji": "⏳"
+            },
+            {
+                "en": "follow",
+                "vi": "đi theo",
+                "emoji": "👣"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "apple juice",
+                "vi": "nước ép táo",
+                "emoji": "🧃"
+            },
+            {
+                "en": "cheese",
+                "vi": "phô mai",
+                "emoji": "🧀"
+            },
+            {
+                "en": "lemonade",
+                "vi": "nước chanh",
+                "emoji": "🍋"
+            },
+            {
+                "en": "salad",
+                "vi": "sa-lát",
+                "emoji": "🥗"
+            },
+            {
+                "en": "rolls",
+                "vi": "bánh mì cuộn",
+                "emoji": "🥖"
+            },
+            {
+                "en": "soup",
+                "vi": "súp / canh",
+                "emoji": "🍲"
+            },
+            {
+                "en": "vegetables",
+                "vi": "rau củ",
+                "emoji": "🥦"
+            },
+            {
+                "en": "water",
+                "vi": "nước",
+                "emoji": "💧"
+            },
+            {
+                "en": "ill",
+                "vi": "ốm / bệnh",
+                "emoji": "🤒"
+            },
+            {
+                "en": "bite",
+                "vi": "cắn",
+                "emoji": "🦷"
+            },
+            {
+                "en": "bit",
+                "vi": "đã cắn (quá khứ)",
+                "emoji": "🦷"
+            },
+            {
+                "en": "medicine",
+                "vi": "thuốc",
+                "emoji": "💊"
+            },
+            {
+                "en": "hut",
+                "vi": "túp lều",
+                "emoji": "🛖"
+            },
+            {
+                "en": "top",
+                "vi": "đỉnh",
+                "emoji": "⛰️"
+            },
+            {
+                "en": "waterfall",
+                "vi": "thác nước",
+                "emoji": "🌊"
+            },
+            {
+                "en": "golden",
+                "vi": "bằng vàng",
+                "emoji": "🥇"
+            },
+            {
+                "en": "get better",
+                "vi": "hồi phục / khỏe hơn",
+                "emoji": "💪"
+            },
+            {
+                "en": "fool",
+                "vi": "kẻ ngốc",
+                "emoji": "🤡"
+            },
+            {
+                "en": "Just you wait",
+                "vi": "Hãy đợi đấy",
+                "emoji": "⏳"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "wash up",
+                "vi": "rửa bát đĩa",
+                "emoji": "🍽️"
+            },
+            {
+                "en": "tidy up",
+                "vi": "dọn dẹp",
+                "emoji": "🧹"
+            },
+            {
+                "en": "sweep",
+                "vi": "quét dọn",
+                "emoji": "🧹"
+            },
+            {
+                "en": "cook",
+                "vi": "nấu ăn",
+                "emoji": "👨🍳"
+            },
+            {
+                "en": "feed the dog",
+                "vi": "cho chó ăn",
+                "emoji": "🐕"
+            },
+            {
+                "en": "dry the dishes",
+                "vi": "lau khô bát đĩa",
+                "emoji": "🧽"
+            },
+            {
+                "en": "do the shopping",
+                "vi": "đi mua sắm",
+                "emoji": "🛍️"
+            },
+            {
+                "en": "take the dog for a walk",
+                "vi": "dắt chó đi dạo",
+                "emoji": "🦮"
+            },
+            {
+                "en": "tea",
+                "vi": "trà",
+                "emoji": "🫖"
+            },
+            {
+                "en": "moon",
+                "vi": "mặt trăng",
+                "emoji": "🌙"
+            },
+            {
+                "en": "at night",
+                "vi": "vào ban đêm",
+                "emoji": "🌃"
+            },
+            {
+                "en": "pilot",
+                "vi": "phi công",
+                "emoji": "✈️"
+            },
+            {
+                "en": "flight",
+                "vi": "chuyến bay",
+                "emoji": "✈️"
+            },
+            {
+                "en": "spaceship",
+                "vi": "tàu vũ trụ",
+                "emoji": "🚀"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "map",
+                "vi": "bản đồ",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "bank",
+                "vi": "ngân hàng",
+                "emoji": "🏦"
+            },
+            {
+                "en": "bus station",
+                "vi": "bến xe buýt",
+                "emoji": "🚌"
+            },
+            {
+                "en": "tower",
+                "vi": "tháp",
+                "emoji": "🗼"
+            },
+            {
+                "en": "library",
+                "vi": "thư viện",
+                "emoji": "📚"
+            },
+            {
+                "en": "market square",
+                "vi": "quảng trường chợ",
+                "emoji": "🏘️"
+            },
+            {
+                "en": "sports centre",
+                "vi": "trung tâm thể thao",
+                "emoji": "⚽"
+            },
+            {
+                "en": "supermarket",
+                "vi": "siêu thị",
+                "emoji": "🛒"
+            },
+            {
+                "en": "funfair",
+                "vi": "hội chợ vui chơi",
+                "emoji": "🎡"
+            },
+            {
+                "en": "car park",
+                "vi": "bãi đỗ xe",
+                "emoji": "🅿️"
+            },
+            {
+                "en": "higher than",
+                "vi": "cao hơn",
+                "emoji": "⬆️"
+            },
+            {
+                "en": "Pirate Ship",
+                "vi": "Tàu cướp biển",
+                "emoji": "🏴‍☠️"
+            },
+            {
+                "en": "the wrong place",
+                "vi": "nhầm chỗ",
+                "emoji": "❌"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "seahorse",
+                "vi": " cá ngựa",
+                "emoji": "🐠"
+            },
+            {
+                "en": "dolphin",
+                "vi": " cá heo",
+                "emoji": "🐬"
+            },
+            {
+                "en": "seal",
+                "vi": "hải cẩu",
+                "emoji": "🦭"
+            },
+            {
+                "en": "shell",
+                "vi": "vỏ sò",
+                "emoji": "🐚"
+            },
+            {
+                "en": "octopus",
+                "vi": "bạch tuộc",
+                "emoji": "🐙"
+            },
+            {
+                "en": "anchor",
+                "vi": "mỏ neo",
+                "emoji": "⚓"
+            },
+            {
+                "en": "starfish",
+                "vi": "sao biển",
+                "emoji": "🌟"
+            },
+            {
+                "en": "turtle",
+                "vi": "rùa biển",
+                "emoji": "🐢"
+            },
+            {
+                "en": "trap",
+                "vi": "cái bẫy",
+                "emoji": "🪤"
+            },
+            {
+                "en": "chase",
+                "vi": "đuổi theo",
+                "emoji": "🏃‍♂️"
+            },
+            {
+                "en": "giant",
+                "vi": " khổng loth",
+                "emoji": "🦍"
+            },
+            {
+                "en": "have a look",
+                "vi": "nhìn xem",
+                "emoji": "👀"
+            },
+            {
+                "en": "get my arm out",
+                "vi": "rút tay ra",
+                "emoji": "💪"
+            },
+            {
+                "en": "stuck",
+                "vi": "bị kẹt",
+                "emoji": "🔒"
+            },
+            {
+                "en": "my beauty",
+                "vi": "người đẹp của ta",
+                "emoji": "💃"
+            },
+            {
+                "en": "stupid",
+                "vi": "ngu ngốc",
+                "emoji": "🤪"
+            },
+            {
+                "en": "cage",
+                "vi": "cái lồng",
+                "emoji": "🐦"
+            },
+            {
+                "en": "helpful",
+                "vi": "hay giúp đỡ",
+                "emoji": "🤝"
+            },
+            {
+                "en": "fourth",
+                "vi": "thứ tư (số thứ tự)",
+                "emoji": "4️⃣"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "games console",
+                "vi": "máy chơi game",
+                "emoji": "🎮"
+            },
+            {
+                "en": "electric fan",
+                "vi": "quạt điện",
+                "emoji": "💨"
+            },
+            {
+                "en": "walkie-talkie",
+                "vi": "bộ đàm",
+                "emoji": "📻"
+            },
+            {
+                "en": "electric toothbrush",
+                "vi": "bàn chải điện",
+                "emoji": "🪥"
+            },
+            {
+                "en": "tablet",
+                "vi": "máy tính bảng",
+                "emoji": "📱"
+            },
+            {
+                "en": "torch",
+                "vi": "đèn pin",
+                "emoji": "🔦"
+            },
+            {
+                "en": "mobile phone",
+                "vi": "điện thoại di động",
+                "emoji": "📱"
+            },
+            {
+                "en": "lift",
+                "vi": "thang máy",
+                "emoji": "🛗"
+            },
+            {
+                "en": "laptop",
+                "vi": "máy tính xách tay",
+                "emoji": "💻"
+            },
+            {
+                "en": "fabulous",
+                "vi": "tuyệt vời",
+                "emoji": "🌟"
+            },
+            {
+                "en": "fan",
+                "vi": "cái quạt / người hâm mộ",
+                "emoji": "🥰"
+            },
+            {
+                "en": "van",
+                "vi": "xe tải nhỏ",
+                "emoji": "🚐"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "doctor",
+                "vi": "bác sĩ",
+                "emoji": "👨⚕️"
+            },
+            {
+                "en": "nurse",
+                "vi": "y tá",
+                "emoji": "👩⚕️"
+            },
+            {
+                "en": "cold",
+                "vi": "cảm lạnh",
+                "emoji": "🤧"
+            },
+            {
+                "en": "cough",
+                "vi": "ho",
+                "emoji": "🤧"
+            },
+            {
+                "en": "headache",
+                "vi": "đau đầu",
+                "emoji": "🤕"
+            },
+            {
+                "en": "toothache",
+                "vi": "đau răng",
+                "emoji": "🦷"
+            },
+            {
+                "en": "earache",
+                "vi": "đau tai",
+                "emoji": "👂"
+            },
+            {
+                "en": "stomach-ache",
+                "vi": "đau dạ dày",
+                "emoji": "🤢"
+            },
+            {
+                "en": "quietly",
+                "vi": "một cách yên lặng",
+                "emoji": "🤫"
+            },
+            {
+                "en": "woke up",
+                "vi": "đã thức dậy",
+                "emoji": "⏰"
+            },
+            {
+                "en": "felt",
+                "vi": "đã cảm thấy",
+                "emoji": "🤲"
+            },
+            {
+                "en": "had",
+                "vi": "đã có",
+                "emoji": "✔️"
+            },
+            {
+                "en": "went",
+                "vi": "đã đi",
+                "emoji": "🚶‍♂️"
+            },
+            {
+                "en": "gave",
+                "vi": "đã đưa cho",
+                "emoji": "🎁"
+            },
+            {
+                "en": "said",
+                "vi": "đã nói",
+                "emoji": "🗣️"
+            },
+            {
+                "en": "terrible",
+                "vi": "khủng khiếp",
+                "emoji": "😨"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "Mexico",
+                "vi": "nước Mê-hi-cô",
+                "emoji": "🇲🇽"
+            },
+            {
+                "en": "Spain",
+                "vi": "nước Tây Ban Nha",
+                "emoji": "🇪🇸"
+            },
+            {
+                "en": "Argentina",
+                "vi": "nước Ác-hen-ti-na",
+                "emoji": "🇦🇷"
+            },
+            {
+                "en": "Egypt",
+                "vi": "nước Ai Cập",
+                "emoji": "🇪🇬"
+            },
+            {
+                "en": "Chile",
+                "vi": "nước Chi-lê",
+                "emoji": "🇨🇱"
+            },
+            {
+                "en": "China",
+                "vi": "nước Trung Quốc",
+                "emoji": "🇨🇳"
+            },
+            {
+                "en": "Turkey",
+                "vi": "nước Thổ Nhĩ Kỳ",
+                "emoji": "🇹🇷"
+            },
+            {
+                "en": "Brazil",
+                "vi": "nước Bra-xin",
+                "emoji": "🇧🇷"
+            },
+            {
+                "en": "Australia",
+                "vi": "nước Úc",
+                "emoji": "🇦🇺"
+            },
+            {
+                "en": "India",
+                "vi": "nước Ấn Độ",
+                "emoji": "🇮🇳"
+            },
+            {
+                "en": "North America",
+                "vi": "Bắc Mỹ",
+                "emoji": "🌎"
+            },
+            {
+                "en": "South America",
+                "vi": "Nam Mỹ",
+                "emoji": "🌎"
+            },
+            {
+                "en": "Europe",
+                "vi": "Châu Âu",
+                "emoji": "🇪🇺"
+            },
+            {
+                "en": "Asia",
+                "vi": "Châu Á",
+                "emoji": "🌏"
+            },
+            {
+                "en": "Africa",
+                "vi": "Châu Phi",
+                "emoji": "🌍"
+            },
+            {
+                "en": "canyon",
+                "vi": "hẻm núi",
+                "emoji": "🏞️"
+            },
+            {
+                "en": "harbour",
+                "vi": "bến cảng",
+                "emoji": "⚓"
+            },
+            {
+                "en": "volcano",
+                "vi": "núi lửa",
+                "emoji": "🌋"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 3",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "thunderstorm",
+                "vi": "bão sấm sét",
+                "emoji": "⛈️"
+            },
+            {
+                "en": "lightning",
+                "vi": "tia chớp",
+                "emoji": "⚡"
+            },
+            {
+                "en": "rain",
+                "vi": "mưa",
+                "emoji": "🌧️"
+            },
+            {
+                "en": "rainy",
+                "vi": "có mưa",
+                "emoji": "🌧️"
+            },
+            {
+                "en": "wind",
+                "vi": "gió",
+                "emoji": "💨"
+            },
+            {
+                "en": "windy",
+                "vi": "có gio",
+                "emoji": "💨"
+            },
+            {
+                "en": "cloud",
+                "vi": "mây",
+                "emoji": "☁️"
+            },
+            {
+                "en": "cloudy",
+                "vi": "có mây",
+                "emoji": "☁️"
+            },
+            {
+                "en": "fog",
+                "vi": "sương mù",
+                "emoji": "🌫️"
+            },
+            {
+                "en": "foggy",
+                "vi": "có sương mù",
+                "emoji": "🌫️"
+            },
+            {
+                "en": "umbrella",
+                "vi": "cái ô",
+                "emoji": "☂️"
+            },
+            {
+                "en": "raincoat",
+                "vi": "áo mưa",
+                "emoji": "🧥"
+            },
+            {
+                "en": "boots",
+                "vi": "đôi ủng",
+                "emoji": "👢"
+            },
+            {
+                "en": "because of",
+                "vi": "bởi vì",
+                "emoji": "🧐"
+            },
+            {
+                "en": "so much",
+                "vi": "rất nhiều",
+                "emoji": "💯"
+            },
+            {
+                "en": "seaside",
+                "vi": "bờ biển",
+                "emoji": "🏖️"
+            },
+            {
+                "en": "steam train",
+                "vi": "tàu hơi nước",
+                "emoji": "🚂"
+            },
+            {
+                "en": "crowded",
+                "vi": "đông đúc",
+                "emoji": "👥"
+            },
+            {
+                "en": "basket",
+                "vi": "cái giỏ",
+                "emoji": "🧺"
+            },
+            {
+                "en": "cart",
+                "vi": "xe đẩy / xe kéo",
+                "emoji": "🛒"
+            },
+            {
+                "en": "wore",
+                "vi": "đã mặc",
+                "emoji": "👗"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "big wheel",
+                "vi": "vòng quay khổng lồ",
+                "emoji": "🎡"
+            },
+            {
+                "en": "rollercoaster",
+                "vi": "tàu lượn siêu tốc",
+                "emoji": "🎢"
+            },
+            {
+                "en": "roundabout",
+                "vi": "vòng quay ngựa gỗ / bùng binh",
+                "emoji": "🎠"
+            },
+            {
+                "en": "mayor",
+                "vi": "thị trưởng",
+                "emoji": "👨💼"
+            },
+            {
+                "en": "dodgem cars",
+                "vi": "xe điện đụng",
+                "emoji": "🏎️"
+            },
+            {
+                "en": "microphone",
+                "vi": "mi-crô",
+                "emoji": "🎤"
+            },
+            {
+                "en": "band",
+                "vi": "ban nhạc",
+                "emoji": "🎶"
+            },
+            {
+                "en": "photographer",
+                "vi": "nhiếp ảnh gia",
+                "emoji": "📸"
+            },
+            {
+                "en": "journalist",
+                "vi": "nhà báo",
+                "emoji": "📰"
+            },
+            {
+                "en": "well done",
+                "vi": "làm tốt lắm",
+                "emoji": "👏"
+            },
+            {
+                "en": "try out",
+                "vi": "thử nghiệm",
+                "emoji": "🧪"
+            },
+            {
+                "en": "excitement",
+                "vi": "sự phấn khích",
+                "emoji": "🤩"
+            },
+            {
+                "en": "explore",
+                "vi": "khám phá",
+                "emoji": "🧭"
+            },
+            {
+                "en": "treasure",
+                "vi": "kho báu",
+                "emoji": "💎"
+            },
+            {
+                "en": "museum",
+                "vi": "bảo tàng",
+                "emoji": "🏛️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "queen",
+                "vi": "nữ hoàng",
+                "emoji": "👑"
+            },
+            {
+                "en": "knight",
+                "vi": "hiệp s",
+                "emoji": "🤺"
+            },
+            {
+                "en": "crown",
+                "vi": "vương miện",
+                "emoji": "👑"
+            },
+            {
+                "en": "helmet",
+                "vi": "mũ bảo hiểm / mũ giáp",
+                "emoji": "⛑️"
+            },
+            {
+                "en": "necklace",
+                "vi": "vòng cổ",
+                "emoji": "📿"
+            },
+            {
+                "en": "bracelet",
+                "vi": "vòng tay",
+                "emoji": "📿"
+            },
+            {
+                "en": "shield",
+                "vi": "cái khiên",
+                "emoji": "🛡️"
+            },
+            {
+                "en": "sword",
+                "vi": "thanh kiếm",
+                "emoji": "⚔️"
+            },
+            {
+                "en": "map",
+                "vi": "bản đồ",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "dinosaur",
+                "vi": "khủng long",
+                "emoji": "🦖"
+            },
+            {
+                "en": "touch",
+                "vi": "chạm vào",
+                "emoji": "👆"
+            },
+            {
+                "en": "brilliant",
+                "vi": "xuất sắc / rực rỡ",
+                "emoji": "✨"
+            },
+            {
+                "en": "hide",
+                "vi": "trốn / giấu",
+                "emoji": "🙈"
+            },
+            {
+                "en": "storyteller",
+                "vi": "người kể chuyện",
+                "emoji": "📖"
+            },
+            {
+                "en": "timeline",
+                "vi": "dòng thời gian",
+                "emoji": "⏳"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "mountain",
+                "vi": "ngọn núi",
+                "emoji": "⛰️"
+            },
+            {
+                "en": "forest",
+                "vi": "khu rừng",
+                "emoji": "🌲"
+            },
+            {
+                "en": "village",
+                "vi": "ngôi làng",
+                "emoji": "🏡"
+            },
+            {
+                "en": "lake",
+                "vi": "hồ nước",
+                "emoji": "🌊"
+            },
+            {
+                "en": "island",
+                "vi": "hòn đảo",
+                "emoji": "🏝️"
+            },
+            {
+                "en": "field",
+                "vi": "cánh đồ",
+                "emoji": "🌾"
+            },
+            {
+                "en": "river",
+                "vi": "dòng sông",
+                "emoji": "🌊"
+            },
+            {
+                "en": "path",
+                "vi": "con đường nhỏ",
+                "emoji": "🛤️"
+            },
+            {
+                "en": "picnic",
+                "vi": "dã ngoic",
+                "emoji": "🧺"
+            },
+            {
+                "en": "scare",
+                "vi": "làm sợ hãi",
+                "emoji": "😨"
+            },
+            {
+                "en": "rescue",
+                "vi": "giải cứu",
+                "emoji": "🚑"
+            },
+            {
+                "en": "continent",
+                "vi": "lục địa",
+                "emoji": "🌍"
+            },
+            {
+                "en": "satellite",
+                "vi": "vệ tinh",
+                "emoji": "🛰️"
+            },
+            {
+                "en": "country",
+                "vi": "đất nước",
+                "emoji": "🇻🇳"
+            },
+            {
+                "en": "world",
+                "vi": "thế giới",
+                "emoji": "🌎"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "fire",
+                "vi": "ngọn lửa / hỏa hoạn",
+                "emoji": "🔥"
+            },
+            {
+                "en": "flood",
+                "vi": "lũ lụt",
+                "emoji": "🌊"
+            },
+            {
+                "en": "emergency services",
+                "vi": "dịch vụ khẩn cấp",
+                "emoji": "🚨"
+            },
+            {
+                "en": "police car",
+                "vi": "xe cảnh sát",
+                "emoji": "🚓"
+            },
+            {
+                "en": "fire engine",
+                "vi": "xe cứu hỏa",
+                "emoji": "🚒"
+            },
+            {
+                "en": "ambulance",
+                "vi": "xe cứu thương",
+                "emoji": "🚑"
+            },
+            {
+                "en": "paramedic",
+                "vi": "nhân viên y tế",
+                "emoji": "🏥"
+            },
+            {
+                "en": "accident",
+                "vi": "tai nạn",
+                "emoji": "🚧"
+            },
+            {
+                "en": "hurt",
+                "vi": "bị thương / làm đau",
+                "emoji": "🤕"
+            },
+            {
+                "en": "shark",
+                "vi": "cá mập",
+                "emoji": "🦈"
+            },
+            {
+                "en": "extinguisher",
+                "vi": "bình cứu hỏa",
+                "emoji": "🧯"
+            },
+            {
+                "en": "operator",
+                "vi": "tổng đài viên",
+                "emoji": "📞"
+            },
+            {
+                "en": "tsunami",
+                "vi": "sóng thần",
+                "emoji": "🌊"
+            },
+            {
+                "en": "danger",
+                "vi": "sự nguy hiểm",
+                "emoji": "⚠️"
+            },
+            {
+                "en": "rescue",
+                "vi": "giải cứu",
+                "emoji": "🚑"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "station",
+                "vi": "nhà ga",
+                "emoji": "🚉"
+            },
+            {
+                "en": "platform",
+                "vi": "sân ga",
+                "emoji": "🛤️"
+            },
+            {
+                "en": "escalator",
+                "vi": "thang cuốn",
+                "emoji": "⬆️"
+            },
+            {
+                "en": "ticket office",
+                "vi": "phòng bán vé",
+                "emoji": "🎟️"
+            },
+            {
+                "en": "train driver",
+                "vi": "người lái tàu",
+                "emoji": "🚂"
+            },
+            {
+                "en": "suitcase",
+                "vi": "va li",
+                "emoji": "🧳"
+            },
+            {
+                "en": "train track",
+                "vi": "đường ray",
+                "emoji": "🛤️"
+            },
+            {
+                "en": "return ticket",
+                "vi": "vé khứ hồi",
+                "emoji": "🎟️"
+            },
+            {
+                "en": "single ticket",
+                "vi": "vé một chiều",
+                "emoji": "🎟️"
+            },
+            {
+                "en": "tunnel",
+                "vi": "đường hầ",
+                "emoji": "🚇"
+            },
+            {
+                "en": "disappear",
+                "vi": "biến mất",
+                "emoji": "👻"
+            },
+            {
+                "en": "conductor",
+                "vi": "người soát vé / nhạc trưởng",
+                "emoji": "🎼"
+            },
+            {
+                "en": "imagination",
+                "vi": "trí tưởng tượng",
+                "emoji": "🧠"
+            },
+            {
+                "en": "eco-friendly",
+                "vi": "thân thiện với môi trường",
+                "emoji": "🌱"
+            },
+            {
+                "en": "pollute",
+                "vi": "gây ô nhiễm",
+                "emoji": "☁️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "dark",
+                "vi": "sẫm màu / tối",
+                "emoji": "🌑"
+            },
+            {
+                "en": "blonde",
+                "vi": "vàng hoe",
+                "emoji": "👱‍♀️"
+            },
+            {
+                "en": "fair",
+                "vi": "sáng màu / trắng trẻo",
+                "emoji": "👱"
+            },
+            {
+                "en": "moustache",
+                "vi": "ria mép",
+                "emoji": "🤨"
+            },
+            {
+                "en": "curly",
+                "vi": "xoăn",
+                "emoji": "🌀"
+            },
+            {
+                "en": "beard",
+                "vi": "râu quai nón",
+                "emoji": "🧔"
+            },
+            {
+                "en": "scar",
+                "vi": "vết sẹo",
+                "emoji": "🤕"
+            },
+            {
+                "en": "straight",
+                "vi": "thẳng",
+                "emoji": "📏"
+            },
+            {
+                "en": "criminal",
+                "vi": "tội phạm",
+                "emoji": "🦹"
+            },
+            {
+                "en": "mysterious",
+                "vi": "bí ẩn",
+                "emoji": "🕵️"
+            },
+            {
+                "en": "uniform",
+                "vi": "đồng phục",
+                "emoji": "👮"
+            },
+            {
+                "en": "walkie-talkie",
+                "vi": "bộ đàm",
+                "emoji": "📻"
+            },
+            {
+                "en": "rob",
+                "vi": "cướp",
+                "emoji": "🦹"
+            },
+            {
+                "en": "sketch",
+                "vi": "bản phác thảo",
+                "emoji": "🖍️"
+            },
+            {
+                "en": "police",
+                "vi": "cảnh sát",
+                "emoji": "👮"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "tail",
+                "vi": "cái đuôi",
+                "emoji": "🐒"
+            },
+            {
+                "en": "horn",
+                "vi": "cái sừng",
+                "emoji": "🐮"
+            },
+            {
+                "en": "scales",
+                "vi": "vảy (cá/rồng)",
+                "emoji": "🐟"
+            },
+            {
+                "en": "wing",
+                "vi": "đôi cánh",
+                "emoji": "🦋"
+            },
+            {
+                "en": "feathers",
+                "vi": "lông vũ",
+                "emoji": "🪶"
+            },
+            {
+                "en": "tongue",
+                "vi": "cái lưỡi",
+                "emoji": "👅"
+            },
+            {
+                "en": "mythical beast",
+                "vi": "quái thú huyền thoại",
+                "emoji": "🐉"
+            },
+            {
+                "en": "dinosaur",
+                "vi": "khủng long",
+                "emoji": "🦖"
+            },
+            {
+                "en": "mermaid",
+                "vi": "nàng tiên cá",
+                "emoji": "🧜‍♀️"
+            },
+            {
+                "en": "unicorn",
+                "vi": "kỳ lân",
+                "emoji": "🦄"
+            },
+            {
+                "en": "centaur",
+                "vi": "nhân mã",
+                "emoji": "🐎"
+            },
+            {
+                "en": "treasure chest",
+                "vi": "rương kho báu",
+                "emoji": "💰"
+            },
+            {
+                "en": "omnivore",
+                "vi": "động vật ăn tạp",
+                "emoji": "🍖🥬"
+            },
+            {
+                "en": "herbivore",
+                "vi": "động vật ăn cỏ",
+                "emoji": "🌿"
+            },
+            {
+                "en": "carnivore",
+                "vi": "động vật ăn thịt",
+                "emoji": "🍖"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "tambourine",
+                "vi": "trống lục lạc",
+                "emoji": "🔔"
+            },
+            {
+                "en": "triangle",
+                "vi": "kẻng tam giác",
+                "emoji": "🔺"
+            },
+            {
+                "en": "trumpet",
+                "vi": "kèn trôm-pét",
+                "emoji": "🎺"
+            },
+            {
+                "en": "trombone",
+                "vi": "kèn trôm-bôn",
+                "emoji": "🎷"
+            },
+            {
+                "en": "drums",
+                "vi": "trống",
+                "emoji": "🥁"
+            },
+            {
+                "en": "harp",
+                "vi": "đàn hạc",
+                "emoji": "🎼"
+            },
+            {
+                "en": "saxophone",
+                "vi": "kèn xắc-xô",
+                "emoji": "🎷"
+            },
+            {
+                "en": "violin",
+                "vi": "đàn vĩ cầm",
+                "emoji": "🎻"
+            },
+            {
+                "en": "orchestra",
+                "vi": "dàn nhạc",
+                "emoji": "🎼"
+            },
+            {
+                "en": "instrument",
+                "vi": "nhạc cụ",
+                "emoji": "🎸"
+            },
+            {
+                "en": "concert",
+                "vi": "buổi hòa nhạc",
+                "emoji": "🎵"
+            },
+            {
+                "en": "conductor",
+                "vi": "nhạc trưởng",
+                "emoji": "🎼"
+            },
+            {
+                "en": "percussion",
+                "vi": "bộ gõ",
+                "emoji": "🥁"
+            },
+            {
+                "en": "string",
+                "vi": "bộ dây",
+                "emoji": "🎻"
+            },
+            {
+                "en": "wind",
+                "vi": "bộ hơi (nhạc cụ)",
+                "emoji": "🎺"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "planet",
+                "vi": "hành tinh",
+                "emoji": "🪐"
+            },
+            {
+                "en": "rocket",
+                "vi": "tên lửa",
+                "emoji": "🚀"
+            },
+            {
+                "en": "UFO",
+                "vi": "vật thể bay không xác định",
+                "emoji": "🛸"
+            },
+            {
+                "en": "star",
+                "vi": "ngôi sao",
+                "emoji": "⭐"
+            },
+            {
+                "en": "comet",
+                "vi": "sao chổi",
+                "emoji": "☄️"
+            },
+            {
+                "en": "telescope",
+                "vi": "kính thiên văn",
+                "emoji": "🔭"
+            },
+            {
+                "en": "astronaut",
+                "vi": "phi hành gia",
+                "emoji": "👨🚀"
+            },
+            {
+                "en": "moon",
+                "vi": "mặt trăng",
+                "emoji": "🌙"
+            },
+            {
+                "en": "space station",
+                "vi": "trạm vũ trụ",
+                "emoji": "🛰️"
+            },
+            {
+                "en": "planetarium",
+                "vi": "cung thiên văn",
+                "emoji": "🌌"
+            },
+            {
+                "en": "outer space",
+                "vi": "ngoài vũ tr",
+                "emoji": "🌠"
+            },
+            {
+                "en": "asteroid",
+                "vi": "tiểu hành tinh",
+                "emoji": "🌑"
+            },
+            {
+                "en": "orbit",
+                "vi": "quỹ đạo",
+                "emoji": "🛰️"
+            },
+            {
+                "en": "spacesuit",
+                "vi": "bộ đồ phi hành gia",
+                "emoji": "👨🚀"
+            },
+            {
+                "en": "universe",
+                "vi": "vũ tr",
+                "emoji": "🌌"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 4",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "sail a boat",
+                "vi": " lái thuyền buồm",
+                "emoji": "⛵"
+            },
+            {
+                "en": "swing on a rope",
+                "vi": "đu dây",
+                "emoji": "🪢"
+            },
+            {
+                "en": "dive into the water",
+                "vi": " lặn xuống nước",
+                "emoji": "🤿"
+            },
+            {
+                "en": "row a boat",
+                "vi": " chèo thuyền",
+                "emoji": "🛶"
+            },
+            {
+                "en": "put up a tent",
+                "vi": " dựng lều",
+                "emoji": "⛺"
+            },
+            {
+                "en": "make a fire",
+                "vi": "đốt lửa",
+                "emoji": "🔥"
+            },
+            {
+                "en": "collect wood",
+                "vi": "nhặt củi",
+                "emoji": "🪵"
+            },
+            {
+                "en": "sleeping bag",
+                "vi": " túi ngủ",
+                "emoji": "🛌"
+            },
+            {
+                "en": "tent",
+                "vi": " cái lều",
+                "emoji": "⛺"
+            },
+            {
+                "en": "campfire",
+                "vi": " lửa trại",
+                "emoji": "🔥"
+            },
+            {
+                "en": "campsite",
+                "vi": " khu cắm trại",
+                "emoji": "🏕️"
+            },
+            {
+                "en": "adventure",
+                "vi": " cuộc phiêu lưu",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "holiday",
+                "vi": " kỳ nghỉ",
+                "emoji": "🏖️"
+            },
+            {
+                "en": "nature",
+                "vi": " thiên nhiên",
+                "emoji": "🌳"
+            },
+            {
+                "en": "explore",
+                "vi": " khám phá",
+                "emoji": "🧭"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 0",
+        "words": [
+            {
+                "en": "bubbles",
+                "vi": "bong bóng",
+                "emoji": "🫧"
+            },
+            {
+                "en": "explosion",
+                "vi": "vụ nổ",
+                "emoji": "💥"
+            },
+            {
+                "en": "instructions",
+                "vi": "hướng dẫn",
+                "emoji": "📝"
+            },
+            {
+                "en": "liquid",
+                "vi": "chất lỏng",
+                "emoji": "💧"
+            },
+            {
+                "en": "goggles",
+                "vi": "kính bảo hộ",
+                "emoji": "🥽"
+            },
+            {
+                "en": "apron",
+                "vi": "tạp dề",
+                "emoji": "🧤"
+            },
+            {
+                "en": "powder",
+                "vi": "bột",
+                "emoji": "🧂"
+            },
+            {
+                "en": "gloves",
+                "vi": "găng tay",
+                "emoji": "🧤"
+            },
+            {
+                "en": "test tube",
+                "vi": "ống nghiệm",
+                "emoji": "🧪"
+            },
+            {
+                "en": "shelf",
+                "vi": "cái kệ",
+                "emoji": "📚"
+            },
+            {
+                "en": "science",
+                "vi": "khoa học",
+                "emoji": "🔬"
+            },
+            {
+                "en": "laboratory",
+                "vi": "phòng thí nghiệm",
+                "emoji": "🧪"
+            },
+            {
+                "en": "experiment",
+                "vi": "thí nghiệm",
+                "emoji": "🧫"
+            },
+            {
+                "en": "safety",
+                "vi": "sự an toàn",
+                "emoji": "🛡️"
+            },
+            {
+                "en": "measure",
+                "vi": "đo lường",
+                "emoji": "📏"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "volcano",
+                "vi": "núi lửa",
+                "emoji": "🌋"
+            },
+            {
+                "en": "earthquake",
+                "vi": "động đất",
+                "emoji": "🌍"
+            },
+            {
+                "en": "flood",
+                "vi": "lũ lụt",
+                "emoji": "🌊"
+            },
+            {
+                "en": "hurricane",
+                "vi": "bão lớn / cuồng phong",
+                "emoji": "🌪️"
+            },
+            {
+                "en": "tsunami",
+                "vi": "sóng thần",
+                "emoji": "🌊"
+            },
+            {
+                "en": "forest fire",
+                "vi": "cháy rừng",
+                "emoji": "🔥"
+            },
+            {
+                "en": "smoke",
+                "vi": "khói",
+                "emoji": "💨"
+            },
+            {
+                "en": "temple",
+                "vi": "ngôi đền",
+                "emoji": "🛕"
+            },
+            {
+                "en": "statue",
+                "vi": "bức tượng",
+                "emoji": "🗿"
+            },
+            {
+                "en": "fountain",
+                "vi": "đài phun nước",
+                "emoji": "⛲"
+            },
+            {
+                "en": "magma",
+                "vi": "mắc-ma (đá nóng chảy trong lòng đất)",
+                "emoji": "🌋"
+            },
+            {
+                "en": "lava",
+                "vi": "dung nham",
+                "emoji": "🌋"
+            },
+            {
+                "en": "ash",
+                "vi": "tro bụi",
+                "emoji": "💨"
+            },
+            {
+                "en": "destroy",
+                "vi": "phá hủy",
+                "emoji": "💥"
+            },
+            {
+                "en": "erupt",
+                "vi": "phun trào",
+                "emoji": "🌋"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "rainforest",
+                "vi": "rừng mưa nhiệt đới",
+                "emoji": "🌴"
+            },
+            {
+                "en": "beak",
+                "vi": "cái mỏ (chim)",
+                "emoji": "🐦"
+            },
+            {
+                "en": "toucan",
+                "vi": "chim toucan (chim mỏ to)",
+                "emoji": "🦜"
+            },
+            {
+                "en": "sloth",
+                "vi": "con lười",
+                "emoji": "🦥"
+            },
+            {
+                "en": "branch",
+                "vi": "cành cây",
+                "emoji": "🌿"
+            },
+            {
+                "en": "anaconda",
+                "vi": "trăn anaconda",
+                "emoji": "🐍"
+            },
+            {
+                "en": "jaguar",
+                "vi": "báo đốm",
+                "emoji": "🐆"
+            },
+            {
+                "en": "anteater",
+                "vi": "thú ăn kiến",
+                "emoji": "🦏"
+            },
+            {
+                "en": "beetle",
+                "vi": "bọ cánh cứng",
+                "emoji": "🪲"
+            },
+            {
+                "en": "ecosystem",
+                "vi": "hệ sinh thái",
+                "emoji": "🌿"
+            },
+            {
+                "en": "oxygen",
+                "vi": "khí ô-xy",
+                "emoji": "💨"
+            },
+            {
+                "en": "species",
+                "vi": "giống loài",
+                "emoji": "🐾"
+            },
+            {
+                "en": "carbon dioxide",
+                "vi": "khí các-bô-níc (CO2)",
+                "emoji": "💨"
+            },
+            {
+                "en": "Amazon",
+                "vi": "rừng A-ma-dôn",
+                "emoji": "🌳"
+            },
+            {
+                "en": "monkey",
+                "vi": "con khỉ",
+                "emoji": "🐒"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "spotlight",
+                "vi": "đèn sân khấu / tiêu điểm",
+                "emoji": "💡"
+            },
+            {
+                "en": "electric guitar",
+                "vi": "đàn ghi-ta điện",
+                "emoji": "🎸"
+            },
+            {
+                "en": "fans",
+                "vi": "người hâm mộ",
+                "emoji": "🥰"
+            },
+            {
+                "en": "dancer",
+                "vi": "vũ công",
+                "emoji": "💃"
+            },
+            {
+                "en": "bass guitar",
+                "vi": "đàn ghi-ta bass",
+                "emoji": "🎸"
+            },
+            {
+                "en": "drum kit",
+                "vi": "bộ trống",
+                "emoji": "🥁"
+            },
+            {
+                "en": "stage",
+                "vi": "sân khấu",
+                "emoji": "🎭"
+            },
+            {
+                "en": "backing singers",
+                "vi": "nhóm hát bè",
+                "emoji": "🎤"
+            },
+            {
+                "en": "bodyguards",
+                "vi": "vệ sĩ",
+                "emoji": "💂"
+            },
+            {
+                "en": "album",
+                "vi": "an-bum nhạc",
+                "emoji": "💿"
+            },
+            {
+                "en": "record",
+                "vi": "bản thu âm / đĩa hát",
+                "emoji": "💿"
+            },
+            {
+                "en": "jukebox",
+                "vi": "máy phát nhạc tự động",
+                "emoji": "🎵"
+            },
+            {
+                "en": "genre",
+                "vi": "thể loại",
+                "emoji": "🎶"
+            },
+            {
+                "en": "jazz",
+                "vi": "nhạc jazz",
+                "emoji": "🎷"
+            },
+            {
+                "en": "concert",
+                "vi": "buổi hòa nhạc",
+                "emoji": "🎵"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "waiter",
+                "vi": "bồi bàn (nam)",
+                "emoji": "🧑‍🍳"
+            },
+            {
+                "en": "strawberries",
+                "vi": "dâu tây",
+                "emoji": "🍓"
+            },
+            {
+                "en": "biscuits",
+                "vi": "bánh quy",
+                "emoji": "🍪"
+            },
+            {
+                "en": "spoon",
+                "vi": "cái thìa",
+                "emoji": "🥄"
+            },
+            {
+                "en": "fork",
+                "vi": "cái nĩa",
+                "emoji": "🍴"
+            },
+            {
+                "en": "knife",
+                "vi": "con dao",
+                "emoji": "🔪"
+            },
+            {
+                "en": "chopsticks",
+                "vi": "đôi đũa",
+                "emoji": "🥢"
+            },
+            {
+                "en": "pepper",
+                "vi": "hạt tiêu",
+                "emoji": "🌶️"
+            },
+            {
+                "en": "salt",
+                "vi": "muối",
+                "emoji": "🧂"
+            },
+            {
+                "en": "recipe",
+                "vi": "công thức nấu ăn",
+                "emoji": "📜"
+            },
+            {
+                "en": "ingredients",
+                "vi": "nguyên liệu",
+                "emoji": "🥦"
+            },
+            {
+                "en": "chocolate",
+                "vi": "sô-cô-la",
+                "emoji": "🍫"
+            },
+            {
+                "en": "cacao",
+                "vi": "ca cao",
+                "emoji": "🍫"
+            },
+            {
+                "en": "melt",
+                "vi": "tan chảy",
+                "emoji": "🫠"
+            },
+            {
+                "en": "restaurant",
+                "vi": "nhà hàng",
+                "emoji": "🍽️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "robbers",
+                "vi": "những tên cướp",
+                "emoji": "🦹"
+            },
+            {
+                "en": "jail",
+                "vi": "nhà tù",
+                "emoji": "🔒"
+            },
+            {
+                "en": "wagon",
+                "vi": "xe ngựa kéo",
+                "emoji": "🛻"
+            },
+            {
+                "en": "sheriff",
+                "vi": "cảnh sát trưởng",
+                "emoji": "🤠"
+            },
+            {
+                "en": "saddle",
+                "vi": "yên ngựa",
+                "emoji": "🐎"
+            },
+            {
+                "en": "pistol",
+                "vi": "súng lục",
+                "emoji": "🔫"
+            },
+            {
+                "en": "handcuffs",
+                "vi": "còng số 8",
+                "emoji": "🔗"
+            },
+            {
+                "en": "rope",
+                "vi": "dây thừng",
+                "emoji": "🪢"
+            },
+            {
+                "en": "barrel",
+                "vi": "cái thùng",
+                "emoji": "🛢️"
+            },
+            {
+                "en": "Native American",
+                "vi": "người bản địa Mỹ (da đỏ)",
+                "emoji": "🏹"
+            },
+            {
+                "en": "bison",
+                "vi": "bò rừng",
+                "emoji": "🐂"
+            },
+            {
+                "en": "tribe",
+                "vi": "bộ lạc",
+                "emoji": "👨‍👩‍👧‍👦"
+            },
+            {
+                "en": "gold rush",
+                "vi": "cơn sốt vàng",
+                "emoji": "🏆"
+            },
+            {
+                "en": "cowboy",
+                "vi": "cao bồi",
+                "emoji": "🤠"
+            },
+            {
+                "en": "arrest",
+                "vi": "bắt giữ",
+                "emoji": "👮"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "flag",
+                "vi": "lá cờ",
+                "emoji": "🇻🇳"
+            },
+            {
+                "en": "carpet",
+                "vi": "tấm thảm",
+                "emoji": "🧶"
+            },
+            {
+                "en": "sunglasses",
+                "vi": "kính râm",
+                "emoji": "🕶️"
+            },
+            {
+                "en": "cushion",
+                "vi": "gối tựa / đệm",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "earrings",
+                "vi": "bông tai",
+                "emoji": "👂"
+            },
+            {
+                "en": "souvenir",
+                "vi": "quà lưu niệm",
+                "emoji": "🎁"
+            },
+            {
+                "en": "tourist",
+                "vi": "khách du lịch",
+                "emoji": "🧳"
+            },
+            {
+                "en": "mosque",
+                "vi": "nhà thờ Hồi giáo",
+                "emoji": "🕌"
+            },
+            {
+                "en": "mosaic",
+                "vi": "tranh khảm",
+                "emoji": "🎨"
+            },
+            {
+                "en": "tiles",
+                "vi": "gạch men / ngói",
+                "emoji": "🧱"
+            },
+            {
+                "en": "Istanbul",
+                "vi": "thành phố I-x-tan-bun",
+                "emoji": "🕌"
+            },
+            {
+                "en": "Turkey",
+                "vi": "nước Thổ Nhĩ Kỳ",
+                "emoji": "🇹🇷"
+            },
+            {
+                "en": "basket",
+                "vi": "cái giỏ",
+                "emoji": "🧺"
+            },
+            {
+                "en": "market",
+                "vi": "chợ",
+                "emoji": "🛍️"
+            },
+            {
+                "en": "travel",
+                "vi": "du lịch",
+                "emoji": "🧭"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "mask",
+                "vi": "mặt nạ",
+                "emoji": "🎭"
+            },
+            {
+                "en": "wig",
+                "vi": "tóc giá",
+                "emoji": "💇"
+            },
+            {
+                "en": "actor",
+                "vi": "diễn viên",
+                "emoji": "🎭"
+            },
+            {
+                "en": "costume",
+                "vi": "trang phục diễn",
+                "emoji": "👘"
+            },
+            {
+                "en": "audience",
+                "vi": "khán giả",
+                "emoji": "👥"
+            },
+            {
+                "en": "theatre",
+                "vi": "nhà hát",
+                "emoji": "🎭"
+            },
+            {
+                "en": "play",
+                "vi": "vở kịch",
+                "emoji": "🎬"
+            },
+            {
+                "en": "Shakespeare",
+                "vi": "Sếch-xpia (nhà viết kịch)",
+                "emoji": "📜"
+            },
+            {
+                "en": "tragedy",
+                "vi": "bi kịch",
+                "emoji": "😢"
+            },
+            {
+                "en": "comedy",
+                "vi": "hài kịch",
+                "emoji": "😄"
+            },
+            {
+                "en": "prop",
+                "vi": "đạo cụ",
+                "emoji": "🎩"
+            },
+            {
+                "en": "applause",
+                "vi": "tràng pháo tay",
+                "emoji": "👏"
+            },
+            {
+                "en": "stage",
+                "vi": "sân khấu",
+                "emoji": "🎭"
+            },
+            {
+                "en": "perform",
+                "vi": "biểu diễn",
+                "emoji": "💃"
+            },
+            {
+                "en": "character",
+                "vi": "nhân vật",
+                "emoji": "🧑‍🎤"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "farmer",
+                "vi": "nông dân",
+                "emoji": "👩‍🌾"
+            },
+            {
+                "en": "engineer",
+                "vi": "kỹ sư",
+                "emoji": "👷"
+            },
+            {
+                "en": "dentist",
+                "vi": "nha sĩ",
+                "emoji": "🦷"
+            },
+            {
+                "en": "artist",
+                "vi": "họa sĩ / nghệ sĩ",
+                "emoji": "🎨"
+            },
+            {
+                "en": "designer",
+                "vi": "nhà thiết kế",
+                "emoji": "🎨"
+            },
+            {
+                "en": "computer programmer",
+                "vi": "lập trình viên máy tính",
+                "emoji": "💻"
+            },
+            {
+                "en": "mechanic",
+                "vi": "thợ cơ khí",
+                "emoji": "🔧"
+            },
+            {
+                "en": "businesswoman",
+                "vi": "nữ doanh nhân",
+                "emoji": "👩‍💼"
+            },
+            {
+                "en": "businessman",
+                "vi": "nam doanh nhân",
+                "emoji": "👨‍💼"
+            },
+            {
+                "en": "cleaner",
+                "vi": "nhân viên vệ sinh",
+                "emoji": "🧹"
+            },
+            {
+                "en": "future",
+                "vi": "tương lai",
+                "emoji": "🔮"
+            },
+            {
+                "en": "career",
+                "vi": "sự nghiệp",
+                "emoji": "📈"
+            },
+            {
+                "en": "job",
+                "vi": "công việc",
+                "emoji": "💼"
+            },
+            {
+                "en": "profession",
+                "vi": "nghề nghiệp chuyên môn",
+                "emoji": "🎓"
+            },
+            {
+                "en": "skills",
+                "vi": "kỹ năng",
+                "emoji": "🛠️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 5",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "sail",
+                "vi": "cánh buồm",
+                "emoji": "⛵"
+            },
+            {
+                "en": "sailor",
+                "vi": "thủy thủ",
+                "emoji": "🧑‍✈️"
+            },
+            {
+                "en": "captain",
+                "vi": "thuyền trưở",
+                "emoji": "🧑‍✈️"
+            },
+            {
+                "en": "mast",
+                "vi": "cột buồm",
+                "emoji": "⛵"
+            },
+            {
+                "en": "lifeboat",
+                "vi": "thuyền cứu sinh",
+                "emoji": "🚤"
+            },
+            {
+                "en": "cabin",
+                "vi": "khoang tàu / ca-bin",
+                "emoji": "🚢"
+            },
+            {
+                "en": "porthole",
+                "vi": "cửa sổ tàu thủy (tròn)",
+                "emoji": "🪟"
+            },
+            {
+                "en": "ocean",
+                "vi": "đại dương",
+                "emoji": "🌊"
+            },
+            {
+                "en": "sea",
+                "vi": "biển",
+                "emoji": "🌊"
+            },
+            {
+                "en": "ship",
+                "vi": "tàu thủy",
+                "emoji": "🚢"
+            },
+            {
+                "en": "voyage",
+                "vi": "chuyến hải trình",
+                "emoji": "🧭"
+            },
+            {
+                "en": "mystery",
+                "vi": "bí ẩn",
+                "emoji": "🕵️"
+            },
+            {
+                "en": "adventure",
+                "vi": "cuộc phiêu lưu",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "navigation",
+                "vi": "sự định vị / nghề hàng hải",
+                "emoji": "🧭"
+            },
+            {
+                "en": "compass",
+                "vi": "la bàn",
+                "emoji": "🧭"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Back to School",
+        "words": [
+            {
+                "en": "basketball hoop",
+                "vi": "rổ bóng rổ",
+                "emoji": "🏀"
+            },
+            {
+                "en": "bell",
+                "vi": "cái chuông",
+                "emoji": "🔔"
+            },
+            {
+                "en": "net",
+                "vi": "lưới",
+                "emoji": "🕸️"
+            },
+            {
+                "en": "football pitch",
+                "vi": "sân bóng đá",
+                "emoji": "⚽"
+            },
+            {
+                "en": "running track",
+                "vi": "đường chạy điền kinh",
+                "emoji": "🏃‍♂️"
+            },
+            {
+                "en": "gym",
+                "vi": "phòng tập thể dục / nhà thi đấu",
+                "emoji": "🏋️‍♂️"
+            },
+            {
+                "en": "tennis court",
+                "vi": "sân quần vợt",
+                "emoji": "🎾"
+            },
+            {
+                "en": "bike rack",
+                "vi": "giá để xe đạp",
+                "emoji": "🚲"
+            },
+            {
+                "en": "railings",
+                "vi": "hàng rào chắn / lan can",
+                "emoji": "🚧"
+            },
+            {
+                "en": "litter bin",
+                "vi": "thùng rác",
+                "emoji": "🗑️"
+            },
+            {
+                "en": "school",
+                "vi": "trường học",
+                "emoji": "🏫"
+            },
+            {
+                "en": "adventure",
+                "vi": "cuộc phiêu lưu",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "time travel",
+                "vi": "du hành thời gian",
+                "emoji": "⏳"
+            },
+            {
+                "en": "playground",
+                "vi": "sân chơi",
+                "emoji": "🛝"
+            },
+            {
+                "en": "sports",
+                "vi": "thể thao",
+                "emoji": "⚽"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 1",
+        "words": [
+            {
+                "en": "palm tree",
+                "vi": "cây cọ / cây dừa",
+                "emoji": "🌴"
+            },
+            {
+                "en": "hook",
+                "vi": "cái móc",
+                "emoji": "🪝"
+            },
+            {
+                "en": "eye-patch",
+                "vi": "miếng bịt mắt",
+                "emoji": "🏴‍☠️"
+            },
+            {
+                "en": "binoculars",
+                "vi": "ống nhòm",
+                "emoji": "🔭"
+            },
+            {
+                "en": "key",
+                "vi": "chìa khóa",
+                "emoji": "🔑"
+            },
+            {
+                "en": "hammock",
+                "vi": "cái võng",
+                "emoji": "🪢"
+            },
+            {
+                "en": "coins",
+                "vi": "tiền xu",
+                "emoji": "💰"
+            },
+            {
+                "en": "spade",
+                "vi": "cái xẻng",
+                "emoji": "🪚"
+            },
+            {
+                "en": "treasure chest",
+                "vi": "rương kho báu",
+                "emoji": "💰"
+            },
+            {
+                "en": "hole",
+                "vi": "cái hố",
+                "emoji": "🕳️"
+            },
+            {
+                "en": "pirate",
+                "vi": "cướp biển",
+                "emoji": "🏴‍☠️"
+            },
+            {
+                "en": "anchor",
+                "vi": "mỏ neo",
+                "emoji": "⚓"
+            },
+            {
+                "en": "bury",
+                "vi": "chôn giấu",
+                "emoji": "⚰️"
+            },
+            {
+                "en": "rob",
+                "vi": "cướp",
+                "emoji": "🦹"
+            },
+            {
+                "en": "steal",
+                "vi": "trộm cắp",
+                "emoji": "🦹"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 2",
+        "words": [
+            {
+                "en": "hang-glider",
+                "vi": "diều lượn",
+                "emoji": "🪂"
+            },
+            {
+                "en": "parachute",
+                "vi": "cái dù",
+                "emoji": "🪂"
+            },
+            {
+                "en": "monorail",
+                "vi": "tàu đường ray đơn",
+                "emoji": "🚝"
+            },
+            {
+                "en": "solar panel",
+                "vi": "tấm pin năng lượng mặt trời",
+                "emoji": "☀️"
+            },
+            {
+                "en": "microlight",
+                "vi": "máy bay siêu nhẹ",
+                "emoji": "✈️"
+            },
+            {
+                "en": "wind turbine",
+                "vi": "tua bin gió",
+                "emoji": "💨"
+            },
+            {
+                "en": "cable car",
+                "vi": "cáp treo",
+                "emoji": "🚠"
+            },
+            {
+                "en": "jet pack",
+                "vi": "ba lô phản lực",
+                "emoji": "🚀"
+            },
+            {
+                "en": "surfboard",
+                "vi": "ván lướt sóng",
+                "emoji": "🏄‍♂️"
+            },
+            {
+                "en": "inline skates",
+                "vi": "giày trượt pa-tin (bánh dọc)",
+                "emoji": "🛼"
+            },
+            {
+                "en": "unicycle",
+                "vi": "xe đạp một bánh",
+                "emoji": "🚲"
+            },
+            {
+                "en": "future",
+                "vi": "tương lai",
+                "emoji": "🔮"
+            },
+            {
+                "en": "transport",
+                "vi": "giao thông / vận tải",
+                "emoji": "🚗"
+            },
+            {
+                "en": "pollute",
+                "vi": "gây ô nhiễm",
+                "emoji": "☁️"
+            },
+            {
+                "en": "driverless",
+                "vi": "không người lái",
+                "emoji": "🤖"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 3",
+        "words": [
+            {
+                "en": "Sphinx",
+                "vi": "tượng Nhân sư",
+                "emoji": "🗿"
+            },
+            {
+                "en": "pharaoh",
+                "vi": "pharaoh / vua Ai Cập cổ",
+                "emoji": "👑"
+            },
+            {
+                "en": "pyramid",
+                "vi": "kim tự tháp",
+                "emoji": "🗿"
+            },
+            {
+                "en": "chariot",
+                "vi": "xe chiến mã",
+                "emoji": "🐎"
+            },
+            {
+                "en": "hieroglyphics",
+                "vi": "chữ tượng hình",
+                "emoji": "🔤"
+            },
+            {
+                "en": "mummy",
+                "vi": "xác ướp",
+                "emoji": "⚰️"
+            },
+            {
+                "en": "tomb",
+                "vi": "lăng mộ",
+                "emoji": "⚰️"
+            },
+            {
+                "en": "Egypt",
+                "vi": "Ai Cập",
+                "emoji": "🇪🇬"
+            },
+            {
+                "en": "slaves",
+                "vi": "nô lệ",
+                "emoji": "🔗"
+            },
+            {
+                "en": "archaeologist",
+                "vi": "nhà khảo cổ học",
+                "emoji": "🧭"
+            },
+            {
+                "en": "mystery",
+                "vi": "bí ẩn",
+                "emoji": "🕵️"
+            },
+            {
+                "en": "UFO",
+                "vi": "vật thể bay không xác định",
+                "emoji": "🛸"
+            },
+            {
+                "en": "restore",
+                "vi": "phục hồi / trùng tu",
+                "emoji": "🏛️"
+            },
+            {
+                "en": "civilisation",
+                "vi": "nền văn minh",
+                "emoji": "🏛️"
+            },
+            {
+                "en": "BC",
+                "vi": "trước Công nguyên",
+                "emoji": "⏳"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 4",
+        "words": [
+            {
+                "en": "Olympics",
+                "vi": "Thế vận hội",
+                "emoji": "🏅"
+            },
+            {
+                "en": "long jump",
+                "vi": "nhảy xa",
+                "emoji": "🦘"
+            },
+            {
+                "en": "hurdles",
+                "vi": "chạy vượt rào",
+                "emoji": "🏃‍♂️"
+            },
+            {
+                "en": "high jump",
+                "vi": "nhảy cao",
+                "emoji": "🦘"
+            },
+            {
+                "en": "boxing",
+                "vi": "quyền anh",
+                "emoji": "🥊"
+            },
+            {
+                "en": "archery",
+                "vi": "bắn cung",
+                "emoji": "🏹"
+            },
+            {
+                "en": "wrestling",
+                "vi": "đấu vật",
+                "emoji": "🤼‍♂️"
+            },
+            {
+                "en": "weightlifting",
+                "vi": "cử tạ",
+                "emoji": "🏋️‍♂️"
+            },
+            {
+                "en": "rowing",
+                "vi": "chèo thuyền",
+                "emoji": "🚣‍♂️"
+            },
+            {
+                "en": "gymnastics",
+                "vi": "thể dục dụng cụ",
+                "emoji": "🤸‍♂️"
+            },
+            {
+                "en": "fencing",
+                "vi": "đấu kiếm",
+                "emoji": "🤺"
+            },
+            {
+                "en": "athlete",
+                "vi": "vận động viên",
+                "emoji": "🏃‍♂️"
+            },
+            {
+                "en": "compete",
+                "vi": "thi đấu",
+                "emoji": "🏆"
+            },
+            {
+                "en": "stadium",
+                "vi": "sân vận động",
+                "emoji": "🏟️"
+            },
+            {
+                "en": "medal",
+                "vi": "huy chương",
+                "emoji": "🏅"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 5",
+        "words": [
+            {
+                "en": "carpenter's",
+                "vi": "xưởng mộc",
+                "emoji": "🪚"
+            },
+            {
+                "en": "jeweller's",
+                "vi": "tiệm kim hoàn",
+                "emoji": "💎"
+            },
+            {
+                "en": "butcher's",
+                "vi": "cửa hàng thịt",
+                "emoji": "🥩"
+            },
+            {
+                "en": "grocer's",
+                "vi": "cửa hàng tạp hóa",
+                "emoji": "🛒"
+            },
+            {
+                "en": "baker's",
+                "vi": "tiệm bánh mì",
+                "emoji": "🍞"
+            },
+            {
+                "en": "barber's",
+                "vi": "tiệm cắt tóc (nam)",
+                "emoji": "💇‍♂️"
+            },
+            {
+                "en": "tailor's",
+                "vi": "tiệm may",
+                "emoji": "👕"
+            },
+            {
+                "en": "chemist's",
+                "vi": "hiệu thuốc",
+                "emoji": "💊"
+            },
+            {
+                "en": "London",
+                "vi": "Luân Đôn",
+                "emoji": "🇬🇧"
+            },
+            {
+                "en": "shop",
+                "vi": "cửa hàng",
+                "emoji": "🛍️"
+            },
+            {
+                "en": "stunt",
+                "vi": "pha mạo hiểm / đóng thế",
+                "emoji": "🤸‍♂️"
+            },
+            {
+                "en": "rescue",
+                "vi": "giải cứu",
+                "emoji": "🚑"
+            },
+            {
+                "en": "square",
+                "vi": "quảng trường",
+                "emoji": "🏛️"
+            },
+            {
+                "en": "pop",
+                "vi": "nhạc pop / tiếng nổ bốp",
+                "emoji": "🎵"
+            },
+            {
+                "en": "market",
+                "vi": "chợ",
+                "emoji": "🛍️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 6",
+        "words": [
+            {
+                "en": "screwdriver",
+                "vi": "tua vít",
+                "emoji": "🔩"
+            },
+            {
+                "en": "hammer",
+                "vi": "cái búa",
+                "emoji": "🔨"
+            },
+            {
+                "en": "drill",
+                "vi": "máy khoan",
+                "emoji": "🛠️"
+            },
+            {
+                "en": "saw",
+                "vi": "cái cưa",
+                "emoji": "🪚"
+            },
+            {
+                "en": "lever",
+                "vi": "đòn bẩy",
+                "emoji": "🛠️"
+            },
+            {
+                "en": "spanner",
+                "vi": "cờ lê",
+                "emoji": "🔧"
+            },
+            {
+                "en": "paintbrush",
+                "vi": "cọ sơn",
+                "emoji": "🖌️"
+            },
+            {
+                "en": "button",
+                "vi": "cái nút / khuy áo",
+                "emoji": "🧥"
+            },
+            {
+                "en": "switch",
+                "vi": "công tắc",
+                "emoji": "🔌"
+            },
+            {
+                "en": "nails",
+                "vi": "cái đinh",
+                "emoji": "🔩"
+            },
+            {
+                "en": "inventor",
+                "vi": "nhà phát minh",
+                "emoji": "🧪"
+            },
+            {
+                "en": "invent",
+                "vi": "phát minh",
+                "emoji": "💡"
+            },
+            {
+                "en": "invention",
+                "vi": "phát minh / sáng chế",
+                "emoji": "💡"
+            },
+            {
+                "en": "tool",
+                "vi": "dụng cụ",
+                "emoji": "🛠️"
+            },
+            {
+                "en": "machine",
+                "vi": "máy móc",
+                "emoji": "⚙️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 7",
+        "words": [
+            {
+                "en": "countdown clock",
+                "vi": "đồng hồ đếm ngược",
+                "emoji": "⏰"
+            },
+            {
+                "en": "lunar module",
+                "vi": "mô-đun mặt trăng (tàu đổ bộ)",
+                "emoji": "🚀"
+            },
+            {
+                "en": "space capsule",
+                "vi": "khoang tàu vũ tr",
+                "emoji": "🚀"
+            },
+            {
+                "en": "spacesuit",
+                "vi": "bộ đồ phi hành gia",
+                "emoji": "👨🚀"
+            },
+            {
+                "en": "launch pad",
+                "vi": "bệ phóng",
+                "emoji": "🚀"
+            },
+            {
+                "en": "crater",
+                "vi": "miệng núi lửa / hố va chạm",
+                "emoji": "🌑"
+            },
+            {
+                "en": "control panel",
+                "vi": "bảng điều khiển",
+                "emoji": "🎛️"
+            },
+            {
+                "en": "headset",
+                "vi": "tai nghe (kèm mic)",
+                "emoji": "🎧"
+            },
+            {
+                "en": "screen",
+                "vi": "màn hình",
+                "emoji": "📺"
+            },
+            {
+                "en": "moon",
+                "vi": "mặt trăng",
+                "emoji": "🌙"
+            },
+            {
+                "en": "astronaut",
+                "vi": "phi hành gia",
+                "emoji": "👨🚀"
+            },
+            {
+                "en": "mission",
+                "vi": "nhiệm vụ / sứ mệnh",
+                "emoji": "🎯"
+            },
+            {
+                "en": "space",
+                "vi": "vũ trụ / không gian",
+                "emoji": "🌌"
+            },
+            {
+                "en": "NASA",
+                "vi": "cơ quan hàng không vũ trụ Mỹ",
+                "emoji": "🚀"
+            },
+            {
+                "en": "Houston",
+                "vi": "trung tâm điều khiển (thành phố Houston)",
+                "emoji": "🛰️"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 8",
+        "words": [
+            {
+                "en": "Northern Lights",
+                "vi": "Bắc cực quang",
+                "emoji": "🌌"
+            },
+            {
+                "en": "iceberg",
+                "vi": "tảng băng trôi",
+                "emoji": "🧊"
+            },
+            {
+                "en": "polar bear",
+                "vi": "gấu bắc cực",
+                "emoji": "🐻❄️"
+            },
+            {
+                "en": "ice floe",
+                "vi": "tảng băng nổi",
+                "emoji": "🧊"
+            },
+            {
+                "en": "seal",
+                "vi": "hải cẩu",
+                "emoji": "🦭"
+            },
+            {
+                "en": "igloo",
+                "vi": "lều tuyết",
+                "emoji": "🛖"
+            },
+            {
+                "en": "mittens",
+                "vi": "găng tay hở ngón (găng tay len)",
+                "emoji": "🧤"
+            },
+            {
+                "en": "sledge",
+                "vi": "xe trượt tuyết",
+                "emoji": "🛷"
+            },
+            {
+                "en": "Arctic",
+                "vi": "Bắc cực",
+                "emoji": "🧊"
+            },
+            {
+                "en": "North Pole",
+                "vi": "Cực Bắc",
+                "emoji": "🧭"
+            },
+            {
+                "en": "freezing",
+                "vi": "đóng băng / lạnh cóng",
+                "emoji": "🥶"
+            },
+            {
+                "en": "aurora borealis",
+                "vi": "bắc cực quang (tên khoa học)",
+                "emoji": "🌌"
+            },
+            {
+                "en": "cold",
+                "vi": "lạnh",
+                "emoji": "❄️"
+            },
+            {
+                "en": "snow",
+                "vi": "tuyết",
+                "emoji": "❄️"
+            },
+            {
+                "en": "ice",
+                "vi": "băng",
+                "emoji": "🧊"
+            }
+        ]
+    },
+    {
+        "book": "Super Minds 6",
+        "unit": "Unit 9",
+        "words": [
+            {
+                "en": "sunrise",
+                "vi": "bình minh",
+                "emoji": "🌅"
+            },
+            {
+                "en": "horizon",
+                "vi": "đường chân trời",
+                "emoji": "🌅"
+            },
+            {
+                "en": "pond",
+                "vi": "cái ao",
+                "emoji": "💧"
+            },
+            {
+                "en": "grassland",
+                "vi": "đồng cỏ",
+                "emoji": "🌾"
+            },
+            {
+                "en": "valley",
+                "vi": "thung lũng",
+                "emoji": "🏞️"
+            },
+            {
+                "en": "bush",
+                "vi": "bụi cây",
+                "emoji": "🌿"
+            },
+            {
+                "en": "stream",
+                "vi": "dòng suối",
+                "emoji": "💧"
+            },
+            {
+                "en": "swamp",
+                "vi": "đầm lầy",
+                "emoji": "🌊"
+            },
+            {
+                "en": "dinosaur",
+                "vi": "khủng long",
+                "emoji": "🦖"
+            },
+            {
+                "en": "Jurassic",
+                "vi": "kỷ Jura",
+                "emoji": "🦕"
+            },
+            {
+                "en": "T-rex",
+                "vi": "khủng long bạo chúa",
+                "emoji": "🦖"
+            },
+            {
+                "en": "triceratops",
+                "vi": "khủng long ba sừng",
+                "emoji": "🦕"
+            },
+            {
+                "en": "meadow",
+                "vi": "đồng cỏ (thường có hoa)",
+                "emoji": "🌼"
+            },
+            {
+                "en": "nature",
+                "vi": " thiên nhiên",
+                "emoji": "🌳"
+            },
+            {
+                "en": "extinct",
+                "vi": "tuyệt chủng",
+                "emoji": "🪦"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Starter Unit: Who I am",
+        "words": [
+            {
+                "en": "Nationality",
+                "vi": "Quốc tịch",
+                "emoji": "🇺🇳"
+            },
+            {
+                "en": "Relative",
+                "vi": "Họ hàng",
+                "emoji": "👨‍👩‍👧‍👦"
+            },
+            {
+                "en": "Grandparent",
+                "vi": "Ông bà",
+                "emoji": "👵👴"
+            },
+            {
+                "en": "Nephew",
+                "vi": "Cháu trai (con của anh/chị/em)",
+                "emoji": "👦"
+            },
+            {
+                "en": "Niece",
+                "vi": "Cháu gái (con của anh/chị/em)",
+                "emoji": "👧"
+            },
+            {
+                "en": "Cousin",
+                "vi": "Anh chị em họ",
+                "emoji": "👫"
+            },
+            {
+                "en": "Surname",
+                "vi": "Họ",
+                "emoji": "📝"
+            },
+            {
+                "en": "Identity card",
+                "vi": "Chứng minh nhân dân/Thẻ căn cước",
+                "emoji": "🪪"
+            },
+            {
+                "en": "Passport",
+                "vi": "Hộ chiếu",
+                "emoji": "📘"
+            },
+            {
+                "en": "Address",
+                "vi": "Địa chỉ",
+                "emoji": "🏠"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 1: A busy life",
+        "words": [
+            {
+                "en": "Spend time alone",
+                "vi": "Dành thời gian một mình",
+                "emoji": "🧘"
+            },
+            {
+                "en": "Go shopping",
+                "vi": "Đi mua sắm",
+                "emoji": "🛍️"
+            },
+            {
+                "en": "Relax at home",
+                "vi": "Thư giãn tại nhà",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "Mechanic",
+                "vi": "Thợ máy",
+                "emoji": "🔧"
+            },
+            {
+                "en": "Photographer",
+                "vi": "Nhiếp ảnh gia",
+                "emoji": "📸"
+            },
+            {
+                "en": "Pilot",
+                "vi": "Phi công",
+                "emoji": "✈️"
+            },
+            {
+                "en": "Police officer",
+                "vi": "Cảnh sát",
+                "emoji": "👮"
+            },
+            {
+                "en": "Waitress",
+                "vi": "Nữ bồi bàn",
+                "emoji": "👩‍🍳"
+            },
+            {
+                "en": "Uniform",
+                "vi": "Đồng phục",
+                "emoji": "👔"
+            },
+            {
+                "en": "Get dressed",
+                "vi": "Mặc quần áo",
+                "emoji": "👕"
+            },
+            {
+                "en": "Wake up",
+                "vi": "Thức dậy",
+                "emoji": "⏰"
+            },
+            {
+                "en": "Leave the house",
+                "vi": "Rời khỏi nhà",
+                "emoji": "🚪"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 2: Changing world",
+        "words": [
+            {
+                "en": "Autumn",
+                "vi": "Mùa thu",
+                "emoji": "🍂"
+            },
+            {
+                "en": "Spring",
+                "vi": "Mùa xuân",
+                "emoji": "🌸"
+            },
+            {
+                "en": "Summer",
+                "vi": "Mùa hè",
+                "emoji": "☀️"
+            },
+            {
+                "en": "Winter",
+                "vi": "Mùa đông",
+                "emoji": "❄️"
+            },
+            {
+                "en": "Cloudy",
+                "vi": "Nhiều mây",
+                "emoji": "☁️"
+            },
+            {
+                "en": "Foggy",
+                "vi": "Có sương mù",
+                "emoji": "🌫️"
+            },
+            {
+                "en": "Freezing",
+                "vi": "Rất lạnh/đông cứng",
+                "emoji": "🥶"
+            },
+            {
+                "en": "Stormy",
+                "vi": "Có bão",
+                "emoji": "⛈️"
+            },
+            {
+                "en": "Temperature",
+                "vi": "Nhiệt độ",
+                "emoji": "🌡️"
+            },
+            {
+                "en": "Mountain",
+                "vi": "Núi",
+                "emoji": "⛰️"
+            },
+            {
+                "en": "Waterfall",
+                "vi": "Thác nước",
+                "emoji": "🌊"
+            },
+            {
+                "en": "Coast",
+                "vi": "Bờ biển",
+                "emoji": "🏖️"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 3: Free time, screen time?",
+        "words": [
+            {
+                "en": "Social media",
+                "vi": "Mạng xã hội",
+                "emoji": "📱"
+            },
+            {
+                "en": "Video games",
+                "vi": "Trò chơi điện tử",
+                "emoji": "🎮"
+            },
+            {
+                "en": "Download",
+                "vi": "Tải xuống",
+                "emoji": "⬇️"
+            },
+            {
+                "en": "Stream",
+                "vi": "Phát trực tuyến",
+                "emoji": "📺"
+            },
+            {
+                "en": "Science fiction",
+                "vi": "Khoa học viễn tưởng",
+                "emoji": "🚀"
+            },
+            {
+                "en": "Horror",
+                "vi": "Phim kinh dị",
+                "emoji": "👻"
+            },
+            {
+                "en": "Comedy",
+                "vi": "Phim hài",
+                "emoji": "😂"
+            },
+            {
+                "en": "Documentary",
+                "vi": "Phim tài liệu",
+                "emoji": "🎬"
+            },
+            {
+                "en": "Blogger",
+                "vi": "Người viết blog",
+                "emoji": "✍️"
+            },
+            {
+                "en": "Episode",
+                "vi": "Tập (phim)",
+                "emoji": "📺"
+            },
+            {
+                "en": "Series",
+                "vi": "Phim bộ",
+                "emoji": "🎞️"
+            },
+            {
+                "en": "Competition",
+                "vi": "Cuộc thi",
+                "emoji": "🏆"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 4: Keep fit, feel good",
+        "words": [
+            {
+                "en": "Heart",
+                "vi": "Trái tim",
+                "emoji": "❤️"
+            },
+            {
+                "en": "Stomach",
+                "vi": "Dạ dày",
+                "emoji": "🤰"
+            },
+            {
+                "en": "Brain",
+                "vi": "Não bộ",
+                "emoji": "🧠"
+            },
+            {
+                "en": "Headache",
+                "vi": "Đau đầu",
+                "emoji": "🤕"
+            },
+            {
+                "en": "Toothache",
+                "vi": "Đau răng",
+                "emoji": "🦷"
+            },
+            {
+                "en": "Backache",
+                "vi": "Đau lưng",
+                "emoji": "🧍"
+            },
+            {
+                "en": "Sore throat",
+                "vi": "Đau họng",
+                "emoji": "🗣️"
+            },
+            {
+                "en": "Painkillers",
+                "vi": "Thuốc giảm đau",
+                "emoji": "💊"
+            },
+            {
+                "en": "Prescription",
+                "vi": "Đơn thuốc",
+                "emoji": "📝"
+            },
+            {
+                "en": "Ambulance",
+                "vi": "Xe cứu thương",
+                "emoji": "🚑"
+            },
+            {
+                "en": "Appointment",
+                "vi": "Cuộc hẹn (với bác sĩ)",
+                "emoji": "📅"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 5: More than a holiday",
+        "words": [
+            {
+                "en": "Destination",
+                "vi": "Điểm đến",
+                "emoji": "🗺️"
+            },
+            {
+                "en": "Accommodation",
+                "vi": "Chỗ ở",
+                "emoji": "🏨"
+            },
+            {
+                "en": "Tour guide",
+                "vi": "Hướng dẫn viên du lịch",
+                "emoji": "🧭"
+            },
+            {
+                "en": "Luggage",
+                "vi": "Hành lý",
+                "emoji": "🧳"
+            },
+            {
+                "en": "Suitcase",
+                "vi": "Vali",
+                "emoji": "🧳"
+            },
+            {
+                "en": "Backpack",
+                "vi": "Ba lô",
+                "emoji": "🎒"
+            },
+            {
+                "en": "Delay",
+                "vi": "Trì hoãn",
+                "emoji": "⏳"
+            },
+            {
+                "en": "Sightseeing",
+                "vi": "Tham quan",
+                "emoji": "🏛️"
+            },
+            {
+                "en": "Hop-on / hop-off bus",
+                "vi": "Xe buýt du lịch lên xuống tự do",
+                "emoji": "🚌"
+            },
+            {
+                "en": "Discount",
+                "vi": "Giảm giá",
+                "emoji": "💰"
+            },
+            {
+                "en": "Souvenir",
+                "vi": "Quà lưu niệm",
+                "emoji": "🎁"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 6: Time for food",
+        "words": [
+            {
+                "en": "Omelette",
+                "vi": "Trứng cuộn",
+                "emoji": "🍳"
+            },
+            {
+                "en": "Cereal",
+                "vi": "Ngũ cốc",
+                "emoji": "🥣"
+            },
+            {
+                "en": "Yoghurt",
+                "vi": "Sữa chua",
+                "emoji": "🥛"
+            },
+            {
+                "en": "Chilli",
+                "vi": "Ớt",
+                "emoji": "🌶️"
+            },
+            {
+                "en": "Curry",
+                "vi": "Cà ri",
+                "emoji": "🍛"
+            },
+            {
+                "en": "Peel",
+                "vi": "Gọt vỏ",
+                "emoji": "🍌"
+            },
+            {
+                "en": "Chop",
+                "vi": "Băm/thái nhỏ",
+                "emoji": "🔪"
+            },
+            {
+                "en": "Fry",
+                "vi": "Chiên/rán",
+                "emoji": "🍳"
+            },
+            {
+                "en": "Grill",
+                "vi": "Nướng (bằng vỉ)",
+                "emoji": "🥓"
+            },
+            {
+                "en": "Steam",
+                "vi": "Hấp",
+                "emoji": "🥘"
+            },
+            {
+                "en": "Table service",
+                "vi": "Phục vụ tại bàn",
+                "emoji": "🍽️"
+            },
+            {
+                "en": "Generous portion",
+                "vi": "Khẩu phần ăn hậu hĩnh",
+                "emoji": "🍗"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 7: Live life!",
+        "words": [
+            {
+                "en": "Baking",
+                "vi": "Nướng bánh",
+                "emoji": "🍰"
+            },
+            {
+                "en": "Gig",
+                "vi": "Buổi biểu diễn âm nhạc",
+                "emoji": "🎤"
+            },
+            {
+                "en": "Photography",
+                "vi": "Nhiếp ảnh",
+                "emoji": "📸"
+            },
+            {
+                "en": "Audience",
+                "vi": "Khán giả",
+                "emoji": "👥"
+            },
+            {
+                "en": "Rehearsal",
+                "vi": "Buổi tổng duyệt",
+                "emoji": "🎭"
+            },
+            {
+                "en": "Costume",
+                "vi": "Trang phục biểu diễn",
+                "emoji": "👗"
+            },
+            {
+                "en": "Stage",
+                "vi": "Sân khấu",
+                "emoji": "🎪"
+            },
+            {
+                "en": "Songwriter",
+                "vi": "Người sáng tác bài hát",
+                "emoji": "🎵"
+            },
+            {
+                "en": "Guitarist",
+                "vi": "Người chơi ghi-ta",
+                "emoji": "🎸"
+            },
+            {
+                "en": "Drummer",
+                "vi": "Người chơi trống",
+                "emoji": "🥁"
+            },
+            {
+                "en": "Leaflet",
+                "vi": "Tờ rơi",
+                "emoji": "📄"
+            },
+            {
+                "en": "Festival",
+                "vi": "Lễ hội",
+                "emoji": "🎉"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 8: Feels like home",
+        "words": [
+            {
+                "en": "Cottage",
+                "vi": "Nhà tranh/nhà nhỏ ở nông thôn",
+                "emoji": "🏡"
+            },
+            {
+                "en": "Houseboat",
+                "vi": "Nhà thuyền",
+                "emoji": "🛶"
+            },
+            {
+                "en": "Villa",
+                "vi": "Biệt thự",
+                "emoji": "🏰"
+            },
+            {
+                "en": "Balcony",
+                "vi": "Ban công",
+                "emoji": "🌿"
+            },
+            {
+                "en": "Basement",
+                "vi": "Tầng hầm",
+                "emoji": "🏚️"
+            },
+            {
+                "en": "Garage",
+                "vi": "Nhà để xe",
+                "emoji": "🚗"
+            },
+            {
+                "en": "Rent",
+                "vi": "Thuê/Tiền thuê nhà",
+                "emoji": "💰"
+            },
+            {
+                "en": "Neighbour",
+                "vi": "Hàng xóm",
+                "emoji": "👨‍👩‍👧‍👦"
+            },
+            {
+                "en": "Sink",
+                "vi": "Bồn rửa",
+                "emoji": "🚰"
+            },
+            {
+                "en": "Cooker",
+                "vi": "Bếp nấu",
+                "emoji": "🍳"
+            },
+            {
+                "en": "Fridge",
+                "vi": "Tủ lạnh",
+                "emoji": "🧊"
+            },
+            {
+                "en": "Cupboard",
+                "vi": "Tủ chạn/tủ chén",
+                "emoji": "🗄️"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 9: Getting along",
+        "words": [
+            {
+                "en": "Confident",
+                "vi": "Tự tin",
+                "emoji": "💪"
+            },
+            {
+                "en": "Shy",
+                "vi": "Nhút nhát",
+                "emoji": "😳"
+            },
+            {
+                "en": "Reliable",
+                "vi": "Đáng tin cậy",
+                "emoji": "🤝"
+            },
+            {
+                "en": "Generous",
+                "vi": "Rộng lượng",
+                "emoji": "🤲"
+            },
+            {
+                "en": "Worried",
+                "vi": "Lo lắng",
+                "emoji": "😟"
+            },
+            {
+                "en": "Stressed",
+                "vi": "Căng thẳng",
+                "emoji": "😫"
+            },
+            {
+                "en": "Bad mood",
+                "vi": "Tâm trạng tồi tệ",
+                "emoji": "😠"
+            },
+            {
+                "en": "Argue",
+                "vi": "Tranh cãi",
+                "emoji": "🗣️"
+            },
+            {
+                "en": "Get on well",
+                "vi": "Hòa thuận với nhau",
+                "emoji": "☺️"
+            },
+            {
+                "en": "Enroll",
+                "vi": "Đăng ký học",
+                "emoji": "📝"
+            },
+            {
+                "en": "Volunteer work",
+                "vi": "Công việc tình nguyện",
+                "emoji": "🤝"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 10: Out and about",
+        "words": [
+            {
+                "en": "Statue",
+                "vi": "Bức tượng",
+                "emoji": "🗿"
+            },
+            {
+                "en": "Fountain",
+                "vi": "Đài phun nước",
+                "emoji": "⛲"
+            },
+            {
+                "en": "Stadium",
+                "vi": "Sân vận động",
+                "emoji": "🏟️"
+            },
+            {
+                "en": "Castle",
+                "vi": "Lâu đài",
+                "emoji": "🏰"
+            },
+            {
+                "en": "Roundabout",
+                "vi": "Vòng xuyến",
+                "emoji": "🚦"
+            },
+            {
+                "en": "Crossing",
+                "vi": "Vạch sang đường",
+                "emoji": "🚶‍♂️"
+            },
+            {
+                "en": "Traffic lights",
+                "vi": "Đèn giao thông",
+                "emoji": "🚥"
+            },
+            {
+                "en": "Pedestrian",
+                "vi": "Người đi bộ",
+                "emoji": "🚶"
+            },
+            {
+                "en": "Pavement",
+                "vi": "Vỉa hè",
+                "emoji": "🛣️"
+            },
+            {
+                "en": "Skyscraper",
+                "vi": "Tòa nhà chọc trời",
+                "emoji": "🏙️"
+            },
+            {
+                "en": "Square",
+                "vi": "Quảng trường",
+                "emoji": "🏛️"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 11: Saving and spending",
+        "words": [
+            {
+                "en": "Salary",
+                "vi": "Tiền lương",
+                "emoji": "💵"
+            },
+            {
+                "en": "Discount",
+                "vi": "Chiết khấu/Giảm giá",
+                "emoji": "💰"
+            },
+            {
+                "en": "Receipt",
+                "vi": "Hóa đơn/Biên lai",
+                "emoji": "🧾"
+            },
+            {
+                "en": "Bill",
+                "vi": "Hóa đơn thanh toán",
+                "emoji": "💸"
+            },
+            {
+                "en": "Earn",
+                "vi": "Kiếm tiền",
+                "emoji": "💼"
+            },
+            {
+                "en": "Borrow",
+                "vi": "Mượn",
+                "emoji": "🤲"
+            },
+            {
+                "en": "Waste",
+                "vi": "Lãng phí",
+                "emoji": "🗑️"
+            },
+            {
+                "en": "Changing room",
+                "vi": "Phòng thay đồ",
+                "emoji": "🛋️"
+            },
+            {
+                "en": "Shop assistant",
+                "vi": "Nhân viên bán hàng",
+                "emoji": "💁"
+            },
+            {
+                "en": "Cash",
+                "vi": "Tiền mặt",
+                "emoji": "💵"
+            },
+            {
+                "en": "Credit card",
+                "vi": "Thẻ tín dụng",
+                "emoji": "💳"
+            },
+            {
+                "en": "Currency",
+                "vi": "Tiền tệ",
+                "emoji": "💱"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 12: Through life",
+        "words": [
+            {
+                "en": "Biology",
+                "vi": "Sinh học",
+                "emoji": "🧬"
+            },
+            {
+                "en": "Chemistry",
+                "vi": "Hóa học",
+                "emoji": "🧪"
+            },
+            {
+                "en": "Physics",
+                "vi": "Vật lý",
+                "emoji": "⚛️"
+            },
+            {
+                "en": "Experiment",
+                "vi": "Thí nghiệm",
+                "emoji": "🔬"
+            },
+            {
+                "en": "Essay",
+                "vi": "Bài tiểu luận",
+                "emoji": "📝"
+            },
+            {
+                "en": "Degree",
+                "vi": "Bằng cấp (Đại học)",
+                "emoji": "🎓"
+            },
+            {
+                "en": "Qualification",
+                "vi": "Bằng cấp/Chứng chỉ",
+                "emoji": "📜"
+            },
+            {
+                "en": "Diploma",
+                "vi": "Bằng cấp",
+                "emoji": "📄"
+            },
+            {
+                "en": "CV (Curriculum Vitae)",
+                "vi": "Sơ yếu lý lịch",
+                "emoji": "📄"
+            },
+            {
+                "en": "Boss",
+                "vi": "Sếp/Chủ",
+                "emoji": "👨‍💼"
+            },
+            {
+                "en": "Staff",
+                "vi": "Nhân viên",
+                "emoji": "👥"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 13: About me",
+        "words": [
+            {
+                "en": "Sociable",
+                "vi": "Hòa đồng",
+                "emoji": "😊"
+            },
+            {
+                "en": "Kind",
+                "vi": "Tử tế",
+                "emoji": "🤗"
+            },
+            {
+                "en": "Brilliant",
+                "vi": "Rất thông minh/tài giỏi",
+                "emoji": "🌟"
+            },
+            {
+                "en": "Clever",
+                "vi": "Thông minh",
+                "emoji": "🧠"
+            },
+            {
+                "en": "Lazy",
+                "vi": "Lười biếng",
+                "emoji": "😴"
+            },
+            {
+                "en": "Serious",
+                "vi": "Nghiêm túc",
+                "emoji": "🧐"
+            },
+            {
+                "en": "Handbag",
+                "vi": "Túi xách",
+                "emoji": "👜"
+            },
+            {
+                "en": "Jewellery",
+                "vi": "Đồ trang sức",
+                "emoji": "💎"
+            },
+            {
+                "en": "Sandals",
+                "vi": "Dép xăng đan",
+                "emoji": "👡"
+            },
+            {
+                "en": "Tie",
+                "vi": "Cà vạt",
+                "emoji": "👔"
+            },
+            {
+                "en": "Trainers",
+                "vi": "Giày thể thao",
+                "emoji": "👟"
+            },
+            {
+                "en": "Fashionable",
+                "vi": "Hợp thời trang",
+                "emoji": "👗"
+            }
+        ]
+    },
+    {
+        "book": "Open world A2",
+        "unit": "Unit 14: Play it, watch it, love it",
+        "words": [
+            {
+                "en": "Athletics",
+                "vi": "Điền kinh",
+                "emoji": "🏃‍♂️"
+            },
+            {
+                "en": "Rugby",
+                "vi": "Bóng bầu dục",
+                "emoji": "🏉"
+            },
+            {
+                "en": "Net",
+                "vi": "Lưới",
+                "emoji": "🕸️"
+            },
+            {
+                "en": "Racket",
+                "vi": "Vợt",
+                "emoji": "🎾"
+            },
+            {
+                "en": "Goal",
+                "vi": "Khung thành/Bàn thắng",
+                "emoji": "⚽"
+            },
+            {
+                "en": "Match",
+                "vi": "Trận đấu",
+                "emoji": "🤼"
+            },
+            {
+                "en": "Pitch",
+                "vi": "Sân cỏ (bóng đá)",
+                "emoji": "⚽"
+            },
+            {
+                "en": "Referee",
+                "vi": "Trọng tài",
+                "emoji": "👨‍⚖️"
+            },
+            {
+                "en": "Tournament",
+                "vi": "Giải đấu",
+                "emoji": "🏆"
+            },
+            {
+                "en": "Afterwards",
+                "vi": "Sau đó",
+                "emoji": "⏭️"
+            },
+            {
+                "en": "Surprisingly",
+                "vi": "Đáng ngạc nhiên",
+                "emoji": "😲"
+            },
+            {
+                "en": "Luckily",
+                "vi": "May mắn thay",
+                "emoji": "🍀"
+            }
+        ]
+    }
+]
