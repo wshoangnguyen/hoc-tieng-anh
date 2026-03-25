@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>English Flashcards - Học tiếng Anh cho bé</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 30px 20px 50px;
+        }
+
+        .flashcard-app {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header với menu game */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .title-section h1 {
+            text-align: left;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .title-section .sub {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        /* Game Menu Dropdown */
+        .game-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, #ffb347, #ff8c1a);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 220px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            z-index: 100;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .game-menu.active .dropdown-content {
+            display: block;
+            animation: slideDown 0.2s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: #1e5a7a;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #fff3e0;
+            padding-left: 28px;
+        }
+
+        .dropdown-content a .game-icon {
+            font-size: 1.3rem;
+        }
+
+        .dropdown-content a .game-info {
+            flex: 1;
+        }
+
+        .dropdown-content a .game-name {
+            font-weight: bold;
+        }
+
+        .dropdown-content a .game-desc {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* Logo nổi*/
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.2s ease;
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+
+
+@keyframes gentleSwing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(6deg); }
+    75% { transform: rotate(-6deg); }
+}
+
+/* Phiên bản cho điện thoại */
+@media (max-width: 700px) {
+    .brand-logo-float {
+        width: 55px;
+        top: 12px;
+        right: 12px;
+        bottom: auto;
+    }
+}
+
+        .status-bar {
+            background: #ffb347;
+            border-radius: 50px;
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #ffefcf;
+            font-weight: 500;
+        }
+
+        .status-bar.success {
+            background: #ffb347;
+        }
+
+        .status-bar.error {
+            background: #a1422f;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: #f0f3f8;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e5a7a;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .filter-btn.active {
+            background: #ffb347;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .filter-btn:hover {
+            background: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .flashcard {
+            background: transparent;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            perspective: 1400px;
+            cursor: pointer;
+        }
+
+        .inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            border-radius: 28px;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .flashcard.flipped .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+        }
+
+        .front {
+            background: linear-gradient(135deg, #fff5e6, #ffe8d4);
+            
+        }
+
+        .front img {
+            max-width: 85%;
+            max-height: 70%;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background: white;
+            padding: 8px;
+        }
+
+        .click-hint {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            background: #ffedd5;
+            padding: 5px 12px;
+            border-radius: 40px;
+            color: #b45f2b;
+            font-weight: 500;
+        }
+
+        .back {
+            background: #ffb347;
+            color: white;
+            transform: rotateY(180deg);
+            gap: 12px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .back .word {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: capitalize;
+            background: rgba(255,255,240,0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+        }
+
+        .back .pronounce {
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 12px;
+            border-radius: 40px;
+            color: #ffdd99;
+        }
+
+        .back .meaning {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: #f4a261;
+            padding: 8px 18px;
+            border-radius: 50px;
+            color: #1f2c33;
+            margin-top: 8px;
+        }
+
+        .back .sound-icon {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            background: rgba(44, 78, 98, 0.8);
+            border-radius: 40px;
+            padding: 50px;
+            color: #ffefcf;
+        }
+
+        .footer-note {
+            margin-top: 45px;
+            color: #cfecf0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,200,0.3);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 650px) {
+            .back .word { font-size: 1.3rem; }
+            .back .meaning { font-size: 1rem; }
+            .cards-grid { gap: 20px; }
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .title-section h1, .title-section .sub {
+                text-align: center;
+            }
+            .dropdown-content {
+                right: auto;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brand-logo-float" id="brandLogoFloat">
+    <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="English Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+</div>
+
+<div class="flashcard-app">
+    <div class="header">
+        <div class="title-section">
+            <h1>📖 English Flashcards 📖</h1>
+            <div class="sub">✨ Nhấn vào thẻ → lật mặt + nghe phát âm ✨</div>
+        </div>
+        
+        <!-- Game Menu Dropdown -->
+        <div class="game-menu" id="gameMenu">
+            <button class="game-btn" id="gameMenuBtn">
+                🎮 Trò chơi luyện tập ▼
+            </button>
+            <div class="dropdown-content">
+                <a href="games/matching-game.html" target="_blank">
+                    <span class="game-icon">🎯</span>
+                    <div class="game-info">
+                        <div class="game-name">Ghép đôi thẻ bài</div>
+                        <div class="game-desc">Nhớ vị trí và ghép từ với hình</div>
+                    </div>
+                </a>
+                <a href="games/quiz-game.html" target="_blank">
+                    <span class="game-icon">❓</span>
+                    <div class="game-info">
+                        <div class="game-name">Trắc nghiệm nhanh</div>
+                        <div class="game-desc">Chọn đáp án đúng cho câu hỏi</div>
+                    </div>
+                </a>                
+                <a href="games/spelling-game.html" target="_blank">
+                    <span class="game-icon">✏️</span>
+                    <div class="game-info">
+                        <div class="game-name">Đánh vần từ vựng</div>
+                        <div class="game-desc">Nghe và viết đúng từ tiếng Anh</div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar" id="statusBar">
+        ⏳ Đang tải dữ liệu từ vocabulary.json...
+    </div>
+
+    <div class="filter-bar" id="filterBar" style="display: none;">
+        <button class="filter-btn active" data-filter="all">📚 Tất cả</button>
+        <button class="filter-btn" data-filter="animal">🐾 Động vật</button>
+        <button class="filter-btn" data-filter="nature">🌿 Thiên nhiên</button>
+        <button class="filter-btn" data-filter="other">⭐ Khác</button>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+        <div class="empty-state">📂 Đang chuẩn bị...</div>
+    </div>
+    <div class="footer-note">
+        🎯 Mẹo: Chọn danh mục từ vựng ở trên để lọc thẻ học. Nhấp vào thẻ để lật và nghe phát âm!
+    </div>
+</div>
+
+<script>
+    // Lưu dữ liệu từ vựng vào localStorage để các game có thể truy cập
+    function saveVocabularyToLocalStorage(vocab) {
+        localStorage.setItem('flashcard_vocabulary', JSON.stringify(vocab));
+        localStorage.setItem('flashcard_base_path', 'pic/');
+    }
+
+    const IMAGE_BASE_PATH = "pic/";
+    const DATA_FILE = "vocabulary.json";
+    
+    let vocabulary = [];
+    let currentFilter = "all";
+    
+    const statusBar = document.getElementById('statusBar');
+    const cardsGrid = document.getElementById('cardsGrid');
+    const filterBar = document.getElementById('filterBar');
+    
+    // Game menu dropdown
+    const gameMenu = document.getElementById('gameMenu');
+    const gameMenuBtn = document.getElementById('gameMenuBtn');
+    
+    gameMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        gameMenu.classList.toggle('active');
+    });
+    
+    // Đóng dropdown khi click ra ngoài
+    document.addEventListener('click', (e) => {
+        if (!gameMenu.contains(e.target)) {
+            gameMenu.classList.remove('active');
+        }
+    });
+    
+    async function loadVocabulary() {
+        try {
+            statusBar.textContent = "📂 Đang đọc file vocabulary.json...";
+            
+            const response = await fetch(DATA_FILE);
+            if (!response.ok) {
+                throw new Error(`Không tìm thấy file ${DATA_FILE}`);
+            }
+            
+            const data = await response.json();
+            
+            if (!Array.isArray(data)) {
+                throw new Error("File JSON phải là một mảng các từ vựng");
+            }
+            
+            vocabulary = data.map((item, index) => ({
+                word: item.word || "unknown",
+                pronunciation: item.pronunciation || `/${item.word}/`,
+                meaning: item.meaning || "chưa có nghĩa",
+                category: item.category || "other",
+                originalIndex: index
+            }));
+            
+            // Lưu vào localStorage để game khác dùng chung
+            saveVocabularyToLocalStorage(vocabulary);
+            
+            const categories = {};
+            vocabulary.forEach(item => {
+                categories[item.category] = (categories[item.category] || 0) + 1;
+            });
+            
+            const categoryText = Object.entries(categories).map(([cat, count]) => `${cat}: ${count}`).join(", ");
+            
+            statusBar.textContent = `✅ Thành công! Đã tải ${vocabulary.length} từ vựng (${categoryText})`;
+            statusBar.className = "status-bar success";
+            
+            updateFilterButtons();
+            filterBar.style.display = "flex";
+            renderCards("all");
+            
+        } catch (error) {
+            console.error("Lỗi:", error);
+            statusBar.textContent = `❌ Lỗi: ${error.message}. Hãy tạo file vocabulary.json với cấu trúc đúng!`;
+            statusBar.className = "status-bar error";
+            cardsGrid.innerHTML = `
+                <div class="empty-state" style="background:#a1422f;">
+                    ⚠️ Không thể tải dữ liệu<br><br>
+                    <strong>Cách khắc phục:</strong><br>
+                    1. Tạo file <strong>vocabulary.json</strong> cùng thư mục<br>
+                    2. Cấu trúc mẫu:<br>
+                    <code style="display:block; margin-top:10px; font-size:11px; text-align:left;">
+                    [<br>
+                    &nbsp;&nbsp;{"word": "puppy", "pronunciation": "/ˈpʌpi/", "meaning": "chó con", "category": "animal"},<br>
+                    &nbsp;&nbsp;{"word": "kitten", "pronunciation": "/ˈkɪtn/", "meaning": "mèo con", "category": "animal"}<br>
+                    ]
+                    </code>
+                </div>
+            `;
+        }
+    }
+    
+    function updateFilterButtons() {
+        const categories = new Set();
+        vocabulary.forEach(item => {
+            if (item.category) categories.add(item.category);
+        });
+        
+        const filterContainer = document.getElementById('filterBar');
+        if (!filterContainer) return;
+        
+        const allBtn = filterContainer.querySelector('[data-filter="all"]');
+        filterContainer.innerHTML = '';
+        filterContainer.appendChild(allBtn);
+        
+        const categoryOrder = { animal: "🐾 Động vật", nature: "🌿 Thiên nhiên", other: "⭐ Khác" };
+        const sortedCategories = Array.from(categories).sort();
+        
+        sortedCategories.forEach(cat => {
+            if (cat === "all") return;
+            let displayName = categoryOrder[cat] || cat;
+            if (!categoryOrder[cat]) {
+                displayName = cat.charAt(0).toUpperCase() + cat.slice(1);
+            }
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.setAttribute('data-filter', cat);
+            btn.textContent = displayName;
+            filterContainer.appendChild(btn);
+        });
+        
+        setupFilters();
+    }
+    
+    function createFlashcard(item) {
+        const card = document.createElement('div');
+        card.className = 'flashcard';
+        card.setAttribute('data-word', item.word.toLowerCase());
+        card.setAttribute('data-category', item.category);
+        
+        const imagePath = IMAGE_BASE_PATH + item.word;
+        
+        card.innerHTML = `
+            <div class="inner">
+                <div class="front">
+                    <img class="flash-img" src="${imagePath}.png" alt="${item.word}" 
+     onerror="this.onerror=null; this.src='${imagePath}.jpg';"
+     style="max-width:85%; max-height:70%; object-fit:contain; border-radius:20px;">
+                    <div class="click-hint">🎵 nhấn để nghe + lật thẻ</div>
+                </div>
+                <div class="back">
+                    <div class="word">${escapeHtml(item.word)}</div>
+                    <div class="pronounce">${escapeHtml(item.pronunciation)}</div>
+                    <div class="meaning"> ${escapeHtml(item.meaning)}</div>
+                    <div class="sound-icon">🔊 nghe phát âm</div>
+                </div>
+            </div>
+        `;
+        
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            card.classList.toggle('flipped');
+            speakWord(item.word);
+        });
+        
+        return card;
+    }
+    
+    // Phát âm thanh bằng Web Speech API
+    function speakWord(word) {
+        if (!window.speechSynthesis) {
+            console.warn("Trình duyệt không hỗ trợ phát âm");
+            return;
+        }
+        
+        // Hủy phát âm đang chạy để tránh chồng chéo
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.0;
+        
+        // Thử chọn giọng nam/nữ nếu có
+        if (window.speechSynthesis.getVoices) {
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(voice => voice.lang === 'en-US' && voice.name.includes('Google'));
+            if (englishVoice) utterance.voice = englishVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    function renderCards(filter) {
+        if (!vocabulary.length) return;
+        
+        let filteredList = vocabulary;
+        if (filter !== "all") {
+            filteredList = vocabulary.filter(item => item.category === filter);
+        }
+        
+        cardsGrid.innerHTML = '';
+        
+        if (filteredList.length === 0) {
+            cardsGrid.innerHTML = `<div class="empty-state">✨ Không có từ vựng nào trong danh mục này ✨</div>`;
+            return;
+        }
+        
+        const fragment = document.createDocumentFragment();
+        filteredList.forEach(item => {
+            fragment.appendChild(createFlashcard(item));
+        });
+        cardsGrid.appendChild(fragment);
+    }
+    
+    function setupFilters() {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => {
+            btn.removeEventListener('click', handleFilterClick);
+            btn.addEventListener('click', handleFilterClick);
+        });
+    }
+    
+    function handleFilterClick(e) {
+        const btn = e.currentTarget;
+        const filterValue = btn.getAttribute('data-filter');
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = filterValue;
+        renderCards(currentFilter);
+    }
+    
+    loadVocabulary();
+    
+</script>
+
+</body>
+</html>

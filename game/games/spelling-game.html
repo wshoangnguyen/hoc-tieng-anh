@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đánh vần từ vựng - Game học tiếng Anh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Logo nổi*/
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.2s ease;
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+
+
+	@keyframes gentleSwing {
+    		0%, 100% { transform: rotate(0deg); }
+    		25% { transform: rotate(6deg); }
+    		75% { transform: rotate(-6deg); }
+	}
+
+	/* Phiên bản cho điện thoại */
+	@media (max-width: 700px) {
+    		.brand-logo-float {
+        	width: 55px;
+        	top: 12px;
+        	right: 12px;
+        	bottom: auto;
+    		}
+	}        
+        
+        body {
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 60px;
+        }
+        
+        .game-header h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .score-box {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .category-selector {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .cat-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .cat-btn.active {
+            background: #ffb347;
+            color: white;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .question-image {
+            margin-bottom: 20px;
+        }
+        
+        .question-image img {
+            max-width: 200px;
+            max-height: 180px;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            color: #1e5a7a;
+            margin: 20px 0;
+        }
+        
+        .meaning-hint {
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 15px 0;
+            color: #b45f2b;
+        }
+        
+        .input-area {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        #answerInput {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #ffb347;
+            border-radius: 50px;
+            outline: none;
+            text-align: center;
+        }
+        
+        #submitBtn {
+            background: #ffb347;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        #speakBtn {
+            background: #2c5a6e;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .feedback {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        
+        .feedback.correct {
+            background: #2e7d64;
+            color: white;
+        }
+        
+        .feedback.wrong {
+            background: #a1422f;
+            color: white;
+        }
+        
+        .next-btn {
+            background: #ffb347;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .progress {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .letters-hint {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .letter {
+            background: #f0f3f8;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .letter:hover {
+            background: #ffb347;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 600px) {
+            .question-card {
+                padding: 25px;
+            }
+            .letter {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-logo-float" id="brandLogoFloat">
+        <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="English Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+    </div>    
+    <div class="game-container">
+        <div class="game-header">
+            <h1>✏️ Đánh vần từ vựng</h1>
+            <div class="score-box" id="scoreDisplay">⭐ Điểm: 0/0</div>
+            <a href="../flashcard.html" class="back-btn">← Về Flashcards</a>
+        </div>
+        
+        <div class="category-selector" id="categorySelector">
+            <button class="cat-btn active" data-cat="all">📚 Tất cả</button>
+        </div>
+        
+        <div class="question-card" id="questionCard">
+            <div class="question-image" id="questionImage">
+                <img src="" alt="Hình ảnh từ vựng" id="wordImage">
+            </div>
+            <div class="meaning-hint" id="meaningHint"></div>
+            <div class="question-text">
+                🔤 <span id="questionWord">_____</span> 🔤
+            </div>
+            
+            <div class="letters-hint" id="lettersHint"></div>
+            
+            <div class="input-area">
+                <input type="text" id="answerInput" placeholder="Nhập câu trả lời..." autocomplete="off">
+                <button id="speakBtn">🔊</button>
+                <button id="submitBtn">✅ Kiểm tra</button>
+            </div>
+            
+            <div class="feedback" id="feedback"></div>
+            <button class="next-btn" id="nextBtn" style="display: none;">▶️ Câu tiếp theo</button>
+        </div>
+        
+        <div class="progress" id="progress">Đã làm: 0 / 0</div>
+    </div>
+    
+    <script src="../js/game-utils.js"></script>
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = 0;
+        let currentCategory = 'all';
+        let waitingForNext = false;
+        
+        const questionImage = document.getElementById('questionImage').querySelector('img');
+        const meaningHint = document.getElementById('meaningHint');
+        const questionWord = document.getElementById('questionWord');
+        const answerInput = document.getElementById('answerInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const speakBtn = document.getElementById('speakBtn');
+        const feedbackDiv = document.getElementById('feedback');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const progressDiv = document.getElementById('progress');
+        const lettersHint = document.getElementById('lettersHint');
+        
+        function loadCategories() {
+            const vocab = getVocabularyData();
+            if (!vocab) return;
+            
+            const categories = new Set();
+            vocab.forEach(item => categories.add(item.category));
+            
+            const container = document.getElementById('categorySelector');
+            const allBtn = container.querySelector('.cat-btn');
+            container.innerHTML = '';
+            container.appendChild(allBtn);
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.dataset.cat = cat;
+                btn.textContent = cat;
+                container.appendChild(btn);
+            });
+            
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.cat;
+                    initGame();
+                });
+            });
+        }
+        
+        function initGame() {
+            const vocab = getVocabularyByCategory(currentCategory);
+            if (!vocab || vocab.length === 0) {
+                feedbackDiv.textContent = 'Không có từ vựng!';
+                return;
+            }
+            
+            // Lấy 20 từ ngẫu nhiên
+            const shuffled = [...vocab];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            questions = shuffled.slice(0, Math.min(20, shuffled.length));
+            
+            currentIndex = 0;
+            score = 0;
+            answered = 0;
+            waitingForNext = false;
+            updateScoreDisplay();
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            if (currentIndex >= questions.length) {
+                showCompletionMessage();
+                return;
+            }
+            
+            waitingForNext = false;
+            nextBtn.style.display = 'none';
+            feedbackDiv.innerHTML = '';
+            feedbackDiv.className = 'feedback';
+            answerInput.value = '';
+            answerInput.disabled = false;
+            submitBtn.disabled = false;
+            answerInput.focus();
+            
+            const q = questions[currentIndex];
+            
+            // Hiển thị hình ảnh
+            const imagePath = getImageBasePath() + q.word;
+            questionImage.src = `${imagePath}.png`;
+            questionImage.onerror = function() { this.src = `${imagePath}.jpg`; };
+            
+            // Hiển thị nghĩa tiếng Việt
+            meaningHint.innerHTML = `${q.meaning}`;
+            questionWord.textContent = '???';
+            
+            // Tạo gợi ý chữ cái
+            generateLetterHints(q.word);
+            
+            updateProgress();
+        }
+        
+        function generateLetterHints(word) {
+            lettersHint.innerHTML = '';
+            const letters = word.toLowerCase().split('');
+            // Xào các chữ cái
+            const shuffled = [...letters];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            shuffled.forEach(letter => {
+                const letterDiv = document.createElement('div');
+                letterDiv.className = 'letter';
+                letterDiv.textContent = letter;
+                letterDiv.addEventListener('click', () => {
+                    answerInput.value += letter;
+                    answerInput.focus();
+                });
+                lettersHint.appendChild(letterDiv);
+            });
+        }
+        
+        function checkAnswer() {
+    if (waitingForNext) return;
+    
+    const userAnswer = answerInput.value.trim().toLowerCase();
+    const correctAnswer = questions[currentIndex].word.toLowerCase();
+    
+    if (userAnswer === '') {
+        feedbackDiv.innerHTML = '📝 Hãy nhập câu trả lời!';
+        feedbackDiv.className = 'feedback wrong';
+        return;
+    }
+    
+    answered++;
+    
+    if (userAnswer === correctAnswer) {
+        // THÊM DÒNG NÀY - Âm thanh đúng
+        playBeep('correct');
+        
+        score++;
+        feedbackDiv.innerHTML = '✅ Chính xác! 🎉';
+        feedbackDiv.className = 'feedback correct';
+        speakWord(correctAnswer);
+        questionWord.textContent = correctAnswer;
+    } else {
+        // THÊM DÒNG NÀY - Âm thanh sai
+        playBeep('wrong');
+        
+        feedbackDiv.innerHTML = `❌ Chưa đúng! Đáp án: "${correctAnswer}" - ${questions[currentIndex].meaning}`;
+        feedbackDiv.className = 'feedback wrong';
+        questionWord.textContent = correctAnswer;
+    }
+    
+    updateScoreDisplay();
+    updateProgress();
+    
+    answerInput.disabled = true;
+    submitBtn.disabled = true;
+    waitingForNext = true;
+    nextBtn.style.display = 'inline-block';
+    
+    // Kiểm tra hoàn thành tất cả câu hỏi
+    if (currentIndex + 1 >= questions.length && userAnswer === correctAnswer) {
+        // THÊM DÒNG NÀY - Âm thanh chiến thắng khi hoàn thành
+        setTimeout(() => playBeep('win'), 500);
+    }
+}
+        
+        function nextQuestion() {
+            currentIndex++;
+            loadQuestion();
+        }
+        
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `⭐ Điểm: ${score}/${answered}`;
+        }
+        
+        function updateProgress() {
+            progressDiv.textContent = `Đã làm: ${answered} / ${questions.length}`;
+        }
+        
+        function showCompletionMessage() {
+            const percentage = Math.round((score / questions.length) * 100);
+            feedbackDiv.innerHTML = `
+                🎉 HOÀN THÀNH! 🎉<br>
+                Điểm số: ${score}/${questions.length} (${percentage}%)<br>
+                ${percentage >= 80 ? '🌟 Xuất sắc!' : percentage >= 60 ? '👍 Tốt lắm!' : '💪 Cố gắng thêm nhé!'}
+            `;
+            feedbackDiv.className = 'feedback correct';
+            nextBtn.style.display = 'none';
+            answerInput.disabled = true;
+            submitBtn.disabled = true;
+            speakWord('Well done! Congratulations!');
+        }
+        
+        // Event listeners
+        submitBtn.addEventListener('click', checkAnswer);
+        nextBtn.addEventListener('click', nextQuestion);
+        speakBtn.addEventListener('click', () => {
+            if (questions[currentIndex]) {
+                speakWord(questions[currentIndex].word);
+            }
+        });
+        answerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !waitingForNext) {
+                checkAnswer();
+            }
+        });
+        
+        // Khởi tạo
+        if (checkDataAndRedirect()) {
+            loadCategories();
+            initGame();
+        }
+    </script>
+</body>
+</html>

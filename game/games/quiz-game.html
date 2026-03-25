@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm nhanh - Game học tiếng Anh | Che hình ảnh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Logo nổi*/
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.2s ease;
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+
+
+	@keyframes gentleSwing {
+    		0%, 100% { transform: rotate(0deg); }
+    		25% { transform: rotate(6deg); }
+    		75% { transform: rotate(-6deg); }
+	}
+
+	/* Phiên bản cho điện thoại */
+	@media (max-width: 700px) {
+    		.brand-logo-float {
+        	width: 55px;
+        	top: 12px;
+        	right: 12px;
+        	bottom: auto;
+    		}
+	}
+
+        body {
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 60px;
+        }
+        
+        .game-header h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .score-box {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .category-selector {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .cat-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .cat-btn.active {
+            background: #ffb347;
+            color: white;
+        }
+        
+        .quiz-card {
+            background: white;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .question-area {
+            text-align: center;
+        }
+        
+        /* Hình ảnh có lớp phủ lưới ô vuông */
+        .image-reveal-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px auto;
+            background: #e9ecef;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        
+        .hidden-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f8f9fa;
+            z-index: 1;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .grid-cell {
+            background-color:  #ff8c1a;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s ease;
+
+
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        
+        .grid-cell.hidden-cell {
+            background-color: transparent;
+            backdrop-filter: blur(0px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: none;
+            pointer-events: none;
+        }
+        
+        /* Thông báo tốc độ & điểm thưởng */
+        .speed-bonus {
+            background: #ffb34720;
+            border-radius: 60px;
+            display: inline-block;
+            padding: 5px 15px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #d97a0c;
+        }
+        
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e5a7a;
+            margin: 20px 0;
+        }
+        
+        .options-area {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 5px 0;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            background: #f0f3f8;
+            border: 2px solid #ffb347;
+            padding: 5px 15px;
+            width: 160px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .option-btn:hover:not(:disabled) {
+            background: #ffb347;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .option-btn.correct {
+            background: #2e7d64;
+            border-color: #2e7d64;
+            color: white;
+        }
+        
+        .option-btn.wrong {
+            background: #a1422f;
+            border-color: #a1422f;
+            color: white;
+        }
+        
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .option-prefix {
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 10px;
+        }
+        
+        .feedback-area {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        
+        .next-btn {
+            background: #ffb347;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .next-btn:hover {
+            background: #ff8c1a;
+            transform: translateY(-2px);
+        }
+        
+        .progress {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .quiz-card {
+                padding: 25px;
+            }
+            .question-text {
+                font-size: 1.2rem;
+            }
+            .option-btn {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            .image-reveal-container {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-logo-float" id="brandLogoFloat">
+        <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="English Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+    </div>
+
+    <div class="game-container">
+        <div class="game-header">
+            <h1>❓ Trắc nghiệm nhanh</h1>
+            <div class="score-box" id="scoreDisplay">⭐ Điểm: 0/0</div>
+            <a href="../flashcard.html" class="back-btn">← Về Flashcards</a>
+        </div>
+        
+        <div class="category-selector" id="categorySelector">
+            <button class="cat-btn active" data-cat="all">📚 Tất cả</button>
+        </div>
+        
+        <div class="quiz-card" id="quizCard">
+            <div class="question-area">
+                <!-- Khu vực hình ảnh có hiệu ứng 9 ô vuông -->
+                <div class="image-reveal-container" id="imageRevealContainer">
+                    <img src="" alt="Hình ảnh câu hỏi" class="hidden-img" id="quizImage">
+                    <div class="grid-overlay" id="gridOverlay"></div>
+                </div>
+                <div id="bonusHint" class="speed-bonus"></div>
+            </div>
+            
+            <div class="options-area" id="optionsArea"></div>
+            
+            <div class="feedback-area" id="feedbackArea"></div>
+            <button class="next-btn" id="nextBtn" style="display: none;">▶️ Câu tiếp theo</button>
+        </div>
+        
+        <div class="progress" id="progress">Câu hỏi: 0 / 0</div>
+    </div>
+    
+    <script src="../js/game-utils.js"></script>
+    <script>
+        // ---------- BIẾN TOÀN CỤC ----------
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentCategory = 'all';
+        
+        // Các biến dành cho cơ chế ô vuông
+        let revealInterval = null;          // interval xoá dần ô
+        let currentCells = [];              // lưu danh sách các cell element
+        let hiddenCellsCount = 0;            // đã xoá bao nhiêu ô
+        let questionStartTime = 0;           // thời điểm bắt đầu câu hỏi (ms)
+        let bonusPointsAwarded = false;      // đã thưởng điểm tốc độ cho câu này chưa
+        let currentCorrectAnswer = '';       // đáp án đúng của câu hiện tại
+        
+        // DOM elements
+        const quizImage = document.getElementById('quizImage');
+        const optionsArea = document.getElementById('optionsArea');
+        const feedbackArea = document.getElementById('feedbackArea');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const progressDiv = document.getElementById('progress');
+        const gridOverlay = document.getElementById('gridOverlay');
+        const bonusHintDiv = document.getElementById('bonusHint');
+        const imageContainer = document.getElementById('imageRevealContainer');
+        
+        // Hàm xoá interval và reset trạng thái ô
+        function stopRevealProcess() {
+            if (revealInterval) {
+                clearInterval(revealInterval);
+                revealInterval = null;
+            }
+        }
+        
+        // Tạo lưới 3x3 ô vuông che hình
+        function buildGridOverlay() {
+            gridOverlay.innerHTML = '';
+            currentCells = [];
+            // tạo 9 ô (3x3)
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('grid-cell');
+                // Lưu index
+                cell.dataset.index = i;
+                gridOverlay.appendChild(cell);
+                currentCells.push(cell);
+            }
+            hiddenCellsCount = 0;
+            // Đảm bảo tất cả ô đều hiển thị che
+            currentCells.forEach(cell => {
+                cell.classList.remove('hidden-cell');
+            });
+        }
+        
+        // Xoá ngẫu nhiên một ô chưa bị xoá, trả về true nếu xoá thành công
+        function revealRandomCell() {
+            if (!currentCells.length) return false;
+            const visibleCells = currentCells.filter(cell => !cell.classList.contains('hidden-cell'));
+            if (visibleCells.length === 0) return false;
+            
+            const randomIndex = Math.floor(Math.random() * visibleCells.length);
+            const targetCell = visibleCells[randomIndex];
+            targetCell.classList.add('hidden-cell');
+            hiddenCellsCount++;
+            
+            // Nếu đã xoá hết 9 ô -> kết thúc interval, thông báo
+            if (hiddenCellsCount === 9) {
+                stopRevealProcess();
+                if (!answered && !bonusPointsAwarded) {
+                    // Chưa trả lời khi hình đã lộ toàn bộ -> vẫn có thể trả lời nhưng không thưởng tốc độ
+                    bonusHintDiv.innerHTML = '⚡ Hình ảnh đã lộ hoàn toàn! Không còn điểm tốc độ.';
+                }
+            }
+            return true;
+        }
+        
+        // Bắt đầu quá trình mỗi giây xoá 1 ô ngẫu nhiên
+        function startRevealSequence() {
+            stopRevealProcess(); // đảm bảo không chồng interval
+            if (currentCells.length === 0) return;
+            
+            revealInterval = setInterval(() => {
+                // Nếu đã trả lời hoặc hết câu thì không xoá thêm
+                if (answered) return;
+                
+                // Kiểm tra nếu tất cả ô đã lộ thì clear interval
+                const visibleRemain = currentCells.filter(cell => !cell.classList.contains('hidden-cell')).length;
+                if (visibleRemain === 0) {
+                    stopRevealProcess();
+                    return;
+                }
+                
+                revealRandomCell();
+            }, 1000); // mỗi giây xoá 1 ô
+        }
+        
+        // Tính điểm thưởng tốc độ dựa trên số ô còn che (càng nhiều ô che điểm thưởng càng cao)
+        function calculateSpeedBonus() {
+            if (!questionStartTime) return 0;
+            const hiddenRemainCount = currentCells.filter(cell => !cell.classList.contains('hidden-cell')).length;
+            // hiddenRemainCount là số ô chưa bị xoá (đang che)
+            // Mỗi ô còn che sẽ thưởng thêm 1 điểm, tối đa 9 ô => 9 điểm thưởng
+            const bonus = hiddenRemainCount * 1;
+            return bonus;
+        }
+        
+        // Thông báo điểm thưởng và cộng điểm
+        function applySpeedBonus() {
+            if (bonusPointsAwarded) return 0;
+            if (answered === false) return 0;
+            const bonus = calculateSpeedBonus();
+            if (bonus > 0) {
+                score += bonus;
+                bonusPointsAwarded = true;
+                bonusHintDiv.innerHTML = `⚡ Phản xạ nhanh! +${bonus} điểm tốc độ (còn ${currentCells.filter(cell => !cell.classList.contains('hidden-cell')).length} ô che) 🚀`;
+                updateScoreDisplay();
+                // tự động ẩn sau 2.5s
+                setTimeout(() => {
+                    if (bonusHintDiv.innerHTML.includes('Phản xạ nhanh')) {
+                        if (!answered) return;
+                        bonusHintDiv.innerHTML = '';
+                    }
+                }, 3000);
+                return bonus;
+            } else {
+                bonusHintDiv.innerHTML = `🐢 Không có điểm tốc độ - hình đã lộ hết.`;
+                setTimeout(() => {
+                    if (bonusHintDiv.innerHTML.includes('hình đã lộ hết')) bonusHintDiv.innerHTML = '';
+                }, 2000);
+            }
+            return 0;
+        }
+        
+        // Reset toàn bộ cơ chế ô cho câu mới
+        function resetImageReveal() {
+            stopRevealProcess();
+            buildGridOverlay();           // tạo lại 9 ô che
+            startRevealSequence();        // bắt đầu xoá dần theo thời gian
+            answered = false;
+            bonusPointsAwarded = false;
+            questionStartTime = Date.now();
+            bonusHintDiv.innerHTML = '🔒 Hình bị che bởi 9 ô. Mỗi giây 1 ô biến mất! Trả lời càng nhanh càng được nhiều điểm!';
+            // xoá thông báo sau 2.5s
+            setTimeout(() => {
+                if (bonusHintDiv.innerHTML.includes('Hình bị che')) {
+                    bonusHintDiv.innerHTML = '';
+                }
+            }, 2800);
+        }
+        
+        // Tải danh mục
+        function loadCategories() {
+            const vocab = getVocabularyData();
+            if (!vocab) return;
+            
+            const categories = new Set();
+            vocab.forEach(item => categories.add(item.category));
+            
+            const container = document.getElementById('categorySelector');
+            const allBtn = container.querySelector('.cat-btn');
+            container.innerHTML = '';
+            container.appendChild(allBtn);
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.dataset.cat = cat;
+                btn.textContent = cat;
+                container.appendChild(btn);
+            });
+            
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.cat;
+                    initGame();
+                });
+            });
+        }
+        
+        // Tạo câu hỏi
+        function initGame() {
+            const vocab = getVocabularyByCategory(currentCategory);
+            if (!vocab || vocab.length === 0) {
+                feedbackArea.innerHTML = 'Không có từ vựng!';
+                return;
+            }
+            
+            questions = [];
+            const selectedVocab = vocab.slice(0, Math.min(30, vocab.length));
+            
+            selectedVocab.forEach((item, idx) => {
+                const distractors = getRandomDistractors(item.word, vocab, 3);
+                const options = [item.word, ...distractors];
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                
+                questions.push({
+                    word: item.word,
+                    meaning: item.meaning,
+                    imagePath: getImageBasePath() + item.word,
+                    options: options,
+                    correct: item.word
+                });
+            });
+            
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            updateScoreDisplay();
+            loadQuestion();
+        }
+        
+        function getRandomDistractors(correctWord, vocab, count) {
+            const others = vocab.filter(item => item.word !== correctWord);
+            const shuffled = [...others];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, count).map(item => item.word);
+        }
+        
+        // Hiển thị câu hỏi, thiết lập ảnh và cơ chế ô vuông
+        function loadQuestion() {
+            if (currentIndex >= questions.length) {
+                showCompletionMessage();
+                return;
+            }
+            
+            // Dừng quá trình lộ ô trước đó nếu có
+            stopRevealProcess();
+            
+            const q = questions[currentIndex];
+            currentCorrectAnswer = q.correct;
+            
+            // Load ảnh (có fallback)
+            quizImage.src = `${q.imagePath}.png`;
+            quizImage.onerror = function() { 
+                if (this.src.indexOf('.png') > -1) {
+                    this.src = `${q.imagePath}.jpg`;
+                }
+            };
+            
+            // Reset trạng thái trả lời
+            answered = false;
+            nextBtn.style.display = 'none';
+            feedbackArea.innerHTML = '';
+            feedbackArea.className = '';
+            
+            // reset hệ thống ô che & bắt đầu interval xoá ô
+            resetImageReveal();
+            
+            // Hiển thị các đáp án
+            renderOptions(q.options, q.correct);
+            updateProgress();
+        }
+        
+        function renderOptions(options, correct) {
+            optionsArea.innerHTML = '';
+            const prefixes = ['A', 'B', 'C', 'D'];
+            
+            options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `
+                    <span class="option-prefix">${prefixes[idx]}.</span>
+                    <span>${opt}</span>
+                `;
+                btn.addEventListener('click', () => checkAnswer(opt, correct, btn));
+                optionsArea.appendChild(btn);
+            });
+        }
+        
+        // Xử lý trả lời: thưởng tốc độ, điểm cơ bản
+        function checkAnswer(selected, correct, btnElement) {
+            if (answered) return;
+            answered = true;
+            
+            // Dừng quá trình lộ ô vì đã trả lời
+            stopRevealProcess();
+
+            
+            // Tính điểm thưởng tốc độ trước khi thay đổi giao diện
+            const speedBonus = calculateSpeedBonus(); // số điểm thưởng dựa trên số ô chưa mất
+            let isCorrect = (selected === correct);
+            
+            // Cộng điểm cơ bản nếu đúng
+            if (isCorrect) {
+                playBeep('correct');
+                score++;  // 1 điểm cho câu trả lời đúng
+                feedbackArea.innerHTML = `✅ Chính xác! 🎉`;
+                feedbackArea.style.color = '#2e7d64';
+                speakWord(correct);
+                btnElement.classList.add('correct');
+                
+            // Xóa hết tất cả ô vuông
+            currentCells.forEach(cell => {
+            cell.classList.add('hidden-cell');
+            });
+
+            } else {
+                playBeep('wrong');
+                feedbackArea.innerHTML = `❌ Chưa đúng! Đáp án đúng là: "${correct}"`;
+                feedbackArea.style.color = '#a1422f';
+                btnElement.classList.add('wrong');
+
+            // Xóa hết tất cả ô vuông
+            currentCells.forEach(cell => {
+            cell.classList.add('hidden-cell');
+            });
+                
+                // Tô xanh đáp án đúng
+                const allBtns = document.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => {
+                    if (btn.innerText.includes(correct)) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            // Thưởng tốc độ (nếu trả lời đúng mới được thưởng, sai không thưởng)
+            if (isCorrect && speedBonus > 0 && !bonusPointsAwarded) {
+                score += speedBonus;
+                bonusPointsAwarded = true;
+                bonusHintDiv.innerHTML = `⚡ Thưởng tốc độ: +${speedBonus} điểm!🚀`;
+                setTimeout(() => {
+                    if (bonusHintDiv.innerHTML.includes('Thưởng tốc độ')) bonusHintDiv.innerHTML = '';
+                }, 3000);
+            } else if (isCorrect && speedBonus === 0 && !bonusPointsAwarded) {
+                bonusHintDiv.innerHTML = `⌛ Không có điểm tốc độ (hình đã lộ toàn bộ)`;
+                setTimeout(() => {
+                    if (bonusHintDiv.innerHTML.includes('không có điểm')) bonusHintDiv.innerHTML = '';
+                }, 2000);
+            } else if (!isCorrect) {
+                // nếu trả lời sai: hiện thông báo mất cơ hội điểm thưởng
+                if (!bonusPointsAwarded) {
+                    bonusHintDiv.innerHTML = `😢 Trả lời sai! Mất cơ hội nhận điểm tốc độ.`;
+                    setTimeout(() => {
+                        if (bonusHintDiv.innerHTML.includes('Mất cơ hội')) bonusHintDiv.innerHTML = '';
+                    }, 2000);
+                }
+                bonusPointsAwarded = true; // đánh dấu để không thưởng sau
+            }
+            
+            // Disable tất cả nút
+            const allBtns = document.querySelectorAll('.option-btn');
+            allBtns.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('disabled');
+            });
+            
+            updateScoreDisplay();
+            nextBtn.style.display = 'block';
+            
+            // Kiểm tra hoàn thành tất cả câu hỏi để phát âm thanh chiến thắng
+            if (currentIndex + 1 >= questions.length && isCorrect) {
+                setTimeout(() => playBeep('win'), 500);
+            }
+        }
+        
+        function nextQuestion() {
+            // dọn dẹp interval trước khi sang câu mới
+            stopRevealProcess();
+            currentIndex++;
+            loadQuestion();
+        }
+        
+        function updateScoreDisplay() {
+            // Hiển thị điểm tổng / số câu đã trả lời (currentIndex là số câu đã qua nhưng chưa tính câu hiện tại nếu chưa trả lời)
+            // Để hiển thị điểm chính xác: dùng score / (currentIndex + (answered ? 1 : 0)) nhưng dùng câu đã trả lời
+            let answeredCount = 0;
+            for(let i=0; i<=currentIndex; i++) {
+                if(i < currentIndex) answeredCount++;
+                else if(answered && i===currentIndex) answeredCount++;
+            }
+            if(answeredCount === 0 && score===0) scoreDisplay.textContent = `⭐ Điểm: 0/0`;
+            else scoreDisplay.textContent = `⭐ Điểm: ${score}/${answeredCount}`;
+            // dùng hiển thị điểm và số câu đã trả lời (có thể dùng currentIndex + (answered?1:0))
+            const totalAnswered = currentIndex + (answered ? 1 : 0);
+            if(totalAnswered > 0) scoreDisplay.textContent = `⭐ Điểm: ${score}/${totalAnswered}`;
+            else scoreDisplay.textContent = `⭐ Điểm: 0/0`;
+        }
+        
+        function updateProgress() {
+            progressDiv.textContent = `Câu hỏi: ${currentIndex + 1} / ${questions.length}`;
+        }
+        
+        function showCompletionMessage() {
+            stopRevealProcess();
+            const percentage = Math.round((score / questions.length) * 100);
+            feedbackArea.innerHTML = `
+                🎉 HOÀN THÀNH! 🎉<br>
+                Điểm số: ${score}/${questions.length} (${percentage}%)<br>
+                ${getEncouragementMessage(percentage)}
+            `;
+            feedbackArea.style.color = '#ffb347';
+            nextBtn.style.display = 'none';
+            speakWord('Quiz completed! Great job!');
+            // Ẩn thông báo bonus
+            bonusHintDiv.innerHTML = '';
+        }
+        
+        function getEncouragementMessage(percentage) {
+            if (percentage >= 90) return '🌟 Xuất sắc! Bạn là chuyên gia! 🌟';
+            if (percentage >= 70) return '👍 Rất tốt! Cố gắng thêm nhé! 👍';
+            if (percentage >= 50) return '📚 Khá tốt! Học thêm sẽ giỏi hơn! 📚';
+            return '💪 Đừng nản! Học lại từ vựng nhé! 💪';
+        }
+        
+        nextBtn.addEventListener('click', nextQuestion);
+        
+        // Kiểm tra và khởi tạo game
+        if (checkDataAndRedirect()) {
+            loadCategories();
+            initGame();
+        }
+        
+        // Đảm bảo khi reset game hoặc thay đổi danh mục, dừng hết interval
+        window.addEventListener('beforeunload', function() {
+            if (revealInterval) clearInterval(revealInterval);
+        });
+        
+        // Cập nhật lại hàm updateScoreDisplay được gọi trong checkAnswer và speed bonus
+        // Ghi đè lại để đảm bảo hiển thị đúng
+        window.updateScoreDisplay = updateScoreDisplay;
+    </script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghép đôi thẻ bài - Game học tiếng Anh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 60px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .game-header h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .game-info {
+            display: flex;
+            gap: 20px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .game-info span {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 40px;
+        }
+        
+        .back-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-btn:hover {
+            background: #ff8c1a;
+            transform: translateY(-2px);
+        }
+        
+        .category-selector {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .cat-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1e5a7a;
+            transition: all 0.2s;
+        }
+        
+        .cat-btn.active {
+            background: #ffb347;
+            color: white;
+        }
+        
+        .cat-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        
+        .memory-card {
+            aspect-ratio: 1 / 1;
+            background: transparent;
+            perspective: 500px;
+            cursor: pointer;
+        }
+        
+        .memory-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+        }
+        
+        .memory-card.flipped .memory-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .memory-card.matched {
+            opacity: 0.6;
+            cursor: default;
+            filter: grayscale(0.3);
+        }
+        
+        .memory-card.matched .memory-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #fff5e6, #ffe8d4);
+            transform: rotateY(180deg);
+            padding: 10px;
+        }
+        
+        .card-front img {
+            max-width: 80%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+        
+        .card-front .word {
+            font-weight: bold;
+            color: #1e5a7a;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .card-back {
+            background: repeating-linear-gradient(45deg, #ffb347, #ffb347 15px, #ff8c1a 15px, #ff8c1a 30px);
+            transform: rotateY(0deg);
+        }
+        
+        .card-back::after {
+            content: "?";
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .game-btn {
+            background: #ffb347;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .game-btn:hover {
+            background: #ff8c1a;
+            transform: translateY(-2px);
+        }
+        
+        .message-area {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .game-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .game-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .win-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2e7d64, #1e5a46);
+            padding: 30px 40px;
+            border-radius: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 100;
+            animation: bounceIn 0.5s ease;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+            80% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        .win-message h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .win-message button {
+            background: #ffb347;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        /* Logo nổi*/
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.2s ease;
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+
+
+	@keyframes gentleSwing {
+    		0%, 100% { transform: rotate(0deg); }
+    		25% { transform: rotate(6deg); }
+    		75% { transform: rotate(-6deg); }
+	}
+
+	/* Phiên bản cho điện thoại */
+	@media (max-width: 700px) {
+    		.brand-logo-float {
+        	width: 55px;
+        	top: 12px;
+        	right: 12px;
+        	bottom: auto;
+    		}
+	}        
+    </style>
+</head>
+<body>
+    <div class="brand-logo-float" id="brandLogoFloat">
+        <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="English Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+    </div>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🎯 Ghép đôi thẻ bài</h1>
+            <div class="game-info">
+                <span id="matches-display">🔢 Đã ghép: 0</span>
+                <span id="attempts-display">🔄 Lượt lật: 0</span>
+            </div>
+            <a href="../flashcard.html" class="back-btn">← Về Flashcards</a>
+        </div>
+        
+        <div class="category-selector" id="categorySelector">
+            <button class="cat-btn active" data-cat="all">📚 Tất cả</button>
+        </div>
+        
+        <div class="game-board" id="gameBoard"></div>
+        
+        <div class="game-controls">
+            <button class="game-btn" id="resetGame">🔄 Chơi lại</button>
+            <button class="game-btn" id="shuffleBtn">🎲 Xào bài</button>
+        </div>
+        <div class="message-area" id="messageArea"></div>
+    </div>
+    
+    <script src="../js/game-utils.js"></script>
+    <script>
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let attempts = 0;
+        let lockBoard = false;
+        let currentCategory = 'all';
+        
+        const gameBoard = document.getElementById('gameBoard');
+        const matchesDisplay = document.getElementById('matches-display');
+        const attemptsDisplay = document.getElementById('attempts-display');
+        const messageArea = document.getElementById('messageArea');
+        
+        function loadCategories() {
+            const vocab = getVocabularyData();
+            if (!vocab) return;
+            
+            const categories = new Set();
+            vocab.forEach(item => categories.add(item.category));
+            
+            const container = document.getElementById('categorySelector');
+            const allBtn = container.querySelector('.cat-btn');
+            container.innerHTML = '';
+            container.appendChild(allBtn);
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.dataset.cat = cat;
+                btn.textContent = getCategoryIcon(cat) + ' ' + cat;
+                container.appendChild(btn);
+            });
+            
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.cat;
+                    initGame();
+                });
+            });
+        }
+        
+        function getCategoryIcon(category) {
+            const icons = {
+                animal: '🐾',
+                number: '🔢',
+                colour: '🎨',
+                food: '🍎',
+                toy: '🧸',
+                place: '📍',
+                sport: '⚽',
+                clothes: '👕',
+                body: '👤'
+            };
+            return icons[category] || '📖';
+        }
+        
+        function initGame() {
+            const vocab = getVocabularyByCategory(currentCategory);
+            if (!vocab || vocab.length === 0) {
+                gameBoard.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:white;">Không có từ vựng trong danh mục này</div>';
+                return;
+            }
+            
+// Giới hạn 10 từ (20 thẻ)
+const maxPairs = 10;
+let selectedWords = [];
+
+if (vocab.length <= maxPairs) {
+    // Nếu danh sách từ ít hơn hoặc bằng 10 thì lấy hết
+    selectedWords = vocab.slice();
+} else {
+    // Nếu nhiều hơn 10, chọn ngẫu nhiên 10 từ
+    const shuffled = [...vocab];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    selectedWords = shuffled.slice(0, maxPairs);
+}
+            
+            // Tạo cards: mỗi từ có 2 thẻ (1 hình ảnh, 1 từ)
+            cards = [];
+            selectedWords.forEach((item, idx) => {
+                // Thẻ hình ảnh
+                cards.push({
+                    id: idx,
+                    type: 'image',
+                    word: item.word,
+                    meaning: item.meaning,
+                    pairId: idx,
+                    matched: false
+                });
+                // Thẻ từ
+                cards.push({
+                    id: idx,
+                    type: 'word',
+                    word: item.word,
+                    meaning: item.meaning,
+                    pairId: idx,
+                    matched: false
+                });
+            });
+            
+            // Xào bài
+            shuffleCards();
+            
+            matchedPairs = 0;
+            attempts = 0;
+            flippedCards = [];
+            lockBoard = false;
+            updateStats();
+            messageArea.textContent = '';
+            renderBoard();
+        }
+        
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+        }
+        
+        function renderBoard() {
+            gameBoard.innerHTML = '';
+            cards.forEach((card, index) => {
+                const cardElement = createCardElement(card, index);
+                gameBoard.appendChild(cardElement);
+            });
+        }
+        
+        function createCardElement(card, index) {
+            const div = document.createElement('div');
+            div.className = 'memory-card';
+            if (card.matched) div.classList.add('matched');
+            
+            const inner = document.createElement('div');
+            inner.className = 'memory-card-inner';
+            
+            const front = document.createElement('div');
+            front.className = 'card-front';
+            
+            if (card.type === 'image') {
+                const img = document.createElement('img');
+                const imagePath = getImageBasePath() + card.word;
+                img.src = `${imagePath}.png`;
+                img.onerror = function() { this.src = `${imagePath}.jpg`; };
+                img.alt = card.word;
+                front.appendChild(img);
+            } else {
+                const wordSpan = document.createElement('div');
+                wordSpan.className = 'word';
+                wordSpan.textContent = card.word;
+                front.appendChild(wordSpan);
+                const meaningSpan = document.createElement('div');
+                meaningSpan.style.fontSize = '0.7rem';
+                meaningSpan.style.color = '#888';
+                meaningSpan.textContent = card.meaning;
+                front.appendChild(meaningSpan);
+            }
+            
+            const back = document.createElement('div');
+            back.className = 'card-back';
+            
+            inner.appendChild(front);
+            inner.appendChild(back);
+            div.appendChild(inner);
+            
+            div.addEventListener('click', () => onCardClick(index));
+            
+            return div;
+        }
+        
+        function onCardClick(index) {
+            if (lockBoard) return;
+            if (cards[index].matched) return;
+            
+            const cardElement = gameBoard.children[index];
+            if (cardElement.classList.contains('flipped')) return;
+            
+            cardElement.classList.add('flipped');
+            flippedCards.push({ index, card: cards[index] });
+            
+            if (flippedCards.length === 2) {
+                attempts++;
+                updateStats();
+                checkMatch();
+            }
+        }
+        
+        function checkMatch() {
+    const card1 = flippedCards[0];
+    const card2 = flippedCards[1];
+    
+    const isMatch = (card1.card.pairId === card2.card.pairId);
+    
+    if (isMatch) {
+        // THÊM DÒNG NÀY - Âm thanh đúng
+        playBeep('correct');
+        
+        cards[card1.index].matched = true;
+        cards[card2.index].matched = true;
+        matchedPairs++;
+        updateStats();
+        
+        gameBoard.children[card1.index].classList.add('matched');
+        gameBoard.children[card2.index].classList.add('matched');
+        gameBoard.children[card1.index].classList.add('flipped');
+        gameBoard.children[card2.index].classList.add('flipped');
+        
+        speakWord(card1.card.word);
+        showTemporaryMessage('🎉 Chính xác!', true);
+        
+        flippedCards = [];
+        
+        if (matchedPairs === cards.length / 2) {
+            // THÊM DÒNG NÀY - Âm thanh chiến thắng
+            playBeep('win');
+            showWinMessage();
+        }
+    } else {
+        // THÊM DÒNG NÀY - Âm thanh sai
+        playBeep('wrong');
+        
+        showTemporaryMessage('❌ Chưa đúng, thử lại!', false);
+        lockBoard = true;
+        setTimeout(() => {
+            gameBoard.children[card1.index].classList.remove('flipped');
+            gameBoard.children[card2.index].classList.remove('flipped');
+            flippedCards = [];
+            lockBoard = false;
+        }, 800);
+    }
+}
+        
+        function updateStats() {
+            matchesDisplay.textContent = `🔢 Đã ghép: ${matchedPairs}/${cards.length / 2}`;
+            attemptsDisplay.textContent = `🔄 Lượt lật: ${attempts}`;
+        }
+        
+        function showTemporaryMessage(msg, isSuccess) {
+            messageArea.textContent = msg;
+            messageArea.style.color = isSuccess ? '#a5f3c8' : '#ffb3b3';
+            setTimeout(() => {
+                if (messageArea.textContent === msg) {
+                    messageArea.textContent = '';
+                }
+            }, 1000);
+        }
+        
+        function showWinMessage() {
+            const percentage = Math.round((matchedPairs / (cards.length / 2)) * 100);
+            const winDiv = document.createElement('div');
+            winDiv.className = 'win-message';
+            winDiv.innerHTML = `
+                <h2>🎉 CHIẾN THẮNG! 🎉</h2>
+                <p>Bạn đã ghép đúng ${matchedPairs} cặp</p>
+                <p>Lượt lật: ${attempts}</p>
+                <button onclick="this.parentElement.remove(); initGame();">🔄 Chơi tiếp</button>
+                <button onclick="this.parentElement.remove();">✖️ Đóng</button>
+            `;
+            document.body.appendChild(winDiv);
+            speakWord('Congratulations! You win!');
+        }
+        
+        // Reset game
+        document.getElementById('resetGame').addEventListener('click', () => {
+            initGame();
+        });
+        
+        document.getElementById('shuffleBtn').addEventListener('click', () => {
+            shuffleCards();
+            renderBoard();
+            flippedCards = [];
+            lockBoard = false;
+            messageArea.textContent = '🎲 Đã xào bài!';
+            setTimeout(() => {
+                if (messageArea.textContent === '🎲 Đã xào bài!') {
+                    messageArea.textContent = '';
+                }
+            }, 1500);
+        });
+        
+        // Khởi tạo
+        if (checkDataAndRedirect()) {
+            loadCategories();
+            initGame();
+        }
+    </script>
+</body>
+</html>
