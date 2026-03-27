@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Học Đọc Tiếng Anh - SM1 Series</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            background: linear-gradient(135deg, #f5deb3 0%, #fffacd 50%, #faebd7 100%);
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+                /* Logo nổi*/
+        .brand-logo-float {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            z-index: 150;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.2s ease;
+            animation: gentleSwing 3s ease-in-out infinite;
+        }
+
+        .brand-logo-float img {
+            width: 150px;
+            object-fit: contain;
+        }
+
+
+	@keyframes gentleSwing {
+    		0%, 100% { transform: rotate(0deg); }
+    		25% { transform: rotate(6deg); }
+    		75% { transform: rotate(-6deg); }
+	}
+
+	/* Phiên bản cho điện thoại */
+	@media (max-width: 700px) {
+    		.brand-logo-float {
+        	width: 55px;
+        	top: 12px;
+        	right: 12px;
+        	bottom: auto;
+    		}
+	}
+
+        .app-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .screen {
+            background: white;
+            border-radius: 40px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .screen.hidden {
+            display: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin: 0 0 10px 0;
+        }
+
+        .header p {
+            color: #7c8ba0;
+            font-size: 1.1rem;
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .unit-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .unit-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .unit-preview {
+            color: #718096;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .back-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #cbd5e0;
+            transform: translateX(-3px);
+        }
+
+        .game-area {
+            background: #fffaf2;
+            border-radius: 40px;
+            box-shadow: inset 0 1px 4px #0001, 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-header {
+            background: #fef7e0;
+            padding: 15px 20px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lesson-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e66;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .game-btn {
+            background: #ffdd99;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .game-btn:active {
+            transform: scale(0.95);
+        }
+
+        .game-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .sentence {
+            background: white;
+            border-radius: 30px;
+            padding: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #ffe0b5;
+        }
+
+        .word-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .word-card {
+            background: #ffe2b5;
+            min-width: 80px;
+            padding: 12px 18px;
+            text-align: center;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #b97f3a;
+            color: #4a2e12;
+        }
+
+        .word-card.revealed {
+            background: #a0d6b4;
+            box-shadow: 0 2px 0 #5a8f3e;
+            transform: translateY(2px);
+            color: #1f3b0c;
+            cursor: default;
+        }
+
+        .status-message {
+            background: #e9eef3;
+            border-radius: 30px;
+            padding: 15px 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+            color: #2c5282;
+        }
+
+        .cheer {
+            display: inline-block;
+            margin-left: 10px;
+            animation: bounce 0.4s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0.8); opacity: 0; }
+            80% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .screen { padding: 20px; }
+            .word-card { min-width: 65px; padding: 8px 12px; font-size: 1rem; }
+            .lesson-title { font-size: 1.3rem; }
+            .units-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-logo-float" id="brandLogoFloat">
+        <img src="https://lh3.googleusercontent.com/d/1e7uth2SJ0qoL0cHXBizZunjscTiJ9Da9=s400" alt="English Logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+    </div>    
+<div class="app-wrapper">
+<div id="loadingScreen" class="loading" style="display: flex;">
+    📚 Đang tải bài học...
+</div>
+
+    <div id="unitSelectionScreen" class="screen hidden">
+        <div class="header">
+            <h1>📚 Tập Đọc Tiếng Anh</h1>
+            <p>Chọn bài học để bắt đầu luyện đọc nào!</p>
+        </div>
+        <div id="unitsList" class="units-grid"></div>
+    </div>
+
+    <div id="gameScreen" class="screen hidden">
+        <button id="backToUnitsBtn" class="back-btn">← Quay lại danh sách bài</button>
+        
+        <div class="game-area">
+            <div class="lesson-header">
+                <div class="lesson-title" id="currentLessonTitle">Bài đọc</div>
+                <div class="controls">
+                    <button id="resetGameBtn" class="game-btn">🔄 Làm lại</button>
+                    <button id="speakAllBtn" class="game-btn primary">🔊 Đọc cả bài</button>
+                </div>
+            </div>
+            
+            <div id="readingContent"></div>
+            
+            <div id="statusMessage" class="status-message">
+                ✨ Nhấn vào ô vuông để mở từ và nghe đọc ✨
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let lessonsData = [];
+    let currentLesson = null;
+    let currentSentencesData = [];
+    let sentencesState = [];
+    let currentLessonIndex = 0;
+
+    const loadingScreen = document.getElementById('loadingScreen');
+    const unitScreen = document.getElementById('unitSelectionScreen');
+    const gameScreen = document.getElementById('gameScreen');
+    const unitsListDiv = document.getElementById('unitsList');
+    const readingContentDiv = document.getElementById('readingContent');
+    const currentLessonTitleSpan = document.getElementById('currentLessonTitle');
+    const statusSpan = document.getElementById('statusMessage');
+    const resetGameBtn = document.getElementById('resetGameBtn');
+    const speakAllBtn = document.getElementById('speakAllBtn');
+    const backBtn = document.getElementById('backToUnitsBtn');
+
+    let preferredVoice = null;
+
+    function initVoices() {
+        return new Promise((resolve) => {
+            if (window.speechSynthesis.getVoices().length > 0) {
+                selectSamanthaVoice();
+                resolve();
+            } else {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    selectSamanthaVoice();
+                    resolve();
+                };
+            }
+        });
+    }
+
+    function selectSamanthaVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        preferredVoice = voices.find(voice => voice.name === "Samantha") ||
+                         voices.find(voice => voice.name.includes("Google UK") && voice.lang === "en-GB") ||
+                         voices.find(voice => voice.lang === "en-US" && voice.name.includes("Female")) ||
+                         voices.find(voice => voice.lang === "en-US");
+        
+        if (preferredVoice) {
+            console.log("Đã chọn giọng:", preferredVoice.name);
+        }
+    }
+
+    function speakText(text, rate = 0.88) {
+        if (!window.speechSynthesis) return;
+        
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        utterance.rate = rate;
+        utterance.pitch = 1.05;
+        
+        if (preferredVoice) {
+            utterance.voice = preferredVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function speakWord(word) {
+        speakText(word, 0.85);
+    }
+
+    function speakSentence(sentenceWords) {
+        const fullSentence = sentenceWords.join(" ");
+        speakText(fullSentence, 0.88);
+    }
+
+    function onWordClick(sentenceIdx, wordIdx) {
+        if (sentencesState[sentenceIdx][wordIdx]) return;
+        
+        sentencesState[sentenceIdx][wordIdx] = true;
+        const wordText = currentSentencesData[sentenceIdx][wordIdx];
+        
+        speakWord(wordText);
+        renderGame();
+        
+        statusSpan.innerHTML = `🎉 Mở từ: "${wordText}"! Đọc theo nào! 🌟`;
+        setTimeout(() => {
+            if (!window.speechSynthesis.speaking) {
+                statusSpan.innerHTML = "✨ Nhấn tiếp vào ô vuông để mở từ mới ✨";
+            }
+        }, 1500);
+        
+        if (isSentenceFullyRevealed(sentenceIdx)) {
+            const fullSentenceArray = currentSentencesData[sentenceIdx];
+            setTimeout(() => {
+                speakSentence(fullSentenceArray);
+                statusSpan.innerHTML = "🎉 Tuyệt vời! Bạn đã mở hết câu! 🎉<br>👂 Nghe và đọc lại cả câu nhé!";
+                addCheerEffect(sentenceIdx);
+            }, 200);
+        }
+    }
+    
+    function isSentenceFullyRevealed(sentenceIdx) {
+        return sentencesState[sentenceIdx].every(revealed => revealed === true);
+    }
+    
+    function addCheerEffect(sentenceIdx) {
+        const sentenceDiv = document.querySelector(`.sentence[data-sentence-idx='${sentenceIdx}']`);
+        if (sentenceDiv) {
+            const cheerSpan = document.createElement("span");
+            cheerSpan.className = "cheer";
+            cheerSpan.innerText = "🎉 Giỏi lắm, cố lên! 🎉";
+            sentenceDiv.appendChild(cheerSpan);
+            setTimeout(() => cheerSpan.remove(), 2000);
+        }
+    }
+    
+    function renderGame() {
+    if (!currentSentencesData.length) return;
+    
+    let html = "";
+    for (let sIdx = 0; sIdx < currentSentencesData.length; sIdx++) {
+        const sentenceWords = currentSentencesData[sIdx];
+        const wordStates = sentencesState[sIdx];
+        
+        html += `<div class="sentence" data-sentence-idx="${sIdx}"><div class="word-grid">`;
+        for (let wIdx = 0; wIdx < sentenceWords.length; wIdx++) {
+            const word = sentenceWords[wIdx];
+            const isRevealed = wordStates[wIdx];
+            
+            if (isRevealed) {
+                // Thêm data attribute và class cho từ đã mở
+                html += `<div class="word-card revealed" data-s="${sIdx}" data-w="${wIdx}">${escapeHtml(word)}</div>`;
+            } else {
+                html += `<div class="word-card" data-s="${sIdx}" data-w="${wIdx}">❓❓</div>`;
+            }
+        }
+        html += `</div></div>`;
+    }
+    
+    readingContentDiv.innerHTML = html;
+    
+    // Gắn sự kiện cho tất cả các thẻ word-card
+    const allCards = document.querySelectorAll(".word-card");
+    allCards.forEach(card => {
+        const sIdx = parseInt(card.getAttribute("data-s"));
+        const wIdx = parseInt(card.getAttribute("data-w"));
+        
+        card.addEventListener("click", () => {
+            const isRevealed = card.classList.contains("revealed");
+            
+            if (isRevealed) {
+                // Nếu từ đã mở: đọc lại từ đó
+                const wordText = currentSentencesData[sIdx][wIdx];
+                speakWord(wordText);
+                statusSpan.innerHTML = `🔊 Đọc lại từ: "${wordText}"`;
+            } else {
+                // Nếu từ chưa mở: mở từ và đọc
+                if (sentencesState[sIdx] && !sentencesState[sIdx][wIdx]) {
+                    onWordClick(sIdx, wIdx);
+                }
+            }
+        });
+    });
+}
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    function resetCurrentLesson() {
+        if (!currentSentencesData.length) return;
+        sentencesState = currentSentencesData.map(sentence => Array(sentence.length).fill(false));
+        renderGame();
+        statusSpan.innerHTML = "🔄 Đã làm lại! Hãy nhấn từng ô để mở chữ và tập đọc.";
+        window.speechSynthesis.cancel();
+    }
+    
+    function readFullLesson() {
+        if (!currentSentencesData.length) return;
+        window.speechSynthesis.cancel();
+        let fullText = "";
+        for (let sentence of currentSentencesData) {
+            fullText += sentence.join(" ") + ". ";
+        }
+        speakText(fullText, 0.85);
+        statusSpan.innerHTML = "🔊 Đang đọc toàn bộ bài. Hãy lắng nghe và đọc thầm theo!";
+    }
+    
+    function loadLesson(lessonIndex) {
+        currentLesson = lessonsData[lessonIndex];
+        currentLessonIndex = lessonIndex;
+        currentSentencesData = currentLesson.sentences;
+        sentencesState = currentSentencesData.map(sentence => Array(sentence.length).fill(false));
+        
+        currentLessonTitleSpan.textContent = currentLesson.title;
+        renderGame();
+        statusSpan.innerHTML = `📖 Bài: "${currentLesson.title}". Nhấn vào ô vuông để mở từ và nghe đọc!`;
+        window.speechSynthesis.cancel();
+        
+        unitScreen.classList.add('hidden');
+        gameScreen.classList.remove('hidden');
+    }
+    
+    function renderUnitList() {
+        unitsListDiv.innerHTML = "";
+        lessonsData.forEach((lesson, idx) => {
+            const card = document.createElement('div');
+            card.className = 'unit-card';
+            card.onclick = () => loadLesson(idx);
+            
+            const preview = lesson.sentences[0] ? lesson.sentences[0].join(" ") : "Bắt đầu học nào!";
+            
+            card.innerHTML = `
+                <div class="unit-title">${escapeHtml(lesson.title)}</div>
+                <div class="unit-preview">📖 ${escapeHtml(preview.substring(0, 50))}...</div>
+            `;
+            unitsListDiv.appendChild(card);
+        });
+    }
+    
+async function loadData() {
+    try {
+        const response = await fetch('reading.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        lessonsData = await response.json();
+        
+        // Ẩn loading, hiện danh sách bài
+        loadingScreen.style.display = 'none';
+        unitScreen.classList.remove('hidden');
+        
+        renderUnitList();
+    } catch (error) {
+        console.error('Lỗi tải dữ liệu:', error);
+        loadingScreen.innerHTML = '❌ Không thể tải dữ liệu bài học. Vui lòng kiểm tra file reading.json!<br><br><button onclick="location.reload()" style="padding:10px 20px; border-radius:20px; border:none; cursor:pointer;">🔄 Tải lại</button>';
+    }
+}
+    
+    async function init() {
+        await initVoices();
+        await loadData();
+        
+        resetGameBtn.addEventListener('click', resetCurrentLesson);
+        speakAllBtn.addEventListener('click', readFullLesson);
+        backBtn.addEventListener('click', () => {
+            gameScreen.classList.add('hidden');
+            unitScreen.classList.remove('hidden');
+            window.speechSynthesis.cancel();
+        });
+    }
+    
+    init();
+</script>
+</body>
+</html>

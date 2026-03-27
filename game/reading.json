@@ -1,0 +1,175 @@
+[
+    {
+        "id": "SM1_Unit0",
+        "title": "🎯 SM1 Unit 0",
+        "sentences": [
+            ["Hi,", "I’m", "Whisper."],
+            ["What’s", "your", "name?"],
+            ["Hi,", "I’m", "Thunder."],
+            ["What", "a", "nice", "name!"],
+            ["Hi,", "I’m", "Flash."],
+            ["What’s", "your", "name?"],
+            ["Hi,", "I’m", "Misty."],
+            ["What", "a", "nice", "name!"]
+        ]
+    },
+    {
+        "id": "SM1_Unit1",
+        "title": "✏️ SM1 Unit 1",
+        "sentences": [
+            ["Flash,", "Flash,", "please", "come", "back!"],
+            ["Your", "ruler,", "your", "pen,"],
+            ["Your", "paper,", "your", "book,"],
+            ["Your", "pencil,"],
+            ["And", "your", "pencil", "case."],
+            ["Flash,", "Flash,", "close", "your", "bag!"],
+            ["Your", "ruler,", "your", "pen,"],
+            ["Your", "paper,", "your", "book,"],
+            ["Your", "pencil,"],
+            ["Your", "pencil", "case."]
+        ]
+    },
+    {
+        "id": "SM1_Unit2",
+        "title": "🧸 SM1 Unit 2",
+        "sentences": [
+            ["Open", "the", "door,", "come", "with", "me."],
+            ["Lots", "of", "toys", "for", "you", "and", "me."],
+            ["A", "doll,", "a", "car,", "a", "monster", "and", "a", "train,"],
+            ["A", "big,", "big", "ball,", "a", "go-kart", "and", "a", "plane."],
+            ["Open", "the", "door,", "come", "with", "me."],
+            ["Lots", "of", "toys", "for", "you", "and", "me."],
+            ["A", "bike,", "a", "kite,", "and", "a", "computer", "game."],
+            ["A", "big,", "big", "ball,", "a", "go-kart", "and", "a", "plane."]
+        ]
+    },
+    {
+        "id": "SM1_Unit3",
+        "title": "🐾 SM1 Unit 3",
+        "sentences": [
+            ["Pet", "show,", "pet", "show,"],
+            ["Look", "at", "all", "the", "pets."],
+            ["Whisper", "and", "his", "spider,"],
+            ["Daisy", "and", "her", "dog,"],
+            ["Lenny", "and", "his", "lizard,"],
+            ["Sandra", "and", "her", "frog."],
+            ["Pet", "show,", "pet", "show,"],
+            ["Look", "at", "all", "the", "pets."],
+            ["Donnie", "and", "his", "duck,"],
+            ["Katie", "and", "her", "cat,"],
+            ["Thunder", "and", "his", "elephant,"],
+            ["Misty", "and", "her", "rat."]
+        ]
+    },
+    {
+        "id": "SM1_Unit4",
+        "title": "🍽️ SM1 Unit 4",
+        "sentences": [
+            ["Lunchtime!", "Lunchtime!"],
+            ["What’s", "for", "lunch?"],
+            ["I", "don’t", "like", "chicken,"],
+            ["And", "I", "don’t", "like", "cheese."],
+            ["I", "don’t", "like", "pizza,"],
+            ["And", "I", "don’t", "like", "peas."],
+            ["Lunchtime!", "Lunchtime!"],
+            ["What’s", "for", "lunch?"],
+            ["Oh,", "I", "like", "apples,"],
+            ["And", "I", "like", "steak."],
+            ["Oh,", "I", "like", "carrots,"],
+            ["And", "I", "like", "cake!"],
+            ["Yummy!"]
+        ]
+    },
+    {
+    "id": "SM1_Unit5",
+    "title": "📅 SM1 Unit 5",
+    "sentences": [
+        ["Monday", "and", "Tuesday"],
+        ["Are", "fantastic", "days!"],
+        ["Wednesday", "and", "Thursday"],
+        ["Are", "fantastic", "days!"],
+        ["Friday", "and", "Saturday"],
+        ["Are", "fantastic", "days!"],
+        ["But", "Sunday’s", "best."],
+        ["We", "just", "play", "and", "rest!"]
+    ]
+},
+    {
+    "id": "SM1_Unit6",
+    "title": "🏚️ SM1 Unit 6",
+    "sentences": [
+        ["Let’s", "go", "to", "the", "scary", "house,"],
+        ["The", "scary", "house,", "the", "scary", "house."],
+        ["Let’s", "go", "to", "the", "scary", "house,"],
+        ["Let’s", "go", "in!"],
+        ["What’s", "in", "the", "bedroom?"],
+        ["What’s", "in", "the", "bathroom?"],
+        ["What’s", "in", "the", "cellar?"],
+        ["Let’s", "go", "and", "see!"],
+        ["Let’s", "go", "to", "the", "scary", "house,"],
+        ["The", "scary", "house,", "the", "scary", "house."],
+        ["Let’s", "go", "to", "the", "scary", "house,"],
+        ["Let’s", "go", "in!"],
+        ["What’s", "in", "the", "dining", "room?"],
+        ["What’s", "in", "the", "living", "room?"],
+        ["What’s", "in", "the", "kitchen?"],
+        ["Let’s", "go", "and", "see!"]
+    ]
+    },
+    {
+    "id": "SM1_Unit7",
+    "title": "👕 SM1 Unit 7",
+    "sentences": [
+        ["Put", "on", "your", "trousers,"],
+        ["Put", "on", "your", "skirt,"],
+        ["Put", "on", "your", "sweater,"],
+        ["Put", "on", "your", "T-shirt."],
+        ["Put", "on", "your", "shoes,"],
+        ["And", "your", "baseball", "cap."],
+        ["Now", "let’s", "rap!"],
+        ["Trousers,", "T-shirt,"],
+        ["Shoes", "and", "cap."],
+        ["Sweater,", "skirt,"],
+        ["Now", "let’s", "rap."],
+        ["Come", "on", "Whisper,"],
+        ["It’s", "time", "for", "school."]
+    ]
+},
+{
+    "id": "SM1_Unit8",
+    "title": "🤖 SM1 Unit 8",
+    "sentences": [
+        ["Let’s", "make", "a", "robot."],
+        ["You", "and", "me."],
+        ["Here’s", "a", "foot."],
+        ["Here’s", "a", "knee."],
+        ["Here’s", "an", "arm."],
+        ["Here’s", "a", "leg."],
+        ["Here", "are", "the", "fingers."],
+        ["Here’s", "the", "head."],
+        ["Here", "are", "the", "hands."],
+        ["Here", "are", "the", "toes."],
+        ["Let’s", "make", "a", "robot."],
+        ["Off", "it", "goes!"]
+    ]
+},
+{
+    "id": "SM1_Unit9",
+    "title": "🏖️ SM1 Unit 9",
+    "sentences": [
+        ["Eat", "ice", "cream,"],
+        ["Yum,", "yum."],
+        ["Take", "a", "photo,"],
+        ["Click,", "click."],
+        ["Catch", "a", "fish,"],
+        ["Splash,", "splish."],
+        ["Make", "a", "sandcastle,"],
+        ["Dig,", "dig."],
+        ["Look", "for", "shells,"],
+        ["Look,", "look."],
+        ["Play", "in", "the", "sun."],
+        ["It’s", "lots", "of", "fun!"]
+    ]
+}
+
+]
