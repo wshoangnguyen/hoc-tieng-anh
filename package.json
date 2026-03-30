@@ -8,7 +8,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "generate": "nuxt generate",
+    "deploy": "npx nuxi generate && npx gh-pages -d .output/public"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.98",
@@ -20,6 +22,7 @@
     "@nuxt/eslint": "^1.15.2",
     "@tailwindcss/postcss": "^4.2.2",
     "eslint": "^10.0.3",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.8",
     "sass": "^1.98.0",
     "tailwindcss": "^4.2.2",
