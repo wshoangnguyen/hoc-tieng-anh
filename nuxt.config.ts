@@ -31,16 +31,14 @@ export default defineNuxtConfig({
 
   // ========== CẤU HÌNH GITHUB PAGES ==========
   app: {
-    // THAY 'your-repo-name' bằng tên repository GitHub của bạn
-    // Ví dụ: https://github.com/username/my-app -> '/my-app/'
-    baseURL: '/hoc-tieng-anh/',
+    baseURL: '/', // PHẢI ĐỔI THÀNH '/' KHI DÙNG CUSTOM DOMAIN
     buildAssetsDir: 'assets',
   },
-  
+
   nitro: {
     preset: 'static'
   },
-  
+
   experimental: {
     payloadExtraction: false
   }
