@@ -2,6 +2,7 @@
   <UHeader
     class="flex items-center justify-between bg-[#fffbf0fa] backdrop-blur-md lg:px-3 border-b border-[#e8e4da]"
     v-model:open="isOpenMenu"
+    :toggle="isMobile"
   >
     <template #left>
       <div class="flex items-center gap-2 cursor-pointer" @click="onClickLogo">
@@ -60,7 +61,7 @@
       </div>
     </template>
 
-    <template #body v-if="isMobile">
+    <template #body>
       <div
         class="flex flex-col gap-2 items-center h-[calc(100vh-100px)] text-lg text-white"
       >

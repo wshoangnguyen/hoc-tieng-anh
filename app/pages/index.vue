@@ -3,7 +3,7 @@
     <!-- Nút Loa ở góc màn hình -->
     <button
       @click="toggleMute"
-      class="fixed top-5 right-5 z-50 p-3 bg-white/80 rounded-full shadow-lg hover:scale-110 transition-all"
+      class="fixed bottom-45 right-5 z-50 p-3 bg-white/80 rounded-full shadow-lg hover:scale-110 transition-all"
     >
       <span v-if="!isMuted">🔊</span>
       <span v-else>🔇</span>
