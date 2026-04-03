@@ -1,22 +1,88 @@
 === Super Minds 2 ===
-[Unit 0]
-
 [Unit 1]
+[VN] Ngày yêu thích nhất của tôi| là| thứ Hai.| Tôi| thức dậy| lúc| bảy| giờ.| Tôi| ăn sáng| lúc| tám| giờ.| Sau đó| tôi| đi| đến| trường.| Tôi| thích| trường học.| Tiết học yêu thích của tôi| thì| vào| buổi sáng thứ Hai.| Đó là| môn Tiếng Anh!| Tôi| về đến nhà| lúc| bốn| giờ.| Tôi| làm| bài tập về nhà môn Tiếng Anh của tôi. 
+[EN] My favourite day| is| Monday.| I| get up| at| seven| o'clock.| I| have breakfast| at| eight| o'clock.| Then| I| go| to| school.| I| like| school.| My favourite class| is| on| Monday morning.| It's| English!| I| get home| at| four| o'clock.| I| do| my English homework.
 
 [Unit 2]
+[VN] Động vật| sống| trong| những môi trường sống khác nhau.| Một môi trường sống| là| một ngôi nhà| cho| thực vật| và| động vật.| Có| rất nhiều| môi trường sống khác nhau.| Một số| thì| rất| lạnh| như| môi trường vùng cực| và| một số| thì| nóng| như| đồng cỏ| và| môi trường rừng mưa nhiệt đới.| Một số| là| nước| như| môi trường đại dương.| Chúng| đều là| những môi trường sống| nơi mà| động vật| sinh sống. 
+[EN] Animals| live| in| different habitats.| A habitat| is| a home| for| plants| and| animals.| There are| lots of| different habitats.| Some| are| very| cold| like| the polar habitats| and| some| are| hot| like| the grassland| and| rainforest habitats.| Some| are| water| like| the ocean habitat.| They| are all| habitats| where| animals| live.
+
+[Unit 3]
+[VN] Trong| thị trấn của chúng tôi,| trường học| ở| trên| Đường Green.| Nó| ở| phía trước| nhà ga xe lửa.| Có| rất nhiều| cửa hàng| trên| Đường Green.| Kế bên| trường học,| có| một| cửa hàng đồ chơi.| Có| một| hiệu sách| giữa| cửa hàng đồ chơi| và| rạp chiếu phim.| Có| một| công viên| phía sau| các cửa hàng| và| rạp chiếu phim. 
+[EN] In| our town,| the school| is| on| Green Street.| It| is| in front of| the train station.| There are| a lot of| shops| on| Green Street.| Next to| the school,| there is| a| toy shop.| There is| a| bookshop| between| the toy shop| and| the cinema.| There is| a| park| behind| the shops| and| the cinema.
+
+[Unit 4]
+[VN] Xin chào,| mình là| Sandra.| Mình| sống| ở| London.| Trong| gia đình của chúng mình,| chúng mình| thường| ăn| thịt gà| cho| bữa tối.| Tất cả chúng mình| đều thích| thịt gà.| Mẹ| cũng| nấu| khoai tây,| cà rốt| và| cà chua.| Mẹ của mình| và| anh trai John  của mình| thích| khoai tây,| cà rốt| và| cà chua. 
+[EN] Hi,| I'm| Sandra.| I| live| in| London.| In| our family,| we| often| eat| chicken| for| dinner.| We all| like| chicken.| Mum| also| cooks| potatoes,| carrots| and| tomatoes.| My mum| and| my brother John| like| potatoes,| carrots| and| tomatoes.
+
+[Unit 5]
+
 
 
 === Super Minds 3 ===
 [Unit 0]
+[VN] Đây| là| Mike.| Anh ấy| là| anh họ của Tom.| Mike| chín| tuổi.| Cậu ấy| đang ở| trong| ngôi nhà lớn.| Cậu ấy| muốn| đi xuống| tầng dưới| tới tầng hầm.| Mike| thật sự| giỏi| giải| câu đố| và| chơi| đàn ghi-ta.| Nhưng| cậu ấy không| giỏi| trèo| cây.| Nhìn kìa!| Đây| là| cuốn sách cũ của dì của cậu ấy.| Nó| là| số| chín mươi lăm.
+[EN] This| is| Mike.| He| is| Tom’s cousin.| Mike is| nine| years old.| He| is| in |the big house.| He| wants| to go| downstairs| to the cellar.| Mike is| really| good at| doing| puzzles| and| playing| the guitar.| But| he is not| good at| climbing| trees.| Look!| This| is| his aunt’s old book.| It| is| number| ninety-five.
 
 [Unit 1]
 
 [Unit 2]
+
+
+=== A2 ===
+[U0: About me]
+[VN] Xin chào,| tên của mình là| Nam| và| mình| 13 tuổi.| Gia đình của mình| có| bốn| người:| bố,| mẹ,| anh trai| và| mình.| Mình| có| một| chiếc xe đạp mới| nhưng| mình| không có| điện thoại thông minh.| Mình| có thể| chơi bóng đá| rất giỏi| nhưng| mình| không thể| bơi.| Bạn thân của mình| đến từ| nước Anh.
+[EN] Hello,| my name is| Nam| and| I am| 13 years old.| My family| has| four| people:| dad,| mum,| older brother| and| me.| I| have got| a| new bike| but| I| haven't got| a smartphone.| I| can| play football| very well| but| I| can't| swim.| My best friend| comes from| England.
+
+[U1: Simple/ daily life]
+[VN] Mình| luôn luôn| thức dậy| vào lúc| 6:15| sáng.| Mình| thường| ăn| sáng| với| bánh mì| và| uống| sữa.| Sau đó,| mình| bắt| xe buýt| đến trường.| Mình| hiếm khi| đi bộ| đến trường| vì| nó| rất| xa.| Vào buổi tối,| sau| việc làm| bài tập,| mình| thỉnh thoảng| chơi| game| với| bạn bè.| Mình| không bao giờ| thức khuya.
+[EN] I| always| get up| at| 6:15| in the morning.| I| usually| have| breakfast| with| bread| and| drink| milk.| Then,| I| take| the bus| to school.| I| rarely| walk| to school| because| it is| very| far.| In the evening,| after| doing| homework,| I| sometimes| play| games| with| my friends.| I| never| stay up late.
+
+[*U2: Simple, cont./ weather]
+[VN] Ở nước mình,| mùa hè| thì thường| rất| nóng| và| có nhiều nắng.| Nhưng| hôm nay| thời tiết| thì| rất khác lạ.| Bầu trời| đang đầy| mây đen| và| trời| đang mưa| rất to.| Gió| đang thổi| mạnh| ngoài cửa sổ.| Mình| không thể| đi ra ngoài| nên (vì vậy)| mình| đang ngồi| trong phòng khách| và| đọc| truyện tranh.
+[EN] In my country,| summer| is usually| very| hot| and| sunny.| But| today| the weather| is| very strange.| The sky| is full of| black clouds| and| it| is raining| very hard.| The wind| is blowing| strongly| outside the window.| I| can't| go outside| so| I| am sitting| in the living room| and| reading| comics.
+
+[*U3: Past/ screens]
+[VN] Cuối tuần trước| đã thật tuyệt vời!| Sáng thứ Bảy,| mình| đã tải| một| trò chơi mới| và| chơi trực tuyến| cùng| anh họ.| Trò chơi đó| đã| cực kỳ| thú vị.| Vào buổi tối,| gia đình mình| đã xem| một| bộ phim khoa học viễn tưởng.| Phim| đã không hề| nhàm chán| mà| đã |rất| kịch tính.| Bọn mình| đã thức| đến| 11| giờ| đêm.
+[EN] Last weekend| was great!| On Saturday morning,| I| downloaded| a| new game| and| played online| with| my cousin.| That game| was| extremely| fun.| In the evening,| my family| watched| a| science fiction film.| The film| wasn't| boring| but| was| very| exciting.| We| stayed up| until| 11| o'clock| at night.
+
+[U4: Past/ illness]
+[VN] Hôm qua,| mình| đã chơi| thể thao| dưới mưa| nên (vì vậy)| hôm nay| mình| bị cảm lạnh| và| đau đầu kinh khủng.| Mình| không thể| đi học.| Mẹ của mình| nói rằng| mình| nên| uống| nhiều nước| và| đi ngủ| sớm.| Mình| không nên| xem TV| hay| nhìn vào| màn hình điện thoại| nữa.
+[EN] Yesterday,| I| played| sports| in the rain| so| today| I| have a cold| and| a terrible headache.| I| can't| go to school.| My mum| says that| I| should| drink| lots of water| and| go to bed| early.| I| shouldn't| watch TV| or| look at| the phone screen| anymore.
+
+[*U5: Past cont./ holiday]
+[VN] Kì nghỉ năm ngoái,| trong khi| mình| đang bơi| ở bãi biển| cùng| gia đình| thì trời (thời tiết)| đột nhiên| đổ mưa to.| Bọn mình| đã phải chạy| thật nhanh| về (đến)| khách sạn.| Ngày hôm sau,| khi| bọn mình| đang đi bộ| loanh quanh thành phố,| mình| đã gặp| một| người bạn học cũ.| Thật là| một| chuyến đi đáng nhớ!
+[EN] Last year's holiday,| while| I| was swimming| at the beach| with| my family,| the weather| suddenly| poured with heavy rain.| We| had to run| very quickly| to| the hotel.| The next day,| when| we| were walking| around the city,| I| met| an| old classmate.| It was| a| unforgettable trip!
+
+[*U6: Simple/ food counting]
+[VN] Tối nay| mẹ của mình| nhờ (yêu cầu)| mình| nấu bữa tối| nhưng| trong tủ lạnh| không có| nhiều| đồ ăn.| Chỉ có| một ít| sữa,| vài (một ít)| quả cà chua| và| không có tì| thịt bò| nào.|  Mình| cần| đi siêu thị.| Mình| sẽ mua| một ít| thịt gà,| nhiều| rau củ| và| một vài| quả trứng| để làm| món salad.
+[EN] Tonight,| my mum| asks| me| to cook dinner| but| in the fridge| there isn't| much| food.| There is only| a little| milk,| a few| tomatoes| and| there isn't any| beef| at all.| I| need| to go to the supermarket.| I| will buy| some| chicken,| a lot of| vegetables| and| a few| eggs| to make| a salad.
+
+[U8: Perfect/ houses]
+[VN] Mình| sống| trong| một| căn hộ hiện đại| ở| trung tâm thành phố.| Gia đình mình| đã sống| ở đây| được| 5| năm.| Phòng yêu thích nhất của mình| là| phòng ngủ.| Có| một| cái giường êm ái| ở giữa| phòng,| một| cái bàn học| dưới| cửa sổ| và| một| giá sách| bên cạnh| giường.| Bố mẹ mình| vừa mới mua| cho mình| một| chiếc đèn học mới.
+[EN] I| live| in| a| modern flat| in| the city centre.| My family| have lived| here| for| 5| years.| My favourite room| is| my bedroom.| There is| a| comfortable bed| in the middle of| the room,| a| desk| under| the window,| and| a| bookshelf| next to| the bed.| My parents| have just bought| me| a| new desk lamp.
+
+[**U9: V + V/ personality]
+[VN] Mình| thật sự| thích việc dành| thời gian rảnh rỗi| với| hội bạn thân.| Họ| rất| hào phóng| và| vui tính| nên (vì vậy)| mình| luôn cảm thấy| vui vẻ| khi|mình ở cạnh| họ.| Tuy nhiên,| mình| không chịu nổi| sự thật rằng| họ| hay| đi học| muộn.| Mình| hy vọng| chúng mình| sẽ| đi cắm trại| cùng nhau| vào| mùa hè này.
+[EN] I| really| enjoy spending| free time| with| my close friends.| They are| very| generous| and| funny| so| I| always feel| happy| when| I'm with| them.| However,| I| can't stand| the fact that| they| often| come to school| late.| I| hope| we| will| go camping| together| in| this summer.
+
+[**U11: Future plan/ going to]
+[VN] Cuối tuần này,| mình| đang dự định sẽ| đi đến| trung tâm thương mại| với| chị gái của mình.| Mình| đang tiết kiệm| tiền| để mua| một| đôi giày thể thao mới.| Mình| sẽ không| lãng phí| tiền| vào| những món đồ không cần thiết.| Chiều Chủ Nhật,| bọn mình| sẽ| đi xem phim| lúc| 3| giờ| chiều| theo| lịch trình đã đặt trước.
+[EN] This weekend,| I| am planning| to go to| the shopping mall| with| my older sister.| I| am saving| money| to buy| a| new pair of trainers.| I| will not| waste| money| on| unnecessary things.| On Sunday afternoon,| we| are going to| watch a film| at| 3| o'clock| in the afternoon| according to| the pre-booked schedule.
+
+[**U13: Comparation, perfect]
+[VN] Diễn viên yêu thích nhất của mình| là| Tom.| Anh ấy| trông không| cao bằng| bạn diễn của mình,| nhưng| anh ấy| tự tin hơn| và| ăn mặc| thời trang hơn rất nhiều.| Bộ phim mới nhất của anh ấy| là| bộ phim hài hước nhất| mà| mình| từng xem.| Theo mình,| anh ấy| là| diễn viên tuyệt vời nhất| thế giới.
+[EN] My favourite actor| is| Tom.| He| doesn't look| as tall as| his co-star,| but| he| is more confident| and| dresses| much more fashionably than him.| His latest film| is| the funniest film| that| I| have ever watched.| In my opinion,| he| is| the greatest actor| in the world.
+
+[**U14: Long sentences]
+[VN] Bóng rổ| là| một| môn thể thao đồng đội| rất| phổ biến.| Để chơi tốt,| bạn| phải| luyện tập chăm chỉ| và| phối hợp nhanh nhẹn| với| đồng đội của bạn.| Bạn| không được phép| cầm bóng chạy| quá (hơn)| ba| bước.| Bạn| cần phải| nhảy| thật cao| và| ném bóng| chính xác| vào rổ| để ghi bàn.
+[EN] Basketball| is| a| team sport| very| popular.| To play well,| you| must| practise hard| and| coordinate quickly| with| your teammates.| You| are not allowed| to run with the ball| for more than| three| steps.| You| need| to jump| really high| and| throw the ball| accurately| into the basket| to score.
 
 === Kid stories ===
 [Story 1]
 [VN] Đây| là| Ben.| Chú ấy| là| một| chú chó.| Ben| thì| đói bụng.| Whisper| đi đến.| Cậu ấy| có| một| cây xúc xích.| Cậu ấy| đưa| cây xúc xích| cho| Ben.| Ben| ăn| cây xúc xích.| Chú ấy| thích| nó.| Bây giờ,| Ben| thì| rất| hạnh phúc. 
 [EN] This| is| Ben.| He| is| a| dog.| Ben| is| hungry.| Whisper| comes.| He| has got| a| sausage.| He| gives| the sausage| to| Ben.| Ben| eats| the sausage.| He| likes| it.| Now,| Ben| is| very| happy.
+
 [Story 2]
 [VN] Trong| sở thú,| có| một| chú gấu bắc cực.| Tên của chú| là| Snow.| Hôm nay,| Snow| thì| rất| buồn.| Chú ấy| thì| đói bụng.| Người trông thú| đi đến.| Ông ấy| có| một| quả dưa hấu to.| Ông ấy| đưa| quả dưa hấu| cho| Snow.| Snow| ăn| quả dưa hấu.| Chú ấy| thích| nó.| Bây giờ,| Snow| thì| rất| hạnh phúc. 
 [EN] In| the zoo,| there is| a| polar bear.| His name| is| Snow.| Today,| Snow| is| very| sad.| He| is| hungry.| The zookeeper| comes.| He| has| a| big watermelon.| He| gives| the watermelon| to| Snow.| Snow| eats| the watermelon.| He| likes| it.| Now,| Snow| is| very| happy.
@@ -86,4 +152,3 @@
 [Story 6]
 [VN] Hôm qua,| Alex và Patrick| đã ở| trên đảo.| Họ| đã có| một| cái xẻng.| Họ| đã đào| một| cái hố.| Đột nhiên,| họ| đã tìm thấy| một| rương kho báu.| Nó| đã ở| dưới| một| cây cọ.| Bên trong,| đã có| rất nhiều| tiền vàng.| Nhưng| những đứa trẻ| đã| trung thực.| Kho báu| không phải là| của họ.| Cướp biển| đã lấy trộm nó| từ| một gia đình.| Họ| đã trả lại| số vàng.| Đó là| một| việc làm tốt.
 [EN] Yesterday,| Alex and Patrick| were| on the island.| They| had| a| spade.| They| dug| a| hole.| Suddenly,| they| found| a| treasure chest.| It| was| under| a| palm tree.| Inside,| there were| lots of| gold coins.| But| the children| were| honest.| The treasure| was not| theirs.| Pirates| stole it| from| a family.| They| gave back| the gold.| It was| a| good deed.
-
