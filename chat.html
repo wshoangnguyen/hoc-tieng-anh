@@ -347,6 +347,16 @@
     // ============================================================
     // ADD MESSAGE TO CHAT
     // ============================================================
+    function formatMessage(text) {
+      // Convert **bold** to <strong>
+      text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // Convert *italic* to <em>
+      text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      // Convert newlines to <br>
+      text = text.replace(/\n/g, '<br>');
+      return text;
+    }
+
     function addMessage(text, role) {
       const chatBox = document.getElementById('chatBox');
       const div = document.createElement('div');
@@ -358,7 +368,7 @@
       
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
-      bubble.textContent = text;
+      bubble.innerHTML = formatMessage(text);
       
       div.appendChild(avatar);
       div.appendChild(bubble);

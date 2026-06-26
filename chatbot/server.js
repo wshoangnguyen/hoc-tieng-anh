@@ -101,7 +101,31 @@ Respond gently but firmly:
 
 🎮 MINI CHALLENGES:
 Occasionally create short practice exercises:
-"Mini Challenge 🎮: She ___ to school yesterday. (A. go  B. went  C. gone) Bạn chọn đáp án nào? 😊"
+"🎮 Mini Challenge:
+She ___ to school yesterday.
+A. go
+B. went
+C. gone
+Bạn chọn đáp án nào? 😊"
+
+📐 FORMATTING RULES (VERY IMPORTANT):
+- ALWAYS use line breaks between ideas — never write a wall of text.
+- Use bullet points (• or -) for lists, steps, or options.
+- Use **bold** for key words, grammar patterns, and correct answers.
+- Use 🎯 for main points, 📖 for vocabulary, 📝 for grammar, 🎮 for mini games.
+- Separate examples onto their own line.
+- MAX 2-3 sentences per paragraph, then break.
+- Example of GOOD formatting:
+  "Chào bạn! Để hiểu từ **explore**, mình cùng xem ví dụ nhé 📖
+  
+  • *I want to **explore** new places.*
+  → Dịch: Tôi muốn khám phá những nơi mới.
+  
+  🤔 Dựa vào ví dụ trên, bạn đoán **explore** nghĩa là gì?
+  
+  Sau khi bạn đoán xong, mình sẽ hướng dẫn phát âm nhé!"
+- Example of BAD formatting (NEVER do this):
+  "Chào bạn để hiểu từ explore mình cùng xem ví dụ nhé I want to explore new places dịch là tôi muốn khám phá những nơi mới dựa vào ví dụ trên bạn đoán explore nghĩa là gì"
 
 📚 CURRICULUM CONTEXT:
 The student is learning from Cambridge English curriculum:
@@ -116,6 +140,10 @@ When relevant, reference the current unit topic based on the student's question.
 // ============================================================
 const sessions = new Map();
 const SESSION_TIMEOUT = 30 * 60 * 1000;
+
+// Rate limiting
+const MAX_CONCURRENT = 15;
+let activeRequests = 0;
 
 function getSession(sessionId) {
   let session = sessions.get(sessionId);
@@ -173,7 +201,7 @@ function logChat(sessionId, question, answer) {
 // ============================================================
 // CALL AI API
 // ============================================================
-function callAI(messages, callback) {
+function callAI(messages, callback, attempt = 1) {
   const apiKey = process.env.API_KEY;
   const apiUrl = process.env.API_URL || 'https://api.deepseek.com/v1/chat/completions';
   const model = process.env.MODEL || 'deepseek-chat';
@@ -201,7 +229,7 @@ function callAI(messages, callback) {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Length': Buffer.byteLength(payload),
     },
-    timeout: 25000,
+    timeout: 30000,
   };
 
   const req = https.request(options, (res) => {
@@ -213,7 +241,13 @@ function callAI(messages, callback) {
         if (result.choices && result.choices[0] && result.choices[0].message) {
           callback(null, result.choices[0].message.content.trim());
         } else if (result.error) {
-          callback(new Error(result.error.message || 'API error'));
+          // Retry on rate limit or server error (max 2 retries)
+          if (attempt < 3 && (result.error.code === 'rate_limit_exceeded' || result.error.type === 'server_error')) {
+            console.warn(`Retry ${attempt}/2 after API error: ${result.error.message}`);
+            setTimeout(() => callAI(messages, callback, attempt + 1), 2000 * attempt);
+          } else {
+            callback(new Error(result.error.message || 'API error'));
+          }
         } else {
           callback(new Error('Unexpected API response'));
         }
@@ -225,10 +259,22 @@ function callAI(messages, callback) {
 
   req.on('timeout', () => {
     req.destroy();
-    callback(new Error('Request timeout'));
+    if (attempt < 3) {
+      console.warn(`Timeout retry ${attempt}/2`);
+      setTimeout(() => callAI(messages, callback, attempt + 1), 2000 * attempt);
+    } else {
+      callback(new Error('Request timeout after retries'));
+    }
   });
 
-  req.on('error', (e) => { callback(e); });
+  req.on('error', (e) => {
+    if (attempt < 3) {
+      console.warn(`Network retry ${attempt}/2: ${e.message}`);
+      setTimeout(() => callAI(messages, callback, attempt + 1), 2000 * attempt);
+    } else {
+      callback(e);
+    }
+  });
   req.write(payload);
   req.end();
 }
@@ -264,6 +310,16 @@ const server = http.createServer((req, res) => {
 
   // Chat endpoint
   if (req.method === 'POST' && req.url === '/chat') {
+    // Rate limiter: if too many concurrent requests, ask to wait
+    if (activeRequests >= MAX_CONCURRENT) {
+      res.writeHead(503, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        reply: 'Buddy đang có rất nhiều bạn hỏi cùng lúc... Bạn đợi vài giây rồi thử lại nhé! 🤖💨',
+        sessionId: 'busy',
+      }));
+      return;
+    }
+
     let body = '';
     req.on('data', (chunk) => { body += chunk; });
     req.on('end', () => {
@@ -295,12 +351,14 @@ const server = http.createServer((req, res) => {
           ...session.history.slice(-10),
         ];
 
+        activeRequests++;
         callAI(messages, (err, reply) => {
+          activeRequests--;
           if (err) {
             console.error('Buddy AI error:', err.message);
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
-              reply: 'Buddy đang hơi mệt một chút... Bạn đợi vài giây rồi thử lại nhé! 😊💤',
+              reply: 'Buddy đang hơi mệt một chút... Bạn đợi vài giây rồi thử lại nhé! 🤖💤',
               sessionId: sessionId || 'default',
             }));
             return;
