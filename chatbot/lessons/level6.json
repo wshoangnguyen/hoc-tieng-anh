@@ -1,0 +1,467 @@
+[
+  {
+    "level": "level6",
+    "unit": 0,
+    "title": "Back to school",
+    "big_question": "Kể lại các trải nghiệm và hoạt động trong trường học bằng tiếng Anh như thế nào nhỉ?",
+    "vocabulary": [
+      "basketball hoop", "bell", "net", "football pitch", "running track", 
+      "gym", "litter bin", "tennis court", "bike rack", "railings"
+    ],
+    "grammar": [
+      "Present perfect with 'already' and 'yet': Have you had some food yet? - We have already met.",
+      "Relative clauses with 'who', 'which', 'where': I’m the leopard who likes to rap. This is the jungle where I rule."
+    ],
+    "phonics": [
+      "Spelling patterns for long vowel sounds: rain, day, cake"
+    ],
+    "skills": [
+      "Reading for specific information",
+      "Talking about experiences",
+      "Revising relative pronouns and present perfect"
+    ],
+    "value": "Thinking about what you're doing",
+    "clil_topic": "N/A",
+    "project": "N/A",
+    "speaking_prompts": [
+      "What lesson have we got now?",
+      "Have you had some food yet?",
+      "Istanbul is the city where..."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You throw your rubbish in here when you are at school.",
+        "answer": "litter bin"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You leave your bicycle here when you arrive at school.",
+        "answer": "bike rack"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I haven't done my homework _______.",
+        "answer": "yet"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 1,
+    "title": "The treasure",
+    "big_question": "What kinds of treasure are there? (Có những loại kho báu nào trên thế giới nhỉ?)",
+    "vocabulary": [
+      "palm tree", "hook", "eye-patch", "binoculars", "key", 
+      "hammock", "coins", "spade", "treasure chest", "hole", "stone"
+    ],
+    "grammar": [
+      "Present perfect with 'for' and 'since': I've had these lovely spots since I was a cub. I've had my big, long tail for eleven years.",
+      "Questions with 'How long...?': How long have you had them?"
+    ],
+    "phonics": [
+      "Words with '-sure' and '-ture' endings: treasure, future, picture, measure"
+    ],
+    "skills": [
+      "Reading and speaking about finds and treasures",
+      "Listening and writing a blog entry / portfolio"
+    ],
+    "value": "Being honest",
+    "clil_topic": "Geography: Precious metals (gold, silver)",
+    "project": "Make a poster about gold or silver",
+    "speaking_prompts": [
+      "What kinds of treasure are there?",
+      "How long have you had this?",
+      "I've had it since 2019."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this tool to dig a hole in the ground.",
+        "answer": "spade"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "Pirates look through these to see things far away.",
+        "answer": "binoculars"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I've had my bike _______ six months.",
+        "answer": "for"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 2,
+    "title": "Future transport",
+    "big_question": "How will people travel in the future? (Con người sẽ di chuyển như thế nào trong tương lai?)",
+    "vocabulary": [
+      "hang-glider", "parachute", "monorail", "solar panel", 
+      "microlight", "wind turbine", "cable car", "jet pack", 
+      "surfboard", "inline skates", "unicycle", "floating skateboard"
+    ],
+    "grammar": [
+      "Expressing necessity with 'need to' / 'don't need to': You don't need to drive a car. All you need to do is climb to get from here to there.",
+      "Making predictions with 'will' / 'won't': There will be a lot of noise. There won't be any trees left."
+    ],
+    "phonics": [
+      "Pronunciation of '-sion', '-ssion', and '-tion' endings: unvoiced /ʃ/ (station) and voiced /ʒ/ (television)"
+    ],
+    "skills": [
+      "Reading and speaking about transport",
+      "Listening and writing about future travel"
+    ],
+    "value": "Listening carefully",
+    "clil_topic": "Environmental science: Renewable energy",
+    "project": "Write an advertisement for a new school bus",
+    "speaking_prompts": [
+      "What do you need to bring for the trip?",
+      "How will we travel in 2050?",
+      "I think there will be flying cars."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "It looks like a train, but it travels up in the air on rails.",
+        "answer": "monorail"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You wear this machine on your back to fly in the air.",
+        "answer": "jet pack"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "You _______ to take a passport to travel to another country.",
+        "answer": "need"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 3,
+    "title": "Ancient Egypt",
+    "big_question": "What was life like in Ancient Egypt? (Cuộc sống ở Ai Cập cổ đại diễn ra như thế nào?)",
+    "vocabulary": [
+      "Sphinx", "pharaoh", "slaves", "pyramid", "chariot", 
+      "rock", "hieroglyphics", "step", "mummy", "tomb"
+    ],
+    "grammar": [
+      "Past passive (was/were + past participle): The pyramids were built by slaves. Who was this den built by?",
+      "Quantifiers (a lot of / lots of / a few / a little): There were lots of trees in this jungle. I have a little money."
+    ],
+    "phonics": [
+      "Past simple '-ed' endings: /t/ (finished), /d/ (agreed), /ɪd/ (decided)"
+    ],
+    "skills": [
+      "Speaking, reading and listening about Ancient Egypt",
+      "Reading for specific information"
+    ],
+    "value": "Respecting differences",
+    "clil_topic": "History: Ancient Egyptian art",
+    "project": "Design and describe an Ancient Egyptian crown",
+    "speaking_prompts": [
+      "What was life like in Ancient Egypt?",
+      "How were the pyramids built?",
+      "There were a lot of slaves."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "A king of ancient Egypt.",
+        "answer": "pharaoh"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "A dead body from ancient Egypt wrapped in bandages.",
+        "answer": "mummy"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "The blocks of rock _______ taken to Giza on boats.",
+        "answer": "were"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 4,
+    "title": "Olympic sports",
+    "big_question": "What do we know about sports? (Chúng ta biết những gì về các môn thể thao nhỉ?)",
+    "vocabulary": [
+      "long jump", "hurdles", "high jump", "boxing", "archery", 
+      "wrestling", "weightlifting", "rowing", "gymnastics", "fencing"
+    ],
+    "grammar": [
+      "Possibility with 'could': We could play some volleyball. You could try to teach me.",
+      "Present continuous for future arrangements: I'm running in the morning. I'm cycling on my bike."
+    ],
+    "phonics": [
+      "Four ways of pronouncing the letter 'y': funny, yellow, pyramid, sky"
+    ],
+    "skills": [
+      "Reading and speaking about sports",
+      "Listening and speaking"
+    ],
+    "value": "The sporting spirit",
+    "clil_topic": "Physical education: Fitness",
+    "project": "Plan and write a leaflet with training ideas for a school sports team",
+    "speaking_prompts": [
+      "We could try some archery.",
+      "What are you doing on Saturday?",
+      "I'm flying to Rome on Monday."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use a bow and arrows in this sport.",
+        "answer": "archery"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You lift very heavy things in this Olympic sport.",
+        "answer": "weightlifting"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "We _______ go to the cinema tonight if you want.",
+        "answer": "could"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 5,
+    "title": "In London",
+    "big_question": "Why is London famous? (Tại sao Luân Đôn lại nổi tiếng nhỉ?)",
+    "vocabulary": [
+      "carpenter's", "jeweller's", "butcher's", "grocer's", "baker's", 
+      "barber's", "tailor's", "chemist's"
+    ],
+    "grammar": [
+      "Present perfect with 'ever' and 'never': Have you ever been to London Zoo? - No, she hasn't. She's never been.",
+      "Present perfect and past simple: I had a swim. I went home."
+    ],
+    "phonics": [
+      "Pronunciation of 's' and 'z' sounds: shops, weeks / amazing, animals"
+    ],
+    "skills": [
+      "Reading for specific information",
+      "Listening, reading and speaking"
+    ],
+    "value": "Thinking of others",
+    "clil_topic": "Maths: 3D shapes",
+    "project": "Design a new building for your school",
+    "speaking_prompts": [
+      "Have you ever been to London?",
+      "I've never watched a football match on TV!",
+      "Which attractions in London would you most like to visit?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You go to this shop to buy medicine and soap.",
+        "answer": "chemist's"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You buy fresh bread and cakes in this shop.",
+        "answer": "baker's"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Have you _______ eaten Chinese food?",
+        "answer": "ever"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 6,
+    "title": "Crazy inventions",
+    "big_question": "How do inventions help us? (Làm thế nào những phát minh giúp ích cho chúng ta?)",
+    "vocabulary": [
+      "screwdriver", "hammer", "drill", "saw", "lever", 
+      "spanner", "paintbrush", "paint pot", "button", 
+      "switch", "nails", "workbench"
+    ],
+    "grammar": [
+      "Quantifiers with 'too many' / 'not enough': I've got too many jobs to do. I haven't got enough time.",
+      "Asking for information 'Can you tell me what this is / does / is for?': Can you tell me what the machine is? Can you tell me what this button does? Can you tell me what the machine is for?"
+    ],
+    "phonics": [
+      "Different ways of pronouncing the letters 'gh': high, laugh, through, caught, enough"
+    ],
+    "skills": [
+      "Reading and speaking about inventions",
+      "Speaking, listening and writing"
+    ],
+    "value": "The benefits of technology",
+    "clil_topic": "Science: Simple machines",
+    "project": "Draw a toy to put in a park for younger children and explain how it works",
+    "speaking_prompts": [
+      "Can you tell me what this button does?",
+      "What is the most important invention?",
+      "I've got too many jobs to do."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this tool to hit nails into wood.",
+        "answer": "hammer"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this tool for cutting wood.",
+        "answer": "saw"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I haven't got _______ time to play.",
+        "answer": "enough"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 7,
+    "title": "This is Houston",
+    "big_question": "What do we know about space? (Chúng ta biết những gì về vũ trụ?)",
+    "vocabulary": [
+      "countdown clock", "lunar module", "space capsule", 
+      "spacesuit", "launch pad", "crater", "control panel", 
+      "headset", "screen"
+    ],
+    "grammar": [
+      "Gerunds (verb + -ing) as subjects and objects: Going on a space trip is exciting! Staying up late is really tiring.",
+      "Reported speech: He said that he was back from the stars. He said that he didn't know the way."
+    ],
+    "phonics": [
+      "Different spellings of the sound /ʌ/: sun, son, love"
+    ],
+    "skills": [
+      "Listening, writing and speaking about space",
+      "Reading"
+    ],
+    "value": "Admitting mistakes",
+    "clil_topic": "Science: Space",
+    "project": "Find out about and draw a constellation and answer questions about it",
+    "speaking_prompts": [
+      "Going on a space trip is exciting!",
+      "What do we know about space?",
+      "The alien said that he was from Mars."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "Special clothing worn by astronauts in space.",
+        "answer": "spacesuit"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "A large round hole in the ground on the moon.",
+        "answer": "crater"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "He said _______ he wanted a map.",
+        "answer": "that"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 8,
+    "title": "A cold place",
+    "big_question": "What's it like at the Earth's poles? (Khí hậu ở các vùng cực của Trái Đất như thế nào?)",
+    "vocabulary": [
+      "Northern Lights", "iceberg", "polar bear", "polar bear cub", 
+      "ice floe", "seal", "seal pup", "igloo", "mittens", "sledge"
+    ],
+    "grammar": [
+      "Question tags with 'be': It's cold at the poles, isn't it? And the nights are dark, aren't they?",
+      "Modals 'may' / 'might' for possibility: The jungle may be in danger. They might take our home away."
+    ],
+    "phonics": [
+      "Word stress in longer words: penguin, adventure, yesterday"
+    ],
+    "skills": [
+      "Speaking and listening about the Arctic and Antarctic",
+      "Reading, speaking and writing"
+    ],
+    "value": "Looking after wildlife",
+    "clil_topic": "Geography: The Arctic",
+    "project": "Make a storyboard or a slide presentation about the Arctic",
+    "speaking_prompts": [
+      "What's it like at the Earth's poles?",
+      "It's cold at the poles, isn't it?",
+      "We might go to a concert tomorrow."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "A house made of ice bricks.",
+        "answer": "igloo"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "A big block of ice in the sea.",
+        "answer": "iceberg"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "It's cold today, _______ it?",
+        "answer": "isn't"
+      }
+    ]
+  },
+  {
+    "level": "level6",
+    "unit": 9,
+    "title": "The Jurassic Age",
+    "big_question": "What do we know about prehistoric times? (Chúng ta biết những gì về thời tiền sử?)",
+    "vocabulary": [
+      "sunrise", "horizon", "pond", "grassland", "valley", 
+      "bush", "stream", "swamp", "log"
+    ],
+    "grammar": [
+      "2nd conditional: If I had a time machine, I'd go back to the past. If I met a dinosaur, I wouldn't stop to say 'hello'.",
+      "2nd conditional questions: What would you do if you saw a dinosaur?"
+    ],
+    "phonics": [
+      "Different spellings of the sound /ɔː/: short, awful, ball, dinosaur",
+      "Question intonation"
+    ],
+    "skills": [
+      "Reading about prehistoric animals",
+      "Listening, reading and writing about the Stone Age"
+    ],
+    "value": "Taking an interest in nature",
+    "clil_topic": "History: The Stone Age",
+    "project": "Design and make a stone circle on a paper plate",
+    "speaking_prompts": [
+      "What do we know about prehistoric times?",
+      "What would you do if you saw a dinosaur?",
+      "If I had a time machine, I'd go to the year 2166."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "A small area of water, like a small lake.",
+        "answer": "pond"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "The time of day when the sun appears in the sky.",
+        "answer": "sunrise"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "If I _______ a time machine, I'd visit the future.",
+        "answer": "had"
+      }
+    ]
+  }
+]

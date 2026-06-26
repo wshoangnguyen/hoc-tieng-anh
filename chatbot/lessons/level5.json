@@ -1,0 +1,522 @@
+[
+  {
+    "level": "level5",
+    "unit": 0,
+    "title": "The Science lesson",
+    "big_question": "What did they do in the Science lesson?",
+    "vocabulary": [
+      "goggles", "shelf", "apron", "explosion", "bubbles", "liquid",
+      "instructions", "test tube", "powder", "gloves", "experiment",
+      "spoon", "ancient Rome"
+    ],
+    "grammar": [
+      "Past simple (regular and irregular verbs)",
+      "Past simple negative (didn't)",
+      "Past simple questions (Did...? / Wh- questions)"
+    ],
+    "phonics": [
+      "Rhyming words (e.g., wait/gate, fast/past)"
+    ],
+    "skills": [
+      "Reading: introduction to the characters and a Science lesson story",
+      "Listening: song about the Time Travellers",
+      "Speaking: ask and answer about a perfect day / the worst day",
+      "Writing: write a short story about a dream day"
+    ],
+    "value": "following instructions carefully",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "What did you do at school yesterday?",
+      "How was your day?",
+      "What time did you get up?",
+      "Imagine yesterday was your perfect day. What happened?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You wear these over your eyes to protect them in the lab.",
+        "answer": "goggles"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a long, thin glass container used in experiments.",
+        "answer": "test tube"
+      },
+      {
+        "game": "odd_one_out",
+        "prompt": "goggles, apron, gloves, shelf",
+        "answer": "shelf (the others are things you wear)"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Yesterday, I _______ (get) up at seven o'clock.",
+        "answer": "got"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 1,
+    "title": "Disaster!",
+    "big_question": "What are natural disasters?",
+    "vocabulary": [
+      "smoke", "volcano", "theatre", "statue", "temple", "columns",
+      "horse and cart", "vase", "servant", "fountain", "running water",
+      "marketplace", "work of art", "earthquake", "shake", "thunder",
+      "lava", "ash", "erupt"
+    ],
+    "grammar": [
+      "Past continuous (was/were + verb-ing)",
+      "Past continuous vs Past simple",
+      "Clauses with 'while' for simultaneous actions"
+    ],
+    "phonics": [
+      "split digraphs (a-e, i-e, o-e, u-e) - e.g., shake, inside, smoke, tube"
+    ],
+    "skills": [
+      "Reading: story about Pompeii",
+      "Listening: news report about a fire",
+      "Speaking: ask and answer about past activities",
+      "Writing: write a report about a disaster"
+    ],
+    "value": "helping people in danger",
+    "clil_topic": "Geography: Plate tectonics",
+    "project": "Make a fact file about the South American Plate",
+    "speaking_prompts": [
+      "What were you doing at 5 o'clock yesterday?",
+      "What were you doing when the earthquake happened?",
+      "What were you doing while your friend was playing?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a mountain that throws out hot smoke, ash and lava.",
+        "answer": "volcano"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "It's a natural disaster when the ground shakes.",
+        "answer": "earthquake"
+      },
+      {
+        "game": "odd_one_out",
+        "prompt": "statue, temple, smoke, fountain",
+        "answer": "smoke (the others are buildings/structures)"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 2,
+    "title": "In the rainforest",
+    "big_question": "Why is the rainforest important?",
+    "vocabulary": [
+      "jaguar", "sloth", "toucan", "parrot", "butterfly", "beetle", "spider",
+      "anaconda", "frog", "creeper", "branch", "beak", "roots", "leaves",
+      "ecosystem", "species"
+    ],
+    "grammar": [
+      "have to / has to (obligation)",
+      "had to (past obligation)",
+      "don't have to / doesn't have to (lack of obligation)"
+    ],
+    "phonics": [
+      "Sounds /f/ and /v/",
+      "Double consonants"
+    ],
+    "skills": [
+      "Reading: story about meeting a tribe in the rainforest",
+      "Listening: trading cards about rainforest animals",
+      "Speaking: discussion about creatures you'd like to see",
+      "Writing: description of an animal"
+    ],
+    "value": "respecting other cultures",
+    "clil_topic": "Science: Ecosystems",
+    "project": "Make a poster about an ecosystem",
+    "speaking_prompts": [
+      "What do you have to do at home?",
+      "What did you have to do last weekend?",
+      "Which creature would you most like to see? Why?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This big cat lives in the rainforest. It has spots.",
+        "answer": "jaguar"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This animal is very slow and lives in trees.",
+        "answer": "sloth"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "In the jungle, you _______ wear boots to protect your feet from snakes.",
+        "answer": "have to"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 3,
+    "title": "The rock 'n' roll show",
+    "big_question": "What was music like in the past?",
+    "vocabulary": [
+      "rock 'n' roll", "spotlight", "backing singers", "electric guitar",
+      "bass guitar", "drum kit", "fans", "dancer", "bodyguards", "stage",
+      "superstar", "hit record", "album", "microphone"
+    ],
+    "grammar": [
+      "be going to (future plans)",
+      "Telling the time (to the nearest five minutes)",
+      "Questions with be going to"
+    ],
+    "phonics": [
+      "Sounds /ɒ/ (as in 'rock') and /əʊ/ (as in 'roll')"
+    ],
+    "skills": [
+      "Reading: interview with a rock star",
+      "Listening: song about becoming a star",
+      "Speaking: ask and answer about future plans",
+      "Writing: diary entry about a concert"
+    ],
+    "value": "not giving up / perseverance",
+    "clil_topic": "Music: Music genres (orchestral, jazz, hip hop)",
+    "project": "Make a fact file about a famous musician",
+    "speaking_prompts": [
+      "What are you going to do this weekend?",
+      "When are you going to do your homework?",
+      "What time is it? (quarter past, twenty to, etc.)"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This person sings in a concert but isn't the main singer.",
+        "answer": "backing singer"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You play this instrument with sticks. It has drums and cymbals.",
+        "answer": "drum kit"
+      },
+      {
+        "game": "whats_the_time",
+        "prompt": "3:45",
+        "answer": "quarter to four"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 4,
+    "title": "Space restaurant",
+    "big_question": "How is food prepared?",
+    "vocabulary": [
+      "waiter", "strawberries", "biscuits", "spoon", "napkin", "fork", "knife",
+      "pepper", "salt", "chopsticks", "menu", "bill", "main course", "dessert",
+      "starter", "taste"
+    ],
+    "grammar": [
+      "Ordinal numbers (1st, 2nd, 3rd, etc.)",
+      "Zero conditional (If you put chocolate in the sun, it melts.)",
+      "Saying dates"
+    ],
+    "phonics": [
+      "Sound /s/ spelled 'c' (city, cinema, celebrate)"
+    ],
+    "skills": [
+      "Reading: blog about Charlie and the Chocolate Factory",
+      "Listening: recipe for hot chocolate",
+      "Speaking: ordering food in a restaurant",
+      "Writing: write a recipe"
+    ],
+    "value": "planning ahead",
+    "clil_topic": "Science: How chocolate is made",
+    "project": "Make a chart about the process of making jam",
+    "speaking_prompts": [
+      "When's your birthday?",
+      "What happens if you leave ice cream in the sun?",
+      "What would you like to order?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this to eat soup. It's like a small bowl on a handle.",
+        "answer": "spoon"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "These are small, sweet, red fruits. They're often eaten with cream.",
+        "answer": "strawberries"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "If you _______ water, it boils at 100 degrees.",
+        "answer": "heat"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 5,
+    "title": "The Wild West",
+    "big_question": "What was life like in the Wild West?",
+    "vocabulary": [
+      "robbers", "jail", "wagon", "sheriff", "saddle", "pistol", "handcuffs",
+      "rope", "barrel", "badge", "holster", "gun", "stagecoach", "saloon"
+    ],
+    "grammar": [
+      "be made of (materials)",
+      "be used for (purpose)",
+      "Possessive apostrophe ('s and s')"
+    ],
+    "phonics": [
+      "Double consonants (robber, saddle, barrel, etc.)"
+    ],
+    "skills": [
+      "Reading: story about bank robbery",
+      "Listening: song about Billy the Kid",
+      "Speaking: guessing game about objects",
+      "Writing: a Wanted poster"
+    ],
+    "value": "understanding and learning about other cultures",
+    "clil_topic": "History: Native American materials",
+    "project": "Make a leaflet about a material Native Americans used",
+    "speaking_prompts": [
+      "What are boots made of?",
+      "What are handcuffs used for?",
+      "Whose badge is this?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This person puts bad people in jail. They wear a star badge.",
+        "answer": "sheriff"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "These are used to catch people. A policeman puts them on your wrists.",
+        "answer": "handcuffs"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "This cage is _______ of metal.",
+        "answer": "made"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 6,
+    "title": "In Istanbul",
+    "big_question": "What can we buy in different countries?",
+    "vocabulary": [
+      "flag", "plate", "carpet", "sunglasses", "cup and saucer", "cushion",
+      "rings", "comb", "soap", "basket", "earrings", "bracelet", "necklace",
+      "key ring", "postcard", "stamp"
+    ],
+    "grammar": [
+      "should / shouldn't (advice)",
+      "Questions with 'Could I...?' and 'Do you mind if I...?' (requests/permission)"
+    ],
+    "phonics": [
+      "Sounds /ʃ/ (sh) and /tʃ/ (ch)"
+    ],
+    "skills": [
+      "Reading: blog about where things are made",
+      "Listening: dialogue about choosing a present",
+      "Speaking: buying souvenirs, asking for permission",
+      "Writing: a leaflet giving advice to visitors"
+    ],
+    "value": "showing interest in the wider world",
+    "clil_topic": "Art: Paper marbling (Ebru)",
+    "project": "Make some marbled paper",
+    "speaking_prompts": [
+      "What should you do in a new city?",
+      "What shouldn't you do?",
+      "Could I try this on?",
+      "Do you mind if I open the window?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You wear these on your ears. They're usually made of metal.",
+        "answer": "earrings"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this to make your hair neat. It has teeth.",
+        "answer": "comb"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "You _______ visit the Blue Mosque. It's beautiful!",
+        "answer": "should"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 7,
+    "title": "The story teller",
+    "big_question": "What do we know about the theatre?",
+    "vocabulary": [
+      "lute", "candles", "mask", "wig", "actor", "tights", "costume", "audience",
+      "stage", "play", "writer", "props", "make-up", "tragedy", "comedy"
+    ],
+    "grammar": [
+      "will for promises and offers (I'll...)",
+      "Present perfect with just (I've just heard...)"
+    ],
+    "phonics": [
+      "Silent 'e' at the end of words (make, scene, promise, theatre)"
+    ],
+    "skills": [
+      "Reading: story about helping Shakespeare",
+      "Listening: interview about the Globe Theatre",
+      "Speaking: making offers and promises",
+      "Writing: a short biography"
+    ],
+    "value": "being honest",
+    "clil_topic": "History: Shakespeare's theatre",
+    "project": "Make a theatre stage in a box",
+    "speaking_prompts": [
+      "I'm thirsty. (I'll get you a drink.)",
+      "This bag is heavy. (I'll help you.)",
+      "What has just happened?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a person who performs in a play or film.",
+        "answer": "actor"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "These are the people who watch a play.",
+        "answer": "audience"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Don't worry, I _______ help you with your homework.",
+        "answer": "will"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 8,
+    "title": "Museum of the future",
+    "big_question": "How will jobs change in the future?",
+    "vocabulary": [
+      "farmer", "dentist", "artist", "cleaner", "engineer", "designer",
+      "computer programmer", "businesswoman", "businessman", "mechanic",
+      "robot", "machine"
+    ],
+    "grammar": [
+      "First conditional (If + present, will + infinitive)"
+    ],
+    "phonics": [],
+    "skills": [
+      "Reading: future jobs",
+      "Listening: robot advert",
+      "Speaking: robot game (If you're hungry, I'll make you a sandwich)",
+      "Writing: a poem using first conditional"
+    ],
+    "value": "",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "If you're tired, what will you do?",
+      "If it rains tomorrow, what will you do?",
+      "If you're hungry, the robot will..."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This person designs buildings.",
+        "answer": "designer"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This person looks after your teeth.",
+        "answer": "dentist"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "If you _______ thirsty, I'll get you a glass of water.",
+        "answer": "are"
+      }
+    ]
+  },
+  {
+    "level": "level5",
+    "unit": 9,
+    "title": "Mystery at sea",
+    "big_question": "What do we know about the sea?",
+    "vocabulary": [
+      "sail", "sailor", "captain", "barometer", "mast", "rat",
+      "lifeboat", "porthole", "cabin", "anchor", "telescope",
+      "Kraken", "siren", "Loch Ness Monster", "Bermuda Triangle"
+    ],
+    "grammar": [
+      "Present perfect with already and yet",
+      "Present perfect questions with yet (Have you ... yet?)",
+      "Present perfect with just (for recent events)"
+    ],
+    "phonics": [
+      "Sound /ʊ/ (as in 'look', 'put', 'should') - different spellings"
+    ],
+    "skills": [
+      "Reading: story about the mystery of the Mary Celeste",
+      "Reading: article about the Bermuda Triangle",
+      "Listening: song about Grandma falling in the sea",
+      "Listening: radio show about mythical sea creatures",
+      "Speaking: ask and answer about things you have (not) done",
+      "Writing: a description of an imaginary sea monster",
+      "Writing: a summary of the Time Travellers' story"
+    ],
+    "value": "working together",
+    "clil_topic": "Science: Marine animals (mammals, fish, reptiles)",
+    "project": "Make a fact file about a marine animal",
+    "speaking_prompts": [
+      "Have you done your homework yet?",
+      "Have you ever seen a UFO?",
+      "What do you think about the Bermuda Triangle?",
+      "What has happened on the ship?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This person is in charge of a ship.",
+        "answer": "captain"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a round window on a ship.",
+        "answer": "porthole"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this to check the weather on a ship.",
+        "answer": "barometer"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I've _______ (see) that film. It was great!",
+        "answer": "already seen"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Have you finished your breakfast _______?",
+        "answer": "yet"
+      },
+      {
+        "game": "odd_one_out",
+        "prompt": "captain, sailor, barometer, pirate",
+        "answer": "barometer (the others are people)"
+      }
+    ]
+  }
+]

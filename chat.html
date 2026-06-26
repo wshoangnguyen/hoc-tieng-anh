@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat với Thầy Cú - Học Tiếng Anh Dễ Lắm</title>
+  <title>Chat với Buddy AI - Học Tiếng Anh Dễ Lắm</title>
   <link rel="icon" type="image/x-icon" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
   
@@ -248,7 +248,7 @@
   <div class="top-bar">
     <a href="index.html">
       <img src="logo.png" alt="Logo">
-      <h1>Chat với Thầy Cú 🦉</h1>
+      <h1>Chat với Buddy AI 🤖</h1>
     </a>
     <a href="index.html" class="back-link">← Về trang chủ</a>
   </div>
@@ -260,23 +260,23 @@
       <div class="message bot">
         <div class="avatar">🦉</div>
         <div class="bubble">
-          Chào em! Thầy Cú đây! 🦉✨<br>
-          Em có thể hỏi thầy bất cứ điều gì về tiếng Anh nhé:<br>
-          • Từ vựng em chưa biết?<br>
-          • Ngữ pháp em thắc mắc?<br>
+          Chào bạn! Mình là Buddy đây! 🤖✨<br>
+          Bạn có thể hỏi mình bất cứ điều gì về tiếng Anh nhé:<br>
+          • Từ vựng bạn chưa biết?<br>
+          • Ngữ pháp bạn thắc mắc?<br>
           • Cách phát âm một từ?<br>
-          • Bài tập em cần gợi ý?<br><br>
-          Thầy sẽ <b>không đưa đáp án thẳng</b> mà sẽ gợi ý để em tự làm giỏi hơn! 💪
+          • Bài tập bạn cần gợi ý?<br><br>
+          Mình sẽ <b>không đưa đáp án thẳng</b> mà sẽ gợi ý để bạn tự làm giỏi hơn! 💪
         </div>
       </div>
     </div>
 
     <!-- SUGGESTION CHIPS -->
     <div class="suggestions" id="suggestions">
-      <button class="suggestion-chip" onclick="askSuggestion('Từ "beautiful" nghĩa là gì vậy thầy?')">📖 Nghĩa của từ</button>
-      <button class="suggestion-chip" onclick="askSuggestion('Khi nào dùng "a" và "an" ạ?')">📝 Ngữ pháp</button>
-      <button class="suggestion-chip" onclick="askSuggestion('Làm sao để phát âm "th" cho đúng?')">🎤 Phát âm</button>
-      <button class="suggestion-chip" onclick="askSuggestion('Thầy ơi cho em vài câu tiếng Anh đơn giản để luyện nói với!')">💬 Luyện nói</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Từ &quot;beautiful&quot; nghĩa là gì vậy Buddy?')">📖 Nghĩa của từ</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Khi nào dùng &quot;a&quot; và &quot;an&quot; vậy Buddy?')">📝 Ngữ pháp</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Làm sao để phát âm &quot;th&quot; cho đúng?')">🎤 Phát âm</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Buddy ơi cho mình vài câu tiếng Anh đơn giản để luyện nói với!')">💬 Luyện nói</button>
     </div>
 
     <!-- INPUT AREA -->
@@ -284,7 +284,7 @@
       <input 
         type="text" 
         id="userInput" 
-        placeholder="Gõ câu hỏi tiếng Anh của em ở đây..." 
+        placeholder="Gõ câu hỏi tiếng Anh của bạn ở đây..." 
         autocomplete="off"
         onkeypress="if(event.key==='Enter') sendMessage()"
       >
@@ -354,7 +354,7 @@
       
       const avatar = document.createElement('div');
       avatar.className = 'avatar';
-      avatar.textContent = role === 'bot' ? '🦉' : '😊';
+      avatar.textContent = role === 'bot' ? '🤖' : '😊';
       
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
@@ -377,7 +377,7 @@
       div.className = 'message bot typing';
       div.id = 'typingIndicator';
       div.innerHTML = `
-        <div class="avatar">🦉</div>
+        <div class="avatar">🤖</div>
         <div class="bubble">
           <div class="typing-dots">
             <span></span><span></span><span></span>

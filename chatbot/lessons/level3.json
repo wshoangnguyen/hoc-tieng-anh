@@ -1,0 +1,474 @@
+[
+{
+  "level": "level3",
+  "unit": 0,
+  "title": "Meet The Explorers",
+  "big_question": "Làm thế nào để nói mình giỏi làm gì và đồ vật này của ai bằng tiếng Anh nhỉ?",
+  "vocabulary": [
+    "numbers 21-100", "upstairs", "downstairs", "cellar",
+    "parents", "grandparents", "grandson", "granddaughter", "aunt", "uncle", "cousin",
+    "climbing trees", "doing puzzles", "flying a kite", "riding bikes", "snorkelling", "playing the guitar"
+  ],
+  "grammar": [
+    "Be good at / not good at + V-ing: I'm good at (playing football). / I'm not good at (climbing trees).",
+    "Possessive apostrophe 's: Mike is Tom's uncle. / It's John's bike."
+  ],
+  "phonics": [
+    "Short vowel sounds: a, e, i, o, u (e.g. cat, pet, bin, dog, tub)"
+  ],
+  "skills": [
+    "Talking about abilities (what people can or can't do well)",
+    "Talking about family relationships and possessions",
+    "Reviewing numbers 21-100 and locations"
+  ],
+  "value": "Courage",
+  "clil_topic": "N/A (Welcome Unit)",
+  "project": "Draw and talk about your family tree",
+  "speaking_prompts": [
+    "What are you good at doing?",
+    "Are you good at playing the guitar?",
+    "Where is the cellar?",
+    "Who is this? It's my aunt."
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "This is a room under the ground in a castle or a house.",
+      "answer": "cellar"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "I'm really good at _______ (do) puzzles.",
+      "answer": "doing"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "This is my _______ (brother) guitar.",
+      "answer": "brother's"
+    }
+  ]
+},
+  {
+    "level": "level3",
+    "unit": 1,
+    "title": "Our school",
+    "big_question": "Có những môn học nào ở trường nhỉ?",
+    "vocabulary": [
+      "Art", "English", "Geography", "Music", "I.T.", "History", "Maths", "Science", "P.E.",
+      "lunch", "before", "after", "puzzle", "librarian", "rule", "uniform"
+    ],
+    "grammar": [
+      "Like / love / don't like + V-ing: I like listening to music. / He loves learning about Science.",
+      "Have to / has to + infinitive (Obligation): You have to wear a school uniform. / She has to do her homework."
+    ],
+    "phonics": [
+      "Letter names: Spelling abbreviations (e.g. P.E., I.T., OK, UK, USA, DJ)"
+    ],
+    "skills": [
+      "Reading, listening and speaking about school subjects and daily rules",
+      "Carrying out a survey and making a bar chart about favourite subjects"
+    ],
+    "value": "Accepting others",
+    "clil_topic": "Maths: Geometrical shapes",
+    "project": "Make an insect with geometrical shapes",
+    "speaking_prompts": [
+      "What's your favourite subject?",
+      "When have you got English?",
+      "What are you good at?",
+      "Do you like doing number puzzles?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You learn about numbers and shapes in this subject.",
+        "answer": "Maths"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "We _______ to wear a school uniform.",
+        "answer": "have"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "She really loves _______ (listen) to music.",
+        "answer": "listening"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 2,
+    "title": "The picnic",
+    "big_question": "Có đồ ăn gì ở đây?",
+    "vocabulary": [
+      "apple juice", "cheese", "lemonade", "salad", "rolls", "soup", "vegetables", "water",
+      "picnic", "hungry", "thirsty"
+    ],
+    "grammar": [
+      "Questions and answers with some and any: Is there any cheese? / There are some oranges.",
+      "Making suggestions: Shall we make some soup? / How about some tea?"
+    ],
+    "phonics": [
+      "The sounds /ɪ/ and /aɪ/: e.g. fish, pink vs. pie, bike, ice cream"
+    ],
+    "skills": [
+      "Listening, reading and speaking about food, meals and healthy eating",
+      "Role-playing ordering food and drink at a sandwich shop"
+    ],
+    "value": "Perseverance",
+    "clil_topic": "Science: Edible plants (roots, stems, leaves, seeds)",
+    "project": "Draw a picnic with food and drink from plant parts",
+    "speaking_prompts": [
+      "Would you like some lemonade?",
+      "How about some cheese?",
+      "Shall we make a pizza?",
+      "Are there any apples in your bag?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a sweet drink made from yellow fruit.",
+        "answer": "lemonade"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Is there _______ soup in the bowl?",
+        "answer": "any"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ we have a cheese sandwich for lunch?",
+        "answer": "Shall"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 3,
+    "title": "Daily tasks",
+    "big_question": "Đọc giờ một cách 'sang chảnh' hơn, bạn đã biết chưa?",
+    "vocabulary": [
+      "wash up", "tidy up", "sweep the floor", "cook the dinner", "feed the dog", 
+      "dry the dishes", "do the shopping", "take the dog for a walk"
+    ],
+    "grammar": [
+      "Telling the time: It's quarter past / half past / quarter to / o'clock.",
+      "Adverbs of frequency (always, usually, sometimes, never): I always tidy up on Saturdays. / He never goes to bed early."
+    ],
+    "phonics": [
+      "Voiced and unvoiced consonants /v/ and /f/: e.g. van, fan"
+    ],
+    "skills": [
+      "Listening and reading for specific information about daily routines and times",
+      "Writing a diary or a poem about daily tasks and family routines"
+    ],
+    "value": "Being kind",
+    "clil_topic": "Social science: Jobs at night",
+    "project": "Choose a job that people do at night. Write a diary for their day or night.",
+    "speaking_prompts": [
+      "What time do you get up?",
+      "Do you usually wash up after dinner?",
+      "I always take the dog for a walk in the morning.",
+      "What's your favourite job at home?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You do this with a broom to clean the floor.",
+        "answer": "sweep the floor"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I _______ get up at seven o'clock every day.",
+        "answer": "always"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "It's quarter _______ nine (8:45).",
+        "answer": "to"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 4,
+    "title": "Around town",
+    "big_question": "Chúng ta có thể tìm thấy gì ở các thị trấn nhỉ?",
+    "vocabulary": [
+      "bank", "tower", "library", "market square", "supermarket", "bus station", 
+      "sports centre", "map", "funfair", "car park"
+    ],
+    "grammar": [
+      "Prepositions of place (near, opposite, below, above, next to, between): The bank is opposite the library.",
+      "Be going to + infinitive of purpose: I'm going to the library to get a book."
+    ],
+    "phonics": [
+      "The sounds /ɑː/ and /r/: e.g. car, park, far, robot"
+    ],
+    "skills": [
+      "Listening for directions and identifying places in a town",
+      "Writing and answering text messages about where you are going"
+    ],
+    "value": "Lateral thinking",
+    "clil_topic": "Science/Design: Tall buildings",
+    "project": "Imagine you are in a town. Write text messages about where you are at different times.",
+    "speaking_prompts": [
+      "Where's the cinema?",
+      "It's opposite the park.",
+      "Where are you going?",
+      "I'm going to the supermarket to buy some food."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You go to this place to read or borrow books.",
+        "answer": "library"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "The car park is _______ to the supermarket.",
+        "answer": "next"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I'm going to the sports centre _______ play tennis.",
+        "answer": "to"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 5,
+    "title": "Under the sea",
+    "big_question": "Dưới biển ngày xưa có những gì nhỉ?",
+    "vocabulary": [
+      "seahorse", "dolphin", "seal", "shell", "octopus", "anchor", "starfish", "turtle"
+    ],
+    "grammar": [
+      "Past simple of 'to be' (was / were): I was scared! / We were at the beach. / There were dolphins in the sea.",
+      "Questions and answers with was / were: Were you in the sea, Sue? No, I wasn't. / Was Tim on the beach? Yes, he was."
+    ],
+    "phonics": [
+      "The letter sounds /s/ and /ʃ/ (sh): e.g. sea, shell, scared, shark"
+    ],
+    "skills": [
+      "Reading, listening and speaking about sea creatures and past events",
+      "Writing a description of a sea creature"
+    ],
+    "value": "Being brave",
+    "clil_topic": "Environmental studies: People and the sea (Climate change and sea pollution)",
+    "project": "Make a leaflet to stop climate change and sea pollution",
+    "speaking_prompts": [
+      "Where were you yesterday?",
+      "Were you on the beach?",
+      "What was there in the sea?",
+      "There were two big dolphins."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This fish has a head like a horse.",
+        "answer": "seahorse"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "There _______ two big dolphins in the sea yesterday.",
+        "answer": "were"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Was there a shark? No, there _______.",
+        "answer": "wasn't"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 6,
+    "title": "Gadgets",
+    "big_question": "So sánh các đồ vật như thế nào nhỉ?",
+    "vocabulary": [
+      "games console", "electric fan", "walkie-talkie", "electric toothbrush", 
+      "tablet", "torch", "mobile phone", "lift", "laptop"
+    ],
+    "grammar": [
+      "Comparatives: My phone is smaller than yours. / Your phone's more beautiful than mine.",
+      "Superlatives: This is the fastest car in the world. / This is the most expensive house in the world."
+    ],
+    "phonics": [
+      "Long vowel sounds with split digraphs (magic 'e'): e.g. cave, lime, game, time"
+    ],
+    "skills": [
+      "Reading and listening for specific information about gadgets and their uses",
+      "Writing an advertisement for a gadget"
+    ],
+    "value": "Being resourceful",
+    "clil_topic": "History: Cave paintings",
+    "project": "Make a cave painting from life today",
+    "speaking_prompts": [
+      "Which gadget is your favourite?",
+      "My tablet is bigger than your mobile phone.",
+      "Is it more expensive than a laptop?",
+      "This is the most beautiful watch."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this gadget to see in the dark.",
+        "answer": "torch"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "My laptop is _______ (expensive) than your mobile phone.",
+        "answer": "more expensive"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "This is the _______ (fast) train in the world.",
+        "answer": "fastest"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 7,
+    "title": "In the hospital",
+    "big_question": "Điều gì giúp chúng ta luôn khỏe mạnh nhỉ?",
+    "vocabulary": [
+      "doctor", "nurse", "cold", "cough", "headache", "toothache", "earache", "stomach-ache"
+    ],
+    "grammar": [
+      "Past simple (regular verbs): jump -> jumped, shout -> shouted, land -> landed, look -> looked.",
+      "Past simple (irregular verbs): wake up -> woke up, feel -> felt, have -> had, go -> went, give -> gave, say -> said."
+    ],
+    "phonics": [
+      "The sounds /t/, /d/ and /ɪd/ in '-ed' past simple endings (e.g. jumped, played, landed)"
+    ],
+    "skills": [
+      "Reading and listening for specific information about health and past events",
+      "Writing a story in the past tense"
+    ],
+    "value": "Determination, never giving up",
+    "clil_topic": "Science: Keeping healthy",
+    "project": "Make a storyboard about keeping healthy",
+    "speaking_prompts": [
+      "What's the matter?",
+      "I've got a headache.",
+      "Where were you yesterday?",
+      "Yesterday I woke up at eight."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You go to see this person at the hospital when you are ill.",
+        "answer": "doctor"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Yesterday, she _______ (go) to the doctor's.",
+        "answer": "went"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I've got a pain in my ear. I've got an _______.",
+        "answer": "earache"
+      }
+    ]
+  },
+  {
+    "level": "level3",
+    "unit": 8,
+    "title": "Around the world",
+    "big_question": "Trên thế giới có những kỳ quan nào nhỉ?",
+    "vocabulary": [
+      "Mexico", "Spain", "Argentina", "Egypt", "Chile", "China", "Turkey", "Brazil", "Australia", "India",
+      "wonder", "travel", "ticket", "flag"
+    ],
+    "grammar": [
+      "Negatives with past simple: We went to the beach, but we didn't go swimming.",
+      "Questions and answers with past simple: Did you go shopping? Yes, I did. / No, I didn't.",
+      "Wh- questions in past simple: When did you get home? / Where did you go?"
+    ],
+    "phonics": [
+      "The sounds /i:/ and /ɪ/ (Different pronunciations of the letter 'y': e.g. jelly, gym, sky)"
+    ],
+    "skills": [
+      "Listening and reading about different countries and holidays",
+      "Speaking and writing about a country and past holiday events"
+    ],
+    "value": "Showing interest in other cultures",
+    "clil_topic": "Geography: Wonders of the world",
+    "project": "Make a poster about a country",
+    "speaking_prompts": [
+      "Did you go to Spain?",
+      "Yes, I did. / No, I didn't.",
+      "Where did you go on holiday?",
+      "How long did you stay there?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a big country where you can see kangaroos.",
+        "answer": "Australia"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "We _______ (not go) to the beach yesterday.",
+        "answer": "didn't go"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ you have a good holiday? Yes, I did.",
+        "answer": "Did"
+      }
+    ]
+  },
+{
+  "level": "level3",
+  "unit": 9,
+  "title": "Holiday plans",
+  "big_question": "Các kỳ nghỉ khác nhau như thế nào nhỉ?",
+  "vocabulary": [
+    "thunderstorm", "lightning", "rainy", "windy", "cloudy", "foggy", 
+    "umbrella", "raincoat", "boots", "seaside", "steam train"
+  ],
+  "grammar": [
+    "Future with 'be going to' + infinitive (Plans and predictions): I'm going to play in the garden all day. / It's going to be rainy on Tuesday.",
+    "Questions and answers with 'be going to': Are you going to cook pizza? Yes, I am. / What are you going to do? I'm going to visit my cousins."
+  ],
+  "phonics": [
+    "The long vowel sound /ɜː/ with alternative spellings (er, ir, ur, ear, or): e.g. perfect, bird, Thursday, nurse, earth"
+  ],
+  "skills": [
+    "Listening and reading for specific information about holidays and weather forecasts",
+    "Talking about future holiday plans and weather predictions",
+    "Writing an email about a holiday"
+  ],
+  "value": "Changing perceptions",
+  "clil_topic": "History: Holidays in the past",
+  "project": "Make a storyboard about a holiday in the past",
+  "speaking_prompts": [
+    "What's the weather going to be like tomorrow?",
+    "It's going to be sunny and hot.",
+    "What are you going to do on holiday?",
+    "I'm going to visit my grandparents."
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "You wear this coat when it rains to keep your clothes dry.",
+      "answer": "raincoat"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "I _______ going to play tennis tomorrow.",
+      "answer": "am"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "_______ you going to pack your bags? Yes, I am.",
+      "answer": "Are"
+    }
+  ]
+}
+]

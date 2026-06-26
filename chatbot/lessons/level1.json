@@ -1,0 +1,510 @@
+[
+  {
+    "level": "level1",
+    "unit": 0,
+    "title": "Friends",
+    "big_question": "Làm quen với bạn mới, mình nói những gì nhỉ?",
+    "vocabulary": [
+      "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+      "red", "blue", "green", "yellow", "purple", "orange", "black", "pink",
+      "Whisper", "Thunder", "Flash", "Misty"
+    ],
+    "grammar": [
+      "What's your name? - I'm (Misty). / My name's (Misty).",
+      "How old are you? - I'm (seven)."
+    ],
+    "phonics": [],
+    "skills": [
+      "Introducing yourself",
+      "Asking and answering about age",
+      "Singing the alphabet song"
+    ],
+    "value": "Making friends",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "Hello, what's your name?",
+      "How old are you?",
+      "What a nice name!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This number comes after five and before seven.",
+        "answer": "six"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is the color of the sky on a sunny day.",
+        "answer": "blue"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "A: What's your name? B: _______ name's Flash.",
+        "answer": "My"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 1,
+    "title": "At school",
+    "big_question": "Chúng ta học tập bằng những dụng cụ nào?",
+    "vocabulary": [
+      "ruler", "pen", "book", "rubber", "pencil case", "pencil", "desk",
+      "notebook", "bag", "paper", "look", "listen", "smell", "taste", "touch"
+    ],
+    "grammar": [
+      "What's this? - It's a (pencil).",
+      "Is it a (pen)? - Yes, it is. / No, it isn't.",
+      "Imperatives: Open your book. / Sit at your desk. / Pass me a ruler, please."
+    ],
+    "phonics": [
+      "Sound /æ/ (a): cat, fat rat, black hat, bag"
+    ],
+    "skills": [
+      "Identifying classroom objects",
+      "Asking and answering about objects",
+      "Giving and following simple instructions"
+    ],
+    "value": "Helping each other",
+    "clil_topic": "Science: The five senses",
+    "project": "",
+    "speaking_prompts": [
+      "What's this?",
+      "Is it a ruler?",
+      "Open your book, please.",
+      "Here you are."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this to write. It's long and thin.",
+        "answer": "pencil"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You use this to erase mistakes.",
+        "answer": "rubber"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "A: Is it a pen? B: No, it ______ .",
+        "answer": "isn't"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 2,
+    "title": "Let's play",
+    "big_question": "Giới thiệu một người bạn và miêu tả món đồ chơi yêu thích ra sao?",
+    "vocabulary": [
+      "computer game", "kite", "plane", "bike", "doll", "monster", "train",
+      "go-kart", "car", "ball", "big", "small", "long", "short", "beautiful",
+      "ugly", "new", "old"
+    ],
+    "grammar": [
+      "What's his/her name? - His/Her name's (Ben).",
+      "How old is he/she? - He's/She's (seven).",
+      "What's his/her favourite toy? - His/Her favourite toy's his/her (ball).",
+      "It's + a/an + adjective + noun (e.g., a big blue plane)."
+    ],
+    "phonics": [
+      "Sound /e/ (e): ten, red, pen, Ken"
+    ],
+    "skills": [
+      "Describing toys",
+      "Asking and answering about someone else's name, age, and favourite toy",
+      "Using adjectives to describe objects"
+    ],
+    "value": "Fair play",
+    "clil_topic": "Maths: 2D shapes (square, circle, triangle, rectangle)",
+    "project": "",
+    "speaking_prompts": [
+      "What's his name?",
+      "How old is she?",
+      "What's your favourite toy?",
+      "1, 2, 3 - go!",
+      "That isn't fair!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You fly this in the sky on a windy day.",
+        "answer": "kite"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This toy is a small vehicle for racing.",
+        "answer": "go-kart"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "It's _______ ugly monster.",
+        "answer": "an"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 3,
+    "title": "Pet show",
+    "big_question": "Các con vật đang ở đâu thì nói làm sao?",
+    "vocabulary": [
+      "dog", "cat", "duck", "frog", "lizard", "spider", "rat", "elephant", "donkey",
+      "water", "food", "shelter", "air"
+    ],
+    "grammar": [
+      "Prepositions: in, on, under",
+      "Where is the (frog)? - It's (in) the (bag).",
+      "I like (dogs). / I don't like (rats).",
+      "What about you? - I like (elephants), too! / I do. / I don't."
+    ],
+    "phonics": [
+      "Sound /ɪ/ (i): sit, skip, pink, Tim, Kim, silly, sister"
+    ],
+    "skills": [
+      "Describing where things are",
+      "Talking about likes and dislikes",
+      "Asking for and giving opinions about animals"
+    ],
+    "value": "Being brave",
+    "clil_topic": "Science: Basic needs of animals",
+    "project": "",
+    "speaking_prompts": [
+      "Where is the spider?",
+      "Do you like dogs?",
+      "I've got an idea.",
+      "Touch him, please."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This animal is very big and has a long trunk.",
+        "answer": "elephant"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "It's a small, green animal that can jump and lives in water.",
+        "answer": "frog"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "The cat is _______ the chair.",
+        "answer": "under"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 4,
+    "title": "Lunchtime",
+    "big_question": "Bạn có đồ ăn gì thì nói làm sao?",
+    "vocabulary": [
+      "apple", "banana", "cake", "pizza", "sausage", "cheese sandwich",
+      "fish", "chicken", "peas", "steak", "carrots",
+      "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+      "seventeen", "eighteen", "nineteen", "twenty",
+      "fruit", "vegetables", "plant", "tree", "soil"
+    ],
+    "grammar": [
+      "I've got a (cheese sandwich). / I haven't got a (cake).",
+      "Have we got any (cheese)? - Yes, we have. / No, we haven't."
+    ],
+    "phonics": [
+      "Sound /ɒ/ (o): hot, dog, stop, shop"
+    ],
+    "skills": [
+      "Talking about what food you have",
+      "Asking and answering about food items",
+      "Ordering food politely"
+    ],
+    "value": "Waiting your turn",
+    "clil_topic": "Science: Where food comes from",
+    "project": "",
+    "speaking_prompts": [
+      "I'm hungry!",
+      "What's for lunch?",
+      "Have we got any apples?",
+      "Yummy!",
+      "Pizza, please."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "It's a long, yellow fruit.",
+        "answer": "banana"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This number comes after thirteen and before fifteen.",
+        "answer": "fourteen"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I _______ got a cheese sandwich.",
+        "answer": "'ve / have"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 5,
+    "title": "Free time",
+    "big_question": "Vào thời gian rảnh, bạn của mình thường làm gì nhỉ?",
+    "vocabulary": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+      "go swimming", "go fishing", "play football", "play tennis", "play the piano",
+      "play computer games", "play board games", "ride my bike", "ride my pony",
+      "watch TV", "sing songs"
+    ],
+    "grammar": [
+      "I (play football) on (Saturdays).",
+      "Do you (watch TV) at the weekend? - Yes, I do. / No, I don't.",
+      "Distinguishing 'play' (with sports/instruments) and 'go' (with -ing verbs)."
+    ],
+    "phonics": [
+      "Sound /ʌ/ (u): sun, fun, duck, mud, Mum, run, jump"
+    ],
+    "skills": [
+      "Talking about weekly routines",
+      "Asking and answering about free time activities",
+      "Expressing boredom and making suggestions"
+    ],
+    "value": "Asking for help when you need it",
+    "clil_topic": "PE: Outdoor sports and environments",
+    "project": "",
+    "speaking_prompts": [
+      "What do you do on Mondays?",
+      "Do you go swimming?",
+      "I'm bored.",
+      "Why don't you come along?",
+      "We're lost!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "The day after Thursday.",
+        "answer": "Friday"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You do this activity in water.",
+        "answer": "go swimming"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "A: Do you play tennis? B: Yes, I _______ .",
+        "answer": "do"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 6,
+    "title": "The old house",
+    "big_question": "Có những phòng nào trong nhà của bạn?",
+    "vocabulary": [
+      "bedroom", "bathroom", "living room", "dining room", "kitchen",
+      "hall", "stairs", "cellar",
+      "cave house", "house boat", "tree house", "yurt"
+    ],
+    "grammar": [
+      "There's a (monster) in the (bedroom).",
+      "There are (four cats) in the (living room).",
+      "Is there a (plane)? - Yes, there is. / No, there isn't.",
+      "Are there any (rats)? - Yes, there are. / No, there aren't.",
+      "How many (cars) are there? - There are (four)."
+    ],
+    "phonics": [
+      "Sound /h/ (h): house, hairy, hall, happy, hot, hat"
+    ],
+    "skills": [
+      "Describing a house and its rooms",
+      "Asking and answering about the existence of things",
+      "Asking and answering about quantities"
+    ],
+    "value": "Looking after your friends",
+    "clil_topic": "Geography: Types of homes around the world",
+    "project": "",
+    "speaking_prompts": [
+      "Is there a cellar?",
+      "How many bedrooms are there?",
+      "Let's go in.",
+      "Careful!",
+      "Yuck!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You sleep in this room.",
+        "answer": "bedroom"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You walk up and down these to go to different floors.",
+        "answer": "stairs"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ there a ghost in the house?",
+        "answer": "Is"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 7,
+    "title": "Get dressed",
+    "big_question": "Bạn đang mặc gì vậy?",
+    "vocabulary": [
+      "T-shirt", "sweater", "jacket", "skirt", "shorts", "trousers",
+      "jeans", "shoes", "socks", "baseball cap",
+      "plain", "stripes", "spots", "zigzags", "flowers"
+    ],
+    "grammar": [
+      "Do you like this (hat)? / Do you like these (shoes)? - Yes, I do. / No, I don't.",
+      "Present continuous for clothes: (Olivia)'s wearing a red sweater.",
+      "Is he/she wearing (a blue T-shirt)? - Yes, he/she is. / No, he/she isn't."
+    ],
+    "phonics": [
+      "Consonant clusters /sp/ and /st/: stripes, spots, stairs, stop, spider, steak"
+    ],
+    "skills": [
+      "Asking for and giving opinions about clothes",
+      "Describing what someone is wearing",
+      "Asking and answering about clothes"
+    ],
+    "value": "Saying sorry",
+    "clil_topic": "Art & Design: Patterns on clothes",
+    "project": "",
+    "speaking_prompts": [
+      "Put on your trousers.",
+      "Hurry up!",
+      "You look great!",
+      "Are you sure?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You wear these on your feet, inside your shoes.",
+        "answer": "socks"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a piece of clothing with a pattern of lines.",
+        "answer": "stripes"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Do you like _______ shoes? (pointing to shoes near you)",
+        "answer": "these"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 8,
+    "title": "The robot",
+    "big_question": "Bạn có thể làm những gì với cơ thể của mình?",
+    "vocabulary": [
+      "head", "arm", "hand", "fingers", "leg", "knee", "foot", "toes",
+      "touch your toes", "skip", "stand on one leg", "swim", "dance",
+      "sing", "play tennis", "play the piano", "ride a horse", "fly a kite",
+      "forwards", "backwards", "sideways", "step", "jump", "stretch"
+    ],
+    "grammar": [
+      "I/He/She can (stand on one leg).",
+      "I/He/She can't (swim).",
+      "Can you/he/she (dance)? - Yes, I/he/she can. / No, I/he/she can't."
+    ],
+    "phonics": [
+      "Sound /g/ (g): green, bag, good, big, great, grey, go, get, got, game, give, frog, dog, leg, fingers, ugly"
+    ],
+    "skills": [
+      "Talking about abilities",
+      "Asking and answering about what someone can/can't do",
+      "Giving and following instructions for assembly"
+    ],
+    "value": "Teamwork",
+    "clil_topic": "PE: Movements (forwards, backwards, sideways)",
+    "project": "",
+    "speaking_prompts": [
+      "Can you swim?",
+      "Give me the right leg.",
+      "Here's the head.",
+      "Let me try something.",
+      "Well done!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You have five of these on each hand.",
+        "answer": "fingers"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You use a string to do this activity in the wind.",
+        "answer": "fly a kite"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ you play the piano?",
+        "answer": "Can"
+      }
+    ]
+  },
+  {
+    "level": "level1",
+    "unit": 9,
+    "title": "At the beach",
+    "big_question": "Rủ các bạn cùng chơi ở biển thì nói sao nhỉ?",
+    "vocabulary": [
+      "catch a fish", "paint a picture", "eat ice cream", "listen to music",
+      "look for shells", "make a sandcastle", "take a photo", "read a book",
+      "play the guitar",
+      "beach", "mountains", "countryside", "city", "theme park", "campsite", "lake"
+    ],
+    "grammar": [
+      "Suggestions with Let's: Let's (play the guitar).",
+      "Responding to suggestions: Good idea. / I'm not sure. / Sorry, I don't want to.",
+      "Where's the (blue book)? - It's in the (green bag).",
+      "Where are the (orange books)? - They're in the (black bag)."
+    ],
+    "phonics": [
+      "Long sound /i:/ (ee, ea): see, tree, beach, eat, ice cream, peas, cheese"
+    ],
+    "skills": [
+      "Making and responding to suggestions",
+      "Asking and answering about the location of objects (singular/plural)",
+      "Talking about holiday activities and places"
+    ],
+    "value": "Modesty",
+    "clil_topic": "Geography: Landscapes and places (beach, mountains, etc.)",
+    "project": "",
+    "speaking_prompts": [
+      "Let's make a sandcastle.",
+      "Where's my book?",
+      "See you at the top!",
+      "Let's go together."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You build this with sand and water at the beach.",
+        "answer": "sandcastle"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You can see lots of animals and go on rides here.",
+        "answer": "theme park"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Let's _______ to music.",
+        "answer": "listen"
+      }
+    ]
+  }
+]

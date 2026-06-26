@@ -1,0 +1,469 @@
+[
+{
+  "level": "level4",
+  "unit": 0,
+  "title": "Well done, Ben and Lucy!",
+  "big_question": "Hỏi về sở thích và những trải nghiệm cuối tuần bằng tiếng Anh thì nói như thế nào nhỉ?",
+  "vocabulary": [
+    "big wheel", "roller coaster", "roundabout", "mayor", 
+    "dodgem cars", "microphone", "band", "photographer", 
+    "journalist"
+  ],
+  "grammar": [
+    "Present simple questions: Do you like (reading books)? / What do you do in your free time?",
+    "Past simple questions: What did you do at the weekend? / Did you win the match?"
+  ],
+  "phonics": [
+    "Rhyming words (e.g., noise/boys, time/rhyme, snow/bow)"
+  ],
+  "skills": [
+    "Asking and answering personal questions",
+    "Talking about town events and fairground rides"
+  ],
+  "value": "Enjoying free time and adventures",
+  "clil_topic": "N/A",
+  "project": "N/A",
+  "speaking_prompts": [
+    "What's your favourite fairground ride?",
+    "What did you do at the weekend?",
+    "Do you want to be famous?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "This person takes pictures with a camera at a special event.",
+      "answer": "photographer"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "You drive these small cars at the funfair and bump into your friends.",
+      "answer": "dodgem cars"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "What _______ you do at the weekend?",
+      "answer": "did"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 1,
+  "title": "In the museum",
+  "big_question": "Làm sao để nói về nội quy (phải làm/không được làm) và các đồ vật thời xưa nhỉ?",
+  "vocabulary": [
+    "queen", "knight", "crown", "helmet", 
+    "necklace", "bracelet", "belt", "shield", 
+    "bow and arrow", "sword"
+  ],
+  "grammar": [
+    "Obligation and prohibition: I/You must (wear a helmet) - I/You mustn't (run or shout).",
+    "Direct and indirect objects: Give me / him / her / us / them (the sword), please."
+  ],
+  "phonics": [
+    "The letter sound 'ow' (e.g., crown, bow, town)"
+  ],
+  "skills": [
+    "Talking about knights, queens and historical items",
+    "Expressing rules and obligations",
+    "Reading and listening for specific information"
+  ],
+  "value": "Learning about your family history",
+  "clil_topic": "History: Timelines",
+  "project": "Make a timeline about things in your house",
+  "speaking_prompts": [
+    "How can we learn about the past?",
+    "Give me the bracelet, please.",
+    "What must or mustn't you do at the museum?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "A king or queen wears this beautiful, shiny object on their head.",
+      "answer": "crown"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "A knight holds this in his hand to protect himself in a fight.",
+      "answer": "shield"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "You _______ touch the exhibits in the museum. It's not allowed!",
+      "answer": "mustn't"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 2,
+  "title": "The world around us",
+  "big_question": "Chúng ta biết gì về thế giới bên ngoài nhỉ?",
+  "vocabulary": [
+    "mountain", "forest", "village", "lake", 
+    "island", "field", "river", "path"
+  ],
+  "grammar": [
+    "Connectors: but, and, because, so (e.g., I was tired, so I went home.)",
+    "Past ability: I could / couldn't (run 20 kilometres)."
+  ],
+  "phonics": [
+    "Silent consonants (e.g., island, rhino, write, sign, listen)"
+  ],
+  "skills": [
+    "Reading about maps and satellite images",
+    "Listening and writing about the countryside and free time"
+  ],
+  "value": "Making time for the family",
+  "clil_topic": "Geography: Maps and satellites",
+  "project": "Label a map with five favourite places",
+  "speaking_prompts": [
+    "What do we know about the outside world?",
+    "What could or couldn't you do when you were younger?",
+    "Where is your favourite outdoor place?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "A piece of land with water all around it.",
+      "answer": "island"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "A very high hill, often with snow on top.",
+      "answer": "mountain"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "I didn't swim _______ the water was really cold!",
+      "answer": "because"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 3,
+  "title": "Danger!",
+  "big_question": "Nước có thể gây ra những nguy hiểm gì nhỉ?",
+  "vocabulary": [
+    "fire", "flood", "emergency services", "police car", 
+    "police officer", "fire engine", "firefighter", 
+    "ambulance", "paramedic"
+  ],
+  "grammar": [
+    "Past continuous: I was (climbing a tree). We were (playing tennis).",
+    "Past continuous questions: What was she doing? / Was he playing?"
+  ],
+  "phonics": [
+    "The sound /aɪ/ with different spellings (e.g., bike, light, night, fly)"
+  ],
+  "skills": [
+    "Reading and listening about emergencies",
+    "Talking about background actions in the past"
+  ],
+  "value": "Learning from nature",
+  "clil_topic": "Environmental studies: Floods",
+  "project": "Write a poem about floods",
+  "speaking_prompts": [
+    "What were you doing yesterday at 5 o'clock?",
+    "How can water be dangerous?",
+    "What should you do when there is a flood or a fire?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "A special van or car that takes sick or injured people to the hospital.",
+      "answer": "ambulance"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "This person wears a uniform and puts out fires.",
+      "answer": "firefighter"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "What _______ you doing yesterday afternoon?",
+      "answer": "were"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 4,
+  "title": "Two return tickets",
+  "big_question": "Đi mua vé tàu như thế nào nhỉ?",
+  "vocabulary": [
+    "station", "platform", "escalator", "ticket office", 
+    "train driver", "stairs", "rucksack", "suitcase", 
+    "a cup of coffee", "a cup of tea"
+  ],
+  "grammar": [
+    "Prepositions of time: in (September/the morning), at (eight o'clock), on (Sunday).",
+    "Past continuous and past simple: I was (having dinner) when you phoned me."
+  ],
+  "phonics": [
+    "The sound /eə/ (e.g., stairs, square, bear, hair)"
+  ],
+  "skills": [
+    "Reading about travel and stories",
+    "Listening and speaking at the train station"
+  ],
+  "value": "Look after your things carefully",
+  "clil_topic": "Geography: Ways to travel",
+  "project": "Make an advertisement for one type of transport",
+  "speaking_prompts": [
+    "What's the best way to travel?",
+    "Can I have a return ticket to London, please?",
+    "What were you doing when the phone rang?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "You carry your things in it. You carry it on your back.",
+      "answer": "rucksack"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "It takes you up or down to another floor without walking.",
+      "answer": "escalator"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "I always do my homework _______ the evening.",
+      "answer": "in"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 5,
+  "title": "Police!",
+  "big_question": "Làm thế nào để miêu tả ngoại hình của mọi người nhỉ?",
+  "vocabulary": [
+    "dark", "blonde", "fair", "moustache", 
+    "curly", "beard", "scar", "straight"
+  ],
+  "grammar": [
+    "Past habits: He used to (be a police officer).",
+    "Past obligation: We had to (be really careful) / I had to tidy up."
+  ],
+  "phonics": [
+    "The sounds /ɑː/ and /ɔː/ (e.g., dark, scar, short, tall)"
+  ],
+  "skills": [
+    "Reading about a robbery",
+    "Writing and listening about people and habits"
+  ],
+  "value": "Mending your ways",
+  "clil_topic": "Art: Sketches",
+  "project": "Make a sketch of a friend and write a description",
+  "speaking_prompts": [
+    "How can we describe people?",
+    "What did your dad use to look like?",
+    "What did you have to do when you were young?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "Hair that grows on a man's chin and cheeks.",
+      "answer": "beard"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "Hair that is not straight but has a lot of ringlets.",
+      "answer": "curly"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "When I was young, I _______ to cry all the time!",
+      "answer": "used"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 6,
+  "title": "Mythical beasts",
+  "big_question": "Các loài động vật thời xưa trông như thế nào nhỉ?",
+  "vocabulary": [
+    "tail", "horn", "back", "scales", 
+    "wing", "neck", "feathers", "tongue"
+  ],
+  "grammar": [
+    "Comparatives and superlatives: longer / more dangerous than, better / worse than, the biggest / heaviest / most dangerous, the best / worst.",
+    "Questions with look like: What does (a unicorn) look like? - It looks like (a horse), but it's got (a big horn)."
+  ],
+  "phonics": [
+    "The letter sound 'ea' (e.g., feathers, meat, heavy)"
+  ],
+  "skills": [
+    "Listening for specific information",
+    "Speaking and writing about imaginary beasts"
+  ],
+  "value": "Always think about safety",
+  "clil_topic": "Science: Dinosaurs",
+  "project": "Make a dinosaur information card",
+  "speaking_prompts": [
+    "What were animals like long ago?",
+    "What does a unicorn look like?",
+    "Which is the most dangerous animal in the world?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "Birds have these on their bodies to keep them warm and help them fly.",
+      "answer": "feathers"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "A hard, pointed part that grows on the head of some animals like a rhino.",
+      "answer": "horn"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "The blue whale is the _______ animal in the world.",
+      "answer": "biggest"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 7,
+  "title": "Orchestra practice",
+  "big_question": "Các loại nhạc cụ khác nhau như thế nào nhỉ?",
+  "vocabulary": [
+    "tambourine", "triangle", "trumpet", "trombone", 
+    "drums", "harp", "saxophone", "keyboard", "violin"
+  ],
+  "grammar": [
+    "Possessive pronouns: mine, yours, his, hers, ours, theirs.",
+    "Relative pronouns (who, which, where): Connor's the boy who plays the recorder. / The house where Mark lives is green."
+  ],
+  "phonics": [
+    "The sounds /ɜː/ and /ɔː/ (e.g., bird, work, floor, door)"
+  ],
+  "skills": [
+    "Reading about music and feelings",
+    "Writing and listening for detail"
+  ],
+  "value": "Teamwork",
+  "clil_topic": "Music: Instrument families",
+  "project": "Make a Carroll diagram with types of musical instruments",
+  "speaking_prompts": [
+    "How are musical instruments different?",
+    "Is this guitar yours or his?",
+    "What is your favourite band or singer?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "A brass musical instrument that you blow into, which has three buttons.",
+      "answer": "trumpet"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "A stringed instrument that you hold under your chin and play with a bow.",
+      "answer": "violin"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "This book isn't my book. It is _______ (she).",
+      "answer": "hers"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 8,
+  "title": "In the planetarium",
+  "big_question": "Tại sao vũ trụ lại thú vị nhỉ?",
+  "vocabulary": [
+    "planet", "rocket", "UFO", "star", 
+    "comet", "telescope", "astronaut", 
+    "moon", "space station"
+  ],
+  "grammar": [
+    "Predictions with will: What will you be when you grow up? - I'll be a (police officer).",
+    "Adverbs of manner: angrily, badly, beautifully, carefully, dangerously, happily, loudly, quickly, quietly, slowly."
+  ],
+  "phonics": [
+    "Word stress and the weak sound /ə/ (schwa)"
+  ],
+  "skills": [
+    "Listening and reading about space",
+    "Speaking and writing about the future"
+  ],
+  "value": "Respecting your elders",
+  "clil_topic": "Science: Space",
+  "project": "Write questions to ask an astronaut",
+  "speaking_prompts": [
+    "Why is space exciting?",
+    "What will you be when you grow up?",
+    "What can you see through the telescope?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "You use this instrument to look at the stars and planets.",
+      "answer": "telescope"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "A person who is trained to travel and work in space.",
+      "answer": "astronaut"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "The spaceship travelled through space _______ (quiet).",
+      "answer": "quietly"
+    }
+  ]
+},
+{
+  "level": "level4",
+  "unit": 9,
+  "title": "At the campsite",
+  "big_question": "Chúng ta biết gì về cắm trại nhỉ?",
+  "vocabulary": [
+    "sail a boat", "swing on a rope", "dive into the water", 
+    "row a boat", "dry your clothes", "make a raft", 
+    "put up a tent", "make a fire", "collect wood"
+  ],
+  "grammar": [
+    "Expressions of quantity: some cheese, a loaf / two loaves of bread, a piece of cheese, a packet of crisps, a bottle of milk, a can of lemonade.",
+    "Questions about quantity: How much (cheese) do we need? / How many (bottles of water) do we need?"
+  ],
+  "phonics": [
+    "Unstressed words in phrases (e.g., a, of, the, and)"
+  ],
+  "skills": [
+    "Reading, listening and speaking about camping",
+    "Talking about measurements and holiday plans"
+  ],
+  "value": "Preparing carefully",
+  "clil_topic": "Maths: Measurements (how much, how long, how wide, how high, how heavy)",
+  "project": "Make an advertisement for something to take on a camping holiday",
+  "speaking_prompts": [
+    "What do we know about camping?",
+    "How much water have we got?",
+    "How many packets of crisps do we need?"
+  ],
+  "mini_games": [
+    {
+      "game": "guess_the_word",
+      "prompt": "You do this with wood to keep warm and cook food at the campsite.",
+      "answer": "make a fire"
+    },
+    {
+      "game": "guess_the_word",
+      "prompt": "You sleep inside this when you go camping in the forest.",
+      "answer": "tent"
+    },
+    {
+      "game": "complete_sentence",
+      "prompt": "How _______ water do we need for the trip?",
+      "answer": "much"
+    }
+  ]
+}
+]

@@ -1,0 +1,486 @@
+[
+  {
+    "level": "level2",
+    "unit": 0,
+    "title": "Back to school",
+    "big_question": "Làm thế nào để nói lớp học của em có những gì bằng tiếng Anh?",
+    "vocabulary": [
+      "board", "bookcase", "chair", "clock", "cupboard", "door", "floor",
+      "wall", "window", "crayon",
+      "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+      "eighty", "ninety", "one hundred"
+    ],
+    "grammar": [
+      "There's a/an + [singular noun].",
+      "There are some + [plural noun].",
+      "Imperatives: Stand up. / Open your book.",
+      "Negative imperatives: Don't sit down. / Don't close your book."
+    ],
+    "phonics": [],
+    "skills": [
+      "Describing a classroom",
+      "Giving and following simple instructions",
+      "Counting in tens up to 100"
+    ],
+    "value": "Helping people",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "What's in your classroom?",
+      "Stand up, please.",
+      "Don't open your book."
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You write on this with chalk. It's usually green or black.",
+        "answer": "board"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You look at this to know the time.",
+        "answer": "clock"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "There _______ some books on the shelf.",
+        "answer": "are"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 1,
+    "title": "My Day",
+    "big_question": "Hỏi và kể về một ngày của em bằng tiếng Anh như thế nào?",
+    "vocabulary": [
+      "get up", "get dressed", "have breakfast", "brush your teeth",
+      "go to school", "have lunch", "play in the park", "have dinner", "go to bed",
+      "banana", "orange", "coconut"
+    ],
+    "grammar": [
+      "What's the time? / What time is it? - It's (nine) o'clock.",
+      "When do you (get up)? - At (seven) o'clock.",
+      "Third person singular: Claire gets up at eight o'clock."
+    ],
+    "phonics": [
+      "Long sound /i:/ (ee, ea): see, tree, beach, eat"
+    ],
+    "skills": [
+      "Telling the time (o'clock)",
+      "Asking and answering about daily routines",
+      "Talking about someone else's routine"
+    ],
+    "value": "Offering to help",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "What time is it?",
+      "When do you have breakfast?",
+      "What does your mum do in the morning?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You do this in the morning to put on your clothes.",
+        "answer": "get dressed"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is the last thing you do at night.",
+        "answer": "go to bed"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "A: When do you go to school? B: _______ eight o'clock.",
+        "answer": "At"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 2,
+    "title": "The zoo",
+    "big_question": "Nói về con vật yêu thích và thức ăn của chúng bằng tiếng Anh thế nào?",
+    "vocabulary": [
+      "bear", "polar bear", "zebra", "crocodile", "hippo", "tiger", "parrot",
+      "monkey", "snake", "meat", "fish", "bananas", "apples"
+    ],
+    "grammar": [
+      "He/She/It likes (bananas).",
+      "He/She/It doesn't like (carrots).",
+      "Does (the monkey) like (bananas)? - Yes, it does. / No, it doesn't."
+    ],
+    "phonics": [
+      "Short /i/ (hippo, lizard) and long /aɪ/ (fly, spider, tiger, kite)"
+    ],
+    "skills": [
+      "Talking about what animals like/dislike",
+      "Asking and answering about preferences",
+      "Describing animals"
+    ],
+    "value": "Helping people",
+    "clil_topic": "",
+    "project": "",
+    "speaking_prompts": [
+      "What does a monkey like?",
+      "Does a tiger eat bananas?",
+      "What's your favourite animal?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This animal is black and white and looks like a horse.",
+        "answer": "zebra"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "It's a very big animal with a long nose. It lives in Africa.",
+        "answer": "hippo"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "The monkey _______ bananas.",
+        "answer": "likes"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 3,
+    "title": "Where we live",
+    "big_question": "Hỏi và miêu tả vị trí các nơi trong thị trấn bằng tiếng Anh thế nào?",
+    "vocabulary": [
+      "train station", "hospital", "cinema", "playground", "café", "shop",
+      "street", "bus stop", "park", "school", "swimming pool",
+      "car", "house", "flat"
+    ],
+    "grammar": [
+      "Has your town got a (swimming pool)? - Yes, it has. / No, it hasn't.",
+      "Prepositions: between, behind, in front of, next to"
+    ],
+    "phonics": [
+      "Consonant blends /tr/, /gr/, /dr/: train, green, drum"
+    ],
+    "skills": [
+      "Talking about places in a town",
+      "Asking and answering about what a place has",
+      "Describing locations using prepositions"
+    ],
+    "value": "Perseverance",
+    "clil_topic": "Geography: Places in a town",
+    "project": "Design a town",
+    "speaking_prompts": [
+      "Has your town got a cinema?",
+      "Where is the hospital?",
+      "Is the park next to the school?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You go here to watch films on a big screen.",
+        "answer": "cinema"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "If you are sick, you go to this place.",
+        "answer": "hospital"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "The cinema is _______ the shop and the café.",
+        "answer": "between"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 4,
+    "title": "The market",
+    "big_question": "Mua bán và hỏi về đồ ăn ở chợ bằng tiếng Anh như thế nào?",
+    "vocabulary": [
+      "tomatoes", "beans", "greens", "potatoes", "kiwis", "lemons", "mangoes",
+      "grapes", "watermelons", "bread", "eggs",
+      "hat", "box", "bag"
+    ],
+    "grammar": [
+      "Would you like a (tomato)/some (bread)? - Yes, please. / No, thank you.",
+      "Is there any (bread)? / Are there any (pears)? - Yes, there is/are. / No, there isn't/aren't any."
+    ],
+    "phonics": [
+      "Sound /w/ (w, wh): window, white, wall, witch, wheel, water"
+    ],
+    "skills": [
+      "Making polite offers",
+      "Asking about the availability of food",
+      "Shopping at a market"
+    ],
+    "value": "Cheating doesn't pay",
+    "clil_topic": "Maths: Weights (grams, kilograms)",
+    "project": "Food sums",
+    "speaking_prompts": [
+      "Would you like some grapes?",
+      "Is there any bread?",
+      "Are there any apples?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "It's a long, yellow fruit that is sour.",
+        "answer": "lemon"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This fruit is very big, green outside and red inside.",
+        "answer": "watermelon"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "Would you like _______ bread?",
+        "answer": "some"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 5,
+    "title": "My bedroom",
+    "big_question": "Miêu tả đồ đạc trong phòng ngủ và hỏi 'Cái này của ai?' bằng tiếng Anh thế nào?",
+    "vocabulary": [
+      "bed", "wardrobe", "mirror", "lamp", "armchair", "sofa", "table",
+      "poster", "rug"
+    ],
+    "grammar": [
+      "This/These (near), That/Those (far).",
+      "Whose (hat) is this? / Whose (socks) are these?",
+      "It's (May)'s. / They're (Fred)'s."
+    ],
+    "phonics": [
+      "Long /u:/ (moon, zoo, pool, food) and short /ʊ/ (look, book, good, football)"
+    ],
+    "skills": [
+      "Pointing out and describing furniture",
+      "Asking and answering about ownership",
+      "Describing a room"
+    ],
+    "value": "Tidiness",
+    "clil_topic": "Science: Materials (wood, metal, plastic, glass, fabric)",
+    "project": "Draw and label a room with materials",
+    "speaking_prompts": [
+      "I like this lamp.",
+      "Whose bag is that?",
+      "What is your bed made of?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You look at yourself in this.",
+        "answer": "mirror"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You keep your clothes in this.",
+        "answer": "wardrobe"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ book is this? - It's mine.",
+        "answer": "Whose"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 6,
+    "title": "People",
+    "big_question": "Miêu tả ngoại hình và cảm xúc của một người bằng tiếng Anh thế nào?",
+    "vocabulary": [
+      "eyes", "face", "glasses", "hair", "cheeks", "ears", "nose", "tears", "chin", "mouth",
+      "happy", "sad", "angry", "scared", "tired", "excited",
+      "blonde", "curly"
+    ],
+    "grammar": [
+      "Are you (angry)? - Yes, I am. / No, I'm not. I'm (tired).",
+      "Our birthdays are in May. / Their birthdays are in December."
+    ],
+    "phonics": [
+      "Long /eɪ/ (a_e, ai, ay): lake, face, rain, play"
+    ],
+    "skills": [
+      "Describing physical appearance",
+      "Asking and answering about feelings",
+      "Talking about birthdays and possession (plural)"
+    ],
+    "value": "Being a good loser",
+    "clil_topic": "Art: Portraits",
+    "project": "Draw a portrait and write a description",
+    "speaking_prompts": [
+      "Are you tired?",
+      "What colour is her hair?",
+      "When is your birthday?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You have two of these. You see with them.",
+        "answer": "eyes"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "If you have no energy, you feel this.",
+        "answer": "tired"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ birthdays are in June. (My family and me)",
+        "answer": "Our"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 7,
+    "title": "Off we go!",
+    "big_question": "Nói về ước mơ được đi du lịch bằng các phương tiện khác nhau thế nào?",
+    "vocabulary": [
+      "helicopter", "ship", "lorry", "boat", "scooter", "skateboard",
+      "motorbike", "taxi", "bus",
+      "land", "air", "water", "canoe", "rocket"
+    ],
+    "grammar": [
+      "I'd like to (fly a plane).",
+      "Present continuous: What are you doing? - I'm flying a plane.",
+      "Are you flying a plane? - Yes, I am. / No, I'm not."
+    ],
+    "phonics": [
+      "Long /u:/ (u_e, ew, ue, ou, oo): rule, chew, blue, you, zoo, scooter"
+    ],
+    "skills": [
+      "Expressing wishes and desires",
+      "Asking and answering about ongoing actions",
+      "Talking about different modes of transport"
+    ],
+    "value": "Being generous",
+    "clil_topic": "Geography: Where transport goes (land, air, water)",
+    "project": "Make a transport calendar",
+    "speaking_prompts": [
+      "Where would you like to go?",
+      "What are you doing?",
+      "How do you travel to school?"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "This vehicle can fly and has big blades on top.",
+        "answer": "helicopter"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "This is a big vehicle that carries goods on the road.",
+        "answer": "lorry"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "I'd _______ to go to the moon.",
+        "answer": "like"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 8,
+    "title": "Sports club",
+    "big_question": "Nói về môn thể thao yêu thích và rủ bạn cùng chơi thế nào?",
+    "vocabulary": [
+      "badminton", "table tennis", "tennis", "basketball", "baseball",
+      "volleyball", "swimming", "football", "hockey", "athletics",
+      "racket", "helmet", "board", "goggles", "net", "bat", "goal", "pitch", "court", "track"
+    ],
+    "grammar": [
+      "V-ing as subject: Swimming is fun. / Flying a kite is difficult.",
+      "What sport do you like doing? - I like playing tennis.",
+      "Agreeing: So do I. / Me too!"
+    ],
+    "phonics": [
+      "Long /əʊ/ (o, oa, ow, o_e): potato, mango, goal, boat, yellow, throw, hole, score"
+    ],
+    "skills": [
+      "Talking about sports and activities",
+      "Asking and answering about preferences",
+      "Expressing agreement"
+    ],
+    "value": "Including people",
+    "clil_topic": "PE: Sports equipment and venues",
+    "project": "Make a leaflet about your favourite sport",
+    "speaking_prompts": [
+      "What sport do you like doing?",
+      "Do you like swimming?",
+      "I like football. So do I!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You play this sport with a small white ball and a racket.",
+        "answer": "tennis"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You wear these to protect your eyes in the pool.",
+        "answer": "goggles"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ basketball is fun.",
+        "answer": "Playing"
+      }
+    ]
+  },
+  {
+    "level": "level2",
+    "unit": 9,
+    "title": "Holiday plans",
+    "big_question": "Xin phép người lớn đi chơi thì nói tiếng Anh như nào nhỉ?",
+    "vocabulary": [
+      "read a comic", "go hiking", "visit cousins", "help in the garden",
+      "take riding lessons", "build a tree house", "keep a scrapbook",
+      "learn to swim", "go camping"
+    ],
+    "grammar": [
+      "Can I/Can we (build a tree house)? - Yes, of course you/we can.",
+      "Revision: Questions with Do/Does, Have got, Can (ability), Where, Whose."
+    ],
+    "phonics": [
+      "Sound /z/ for plural 's': cousins, lizards, bananas, apples, zebras"
+    ],
+    "skills": [
+      "Asking for permission",
+      "Talking about holiday plans and activities",
+      "Revising key grammar from the level"
+    ],
+    "value": "Teamwork",
+    "clil_topic": "Environmental studies: Helping the environment on holiday",
+    "project": "Design a scrapbook page about a holiday place",
+    "speaking_prompts": [
+      "Can I go camping?",
+      "What are your holiday plans?",
+      "Let's build a tree house!"
+    ],
+    "mini_games": [
+      {
+        "game": "guess_the_word",
+        "prompt": "You sleep in a tent and cook outside when you do this.",
+        "answer": "go camping"
+      },
+      {
+        "game": "guess_the_word",
+        "prompt": "You can keep photos and tickets in this book.",
+        "answer": "scrapbook"
+      },
+      {
+        "game": "complete_sentence",
+        "prompt": "_______ I go swimming, please?",
+        "answer": "Can"
+      }
+    ]
+  }
+]
