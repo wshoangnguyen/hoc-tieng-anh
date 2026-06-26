@@ -168,14 +168,52 @@ setInterval(() => {
 const LOG_FILE = path.join(__dirname, 'chat_log.json');
 let chatLog = [];
 
-// Load existing log
+// Load existing log from local file
 if (fs.existsSync(LOG_FILE)) {
   try {
     chatLog = JSON.parse(fs.readFileSync(LOG_FILE, 'utf8'));
-    console.log(`📋 Loaded ${chatLog.length} chat log entries`);
+    console.log(`📋 Loaded ${chatLog.length} chat log entries from local file`);
   } catch (e) {
-    console.warn('Could not load chat log, starting fresh');
+    console.warn('Could not load local log, will try GitHub restore');
   }
+}
+
+// If local log is empty, try restore from GitHub
+if (chatLog.length === 0 && GITHUB_TOKEN) {
+  console.log('📥 Attempting to restore logs from GitHub...');
+  const restoreOptions = {
+    hostname: 'api.github.com',
+    path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json?ref=${GITHUB_BRANCH}`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      'User-Agent': 'Buddy-AI-Restore',
+      'Accept': 'application/vnd.github+json',
+    },
+    timeout: 15000,
+  };
+  const restoreReq = https.request(restoreOptions, (res) => {
+    let data = '';
+    res.on('data', (chunk) => { data += chunk; });
+    res.on('end', () => {
+      if (res.statusCode === 200) {
+        try {
+          const result = JSON.parse(data);
+          const content = Buffer.from(result.content, 'base64').toString('utf8');
+          chatLog = JSON.parse(content);
+          fs.writeFileSync(LOG_FILE, JSON.stringify(chatLog, null, 2));
+          console.log(`📥 Restored ${chatLog.length} logs from GitHub backup`);
+        } catch (e) {
+          console.warn('Failed to parse GitHub backup:', e.message);
+        }
+      } else {
+        console.log('No GitHub backup found, starting fresh');
+      }
+    });
+  });
+  restoreReq.on('error', (e) => console.warn('GitHub restore error:', e.message));
+  restoreReq.setTimeout(15000, () => { restoreReq.destroy(); });
+  restoreReq.end();
 }
 
 function saveLog() {
@@ -196,11 +234,95 @@ function logChat(sessionId, studentName, question, answer) {
     answer: answer.substring(0, 500),
   };
   chatLog.push(entry);
-  // Save every 10 entries to avoid too much disk I/O
-  if (chatLog.length % 10 === 0) saveLog();
+  // Save every 5 entries to avoid too much disk I/O
+  if (chatLog.length % 5 === 0) saveLog();
   // Also log to console for Render dashboard
   console.log(`[Buddy] ${entry.time} | ${entry.student} | Q: "${entry.question.substring(0, 60)}" | A: "${entry.answer.substring(0, 60)}"`);
 }
+
+// ============================================================
+// GITHUB BACKUP — pushes chat_log.json to GitHub every 5 min
+// ============================================================
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'wshoangnguyen/hoc-tieng-anh';
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+
+function backupToGitHub() {
+  if (!GITHUB_TOKEN) {
+    console.warn('⚠️ GITHUB_TOKEN not set — skipping GitHub backup');
+    return;
+  }
+
+  saveLog(); // flush before backup
+  const content = fs.readFileSync(LOG_FILE, 'utf8');
+  const base64Content = Buffer.from(content).toString('base64');
+
+  // Step 1: Get current file SHA (needed for update)
+  const getOptions = {
+    hostname: 'api.github.com',
+    path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json?ref=${GITHUB_BRANCH}`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      'User-Agent': 'Buddy-AI-Logger',
+      'Accept': 'application/vnd.github+json',
+    },
+    timeout: 15000,
+  };
+
+  const getReq = https.request(getOptions, (res) => {
+    let data = '';
+    res.on('data', (chunk) => { data += chunk; });
+    res.on('end', () => {
+      let sha = '';
+      if (res.statusCode === 200) {
+        try { sha = JSON.parse(data).sha; } catch (e) {}
+      }
+      
+      // Step 2: Create or update the file
+      const payload = JSON.stringify({
+        message: `📋 Backup chat logs — ${new Date().toISOString()}`,
+        content: base64Content,
+        branch: GITHUB_BRANCH,
+        ...(sha ? { sha } : {}),
+      });
+
+      const putOptions = {
+        hostname: 'api.github.com',
+        path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json`,
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'User-Agent': 'Buddy-AI-Logger',
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(payload),
+        },
+        timeout: 15000,
+      };
+
+      const putReq = https.request(putOptions, (putRes) => {
+        if (putRes.statusCode === 200 || putRes.statusCode === 201) {
+          console.log(`📤 Backed up ${chatLog.length} logs to GitHub`);
+        } else {
+          console.warn(`GitHub backup failed: ${putRes.statusCode}`);
+        }
+      });
+      putReq.on('error', (e) => console.warn('GitHub backup error:', e.message));
+      putReq.write(payload);
+      putReq.end();
+    });
+  });
+  getReq.on('error', (e) => console.warn('GitHub get error:', e.message));
+  getReq.setTimeout(15000, () => { getReq.destroy(); });
+  getReq.end();
+}
+
+// Backup every 5 minutes
+setInterval(backupToGitHub, 5 * 60 * 1000);
+
+// Also backup on server start (after 30s to let everything load)
+setTimeout(backupToGitHub, 30000);
 
 // ============================================================
 // CALL AI API
