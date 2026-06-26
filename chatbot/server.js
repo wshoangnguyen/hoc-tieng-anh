@@ -179,15 +179,19 @@ if (fs.existsSync(LOG_FILE)) {
 }
 
 function saveLog() {
-  // Keep last 5000 entries max
-  if (chatLog.length > 5000) chatLog = chatLog.slice(-5000);
+  // Auto-clean logs older than 30 days
+  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+  chatLog = chatLog.filter(e => new Date(e.time).getTime() > thirtyDaysAgo);
+  // Keep max 10000 entries
+  if (chatLog.length > 10000) chatLog = chatLog.slice(-10000);
   fs.writeFileSync(LOG_FILE, JSON.stringify(chatLog, null, 2));
 }
 
-function logChat(sessionId, question, answer) {
+function logChat(sessionId, studentName, question, answer) {
   const entry = {
     time: new Date().toISOString(),
     sessionId: (sessionId || 'unknown').substring(0, 15),
+    student: studentName || 'Không tên',
     question: question.substring(0, 500),
     answer: answer.substring(0, 500),
   };
@@ -195,7 +199,7 @@ function logChat(sessionId, question, answer) {
   // Save every 10 entries to avoid too much disk I/O
   if (chatLog.length % 10 === 0) saveLog();
   // Also log to console for Render dashboard
-  console.log(`[Buddy] ${entry.time} | ${entry.sessionId} | Q: "${entry.question.substring(0, 60)}" | A: "${entry.answer.substring(0, 60)}"`);
+  console.log(`[Buddy] ${entry.time} | ${entry.student} | Q: "${entry.question.substring(0, 60)}" | A: "${entry.answer.substring(0, 60)}"`);
 }
 
 // ============================================================
@@ -324,7 +328,7 @@ const server = http.createServer((req, res) => {
     req.on('data', (chunk) => { body += chunk; });
     req.on('end', () => {
       try {
-        const { message, sessionId } = JSON.parse(body);
+        const { message, sessionId, studentName } = JSON.parse(body);
         if (!message || !message.trim()) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Message is required' }));
@@ -343,6 +347,8 @@ const server = http.createServer((req, res) => {
         }
 
         const session = getSession(sessionId || 'default');
+        // Store student name in session for logging
+        if (studentName) session.studentName = studentName;
         session.history.push({ role: 'user', content: message });
 
         // Build messages: system prompt + lesson context + last 10 messages
@@ -366,8 +372,8 @@ const server = http.createServer((req, res) => {
 
           session.history.push({ role: 'assistant', content: reply });
 
-          // LOG for teacher review
-          logChat(sessionId || 'default', message, reply);
+          // LOG for teacher review — use student name from session
+          logChat(sessionId || 'default', session.studentName || 'Không tên', message, reply);
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({
@@ -393,7 +399,7 @@ const server = http.createServer((req, res) => {
       return `<tr>
         <td>${chatLog.length - i}</td>
         <td>${time}</td>
-        <td style="font-size:12px;color:#888">${entry.sessionId}</td>
+        <td style="font-weight:600">${(entry.student || 'Không tên').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
         <td style="max-width:300px;word-break:break-word">${entry.question.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
         <td style="max-width:300px;word-break:break-word">${entry.answer.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
       </tr>`;
@@ -439,7 +445,7 @@ const server = http.createServer((req, res) => {
       <tr>
         <th>#</th>
         <th>Thời gian</th>
-        <th>Session</th>
+        <th>Học sinh</th>
         <th>Câu hỏi</th>
         <th>Buddy trả lời</th>
       </tr>
