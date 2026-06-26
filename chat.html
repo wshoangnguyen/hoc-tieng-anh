@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat với Thầy Cú - Học Tiếng Anh Dễ Lắm</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #F5F5F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ========== TOP BAR ========== */
+    .top-bar {
+      width: 100%;
+      background: rgba(255, 251, 240, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e8e4da;
+    }
+
+    .top-bar img {
+      height: 40px;
+    }
+
+    .top-bar h1 {
+      font-family: 'Baloo Bhaina 2', serif;
+      font-size: 22px;
+      color: #f7d281;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-link {
+      font-size: 14px;
+      color: #999;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-link:hover { color: #f7d281; }
+
+    /* ========== CHAT CONTAINER ========== */
+    .chat-wrapper {
+      width: 100%;
+      max-width: 650px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 15px;
+      margin-top: 5px;
+    }
+
+    .chat-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: calc(100vh - 180px);
+    }
+
+    /* ========== MESSAGE BUBBLES ========== */
+    .message {
+      display: flex;
+      gap: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.bot { align-items: flex-start; }
+    .message.user {
+      flex-direction: row-reverse;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .message.bot .avatar { background: #fff3e0; }
+    .message.user .avatar { background: #e8f5e9; }
+
+    .bubble {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 15px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .message.bot .bubble {
+      background: #fff;
+      border: 2px solid #f0e8d5;
+      border-top-left-radius: 4px;
+      color: #444;
+    }
+    .message.user .bubble {
+      background: #f7d281;
+      color: #5a3e00;
+      border-top-right-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* ========== TYPING INDICATOR ========== */
+    .typing .bubble {
+      background: #fff;
+      border: 2px dashed #f0e8d5;
+      padding: 12px 20px;
+    }
+    .typing-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .typing-dots span {
+      width: 8px;
+      height: 8px;
+      background: #f7d281;
+      border-radius: 50%;
+      animation: bounce 0.6s infinite alternate;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      to { transform: translateY(-6px); opacity: 0.5; }
+    }
+
+    /* ========== INPUT AREA ========== */
+    .input-area {
+      display: flex;
+      gap: 10px;
+      padding: 12px 0 20px;
+      position: sticky;
+      bottom: 0;
+      background: #F5F5F0;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 2px solid #e8e4da;
+      border-radius: 25px;
+      font-size: 15px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.3s;
+      background: #fff;
+    }
+    .input-area input:focus {
+      border-color: #f7d281;
+    }
+
+    .input-area button {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #f7d281;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5a3e00;
+      flex-shrink: 0;
+    }
+    .input-area button:hover {
+      background: #f5c960;
+      transform: scale(1.05);
+    }
+    .input-area button:disabled {
+      background: #e0d5b5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ========== SUGGESTION CHIPS ========== */
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 5px 0;
+    }
+    .suggestion-chip {
+      padding: 8px 16px;
+      background: #fff;
+      border: 2px solid #f0e8d5;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #666;
+      font-family: 'Quicksand', sans-serif;
+      white-space: nowrap;
+    }
+    .suggestion-chip:hover {
+      background: #f7d281;
+      border-color: #f7d281;
+      color: #5a3e00;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 500px) {
+      .top-bar h1 { font-size: 18px; }
+      .bubble { font-size: 14px; max-width: 85%; }
+      .chat-box { max-height: calc(100vh - 200px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="index.html">
+      <img src="logo.png" alt="Logo">
+      <h1>Chat với Thầy Cú 🦉</h1>
+    </a>
+    <a href="index.html" class="back-link">← Về trang chủ</a>
+  </div>
+
+  <!-- CHAT CONTAINER -->
+  <div class="chat-wrapper">
+    <div class="chat-box" id="chatBox">
+      <!-- Welcome message -->
+      <div class="message bot">
+        <div class="avatar">🦉</div>
+        <div class="bubble">
+          Chào em! Thầy Cú đây! 🦉✨<br>
+          Em có thể hỏi thầy bất cứ điều gì về tiếng Anh nhé:<br>
+          • Từ vựng em chưa biết?<br>
+          • Ngữ pháp em thắc mắc?<br>
+          • Cách phát âm một từ?<br>
+          • Bài tập em cần gợi ý?<br><br>
+          Thầy sẽ <b>không đưa đáp án thẳng</b> mà sẽ gợi ý để em tự làm giỏi hơn! 💪
+        </div>
+      </div>
+    </div>
+
+    <!-- SUGGESTION CHIPS -->
+    <div class="suggestions" id="suggestions">
+      <button class="suggestion-chip" onclick="askSuggestion('Từ "beautiful" nghĩa là gì vậy thầy?')">📖 Nghĩa của từ</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Khi nào dùng "a" và "an" ạ?')">📝 Ngữ pháp</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Làm sao để phát âm "th" cho đúng?')">🎤 Phát âm</button>
+      <button class="suggestion-chip" onclick="askSuggestion('Thầy ơi cho em vài câu tiếng Anh đơn giản để luyện nói với!')">💬 Luyện nói</button>
+    </div>
+
+    <!-- INPUT AREA -->
+    <div class="input-area">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Gõ câu hỏi tiếng Anh của em ở đây..." 
+        autocomplete="off"
+        onkeypress="if(event.key==='Enter') sendMessage()"
+      >
+      <button id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // CONFIG - Harvey: change this URL after deploying backend
+    // ============================================================
+    const BACKEND_URL = 'https://YOUR-RENDER-APP.onrender.com/chat';
+    
+    let sessionId = 'student-' + Math.random().toString(36).substring(7);
+    let isWaiting = false;
+
+    // ============================================================
+    // SEND MESSAGE
+    // ============================================================
+    async function sendMessage() {
+      if (isWaiting) return;
+      
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+      
+      // Clear input
+      input.value = '';
+      input.focus();
+      
+      // Add user message to chat
+      addMessage(message, 'user');
+      
+      // Show typing indicator
+      showTyping();
+      isWaiting = true;
+      document.getElementById('sendBtn').disabled = true;
+      
+      try {
+        const response = await fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, sessionId }),
+        });
+        
+        if (!response.ok) throw new Error('Server error');
+        
+        const data = await response.json();
+        removeTyping();
+        addMessage(data.reply, 'bot');
+      } catch (err) {
+        removeTyping();
+        addMessage('Thầy Cú đang hơi buồn ngủ... Em thử lại nhé! 🦉💤', 'bot');
+      }
+      
+      isWaiting = false;
+      document.getElementById('sendBtn').disabled = false;
+    }
+
+    // ============================================================
+    // ADD MESSAGE TO CHAT
+    // ============================================================
+    function addMessage(text, role) {
+      const chatBox = document.getElementById('chatBox');
+      const div = document.createElement('div');
+      div.className = `message ${role}`;
+      
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      avatar.textContent = role === 'bot' ? '🦉' : '😊';
+      
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = text;
+      
+      div.appendChild(avatar);
+      div.appendChild(bubble);
+      chatBox.appendChild(div);
+      
+      // Auto scroll
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // ============================================================
+    // TYPING INDICATOR
+    // ============================================================
+    function showTyping() {
+      const chatBox = document.getElementById('chatBox');
+      const div = document.createElement('div');
+      div.className = 'message bot typing';
+      div.id = 'typingIndicator';
+      div.innerHTML = `
+        <div class="avatar">🦉</div>
+        <div class="bubble">
+          <div class="typing-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      `;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
+
+    // ============================================================
+    // SUGGESTION CLICK
+    // ============================================================
+    function askSuggestion(question) {
+      document.getElementById('userInput').value = question;
+      sendMessage();
+    }
+  </script>
+</body>
+</html>

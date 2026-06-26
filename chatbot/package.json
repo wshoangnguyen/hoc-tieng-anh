@@ -1,0 +1,12 @@
+{
+  "name": "hoctienganhdelam-chatbot",
+  "version": "1.0.0",
+  "description": "Mr. Owl - English Tutor Chatbot for hoctienganhdelam.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
