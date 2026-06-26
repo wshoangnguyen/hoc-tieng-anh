@@ -135,6 +135,42 @@ setInterval(() => {
 }, 10 * 60 * 1000);
 
 // ============================================================
+// CHAT LOGGING — stores chat history for teacher review
+// ============================================================
+const LOG_FILE = path.join(__dirname, 'chat_log.json');
+let chatLog = [];
+
+// Load existing log
+if (fs.existsSync(LOG_FILE)) {
+  try {
+    chatLog = JSON.parse(fs.readFileSync(LOG_FILE, 'utf8'));
+    console.log(`📋 Loaded ${chatLog.length} chat log entries`);
+  } catch (e) {
+    console.warn('Could not load chat log, starting fresh');
+  }
+}
+
+function saveLog() {
+  // Keep last 5000 entries max
+  if (chatLog.length > 5000) chatLog = chatLog.slice(-5000);
+  fs.writeFileSync(LOG_FILE, JSON.stringify(chatLog, null, 2));
+}
+
+function logChat(sessionId, question, answer) {
+  const entry = {
+    time: new Date().toISOString(),
+    sessionId: (sessionId || 'unknown').substring(0, 15),
+    question: question.substring(0, 500),
+    answer: answer.substring(0, 500),
+  };
+  chatLog.push(entry);
+  // Save every 10 entries to avoid too much disk I/O
+  if (chatLog.length % 10 === 0) saveLog();
+  // Also log to console for Render dashboard
+  console.log(`[Buddy] ${entry.time} | ${entry.sessionId} | Q: "${entry.question.substring(0, 60)}" | A: "${entry.answer.substring(0, 60)}"`);
+}
+
+// ============================================================
 // CALL AI API
 // ============================================================
 function callAI(messages, callback) {
@@ -273,7 +309,7 @@ const server = http.createServer((req, res) => {
           session.history.push({ role: 'assistant', content: reply });
 
           // LOG for teacher review
-          console.log(`[Buddy] Session:${sessionId?.substring(0, 10)} | Q: "${message.substring(0, 80)}" | A: "${reply.substring(0, 80)}"`);
+          logChat(sessionId || 'default', message, reply);
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({
@@ -287,6 +323,88 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({ error: 'Invalid JSON' }));
       }
     });
+    return;
+  }
+
+  // LOG VIEWER — teacher can view all chat history
+  if (req.method === 'GET' && req.url === '/logs') {
+    saveLog(); // flush before viewing
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    const rows = chatLog.slice().reverse().map((entry, i) => {
+      const time = new Date(entry.time).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+      return `<tr>
+        <td>${chatLog.length - i}</td>
+        <td>${time}</td>
+        <td style="font-size:12px;color:#888">${entry.sessionId}</td>
+        <td style="max-width:300px;word-break:break-word">${entry.question.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
+        <td style="max-width:300px;word-break:break-word">${entry.answer.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
+      </tr>`;
+    }).join('\n');
+    
+    const html = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buddy AI — Chat Logs</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f5f5f0; padding: 20px; }
+    h1 { color: #f7d281; margin-bottom: 5px; font-size: 24px; }
+    .subtitle { color: #888; margin-bottom: 20px; font-size: 14px; }
+    .controls { margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .controls input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; width: 250px; }
+    .controls button { padding: 8px 16px; background: #f7d281; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
+    .controls select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    th { background: #f7d281; color: #5a3e00; padding: 10px 12px; text-align: left; font-size: 13px; position: sticky; top: 0; }
+    td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
+    tr:hover td { background: #fff9e6; }
+    .count { font-size: 12px; color: #888; margin-top: 10px; }
+    @media (max-width: 768px) { th:nth-child(3), td:nth-child(3) { display: none; } }
+  </style>
+</head>
+<body>
+  <h1>🤖 Buddy AI — Chat Logs</h1>
+  <p class="subtitle">Lịch sử trò chuyện của học sinh với Buddy</p>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Tìm kiếm..." oninput="filterTable()">
+    <select id="sessionFilter" onchange="filterTable()">
+      <option value="">Tất cả học sinh</option>
+      ${[...new Set(chatLog.map(e => e.sessionId))].map(id => `<option value="${id}">${id}</option>`).join('')}
+    </select>
+    <button onclick="location.reload()">🔄 Làm mới</button>
+    <a href="/health" style="font-size:13px;color:#888;text-decoration:none;align-self:center;">↩ Về health</a>
+  </div>
+  <table id="logTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Thời gian</th>
+        <th>Session</th>
+        <th>Câu hỏi</th>
+        <th>Buddy trả lời</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rows}
+    </tbody>
+  </table>
+  <p class="count">📋 Tổng: ${chatLog.length} cuộc hội thoại</p>
+  <script>
+    function filterTable() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const session = document.getElementById('sessionFilter').value;
+      document.querySelectorAll('#logTable tbody tr').forEach(tr => {
+        const text = tr.textContent.toLowerCase();
+        const match = (!search || text.includes(search)) && (!session || text.includes(session));
+        tr.style.display = match ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>`;
+    res.end(html);
     return;
   }
 
