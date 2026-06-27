@@ -13,34 +13,98 @@ const ALLOWED_ORIGINS = [
 ];
 
 // ============================================================
-// LOAD LESSON DATA (6 levels: 1-6)
+// LOAD CURRICULUM CONTEXT (Super Minds 1-6)
 // ============================================================
-let lessonData = {};
+let curriculumContext = {};
+const curriculumDir = path.join(__dirname, 'curriculum-context');
 try {
-  const lessonsDir = path.join(__dirname, 'lessons');
   for (let i = 1; i <= 6; i++) {
-    const filePath = path.join(lessonsDir, `level${i}.json`);
+    const filePath = path.join(curriculumDir, `SM${i}.json`);
     if (fs.existsSync(filePath)) {
-      lessonData[`level${i}`] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-      console.log(`✅ Loaded level${i}: ${lessonData[`level${i}`].length} units`);
+      curriculumContext[`level${i}`] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const units = curriculumContext[`level${i}`].units.length;
+      const vocab = curriculumContext[`level${i}`].units.reduce((s, u) => s + (u.vocabulary || []).length, 0);
+      console.log(`✅ Loaded SM${i}: ${units} units, ${vocab} từ vựng`);
     }
   }
 } catch (e) {
-  console.warn('⚠️ Could not load lesson data:', e.message);
+  console.warn('⚠️ Could not load curriculum context:', e.message);
 }
 
-// Build a compact reference from lesson data
-function buildLessonContext() {
-  if (Object.keys(lessonData).length === 0) return '';
+// Build curriculum context based on student's level
+function buildCurriculumContext(level) {
+  const ctx = curriculumContext[`level${level}`];
+  if (!ctx) return '';
   
-  let ctx = '\n📚 COMPLETE CURRICULUM REFERENCE:\n';
-  for (let lv = 1; lv <= 6; lv++) {
-    const units = lessonData[`level${lv}`] || [];
-    ctx += `\nLEVEL ${lv} (Cambridge ${lv <= 2 ? 'Super Minds' : lv <= 4 ? 'Prepare' : 'Open World'}):\n`;
-    for (const u of units) {
-      ctx += `Unit ${u.unit || 0}: "${u.title}" | Vocab: ${(u.vocabulary || []).slice(0, 6).join(', ')}... | Grammar: ${(u.grammar || [])[0] || 'N/A'}\n`;
-    }
+  let prompt = `\n📚 CURRENT CURRICULUM — Super Minds ${level} (${ctx.age}):\n`;
+  for (const u of ctx.units) {
+    prompt += `\nUnit ${u.unit}: "${u.title}" (${u.topic})\n`;
+    prompt += `  Vocab: ${(u.vocabulary || []).slice(0, 10).join(', ')}${u.vocabulary && u.vocabulary.length > 10 ? '...' : ''}\n`;
+    prompt += `  Grammar: ${u.grammar || 'N/A'}\n`;
+    prompt += `  Phrases: ${(u.key_phrases || []).join(' | ').substring(0, 120)}\n`;
+    if (u.song) prompt += `  Song: ${u.song}\n`;
   }
+  return prompt;
+}
+
+// Get unit info for a specific level+unit
+function getUnitContext(level, unitNum) {
+  const ctx = curriculumContext[`level${level}`];
+  if (!ctx) return null;
+  return ctx.units.find(u => u.unit === unitNum) || null;
+}
+
+// ============================================================
+// LOAD QUESTION BANK (2 levels currently: 1 and 2)
+// ============================================================
+let questionBank = {};
+const bankDir = path.join(__dirname, 'question-bank');
+try {
+  const files = fs.readdirSync(bankDir).filter(f => f.endsWith('.json') && f !== 'README.md');
+  for (const f of files) {
+    const filePath = path.join(bankDir, f);
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const level = data.meta?.level || parseInt(f.match(/\d+/)?.[0] || '1');
+    questionBank[`level${level}`] = data.bank || data;
+    console.log(`✅ Loaded question bank level ${level}: ${(data.bank || data).length} questions`);
+  }
+} catch (e) {
+  console.warn('⚠️ Could not load question bank:', e.message);
+}
+
+// Get random questions from bank for a specific level
+function getBankQuestions(level, count = 3, excludeIds = []) {
+  const bank = questionBank[`level${level}`];
+  if (!bank || bank.length === 0) return [];
+  
+  const available = bank.filter(q => !excludeIds.includes(q.id));
+  if (available.length === 0) return [];
+  
+  // Shuffle and pick
+  const shuffled = [...available].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, Math.min(count, shuffled.length));
+}
+
+// Build question bank reference for system prompt
+function buildBankContext(level) {
+  const bank = questionBank[`level${level}`];
+  if (!bank || bank.length === 0) return '';
+  
+  // Group by topic
+  const byTopic = {};
+  for (const q of bank) {
+    const key = `${q.skill}:${q.topic}`;
+    if (!byTopic[key]) byTopic[key] = { skill: q.skill, topic: q.topic, count: 0 };
+    byTopic[key].count++;
+  }
+  
+  let ctx = `\n📝 QUESTION BANK (Level ${level}):\n`;
+  for (const group of Object.values(byTopic)) {
+    const icon = group.skill === 'vocab' ? '📖' : group.skill === 'grammar' ? '📝' : '🎯';
+    ctx += `  ${icon} ${group.topic}: ${group.count} câu hỏi\n`;
+  }
+  ctx += `  💡 Khi học sinh muốn luyện tập, dùng câu hỏi từ bank thay vì tự nghĩ ra.\n`;
+  ctx += `  💡 ĐÁP ÁN LÀ CHỈ SỐ (0=A, 1=B, 2=C) — hãy xáo trộn vị trí.\n`;
   return ctx;
 }
 
@@ -153,12 +217,15 @@ When you create a multiple-choice question, the correct answer MUST be in a rand
   "Chào bạn để hiểu từ explore mình cùng xem ví dụ nhé I want to explore new places dịch là tôi muốn khám phá những nơi mới dựa vào ví dụ trên bạn đoán explore nghĩa là gì"
 
 📚 CURRICULUM CONTEXT:
-The student is learning from Cambridge English curriculum:
-- Levels 1-2: Super Minds (foundation: ABC, numbers, colors, classroom, family, daily routines, animals, food, body, sports)
-- Levels 3-4: Prepare (elementary: school subjects, comparatives, past simple, prepositions, future tense)
-- Levels 5-6: Open World (pre-intermediate: present perfect, conditionals, passive voice, reported speech, modals)
+The student is learning from the Cambridge English Super Minds series (2nd Edition):
+- Super Minds 1 (6-7 tuổi): Introduction to English — greetings, alphabet, numbers, colors, classroom, toys, animals, family, food, body
+- Super Minds 2 (7-8 tuổi): Daily routines, animals, places in town, food/shopping, describing people, transport, sports, world cultures
+- Super Minds 3 (8-9 tuổi): School subjects, chores, directions, sea animals, technology, health, comparatives/superlatives, past simple regular
+- Super Minds 4 (9-10 tuổi): Dinosaurs, sports equipment, safety, travel, crime/mystery, mythical creatures, music, space, medieval times
+- Super Minds 5 (10-11 tuổi): Natural disasters, rainforests, music, legends, cooking, marine life, hobbies, travel, pirates, conditionals
+- Super Minds 6 (11-12 tuổi): Technology, animal adaptations, ancient civilizations, environment, media, money, health, performing arts, passive voice, reported speech
 
-When relevant, reference the current unit topic based on the student's question.`;
+🎯 CURRENT UNIT CONTEXT will be prepended to each conversation based on student's level. Reference vocabulary and grammar from the current unit when appropriate.`;
 
 // ============================================================
 // SIMPLE IN-MEMORY SESSION STORE
@@ -173,7 +240,14 @@ let activeRequests = 0;
 function getSession(sessionId) {
   let session = sessions.get(sessionId);
   if (!session) {
-    session = { history: [], lastActive: Date.now() };
+    session = { 
+      history: [], 
+      lastActive: Date.now(),
+      studentName: null,
+      level: 1,        // default level
+      unit: 0,          // current unit (0 = starter)
+      askedQuestions: [], // track asked question IDs to avoid repeats
+    };
     sessions.set(sessionId, session);
   }
   session.lastActive = Date.now();
@@ -413,8 +487,55 @@ const server = http.createServer((req, res) => {
       status: 'ok',
       name: 'Buddy AI',
       activeSessions: sessions.size,
-      levelsLoaded: Object.keys(lessonData).length,
+      levelsLoaded: Object.keys(curriculumContext).length,
+      questionBanks: Object.keys(questionBank).length,
     }));
+    return;
+  }
+
+  // Level endpoints
+  if (req.method === 'GET' && req.url === '/level') {
+    const levels = Object.entries(curriculumContext).map(([key, ctx]) => ({
+      level: parseInt(key.replace('level', '')),
+      name: ctx.name,
+      age: ctx.age,
+      units: ctx.units.length,
+      totalVocab: ctx.units.reduce((s, u) => s + (u.vocabulary || []).length, 0),
+      unitsPreview: ctx.units.map(u => ({ unit: u.unit, title: u.title, topic: u.topic })),
+    }));
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ levels, currentStudentCount: sessions.size }));
+    return;
+  }
+
+  if (req.method === 'POST' && req.url === '/level') {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const { sessionId, level, unit } = JSON.parse(body);
+        const session = getSession(sessionId || 'default');
+        if (level && level >= 1 && level <= 6) {
+          session.level = level;
+          session.unit = unit || 0;
+          session.askedQuestions = [];
+          const ctx = curriculumContext[`level${level}`];
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: true,
+            level: session.level,
+            unit: session.unit,
+            info: ctx ? { name: ctx.name, age: ctx.age, totalUnits: ctx.units.length } : null,
+          }));
+        } else {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid level (1-6 only)' }));
+        }
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid JSON' }));
+      }
+    });
     return;
   }
 
@@ -455,11 +576,33 @@ const server = http.createServer((req, res) => {
         const session = getSession(sessionId || 'default');
         // Store student name in session for logging
         if (studentName) session.studentName = studentName;
+        
+        // Check if student is asking for level change
+        const levelMatch = message.match(/đổi (?:lên|xuống|sang|qua) (?:level|lớp|trình độ) (\d)/i);
+        if (levelMatch) {
+          const newLevel = parseInt(levelMatch[1]);
+          if (newLevel >= 1 && newLevel <= 6) {
+            session.level = newLevel;
+            session.unit = 0;
+            session.askedQuestions = [];
+            const ctx = curriculumContext[`level${newLevel}`];
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+              reply: `✅ Đã chuyển sang **Super Minds ${newLevel}** (${ctx ? ctx.age : ''})!\n\n📚 Chương trình này có ${ctx ? ctx.units.length : '10'} bài học. Mình bắt đầu từ bài Starter nhé! 😊\n\nBạn muốn học về chủ đề gì? Hay mình bắt đầu ngay bây giờ?`,
+              sessionId: sessionId || 'default',
+              level: newLevel,
+            }));
+            return;
+          }
+        }
+        
         session.history.push({ role: 'user', content: message });
 
-        // Build messages: system prompt + lesson context + last 10 messages
+        // Build messages: system prompt + curriculum context + bank context + last 10 messages
+        let sysPrompt = SYSTEM_PROMPT + '\n\n' + buildCurriculumContext(session.level);
+        sysPrompt += '\n' + buildBankContext(session.level);
         const messages = [
-          { role: 'system', content: SYSTEM_PROMPT + '\n\n' + buildLessonContext() },
+          { role: 'system', content: sysPrompt },
           ...session.history.slice(-10),
         ];
 
@@ -485,6 +628,8 @@ const server = http.createServer((req, res) => {
           res.end(JSON.stringify({
             reply: reply,
             sessionId: sessionId || 'default',
+            level: session.level,
+            unit: session.unit,
           }));
         });
 
