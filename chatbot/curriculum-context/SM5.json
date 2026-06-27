@@ -40,14 +40,14 @@
       "song": null, "story": "The Hero's Quest", "clil": "Literature: Myths from different cultures", "phonics": null, "values": "Bravery"
     },
     {
-      "unit": 5", "title": "Food, Glorious Food!", "topic": "Cooking, recipes, first conditional",
+      "unit": 5, "title": "Food, Glorious Food!", "topic": "Cooking, recipes, first conditional",
       "vocabulary": ["recipe", "ingredient", "chop", "peel", "fry", "boil", "bake", "grill", "roast", "teaspoon", "tablespoon", "delicious", "flavour", "dish"],
       "grammar": "If you mix flour and water, you get dough. / If you add sugar, it will be sweet. / First conditional",
       "key_phrases": ["If you bake the cake too long, it'll burn.", "What will happen if I add more salt?"],
       "song": null, "story": "The Cooking Competition", "clil": "Science: Chemical reactions in cooking", "phonics": null, "values": "Healthy eating"
     },
     {
-      "unit": 6", "title": "Under the Ocean", "topic": "Marine life, zero conditional",
+      "unit": 6, "title": "Under the Ocean", "topic": "Marine life, zero conditional",
       "vocabulary": ["shark", "reef", "coral", "tide", "current", "plankton", "whale", "squid", "deep sea", "submarine", "diver", "explore"],
       "grammar": "If water gets hot, coral dies. / Zero conditional for facts. / Present simple in both clauses.",
       "key_phrases": ["If the water is clean, the fish are healthy.", "What happens if coral dies?"],
@@ -61,7 +61,7 @@
       "song": null, "story": "The Hobby Fair", "clil": "Social Science: How people spend free time", "phonics": null, "values": "Balance in life"
     },
     {
-      "unit": 8", "title": "Around the World in 80 Days", "topic": "Travel adventure, second conditional",
+      "unit": 8, "title": "Around the World in 80 Days", "topic": "Travel adventure, second conditional",
       "vocabulary": ["passport", "visa", "border", "customs", "luggage", "currency", "exchange rate", "tourist", "guide", "explore", "expedition"],
       "grammar": "If I had a million dollars, I would travel the world. / Second conditional (unreal present/future).",
       "key_phrases": ["If I could go anywhere, I'd visit Japan.", "What would you do if you were rich?"],
