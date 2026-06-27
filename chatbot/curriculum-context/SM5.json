@@ -1,0 +1,78 @@
+{
+  "level": 5,
+  "name": "Super Minds 5 — 2nd Edition",
+  "age": "10-11 tuổi",
+  "source": "Teacher's Book (OCR from PDF)",
+  "units": [
+    {
+      "unit": 0, "title": "The Science Lesson (Starter)", "topic": "Revision: present/past tenses, school subjects, question forms",
+      "vocabulary": ["science", "experiment", "laboratory", "discover", "invent", "mix", "pour", "measure", "observe", "result"],
+      "grammar": "Revision of present simple, present continuous, past simple. / Question review.",
+      "key_phrases": ["What did you discover?", "I was measuring the liquid.", "Have you ever done an experiment?"],
+      "song": "Science Song", "story": "The Experiments", "clil": null, "phonics": null, "values": "Curiosity"
+    },
+    {
+      "unit": 1, "title": "Natural Disasters", "topic": "Weather events, past simple vs past continuous",
+      "vocabulary": ["earthquake", "flood", "hurricane", "volcano", "tsunami", "drought", "avalanche", "lightning", "thunder", "evacuate", "destroy", "survive"],
+      "grammar": "While I was sleeping, the earthquake started. / When the volcano erupted, people were running.",
+      "key_phrases": ["The tsunami destroyed the village.", "Were you scared?", "What happened during the earthquake?"],
+      "song": null, "story": "Survivors", "clil": "Science: How natural disasters happen", "phonics": null, "values": "Helping in emergencies"
+    },
+    {
+      "unit": 2, "title": "In the Rainforest", "topic": "Ecosystems, present perfect, comparatives review",
+      "vocabulary": ["rainforest", "canopy", "understory", "species", "habitat", "endangered", "extinct", "deforestation", "oxygen", "climate", "tropical"],
+      "grammar": "I've seen a jaguar. / They've visited the Amazon. / Have you ever been to...? / Present perfect for experience",
+      "key_phrases": ["The rainforest gives us oxygen.", "Many animals are endangered.", "We've never cut down a tree."],
+      "song": "Rainforest Song", "story": "The Lost Tribe", "clil": "Science: Rainforest ecosystems", "phonics": null, "values": "Protecting nature"
+    },
+    {
+      "unit": 3, "title": "The Rock 'n' Roll Show", "topic": "Music genres, present perfect with for/since",
+      "vocabulary": ["rock", "pop", "jazz", "classical", "hip hop", "reggae", "band", "singer", "guitarist", "drummer", "concert", "audience", "lyrics", "melody"],
+      "grammar": "I've played guitar for three years. / She's been a singer since 2015. / Present perfect + for/since",
+      "key_phrases": ["I've liked rock music since I was ten.", "She's been in the band for two years."],
+      "song": "Rock Show Song", "story": "The Battle of the Bands", "clil": "Music: Music through the decades", "phonics": null, "values": "Expressing yourself"
+    },
+    {
+      "unit": 4, "title": "Mythical Beasts (Review)", "topic": "Legends, reported speech intro, present perfect review",
+      "vocabulary": ["legend", "myth", "hero", "monster", "treasure", "quest", "brave", "clever", "courage", "defeat", "protect"],
+      "grammar": "He said (that) the monster was real. / Introduction to reported speech. / Present perfect vs past simple.",
+      "key_phrases": ["They said the dragon lived in the cave.", "I've read many legends.", "What's your favourite myth?"],
+      "song": null, "story": "The Hero's Quest", "clil": "Literature: Myths from different cultures", "phonics": null, "values": "Bravery"
+    },
+    {
+      "unit": 5", "title": "Food, Glorious Food!", "topic": "Cooking, recipes, first conditional",
+      "vocabulary": ["recipe", "ingredient", "chop", "peel", "fry", "boil", "bake", "grill", "roast", "teaspoon", "tablespoon", "delicious", "flavour", "dish"],
+      "grammar": "If you mix flour and water, you get dough. / If you add sugar, it will be sweet. / First conditional",
+      "key_phrases": ["If you bake the cake too long, it'll burn.", "What will happen if I add more salt?"],
+      "song": null, "story": "The Cooking Competition", "clil": "Science: Chemical reactions in cooking", "phonics": null, "values": "Healthy eating"
+    },
+    {
+      "unit": 6", "title": "Under the Ocean", "topic": "Marine life, zero conditional",
+      "vocabulary": ["shark", "reef", "coral", "tide", "current", "plankton", "whale", "squid", "deep sea", "submarine", "diver", "explore"],
+      "grammar": "If water gets hot, coral dies. / Zero conditional for facts. / Present simple in both clauses.",
+      "key_phrases": ["If the water is clean, the fish are healthy.", "What happens if coral dies?"],
+      "song": "Ocean Song", "story": "The Secret of the Deep", "clil": "Science: Marine ecosystems", "phonics": null, "values": "Ocean conservation"
+    },
+    {
+      "unit": 7, "title": "Free Time", "topic": "Hobbies, modals of obligation (must/have to/should)",
+      "vocabulary": ["hobby", "collecting", "photography", "gardening", "painting", "cooking", "dancing", "yoga", "volunteering", "blogging"],
+      "grammar": "You should exercise more. / I have to practice every day. / You mustn't give up.",
+      "key_phrases": ["What should I do in my free time?", "You should try yoga.", "I have to finish my homework first."],
+      "song": null, "story": "The Hobby Fair", "clil": "Social Science: How people spend free time", "phonics": null, "values": "Balance in life"
+    },
+    {
+      "unit": 8", "title": "Around the World in 80 Days", "topic": "Travel adventure, second conditional",
+      "vocabulary": ["passport", "visa", "border", "customs", "luggage", "currency", "exchange rate", "tourist", "guide", "explore", "expedition"],
+      "grammar": "If I had a million dollars, I would travel the world. / Second conditional (unreal present/future).",
+      "key_phrases": ["If I could go anywhere, I'd visit Japan.", "What would you do if you were rich?"],
+      "song": "Travel Adventure Song", "story": "The Race Against Time", "clil": "Geography: Time zones", "phonics": null, "values": "Open-mindedness"
+    },
+    {
+      "unit": 9, "title": "Mystery at Sea", "topic": "Pirates, mystery, past perfect",
+      "vocabulary": ["pirate", "treasure", "map", "compass", "ship", "cannon", "island", "captain", "crew", "sail", "anchor", "secret", "mystery"],
+      "grammar": "When we arrived, the ship had already left. / Past perfect for earlier past events.",
+      "key_phrases": ["He had hidden the treasure before he died.", "By the time they found the map, the pirates had escaped."],
+      "song": "Pirate Song", "story": "The Ghost Ship", "clil": "History: Real pirates in history", "phonics": null, "values": "Teamwork and loyalty"
+    }
+  ]
+}

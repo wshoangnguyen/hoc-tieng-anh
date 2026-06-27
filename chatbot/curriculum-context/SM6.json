@@ -1,0 +1,78 @@
+{
+  "level": 6,
+  "name": "Super Minds 6 — 2nd Edition",
+  "age": "11-12 tuổi",
+  "source": "Teacher's Book (620K chars) + Student's Book (172K chars)",
+  "units": [
+    {
+      "unit": 0, "title": "Back to School (Starter)", "topic": "Revision: review tenses, comparatives, abilities",
+      "vocabulary": ["calculator", "dictionary", "encyclopedia", "atlas", "headphones", "microphone", "flash drive", "laptop", "projector", "interactive whiteboard"],
+      "grammar": "Revision: present simple, present continuous, past simple, present perfect, comparatives.",
+      "key_phrases": ["I've been learning English for five years.", "What did you do over the holiday?", "How long have you studied English?"],
+      "song": null, "story": "The Explorers Return", "clil": null, "phonics": null, "values": "Setting goals"
+    },
+    {
+      "unit": 1, "title": "High-Tech World", "topic": "Technology, future with will, going to, present continuous for future",
+      "vocabulary": ["artificial intelligence", "robot", "drone", "virtual reality", "3D printer", "smart home", "wearable", "app", "download", "upload", "wi-fi"],
+      "grammar": "Will, going to, present continuous for future plans. / I'm going to study robotics. / We'll use AI more.",
+      "key_phrases": ["Robots will help us in the future.", "I'm going to buy a drone.", "The train leaves at 3pm."],
+      "song": null, "story": "The Robot Scientist", "clil": "Science: Future technology", "phonics": null, "values": "Responsible technology use"
+    },
+    {
+      "unit": 2", "title": "Amazing Animals", "topic": "Animal abilities, passive voice (present simple)",
+      "vocabulary": ["predator", "prey", "camouflage", "venomous", "nocturnal", "mammal", "reptile", "amphibian", "migration", "hibernate", "echolocation"],
+      "grammar": "Cheetahs are found in Africa. / Passive voice (present simple). / is/are + past participle",
+      "key_phrases": ["Coffee is grown in Brazil.", "Penguins are found in Antarctica.", "Is English spoken here?"],
+      "song": null, "story": "The Wildlife Documentary", "clil": "Science: Animal adaptations", "phonics": null, "values": "Respect for animals"
+    },
+    {
+      "unit": 3, "title": "Ancient Egypt", "topic": "Ancient civilizations, passive voice (past simple)",
+      "vocabulary": ["pharaoh", "pyramid", "mummy", "hieroglyphics", "temple", "tomb", "sarcophagus", "papyrus", "Nile", "archaeologist", "artifact", "civilization"],
+      "grammar": "The pyramids were built thousands of years ago. / Passive voice (past simple). / was/were + past participle",
+      "key_phrases": ["The pyramids were built by the Egyptians.", "Was this tomb discovered recently?", "These artifacts were found in the desert."],
+      "song": null, "story": "The Tomb of the Pharaoh", "clil": "History: Daily life in Ancient Egypt", "phonics": null, "values": "Learning from the past"
+    },
+    {
+      "unit": 4, "title": "The Environment", "topic": "Environmental issues, conditionals (0, 1, 2), should/shouldn't",
+      "vocabulary": ["pollution", "recycling", "global warming", "climate change", "carbon footprint", "renewable energy", "solar power", "endangered species", "conservation", "sustainable"],
+      "grammar": "If we recycle more, the planet will be cleaner. / You should save water. / You shouldn't waste energy.",
+      "key_phrases": ["We should turn off lights.", "If the ice caps melt, sea levels will rise.", "What would you do to help the planet?"],
+      "song": null, "story": "The Eco Warriors", "clil": "Science: Climate change and solutions", "phonics": null, "values": "Environmental responsibility"
+    },
+    {
+      "unit": 5, "title": "At the TV Studio", "topic": "Media, reported speech, question tags",
+      "vocabulary": ["reporter", "interview", "broadcast", "headline", "audience", "channel", "episode", "series", "documentary", "commercial", "script", "cameraman"],
+      "grammar": "He said (that) he was tired. / She told me (that) the show was great. / Reported speech. / You like TV, don't you? / Question tags",
+      "key_phrases": ["She said she loved the show.", "He told me he wanted to be a reporter.", "It's a great episode, isn't it?"],
+      "song": null, "story": "The Big Interview", "clil": "Media Studies: How TV programmes are made", "phonics": null, "values": "Critical thinking about media"
+    },
+    {
+      "unit": 6, "title": "What's It Worth?", "topic": "Money, shopping, relative clauses",
+      "vocabulary": ["currency", "budget", "save", "earn", "spend", "borrow", "lend", "pocket money", "discount", "deal", "auction", "expensive", "valuable"],
+      "grammar": "This is the phone that I want. / The boy who sits next to me... / Relative clauses (who, which, that)",
+      "key_phrases": ["The bag that she bought was expensive.", "Do you know someone who collects coins?", "This is the shop which sells cheap books."],
+      "song": null, "story": "The Auction", "clil": "Maths: Budgeting and saving", "phonics": null, "values": "Value of money"
+    },
+    {
+      "unit": 7, "title": "Medical Mysteries", "topic": "Health, past perfect, reported speech review",
+      "vocabulary": ["symptom", "diagnosis", "treatment", "vaccine", "virus", "bacteria", "immune system", "allergy", "surgery", "patient", "recover"],
+      "grammar": "When the doctor arrived, the patient had already recovered. / Past perfect. / He said he had been ill.",
+      "key_phrases": ["He had already taken the medicine.", "She said she had never felt so sick.", "By the time we got to hospital, she had woken up."],
+      "song": null, "story": "The Mystery Illness", "clil": "Science: How vaccines work", "phonics": null, "values": "Taking care of your health"
+    },
+    {
+      "unit": 8, "title": "On Stage", "topic": "Performing arts, wish/if only, modal verbs review",
+      "vocabulary": ["curtain", "stage", "scene", "actor", "actress", "director", "rehearsal", "performance", "applause", "costume", "make-up", "backstage", "drama"],
+      "grammar": "I wish I could sing better. / If only I had more time to practice. / Wish/If only for present wishes",
+      "key_phrases": ["I wish I was a famous actor.", "If only we had more time!", "Break a leg!"],
+      "song": null, "story": "Opening Night", "clil": "Drama: Elements of theatre", "phonics": null, "values": "Confidence and self-expression"
+    },
+    {
+      "unit": 9", "title": "Looking Back", "topic": "Course review, mixed tenses, graduation",
+      "vocabulary": ["achievement", "certificate", "graduate", "proud", "goal", "progress", "improve", "reflect", "memory", "future", "dream"],
+      "grammar": "Review all tenses: present, past, present perfect, future, conditionals, passive, reported speech.",
+      "key_phrases": ["I've learned so much this year.", "What will you remember most?", "I used to be afraid of speaking English."],
+      "song": "Graduation Song", "story": "The Final Adventure", "clil": null, "phonics": null, "values": "Celebrating achievement"
+    }
+  ]
+}

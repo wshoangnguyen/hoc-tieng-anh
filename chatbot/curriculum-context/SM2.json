@@ -1,0 +1,78 @@
+{
+  "level": 2,
+  "name": "Super Minds 2 — 2nd Edition",
+  "age": "7-8 tuổi",
+  "source": "Teacher's Book + Student's Book",
+  "units": [
+    {
+      "unit": 0, "title": "Back to School (Starter)", "topic": "Revision of SM1: greetings, numbers, colors, classroom",
+      "vocabulary": ["hello", "numbers 1-20", "colors", "classroom objects", "pencil", "book", "bag", "ruler", "rubber", "desk"],
+      "grammar": "What's your name? / How old are you? / I'm... / There is/are...",
+      "key_phrases": ["My name's...", "I'm seven.", "What's this?", "How are you?"],
+      "song": "Welcome Back Song", "story": "The Super Friends Return", "phonics": null
+    },
+    {
+      "unit": 1, "title": "My Day", "topic": "Daily routines, time, present simple",
+      "vocabulary": ["get up", "have breakfast", "go to school", "have lunch", "go home", "have dinner", "go to bed", "morning", "afternoon", "evening", "night"],
+      "grammar": "I get up at... / He gets up at... / Present simple (he/she + s)",
+      "key_phrases": ["I get up at seven o'clock.", "She has breakfast at eight.", "What time do you get up?"],
+      "song": "Daily Routine Song", "story": "Tom's Busy Day", "phonics": "/eɪ/ sound (day, play, say)"
+    },
+    {
+      "unit": 2, "title": "The Zoo", "topic": "Wild animals, descriptions, has got",
+      "vocabulary": ["lion", "tiger", "elephant", "monkey", "snake", "crocodile", "giraffe", "zebra", "hippo", "parrot"],
+      "grammar": "It has got... / It hasn't got... / Has it got...? / It can... / It can't...",
+      "key_phrases": ["The elephant has got big ears.", "It can run fast.", "Has it got a tail?"],
+      "song": "Zoo Animals Song", "story": "The Escape from the Zoo", "phonics": "/aɪ/ sound (tiger, like, five)"
+    },
+    {
+      "unit": 3, "title": "Where We Live", "topic": "Places in town, prepositions, there is/are",
+      "vocabulary": ["school", "park", "shop", "supermarket", "hospital", "library", "swimming pool", "cinema", "restaurant", "playground"],
+      "grammar": "There is a... / There are... / Is there a...? Yes, there is. / No, there isn't.",
+      "key_phrases": ["There's a park near my house.", "Is there a hospital?", "There are two shops."],
+      "song": "My Town Song", "story": "The Map Adventure", "phonics": "/aʊ/ sound (town, house, now)"
+    },
+    {
+      "unit": 4, "title": "The Market", "topic": "Food, shopping, countable/uncountable, some/any",
+      "vocabulary": ["fruit", "vegetables", "bread", "cheese", "meat", "eggs", "rice", "pasta", "tomatoes", "carrots", "bananas", "oranges"],
+      "grammar": "I'd like some... / Have you got any...? / How much is...? / some/any",
+      "key_phrases": ["I'd like some apples.", "Have you got any bread?", "How much is the cheese?"],
+      "song": "Market Song", "story": "At the Market", "phonics": "/ʌ/ sound (some, come, done)"
+    },
+    {
+      "unit": 5, "title": "People", "topic": "Describing people, comparatives",
+      "vocabulary": ["tall", "short", "young", "old", "strong", "weak", "beautiful", "handsome", "curly hair", "straight hair", "blond", "dark hair"],
+      "grammar": "He's taller than... / She's younger than... / Comparatives (-er / more...)",
+      "key_phrases": ["She's taller than me.", "He's got curly hair.", "My mum is very beautiful."],
+      "song": "Family Song", "story": "The Talent Show", "phonics": "/ɜː/ sound (curly, girl, bird)"
+    },
+    {
+      "unit": 6, "title": "Off We Go!", "topic": "Transport, travel, going to",
+      "vocabulary": ["car", "bus", "train", "plane", "boat", "bike", "helicopter", "motorbike", "underground", "taxi"],
+      "grammar": "I'm going to... / He's going to... / How do you go to...? / I go by...",
+      "key_phrases": ["I go to school by bus.", "She's going to the park.", "How do you go to the zoo?"],
+      "song": "Transport Song", "story": "The Journey", "phonics": "/əʊ/ sound (go, boat, home)"
+    },
+    {
+      "unit": 7, "title": "Sports Day", "topic": "Sports, present continuous",
+      "vocabulary": ["run", "jump", "swim", "throw", "catch", "kick", "ride a bike", "play tennis", "play basketball", "do gymnastics"],
+      "grammar": "He's running. / She's jumping. / They're playing. / Present continuous (am/is/are + V-ing)",
+      "key_phrases": ["Look! He's running fast!", "She's swimming in the pool.", "What are they doing?"],
+      "song": "Sports Day Song", "story": "The Big Race", "phonics": "/ɪŋ/ sound (running, jumping, swimming)"
+    },
+    {
+      "unit": 8, "title": "Around the World", "topic": "Countries, nationalities, weather",
+      "vocabulary": ["England", "Spain", "France", "Japan", "Australia", "Brazil", "Egypt", "India", "sunny", "rainy", "cloudy", "snowy", "hot", "cold", "warm", "cool"],
+      "grammar": "Where are you from? / I'm from... / It's sunny in... / There's snow in...",
+      "key_phrases": ["I'm from Vietnam.", "He's from Australia.", "It's hot and sunny in Brazil."],
+      "song": "World Song", "story": "The Global Adventure", "phonics": null
+    },
+    {
+      "unit": 9, "title": "Vacation", "topic": "Holiday activities, past simple (was/were)",
+      "vocabulary": ["holiday", "beach", "mountain", "forest", "lake", "hotel", "camping", "sightseeing", "swimming", "fishing", "hiking"],
+      "grammar": "I was at the beach. / They were at the hotel. / Where were you? / Past simple of be",
+      "key_phrases": ["I was on holiday.", "We were at the beach.", "Where were you last summer?"],
+      "song": "Holiday Song", "story": "The Best Vacation Ever", "phonics": null
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "level": 4,
+  "name": "Super Minds 4 — 2nd Edition",
+  "age": "9-10 tuổi",
+  "source": "Teacher's Book + Student's Book",
+  "units": [
+    {
+      "unit": 0, "title": "Well Done, Explorers! (Starter)", "topic": "Revision: past simple, comparatives, abilities",
+      "vocabulary": ["explorer", "badge", "challenge", "proud", "achievement", "adventure", "remember", "forget"],
+      "grammar": "Revision of past simple regular and irregular. / Could/Couldn't.",
+      "key_phrases": ["Well done!", "I couldn't do it before.", "Now I can!"],
+      "song": "The Explorers' Song", "story": "The Badge Ceremony", "phonics": null
+    },
+    {
+      "unit": 1, "title": "In the Museum", "topic": "Museum, dinosaurs, past simple regular/irregular",
+      "vocabulary": ["museum", "dinosaur", "fossil", "skeleton", "bones", "teeth", "claws", "wings", "ancient", "extinct", "million years ago"],
+      "grammar": "Dinosaurs lived millions of years ago. / They didn't fly. / Did they eat meat? / Past simple review",
+      "key_phrases": ["T-Rex had big teeth.", "Did dinosaurs fly?", "They lived millions of years ago."],
+      "song": "Dinosaur Song", "story": "The Museum Mystery", "clil": "Science: Dinosaurs and fossils", "phonics": "/ɔː/ sound (saw, claws, draw)", "values": "Curiosity"
+    },
+    {
+      "unit": 2, "title": "The World of Sports", "topic": "Sports equipment, past continuous",
+      "vocabulary": ["helmet", "racket", "goggles", "wetsuit", "skates", "gloves", "kneepads", "swimming cap", "boots", "net"],
+      "grammar": "I was playing tennis. / They were swimming. / Past continuous (was/were + V-ing)",
+      "key_phrases": ["While I was running, I fell.", "He was playing football at 3pm.", "What were you doing?"],
+      "song": "Sports World Song", "story": "The Championship", "clil": "PE: Different sports worldwide", "phonics": null, "values": "Teamwork"
+    },
+    {
+      "unit": 3, "title": "Danger!", "topic": "Dangerous situations, must/mustn't, past continuous vs simple",
+      "vocabulary": ["dangerous", "safe", "cross the road safely", "deep water", "sharp", "hot", "electric shock", "stranger", "emergency", "ambulance", "firefighter"],
+      "grammar": "You must wear a helmet. / You mustn't swim alone. / While I was walking, a dog bit me.",
+      "key_phrases": ["You must be careful.", "You mustn't touch that.", "It's dangerous to swim here."],
+      "song": "Safety Song", "story": "The Rescue", "clil": "Social Science: Safety rules", "phonics": null, "values": "Safety first"
+    },
+    {
+      "unit": 4": "unit": 4, "title": "Two Return Tickets", "topic": "Travel, transport, will for predictions",
+      "vocabulary": ["ticket", "platform", "departure", "arrival", "passenger", "flight", "delay", "queue", "coach", "ferry", "luggage"],
+      "grammar": "The train will arrive at 3pm. / I think it will rain. / Will for predictions",
+      "key_phrases": ["I'd like two return tickets, please.", "The bus will be here soon.", "I think we'll miss the train."],
+      "song": "Travel Song", "story": "The Journey Home", "clil": "Geography: Public transport systems", "phonics": null, "values": "Being on time"
+    },
+    {
+      "unit": 5, "title": "Police!", "topic": "Crime, past simple questions, alibis",
+      "vocabulary": ["police", "thief", "robber", "steal", "catch", "escape", "witness", "prove", "evidence", "mystery", "detective"],
+      "grammar": "Where were you at 8pm? / What did you see? / Was he wearing a mask? / Past simple questions",
+      "key_phrases": ["Where were you yesterday?", "I wasn't at the bank.", "I was at home watching TV."],
+      "song": null, "story": "The Diamond Robbery", "clil": "Social Science: How police solve crimes", "phonics": null, "values": "Honesty"
+    },
+    {
+      "unit": 6, "title": "Mythical Beasts", "topic": "Mythical creatures, there was/were, describing",
+      "vocabulary": ["dragon", "unicorn", "phoenix", "mermaid", "giant", "fairy", "griffin", "centaur", "cyclops", "magical", "myth", "legend"],
+      "grammar": "There was a dragon. / There were two unicorns. / It had wings and a tail.",
+      "key_phrases": ["Long ago, there was a dragon.", "It had sharp claws.", "The unicorn was magical."],
+      "song": "Mythical Creatures Song", "story": "The Dragon's Egg", "clil": "Literature: Myths and legends worldwide", "phonics": null, "values": "Imagination"
+    },
+    {
+      "unit": 7, "title": "Orchestra!", "topic": "Music, instruments, present perfect for experience",
+      "vocabulary": ["violin", "piano", "guitar", "drums", "flute", "trumpet", "cello", "saxophone", "harp", "orchestra", "conductor", "compose"],
+      "grammar": "I've played the piano. / She's never sung in public. / Have you ever...? / Present perfect",
+      "key_phrases": ["I've been to a concert.", "Have you ever played the guitar?", "She's never heard an orchestra."],
+      "song": null, "story": "The School Orchestra", "clil": "Music: Instruments of the orchestra", "phonics": null, "values": "Practice makes perfect"
+    },
+    {
+      "unit": 8, "title": "In the Planetarium", "topic": "Space, will for future, predictions",
+      "vocabulary": ["planet", "star", "moon", "Sun", "Earth", "Mars", "Jupiter", "astronaut", "spaceship", "rocket", "galaxy", "solar system", "telescope"],
+      "grammar": "I will go to Mars one day. / We won't live on the Moon. / Will people travel to space?",
+      "key_phrases": ["Will we live on Mars?", "I think I'll be an astronaut.", "Earth is the third planet."],
+      "song": "Space Song", "story": "Mission to Mars", "clil": "Science: The Solar System", "phonics": null, "values": "Protecting Earth"
+    },
+    {
+      "unit": 9, "title": "At the Castle", "topic": "History, medieval life, used to",
+      "vocabulary": ["castle", "king", "queen", "knight", "shield", "sword", "throne", "crown", "dungeon", "moat", "drawbridge", "feast", "jester"],
+      "grammar": "People used to live in castles. / Knights used to wear armor. / They didn't use to have electricity.",
+      "key_phrases": ["There used to be a castle here.", "People didn't use to have phones.", "I used to believe in dragons."],
+      "song": "Castle Song", "story": "The Ghost of the Castle", "clil": "History: Life in medieval times", "phonics": null, "values": "Learning from history"
+    }
+  ]
+}

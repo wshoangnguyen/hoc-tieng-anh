@@ -1,0 +1,78 @@
+{
+  "level": 1,
+  "name": "Super Minds 1 — 2nd Edition",
+  "age": "6-7 tuổi",
+  "source": "Teacher's Book (256p) + Student's Book (128p)",
+  "units": [
+    {
+      "unit": 0, "title": "Friends (Starter)", "topic": "Greetings, introductions, numbers 1-10",
+      "vocabulary": ["hello", "goodbye", "friend", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "red", "blue", "green", "yellow"],
+      "grammar": "I'm... / What's your name? / My name's...",
+      "key_phrases": ["Hello, I'm...", "What's your name?", "My name's...", "How are you?", "I'm fine, thank you."],
+      "song": "Hello Song", "story": "The Super Friends", "phonics": null
+    },
+    {
+      "unit": 1, "title": "At School", "topic": "Classroom objects, colors",
+      "vocabulary": ["book", "pencil", "pen", "bag", "ruler", "rubber", "pencil case", "notebook", "desk", "chair"],
+      "grammar": "What's this? It's a... / Is it a...? Yes, it is. / No, it isn't.",
+      "key_phrases": ["Open your book.", "Close your book.", "Sit down.", "Stand up.", "Look at the board."],
+      "song": "What's This?", "story": "The Pencil", "phonics": "/b/ sound (book, bag, boy)"
+    },
+    {
+      "unit": 2, "title": "Let's Play!", "topic": "Toys, shapes",
+      "vocabulary": ["doll", "ball", "car", "bike", "train", "kite", "teddy bear", "robot", "computer game"],
+      "grammar": "What's your favourite toy? / My favourite toy is... / I've got a...",
+      "key_phrases": ["Let's play!", "This is my...", "I like...", "What colour is it?"],
+      "song": "Toy Song", "story": "The Robot", "phonics": "/t/ sound (toy, teddy, ten)"
+    },
+    {
+      "unit": 3, "title": "Pet Show", "topic": "Animals, prepositions (in, on, under)",
+      "vocabulary": ["cat", "dog", "rabbit", "bird", "fish", "mouse", "frog", "spider", "lizard", "elephant"],
+      "grammar": "I like... / I don't like... / The cat is in/on/under...",
+      "key_phrases": ["I like dogs.", "I don't like spiders.", "Look at the...", "It's in the bag."],
+      "song": "Pet Song", "story": "The Spider", "phonics": "/k/ sound (cat, car, kite)"
+    },
+    {
+      "unit": 4, "title": "Lunchtime", "topic": "Food, countable/uncountable",
+      "vocabulary": ["apple", "banana", "orange", "cake", "sandwich", "pizza", "chicken", "rice", "water", "milk", "juice"],
+      "grammar": "I've got... / Have you got...? Yes, I have. / No, I haven't. / I like... / I don't like...",
+      "key_phrases": ["I've got an apple.", "Have you got a banana?", "I like chicken.", "I don't like rice."],
+      "song": "Food Song", "story": "The Very Hungry Caterpillar", "phonics": "/f/ sound (fish, food, four)"
+    },
+    {
+      "unit": 5, "title": "Free Time", "topic": "Hobbies, days of the week",
+      "vocabulary": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "swim", "dance", "sing", "draw", "read", "play football", "watch TV"],
+      "grammar": "On Monday I... / I can... / I can't... / Can you...? Yes, I can. / No, I can't.",
+      "key_phrases": ["On Monday I swim.", "I can dance.", "Can you sing?", "On Saturday I watch TV."],
+      "song": "Days of the Week Song", "story": "The Weekend", "phonics": "/s/ sound (swim, sing, Saturday)"
+    },
+    {
+      "unit": 6, "title": "The Old House", "topic": "Rooms, furniture, there is/are",
+      "vocabulary": ["bedroom", "bathroom", "kitchen", "living room", "dining room", "garden", "bed", "table", "chair", "sofa", "door", "window"],
+      "grammar": "There's a... / There are... / Is there a...? Yes, there is. / No, there isn't.",
+      "key_phrases": ["There's a bed in the bedroom.", "Is there a sofa?", "There are two chairs."],
+      "song": "House Song", "story": "The Ghost in the House", "phonics": "/h/ sound (house, hello, happy)"
+    },
+    {
+      "unit": 7, "title": "Get Dressed!", "topic": "Clothes, body parts",
+      "vocabulary": ["hat", "jacket", "shirt", "trousers", "shoes", "socks", "dress", "skirt", "T-shirt", "shorts"],
+      "grammar": "He's/She's wearing... / I'm wearing... / These/Those are...",
+      "key_phrases": ["I'm wearing a T-shirt.", "He's wearing a hat.", "These are my shoes."],
+      "song": "Clothes Song", "story": "The Fashion Show", "phonics": "/dʒ/ sound (jacket, jeans, jump)"
+    },
+    {
+      "unit": 8, "title": "The Robot", "topic": "Body parts, abilities (can/can't)",
+      "vocabulary": ["head", "shoulders", "knees", "toes", "eyes", "ears", "mouth", "nose", "hands", "feet", "arms", "legs"],
+      "grammar": "I can... / I can't... / Can you...? / He/She can...",
+      "key_phrases": ["I can touch my toes.", "Can you clap your hands?", "She can jump high."],
+      "song": "Head, Shoulders, Knees and Toes", "story": "The Robot's Adventure", "phonics": "/r/ sound (robot, run, red)"
+    },
+    {
+      "unit": 9, "title": "At the Beach", "topic": "Holiday activities, present continuous",
+      "vocabulary": ["beach", "sun", "sea", "sand", "shell", "swim", "play", "run", "jump", "eat", "drink"],
+      "grammar": "I'm swimming. / He's running. / She's playing. / They're eating.",
+      "key_phrases": ["I'm swimming in the sea.", "He's playing with a ball.", "They're eating ice cream."],
+      "song": "Beach Song", "story": "A Day at the Beach", "phonics": "/iː/ sound (sea, beach, eat)"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "level": 3,
+  "name": "Super Minds 3 — 2nd Edition",
+  "age": "8-9 tuổi",
+  "source": "Teacher's Book (256p, 763K chars) + Student's Book (127p, 103K chars)",
+  "units": [
+    {
+      "unit": 0, "title": "Meet The Explorers (Starter)", "topic": "Numbers 21-100, abilities, introduction to characters",
+      "vocabulary": ["numbers 21-100", "upstairs", "downstairs", "cellar", "good at", "climbing", "explorers", "adventure"],
+      "grammar": "I'm good at (playing football). / I'm not good at (climbing trees). / Mike is Tom's uncle.",
+      "key_phrases": ["I'm good at swimming.", "I'm not good at dancing.", "What are you good at?"],
+      "song": "The Explorers", "story": "The Old Book", "clil": "What kinds of puzzles are there?", "phonics": "Short vowel sounds", "values": "Courage"
+    },
+    {
+      "unit": 1, "title": "Our School", "topic": "School subjects, daily routines, present simple questions",
+      "vocabulary": ["English", "Maths", "Science", "History", "Geography", "Art", "Music", "PE", "IT", "timetable"],
+      "grammar": "What time do you have...? / I have English at... / Do you like...? Yes, I do. / No, I don't.",
+      "key_phrases": ["What time does school start?", "I have Maths at nine o'clock.", "Do you like Science?"],
+      "song": "School Subjects Song", "story": "The Magic School Bell", "clil": "Science: School timetables around the world", "phonics": "The letter 'y' at end of words", "values": "Being curious"
+    },
+    {
+      "unit": 2, "title": "The Picnic", "topic": "Food, countable/uncountable, How much/many, some/any",
+      "vocabulary": ["sandwich", "salad", "biscuits", "crisps", "sausages", "cheese", "lemonade", "orange juice", "strawberries", "grapes", "picnic"],
+      "grammar": "How much bread is there? / How many apples are there? / There's some... / There aren't any...",
+      "key_phrases": ["There's some cheese.", "There aren't any sausages.", "How many sandwiches have we got?"],
+      "song": "Picnic Song", "story": "The Ants' Picnic", "clil": "Science: Food groups", "phonics": "The letters 'ch' and 'sh'", "values": "Sharing"
+    },
+    {
+      "unit": 3, "title": "Daily Tasks", "topic": "Household chores, adverbs of frequency, present simple",
+      "vocabulary": ["wash the dishes", "tidy up", "make the bed", "feed the dog", "take out the rubbish", "sweep the floor", "do the ironing", "set the table"],
+      "grammar": "I always/sometimes/never... / He always cleans his room. / Do you have to...? / I have to...",
+      "key_phrases": ["I always make my bed.", "She never washes the dishes.", "Do you have to tidy up?"],
+      "song": "Chores Song", "story": "The Lazy Robot", "clil": "Social Science: Children's chores worldwide", "phonics": "The letters 'or' and 'aw'", "values": "Responsibility"
+    },
+    {
+      "unit": 4, "title": "Around Town", "topic": "Directions, places, imperatives, must/mustn't",
+      "vocabulary": ["go straight on", "turn left", "turn right", "go past", "cross the road", "opposite", "next to", "between", "traffic lights", "roundabout", "museum", "post office"],
+      "grammar": "Go straight on. / Turn left at the... / You must stop. / You mustn't run. / Imperatives",
+      "key_phrases": ["Excuse me, where's the museum?", "Go straight on and turn left.", "You mustn't cross the road here."],
+      "song": "Directions Song", "story": "The Lost Tourist", "clil": "Geography: Reading a map", "phonics": "The letters 'ow' and 'ou'", "values": "Helping others"
+    },
+    {
+      "unit": 5, "title": "Under the Sea", "topic": "Sea animals, comparatives and superlatives",
+      "vocabulary": ["shark", "dolphin", "whale", "octopus", "seahorse", "jellyfish", "starfish", "coral reef", "turtle", "sea lion", "ocean"],
+      "grammar": "The whale is bigger than the dolphin. / The blue whale is the biggest. / Comparatives and superlatives",
+      "key_phrases": ["The shark is faster than the turtle.", "The whale is the biggest animal in the sea."],
+      "song": "Under the Sea Song", "story": "The Treasure Hunt", "clil": "Science: Ocean habitats", "phonics": "The letter 'a' before 'l'", "values": "Protecting oceans"
+    },
+    {
+      "unit": 6, "title": "Gadgets", "topic": "Technology, past simple (regular verbs)",
+      "vocabulary": ["computer", "tablet", "smartphone", "headphones", "speaker", "keyboard", "mouse", "screen", "printer", "camera", "flash drive"],
+      "grammar": "I played a game yesterday. / He used the computer. / Past simple regular (-ed)",
+      "key_phrases": ["I listened to music yesterday.", "She used the tablet.", "Did you play a game?"],
+      "song": "Technology Song", "story": "The Time Machine", "clil": "History: Old and new technology", "phonics": "The '-ed' ending (/t/, /d/, /ɪd/)", "values": "Using technology safely"
+    },
+    {
+      "unit": 7, "title": "In the Hospital", "topic": "Health, illnesses, past simple (irregular verbs)",
+      "vocabulary": ["headache", "stomach ache", "toothache", "cold", "cough", "temperature", "broken leg", "nurse", "doctor", "medicine", "hospital"],
+      "grammar": "I had a headache. / She went to hospital. / Past simple irregular",
+      "key_phrases": ["I had a cold yesterday.", "She went to the doctor.", "What's the matter?"],
+      "song": "Health Song", "story": "The Brave Patient", "clil": "Science: The human body - how we get sick", "phonics": "The letters 'ou' and 'ow'", "values": "Being brave"
+    },
+    {
+      "unit": 8, "title": "Around the World", "topic": "Countries, landmarks, superlatives",
+      "vocabulary": ["Egypt", "pyramid", "China", "Great Wall", "Italy", "Colosseum", "France", "Eiffel Tower", "Brazil", "statue", "mountain", "river", "waterfall"],
+      "grammar": "The Nile is the longest river. / Superlatives review (-est/most...)",
+      "key_phrases": ["The Eiffel Tower is in France.", "China has got the biggest population."],
+      "song": "World Landmarks Song", "story": "The Global Race", "clil": "Geography: Famous places", "phonics": null, "values": "Cultural respect"
+    },
+    {
+      "unit": 9, "title": "Holiday Plans", "topic": "Future (going to), holiday activities",
+      "vocabulary": ["suitcase", "passport", "ticket", "camera", "map", "suncream", "swimming costume", "towel", "souvenir", "postcard"],
+      "grammar": "I'm going to visit... / She's going to swim. / Are you going to...? / going to for future plans",
+      "key_phrases": ["I'm going to visit my grandma.", "We're going to swim in the sea.", "What are you going to do?"],
+      "song": "Holiday Plans Song", "story": "The Postcard Mystery", "clil": "Social Science: Different types of holidays", "phonics": null, "values": "Being prepared"
+    }
+  ]
+}
