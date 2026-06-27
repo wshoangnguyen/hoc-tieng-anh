@@ -178,42 +178,10 @@ if (fs.existsSync(LOG_FILE)) {
   }
 }
 
-// If local log is empty, try restore from GitHub
-if (chatLog.length === 0 && GITHUB_TOKEN) {
-  console.log('📥 Attempting to restore logs from GitHub...');
-  const restoreOptions = {
-    hostname: 'api.github.com',
-    path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json?ref=${GITHUB_BRANCH}`,
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'User-Agent': 'Buddy-AI-Restore',
-      'Accept': 'application/vnd.github+json',
-    },
-    timeout: 15000,
-  };
-  const restoreReq = https.request(restoreOptions, (res) => {
-    let data = '';
-    res.on('data', (chunk) => { data += chunk; });
-    res.on('end', () => {
-      if (res.statusCode === 200) {
-        try {
-          const result = JSON.parse(data);
-          const content = Buffer.from(result.content, 'base64').toString('utf8');
-          chatLog = JSON.parse(content);
-          fs.writeFileSync(LOG_FILE, JSON.stringify(chatLog, null, 2));
-          console.log(`📥 Restored ${chatLog.length} logs from GitHub backup`);
-        } catch (e) {
-          console.warn('Failed to parse GitHub backup:', e.message);
-        }
-      } else {
-        console.log('No GitHub backup found, starting fresh');
-      }
-    });
-  });
-  restoreReq.on('error', (e) => console.warn('GitHub restore error:', e.message));
-  restoreReq.setTimeout(15000, () => { restoreReq.destroy(); });
-  restoreReq.end();
+// If local log is empty, try restore from Google Sheets (no-op for now)
+// Google Sheets acts as permanent backup — local file is ephemeral on Render Free
+if (chatLog.length === 0) {
+  console.log('📋 Starting with empty local log (Google Sheets has permanent backup)');
 }
 
 function saveLog() {
@@ -241,88 +209,79 @@ function logChat(sessionId, studentName, question, answer) {
 }
 
 // ============================================================
-// GITHUB BACKUP — pushes chat_log.json to GitHub every 5 min
+// GOOGLE SHEETS BACKUP — sends logs to Google Sheets every 5 min
 // ============================================================
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
-const GITHUB_REPO = process.env.GITHUB_REPO || 'wshoangnguyen/hoc-tieng-anh';
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL || '';
+const GOOGLE_SHEET_TOKEN = process.env.GOOGLE_SHEET_TOKEN || 'buddy-ai-log-secret-2026';
 
-function backupToGitHub() {
-  if (!GITHUB_TOKEN) {
-    console.warn('⚠️ GITHUB_TOKEN not set — skipping GitHub backup');
+// Track which entries have already been sent to Sheets (by index in chatLog)
+let lastSheetSyncIndex = 0;
+
+function backupToGoogleSheets() {
+  if (!GOOGLE_SHEET_URL) {
+    console.warn('⚠️ GOOGLE_SHEET_URL not set — skipping Google Sheets backup');
     return;
   }
 
   saveLog(); // flush before backup
-  const content = fs.readFileSync(LOG_FILE, 'utf8');
-  const base64Content = Buffer.from(content).toString('base64');
 
-  // Step 1: Get current file SHA (needed for update)
-  const getOptions = {
-    hostname: 'api.github.com',
-    path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json?ref=${GITHUB_BRANCH}`,
-    method: 'GET',
+  // Get new entries since last sync
+  const newEntries = chatLog.slice(lastSheetSyncIndex);
+  if (newEntries.length === 0) {
+    console.log('📋 No new entries to sync to Google Sheets');
+    return;
+  }
+
+  // Send to Google Sheets via Apps Script Web App
+  const url = new URL(GOOGLE_SHEET_URL);
+  const payload = JSON.stringify({ entries: newEntries });
+  const postPath = url.pathname + '?token=' + encodeURIComponent(GOOGLE_SHEET_TOKEN);
+
+  const options = {
+    hostname: url.hostname,
+    port: 443,
+    path: postPath,
+    method: 'POST',
     headers: {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'User-Agent': 'Buddy-AI-Logger',
-      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(payload),
     },
     timeout: 15000,
   };
 
-  const getReq = https.request(getOptions, (res) => {
+  const req = https.request(options, (res) => {
     let data = '';
     res.on('data', (chunk) => { data += chunk; });
     res.on('end', () => {
-      let sha = '';
       if (res.statusCode === 200) {
-        try { sha = JSON.parse(data).sha; } catch (e) {}
-      }
-      
-      // Step 2: Create or update the file
-      const payload = JSON.stringify({
-        message: `📋 Backup chat logs — ${new Date().toISOString()}`,
-        content: base64Content,
-        branch: GITHUB_BRANCH,
-        ...(sha ? { sha } : {}),
-      });
-
-      const putOptions = {
-        hostname: 'api.github.com',
-        path: `/repos/${GITHUB_REPO}/contents/chatbot/chat_log.json`,
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'User-Agent': 'Buddy-AI-Logger',
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(payload),
-        },
-        timeout: 15000,
-      };
-
-      const putReq = https.request(putOptions, (putRes) => {
-        if (putRes.statusCode === 200 || putRes.statusCode === 201) {
-          console.log(`📤 Backed up ${chatLog.length} logs to GitHub`);
-        } else {
-          console.warn(`GitHub backup failed: ${putRes.statusCode}`);
+        try {
+          const result = JSON.parse(data);
+          if (result.success) {
+            lastSheetSyncIndex = chatLog.length; // mark as synced
+            console.log(`📤 Synced ${result.count} logs to Google Sheets (total: ${result.total})`);
+          } else {
+            console.warn('Google Sheets sync error:', result.error);
+          }
+        } catch (e) {
+          console.warn('Google Sheets response parse error:', e.message);
         }
-      });
-      putReq.on('error', (e) => console.warn('GitHub backup error:', e.message));
-      putReq.write(payload);
-      putReq.end();
+      } else {
+        console.warn(`Google Sheets sync failed: HTTP ${res.statusCode}`);
+      }
     });
   });
-  getReq.on('error', (e) => console.warn('GitHub get error:', e.message));
-  getReq.setTimeout(15000, () => { getReq.destroy(); });
-  getReq.end();
+
+  req.on('error', (e) => console.warn('Google Sheets sync error:', e.message));
+  req.setTimeout(15000, () => { req.destroy(); console.warn('Google Sheets sync timeout'); });
+  req.write(payload);
+  req.end();
 }
 
-// Backup every 5 minutes
-setInterval(backupToGitHub, 5 * 60 * 1000);
+// Sync to Google Sheets every 5 minutes
+setInterval(backupToGoogleSheets, 5 * 60 * 1000);
 
-// Also backup on server start (after 30s to let everything load)
-setTimeout(backupToGitHub, 30000);
+// Also sync on server start (after 30s to let everything load)
+setTimeout(backupToGoogleSheets, 30000);
 
 // ============================================================
 // CALL AI API
