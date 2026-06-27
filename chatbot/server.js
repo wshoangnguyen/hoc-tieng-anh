@@ -471,22 +471,47 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // LOG VIEWER — teacher can view all chat history
+  // LOG VIEWER — teacher can view all chat history (merge local + Google Sheets)
   if (req.method === 'GET' && req.url === '/logs') {
-    saveLog(); // flush before viewing
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    const rows = chatLog.slice().reverse().map((entry, i) => {
-      const time = new Date(entry.time).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-      return `<tr>
-        <td>${chatLog.length - i}</td>
-        <td>${time}</td>
-        <td style="font-weight:600">${(entry.student || 'Không tên').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
-        <td style="max-width:300px;word-break:break-word">${entry.question.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
-        <td style="max-width:300px;word-break:break-word">${entry.answer.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
-      </tr>`;
-    }).join('\n');
-    
-    const html = `<!DOCTYPE html>
+    saveLog();
+    serveLogsPage(res);
+    return;
+  }
+
+// ============================================================
+// LOG VIEWER PAGE — merges local chatLog + Google Sheets data
+// ============================================================
+function escapeHtml(s) {
+  return (s || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function serveLogsPage(res) {
+  // Merge local + sheet logs (dedup by time+sessionId)
+  const merged = new Map();
+  for (const e of chatLog) {
+    merged.set(e.time + '::' + e.sessionId, e);
+  }
+
+  // Sort by time desc
+  const sorted = [...merged.values()].sort((a, b) => new Date(b.time) - new Date(a.time));
+
+  const totalLocal = chatLog.length;
+
+  const rows = sorted.map((entry, i) => {
+    const time = new Date(entry.time).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+    return `<tr>
+      <td>${i + 1}</td>
+      <td>${time}</td>
+      <td style="font-weight:600">${escapeHtml(entry.student || 'Không tên')}</td>
+      <td style="max-width:300px;word-break:break-word">${escapeHtml(entry.question)}</td>
+      <td style="max-width:300px;word-break:break-word">${escapeHtml(entry.answer)}</td>
+    </tr>`;
+  }).join('\n');
+
+  const sessionIds = [...new Set(sorted.map(e => e.sessionId))];
+  const sessionOptions = sessionIds.map(id => `<option value="${escapeHtml(id)}">${escapeHtml(id)}</option>`).join('');
+
+  const html = `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -496,15 +521,20 @@ const server = http.createServer((req, res) => {
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: -apple-system, sans-serif; background: #f5f5f0; padding: 20px; }
     h1 { color: #f7d281; margin-bottom: 5px; font-size: 24px; }
-    .subtitle { color: #888; margin-bottom: 20px; font-size: 14px; }
+    .subtitle { color: #888; margin-bottom: 8px; font-size: 14px; }
+    .info-banner { background: #fff9e6; border: 1px solid #f7d281; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: #5a3e00; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .info-banner .sheet-link { margin-left: auto; background: #f7d281; color: #5a3e00; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 12px; white-space: nowrap; }
     .controls { margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
     .controls input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; width: 250px; }
     .controls button { padding: 8px 16px; background: #f7d281; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
     .controls select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+    .load-sheet { background: #6C5CE7 !important; color: white !important; }
+    #loading { display: none; color: #6C5CE7; font-size: 13px; margin-left: 8px; }
     table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     th { background: #f7d281; color: #5a3e00; padding: 10px 12px; text-align: left; font-size: 13px; position: sticky; top: 0; }
     td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
     tr:hover td { background: #fff9e6; }
+    .sheet-row { background: #f0f0ff; }
     .count { font-size: 12px; color: #888; margin-top: 10px; }
     @media (max-width: 768px) { th:nth-child(3), td:nth-child(3) { display: none; } }
   </style>
@@ -512,12 +542,19 @@ const server = http.createServer((req, res) => {
 <body>
   <h1>🤖 Buddy AI — Chat Logs</h1>
   <p class="subtitle">Lịch sử trò chuyện của học sinh với Buddy</p>
+  <div class="info-banner">
+    <span>📋 Local: <strong>${totalLocal}</strong> cuộc hội thoại</span>
+    <span id="sheetCount">📊 Google Sheets: đang tải...</span>
+    <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1ypREllM2KmQLiyN4vMKpYT-aFDyWQ9QPSlQYYZzJKXk/edit" target="_blank">📊 Mở Google Sheet</a>
+  </div>
   <div class="controls">
     <input type="text" id="search" placeholder="Tìm kiếm..." oninput="filterTable()">
     <select id="sessionFilter" onchange="filterTable()">
       <option value="">Tất cả học sinh</option>
-      ${[...new Set(chatLog.map(e => e.sessionId))].map(id => `<option value="${id}">${id}</option>`).join('')}
+      ${sessionOptions}
     </select>
+    <button class="load-sheet" onclick="loadFromSheet()">☁️ Tải log từ Google Sheets</button>
+    <span id="loading">⏳ Đang tải...</span>
     <button onclick="location.reload()">🔄 Làm mới</button>
     <a href="/health" style="font-size:13px;color:#888;text-decoration:none;align-self:center;">↩ Về health</a>
   </div>
@@ -535,25 +572,82 @@ const server = http.createServer((req, res) => {
       ${rows}
     </tbody>
   </table>
-  <p class="count">📋 Tổng: ${chatLog.length} cuộc hội thoại</p>
+  <p class="count" id="totalCount">📋 Đang hiển thị: ${sorted.length} cuộc hội thoại</p>
   <script>
+    // Fetch sheet count on load
+    fetch('${GOOGLE_SHEET_URL}?fetch=0')
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('sheetCount').innerHTML = '📊 Google Sheets: <strong>' + d.totalRows + '</strong> cuộc hội thoại';
+      })
+      .catch(() => {
+        document.getElementById('sheetCount').textContent = '📊 Google Sheets: không kết nối được';
+      });
+
     function filterTable() {
       const search = document.getElementById('search').value.toLowerCase();
       const session = document.getElementById('sessionFilter').value;
+      let visible = 0;
       document.querySelectorAll('#logTable tbody tr').forEach(tr => {
         const text = tr.textContent.toLowerCase();
         const match = (!search || text.includes(search)) && (!session || text.includes(session));
         tr.style.display = match ? '' : 'none';
+        if (match) visible++;
       });
+      document.getElementById('totalCount').textContent = '📋 Đang hiển thị: ' + visible + ' cuộc hội thoại';
+    }
+
+    async function loadFromSheet() {
+      const btn = event.target;
+      const loading = document.getElementById('loading');
+      btn.disabled = true;
+      loading.style.display = 'inline';
+      try {
+        const resp = await fetch('${GOOGLE_SHEET_URL}?fetch=1');
+        const data = await resp.json();
+        if (!data.logs || data.logs.length === 0) {
+          alert('Google Sheets chưa có log nào.');
+          return;
+        }
+        const tbody = document.querySelector('#logTable tbody');
+        // Build dedup set from existing rows
+        const existingTimes = new Set();
+        tbody.querySelectorAll('tr').forEach(tr => {
+          const cells = tr.cells;
+          if (cells.length >= 2) existingTimes.add(cells[1].textContent.trim());
+        });
+        // Append new rows from sheet
+        let added = 0;
+        const fragment = document.createDocumentFragment();
+        data.logs.reverse().forEach((entry, i) => {
+          if (existingTimes.has(entry.timeVN)) return;
+          const tr = document.createElement('tr');
+          tr.className = 'sheet-row';
+          tr.innerHTML = '<td>' + (data.logs.length - i) + '</td>' +
+            '<td>' + entry.timeVN + '</td>' +
+            '<td style="font-weight:600">' + (entry.student || 'Không tên').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</td>' +
+            '<td style="max-width:300px;word-break:break-word">' + (entry.question || '').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</td>' +
+            '<td style="max-width:300px;word-break:break-word">' + (entry.answer || '').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</td>';
+          fragment.appendChild(tr);
+          added++;
+        });
+        tbody.insertBefore(fragment, tbody.firstChild);
+        document.getElementById('totalCount').textContent = '📋 Đã tải thêm ' + added + ' log từ Google Sheets';
+      } catch(e) {
+        alert('Lỗi tải từ Google Sheets: ' + e.message);
+      } finally {
+        btn.disabled = false;
+        loading.style.display = 'none';
+      }
     }
   </script>
 </body>
 </html>`;
-    res.end(html);
-    return;
-  }
+  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+  res.end(html);
+}
 
-  // 404
+// 404
   res.writeHead(404, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ error: 'Not found' }));
 });
