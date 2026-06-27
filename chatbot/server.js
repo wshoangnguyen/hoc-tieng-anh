@@ -824,5 +824,6 @@ function serveLogsPage(res) {
 
 server.listen(PORT, () => {
   console.log(`🦉 Buddy AI chatbot server running on port ${PORT}`);
-  console.log(`📚 ${Object.keys(lessonData).length} levels loaded`);
+  console.log(`📚 ${Object.keys(curriculumContext).length}/6 curriculum levels loaded`);
+  console.log(`📝 ${Object.keys(questionBank).length} question banks loaded`);
 });
