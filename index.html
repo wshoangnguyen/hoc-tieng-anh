@@ -603,11 +603,10 @@ video {
 .curriculum {
   padding: 70px 20px;
   text-align: center;
-  background: #FFFBF0; /* White beige */
-  margin: 40px 0;
-  border-radius: 20px;
-  max-width: 1200px;
+  background: #FFFBF0;
   margin: 40px auto;
+  border-radius: 20px;
+  max-width: 1100px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   border: 1px solid #e8e4da;
 }
@@ -616,89 +615,213 @@ video {
   font-size: 36px;
   color: #f7d281;
   margin-bottom: 50px;
-  position: relative;
-  display: inline-block;
+  font-family: "Baloo Bhaina 2", serif;
 }
 
-.curriculum h2::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(to right, #f7d281, #fcbe5d);
-  border-radius: 2px;
+.curriculum h2 .subtitle {
+  display: block;
+  font-size: 18px;
+  color: #777;
+  font-weight: 400;
+  margin-top: 6px;
+  font-family: Quicksand, sans-serif;
 }
 
-.curriculum-content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.curriculum-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 60px;
-  text-align: left;
-  gap: 40px;
-}
-
-.curriculum-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.curriculum-text {
-  flex: 1;
-  padding: 20px;
-}
-
-.curriculum-text p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.curriculum-text p strong {
-  color: #f7d281;
-  background: linear-gradient(transparent 60%, #fff176 60%);
-  padding: 0 3px;
-}
-
-.curriculum-image {
-  flex: 1;
+/* Philosophy banner */
+.curriculum-philosophy {
+  background: linear-gradient(135deg, #fff9e6, #fff3c4);
+  border: 2px dashed #fcbe5d;
+  border-radius: 16px;
+  padding: 30px 36px;
+  max-width: 900px;
+  margin: 0 auto 50px auto;
   text-align: center;
+}
+
+.curriculum-philosophy p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #6b5200;
+  margin: 0;
+  font-weight: 600;
+}
+
+.curriculum-philosophy .highlight {
+  color: #e0a800;
+  font-weight: 800;
+}
+
+/* Level cards */
+.curriculum-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1050px;
+  margin: 0 auto 50px auto;
+}
+
+.level-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.level-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  border-color: #f7d281;
+}
+
+.level-card .level-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f7d281, #fcbe5d);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.level-card h3 {
+  font-family: "Baloo Bhaina 2", serif;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.level-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+.level-card .skill-tags {
+  margin-top: 18px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.curriculum-image img {
-  max-height: 250px;
-  transition: transform 0.3s ease;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+.level-card .skill-tags span {
+  background: #f0f0e8;
+  color: #777;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-
-.curriculum-image2 img {
-  max-height: 450px;
-  transition: transform 0.3s ease;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+/* Scaffold illustration */
+.curriculum-scaffold {
+  max-width: 900px;
+  margin: 50px auto 0 auto;
+  text-align: center;
 }
 
-.curriculum-image img:hover {
-  transform: scale(1.08);
+.curriculum-scaffold h3 {
+  font-family: "Baloo Bhaina 2", serif;
+  font-size: 24px;
+  color: #f7d281;
+  margin-bottom: 24px;
 }
 
-.curriculum-image2 img:hover {
-  transform: scale(1.08);
+.scaffold-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.scaffold-step {
+  background: white;
+  border: 2px solid #e8e4da;
+  border-radius: 12px;
+  padding: 20px 18px;
+  min-width: 140px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.scaffold-step:hover {
+  border-color: #f7d281;
+  transform: translateY(-2px);
+}
+
+.scaffold-step .step-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.scaffold-step .step-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+
+.scaffold-step .step-desc {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.scaffold-arrow {
+  font-size: 24px;
+  color: #fcbe5d;
+  font-weight: bold;
+}
+
+/* Footnote */
+.curriculum-footnote {
+  margin-top: 40px;
+  padding: 20px 30px;
+  background: #f9f6ed;
+  border-radius: 12px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 4px solid #f7d281;
+  text-align: left;
+}
+
+.curriculum-footnote p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.curriculum-footnote strong {
+  color: #f7d281;
+}
+
+@media (max-width: 768px) {
+  .curriculum {
+    padding: 40px 16px;
+  }
+  .curriculum-philosophy {
+    padding: 20px 18px;
+  }
+  .curriculum-philosophy p {
+    font-size: 15px;
+  }
+  .curriculum-levels {
+    grid-template-columns: 1fr;
+  }
+  .scaffold-steps {
+    flex-direction: column;
+  }
+  .scaffold-arrow {
+    transform: rotate(90deg);
+  }
 }
 
 /* Cảm nhận từ phụ huynh */
@@ -1450,34 +1573,8 @@ video {
       }
       
       /* Curriculum */
-      .curriculum-item {
-        flex-direction: column !important;
-        margin-bottom: 40px;
-        gap: 20px;
-      }
-      
-      .curriculum-text {
-        padding: 0;
-        margin-bottom: 20px;
-        order: 1;
-      }
-      
-      .curriculum-image, .curriculum-image2 {
-        order: 2;
-      }
-      
-      .curriculum-image img {
-        max-height: 200px;
-        margin-bottom: 10px;
-      }
-      
-      .curriculum-image2 img {
-        max-height: 300px;
-      }
-      
-      .curriculum-image img:hover, 
-      .curriculum-image2 img:hover {
-        transform: none;
+      .curriculum {
+        padding: 40px 15px;
       }
       
       /* Testimonials */
@@ -1539,7 +1636,6 @@ video {
       
       .intro p,
       .benefit-card p,
-      .curriculum-text p,
       .testimonials p {
         font-size: 16px;
       }
@@ -1589,15 +1685,7 @@ video {
       .curriculum {
         padding: 40px 15px;
       }
-      
-      .curriculum-image img {
-        max-height: 180px;
-      }
-      
-      .curriculum-image2 img {
-        max-height: 250px;
-      }
-      
+
       .testimonials {
         padding: 40px 15px;
       }
@@ -1631,8 +1719,6 @@ video {
     /* Touch device optimization */
     @media (hover: none) and (pointer: coarse) {
       .benefit-card:hover,
-      .curriculum-image img:hover,
-      .curriculum-image2 img:hover,
       .testimonial-card:hover {
         transform: none;
       }
@@ -1862,47 +1948,98 @@ video {
   </div>
 </div>
 
-<!-- Chương trình học -->
+<!-- Chương trình học → Phương pháp giảng dạy -->
 <div class="curriculum" id="curriculum">
-  <h2>Chương Trình Học</h2>
-  <div class="curriculum-content">
-    <div class="curriculum-item">
-      <div class="curriculum-text">
-        <p>Các bé được học với sách của đại học Cambridge.</p>
-        <p><strong>Super Minds 1-6</strong> dành cho lứa tuổi tiểu học. Với nội dung gần gũi nhưng cũng hấp dẫn nhờ những câu chuyện hóm hỉnh, kết hợp các kĩ năng khác nhau như ca hát, khoa học, toán học, làm thủ công… giúp bé phát triển toàn diện, không chỉ tiếng Anh mà còn có thể ứng dụng tiếng Anh vào cuộc sống.</p>
-      </div>
-      <div class="curriculum-image">
-        <img src="super-minds.png" alt="Sách Super Minds của Cambridge" onclick="openLightbox('super-minds.png')" loading="lazy">
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-text">
-        <p>Ngoài ra, để hỗ trợ các bé thi lấy chứng chỉ Cambridge và làm quen với các kì thi quốc tế, sau khi học xong <strong>Super Minds 2</strong> các bé sẽ học sách <strong>Fun for Starters</strong>, và sau sách <strong>Super Minds 4</strong> là sách <strong>Fun for Flyers</strong>.</p>
-      </div>
-      <div class="curriculum-image" onclick="openLightbox('fun-for-starters.png')">
-        <img src="fun-for-starters.png" alt="Sách Fun for Starters luyện thi Cambridge" loading="lazy">
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-text">
-        <p>Sau khi học xong các sách bổ trợ này, các bé có thể tự tin tham gia thi các kì thi của Cambridge, qua đó các bậc cha mẹ cũng sẽ nắm rõ hơn về năng lực của các bé dựa trên thang đo năng lực của Cambridge.</p>
-      </div>
-      <div class="curriculum-image2" onclick="openLightbox('cambridge-exams.jpg')">
-        <img src="cambridge-exams.jpg" alt="Kì thi Cambridge quốc tế" loading="lazy">
+  <h2>Phương Pháp Giảng Dạy<span class="subtitle">Không rập khuôn — lấy học sinh làm trung tâm</span></h2>
+
+  <div class="curriculum-philosophy">
+    <p>
+      💡 <span class="highlight">Mỗi bạn nhỏ là một thiên tài</span> với tốc độ và cách học riêng. 
+      Chúng tôi không dạy theo khuôn mẫu — mà <span class="highlight">đồng hành, quan sát, đánh giá liên tục</span> 
+      để điều chỉnh phương pháp phù hợp với từng bé.
+    </p>
+  </div>
+
+  <!-- 3 cấp độ -->
+  <div class="curriculum-levels">
+    <div class="level-card">
+      <span class="level-badge">🧒 Khởi Đầu</span>
+      <h3>6 – 8 tuổi</h3>
+      <p>Làm quen tiếng Anh qua bài hát, truyện kể và trò chơi tương tác. Bé <strong>nghe và bắt chước</strong> một cách tự nhiên, xây dựng phản xạ ngôn ngữ từ sớm.</p>
+      <div class="skill-tags">
+        <span>🎵 Bài hát</span>
+        <span>📖 Truyện tranh</span>
+        <span>🎮 Trò chơi</span>
+        <span>🗣️ Phát âm</span>
       </div>
     </div>
-    <div class="curriculum-item">
-      <div class="curriculum-text">
-        <p>Đối với các bạn tuổi teen, chúng tôi sử dụng hai bộ sách của Cambridge: <strong>Prepare</strong> và <strong>Open World</strong>.</p>
-        <p><strong>Prepare</strong> tập trung vào kiến thức trường lớp, gần gũi với các bạn học sinh. Với nội dung phong phú và thiết thực, các bạn sẽ cảm thấy thoải mái và tự tin hơn khi học tiếng Anh, đồng thời áp dụng được ngay vào các môn học khác.</p>
-        <p><strong>Open World</strong> mang đến những kiến thức về thế giới rộng lớn, với các chủ đề thực tế và tự nhiên. Bộ sách này không chỉ giúp các bạn nâng cao khả năng tiếng Anh mà còn kích thích tính tò mò, khám phá và mở rộng hiểu biết về thế giới xung quanh.</p>
-        <p>Cả hai bộ sách đều được thiết kế để phát triển toàn diện các kỹ năng nghe, nói, đọc, viết, giúp các bạn tự tin sử dụng tiếng Anh trong mọi tình huống.</p>
-      </div>
-      <div class="curriculum-image">
-        <img src="prepare.png" alt="Sách Prepare Cambridge" onclick="openLightbox('prepare.png')" loading="lazy">
-        <img src="open-world.png" alt="Sách Open World Cambridge" onclick="openLightbox('open-world.png')" loading="lazy">
+
+    <div class="level-card">
+      <span class="level-badge">🧑 Phát Triển</span>
+      <h3>8 – 11 tuổi</h3>
+      <p>Xây dựng nền tảng <strong>từ vựng và ngữ pháp</strong> vững chắc. Bé bắt đầu <strong>đọc hiểu đoạn văn</strong> và tự tin <strong>giao tiếp bằng câu hoàn chỉnh</strong>.</p>
+      <div class="skill-tags">
+        <span>📚 Đọc hiểu</span>
+        <span>✍️ Ngữ pháp</span>
+        <span>💬 Hội thoại</span>
+        <span>📝 Viết câu</span>
       </div>
     </div>
+
+    <div class="level-card">
+      <span class="level-badge">👦 Nâng Cao</span>
+      <h3>11 – 14 tuổi</h3>
+      <p>Thành thạo <strong>Nghe – Nói – Đọc – Viết</strong>. Bé tự tin <strong>trình bày ý kiến, viết đoạn văn mạch lạc</strong> và sẵn sàng cho các kỳ thi chứng chỉ quốc tế.</p>
+      <div class="skill-tags">
+        <span>🎤 Thuyết trình</span>
+        <span>📝 Viết luận</span>
+        <span>🏆 Luyện thi</span>
+        <span>🌍 Giao tiếp</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thang đo 5 bước -->
+  <div class="curriculum-scaffold">
+    <h3>🧭 Hành Trình 5 Bước — Từ Làm Quen Đến Thành Thạo</h3>
+    <div class="scaffold-steps">
+      <div class="scaffold-step">
+        <div class="step-icon">👂</div>
+        <div class="step-label">Bước 1</div>
+        <div class="step-desc">Nghe &amp; Lặp lại</div>
+      </div>
+      <div class="scaffold-arrow">→</div>
+      <div class="scaffold-step">
+        <div class="step-icon">🔍</div>
+        <div class="step-label">Bước 2</div>
+        <div class="step-desc">Nhận biết Đúng/Sai</div>
+      </div>
+      <div class="scaffold-arrow">→</div>
+      <div class="scaffold-step">
+        <div class="step-icon">💪</div>
+        <div class="step-label">Bước 3</div>
+        <div class="step-desc">Hiểu &amp; Dùng được</div>
+      </div>
+      <div class="scaffold-arrow">→</div>
+      <div class="scaffold-step">
+        <div class="step-icon">✅</div>
+        <div class="step-label">Bước 4</div>
+        <div class="step-desc">Dùng đúng hoàn cảnh</div>
+      </div>
+      <div class="scaffold-arrow">→</div>
+      <div class="scaffold-step">
+        <div class="step-icon">🚀</div>
+        <div class="step-label">Bước 5</div>
+        <div class="step-desc">Mở rộng &amp; Sáng tạo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="curriculum-footnote">
+    <p>
+      📋 <strong>Đánh giá liên tục, không so sánh:</strong> Giáo viên theo dõi sát từng bé qua thang đo 5 cấp độ cho <strong>Từ vựng, Ngữ pháp, Nghe, Đọc, Nói, Viết</strong>. 
+      Mỗi buổi học, giáo viên ghi nhận tiến bộ và điều chỉnh bài tập phù hợp — <strong>sai là một phần của học, thành công là khi bé dám thử.</strong>
+    </p>
   </div>
 </div>
 
@@ -1996,7 +2133,7 @@ video {
         <li><a href="#intro">Giới thiệu</a></li>
         <li><a href="#testimonials">Phản hồi phụ huynh</a></li>
         <li><a href="#benefits">Lợi ích</a></li>
-        <li><a href="#curriculum">Chương trình học</a></li>
+        <li><a href="#curriculum">Phương pháp giảng dạy</a></li>
         
         <li><a href="#registration">Đăng ký học thử</a></li>
       </ul>
