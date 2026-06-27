@@ -719,6 +719,62 @@ video {
   font-weight: 600;
 }
 
+/* Tech section */
+.curriculum-tech {
+  max-width: 1050px;
+  margin: 50px auto 50px auto;
+  text-align: center;
+  padding: 40px 28px;
+  background: linear-gradient(135deg, #f0f4ff, #e8edf5);
+  border-radius: 20px;
+  border: 1px solid #dde;
+}
+
+.curriculum-tech h3 {
+  font-family: "Baloo Bhaina 2", serif;
+  font-size: 24px;
+  color: #5f4dd0;
+  margin-bottom: 30px;
+}
+
+.curriculum-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.tech-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.tech-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(95, 77, 208, 0.12);
+}
+
+.tech-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.tech-card h4 {
+  font-family: "Baloo Bhaina 2", serif;
+  font-size: 17px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.tech-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #777;
+}
+
 /* Scaffold illustration */
 .curriculum-scaffold {
   max-width: 900px;
@@ -1995,6 +2051,33 @@ video {
         <span>📝 Viết luận</span>
         <span>🏆 Luyện thi</span>
         <span>🌍 Giao tiếp</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ứng dụng công nghệ -->
+  <div class="curriculum-tech">
+    <h3>💻 Hiện Đại &amp; Ứng Dụng Công Nghệ</h3>
+    <div class="curriculum-tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">🖥️</div>
+        <h4>Lớp Học Trực Tuyến</h4>
+        <p>Học 1 kèm 1 hoặc nhóm nhỏ qua Zoom với bảng tương tác, flashcard số, video sinh động.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🤖</div>
+        <h4>Buddy AI 24/7</h4>
+        <p>Trợ lý AI đồng hành cùng bé ngoài giờ học — giải đáp thắc mắc, luyện từ vựng, chấm bài tập tức thì.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🎮</div>
+        <h4>Game Học Tập</h4>
+        <p>Flashcard, xếp chữ, tìm từ, đọc truyện tương tác — học mà như chơi ngay trên trình duyệt.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📊</div>
+        <h4>Theo Dõi Tiến Bộ</h4>
+        <p>Bảng đánh giá năng lực số hóa — phụ huynh nắm rõ từng bước tiến của con qua báo cáo trực quan.</p>
       </div>
     </div>
   </div>
