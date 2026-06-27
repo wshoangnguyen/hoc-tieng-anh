@@ -225,7 +225,14 @@ The student is learning from the Cambridge English Super Minds series (2nd Editi
 - Super Minds 5 (10-11 tuổi): Natural disasters, rainforests, music, legends, cooking, marine life, hobbies, travel, pirates, conditionals
 - Super Minds 6 (11-12 tuổi): Technology, animal adaptations, ancient civilizations, environment, media, money, health, performing arts, passive voice, reported speech
 
-🎯 CURRENT UNIT CONTEXT will be prepended to each conversation based on student's level. Reference vocabulary and grammar from the current unit when appropriate.`;
+🎯 CURRENT UNIT CONTEXT will be prepended to each conversation based on student's level. Reference vocabulary and grammar from the current unit when appropriate.
+
+🏷️ LEVEL ALIASES: Students may use short names. Understand these aliases:
+- "sm1" / "SM1" / "super minds 1" = Super Minds 1 (level 1)
+- "sm2" / "SM2" = Super Minds 2 (level 2)
+- "sm3" / "SM3" = Super Minds 3 (level 3)
+...up to sm6/SM6 = level 6
+When the student says "sách sm3" or "unit 3 sm3", they want Super Minds 3. NEVER default to level 1 in that case.`;
 
 // ============================================================
 // SIMPLE IN-MEMORY SESSION STORE
@@ -577,20 +584,46 @@ const server = http.createServer((req, res) => {
         // Store student name in session for logging
         if (studentName) session.studentName = studentName;
         
-        // Check if student is asking for level change
-        const levelMatch = message.match(/đổi (?:lên|xuống|sang|qua) (?:level|lớp|trình độ) (\d)/i);
+        // Check if student is asking for level/book/unit change
+        // Patterns: "đổi sang level 3", "sách sm3", "unit 5 sm3", "level 3", "super minds 3", "sm3 unit 5", "qua sm3"
+        let levelMatch = message.match(/(?:đổi|chuyển|qua|sang|học|sách|level|sm|lớp)\s*(?:super\s*minds?\s*)?(?:level\s*)?(\d)/i);
+        if (!levelMatch) {
+          // Match: "sm3", "SM3", "unit 3 sm3", "sách sm3"
+          levelMatch = message.match(/(?:^|\s)(?:sm|SM)([1-6])(?:\s|$)/);
+        }
         if (levelMatch) {
           const newLevel = parseInt(levelMatch[1]);
           if (newLevel >= 1 && newLevel <= 6) {
             session.level = newLevel;
             session.unit = 0;
             session.askedQuestions = [];
+            
+            // Check if also specifying a unit
+            const unitMatch = message.match(/unit\s*(\d+)/i);
+            if (unitMatch) {
+              const unitNum = parseInt(unitMatch[1]);
+              if (unitNum >= 0 && unitNum <= 9) {
+                session.unit = unitNum;
+              }
+            }
+            
             const ctx = curriculumContext[`level${newLevel}`];
+            const unitInfo = session.unit > 0 ? getUnitContext(newLevel, session.unit) : null;
+            let reply = `✅ Đã chuyển sang **Super Minds ${newLevel}** (${ctx ? ctx.age : ''})!\n\n📚 Chương trình: ${ctx ? ctx.name : ''}\n📖 ${ctx ? ctx.units.length : '10'} bài học\n`;
+            if (unitInfo) {
+              reply += `🎯 Đang học: Unit ${unitInfo.unit} — **${unitInfo.title}** (${unitInfo.topic})\n`;
+              reply += `📝 Ngữ pháp: ${unitInfo.grammar?.substring(0, 100) || 'N/A'}\n`;
+            } else {
+              reply += `🎯 Bắt đầu từ bài Starter\n`;
+            }
+            reply += `\nBạn muốn học gì bây giờ? 😊`;
+            
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
-              reply: `✅ Đã chuyển sang **Super Minds ${newLevel}** (${ctx ? ctx.age : ''})!\n\n📚 Chương trình này có ${ctx ? ctx.units.length : '10'} bài học. Mình bắt đầu từ bài Starter nhé! 😊\n\nBạn muốn học về chủ đề gì? Hay mình bắt đầu ngay bây giờ?`,
+              reply: reply,
               sessionId: sessionId || 'default',
               level: newLevel,
+              unit: session.unit,
             }));
             return;
           }
