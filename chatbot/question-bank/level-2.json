@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "level": 2,
+    "name": "Super Minds 3-4",
+    "age": "8-10 tuổi",
+    "description": "Phát triển: câu phức, thì quá khứ, mô tả, câu hỏi Wh-, đọc hiểu đoạn văn ngắn"
+  },
+  "bank": [
+    {
+      "id": "L2-U1-PAS-001",
+      "unit": 1,
+      "skill": "grammar",
+      "topic": "past_simple",
+      "subtopic": "regular_verbs",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Yesterday, I ___ (play) football.",
+      "options": ["play", "played", "playing"],
+      "answer": 1,
+      "explanation": "Quá khứ của 'play' là 'played' (thêm -ed). 'Yesterday' là dấu hiệu thì quá khứ."
+    },
+    {
+      "id": "L2-U1-PAS-002",
+      "unit": 1,
+      "skill": "grammar",
+      "topic": "past_simple",
+      "subtopic": "irregular_verbs",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "She ___ to school yesterday.",
+      "options": ["go", "went", "goed"],
+      "answer": 1,
+      "explanation": "Quá khứ của 'go' là 'went' (bất quy tắc). KHÔNG phải 'goed'."
+    },
+    {
+      "id": "L2-U1-PAS-003",
+      "unit": 1,
+      "skill": "grammar",
+      "topic": "past_simple",
+      "subtopic": "negative_form",
+      "type": "fill_blank",
+      "difficulty": 3,
+      "question": "I ___ (not/go) to school yesterday.",
+      "answer": "didn't go",
+      "explanation": "Phủ định quá khứ: didn't + động từ nguyên mẫu. 'I didn't go' = Tôi đã không đi."
+    },
+    {
+      "id": "L2-U2-WHQ-001",
+      "unit": 2,
+      "skill": "grammar",
+      "topic": "wh_questions",
+      "subtopic": "what_where_when",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "___ do you live? (Bạn sống ở đâu?)",
+      "options": ["What", "Where", "When"],
+      "answer": 1,
+      "explanation": "Where = ở đâu. What = cái gì, When = khi nào."
+    },
+    {
+      "id": "L2-U2-WHQ-002",
+      "unit": 2,
+      "skill": "grammar",
+      "topic": "wh_questions",
+      "subtopic": "what_where_when",
+      "type": "fill_blank",
+      "difficulty": 2,
+      "question": "___ is your name? (Tên bạn là gì?)",
+      "answer": "What",
+      "explanation": "What = cái gì. 'What is your name?' = Tên bạn là gì?"
+    },
+    {
+      "id": "L2-U3-DAI-001",
+      "unit": 3,
+      "skill": "vocab",
+      "topic": "daily_routines",
+      "subtopic": "daily_activities",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "'I brush my teeth' nghĩa là gì?",
+      "options": ["Tôi rửa mặt", "Tôi đánh răng", "Tôi chải tóc"],
+      "answer": 1,
+      "explanation": "Brush my teeth = đánh răng. Wash my face = rửa mặt. 🪥"
+    },
+    {
+      "id": "L2-U3-DAI-002",
+      "unit": 3,
+      "skill": "grammar",
+      "topic": "present_continuous",
+      "subtopic": "actions_now",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Look! She ___ (read) a book now.",
+      "options": ["reads", "is reading", "read"],
+      "answer": 1,
+      "explanation": "Dấu hiệu 'Look!' và 'now' → hiện tại tiếp diễn. am/is/are + V-ing."
+    },
+    {
+      "id": "L2-U4-CLO-001",
+      "unit": 4,
+      "skill": "vocab",
+      "topic": "clothes",
+      "subtopic": "clothing_items",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "What do you wear on your feet?",
+      "options": ["hat", "shoes", "gloves"],
+      "answer": 1,
+      "explanation": "Shoes = giày (đi ở chân). Hat = mũ, Gloves = găng tay. 👟"
+    },
+    {
+      "id": "L2-U5-PLA-001",
+      "unit": 5,
+      "skill": "vocab",
+      "topic": "places",
+      "subtopic": "town_places",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Where can you buy food?",
+      "options": ["hospital", "supermarket", "school"],
+      "answer": 1,
+      "explanation": "Supermarket = siêu thị (mua đồ ăn). Hospital = bệnh viện, School = trường học. 🛒"
+    },
+    {
+      "id": "L2-U5-PLA-002",
+      "unit": 5,
+      "skill": "grammar",
+      "topic": "there_is_are",
+      "subtopic": "describing_places",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "___ a hospital in my town.",
+      "options": ["There is", "There are", "It is"],
+      "answer": 0,
+      "explanation": "'A hospital' là số ít → dùng 'There is'. Số nhiều mới dùng 'There are'."
+    }
+  ]
+}
