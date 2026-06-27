@@ -202,8 +202,8 @@ function logChat(sessionId, studentName, question, answer) {
     answer: answer.substring(0, 500),
   };
   chatLog.push(entry);
-  // Save every 5 entries to avoid too much disk I/O
-  if (chatLog.length % 5 === 0) saveLog();
+  // Save IMMEDIATELY to avoid data loss on Render Free spin-down
+  saveLog();
   // Also log to console for Render dashboard
   console.log(`[Buddy] ${entry.time} | ${entry.student} | Q: "${entry.question.substring(0, 60)}" | A: "${entry.answer.substring(0, 60)}"`);
 }
@@ -277,11 +277,11 @@ function backupToGoogleSheets() {
   req.end();
 }
 
-// Sync to Google Sheets every 5 minutes
-setInterval(backupToGoogleSheets, 5 * 60 * 1000);
+// Sync to Google Sheets every 1 minute (so logs survive even if student closes immediately)
+setInterval(backupToGoogleSheets, 1 * 60 * 1000);
 
-// Also sync on server start (after 30s to let everything load)
-setTimeout(backupToGoogleSheets, 30000);
+// Also sync on server start (after 15s to let everything load)
+setTimeout(backupToGoogleSheets, 15000);
 
 // ============================================================
 // CALL AI API
