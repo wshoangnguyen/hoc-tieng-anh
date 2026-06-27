@@ -271,9 +271,12 @@
       }
     }
 
-    /* CTA Button in Nav */
+    /* CTA Buttons in Nav */
     .nav-cta {
       margin-left: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
     .nav-cta .cta-button {
@@ -295,6 +298,33 @@
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(245, 181, 54, 0.4);
       background: linear-gradient(135deg, #ffc107, #fcbe5d);
+    }
+
+    .nav-cta .chat-ai-button {
+      background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      animation: pulse-ai 2s infinite;
+    }
+
+    .nav-cta .chat-ai-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(108, 92, 231, 0.45);
+      background: linear-gradient(135deg, #5f4dd0, #8c7ae6);
+    }
+
+    @keyframes pulse-ai {
+      0%, 100% { box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); }
+      50% { box-shadow: 0 4px 25px rgba(108, 92, 231, 0.55); }
     }
 
     /* Hamburger Menu (Mobile) */
@@ -1053,6 +1083,132 @@ video {
       padding-bottom: 10px;
     }
 
+    /* ========== BUDDY AI SECTION ========== */
+    .buddy-ai {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 60px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .buddy-ai-header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+    }
+
+    .buddy-ai-header h2 {
+      font-family: "Baloo Bhaina 2", serif;
+      font-size: 32px;
+      color: white;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .buddy-ai-header p {
+      font-size: 17px;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+
+    .buddy-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto 40px auto;
+    }
+
+    .buddy-feature-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .buddy-feature-card:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .buddy-feature-icon {
+      font-size: 44px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .buddy-feature-card h3 {
+      font-family: "Baloo Bhaina 2", serif;
+      font-size: 18px;
+      color: #ffd700;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .buddy-feature-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+      color: white;
+    }
+
+    .buddy-ai-cta {
+      margin-top: 20px;
+    }
+
+    .buddy-chat-button {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #ffd700, #ffb347);
+      color: #4a2c6e;
+      padding: 20px 48px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 22px;
+      font-family: "Baloo Bhaina 2", serif;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .buddy-chat-button:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.55);
+    }
+
+    .buddy-btn-icon {
+      font-size: 28px;
+    }
+
+    .buddy-btn-sub {
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.8;
+      font-family: Quicksand, sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .buddy-ai {
+        padding: 40px 16px;
+      }
+      .buddy-ai-header h2 {
+        font-size: 24px;
+      }
+      .buddy-feature-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .buddy-chat-button {
+        padding: 16px 32px;
+        font-size: 18px;
+      }
+    }
+
     .footer-section h4::after {
       content: '';
       position: absolute;
@@ -1580,6 +1736,7 @@ video {
     </ul>
     
     <div class="nav-cta">
+      <a href="chat.html" class="chat-ai-button">🤖 Chat với AI</a>
       <a href="#registration" class="cta-button">Học thử</a>
     </div>
     
@@ -1767,6 +1924,62 @@ video {
     <input type="email" name="entry.738983665" placeholder="Email (không bắt buộc)" aria-label="Email">
     <button type="submit" aria-label="Đăng ký học thử miễn phí ngay">Đăng ký ngay!</button>
   </form>
+</div>
+
+<!-- Buddy AI Chatbot Section -->
+<div class="buddy-ai" id="buddy-ai">
+  <div class="buddy-ai-header">
+    <h2>🤖 Buddy AI — Trợ Lý Học Tiếng Anh 24/7</h2>
+    <p>Bạn nhỏ cần giúp đỡ bài tập? Có thắc mắc về từ vựng, ngữ pháp? <strong>Buddy</strong> luôn sẵn sàng!</p>
+  </div>
+  
+  <div class="buddy-ai-content">
+    <div class="buddy-feature-grid">
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">🧠</div>
+        <h3>Không Làm Hộ — Chỉ Hướng Dẫn</h3>
+        <p>Buddy không đưa đáp án sẵn. Bé sẽ được dẫn dắt từng bước để <strong>tự mình tìm ra câu trả lời</strong>, giúp nhớ lâu và hiểu sâu.</p>
+      </div>
+      
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">⚡</div>
+        <h3>Phản Hồi Trong 2 Giây</h3>
+        <p>Hỏi là trả lời ngay — không cần chờ đợi. Buddy hoạt động <strong>24/7</strong> nên bé có thể học bất cứ lúc nào, kể cả 10 giờ tối!</p>
+      </div>
+      
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">📚</div>
+        <h3>Bám Sát Chương Trình Cambridge</h3>
+        <p>Buddy hiểu rõ giáo trình Super Minds, Prepare, Open World. Mọi giải thích đều <strong>phù hợp với trình độ</strong> của bé.</p>
+      </div>
+      
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">🎮</div>
+        <h3>Học Mà Như Chơi</h3>
+        <p>Mini games, câu đố vui, thử thách nho nhỏ — Buddy biến mỗi câu hỏi thành <strong>một trò chơi thú vị</strong>.</p>
+      </div>
+      
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">🇻🇳</div>
+        <h3>Song Ngữ Việt - Anh</h3>
+        <p>Buddy giao tiếp bằng <strong>tiếng Việt</strong> để bé dễ hiểu, nhưng luôn kèm ví dụ tiếng Anh để bé làm quen dần.</p>
+      </div>
+      
+      <div class="buddy-feature-card">
+        <div class="buddy-feature-icon">🆓</div>
+        <h3>Hoàn Toàn Miễn Phí</h3>
+        <p>Không giới hạn câu hỏi, không phí ẩn. Đội ngũ <strong>Học Tiếng Anh Dễ Lắm</strong> tạo ra Buddy để mọi trẻ em Việt Nam đều được học tốt.</p>
+      </div>
+    </div>
+
+    <div class="buddy-ai-cta">
+      <a href="chat.html" class="buddy-chat-button">
+        <span class="buddy-btn-icon">💬</span>
+        Chat với Buddy ngay!
+        <span class="buddy-btn-sub">Miễn phí • Trả lời trong 2 giây</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
