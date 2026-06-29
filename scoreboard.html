@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảng Điểm Thi Đua - Học Tiếng Anh Dễ Lắm</title>
+<link rel="icon" type="image/png" href="https://hoctienganhdelam.com/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<style>:root{--bg:#F5F5F0;--card:#fff;--card-hover:#fffbf0;--text:#333;--text-dim:#888;--text-light:#666;--accent:#fcbe5d;--accent2:#f7d281;--purple:#6C5CE7;--green:#00b894;--red:#e17055;--blue:#0984e3;--border:#e8e4da;--border-light:#f0ead6;--shadow:0 4px 20px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--level-1:#e17055;--level-2:#fdcb6e;--level-3:#ffeaa7;--level-4:#55efc4;--level-5:#74b9ff}*{margin:0;padding:0;box-sizing:border-box}body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-top:80px}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;width:100%;background:rgba(255,251,240,.98);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,.08);z-index:1000;padding:10px 0;border-bottom:1px solid var(--border)}.nav-container{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 24px}.logo-link{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-img{height:42px;width:auto;animation:shake 5s infinite}@keyframes shake{0%,100%{transform:translateX(0) rotate(0deg)}10%,30%,50%,70%,90%{transform:translateX(-5px) rotate(-3deg)}20%,40%,60%,80%{transform:translateX(5px) rotate(3deg)}}.logo-text{font-family:"Baloo Bhaina 2",serif;font-weight:800;font-size:20px;color:var(--accent2);line-height:1.1}.logo-sub{font-size:10px;color:var(--accent);font-weight:600;letter-spacing:1px}.nav-actions{display:flex;align-items:center;gap:10px}.pass-input{padding:8px 14px;border-radius:20px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;width:150px;outline:none;font-family:Quicksand,sans-serif;transition:border .2s}.pass-input:focus{border-color:var(--accent)}.btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:13px;font-weight:700;transition:all .2s;display:flex;align-items:center;gap:5px;font-family:Quicksand,sans-serif}.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#333;box-shadow:0 2px 10px rgba(252,190,93,.3)}.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(252,190,93,.4)}.btn-danger{background:linear-gradient(135deg,#e17055,#d63031);color:#fff}.btn-danger:hover{transform:translateY(-1px)}.btn-outline{background:transparent;border:2px solid var(--border);color:var(--text)}.btn-outline:hover{background:var(--card-hover);border-color:var(--accent)}.btn-sm{padding:5px 12px;font-size:12px}.badge{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:700}.badge-on{background:#00b89415;color:var(--green)}.badge-off{background:#e1705515;color:var(--red)}
+
+/* Teacher bar */
+.teacher-bar{background:linear-gradient(135deg,#fffbf0,#fff8e1);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.teacher-avatar-wrap{position:relative;flex-shrink:0}.teacher-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);background:var(--card);box-shadow:var(--shadow)}.upload-btn{position:absolute;bottom:4px;right:4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:2px solid #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#333;box-shadow:var(--shadow);transition:all .2s}.upload-btn:hover{transform:scale(1.1)}.t-label{font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}.t-name{font-size:18px;font-weight:700;color:var(--text);font-family:"Baloo Bhaina 2",serif}
+
+/* Main */
+.main-content{padding:24px;max-width:1300px;margin:0 auto}.section-title{font-family:"Baloo Bhaina 2",serif;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:10px}.student-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
+
+/* Student Card */
+.student-card{background:var(--card);border-radius:20px;padding:24px;border:1px solid var(--border-light);box-shadow:var(--shadow);transition:all .25s;position:relative}.student-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow-lg)}.delete-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text-dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}.delete-btn:hover{background:#e1705515;color:var(--red);border-color:var(--red)}.student-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}.student-avatar-wrap{position:relative;flex-shrink:0}.student-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--border-light);background:var(--bg)}.student-info{flex:1;min-width:0}.student-name{font-family:"Baloo Bhaina 2",serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:2px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}.student-name .edit-icon{font-size:11px;opacity:0;transition:opacity .2s}.student-name:hover .edit-icon{opacity:.5}.student-total{font-size:32px;font-weight:800;color:var(--accent);line-height:1;display:flex;align-items:center;gap:6px;font-family:"Baloo Bhaina 2",serif}.score-controls{display:none;gap:6px;margin-top:4px}.score-controls.active{display:flex}.score-btn{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:Quicksand,sans-serif}.score-plus{background:#00b89415;color:var(--green);border:2px solid #00b89430}.score-plus:hover{background:#00b89430;transform:scale(1.1)}.score-minus{background:#e1705515;color:var(--red);border:2px solid #e1705530}.score-minus:hover{background:#e1705530;transform:scale(1.1)}
+
+/* Skills */
+.skills-section{margin-top:6px}.skill-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}.skill-label{font-family:"Baloo Bhaina 2",serif;font-size:13px;font-weight:700;color:var(--purple);width:20px;text-align:center}.level-cells{display:flex;gap:5px;flex:1}.level-cell{flex:1;height:30px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-dim);transition:all .15s;border:1px solid transparent;position:relative}.level-cell:hover{border-color:var(--accent)}.cell-btns{display:none;position:absolute;top:-5px;right:-3px;gap:1px;z-index:5}.cell-btns.active{display:flex}.cell-btn{width:18px;height:18px;border-radius:50%;border:1px solid var(--border);cursor:pointer;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;background:var(--card);color:var(--text);transition:all .15s}.cell-btn.p{color:var(--green)}.cell-btn.p:hover{background:#00b89420;transform:scale(1.2)}.cell-btn.m{color:var(--red)}.cell-btn.m:hover{background:#e1705520;transform:scale(1.2)}.level-cell.l-1{color:var(--level-1);background:#e1705510}.level-cell.l-2{color:#e17055;background:#fdcb6e15}.level-cell.l-3{color:#b8860b;background:#ffeaa730}.level-cell.l-4{color:#00b894;background:#55efc420}.level-cell.l-5{color:var(--blue);background:#74b9ff20}.level-cell.has.l-1{background:#e1705530}.level-cell.has.l-2{background:#fdcb6e30}.level-cell.has.l-3{background:#ffeaa750}.level-cell.has.l-4{background:#55efc440}.level-cell.has.l-5{background:#74b9ff40}.skill-total{font-size:13px;font-weight:700;color:var(--text);width:24px;text-align:center;font-family:"Baloo Bhaina 2",serif}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.modal-overlay.open{display:flex}.modal{background:var(--card);border-radius:24px;padding:32px;max-width:650px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg)}.modal h2{font-family:"Baloo Bhaina 2",serif;font-size:24px;text-align:center;margin-bottom:24px;color:var(--accent)}.lb-section{margin-bottom:24px}.lb-section h3{font-size:15px;margin-bottom:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px;font-family:Quicksand,sans-serif}.lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;margin-bottom:8px;background:var(--bg);border:1px solid var(--border-light)}.lb-rank{font-size:24px;width:36px;text-align:center}.r-1{color:#f39c12}.r-2{color:#95a5a6}.r-3{color:#d35400}.lb-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}.lb-name{flex:1;font-weight:700;font-family:"Baloo Bhaina 2",serif}.lb-score{font-size:18px;font-weight:800;color:var(--accent);font-family:"Baloo Bhaina 2",serif}.empty-lb{text-align:center;color:var(--text-dim);padding:20px;font-style:italic}.modal-close{display:block;margin:20px auto 0}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border-light);border-radius:12px;padding:12px 20px;color:var(--text);font-size:14px;font-weight:600;z-index:3000;animation:slideIn .3s ease;box-shadow:var(--shadow-lg)}@keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* Forms */
+.form-group{margin-bottom:14px}.form-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:4px;font-weight:700}.form-group input{width:100%;padding:10px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;font-family:Quicksand,sans-serif}.form-group input:focus{border-color:var(--accent)}
+
+/* Edit inline */
+.name-edit{background:var(--bg);border:2px solid var(--accent);border-radius:8px;color:var(--text);font-size:16px;font-weight:700;padding:2px 8px;width:150px;outline:none;font-family:"Baloo Bhaina 2",serif}
+
+@media(max-width:768px){.navbar{padding:8px 0}.nav-container{flex-wrap:wrap;gap:8px}.teacher-bar{flex-direction:column;align-items:flex-start}.student-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="navbar">
+<div class="nav-container">
+<a class="logo-link" href="https://hoctienganhdelam.com" target="_blank">
+<img class="logo-img" src="https://hoctienganhdelam.com/logo.png" alt="Logo">
+<span class="logo-text">Học Tiếng Anh<br><span class="logo-sub">DỄ LẮM</span></span>
+</a>
+<div class="nav-actions" id="loginSection">
+<input type="password" class="pass-input" id="passInput" placeholder="🔑 Mật khẩu GV" onkeydown="if(event.key==='Enter')login()">
+<button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+<button class="btn btn-outline" onclick="openAddStudentModal()">➕ Thêm HS</button>
+<button class="btn btn-outline" onclick="openLeaderboard()">🏆 Xếp hạng</button>
+</div>
+</div>
+</div>
+
+<div class="teacher-bar">
+<div class="teacher-avatar-wrap">
+<img class="teacher-avatar" id="teacherAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='20' fill='%23fcbe5d'/%3E%3Cellipse cx='50' cy='85' rx='35' ry='20' fill='%23f7d281'/%3E%3C/svg%3E" alt="Teacher">
+<button class="upload-btn" onclick="uploadAvatar('teacher')" title="Đổi ảnh">📷</button>
+</div>
+<div>
+<div class="t-label">Giáo viên</div>
+<div class="t-name" id="teacherNameDisplay">Thầy/Cô</div>
+<span class="badge badge-off" id="loginBadge">🔒 Chưa đăng nhập</span>
+</div>
+</div>
+
+<div class="main-content">
+<div class="section-title">👨‍🎓 Học Sinh</div>
+<div class="student-grid" id="studentGrid"></div>
+</div>
+
+<div class="modal-overlay" id="leaderboardModal">
+<div class="modal">
+<h2>🏆 Bảng Xếp Hạng</h2>
+<div class="lb-section"><h3>⭐ Top Điểm Tổng</h3><div id="topTotal"></div></div>
+<div class="lb-section"><h3>🗣️📝 Top Kỹ Năng (W + S)</h3><div id="topSkills"></div></div>
+<div class="lb-section"><h3>🚀 Top Nỗ Lực (tăng điểm tuần này)</h3><div id="topEffort"></div></div>
+<button class="btn btn-outline modal-close" onclick="closeLeaderboard()">Đóng</button>
+</div>
+</div>
+
+<div class="modal-overlay" id="addStudentModal">
+<div class="modal">
+<h2>➕ Thêm Học Sinh Mới</h2>
+<div class="form-group"><label>Tên học sinh</label><input type="text" id="newStudentName" placeholder="Nhập tên học sinh..."></div>
+<button class="btn btn-primary" onclick="addStudent()" style="width:100%;justify-content:center">Thêm Học Sinh</button>
+<button class="btn btn-outline modal-close" onclick="closeAddStudentModal()" style="margin-top:10px">Đóng</button>
+</div>
+</div>
+
+<input type="file" id="teacherFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload('teacher', this)">
+<input type="file" id="studentFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload('student', this)">
+<script src="app.js"></script>
+</body>
+</html>
