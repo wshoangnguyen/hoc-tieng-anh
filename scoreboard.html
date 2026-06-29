@@ -11,10 +11,10 @@
 .navbar{position:fixed;top:0;left:0;width:100%;background:rgba(255,251,240,.98);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,.08);z-index:1000;padding:10px 0;border-bottom:1px solid var(--border)}.nav-container{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 24px}.logo-link{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-img{height:42px;width:auto;animation:shake 5s infinite}@keyframes shake{0%,100%{transform:translateX(0) rotate(0deg)}10%,30%,50%,70%,90%{transform:translateX(-5px) rotate(-3deg)}20%,40%,60%,80%{transform:translateX(5px) rotate(3deg)}}.logo-text{font-family:"Baloo Bhaina 2",serif;font-weight:800;font-size:20px;color:var(--accent2);line-height:1.1}.logo-sub{font-size:10px;color:var(--accent);font-weight:600;letter-spacing:1px}.nav-actions{display:flex;align-items:center;gap:10px}.pass-input{padding:8px 14px;border-radius:20px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;width:150px;outline:none;font-family:Quicksand,sans-serif;transition:border .2s}.pass-input:focus{border-color:var(--accent)}.btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:13px;font-weight:700;transition:all .2s;display:flex;align-items:center;gap:5px;font-family:Quicksand,sans-serif}.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#333;box-shadow:0 2px 10px rgba(252,190,93,.3)}.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(252,190,93,.4)}.btn-danger{background:linear-gradient(135deg,#e17055,#d63031);color:#fff}.btn-danger:hover{transform:translateY(-1px)}.btn-outline{background:transparent;border:2px solid var(--border);color:var(--text)}.btn-outline:hover{background:var(--card-hover);border-color:var(--accent)}.btn-sm{padding:5px 12px;font-size:12px}.badge{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:700}.badge-on{background:#00b89415;color:var(--green)}.badge-off{background:#e1705515;color:var(--red)}
 
 /* Teacher bar */
-.teacher-bar{background:linear-gradient(135deg,#fffbf0,#fff8e1);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.teacher-avatar-wrap{position:relative;flex-shrink:0}.teacher-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);background:var(--card);box-shadow:var(--shadow)}.upload-btn{position:absolute;bottom:4px;right:4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:2px solid #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#333;box-shadow:var(--shadow);transition:all .2s}.upload-btn:hover{transform:scale(1.1)}.t-label{font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}.t-name{font-size:18px;font-weight:700;color:var(--text);font-family:"Baloo Bhaina 2",serif}
+.teacher-bar{background:linear-gradient(135deg,#fffbf0,#fff8e1);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.teacher-avatar-wrap{position:relative;flex-shrink:0}.teacher-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);background:var(--card);box-shadow:var(--shadow)}.upload-btn{position:absolute;bottom:4px;right:4px;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:2px solid #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#333;box-shadow:var(--shadow);transition:all .2s}.upload-btn:hover{transform:scale(1.1)}
 
 /* Main */
-.main-content{padding:24px;max-width:1300px;margin:0 auto}.section-title{font-family:"Baloo Bhaina 2",serif;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:10px}.student-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
+.main-content{padding:20px 24px;max-width:1300px;margin:0 auto}.student-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
 
 /* Student Card */
 .student-card{background:var(--card);border-radius:20px;padding:24px;border:1px solid var(--border-light);box-shadow:var(--shadow);transition:all .25s;position:relative}.student-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow-lg)}.delete-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text-dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}.delete-btn:hover{background:#e1705515;color:var(--red);border-color:var(--red)}.student-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}.student-avatar-wrap{position:relative;flex-shrink:0}.student-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--border-light);background:var(--bg)}.student-info{flex:1;min-width:0}.student-name{font-family:"Baloo Bhaina 2",serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:2px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}.student-name .edit-icon{font-size:11px;opacity:0;transition:opacity .2s}.student-name:hover .edit-icon{opacity:.5}.student-total{font-size:32px;font-weight:800;color:var(--accent);line-height:1;display:flex;align-items:center;gap:6px;font-family:"Baloo Bhaina 2",serif}.score-controls{display:none;gap:6px;margin-top:4px}.score-controls.active{display:flex}.score-btn{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:Quicksand,sans-serif}.score-plus{background:#00b89415;color:var(--green);border:2px solid #00b89430}.score-plus:hover{background:#00b89430;transform:scale(1.1)}.score-minus{background:#e1705515;color:var(--red);border:2px solid #e1705530}.score-minus:hover{background:#e1705530;transform:scale(1.1)}
@@ -59,14 +59,11 @@
 <button class="upload-btn" onclick="uploadAvatar('teacher')" title="Đổi ảnh">📷</button>
 </div>
 <div>
-<div class="t-label">Giáo viên</div>
-<div class="t-name" id="teacherNameDisplay">Thầy/Cô</div>
 <span class="badge badge-off" id="loginBadge">🔒 Chưa đăng nhập</span>
 </div>
 </div>
 
 <div class="main-content">
-<div class="section-title">👨‍🎓 Học Sinh</div>
 <div class="student-grid" id="studentGrid"></div>
 </div>
 
@@ -91,6 +88,6 @@
 
 <input type="file" id="teacherFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload('teacher', this)">
 <input type="file" id="studentFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload('student', this)">
-<script src="app.js"></script>
+<script src="scoreboard.js"></script>
 </body>
 </html>

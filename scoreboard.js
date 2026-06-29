@@ -1,38 +1,38 @@
-const PASSWORD = "Vuiqua123!";
-const SK = "cs_data_v2";
-let loggedIn = false, upStudentId = null;
+const API = "";
+const PASSWORD = "***";
+let loggedIn = false, upStudentId = null, d = null;
 
-const defData = {
-  teacherName: "Thầy/Cô", teacherAvatar: "",
-  students: [
-    {id:"s1",name:"Nguyễn Văn An",avatar:"",totalScore:15,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:15},
-    {id:"s2",name:"Trần Thị Bình",avatar:"",totalScore:22,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:22},
-    {id:"s3",name:"Lê Văn Cường",avatar:"",totalScore:8,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:8},
-    {id:"s4",name:"Phạm Thị Dung",avatar:"",totalScore:30,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:30},
-    {id:"s5",name:"Hoàng Văn Em",avatar:"",totalScore:12,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:12},
-    {id:"s6",name:"Vũ Thị Fương",avatar:"",totalScore:18,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:18}
-  ]
-};
-let d = loadData();
-
-function loadData() {
-  try { let r = localStorage.getItem(SK); if (r) return JSON.parse(r); } catch(e) {}
-  return JSON.parse(JSON.stringify(defData));
+async function api(path, opts = {}) {
+  let res = await fetch(API + path, {
+    headers: { "Content-Type": "application/json" },
+    ...opts
+  });
+  if (!res.ok && res.status === 401) { loggedIn = false; renderAll(); throw new Error("Unauthorized"); }
+  return res.json();
 }
-function saveData() { localStorage.setItem(SK, JSON.stringify(d)); }
+
+async function loadData() {
+  d = await api("/api/data");
+}
+async function saveData() {
+  await api("/api/save", { method: "POST", body: JSON.stringify({ data: d }) });
+}
+
 function genId() { return "s" + Date.now() + "_" + Math.random().toString(36).substr(2,5); }
 
 // Auth
-function login() {
+async function login() {
   let p = document.getElementById("passInput");
   let v = p ? p.value : "";
-  if (v === PASSWORD) {
+  try {
+    await api("/api/auth", { method: "POST", body: JSON.stringify({ password: v }) });
     loggedIn = true;
     document.getElementById("loginBadge").textContent = "\u2705 Đã đăng nhập";
     document.getElementById("loginBadge").className = "badge badge-on";
     showToast("\u2705 Đăng nhập thành công!");
+    await loadData();
     renderAll();
-  } else {
+  } catch(e) {
     showToast("\u274C Sai mật khẩu!");
   }
 }
@@ -58,29 +58,31 @@ function uploadAvatar(type, id) {
   let inp = type === "teacher" ? document.getElementById("teacherFileInput") : document.getElementById("studentFileInput");
   inp.click();
 }
-function handleAvatarUpload(type, input) {
+async function handleAvatarUpload(type, input) {
   let f = input.files[0];
   if (!f) return;
-  let r = new FileReader();
-  r.onload = function(e) {
-    let u = e.target.result;
+  let formData = new FormData();
+  formData.append("file", f);
+  try {
+    let res = await fetch(API + "/api/upload/" + type, { method: "POST", body: formData });
+    let j = await res.json();
     if (type === "teacher") {
-      d.teacherAvatar = u;
-      document.getElementById("teacherAvatar").src = u || defTeacherAvatar();
+      d.teacherAvatar = j.url;
+      document.getElementById("teacherAvatar").src = j.url || defTeacherAvatar();
     } else if (type === "student" && upStudentId) {
       let s = d.students.find(x => x.id === upStudentId);
-      if (s) s.avatar = u;
+      if (s) s.avatar = j.url;
       upStudentId = null;
     }
-    saveData(); renderAll(); showToast("\u2705 Đã cập nhật ảnh!");
-  };
-  r.readAsDataURL(f);
+    await saveData(); renderAll(); showToast("\u2705 Đã cập nhật ảnh!");
+  } catch(e) { showToast("Upload lỗi!"); }
   input.value = "";
 }
 function defTeacherAvatar() {
   return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='20' fill='%23fcbe5d'/%3E%3Cellipse cx='50' cy='85' rx='35' ry='20' fill='%23f7d281'/%3E%3C/svg%3E";
 }
-function defStudentAvatar(name) {
+function defStudentAvatar(av, name) {
+  if (av) return av;
   let ini = name.split(" ").pop().charAt(0).toUpperCase();
   let cols = ["#fcbe5d","#6C5CE7","#e17055","#00b894","#0984e3","#fdcb6e","#d63031","#74b9ff"];
   let c = cols[name.length % cols.length];
@@ -102,41 +104,48 @@ function startEditName(sid) {
     if (inp) { inp.focus(); inp.select(); }
   }, 50);
 }
-function saveEditName(sid) {
+async function saveEditName(sid) {
   let inp = document.getElementById("en_"+sid);
   if (!inp) return;
   let n = inp.value.trim();
   let s = d.students.find(x => x.id === sid);
-  if (s && n) { s.name = n; saveData(); renderAll(); showToast("\u2705 Đã đổi tên: " + n); }
+  if (s && n) { s.name = n; await saveData(); renderAll(); showToast("\u2705 Đã đổi tên: " + n); }
   else { renderAll(); }
 }
 function esc(str) { let div = document.createElement("div"); div.textContent = str; return div.innerHTML; }
-function deleteStudent(sid) {
+async function deleteStudent(sid) {
   let s = d.students.find(x => x.id === sid);
   if (!s) return;
   if (!confirm('Xóa học sinh "' + s.name + '"? Không thể hoàn tác.')) return;
+  await api("/api/students/" + sid, { method: "DELETE" });
   d.students = d.students.filter(x => x.id !== sid);
-  saveData(); renderAll(); showToast("\uD83D\uDDD1 Đã xóa: " + s.name);
+  renderAll(); showToast("\uD83D\uDDD1 Đã xóa: " + s.name);
 }
-function addStudent() {
+async function addStudent() {
   let n = document.getElementById("newStudentName").value.trim();
   if (!n) { showToast("\u26A0\uFE0F Nhập tên!"); return; }
-  d.students.push({id:genId(),name:n,avatar:"",totalScore:0,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:0});
-  saveData(); closeAddStudentModal(); renderAll(); showToast("\u2705 Đã thêm: " + n);
+  let sid = genId();
+  try {
+    await api("/api/students", { method: "POST", body: JSON.stringify({ id: sid, name: n }) });
+    d.students.push({id:sid,name:n,avatar:"",totalScore:0,writing:[0,0,0,0,0],speaking:[0,0,0,0,0],lastWeekScore:0});
+    closeAddStudentModal(); renderAll(); showToast("\u2705 Đã thêm: " + n);
+  } catch(e) { showToast("Lỗi khi thêm!"); }
 }
 
 // Scores
-function adjustTotalScore(sid, delta) {
+async function adjustTotalScore(sid, delta) {
   if (!loggedIn) return showToast("\uD83D\uDD12 Đăng nhập trước!");
+  await api("/api/score", { method: "POST", body: JSON.stringify({ studentId: sid, delta: delta }) });
   let s = d.students.find(x => x.id === sid);
-  if (s) { s.totalScore = Math.max(0, s.totalScore + delta); saveData(); renderAll(); }
+  if (s) { s.totalScore = Math.max(0, s.totalScore + delta); renderAll(); }
 }
-function addLevelPoint(sid, skill, level, delta) {
+async function addLevelPoint(sid, skill, level, delta) {
   if (!loggedIn) return showToast("\uD83D\uDD12 Đăng nhập trước!");
+  await api("/api/level", { method: "POST", body: JSON.stringify({ studentId: sid, skill: skill, level: level, delta: delta }) });
   let s = d.students.find(x => x.id === sid);
   if (s) {
     s[skill][level] = Math.max(0, s[skill][level] + delta);
-    saveData(); renderAll();
+    renderAll();
     let sn = skill === "writing" ? "W" : "S";
     let si = delta > 0 ? "+" : "";
     showToast("\u2705 " + s.name + ": " + sn + " Lv." + (level+1) + " " + si + delta);
@@ -170,7 +179,7 @@ function renderLB(cid, arr, fn) {
   if (arr.length === 0) { c.innerHTML = '<div class="empty-lb">Chưa có dữ liệu</div>'; return; }
   let em = ["\uD83E\uDD47", "\uD83E\uDD48", "\uD83E\uDD49"];
   c.innerHTML = arr.map(function(s, i) {
-    return '<div class="lb-row"><div class="lb-rank r-'+(i+1)+'">'+em[i]+'</div><img class="lb-avatar" src="'+(s.avatar||defStudentAvatar(s.name))+'" alt="'+s.name+'"><div class="lb-name">'+s.name+'</div><div class="lb-score">'+fn(s)+'</div></div>';
+    return '<div class="lb-row"><div class="lb-rank r-'+(i+1)+'">'+em[i]+'</div><img class="lb-avatar" src="'+defStudentAvatar(s.avatar,s.name)+'" alt="'+s.name+'"><div class="lb-name">'+s.name+'</div><div class="lb-score">'+fn(s)+'</div></div>';
   }).join("");
 }
 function closeLeaderboard() { document.getElementById("leaderboardModal").classList.remove("open"); }
@@ -181,12 +190,12 @@ function getSkillTotal(student, skill) { var a=student[skill], t=0; for (var i=0
 function renderAll() {
   updateLoginBar();
   var ta = document.getElementById("teacherAvatar");
-  if (ta) ta.src = d.teacherAvatar || defTeacherAvatar();
+  if (ta && d) ta.src = d.teacherAvatar || defTeacherAvatar();
+  if (!d || !d.students) return;
   var g = document.getElementById("studentGrid");
   g.innerHTML = d.students.map(function(s) {
-    var wt = getSkillTotal(s, "writing"), st = getSkillTotal(s, "speaking");
     var delBtn = loggedIn ? '<button class="delete-btn" onclick="event.stopPropagation();deleteStudent(&quot;'+s.id+'&quot;)" title="Xóa">\uD83D\uDDD1</button>' : "";
-    return '<div class="student-card">'+delBtn+'<div class="student-top"><div class="student-avatar-wrap"><img class="student-avatar" src="'+(s.avatar||defStudentAvatar(s.name))+'" alt="'+s.name+'"><button class="upload-btn" onclick="uploadAvatar(&quot;student&quot;,&quot;'+s.id+'&quot;)" title="Đổi ảnh">\uD83D\uDCF7</button></div><div class="student-info"><div class="student-name" data-sid="'+s.id+'" onclick="event.stopPropagation();startEditName(&quot;'+s.id+'&quot;)" title="Sửa tên">'+s.name+'<span class="edit-icon">\u270F\uFE0F</span></div><div class="student-total">\u2B50 '+s.totalScore+'</div><div class="score-controls'+(loggedIn?' active':'')+'"><button class="score-btn score-plus" onclick="adjustTotalScore(&quot;'+s.id+'&quot;,1)">+</button><button class="score-btn score-minus" onclick="adjustTotalScore(&quot;'+s.id+'&quot;,-1)">\u2212</button></div></div></div><div class="skills-section">'+renderSkillRow(s,"writing","W")+renderSkillRow(s,"speaking","S")+'</div></div>';
+    return '<div class="student-card">'+delBtn+'<div class="student-top"><div class="student-avatar-wrap"><img class="student-avatar" src="'+defStudentAvatar(s.avatar,s.name)+'" alt="'+s.name+'"><button class="upload-btn" onclick="uploadAvatar(&quot;student&quot;,&quot;'+s.id+'&quot;)" title="Đổi ảnh">\uD83D\uDCF7</button></div><div class="student-info"><div class="student-name" data-sid="'+s.id+'" onclick="event.stopPropagation();startEditName(&quot;'+s.id+'&quot;)" title="Sửa tên">'+s.name+'<span class="edit-icon">\u270F\uFE0F</span></div><div class="student-total">\u2B50 '+s.totalScore+'</div><div class="score-controls'+(loggedIn?' active':'')+'"><button class="score-btn score-plus" onclick="adjustTotalScore(&quot;'+s.id+'&quot;,1)">+</button><button class="score-btn score-minus" onclick="adjustTotalScore(&quot;'+s.id+'&quot;,-1)">\u2212</button></div></div></div><div class="skills-section">'+renderSkillRow(s,"writing","W")+renderSkillRow(s,"speaking","S")+'</div></div>';
   }).join("");
 }
 function renderSkillRow(student, skill, label) {
@@ -200,7 +209,6 @@ function renderSkillRow(student, skill, label) {
   return '<div class="skill-row"><div class="skill-label">'+label+'</div><div class="level-cells">'+cells+'</div><div class="skill-total">'+t+'</div></div>';
 }
 
-// Toast
 function showToast(msg) {
   var ex = document.querySelector(".toast");
   if (ex) ex.remove();
@@ -210,22 +218,22 @@ function showToast(msg) {
   setTimeout(function() { t.remove(); }, 2500);
 }
 
-// Weekly reset
-function checkWeeklyReset() {
+async function checkWeeklyReset() {
   var now = new Date();
   var day = now.getDay();
+  if (!d) return;
   var lr = localStorage.getItem("cs_weekly_reset");
   var today = now.toISOString().split("T")[0];
   if (day === 1 && lr !== today) {
     d.students.forEach(function(s) { s.lastWeekScore = s.totalScore; });
     localStorage.setItem("cs_weekly_reset", today);
-    saveData();
+    await saveData();
   }
 }
 
-// Init
-function init() {
-  checkWeeklyReset();
+async function init() {
+  await loadData();
+  await checkWeeklyReset();
   renderAll();
 }
 document.getElementById("leaderboardModal").addEventListener("click", function(e) { if (e.target === this) closeLeaderboard(); });
