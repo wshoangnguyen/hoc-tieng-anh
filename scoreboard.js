@@ -180,8 +180,8 @@ function getSkillTotal(student, skill) { var a=student[skill], t=0; for (var i=0
 // Render
 function renderAll() {
   updateLoginBar();
-  document.getElementById("teacherAvatar").src = d.teacherAvatar || defTeacherAvatar();
-  document.getElementById("teacherNameDisplay").textContent = d.teacherName;
+  var ta = document.getElementById("teacherAvatar");
+  if (ta) ta.src = d.teacherAvatar || defTeacherAvatar();
   var g = document.getElementById("studentGrid");
   g.innerHTML = d.students.map(function(s) {
     var wt = getSkillTotal(s, "writing"), st = getSkillTotal(s, "speaking");
@@ -193,8 +193,9 @@ function renderSkillRow(student, skill, label) {
   var a = student[skill], t = getSkillTotal(student, skill);
   var cells = a.map(function(v, i) {
     var pc = v > 0 ? " has" : "";
-    var bh = loggedIn ? '<div class="cell-btns active"><button class="cell-btn p" onclick="event.stopPropagation();addLevelPoint(&quot;'+student.id+'&quot;,&quot;'+skill+'&quot;,'+i+',1)" title="+1">+</button><button class="cell-btn m" onclick="event.stopPropagation();addLevelPoint(&quot;'+student.id+'&quot;,&quot;'+skill+'&quot;,'+i+',-1)" title="-1">\u2212</button></div>' : "";
-    return '<div class="level-cell l-'+(i+1)+pc+'" title="Lv.'+(i+1)+': '+v+' câu">'+v+bh+'</div>';
+    var clickAdd = loggedIn ? ' onclick="event.stopPropagation();addLevelPoint(&quot;'+student.id+'&quot;,&quot;'+skill+'&quot;,'+i+',1)" style="cursor:pointer"' : '';
+    var bh = loggedIn ? '<div class="cell-btns active"><button class="cell-btn m" onclick="event.stopPropagation();addLevelPoint(&quot;'+student.id+'&quot;,&quot;'+skill+'&quot;,'+i+',-1)" title="-1">\u2212</button></div>' : '';
+    return '<div class="level-cell l-'+(i+1)+pc+'"'+clickAdd+' title="Lv.'+(i+1)+': '+v+' câu">'+v+bh+'</div>';
   }).join("");
   return '<div class="skill-row"><div class="skill-label">'+label+'</div><div class="level-cells">'+cells+'</div><div class="skill-total">'+t+'</div></div>';
 }
@@ -224,7 +225,6 @@ function checkWeeklyReset() {
 
 // Init
 function init() {
-  document.getElementById("teacherNameDisplay").textContent = d.teacherName;
   checkWeeklyReset();
   renderAll();
 }
