@@ -49,7 +49,7 @@ function updateNav() {
     el.innerHTML = '<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
     b.textContent = "✅ Đã đăng nhập"; b.className = "badge badge-on";
   } else {
-    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
+    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
     b.textContent = "🔒 Chưa đăng nhập"; b.className = "badge badge-off";
   }
   render();
@@ -119,7 +119,7 @@ function startEdit(sid) {
   if (!s) return;
   var el = document.querySelector('[data-sid="' + sid + '"]');
   if (!el) return;
-  el.innerHTML = '<input style="border:2px solid var(--accent);border-radius:8px;padding:2px 8px;font-size:15px;font-weight:700;width:140px;font-family:Quicksand,sans-serif" id="en_' + sid + '" value="' + esc(s.name) + '" onkeydown="if(event.key===\\'Enter\')saveEdit(\'' + sid + '\')" onblur="saveEdit(\'' + sid + '\')">';
+  el.innerHTML = '<input style="border:2px solid var(--accent);border-radius:8px;padding:2px 8px;font-size:15px;font-weight:700;width:140px;font-family:Quicksand,sans-serif" id="en_' + sid + '" value="' + esc(s.name) + '" onkeydown="if(event.key===\'Enter\')saveEdit(\'' + sid + '\')" onblur="saveEdit(\'' + sid + '\')">';
   setTimeout(function() { var inp = document.getElementById("en_" + sid); if (inp) { inp.focus(); inp.select(); } }, 50);
 }
 
@@ -147,6 +147,7 @@ function getAvatar(s) {
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="' + c + '"/><text x="50" y="54" text-anchor="middle" font-size="34" font-weight="bold" fill="white" font-family="sans-serif">' + ini + '</text></svg>';
   return "data:image/svg+xml," + encodeURIComponent(svg);
 }
+
 function skillTotal(s, sk) { var a = s[sk], t = 0; for (var i = 0; i < a.length; i++) t += a[i] * (i + 1); return t; }
 function getStreakClass(streak) { return (!streak || streak < 1) ? " dim" : ""; }
 
