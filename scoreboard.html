@@ -18,7 +18,7 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .nav-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .inp{border:2px solid var(--border);border-radius:20px;padding:7px 14px;font-size:13px;background:var(--card);color:var(--text);outline:none;font-family:Quicksand,sans-serif;width:140px;transition:.2s}
 .inp:focus{border-color:var(--accent)}
-.btn{border:none;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:Quicksand,sans-serif;transition:.2s;display:flex;align-items:center;gap:4px}
+.btn{border:none;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:Quicksand,sans-serif;transition:.2s}
 .btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#333}.btn-p:hover{transform:translateY(-1px);box-shadow:0 2px 12px rgba(252,190,93,.4)}
 .btn-o{background:var(--card);border:2px solid var(--border);color:var(--text)}.btn-o:hover{background:#fffbf0;border-color:var(--accent)}
 .btn-d{background:linear-gradient(135deg,#e17055,#d63031);color:#fff}.btn-d:hover{transform:translateY(-1px)}
@@ -88,8 +88,6 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 <button class="btn btn-p" onclick="login()">Đăng nhập</button>
 <button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button>
 <button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>
-<button class="btn btn-o" onclick="saveData()">💾 Save</button>
-<button class="btn btn-o" onclick="loadData()">📂 Load</button>
 </div>
 </div>
 </div>
@@ -119,48 +117,49 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 </div></div>
 
 <script>
-// ====== Apps Script Backend ======
-var API = "https://script.google.com/macros/s/AKfycbyVtBbsGy_3N2gWP56XtnC8lfNA_5L-C8NZUtCtvPn48M2S6U6MlMLIikG6P2DXfTjKyg/exec"; // SET THIS to your Apps Script Web App URL
-var PW = "***";
+var API = "https://script.google.com/macros/s/AKfycbyVtBbsGy_3N2gWP56XtnC8lfNA_5L-C8NZUtCtvPn48M2S6U6MlMLIikG6P2DXfTjKyg/exec";
 var loggedIn = false;
+var savedPw = "";
 var students = [];
 
 function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
 
-async function gsCall(action, data){
-  data = data || {};
-  data.action = action;
-  if(loggedIn && !data.password) data.password = PW;
-  try {
-    var resp = await fetch(API, { method:"POST", body:JSON.stringify(data) });
-    var j = await resp.json();
-    if(j.error){ toast("❌ "+j.error); return null; }
-    return j;
-  } catch(e){ toast("❌ Mất kết nối tới Apps Script"); return null; }
+async function callApi(action, data, pw){
+  var body = Object.assign({}, data || {}, {action: action});
+  if(pw) body.password = pw;
+  var resp = await fetch(API, {method:"POST", body:JSON.stringify(body)});
+  var j = await resp.json();
+  if(j && j.error){ toast("❌ "+j.error); return null; }
+  return j;
 }
 
-async function loadData(){
+async function fetchStudents(){
   try {
-    var resp = await fetch(API, { method:"POST", body:JSON.stringify({action:"load"}) });
-    var j = await resp.json();
-    if(j.students) students = j.students;
+    var j = await callApi("", {});
+    if(j && Array.isArray(j)) students = j;
   } catch(e){}
 }
 
 async function login(){
   var pw = document.getElementById("pw").value;
-  var j = await gsCall("auth", {password:pw});
-  if(j && j.ok){ loggedIn=true; PW=pw; document.getElementById("pw").value=""; updateNav(); toast("✅ Đăng nhập thành công!"); }
-  else toast("❌ Sai mật khẩu!");
+  if(!pw){ toast("⚠️ Nhập mật khẩu!"); return; }
+  var j = await callApi("auth", {}, pw);
+  if(j && j.ok){
+    loggedIn = true;
+    savedPw = pw;
+    document.getElementById("pw").value = "";
+    updateNav();
+    toast("✅ Đăng nhập thành công!");
+  }
 }
-function logout(){ loggedIn=false; updateNav(); toast("👋 Đã đăng xuất"); }
+function logout(){ loggedIn = false; savedPw = ""; updateNav(); toast("👋 Đã đăng xuất"); }
 
 function updateNav(){
   var el = document.getElementById("navBtns");
   if(loggedIn){
-    el.innerHTML='<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button><button class="btn btn-o" onclick="saveData()">💾 Save</button><button class="btn btn-o" onclick="loadData()">📂 Load</button>';
+    el.innerHTML = '<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
   } else {
-    el.innerHTML='<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button><button class="btn btn-o" onclick="saveData()">💾 Save</button><button class="btn btn-o" onclick="loadData()">📂 Load</button>';
+    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
   }
   render();
 }
@@ -169,59 +168,50 @@ async function addStudent(){
   var name = document.getElementById("newName").value.trim();
   if(!name){ toast("⚠️ Nhập tên!"); return; }
   var id = "s"+Date.now()+"_"+Math.random().toString(36).substr(2,5);
-  var j = await gsCall("add",{id:id,name:name});
-  if(j && j.students){ students=j.students; closeAdd(); render(); toast("✅ Đã thêm: "+name); }
+  var j = await callApi("add", {id:id, name:name}, savedPw);
+  if(j && j.students){ students = j.students; closeAdd(); render(); toast("✅ Đã thêm: "+name); }
 }
 
 async function deleteStudent(sid){
   if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
   var s = students.find(function(x){return x.id===sid});
   if(!confirm('Xóa "'+s.name+'"? Không thể hoàn tác.')) return;
-  var j = await gsCall("delete",{id:sid});
-  if(j && j.students){ students=j.students; render(); toast("🗑 Đã xóa: "+s.name); }
+  var j = await callApi("delete", {id:sid}, savedPw);
+  if(j && j.students){ students = j.students; render(); toast("🗑 Đã xóa: "+s.name); }
 }
 
 async function adjScore(sid, delta){
   if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
-  var j = await gsCall("score",{studentId:sid,delta:delta});
-  if(j && j.students){ students=j.students; render(); }
+  var j = await callApi("score", {studentId:sid, delta:delta}, savedPw);
+  if(j && j.students){ students = j.students; render(); }
 }
 
 async function adjLevel(sid, skill, level, delta){
   if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
-  var j = await gsCall("level",{studentId:sid,skill:skill,level:level,delta:delta});
-  if(j && j.students){ students=j.students; render(); }
+  var j = await callApi("level", {studentId:sid, skill:skill, level:level, delta:delta}, savedPw);
+  if(j && j.students){ students = j.students; render(); }
 }
 
 function startEdit(sid){
   var s = students.find(function(x){return x.id===sid});
   var el = document.querySelector('[data-sid="'+sid+'"]');
-  el.innerHTML='<input style="border:2px solid var(--accent);border-radius:8px;padding:2px 8px;font-size:15px;font-weight:700;width:140px;font-family:Quicksand,sans-serif" id="en_'+sid+'" value="'+esc(s.name)+'" onkeydown="if(event.key===\'Enter\')saveEdit(\''+sid+'\')" onblur="saveEdit(\''+sid+'\')">';
+  el.innerHTML = '<input style="border:2px solid var(--accent);border-radius:8px;padding:2px 8px;font-size:15px;font-weight:700;width:140px;font-family:Quicksand,sans-serif" id="en_'+sid+'" value="'+esc(s.name)+'" onkeydown="if(event.key===\'Enter\')saveEdit(\''+sid+'\')" onblur="saveEdit(\''+sid+'\')">';
   setTimeout(function(){var inp=document.getElementById("en_"+sid);if(inp){inp.focus();inp.select();}},50);
 }
 async function saveEdit(sid){
-  var inp=document.getElementById("en_"+sid);
-  if(!inp){render();return;}
-  var name=inp.value.trim();
-  if(!name){render();return;}
-  var j = await gsCall("rename",{id:sid,name:name});
-  if(j && j.students){ students=j.students; render(); toast("✅ Đổi tên: "+name); }
+  var inp = document.getElementById("en_"+sid);
+  if(!inp){ render(); return; }
+  var name = inp.value.trim();
+  if(!name){ render(); return; }
+  var j = await callApi("rename", {id:sid, name:name}, savedPw);
+  if(j && j.students){ students = j.students; render(); toast("✅ Đổi tên: "+name); }
 }
 
-async function saveData(){
-  var j = await gsCall("save");
-  if(j) toast("💾 Đã lưu "+j.count+" học sinh vào Sheet Backup!");
-}
-async function loadData(){
-  var j = await gsCall("load");
-  if(j && j.students){ students=j.students; render(); toast("📂 Đã tải "+students.length+" học sinh từ Sheet!"); }
-}
-
-var AVATARS=["https://api.dicebear.com/9.x/fun-emoji/svg?seed=cat","https://api.dicebear.com/9.x/fun-emoji/svg?seed=dog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=rabbit","https://api.dicebear.com/9.x/fun-emoji/svg?seed=panda","https://api.dicebear.com/9.x/fun-emoji/svg?seed=lion","https://api.dicebear.com/9.x/fun-emoji/svg?seed=tiger","https://api.dicebear.com/9.x/fun-emoji/svg?seed=monkey","https://api.dicebear.com/9.x/fun-emoji/svg?seed=frog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=giraffe","https://api.dicebear.com/9.x/fun-emoji/svg?seed=koala","https://api.dicebear.com/9.x/fun-emoji/svg?seed=fox","https://api.dicebear.com/9.x/fun-emoji/svg?seed=bear","https://api.dicebear.com/9.x/bottts/svg?seed=dice","https://api.dicebear.com/9.x/bottts/svg?seed=happy","https://api.dicebear.com/9.x/adventurer/svg?seed=girl","https://api.dicebear.com/9.x/adventurer/svg?seed=boy","https://api.dicebear.com/9.x/lorelei/svg?seed=star","https://api.dicebear.com/9.x/lorelei/svg?seed=rainbow","https://api.dicebear.com/9.x/pixel-art/svg?seed=hero","https://api.dicebear.com/9.x/pixel-art/svg?seed=ninja"];
-var curAvSid="";
-function openAvatar(sid){curAvSid=sid;var s=students.find(function(x){return x.id===sid});document.getElementById("avStudentName").textContent=s.name;var h='<div class="av-opt'+(s.avatar?'':' sel')+'" onclick="setAvatar(\''+sid+'\',\'\')">'+getAvSvg(s)+'</div>';AVATARS.forEach(function(u,i){h+='<img class="av-opt'+(s.avatar===u?' sel':'')+'" src="'+u+'" onclick="setAvatar(\''+sid+'\',\''+u+'\')">'});document.getElementById("avPicker").innerHTML=h;document.getElementById("avModal").classList.add("open")}
+var AVATARS = ["https://api.dicebear.com/9.x/fun-emoji/svg?seed=cat","https://api.dicebear.com/9.x/fun-emoji/svg?seed=dog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=rabbit","https://api.dicebear.com/9.x/fun-emoji/svg?seed=panda","https://api.dicebear.com/9.x/fun-emoji/svg?seed=lion","https://api.dicebear.com/9.x/fun-emoji/svg?seed=tiger","https://api.dicebear.com/9.x/fun-emoji/svg?seed=monkey","https://api.dicebear.com/9.x/fun-emoji/svg?seed=frog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=giraffe","https://api.dicebear.com/9.x/fun-emoji/svg?seed=koala","https://api.dicebear.com/9.x/fun-emoji/svg?seed=fox","https://api.dicebear.com/9.x/fun-emoji/svg?seed=bear","https://api.dicebear.com/9.x/bottts/svg?seed=dice","https://api.dicebear.com/9.x/adventurer/svg?seed=girl","https://api.dicebear.com/9.x/adventurer/svg?seed=boy","https://api.dicebear.com/9.x/lorelei/svg?seed=star","https://api.dicebear.com/9.x/pixel-art/svg?seed=hero","https://api.dicebear.com/9.x/pixel-art/svg?seed=ninja"];
+var curAvSid = "";
+function openAvatar(sid){curAvSid=sid;var s=students.find(function(x){return x.id===sid});document.getElementById("avStudentName").textContent=s.name;var h='<div class="av-opt'+(s.avatar?'':' sel')+'" onclick="setAvatar(\''+sid+'\',\'\')">'+getAvSvg(s)+'</div>';AVATARS.forEach(function(u){h+='<img class="av-opt'+(s.avatar===u?' sel':'')+'" src="'+u+'" onclick="setAvatar(\''+sid+'\',\''+u+'\')">'});document.getElementById("avPicker").innerHTML=h;document.getElementById("avModal").classList.add("open")}
 function closeAv(){document.getElementById("avModal").classList.remove("open")}
-async function setAvatar(sid,url){var s=students.find(function(x){return x.id===sid});s.avatar=url;render();document.getElementById("avModal").classList.remove("open");var j=await gsCall("avatar",{id:sid,avatar:url});if(j&&j.students)students=j.students}
+async function setAvatar(sid,url){var s=students.find(function(x){return x.id===sid});s.avatar=url;render();document.getElementById("avModal").classList.remove("open");callApi("avatar",{id:sid,avatar:url},savedPw)}
 function getAvSvg(s){var p=s.name.trim().split(" "),ini=p[p.length-1].charAt(0).toUpperCase();var c=["#fcbe5d","#6C5CE7","#e17055","#00b894","#0984e3","#fdcb6e","#d63031","#74b9ff","#a29bfe","#fd79a8"][(s.name.length||0)%10];return'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="'+c+'"/><text x="50" y="54" text-anchor="middle" font-size="34" font-weight="bold" fill="white">'+ini+'</text></svg>'}
 function getAv(s){return s.avatar||"data:image/svg+xml,"+encodeURIComponent(getAvSvg(s))}
 
@@ -239,7 +229,7 @@ function render(){
 
 function openAdd(){document.getElementById("newName").value="";document.getElementById("addModal").classList.add("open")}
 function closeAdd(){document.getElementById("addModal").classList.remove("open")}
-function openLB(){var s=students.slice();if(!s.length){document.getElementById("topTotal").innerHTML='<div style="text-align:center;color:var(--text-dim);padding:16px">Chưa có dữ liệu</div>';document.getElementById("topSkills").innerHTML='<div style="text-align:center;color:var(--text-dim);padding:16px">Chưa có dữ liệu</div>';document.getElementById("topStreak").innerHTML='<div style="text-align:center;color:var(--text-dim);padding:16px">Chưa có dữ liệu</div>'}else{lbList("topTotal",s.sort(function(a,b){return b.totalScore-a.totalScore}).slice(0,3),function(x){return x.totalScore+" ⭐"});lbList("topSkills",s.sort(function(a,b){return(skillTotal(b,"writing")+skillTotal(b,"speaking"))-(skillTotal(a,"writing")+skillTotal(a,"speaking"))}).slice(0,3),function(x){return(skillTotal(x,"writing")+skillTotal(x,"speaking"))+" câu"});lbList("topStreak",s.filter(function(x){return x.streak>0}).sort(function(a,b){return b.streak-a.streak}).slice(0,3),function(x){return x.streak+" ngày 🔥"})}document.getElementById("lbModal").classList.add("open")}
+function openLB(){var s=students.slice();if(!s.length){["topTotal","topSkills","topStreak"].forEach(function(id){document.getElementById(id).innerHTML='<div style="text-align:center;color:var(--text-dim);padding:16px">Chưa có dữ liệu</div>'});}else{lbList("topTotal",s.sort(function(a,b){return b.totalScore-a.totalScore}).slice(0,3),function(x){return x.totalScore+" ⭐"});lbList("topSkills",s.sort(function(a,b){return(skillTotal(b,"writing")+skillTotal(b,"speaking"))-(skillTotal(a,"writing")+skillTotal(a,"speaking"))}).slice(0,3),function(x){return(skillTotal(x,"writing")+skillTotal(x,"speaking"))+" câu"});lbList("topStreak",s.filter(function(x){return x.streak>0}).sort(function(a,b){return b.streak-a.streak}).slice(0,3),function(x){return x.streak+" ngày 🔥"})}document.getElementById("lbModal").classList.add("open")}
 function closeLB(){document.getElementById("lbModal").classList.remove("open")}
 function lbList(id,arr,fn){var em=["🥇","🥈","🥉"];document.getElementById(id).innerHTML=arr.map(function(s,i){return'<div class="lr"><div class="lrk">'+em[i]+'</div><img class="la" src="'+getAv(s)+'"><div class="ln">'+s.name+'</div><div class="ls">'+fn(s)+'</div></div>'}).join("")}
 
@@ -249,11 +239,7 @@ document.getElementById("lbModal").addEventListener("click",function(e){if(e.tar
 document.getElementById("addModal").addEventListener("click",function(e){if(e.target===this)closeAdd()});
 document.getElementById("avModal").addEventListener("click",function(e){if(e.target===this)closeAv()});
 
-async function init(){
-  if(!API){ document.getElementById("grid").innerHTML='<div style="text-align:center;padding:40px;color:var(--text-dim)">⚠️ Chưa cấu hình Apps Script URL. Mở file HTML, sửa dòng <code>var API = ""</code> thành URL Web App của bạn.</div>'; return; }
-  await loadData(); updateNav();
-}
-init();
+fetchStudents().then(updateNav);
 </script>
 </body>
 </html>
