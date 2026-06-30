@@ -1,5 +1,6 @@
 // Scoreboard Frontend v2 - Google Sheets Backend via Apps Script
-// THAY URL NÀY BẰNG URL DEPLOY APPS SCRIPT CỦA BẠN:
+// Tất cả request dùng GET để tránh vấn đề CORS/POST của Apps Script
+
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKO1eqMArGq1IIpd1N2mn1p49YMs1OyvtmCpSxARhOm7ZmP2HPz15Dzgyfth9gnlR2/exec";
 const PASSWORD = "***";
 
@@ -8,12 +9,19 @@ let data = { students: [], config: {} };
 
 function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 
-async function apiPost(body) {
-  var resp = await fetch(SCRIPT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(body)
-  });
+function buildUrl(params) {
+  var parts = [SCRIPT_URL + "?"];
+  for (var k in params) {
+    var v = params[k];
+    if (typeof v === "object") v = JSON.stringify(v);
+    parts.push(encodeURIComponent(k) + "=" + encodeURIComponent(v));
+  }
+  return parts.join("&");
+}
+
+async function api(params) {
+  var url = buildUrl(params);
+  var resp = await fetch(url, { method: "GET" });
   var json = await resp.json();
   if (json.error) throw new Error(json.error);
   return json;
@@ -21,12 +29,10 @@ async function apiPost(body) {
 
 async function loadData() {
   try {
-    var j = await (await fetch(SCRIPT_URL + "?action=data")).json();
-    if (!j.error) {
-      data = j;
-      if (data.config) {
-        document.getElementById("teacherNameLabel").textContent = data.config.teacherName || "Giáo viên";
-      }
+    var j = await api({ action: "data" });
+    data = j;
+    if (data.config) {
+      document.getElementById("teacherNameLabel").textContent = data.config.teacherName || "Giáo viên";
     }
   } catch(e) { console.warn("Load data:", e.message); }
 }
@@ -35,13 +41,8 @@ async function login() {
   var pw = document.getElementById("pw").value;
   if (!pw) { toast("⚠️ Nhập mật khẩu!"); return; }
   try {
-    var resp = await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: "saveData", password: pw, data: data })
-    });
-    var j = await resp.json();
-    if (j.error) throw new Error(j.error);
+    var resp = await api({ action: "saveData", password: pw, data: data });
+    if (resp.error) throw new Error(resp.error);
     loggedIn = true;
     document.getElementById("pw").value = "";
     updateNav();
@@ -78,7 +79,7 @@ async function addStudent() {
   if (!name) { toast("⚠️ Nhập tên!"); return; }
   var id = "s" + Date.now() + "_" + Math.random().toString(36).substr(2,5);
   try {
-    await apiPost({ action: "addStudent", password: PASSWORD, id: id, name: name });
+    await api({ action: "addStudent", password: PASSWORD, id: id, name: name });
     data.students.push({ id: id, name: name, avatar: "", totalScore: 0, writing: [0,0,0,0,0], speaking: [0,0,0,0,0], lastActive: "", streak: 0 });
     closeAdd();
     render();
@@ -92,7 +93,7 @@ async function deleteStudent(sid) {
   if (!s) return;
   if (!confirm('Xóa "' + s.name + '"? Không thể hoàn tác.')) return;
   try {
-    await apiPost({ action: "deleteStudent", password: PASSWORD, id: sid });
+    await api({ action: "deleteStudent", password: PASSWORD, id: sid });
     data.students = data.students.filter(function(x) { return x.id !== sid; });
     render();
     toast("🗑 Đã xóa: " + s.name);
@@ -105,8 +106,7 @@ async function adjScore(sid, delta) {
   if (!s) return;
   s.totalScore = Math.max(0, s.totalScore + delta);
   try {
-    var resp = await apiPost({ action: "updateScore", password: PASSWORD, studentId: sid, delta: delta });
-    // Update streak from server response
+    var resp = await api({ action: "updateScore", password: PASSWORD, studentId: sid, delta: delta });
     if (resp.lastActive) s.lastActive = resp.lastActive;
     if (resp.streak !== undefined) s.streak = resp.streak;
     render();
@@ -119,7 +119,7 @@ async function adjLevel(sid, skill, level, delta) {
   if (!s) return;
   s[skill][level] = Math.max(0, s[skill][level] + delta);
   try {
-    var resp = await apiPost({ action: "updateLevel", password: PASSWORD, studentId: sid, skill: skill, level: level, delta: delta });
+    var resp = await api({ action: "updateLevel", password: PASSWORD, studentId: sid, skill: skill, level: level, delta: delta });
     if (resp.lastActive) s.lastActive = resp.lastActive;
     if (resp.streak !== undefined) s.streak = resp.streak;
     render();
@@ -146,7 +146,7 @@ async function saveEdit(sid) {
   if (!s) { render(); return; }
   s.name = name;
   try {
-    await apiPost({ action: "renameStudent", password: PASSWORD, id: sid, name: name });
+    await api({ action: "renameStudent", password: PASSWORD, id: sid, name: name });
     render();
     toast("✅ Đổi tên: " + name);
   } catch(e) { render(); toast("Lỗi!"); }
@@ -169,8 +169,7 @@ function skillTotal(s, sk) {
 }
 
 function getStreakClass(streak) {
-  if (!streak || streak < 1) return " dim";
-  return "";
+  return (!streak || streak < 1) ? " dim" : "";
 }
 
 function renderSkill(s, skill, label) {
@@ -191,26 +190,14 @@ function render() {
     var ctrlOn = loggedIn ? ' on' : '';
     var streakBadge = (s.streak && s.streak > 0) ? '<span class="streak-badge' + getStreakClass(s.streak) + '">🔥 ' + s.streak + ' ngày</span>' : '';
     return '<div class="card">' + delBtn +
-      '<div class="top-row">' +
-        '<div class="av-wrap"><img class="av" src="' + getAvatar(s) + '" alt="' + s.name + '"></div>' +
-        '<div class="info">' +
-          '<div class="name" data-sid="' + s.id + '" onclick="event.stopPropagation();startEdit(\'' + s.id + '\')">' + s.name + '<span class="ei">✏️</span>' + streakBadge + '</div>' +
-          '<div class="total">⭐ ' + s.totalScore + '</div>' +
-          '<div class="ctrl' + ctrlOn + '">' +
-            '<button class="sb sb-p" onclick="adjScore(\'' + s.id + '\',1)">+</button>' +
-            '<button class="sb sb-m" onclick="adjScore(\'' + s.id + '\',-1)">−</button>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="skills">' +
-        renderSkill(s, "writing", "W") +
-        renderSkill(s, "speaking", "S") +
-      '</div>' +
-    '</div>';
+      '<div class="top-row"><div class="av-wrap"><img class="av" src="' + getAvatar(s) + '" alt="' + s.name + '"></div>' +
+      '<div class="info"><div class="name" data-sid="' + s.id + '" onclick="event.stopPropagation();startEdit(\'' + s.id + '\')">' + s.name + '<span class="ei">✏️</span>' + streakBadge + '</div>' +
+      '<div class="total">⭐ ' + s.totalScore + '</div><div class="ctrl' + ctrlOn + '">' +
+      '<button class="sb sb-p" onclick="adjScore(\'' + s.id + '\',1)">+</button><button class="sb sb-m" onclick="adjScore(\'' + s.id + '\',-1)">−</button>' +
+      '</div></div></div><div class="skills">' + renderSkill(s, "writing", "W") + renderSkill(s, "speaking", "S") + '</div></div>';
   }).join("");
 }
 
-// Modals
 function openAdd() { document.getElementById("newName").value = ""; document.getElementById("addModal").classList.add("open"); }
 function closeAdd() { document.getElementById("addModal").classList.remove("open"); }
 
@@ -223,32 +210,20 @@ function openLB() {
     document.getElementById("lbModal").classList.add("open");
     return;
   }
-
-  // Top điểm tổng
   var bt = [...st].sort(function(a,b) { return b.totalScore - a.totalScore; }).slice(0,3);
   renderLB("topTotal", bt, function(s) { return s.totalScore + " ⭐"; });
-
-  // Top kỹ năng
   var bs = [...st].sort(function(a,b) {
     return (skillTotal(b,"writing") + skillTotal(b,"speaking")) - (skillTotal(a,"writing") + skillTotal(a,"speaking"));
   }).slice(0,3);
   renderLB("topSkills", bs, function(s) { return (skillTotal(s,"writing") + skillTotal(s,"speaking")) + " câu"; });
-
-  // Top 3 streak
   var bst = [...st].filter(function(s) { return s.streak > 0; }).sort(function(a,b) { return b.streak - a.streak; }).slice(0,3);
   renderLB("topStreak", bst, function(s) { return s.streak + " ngày 🔥"; });
-
-  // Full streak list
   var allSt = [...st].filter(function(s) { return s.streak > 0; }).sort(function(a,b) { return b.streak - a.streak; });
   var el = document.getElementById("allStreaks");
-  if (allSt.length === 0) {
-    el.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:12px;font-style:italic">Chưa ai có streak</div>';
-  } else {
-    el.innerHTML = allSt.map(function(s, i) {
+  el.innerHTML = allSt.length === 0 ? '<div style="text-align:center;color:var(--text-dim);padding:12px;font-style:italic">Chưa ai có streak</div>' :
+    allSt.map(function(s, i) {
       return '<div class="lr"><div class="lrk" style="font-size:14px;color:var(--text-dim)">#' + (i+1) + '</div><img class="la" src="' + getAvatar(s) + '"><div class="ln">' + s.name + '</div><div class="ls" style="color:var(--streak)">🔥 ' + s.streak + ' ngày</div></div>';
     }).join("");
-  }
-
   document.getElementById("lbModal").classList.add("open");
 }
 function closeLB() { document.getElementById("lbModal").classList.remove("open"); }
@@ -271,7 +246,6 @@ function toast(msg) {
   setTimeout(function() { t.remove(); }, 2500);
 }
 
-// Init
 document.getElementById("lbModal").addEventListener("click", function(e) { if (e.target === this) closeLB(); });
 document.getElementById("addModal").addEventListener("click", function(e) { if (e.target === this) closeAdd(); });
 
