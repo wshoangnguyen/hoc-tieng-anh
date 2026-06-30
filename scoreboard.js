@@ -26,13 +26,14 @@ async function login() {
   try {
     await api("/api/auth", { method: "POST", body: JSON.stringify({ password: pw }) });
     loggedIn = true;
+    savedPassword = pw;
     document.getElementById("pw").value = "";
     updateNav();
     toast("✅ Đăng nhập thành công!");
   } catch(e) { toast("❌ Sai mật khẩu!"); }
 }
 
-function logout() { loggedIn = false; updateNav(); toast("👋 Đã đăng xuất"); }
+function logout() { loggedIn = false; savedPassword = ""; updateNav(); toast("👋 Đã đăng xuất"); }
 
 function updateNav() {
   var el = document.getElementById("navBtns");
@@ -129,8 +130,10 @@ async function saveEdit(sid) {
 }
 
 // ---- Save/Load to Google Sheets (password protected) ----
+var savedPassword = "";
+
 async function saveToSheet() {
-  var pw = document.getElementById("pw").value;
+  var pw = savedPassword || document.getElementById("pw").value;
   if (!pw) { toast("⚠️ Nhập mật khẩu để lưu!"); return; }
   try {
     var resp = await fetch(API_URL + "/api/save-to-sheet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: pw }) });
@@ -141,7 +144,7 @@ async function saveToSheet() {
 }
 
 async function loadFromSheet() {
-  var pw = document.getElementById("pw").value;
+  var pw = savedPassword || document.getElementById("pw").value;
   if (!pw) { toast("⚠️ Nhập mật khẩu để tải!"); return; }
   try {
     var resp = await fetch(API_URL + "/api/load-from-sheet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: pw }) });
