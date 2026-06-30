@@ -38,10 +38,10 @@ function updateNav() {
   var el = document.getElementById("navBtns");
   var b = document.getElementById("statusBadge");
   if (loggedIn) {
-    el.innerHTML = '<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
+    el.innerHTML = '<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button><button class="btn btn-o" onclick="saveToSheet()" title="Lưu data lên Google Sheets">💾 Save</button><button class="btn btn-o" onclick="loadFromSheet()" title="Tải data từ Google Sheets">📂 Load</button>';
     b.textContent = "✅ Đã đăng nhập"; b.className = "badge badge-on";
   } else {
-    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
+    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button><button class="btn btn-o" onclick="saveToSheet()" title="Lưu data lên Google Sheets">💾 Save</button><button class="btn btn-o" onclick="loadFromSheet()" title="Tải data từ Google Sheets">📂 Load</button>';
     b.textContent = "🔒 Chưa đăng nhập"; b.className = "badge badge-off";
   }
   render();
@@ -128,6 +128,31 @@ async function saveEdit(sid) {
   toast("✅ Đổi tên: " + name);
 }
 
+// ---- Save/Load to Google Sheets (password protected) ----
+async function saveToSheet() {
+  var pw = document.getElementById("pw").value;
+  if (!pw) { toast("⚠️ Nhập mật khẩu để lưu!"); return; }
+  try {
+    var resp = await fetch(API_URL + "/api/save-to-sheet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: pw }) });
+    if (!resp.ok) throw new Error(await resp.text());
+    var j = await resp.json();
+    toast("💾 Đã lưu " + j.count + " học sinh vào Google Sheets!");
+  } catch(e) { toast("❌ Lưu thất bại: " + e.message); }
+}
+
+async function loadFromSheet() {
+  var pw = document.getElementById("pw").value;
+  if (!pw) { toast("⚠️ Nhập mật khẩu để tải!"); return; }
+  try {
+    var resp = await fetch(API_URL + "/api/load-from-sheet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: pw }) });
+    if (!resp.ok) throw new Error(await resp.text());
+    var j = await resp.json();
+    data = j.data;
+    render();
+    toast("📂 Đã tải " + (data.students ? data.students.length : 0) + " học sinh từ Google Sheets!");
+  } catch(e) { toast("❌ Tải thất bại: " + e.message); }
+}
+
 // ---- Avatar (no auth needed) ----
 var AVATAR_PRESETS = [
   "https://api.dicebear.com/9.x/fun-emoji/svg?seed=cat",
@@ -175,9 +200,7 @@ async function setAvatar(sid, url) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
   s.avatar = url;
-  try {
-    await fetch(API_URL + "/api/avatar", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: sid, avatar: url }) });
-  } catch(e) {}
+  await fetch(API_URL + "/api/avatar", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: sid, avatar: url }) }).catch(function(){});
   render();
   // update picker selection
   var sel = document.querySelector(".av-opt.sel"); if (sel) sel.classList.remove("sel");
