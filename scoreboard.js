@@ -1,8 +1,8 @@
 // Scoreboard Frontend v2 - Google Sheets Backend via Apps Script
 // Tất cả request dùng GET để tránh vấn đề CORS/POST của Apps Script
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKO1eqMArGq1IIpd1N2mn1p49YMs1OyvtmCpSxARhOm7ZmP2HPz15Dzgyfth9gnlR2/exec";
-const PASSWORD = "***";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzB0cVxjHHiHRntRT692TzGpSbXfwmmoZTHHH4LQ4dQfpU4V0UqjPlZRzNd2GvL89u/exec";
+const PASSWORD = "Vuiqua123!";
 
 let loggedIn = false;
 let data = { students: [], config: {} };
