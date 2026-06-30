@@ -37,7 +37,6 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .name{font-family:'Baloo Bhaina 2',serif;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
 .name .ei{font-size:10px;opacity:0;transition:.2s}.name:hover .ei{opacity:.5}
 .total{font-size:30px;font-weight:800;color:var(--accent);font-family:'Baloo Bhaina 2',serif;display:flex;align-items:center;gap:4px}
-/* Streak badge */
 .streak-badge{display:inline-flex;align-items:center;gap:3px;background:linear-gradient(135deg,#ff6b35,#ff8c42);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;margin-left:8px;animation:pulse 2s infinite}
 .streak-badge.dim{opacity:.35;filter:grayscale(.5);animation:none}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
@@ -54,7 +53,6 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .lv.l1{color:#e17055;background:#e1705510}.lv.l2{color:#d35400;background:#fdcb6e15}.lv.l3{color:#b8860b;background:#ffeaa730}.lv.l4{color:#00b894;background:#55efc420}.lv.l5{color:#0984e3;background:#74b9ff20}
 .lv.fill.l1{background:#e1705530}.lv.fill.l2{background:#fdcb6e30}.lv.fill.l3{background:#ffeaa750}.lv.fill.l4{background:#55efc440}.lv.fill.l5{background:#74b9ff40}
 .st{font-size:12px;font-weight:700;width:22px;text-align:center;font-family:'Baloo Bhaina 2',serif}
-/* Modal */
 .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal.open{display:flex}
 .mb{background:var(--card);border-radius:22px;padding:28px;max-width:650px;width:92%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
@@ -67,7 +65,6 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .ls{font-size:17px;font-weight:800;color:var(--accent);font-family:'Baloo Bhaina 2',serif}
 .fi{margin-bottom:12px}.fi label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:3px;font-weight:700}
 .fi input{width:100%;padding:9px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);font-size:14px;outline:none;font-family:Quicksand,sans-serif}.fi input:focus{border-color:var(--accent)}
-/* Full streak leaderboard */
 .streak-list{max-height:280px;overflow-y:auto}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;font-size:13px;font-weight:600;z-index:300;animation:si .3s;box-shadow:var(--shadow-lg)}
 @keyframes si{from{transform:translateX(80px);opacity:0}to{transform:translateX(0);opacity:1}}
@@ -75,47 +72,29 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 </style>
 </head>
 <body>
-
-<div class="navbar">
-<div class="nav-inner">
-<a class="logo-link" href="https://hoctienganhdelam.com" target="_blank">
-<img class="logo-img" src="https://hoctienganhdelam.com/logo.png" alt="Logo">
-<span class="logo-text">Học Tiếng Anh<span class="logo-sub">DỄ LẮM</span></span>
-</a>
+<div class="navbar"><div class="nav-inner">
+<a class="logo-link" href="https://hoctienganhdelam.com" target="_blank"><img class="logo-img" src="https://hoctienganhdelam.com/logo.png" alt="Logo"><span class="logo-text">Học Tiếng Anh<span class="logo-sub">DỄ LẮM</span></span></a>
 <div class="nav-btns" id="navBtns">
 <input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key==='Enter')login()">
 <button class="btn btn-p" onclick="login()">Đăng nhập</button>
 <button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button>
 <button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>
-</div>
-</div>
-</div>
-
-<div class="teacher-bar">
-<span class="badge badge-off" id="statusBadge">🔒 Chưa đăng nhập</span>
-<span style="font-size:13px;color:var(--text-dim)">👩‍🏫 <span id="teacherNameLabel">Giáo viên</span></span>
-</div>
-
+</div></div></div>
+<div class="teacher-bar"><span class="badge badge-off" id="statusBadge">🔒 Chưa đăng nhập</span><span style="font-size:13px;color:var(--text-dim)">👩‍🏫 <span id="teacherNameLabel">Giáo viên</span></span></div>
 <div class="main"><div class="grid" id="grid"></div></div>
-
-<!-- Leaderboard Modal -->
 <div class="modal" id="lbModal"><div class="mb">
 <h2>🏆 Bảng Xếp Hạng</h2>
 <div class="lbs"><h3>⭐ Top Điểm Tổng</h3><div id="topTotal"></div></div>
-<div class="lbs"><h3>🗣️✍️ Top Kỹ Năng</h3><div id="topSkills"></div></div>
+<div class="lbs"><h3>🗣✍️ Top Kỹ Năng</h3><div id="topSkills"></div></div>
 <div class="lbs"><h3>🔥 Top Streak – Đi Học Đều Nhất</h3><div id="topStreak"></div></div>
 <div class="lbs"><h3>📋 Toàn Bộ Streak</h3><div class="streak-list" id="allStreaks"></div></div>
 <button class="btn btn-o" style="margin:0 auto;display:block" onclick="closeLB()">Đóng</button>
 </div></div>
-
-<!-- Add Student Modal -->
 <div class="modal" id="addModal"><div class="mb">
 <h2>➕ Thêm Học Sinh</h2>
 <div class="fi"><label>Tên học sinh</label><input id="newName" placeholder="Nhập tên..."></div>
 <button class="btn btn-p" style="width:100%;justify-content:center" onclick="addStudent()">Thêm</button>
 <button class="btn btn-o" style="width:100%;justify-content:center;margin-top:8px" onclick="closeAdd()">Đóng</button>
 </div></div>
-
-<script src="scoreboard.js"></script>
-</body>
-</html>
+<script src="scoreboard.js?v=2"></script>
+</body></html>
