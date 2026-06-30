@@ -59,15 +59,14 @@ async function addStudent() {
 
 // ---- Delete (no auth, but with confirm) ----
 function deleteStudent(sid) {
+  if (!loggedIn) { toast("🔒 Đăng nhập trước!"); return; }
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
-  if (loggedIn) {
-    if (!confirm('Xóa "' + s.name + '"? Không thể hoàn tác.')) return;
-    api("/api/students/" + sid, { method: "DELETE" });
-  }
+  if (!confirm('Xóa "' + s.name + '"? Không thể hoàn tác.')) return;
+  api("/api/students/" + sid, { method: "DELETE" });
   data.students = data.students.filter(function(x) { return x.id !== sid; });
   render();
-  if (loggedIn) toast("🗑 Đã xóa: " + s.name);
+  toast("🗑 Đã xóa: " + s.name);
 }
 
 // ---- Score +/- (auth only) ----
