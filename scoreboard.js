@@ -47,11 +47,15 @@ function updateNav() {
   render();
 }
 
-// ---- Add Student (no auth needed) ----
+// ---- Add Student (no auth needed, saved instantly) ----
 async function addStudent() {
   var name = document.getElementById("newName").value.trim();
   if (!name) { toast("⚠️ Nhập tên!"); return; }
   var id = "s" + Date.now() + "_" + Math.random().toString(36).substr(2,5);
+  try {
+    var resp = await fetch(API_URL + "/api/students", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: id, name: name }) });
+    if (!resp.ok) throw new Error(await resp.text());
+  } catch(e) { toast("Lưu thất bại: " + e.message); return; }
   data.students.push({ id: id, name: name, avatar: "", totalScore: 0, writing: [0,0,0,0,0], speaking: [0,0,0,0,0], lastActive: "", streak: 0 });
   closeAdd(); render();
   toast("✅ Đã thêm: " + name);
@@ -99,7 +103,7 @@ async function adjLevel(sid, skill, level, delta) {
   } catch(e) { toast("Lỗi khi cập nhật level!"); }
 }
 
-// ---- Rename (click name) ----
+// ---- Rename (click name, always saved) ----
 function startEdit(sid) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
@@ -109,7 +113,7 @@ function startEdit(sid) {
   setTimeout(function() { var inp = document.getElementById("en_" + sid); if (inp) { inp.focus(); inp.select(); } }, 50);
 }
 
-function saveEdit(sid) {
+async function saveEdit(sid) {
   var inp = document.getElementById("en_" + sid);
   if (!inp) { render(); return; }
   var name = inp.value.trim();
@@ -117,7 +121,9 @@ function saveEdit(sid) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) { render(); return; }
   s.name = name;
-  if (loggedIn) api("/api/rename", { method: "POST", body: JSON.stringify({ id: sid, name: name }) });
+  try {
+    await fetch(API_URL + "/api/rename", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: sid, name: name }) });
+  } catch(e) {}
   render();
   toast("✅ Đổi tên: " + name);
 }
@@ -165,11 +171,13 @@ function openAvatar(sid) {
 
 function closeAv() { document.getElementById("avModal").classList.remove("open"); }
 
-function setAvatar(sid, url) {
+async function setAvatar(sid, url) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
   s.avatar = url;
-  if (loggedIn) api("/api/avatar", { method: "POST", body: JSON.stringify({ id: sid, avatar: url }) });
+  try {
+    await fetch(API_URL + "/api/avatar", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: sid, avatar: url }) });
+  } catch(e) {}
   render();
   // update picker selection
   var sel = document.querySelector(".av-opt.sel"); if (sel) sel.classList.remove("sel");
@@ -197,7 +205,8 @@ function renderSkill(s, skill, label) {
   var a = s[skill], t = skillTotal(s, skill), cells = "";
   for (var i = 0; i < a.length; i++) {
     var fc = a[i] > 0 ? " fill" : "";
-    cells += '<div class="lv l' + (i+1) + fc + '">' + a[i] +
+    var onPlus = loggedIn ? ' onclick="adjLevel(\'' + s.id + '\',\'' + skill + '\',' + i + ',1)"' : '';
+    cells += '<div class="lv l' + (i+1) + fc + '"' + onPlus + ' style="' + (loggedIn ? 'cursor:pointer' : '') + '">' + a[i] +
       (loggedIn ? '<button class="lv-minus" onclick="event.stopPropagation();adjLevel(\'' + s.id + '\',\'' + skill + '\',' + i + ',-1)">−</button>' : '') +
       '</div>';
   }
