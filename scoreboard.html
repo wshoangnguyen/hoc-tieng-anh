@@ -72,6 +72,11 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .av-opt{width:48px;height:48px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s;object-fit:cover}.av-opt:hover,.av-opt.sel{border-color:var(--accent);transform:scale(1.1)}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;font-size:13px;font-weight:600;z-index:300;animation:si .3s;box-shadow:var(--shadow-lg)}
 @keyframes si{from{transform:translateX(80px);opacity:0}to{transform:translateX(0);opacity:1}}
+.loading{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.75);z-index:400;align-items:center;justify-content:center;flex-direction:column;gap:12px;backdrop-filter:blur(2px)}
+.loading.show{display:flex}
+.spinner{width:44px;height:44px;border:4px solid var(--border);border-top:4px solid var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-weight:700;color:var(--accent);font-size:15px}
 @media(max-width:768px){.grid{grid-template-columns:1fr}.nav-inner{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
@@ -84,14 +89,15 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 <span class="logo-text">Học Tiếng Anh<span class="logo-sub">DỄ LẮM</span></span>
 </a>
 <div class="nav-btns" id="navBtns">
-<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key==='Enter')login()">
-<button class="btn btn-p" onclick="login()">Đăng nhập</button>
 <button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button>
 <button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>
+<button class="btn btn-p" onclick="saveToSheet()">💾 Save</button>
+<button class="btn btn-o" onclick="loadFromSheet()">📂 Load</button>
 </div>
 </div>
 </div>
 
+<div class="loading" id="loading"><div class="spinner"></div><div class="loading-text" id="loadingText">Đang xử lý...</div></div>
 <div class="main"><div class="grid" id="grid"></div></div>
 
 <div class="modal" id="lbModal"><div class="mb">
@@ -118,78 +124,75 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 
 <script>
 var API = "https://script.google.com/macros/s/AKfycbyVtBbsGy_3N2gWP56XtnC8lfNA_5L-C8NZUtCtvPn48M2S6U6MlMLIikG6P2DXfTjKyg/exec";
-var loggedIn = false;
-var savedPw = "";
 var students = [];
 
 function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function showLoading(msg){document.getElementById("loadingText").textContent=msg;document.getElementById("loading").classList.add("show")}
+function hideLoading(){document.getElementById("loading").classList.remove("show")}
 
-async function callApi(action, data, pw){
-  var body = Object.assign({}, data || {}, {action: action});
-  if(pw) body.password = pw;
-  var resp = await fetch(API, {method:"POST", body:JSON.stringify(body)});
-  var j = await resp.json();
-  if(j && j.error){ toast("❌ "+j.error); return null; }
-  return j;
-}
-
-async function fetchStudents(){
+async function saveToSheet(){
+  showLoading("💾 Đang lưu vào Sheet...");
   try {
-    var j = await callApi("", {});
-    if(j && Array.isArray(j)) students = j;
-  } catch(e){}
+    var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"save", students:students})});
+    var j = await resp.json();
+    hideLoading();
+    if(j && j.ok) toast("💾 Đã lưu "+j.count+" học sinh!");
+    else toast("❌ Lỗi lưu: "+(j?j.error:"không rõ"));
+  } catch(e){ hideLoading(); toast("❌ Mất kết nối"); }
 }
 
-async function login(){
-  var pw = document.getElementById("pw").value;
-  if(!pw){ toast("⚠️ Nhập mật khẩu!"); return; }
-  var j = await callApi("auth", {}, pw);
-  if(j && j.ok){
-    loggedIn = true;
-    savedPw = pw;
-    document.getElementById("pw").value = "";
-    updateNav();
-    toast("✅ Đăng nhập thành công!");
-  }
-}
-function logout(){ loggedIn = false; savedPw = ""; updateNav(); toast("👋 Đã đăng xuất"); }
-
-function updateNav(){
-  var el = document.getElementById("navBtns");
-  if(loggedIn){
-    el.innerHTML = '<button class="btn btn-d" onclick="logout()">🔓 Đăng xuất</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
-  } else {
-    el.innerHTML = '<input type="password" class="inp" id="pw" placeholder="🔑 MK giáo viên" onkeydown="if(event.key===\'Enter\')login()"><button class="btn btn-p" onclick="login()">Đăng nhập</button><button class="btn btn-o" onclick="openAdd()">➕ Thêm HS</button><button class="btn btn-o" onclick="openLB()">🏆 Xếp hạng</button>';
-  }
-  render();
+async function loadFromSheet(){
+  showLoading("📂 Đang tải từ Sheet...");
+  try {
+    var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"load"})});
+    var j = await resp.json();
+    if(j && j.students){ students = j.students; render(); }
+    hideLoading();
+    if(j && j.ok) toast("📂 Đã tải "+students.length+" học sinh!");
+    else toast("❌ "+(j?j.error:"không kết nối được"));
+  } catch(e){ hideLoading(); toast("❌ Mất kết nối"); }
 }
 
-async function addStudent(){
+function addStudent(){
   var name = document.getElementById("newName").value.trim();
   if(!name){ toast("⚠️ Nhập tên!"); return; }
   var id = "s"+Date.now()+"_"+Math.random().toString(36).substr(2,5);
-  var j = await callApi("add", {id:id, name:name}, savedPw);
-  if(j && j.students){ students = j.students; closeAdd(); render(); toast("✅ Đã thêm: "+name); }
+  students.push({id:id, name:name, avatar:"", totalScore:0, writing:[0,0,0,0,0], speaking:[0,0,0,0,0], lastActive:"", streak:0});
+  closeAdd(); render();
+  toast("✅ Đã thêm: "+name);
 }
 
-async function deleteStudent(sid){
-  if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
+function deleteStudent(sid){
   var s = students.find(function(x){return x.id===sid});
   if(!confirm('Xóa "'+s.name+'"? Không thể hoàn tác.')) return;
-  var j = await callApi("delete", {id:sid}, savedPw);
-  if(j && j.students){ students = j.students; render(); toast("🗑 Đã xóa: "+s.name); }
+  students = students.filter(function(x){return x.id!==sid});
+  render(); toast("🗑 Đã xóa");
 }
 
-async function adjScore(sid, delta){
-  if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
-  var j = await callApi("score", {studentId:sid, delta:delta}, savedPw);
-  if(j && j.students){ students = j.students; render(); }
+function adjScore(sid, delta){
+  var s = students.find(function(x){return x.id===sid});
+  if(!s) return;
+  s.totalScore = Math.max(0, s.totalScore + delta);
+  if(delta > 0) updateStreak(s);
+  render();
 }
 
-async function adjLevel(sid, skill, level, delta){
-  if(!loggedIn){ toast("🔒 Đăng nhập trước!"); return; }
-  var j = await callApi("level", {studentId:sid, skill:skill, level:level, delta:delta}, savedPw);
-  if(j && j.students){ students = j.students; render(); }
+function adjLevel(sid, skill, level, delta){
+  var s = students.find(function(x){return x.id===sid});
+  if(!s) return;
+  s[skill][level] = Math.max(0, s[skill][level] + delta);
+  if(delta > 0) updateStreak(s);
+  render();
+}
+
+function updateStreak(s){
+  var d = new Date();
+  var today = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  d.setDate(d.getDate()-1);
+  var yesterday = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  if(s.lastActive === today) return;
+  s.lastActive = today;
+  s.streak = (s.streak > 0 && s.lastActive === yesterday) ? s.streak + 1 : 1;
 }
 
 function startEdit(sid){
@@ -198,32 +201,33 @@ function startEdit(sid){
   el.innerHTML = '<input style="border:2px solid var(--accent);border-radius:8px;padding:2px 8px;font-size:15px;font-weight:700;width:140px;font-family:Quicksand,sans-serif" id="en_'+sid+'" value="'+esc(s.name)+'" onkeydown="if(event.key===\'Enter\')saveEdit(\''+sid+'\')" onblur="saveEdit(\''+sid+'\')">';
   setTimeout(function(){var inp=document.getElementById("en_"+sid);if(inp){inp.focus();inp.select();}},50);
 }
-async function saveEdit(sid){
+function saveEdit(sid){
   var inp = document.getElementById("en_"+sid);
   if(!inp){ render(); return; }
   var name = inp.value.trim();
   if(!name){ render(); return; }
-  var j = await callApi("rename", {id:sid, name:name}, savedPw);
-  if(j && j.students){ students = j.students; render(); toast("✅ Đổi tên: "+name); }
+  var s = students.find(function(x){return x.id===sid});
+  if(s) s.name = name;
+  render(); toast("✅ Đổi tên: "+name);
 }
 
 var AVATARS = ["https://api.dicebear.com/9.x/fun-emoji/svg?seed=cat","https://api.dicebear.com/9.x/fun-emoji/svg?seed=dog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=rabbit","https://api.dicebear.com/9.x/fun-emoji/svg?seed=panda","https://api.dicebear.com/9.x/fun-emoji/svg?seed=lion","https://api.dicebear.com/9.x/fun-emoji/svg?seed=tiger","https://api.dicebear.com/9.x/fun-emoji/svg?seed=monkey","https://api.dicebear.com/9.x/fun-emoji/svg?seed=frog","https://api.dicebear.com/9.x/fun-emoji/svg?seed=giraffe","https://api.dicebear.com/9.x/fun-emoji/svg?seed=koala","https://api.dicebear.com/9.x/fun-emoji/svg?seed=fox","https://api.dicebear.com/9.x/fun-emoji/svg?seed=bear","https://api.dicebear.com/9.x/bottts/svg?seed=dice","https://api.dicebear.com/9.x/adventurer/svg?seed=girl","https://api.dicebear.com/9.x/adventurer/svg?seed=boy","https://api.dicebear.com/9.x/lorelei/svg?seed=star","https://api.dicebear.com/9.x/pixel-art/svg?seed=hero","https://api.dicebear.com/9.x/pixel-art/svg?seed=ninja"];
 var curAvSid = "";
 function openAvatar(sid){curAvSid=sid;var s=students.find(function(x){return x.id===sid});document.getElementById("avStudentName").textContent=s.name;var h='<div class="av-opt'+(s.avatar?'':' sel')+'" onclick="setAvatar(\''+sid+'\',\'\')">'+getAvSvg(s)+'</div>';AVATARS.forEach(function(u){h+='<img class="av-opt'+(s.avatar===u?' sel':'')+'" src="'+u+'" onclick="setAvatar(\''+sid+'\',\''+u+'\')">'});document.getElementById("avPicker").innerHTML=h;document.getElementById("avModal").classList.add("open")}
 function closeAv(){document.getElementById("avModal").classList.remove("open")}
-async function setAvatar(sid,url){var s=students.find(function(x){return x.id===sid});s.avatar=url;render();document.getElementById("avModal").classList.remove("open");callApi("avatar",{id:sid,avatar:url},savedPw)}
+function setAvatar(sid,url){var s=students.find(function(x){return x.id===sid});s.avatar=url;render();document.getElementById("avModal").classList.remove("open")}
 function getAvSvg(s){var p=s.name.trim().split(" "),ini=p[p.length-1].charAt(0).toUpperCase();var c=["#fcbe5d","#6C5CE7","#e17055","#00b894","#0984e3","#fdcb6e","#d63031","#74b9ff","#a29bfe","#fd79a8"][(s.name.length||0)%10];return'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="'+c+'"/><text x="50" y="54" text-anchor="middle" font-size="34" font-weight="bold" fill="white">'+ini+'</text></svg>'}
 function getAv(s){return s.avatar||"data:image/svg+xml,"+encodeURIComponent(getAvSvg(s))}
 
 function skillTotal(s,sk){var t=0;for(var i=0;i<s[sk].length;i++)t+=s[sk][i]*(i+1);return t}
-function renderSkill(s,skill,label){var a=s[skill],t=skillTotal(s,skill),cells="";for(var i=0;i<a.length;i++){var fc=a[i]>0?" fill":"",onP=loggedIn?' onclick="adjLevel(\''+s.id+'\',\''+skill+'\','+i+',1)"':'',mBtn=loggedIn?'<button class="lv-minus" onclick="event.stopPropagation();adjLevel(\''+s.id+'\',\''+skill+'\','+i+',-1)">−</button>':'';cells+='<div class="lv l'+(i+1)+fc+'"'+onP+' style="'+(loggedIn?'cursor:pointer':'')+'">'+a[i]+mBtn+'</div>'}return'<div class="sr"><div class="sl">'+label+'</div><div class="lc">'+cells+'</div><div class="st">'+t+'</div></div>'}
+function renderSkill(s,skill,label){var a=s[skill],t=skillTotal(s,skill),cells="";for(var i=0;i<a.length;i++){var fc=a[i]>0?" fill":"";cells+='<div class="lv l'+(i+1)+fc+'" onclick="adjLevel(\''+s.id+'\',\''+skill+'\','+i+',1)" style="cursor:pointer">'+a[i]+'<button class="lv-minus" onclick="event.stopPropagation();adjLevel(\''+s.id+'\',\''+skill+'\','+i+',-1)">−</button></div>'}return'<div class="sr"><div class="sl">'+label+'</div><div class="lc">'+cells+'</div><div class="st">'+t+'</div></div>'}
 
 function render(){
   var g=document.getElementById("grid");
   g.innerHTML=students.map(function(s){
     var del='<button class="del" onclick="event.stopPropagation();deleteStudent(\''+s.id+'\')">✕</button>';
     var sb=(s.streak>0)?'<span class="streak-badge">🔥 '+s.streak+' ngày</span>':'';
-    return'<div class="card">'+del+'<div class="top-row"><div class="av-wrap" onclick="openAvatar(\''+s.id+'\')"><img class="av" src="'+getAv(s)+'"><div class="av-edit">✎</div></div><div class="info"><div class="name" data-sid="'+s.id+'" onclick="event.stopPropagation();startEdit(\''+s.id+'\')">'+s.name+'<span class="ei">✏️</span>'+sb+'</div><div class="total">⭐ '+s.totalScore+'</div><div class="ctrl'+(loggedIn?' on':'')+'"><button class="sb sb-p" onclick="adjScore(\''+s.id+'\',1)">+</button><button class="sb sb-m" onclick="adjScore(\''+s.id+'\',-1)">−</button></div></div></div><div class="skills">'+renderSkill(s,"writing","W")+renderSkill(s,"speaking","S")+'</div></div>';
+    return'<div class="card">'+del+'<div class="top-row"><div class="av-wrap" onclick="openAvatar(\''+s.id+'\')"><img class="av" src="'+getAv(s)+'"><div class="av-edit">✎</div></div><div class="info"><div class="name" data-sid="'+s.id+'" onclick="event.stopPropagation();startEdit(\''+s.id+'\')">'+s.name+'<span class="ei">✏️</span>'+sb+'</div><div class="total">⭐ '+s.totalScore+'</div><div class="ctrl on"><button class="sb sb-p" onclick="adjScore(\''+s.id+'\',1)">+</button><button class="sb sb-m" onclick="adjScore(\''+s.id+'\',-1)">−</button></div></div></div><div class="skills">'+renderSkill(s,"writing","W")+renderSkill(s,"speaking","S")+'</div></div>';
   }).join("");
 }
 
@@ -239,7 +243,19 @@ document.getElementById("lbModal").addEventListener("click",function(e){if(e.tar
 document.getElementById("addModal").addEventListener("click",function(e){if(e.target===this)closeAdd()});
 document.getElementById("avModal").addEventListener("click",function(e){if(e.target===this)closeAv()});
 
-fetchStudents().then(updateNav);
+// Auto-load on start
+if(API){
+  showLoading("📂 Đang tải dữ liệu...");
+  (async function(){
+    try {
+      var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"load"})});
+      var j = await resp.json();
+      if(j && j.students) students = j.students;
+    } catch(e){}
+    hideLoading();
+    render();
+  })();
+} else { render(); }
 </script>
 </body>
 </html>
