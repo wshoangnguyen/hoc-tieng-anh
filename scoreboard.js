@@ -3,7 +3,7 @@ const API_URL = "https://scoreboard-api-vts9.onrender.com";
 const PASSWORD = "***";
 
 let loggedIn = false;
-let data = { students: [], teacherName: "Giáo viên" };
+let data = { students: [] };
 
 function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 
@@ -17,10 +17,7 @@ async function api(path, opts) {
 }
 
 async function loadData() {
-  try {
-    data = await api("/api/data");
-    document.getElementById("teacherNameLabel").textContent = data.teacherName || "Giáo viên";
-  } catch(e) { console.warn("Load data:", e.message); }
+  try { data = await api("/api/data"); } catch(e) { console.warn("Load:", e.message); }
 }
 
 async function login() {
@@ -30,17 +27,12 @@ async function login() {
     await api("/api/auth", { method: "POST", body: JSON.stringify({ password: pw }) });
     loggedIn = true;
     document.getElementById("pw").value = "";
-    PASSWORD_REAL = pw;
     updateNav();
     toast("✅ Đăng nhập thành công!");
   } catch(e) { toast("❌ Sai mật khẩu!"); }
 }
 
-function logout() {
-  loggedIn = false;
-  updateNav();
-  toast("👋 Đã đăng xuất");
-}
+function logout() { loggedIn = false; updateNav(); toast("👋 Đã đăng xuất"); }
 
 function updateNav() {
   var el = document.getElementById("navBtns");
@@ -55,37 +47,30 @@ function updateNav() {
   render();
 }
 
-async function callAuth(method, path, body) {
-  return api(path, { method: method, body: JSON.stringify(Object.assign({ password: PASSWORD_REAL }, body)) });
-}
-
+// ---- Add Student (no auth needed) ----
 async function addStudent() {
-  if (!loggedIn) { toast("🔒 Đăng nhập trước!"); return; }
   var name = document.getElementById("newName").value.trim();
   if (!name) { toast("⚠️ Nhập tên!"); return; }
   var id = "s" + Date.now() + "_" + Math.random().toString(36).substr(2,5);
-  try {
-    var body = { id: id, name: name };
-    await api("/api/students", { method: "POST", body: JSON.stringify(Object.assign({ password: PASSWORD_REAL }, body)) });
-    data.students.push({ id: id, name: name, avatar: "", totalScore: 0, writing: [0,0,0,0,0], speaking: [0,0,0,0,0], lastActive: "", streak: 0 });
-    closeAdd(); render();
-    toast("✅ Đã thêm: " + name);
-  } catch(e) { toast("Lỗi khi thêm!"); }
+  data.students.push({ id: id, name: name, avatar: "", totalScore: 0, writing: [0,0,0,0,0], speaking: [0,0,0,0,0], lastActive: "", streak: 0 });
+  closeAdd(); render();
+  toast("✅ Đã thêm: " + name);
 }
 
-async function deleteStudent(sid) {
-  if (!loggedIn) return;
+// ---- Delete (no auth, but with confirm) ----
+function deleteStudent(sid) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
-  if (!confirm('Xóa "' + s.name + '"? Không thể hoàn tác.')) return;
-  try {
-    await api("/api/students/" + sid, { method: "DELETE" });
-    data.students = data.students.filter(function(x) { return x.id !== sid; });
-    render();
-    toast("🗑 Đã xóa: " + s.name);
-  } catch(e) { toast("Lỗi!"); }
+  if (loggedIn) {
+    if (!confirm('Xóa "' + s.name + '"? Không thể hoàn tác.')) return;
+    api("/api/students/" + sid, { method: "DELETE" });
+  }
+  data.students = data.students.filter(function(x) { return x.id !== sid; });
+  render();
+  if (loggedIn) toast("🗑 Đã xóa: " + s.name);
 }
 
+// ---- Score +/- (auth only) ----
 async function adjScore(sid, delta) {
   if (!loggedIn) { toast("🔒 Đăng nhập trước!"); return; }
   var s = data.students.find(function(x) { return x.id === sid; });
@@ -96,9 +81,10 @@ async function adjScore(sid, delta) {
     if (resp.streak !== undefined) s.streak = resp.streak;
     s.lastActive = new Date().toISOString().split("T")[0];
     render();
-  } catch(e) { toast("Lỗi!"); }
+  } catch(e) { toast("Lỗi khi cập nhật điểm!"); }
 }
 
+// ---- Level +/- (auth only) ----
 async function adjLevel(sid, skill, level, delta) {
   if (!loggedIn) { toast("🔒 Đăng nhập trước!"); return; }
   var s = data.students.find(function(x) { return x.id === sid; });
@@ -111,9 +97,10 @@ async function adjLevel(sid, skill, level, delta) {
     render();
     var sn = skill === "writing" ? "W" : "S";
     toast("✅ " + s.name + ": " + sn + " Lv." + (level+1) + " " + (delta > 0 ? "+" : "") + delta);
-  } catch(e) { toast("Lỗi!"); }
+  } catch(e) { toast("Lỗi khi cập nhật level!"); }
 }
 
+// ---- Rename (click name) ----
 function startEdit(sid) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) return;
@@ -123,7 +110,7 @@ function startEdit(sid) {
   setTimeout(function() { var inp = document.getElementById("en_" + sid); if (inp) { inp.focus(); inp.select(); } }, 50);
 }
 
-async function saveEdit(sid) {
+function saveEdit(sid) {
   var inp = document.getElementById("en_" + sid);
   if (!inp) { render(); return; }
   var name = inp.value.trim();
@@ -131,21 +118,77 @@ async function saveEdit(sid) {
   var s = data.students.find(function(x) { return x.id === sid; });
   if (!s) { render(); return; }
   s.name = name;
-  try {
-    await api("/api/rename", { method: "POST", body: JSON.stringify({ id: sid, name: name }) });
-    render();
-    toast("✅ Đổi tên: " + name);
-  } catch(e) { render(); toast("Lỗi!"); }
+  if (loggedIn) api("/api/rename", { method: "POST", body: JSON.stringify({ id: sid, name: name }) });
+  render();
+  toast("✅ Đổi tên: " + name);
 }
 
-function getAvatar(s) {
-  if (s.avatar) return s.avatar;
+// ---- Avatar (no auth needed) ----
+var AVATAR_PRESETS = [
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=cat",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dog",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=rabbit",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=panda",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=lion",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=tiger",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=monkey",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=frog",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=giraffe",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=koala",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=fox",
+  "https://api.dicebear.com/9.x/fun-emoji/svg?seed=bear",
+  "https://api.dicebear.com/9.x/bottts/svg?seed=dice",
+  "https://api.dicebear.com/9.x/bottts/svg?seed=happy",
+  "https://api.dicebear.com/9.x/adventurer/svg?seed=girl",
+  "https://api.dicebear.com/9.x/adventurer/svg?seed=boy",
+  "https://api.dicebear.com/9.x/lorelei/svg?seed=star",
+  "https://api.dicebear.com/9.x/lorelei/svg?seed=rainbow",
+  "https://api.dicebear.com/9.x/pixel-art/svg?seed=hero",
+  "https://api.dicebear.com/9.x/pixel-art/svg?seed=ninja"
+];
+
+var currentAvSid = "";
+
+function openAvatar(sid) {
+  currentAvSid = sid;
+  var s = data.students.find(function(x) { return x.id === sid; });
+  if (!s) return;
+  document.getElementById("avStudentName").textContent = s.name;
+  var html = '<div class="av-opt' + (!s.avatar ? ' sel' : '') + '" onclick="setAvatar(\'' + sid + '\',\'\')" title="Mặc định">' + getAvatarSvg(s) + '</div>';
+  for (var i = 0; i < AVATAR_PRESETS.length; i++) {
+    var u = AVATAR_PRESETS[i];
+    var sel = s.avatar === u ? ' sel' : '';
+    html += '<img class="av-opt' + sel + '" src="' + u + '" onclick="setAvatar(\'' + sid + '\',\'' + u + '\')" title="Avatar ' + (i+1) + '">';
+  }
+  document.getElementById("avPicker").innerHTML = html;
+  document.getElementById("avModal").classList.add("open");
+}
+
+function closeAv() { document.getElementById("avModal").classList.remove("open"); }
+
+function setAvatar(sid, url) {
+  var s = data.students.find(function(x) { return x.id === sid; });
+  if (!s) return;
+  s.avatar = url;
+  if (loggedIn) api("/api/avatar", { method: "POST", body: JSON.stringify({ id: sid, avatar: url }) });
+  render();
+  // update picker selection
+  var sel = document.querySelector(".av-opt.sel"); if (sel) sel.classList.remove("sel");
+  if (!url) document.querySelector(".av-opt").classList.add("sel");
+  else { var imgs = document.querySelectorAll(".av-opt"); for (var i = 0; i < imgs.length; i++) { if (imgs[i].src === url) { imgs[i].classList.add("sel"); break; } } }
+}
+
+function getAvatarSvg(s) {
   var parts = s.name.trim().split(" ");
   var ini = parts[parts.length - 1].charAt(0).toUpperCase();
   var cols = ["#fcbe5d","#6C5CE7","#e17055","#00b894","#0984e3","#fdcb6e","#d63031","#74b9ff","#a29bfe","#fd79a8"];
   var c = cols[(s.name.length || 0) % cols.length];
-  var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="' + c + '"/><text x="50" y="54" text-anchor="middle" font-size="34" font-weight="bold" fill="white" font-family="sans-serif">' + ini + '</text></svg>';
-  return "data:image/svg+xml," + encodeURIComponent(svg);
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="' + c + '"/><text x="50" y="54" text-anchor="middle" font-size="34" font-weight="bold" fill="white" font-family="sans-serif">' + ini + '</text></svg>';
+}
+
+function getAvatar(s) {
+  if (s.avatar) return s.avatar;
+  return "data:image/svg+xml," + encodeURIComponent(getAvatarSvg(s));
 }
 
 function skillTotal(s, sk) { var a = s[sk], t = 0; for (var i = 0; i < a.length; i++) t += a[i] * (i + 1); return t; }
@@ -155,7 +198,9 @@ function renderSkill(s, skill, label) {
   var a = s[skill], t = skillTotal(s, skill), cells = "";
   for (var i = 0; i < a.length; i++) {
     var fc = a[i] > 0 ? " fill" : "";
-    cells += '<div class="lv l' + (i+1) + fc + '" onclick="' + (loggedIn ? 'adjLevel(\'' + s.id + '\',\'' + skill + '\',' + i + ',1)' : '') + '" style="' + (loggedIn ? 'cursor:pointer' : '') + '">' + a[i] + '</div>';
+    cells += '<div class="lv l' + (i+1) + fc + '">' + a[i] +
+      (loggedIn ? '<button class="lv-minus" onclick="event.stopPropagation();adjLevel(\'' + s.id + '\',\'' + skill + '\',' + i + ',-1)">−</button>' : '') +
+      '</div>';
   }
   return '<div class="sr"><div class="sl">' + label + '</div><div class="lc">' + cells + '</div><div class="st">' + t + '</div></div>';
 }
@@ -164,9 +209,22 @@ function render() {
   if (!data || !data.students) return;
   var g = document.getElementById("grid");
   g.innerHTML = data.students.map(function(s) {
-    var delBtn = loggedIn ? '<button class="del" onclick="event.stopPropagation();deleteStudent(\'' + s.id + '\')">✕</button>' : "";
+    var delBtn = '<button class="del" onclick="event.stopPropagation();deleteStudent(\'' + s.id + '\')">✕</button>';
     var streakBadge = (s.streak && s.streak > 0) ? '<span class="streak-badge' + getStreakClass(s.streak) + '">🔥 ' + s.streak + ' ngày</span>' : '';
-    return '<div class="card">' + delBtn + '<div class="top-row"><div class="av-wrap"><img class="av" src="' + getAvatar(s) + '" alt="' + s.name + '"></div><div class="info"><div class="name" data-sid="' + s.id + '" onclick="event.stopPropagation();startEdit(\'' + s.id + '\')">' + s.name + '<span class="ei">✏️</span>' + streakBadge + '</div><div class="total">⭐ ' + s.totalScore + '</div><div class="ctrl' + (loggedIn ? ' on' : '') + '"><button class="sb sb-p" onclick="adjScore(\'' + s.id + '\',1)">+</button><button class="sb sb-m" onclick="adjScore(\'' + s.id + '\',-1)">−</button></div></div></div><div class="skills">' + renderSkill(s, "writing", "W") + renderSkill(s, "speaking", "S") + '</div></div>';
+    return '<div class="card">' + delBtn +
+      '<div class="top-row">' +
+        '<div class="av-wrap" onclick="openAvatar(\'' + s.id + '\')"><img class="av" src="' + getAvatar(s) + '" alt="' + s.name + '"><div class="av-edit">✎</div></div>' +
+        '<div class="info">' +
+          '<div class="name" data-sid="' + s.id + '" onclick="event.stopPropagation();startEdit(\'' + s.id + '\')">' + s.name + '<span class="ei">✏️</span>' + streakBadge + '</div>' +
+          '<div class="total">⭐ ' + s.totalScore + '</div>' +
+          '<div class="ctrl' + (loggedIn ? ' on' : '') + '">' +
+            '<button class="sb sb-p" onclick="adjScore(\'' + s.id + '\',1)">+</button>' +
+            '<button class="sb sb-m" onclick="adjScore(\'' + s.id + '\',-1)">−</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="skills">' + renderSkill(s, "writing", "W") + renderSkill(s, "speaking", "S") + '</div>' +
+    '</div>';
   }).join("");
 }
 
@@ -179,40 +237,33 @@ function openLB() {
     ["topTotal","topSkills","topStreak","allStreaks"].forEach(function(id) { document.getElementById(id).innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:16px;font-style:italic">Chưa có dữ liệu</div>'; });
     document.getElementById("lbModal").classList.add("open"); return;
   }
-  var bt = [...st].sort(function(a,b) { return b.totalScore - a.totalScore; }).slice(0,3);
-  renderLB("topTotal", bt, function(s) { return s.totalScore + " ⭐"; });
-  var bs = [...st].sort(function(a,b) { return (skillTotal(b,"writing") + skillTotal(b,"speaking")) - (skillTotal(a,"writing") + skillTotal(a,"speaking")); }).slice(0,3);
-  renderLB("topSkills", bs, function(s) { return (skillTotal(s,"writing") + skillTotal(s,"speaking")) + " câu"; });
-  var bst = [...st].filter(function(s) { return s.streak > 0; }).sort(function(a,b) { return b.streak - a.streak; }).slice(0,3);
-  renderLB("topStreak", bst, function(s) { return s.streak + " ngày 🔥"; });
-  var allSt = [...st].filter(function(s) { return s.streak > 0; }).sort(function(a,b) { return b.streak - a.streak; });
-  var el = document.getElementById("allStreaks");
-  el.innerHTML = allSt.length === 0 ? '<div style="text-align:center;color:var(--text-dim);padding:12px;font-style:italic">Chưa ai có streak</div>' : allSt.map(function(s, i) { return '<div class="lr"><div class="lrk" style="font-size:14px;color:var(--text-dim)">#' + (i+1) + '</div><img class="la" src="' + getAvatar(s) + '"><div class="ln">' + s.name + '</div><div class="ls" style="color:var(--streak)">🔥 ' + s.streak + ' ngày</div></div>'; }).join("");
+  renderLB("topTotal", [...st].sort(function(a,b){return b.totalScore-a.totalScore}).slice(0,3), function(s){return s.totalScore+" ⭐";});
+  renderLB("topSkills", [...st].sort(function(a,b){return (skillTotal(b,"writing")+skillTotal(b,"speaking"))-(skillTotal(a,"writing")+skillTotal(a,"speaking"))}).slice(0,3), function(s){return (skillTotal(s,"writing")+skillTotal(s,"speaking"))+" câu";});
+  var bst = [...st].filter(function(s){return s.streak>0}).sort(function(a,b){return b.streak-a.streak}).slice(0,3);
+  renderLB("topStreak", bst, function(s){return s.streak+" ngày 🔥";});
+  var allSt = [...st].filter(function(s){return s.streak>0}).sort(function(a,b){return b.streak-a.streak});
+  document.getElementById("allStreaks").innerHTML = allSt.length===0 ? '<div style="text-align:center;color:var(--text-dim);padding:12px;font-style:italic">Chưa ai có streak</div>' : allSt.map(function(s,i){return '<div class="lr"><div class="lrk" style="font-size:14px;color:var(--text-dim)">#'+(i+1)+'</div><img class="la" src="'+getAvatar(s)+'"><div class="ln">'+s.name+'</div><div class="ls" style="color:var(--streak)">🔥 '+s.streak+' ngày</div></div>';}).join("");
   document.getElementById("lbModal").classList.add("open");
 }
 function closeLB() { document.getElementById("lbModal").classList.remove("open"); }
 
 function renderLB(cid, arr, fn) {
   var c = document.getElementById(cid);
-  if (arr.length === 0) { c.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:16px;font-style:italic">Chưa có dữ liệu</div>'; return; }
-  var em = ["🥇","🥈","🥉"];
-  c.innerHTML = arr.map(function(s, i) { return '<div class="lr"><div class="lrk r' + (i+1) + '">' + em[i] + '</div><img class="la" src="' + getAvatar(s) + '"><div class="ln">' + s.name + '</div><div class="ls">' + fn(s) + '</div></div>'; }).join("");
+  if (arr.length===0) { c.innerHTML='<div style="text-align:center;color:var(--text-dim);padding:16px;font-style:italic">Chưa có dữ liệu</div>'; return; }
+  var em=["🥇","🥈","🥉"];
+  c.innerHTML=arr.map(function(s,i){return '<div class="lr"><div class="lrk r'+(i+1)+'">'+em[i]+'</div><img class="la" src="'+getAvatar(s)+'"><div class="ln">'+s.name+'</div><div class="ls">'+fn(s)+'</div></div>';}).join("");
 }
 
 function toast(msg) {
-  var ex = document.querySelector(".toast"); if (ex) ex.remove();
-  var t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+  var ex=document.querySelector(".toast");if(ex)ex.remove();
+  var t=document.createElement("div");t.className="toast";t.textContent=msg;
   document.body.appendChild(t);
-  setTimeout(function() { t.remove(); }, 2500);
+  setTimeout(function(){t.remove();},2500);
 }
 
-document.getElementById("lbModal").addEventListener("click", function(e) { if (e.target === this) closeLB(); });
-document.getElementById("addModal").addEventListener("click", function(e) { if (e.target === this) closeAdd(); });
+document.getElementById("lbModal").addEventListener("click",function(e){if(e.target===this)closeLB();});
+document.getElementById("addModal").addEventListener("click",function(e){if(e.target===this)closeAdd();});
+document.getElementById("avModal").addEventListener("click",function(e){if(e.target===this)closeAv();});
 
-var PASSWORD_REAL = PASSWORD;
-
-async function init() {
-  await loadData();
-  updateNav();
-}
+async function init() { await loadData(); updateNav(); }
 init();
