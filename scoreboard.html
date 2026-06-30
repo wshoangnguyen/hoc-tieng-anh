@@ -23,7 +23,7 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .btn-o{background:var(--card);border:2px solid var(--border);color:var(--text)}.btn-o:hover{background:#fffbf0;border-color:var(--accent)}
 .btn-d{background:linear-gradient(135deg,#e17055,#d63031);color:#fff}.btn-d:hover{transform:translateY(-1px)}
 .badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}.badge-on{background:#00b89415;color:var(--green)}.badge-off{background:#e1705515;color:var(--red)}
-.teacher-bar{background:linear-gradient(180deg,#fffbf0,#fff8e1);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:70px}
+.teacher-bar{background:linear-gradient(180deg,#fffbf0,#fff8e1);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:70px;min-height:44px}
 .main{padding:20px;max-width:1300px;margin:0 auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
 .card{background:var(--card);border-radius:18px;padding:20px;border:1px solid var(--border);box-shadow:var(--shadow);transition:.2s;position:relative}
@@ -31,30 +31,33 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .del{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text-dim);cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:2;transition:.2s}
 .del:hover{background:#e1705515;color:var(--red);border-color:var(--red)}
 .top-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.av-wrap{position:relative;flex-shrink:0}
-.av{width:75px;height:75px;border-radius:50%;object-fit:cover;border:3px solid var(--border);background:var(--bg)}
+.av-wrap{position:relative;flex-shrink:0;cursor:pointer}
+.av{width:75px;height:75px;border-radius:50%;object-fit:cover;border:3px solid var(--border);background:linear-gradient(135deg,var(--bg),#fff);transition:.2s}
+.av:hover{border-color:var(--accent)}
+.av-edit{position:absolute;bottom:0;right:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;cursor:pointer;transition:.2s}
+.av-edit:hover{background:var(--purple);transform:scale(1.15)}
 .info{flex:1;min-width:0}
 .name{font-family:'Baloo Bhaina 2',serif;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
 .name .ei{font-size:10px;opacity:0;transition:.2s}.name:hover .ei{opacity:.5}
 .total{font-size:30px;font-weight:800;color:var(--accent);font-family:'Baloo Bhaina 2',serif;display:flex;align-items:center;gap:4px}
-/* Streak badge */
 .streak-badge{display:inline-flex;align-items:center;gap:3px;background:linear-gradient(135deg,#ff6b35,#ff8c42);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;margin-left:8px;animation:pulse 2s infinite}
 .streak-badge.dim{opacity:.35;filter:grayscale(.5);animation:none}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .ctrl{display:none;gap:4px;margin-top:2px}.ctrl.on{display:flex}
-.sb{width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sb{width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:.15s}
 .sb-p{background:#00b89415;color:var(--green);border:2px solid #00b89430}.sb-p:hover{background:#00b89430;transform:scale(1.1)}
 .sb-m{background:#e1705515;color:var(--red);border:2px solid #e1705530}.sb-m:hover{background:#e1705530;transform:scale(1.1)}
 .skills{margin-top:4px}
 .sr{display:flex;align-items:center;gap:4px;margin-bottom:6px}
 .sl{font-family:'Baloo Bhaina 2',serif;font-size:12px;font-weight:700;color:var(--purple);width:18px;text-align:center}
 .lc{display:flex;gap:4px;flex:1}
-.lv{flex:1;height:28px;border-radius:7px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-dim);transition:.15s;border:1px solid transparent;cursor:default;position:relative;min-width:0;overflow:hidden}
+.lv{flex:1;height:32px;border-radius:7px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-dim);transition:.15s;border:1px solid transparent;cursor:default;position:relative;min-width:0;overflow:hidden}
 .lv:hover{border-color:var(--accent)}
 .lv.l1{color:#e17055;background:#e1705510}.lv.l2{color:#d35400;background:#fdcb6e15}.lv.l3{color:#b8860b;background:#ffeaa730}.lv.l4{color:#00b894;background:#55efc420}.lv.l5{color:#0984e3;background:#74b9ff20}
 .lv.fill.l1{background:#e1705530}.lv.fill.l2{background:#fdcb6e30}.lv.fill.l3{background:#ffeaa750}.lv.fill.l4{background:#55efc440}.lv.fill.l5{background:#74b9ff40}
+.lv-minus{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--red);color:#fff;font-size:10px;font-weight:800;display:none;align-items:center;justify-content:center;line-height:1;cursor:pointer;z-index:1;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.lv:hover .lv-minus{display:flex}.lv-minus:hover{background:#c0392b;transform:scale(1.2)}
 .st{font-size:12px;font-weight:700;width:22px;text-align:center;font-family:'Baloo Bhaina 2',serif}
-/* Modal */
 .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal.open{display:flex}
 .mb{background:var(--card);border-radius:22px;padding:28px;max-width:650px;width:92%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
@@ -67,8 +70,9 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 .ls{font-size:17px;font-weight:800;color:var(--accent);font-family:'Baloo Bhaina 2',serif}
 .fi{margin-bottom:12px}.fi label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:3px;font-weight:700}
 .fi input{width:100%;padding:9px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);font-size:14px;outline:none;font-family:Quicksand,sans-serif}.fi input:focus{border-color:var(--accent)}
-/* Full streak leaderboard */
 .streak-list{max-height:280px;overflow-y:auto}
+.avatar-picker{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;max-height:200px;overflow-y:auto}
+.av-opt{width:48px;height:48px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s;object-fit:cover}.av-opt:hover,.av-opt.sel{border-color:var(--accent);transform:scale(1.1)}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;font-size:13px;font-weight:600;z-index:300;animation:si .3s;box-shadow:var(--shadow-lg)}
 @keyframes si{from{transform:translateX(80px);opacity:0}to{transform:translateX(0);opacity:1}}
 @media(max-width:768px){.grid{grid-template-columns:1fr}.nav-inner{flex-direction:column;align-items:flex-start}.teacher-bar{flex-direction:column;align-items:flex-start}}
@@ -93,7 +97,6 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="teacher-bar">
 <span class="badge badge-off" id="statusBadge">🔒 Chưa đăng nhập</span>
-<span style="font-size:13px;color:var(--text-dim)">👩‍🏫 <span id="teacherNameLabel">Giáo viên</span></span>
 </div>
 
 <div class="main"><div class="grid" id="grid"></div></div>
@@ -116,6 +119,14 @@ body{font-family:Quicksand,sans-serif;background:var(--bg);color:var(--text);min
 <button class="btn btn-o" style="width:100%;justify-content:center;margin-top:8px" onclick="closeAdd()">Đóng</button>
 </div></div>
 
-<script src="scoreboard.js?v=2"></script>
+<!-- Avatar Picker Modal -->
+<div class="modal" id="avModal"><div class="mb">
+<h2>🖼️ Chọn Avatar</h2>
+<p style="text-align:center;color:var(--text-dim);margin-bottom:12px">Chọn 1 avatar cho <b id="avStudentName"></b></p>
+<div class="avatar-picker" id="avPicker"></div>
+<button class="btn btn-o" style="margin:12px auto 0;display:block" onclick="closeAv()">Đóng</button>
+</div></div>
+
+<script src="scoreboard.js?v=3"></script>
 </body>
 </html>
