@@ -134,10 +134,13 @@ async function saveToSheet(){
   showLoading("💾 Đang lưu vào Sheet...");
   try {
     var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"save", students:students})});
-    var j = await resp.json();
+    var txt = await resp.text();
     hideLoading();
-    if(j && j.ok) toast("💾 Đã lưu "+j.count+" học sinh!");
-    else toast("❌ Lỗi lưu: "+(j?j.error:"không rõ"));
+    try {
+      var j = JSON.parse(txt);
+      if(j && j.ok) toast("💾 Đã lưu "+j.count+" học sinh!");
+      else toast("❌ Lỗi: "+(j?j.error:"không rõ"));
+    } catch(e){ toast("❌ Phản hồi lạ: "+txt.substring(0, 80)); }
   } catch(e){ hideLoading(); toast("❌ Mất kết nối"); }
 }
 
@@ -145,12 +148,24 @@ async function loadFromSheet(){
   showLoading("📂 Đang tải từ Sheet...");
   try {
     var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"load"})});
-    var j = await resp.json();
-    if(j && j.students){ students = j.students; render(); }
+    var txt = await resp.text();
     hideLoading();
-    if(j && j.ok) toast("📂 Đã tải "+students.length+" học sinh!");
-    else toast("❌ "+(j?j.error:"không kết nối được"));
+    try {
+      var j = JSON.parse(txt);
+      if(j && j.students){ sortStudents(); students = j.students; render(); }
+      else if(Array.isArray(j)){ students = j; sortStudents(); render(); }
+      if(j && j.ok) toast("📂 Đã tải "+students.length+" học sinh!");
+      else if(!j || !j.students && !Array.isArray(j)) toast("❌ "+(j?j.error:"không có dữ liệu"));
+    } catch(e){ toast("❌ Phản hồi lạ: "+txt.substring(0, 80)); }
   } catch(e){ hideLoading(); toast("❌ Mất kết nối"); }
+}
+
+function sortStudents(){
+  students.sort(function(a,b){
+    var na = a.name.trim().split(" ").pop().toLowerCase();
+    var nb = b.name.trim().split(" ").pop().toLowerCase();
+    if(na < nb) return -1; if(na > nb) return 1; return 0;
+  });
 }
 
 function addStudent(){
@@ -249,10 +264,15 @@ if(API){
   (async function(){
     try {
       var resp = await fetch(API, {method:"POST", body:JSON.stringify({action:"load"})});
-      var j = await resp.json();
-      if(j && j.students) students = j.students;
+      var txt = await resp.text();
+      try {
+        var j = JSON.parse(txt);
+        if(j && j.students) students = j.students;
+        else if(Array.isArray(j)) students = j;
+      } catch(e){}
     } catch(e){}
     hideLoading();
+    sortStudents();
     render();
   })();
 } else { render(); }
