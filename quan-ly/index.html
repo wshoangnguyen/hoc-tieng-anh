@@ -3,206 +3,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Quản lý lớp — bản thử</title>
+<title>Lịch & điểm danh</title>
 <script type="module">
-const SUPABASE_URL = "https://xtfusgawjlrcreiphwur.supabase.co";
-const SUPABASE_KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+const URL_SB = "https://xtfusgawjlrcreiphwur.supabase.co";
+const KEY_SB = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+const $ = s => document.querySelector(s);
+const THU = ["T2","T3","T4","T5","T6","T7","CN"];
+const TRANG_THAI = {co:"Có", vang:"Vắng", tre:"Trễ", phep:"Phép"};
 
-const $ = (s) => document.querySelector(s);
-const KY_NANG = [["nghe","Nghe"],["noi","Nói"],["doc","Đọc"],["viet","Viết"]];
+let sb, toi, lopTheoId = {}, gvTheoId = {}, lich = [], buoiTheoKhoa = {}, tuanGoc = null, ngayDangXem = null, dangMo = null;
 
-let sb = null, toi = null, cacLop = [], hocVien = [], daLuu = {};
-
-function baoLoi(t){ const el=$("#loi"); el.textContent=t; el.style.display="block"; }
-function trangThai(t){ const el=$("#tt"); el.textContent=t||""; el.className="ok"; }
-
-window.addEventListener("unhandledrejection", e => baoLoi("Lỗi mạng/script: " + (e.reason?.message || e.reason)));
-window.addEventListener("error", e => baoLoi("Lỗi trang: " + (e.message || "không rõ")));
+function loi(t){ const e=$("#loi"); e.textContent=t||""; e.style.display = t? "block":"none"; }
+const ngayISO = d => d.toISOString().slice(0,10);
+const congNgay = (d,n) => { const x=new Date(d); x.setDate(x.getDate()+n); return x; };
+function dauTuan(d){ const x=new Date(d); const t=(x.getDay()+6)%7; return congNgay(x,-t); }
+function dinhDangNgay(s){ const [y,m,dd]=s.split("-"); return `${dd}/${m}`; }
 
 async function taiThuVien(){
-  const nguon = [
-    "https://esm.sh/@supabase/supabase-js@2",
-    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm",
-    "https://unpkg.com/@supabase/supabase-js@2/dist/module/index.js"
-  ];
-  for (const u of nguon){
-    try { const m = await import(u); if (m.createClient) return m; } catch(e) { console.warn("không tải được", u, e.message); }
+  for (const u of ["https://esm.sh/@supabase/supabase-js@2","https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm","https://unpkg.com/@supabase/supabase-js@2/dist/module/index.js"]){
+    try { const m = await import(u); if (m.createClient) return m; } catch(e){}
   }
   throw new Error("Không tải được thư viện Supabase (mạng hoặc chặn CDN).");
 }
 
-function coGiay(s){ return typeof s === "string" && s.length > 0; }
-
 async function dangNhap(e){
   e.preventDefault();
-  const email = $("#email").value.trim(), pass = $("#pass").value;
-  $("#loi").style.display="none";
-  $("#nut").disabled = true; $("#nut").textContent = "Đang đăng nhập…";
+  $("#nut").disabled=true; $("#nut").textContent="Đang đăng nhập…"; loi("");
   try {
-    const kq = await Promise.race([
-      sb.auth.signInWithPassword({ email, password: pass }),
-      new Promise(r => setTimeout(() => r({ error: { message: "quá 20 giây không phản hồi — kiểm tra mạng" } }), 20000))
+    const r = await Promise.race([
+      sb.auth.signInWithPassword({ email:$("#email").value.trim(), password:$("#pass").value }),
+      new Promise(r=>setTimeout(()=>r({error:{message:"quá 20 giây không phản hồi — kiểm tra mạng"}}),20000))
     ]);
-    if (kq.error) {
-      const m = kq.error.message || "";
-      baoLoi(m.includes("Invalid login") ? "Sai email hoặc mật khẩu." :
-             m.includes("Email not confirmed") ? "Tài khoản chưa xác nhận email — bật Confirm email = off trong Supabase, hoặc xác nhận user này." :
-             "Không vào được: " + m);
-      return;
-    }
+    if (r.error){ loi(r.error.message.includes("Invalid login")?"Sai email hoặc mật khẩu.":"Không vào được: "+r.error.message); return; }
     await moApp();
-  } catch (err) {
-    baoLoi("Lỗi: " + (err.message || err));
-  } finally {
-    $("#nut").disabled = false; $("#nut").textContent = "Đăng nhập";
-  }
+  } catch(err){ loi("Lỗi: "+(err.message||err)); }
+  finally { $("#nut").disabled=false; $("#nut").textContent="Đăng nhập"; }
 }
 
 async function moApp(){
-  const { data: { user }, error: eU } = await sb.auth.getUser();
-  if (eU || !user) { $("#login").hidden = false; $("#app").hidden = true; return; }
-  const { data: gv, error } = await sb.from("giao_vien").select("ten,vai").eq("id", user.id).maybeSingle();
-  if (error) { baoLoi("Không đọc được bảng giao_vien: " + error.message); return; }
-  if (!gv) { baoLoi("Tài khoản này chưa được cấp quyền (thiếu dòng trong bảng giao_vien)."); await sb.auth.signOut(); return; }
-  toi = { id: user.id, ...gv };
-  $("#login").hidden = true; $("#app").hidden = false;
-  $("#ten-gv").textContent = gv.ten + (gv.vai === "quan_ly" ? " · quản lý" : "");
-  await napLop();
+  const { data:{user} } = await sb.auth.getUser();
+  if (!user){ $("#login").hidden=false; return; }
+  const { data:gv, error } = await sb.from("giao_vien").select("ten,vai").eq("id",user.id).maybeSingle();
+  if (error){ loi("Không đọc được bảng giao_vien: "+error.message); return; }
+  if (!gv){ loi("Tài khoản chưa được cấp quyền."); await sb.auth.signOut(); return; }
+  toi = { id:user.id, ...gv };
+  $("#login").hidden=true; $("#app").hidden=false;
+  $("#ten-gv").textContent = gv.ten;
+  await napNen();
 }
 
-async function napLop(){
-  let q = sb.from("lop").select("id,ten,sach").order("ten");
-  if (toi.vai !== "quan_ly") {
-    const { data: pc } = await sb.from("lop_giao_vien").select("lop_id").eq("gv_id", toi.id);
-    const ids = (pc || []).map(x => x.lop_id);
-    if (!ids.length) { $("#ds").innerHTML = "<p class='mo'>Chưa được phân lớp nào.</p>"; return; }
-    q = q.in("id", ids);
-  }
-  const { data, error } = await q;
-  if (error) { $("#ds").innerHTML = "<p class='loi'>" + error.message + "</p>"; return; }
-  cacLop = data || [];
-  $("#chon-lop").innerHTML = cacLop.map(l => `<option value="${l.id}">${l.ten}</option>`).join("");
-  if (!cacLop.length) { $("#ds").innerHTML = "<p class='mo'>Chưa có lớp nào.</p>"; return; }
-  if (!$("#ngay").value) $("#ngay").value = new Date().toISOString().slice(0,10);
-  await napHocVien();
+async function napNen(){
+  const [l, lc, gv, b] = await Promise.all([
+    sb.from("lop").select("id,ten,sach"),
+    sb.from("lich_co_dinh").select("lop_id,thu,ca,gv_id,gv_ten,tu_ngay"),
+    sb.from("giao_vien").select("id,ten"),
+    sb.from("buoi").select("id,lop_id,ngay,ca,ghi_chu")
+  ]);
+  const err = l.error||lc.error||b.error;
+  if (err){ loi("Lỗi tải dữ liệu: "+err.message); return; }
+  lopTheoId = Object.fromEntries((l.data||[]).map(x=>[x.id,x]));
+  gvTheoId = Object.fromEntries((gv.data||[]).map(x=>[x.id,x.ten]));
+  lich = lc.data||[];
+  buoiTheoKhoa = {}; (b.data||[]).forEach(x=>{ buoiTheoKhoa[x.lop_id+"|"+x.ngay+"|"+x.ca]=x; });
+  tuanGoc = dauTuan(new Date());
+  ngayDangXem = ngayISO(new Date());
+  veLich();
 }
 
-async function napHocVien(){
-  const lopId = $("#chon-lop").value, ngay = $("#ngay").value;
-  $("#ds").innerHTML = "<p class='mo'>Đang tải…</p>";
-  const { data: hs, error } = await sb.from("hoc_vien")
-    .select("ma_hv,ho_ten,ten_goi,trang_thai").eq("lop_id", lopId).order("ho_ten");
-  if (error) { $("#ds").innerHTML = "<p class='loi'>" + error.message + "</p>"; return; }
-  hocVien = (hs || []).filter(h => h.trang_thai === "đang học");
-  if (!hocVien.length) { $("#ds").innerHTML = "<p class='mo'>Lớp này chưa có học viên.</p>"; return; }
+function tuanHienTai(){
+  const ds=[];
+  for(let i=0;i<7;i++){ const d=congNgay(tuanGoc,i); ds.push({ ngay:ngayISO(d), thu:i+2, nhan:THU[i], so: d.getDate() }); }
+  return ds;
+}
 
-  const { data: d } = await sb.from("diem").select("ma_hv,ky_nang,muc").eq("ngay", ngay).in("ma_hv", hocVien.map(h => h.ma_hv));
-  daLuu = {};
-  (d || []).forEach(r => { (daLuu[r.ma_hv] ||= {})[r.ky_nang] = r.muc; });
+function buoiCuaNgay(ngay){
+  const thu = (new Date(ngay+"T00:00:00").getDay()+6)%7 + 2;
+  return lich.filter(x=>x.thu===thu).sort((a,b)=>a.ca.localeCompare(b.ca))
+    .map(x=>({ ...x, lop: lopTheoId[x.lop_id], buoi: buoiTheoKhoa[x.lop_id+"|"+ngay+"|"+x.ca] }));
+}
 
-  $("#ds").innerHTML = hocVien.map(h => `
-    <div class="hs" data-hv="${h.ma_hv}">
-      <div class="ten">${h.ho_ten}${coGiay(h.ten_goi) ? ` <span class="goi">(${h.ten_goi})</span>` : ""}</div>
-      <div class="diem">
-        ${KY_NANG.map(([k,t]) => `<label>${t}
-          <input type="number" min="0" max="7" step="1" inputmode="numeric"
-                 data-k="${k}" value="${daLuu[h.ma_hv]?.[k] ?? ""}"></label>`).join("")}
+function veLich(){
+  const ds = tuanHienTai();
+  $("#tuan").innerHTML = `${dinhDangNgay(ds[0].ngay)} – ${dinhDangNgay(ds[6].ngay)}`;
+  $("#strip").innerHTML = ds.map(d=>{
+    const n = buoiCuaNgay(d.ngay).length;
+    return `<button class="ngay ${d.ngay===ngayDangXem?"on":""}" data-ngay="${d.ngay}">
+      <span class="thu">${d.nhan}</span><span class="so">${d.so}</span>
+      <span class="cham">${n? "•".repeat(Math.min(n,4)) : ""}</span></button>`;
+  }).join("");
+  $("#strip").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{ ngayDangXem=b.dataset.ngay; veLich(); }));
+  veNgay();
+}
+
+function veNgay(){
+  const ds = buoiCuaNgay(ngayDangXem);
+  if (!ds.length){ $("#ds").innerHTML = `<p class="mo">Không có lớp nào ngày ${dinhDangNgay(ngayDangXem)}.</p>`; return; }
+  $("#ds").innerHTML = ds.map((x,i)=>{
+    const daDD = x.buoi?.id ? `<span class="nhan-dd">đã tạo buổi</span>` : "";
+    return `<div class="buoi">
+      <div class="gio">${x.ca}</div>
+      <div class="lop"><b>${x.lop?.ten || x.lop_id}</b><div class="sach">${x.lop?.sach || ""} ${(x.gv_ten || gvTheoId[x.gv_id] || "")? "· "+(x.gv_ten || gvTheoId[x.gv_id]) : ""}</div></div>
+      ${daDD}
+      <button class="di" data-i="${i}">Điểm danh</button>
+    </div>`;
+  }).join("");
+  $("#ds").querySelectorAll("button.di").forEach(b=>b.addEventListener("click",()=>moDiemDanh(ds[+b.dataset.i])));
+}
+
+async function layHoacTaoBuoi(x){
+  if (x.buoi?.id) return x.buoi.id;
+  const { data, error } = await sb.from("buoi").insert({ lop_id:x.lop_id, ngay:ngayDangXem, ca:x.ca }).select("id").single();
+  if (error){ loi("Không tạo được buổi: "+error.message); return null; }
+  buoiTheoKhoa[x.lop_id+"|"+ngayDangXem+"|"+x.ca] = { id:data.id, lop_id:x.lop_id, ngay:ngayDangXem, ca:x.ca };
+  return data.id;
+}
+
+async function moDiemDanh(x){
+  dangMo = x;
+  const buoiId = await layHoacTaoBuoi(x);
+  if (!buoiId) return;
+  const [hs, dd] = await Promise.all([
+    sb.from("hoc_vien").select("ma_hv,ho_ten,ten_goi,trang_thai").eq("lop_id",x.lop_id).order("ho_ten"),
+    sb.from("diem_danh").select("ma_hv,trang_thai").eq("buoi_id",buoiId)
+  ]);
+  if (hs.error){ loi("Lỗi tải học viên: "+hs.error.message); return; }
+  const daCo = Object.fromEntries((dd.data||[]).map(r=>[r.ma_hv,r.trang_thai]));
+  const dsHV = (hs.data||[]).filter(h=>h.trang_thai==="đang học");
+  $("#ten-buoi").textContent = `${x.lop?.ten||x.lop_id} · ${dinhDangNgay(ngayDangXem)} · ${x.ca}`;
+  $("#dsdd").innerHTML = dsHV.length ? dsHV.map(h=>`
+    <div class="hv" data-ma="${h.ma_hv}">
+      <div class="ten">${h.ho_ten}${h.ten_goi? ` <span class="goi">(${h.ten_goi})</span>`:""}</div>
+      <div class="nut">
+        ${Object.entries(TRANG_THAI).map(([k,t])=>`<button data-tt="${k}" class="${(daCo[h.ma_hv]||"co")===k?"on "+k:""}">${t}</button>`).join("")}
       </div>
-    </div>`).join("");
+    </div>`).join("") : `<p class="mo">Lớp chưa có học viên.</p>`;
+  $("#dsdd").querySelectorAll(".hv").forEach(el=>{
+    el.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+      el.querySelectorAll("button").forEach(o=>o.className="");
+      b.className = "on "+b.dataset.tt;
+    }));
+  });
+  $("#lop-dd").hidden = false; $("#app").hidden = true;
+  $("#lop-dd").dataset.buoi = buoiId;
 }
 
-async function luu(){
-  const ngay = $("#ngay").value, rows = [];
-  document.querySelectorAll(".hs").forEach(el => {
-    const ma = el.dataset.hv;
-    el.querySelectorAll("input[data-k]").forEach(inp => {
-      const v = inp.value.trim();
-      if (v === "") return;
-      rows.push({ ma_hv: ma, ngay, ky_nang: inp.dataset.k, muc: Number(v), gv_id: toi.id });
-    });
-  });
-  if (!rows.length) { trangThai("Chưa nhập điểm nào."); return; }
-  const { error } = await sb.from("diem").upsert(rows, { onConflict: "ma_hv,ngay,ky_nang" });
-  trangThai(error ? "Lỗi lưu: " + error.message : `Đã lưu ${rows.length} điểm.`);
+async function luuDiemDanh(){
+  const buoiId = +$("#lop-dd").dataset.buoi;
+  const rows = [...$("#dsdd").querySelectorAll(".hv")].map(el=>({
+    buoi_id: buoiId, ma_hv: el.dataset.ma,
+    trang_thai: el.querySelector("button.on")?.dataset.tt || "co"
+  }));
+  if (!rows.length){ return; }
+  const { error } = await sb.from("diem_danh").upsert(rows, { onConflict:"buoi_id,ma_hv" });
+  if (error){ $("#loi-dd").textContent = "Lỗi lưu: "+error.message; return; }
+  const vang = rows.filter(r=>r.trang_thai!=="co").length;
+  $("#loi-dd").textContent = `Đã lưu: ${rows.length} em, ${vang} em không có mặt.`;
+  setTimeout(()=>{ dongDiemDanh(); }, 900);
 }
+
+function dongDiemDanh(){ $("#lop-dd").hidden = true; $("#app").hidden = false; $("#loi-dd").textContent=""; veLich(); }
 
 $("#form-login").addEventListener("submit", dangNhap);
-$("#thoat").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
-$("#chon-lop").addEventListener("change", napHocVien);
-$("#ngay").addEventListener("change", napHocVien);
-$("#luu").addEventListener("click", luu);
+$("#thoat").addEventListener("click", async ()=>{ await sb.auth.signOut(); location.reload(); });
+$("#truoc").addEventListener("click", ()=>{ tuanGoc = congNgay(tuanGoc,-7); veLich(); });
+$("#sau").addEventListener("click", ()=>{ tuanGoc = congNgay(tuanGoc,7); veLich(); });
+$("#hom-nay").addEventListener("click", ()=>{ tuanGoc = dauTuan(new Date()); ngayDangXem = ngayISO(new Date()); veLich(); });
+$("#luu-dd").addEventListener("click", luuDiemDanh);
+$("#quay-lai").addEventListener("click", dongDiemDanh);
 
-// khởi động
 try {
   const mod = await taiThuVien();
-  sb = mod.createClient(SUPABASE_URL, SUPABASE_KEY);
-  const { data: { session } } = await sb.auth.getSession();
-  if (session) { await moApp(); } else { $("#login").hidden = false; }
-} catch (err) {
-  $("#login").hidden = false;
-  baoLoi(err.message || String(err));
-}
+  sb = mod.createClient(URL_SB, KEY_SB);
+  const { data:{session} } = await sb.auth.getSession();
+  if (session) await moApp(); else $("#login").hidden = false;
+} catch(err){ $("#login").hidden=false; loi(err.message||String(err)); }
 </script>
 <style>
   :root{--nau:#0f766e;--nen:#f6f7f5;--vien:#dcdfdb;--chu:#1b2320}
   *{box-sizing:border-box}
+  [hidden]{display:none !important}
   body{margin:0;font-family:system-ui,"Segoe UI",Roboto,sans-serif;background:var(--nen);color:var(--chu)}
-  header{background:var(--nau);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-  header b{font-size:15px;font-weight:600}
-  header button{background:rgba(255,255,255,.18);border:0;color:#fff;padding:8px 12px;border-radius:8px;font-size:13px}
-  main{max-width:760px;margin:0 auto;padding:16px}
-  .card{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:16px;margin-bottom:14px}
-  label{font-size:12px;color:#4a5a54;display:block;margin-bottom:4px}
-  input,select{width:100%;padding:10px;border:1px solid var(--vien);border-radius:9px;font-size:15px;background:#fff}
-  .hang{display:flex;gap:10px;flex-wrap:wrap}
-  .hang>div{flex:1;min-width:140px}
-  button.chinh{background:var(--nau);color:#fff;border:0;padding:12px 18px;border-radius:10px;font-size:15px;font-weight:600;width:100%;margin-top:12px}
-  button.chinh[disabled]{opacity:.6}
-  .hs{background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px;margin-bottom:10px}
-  .hs .ten{font-weight:600;margin-bottom:8px}
-  .hs .goi{font-weight:400;color:#6b7a74;font-size:13px}
-  .diem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .diem label{font-size:11px;margin:0}
-  .diem input{padding:9px 6px;text-align:center;font-size:16px}
+  header{background:var(--nau);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  header b{font-size:15px}
+  header .nav{display:flex;gap:6px;align-items:center}
+  header a,header button{background:rgba(255,255,255,.18);border:0;color:#fff;padding:8px 11px;border-radius:8px;font-size:13px;text-decoration:none}
+  header a.on{background:#fff;color:var(--nau);font-weight:600}
+  main{max-width:760px;margin:0 auto;padding:14px}
+  .card{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:14px;margin-bottom:12px}
+  .tuan{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .tuan b{font-size:15px}
+  .tuan button{background:#fff;border:1px solid var(--vien);border-radius:8px;padding:6px 10px;font-size:13px}
+  #strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px}
+  .ngay{background:#fff;border:1px solid var(--vien);border-radius:10px;padding:8px 2px;text-align:center;display:flex;flex-direction:column;gap:2px}
+  .ngay.on{background:var(--nau);color:#fff;border-color:var(--nau)}
+  .ngay .thu{font-size:11px;opacity:.75}
+  .ngay .so{font-size:16px;font-weight:600}
+  .ngay .cham{font-size:12px;height:12px;letter-spacing:2px}
+  .buoi{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px;margin-bottom:9px}
+  .buoi .gio{font-variant-numeric:tabular-nums;font-weight:600;color:var(--nau);min-width:48px}
+  .buoi .lop{flex:1}
+  .buoi .sach{font-size:12px;color:#6b7a74;margin-top:2px}
+  .nhan-dd{font-size:11px;color:#067647;background:#e7f5ec;padding:3px 7px;border-radius:99px}
+  .buoi button.di{background:var(--nau);color:#fff;border:0;padding:9px 13px;border-radius:9px;font-size:13px}
+  .hv{background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px;margin-bottom:9px}
+  .hv .ten{font-weight:600;margin-bottom:8px}
+  .hv .goi{font-weight:400;color:#6b7a74;font-size:13px}
+  .hv .nut{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .hv .nut button{border:1px solid var(--vien);background:#fff;padding:9px 0;border-radius:8px;font-size:13px}
+  .hv .nut button.on{color:#fff;border-color:transparent}
+  .hv .nut button.on.co{background:#0f766e}
+  .hv .nut button.on.vang{background:#b42318}
+  .hv .nut button.on.tre{background:#b54708}
+  .hv .nut button.on.phep{background:#475467}
+  button.chinh{background:var(--nau);color:#fff;border:0;padding:13px;border-radius:10px;font-size:15px;font-weight:600;width:100%;margin-top:8px}
+  button.phu{background:#fff;border:1px solid var(--vien);padding:11px;border-radius:10px;font-size:14px;width:100%;margin-top:8px}
   .mo{color:#6b7a74;font-size:14px}
   .loi{color:#b42318;font-size:14px}
-  .ok{color:#067647;font-size:14px}
-  [hidden]{display:none !important}
   #login{position:fixed;inset:0;background:var(--nen);display:flex;align-items:center;justify-content:center;padding:20px}
   #login .card{width:100%;max-width:380px}
   h1{font-size:17px;margin:0 0 14px}
+  label{font-size:12px;color:#4a5a54;display:block;margin-bottom:4px}
+  input{width:100%;padding:10px;border:1px solid var(--vien);border-radius:9px;font-size:15px}
 </style>
 </head>
 <body>
 
 <section id="login" hidden>
   <form class="card" id="form-login">
-    <h1>Quản lý lớp — bản thử</h1>
+    <h1>Lịch & điểm danh</h1>
     <label>Email</label><input id="email" type="email" autocomplete="username" required>
     <div style="height:10px"></div>
     <label>Mật khẩu</label><input id="pass" type="password" autocomplete="current-password" required>
     <button class="chinh" id="nut" type="submit">Đăng nhập</button>
-    <p id="loi" class="loi" style="margin:10px 0 0;display:none"></p>
-    <p class="mo" style="margin:10px 0 0;font-size:12px">Nếu bấm mà không có gì xảy ra, chụp màn hình gửi lại — trang giờ hiện lỗi thay vì im lặng.</p>
+    <p id="loi" class="loi" style="margin:10px 0 0"></p>
   </form>
 </section>
 
 <div id="app" hidden>
   <header>
-    <b>Quản lý lớp</b>
-    <span style="display:flex;align-items:center;gap:10px">
-      <span id="ten-gv" style="font-size:13px"></span>
+    <b>Lịch tuần</b>
+    <span class="nav">
+      <a href="/quan-ly/" class="on">Lịch</a>
+      <a href="/quan-ly/diem.html">Điểm</a>
       <button id="thoat">Thoát</button>
     </span>
   </header>
   <main>
-    <div class="card hang">
-      <div><label>Lớp</label><select id="chon-lop"></select></div>
-      <div><label>Ngày</label><input id="ngay" type="date"></div>
+    <div class="tuan">
+      <b id="tuan"></b>
+      <span style="display:flex;gap:6px">
+        <button id="truoc">←</button>
+        <button id="hom-nay">Tuần này</button>
+        <button id="sau">→</button>
+      </span>
     </div>
+    <div id="strip"></div>
     <div id="ds"></div>
-    <button class="chinh" id="luu">Lưu điểm buổi này</button>
-    <p id="tt" style="text-align:center;margin-top:10px"></p>
+    <p id="ten-gv" class="mo" style="text-align:center;margin-top:14px"></p>
+  </main>
+</div>
+
+<div id="lop-dd" hidden>
+  <header><b id="ten-buoi"></b><button id="quay-lai">← Lịch</button></header>
+  <main>
+    <div id="dsdd"></div>
+    <button class="chinh" id="luu-dd">Lưu điểm danh</button>
+    <p id="loi-dd" class="ok" style="text-align:center;margin-top:8px"></p>
   </main>
 </div>
 
