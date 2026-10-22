@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quản lý lớp — bản thử</title>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://xtfusgawjlrcreiphwur.supabase.co";
+const SUPABASE_KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = (s) => document.querySelector(s);
+const KY_NANG = [["nghe","Nghe"],["noi","Nói"],["doc","Đọc"],["viet","Viết"]];
+
+let toi = null, cacLop = [], hocVien = [], daLuu = {};
+
+async function dangNhap(e){
+  e.preventDefault();
+  const email = $("#email").value.trim();
+  const pass = $("#pass").value;
+  $("#loi").textContent = "";
+  const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if (error) { $("#loi").textContent = "Không vào được: " + (error.message === "Invalid login credentials" ? "sai email hoặc mật khẩu" : error.message); return; }
+  moApp();
+}
+
+async function moApp(){
+  const { data: { user } } = await sb.auth.getUser();
+  if (!user) { $("#login").hidden = false; $("#app").hidden = true; return; }
+  const { data: gv } = await sb.from("giao_vien").select("ten,vai").eq("id", user.id).maybeSingle();
+  if (!gv) {
+    $("#loi").textContent = "Tài khoản này chưa được cấp quyền vào hệ thống.";
+    await sb.auth.signOut();
+    return;
+  }
+  toi = { id: user.id, ...gv };
+  $("#login").hidden = true; $("#app").hidden = false;
+  $("#ten-gv").textContent = gv.ten + (gv.vai === "quan_ly" ? " · quản lý" : "");
+  await napLop();
+}
+
+async function napLop(){
+  let q = sb.from("lop").select("id,ten,sach").order("ten");
+  if (toi.vai !== "quan_ly") {
+    const { data: pc } = await sb.from("lop_giao_vien").select("lop_id").eq("gv_id", toi.id);
+    const ids = (pc || []).map(x => x.lop_id);
+    if (!ids.length) { $("#ds").innerHTML = "<p class='mo'>Chưa được phân lớp nào.</p>"; return; }
+    q = q.in("id", ids);
+  }
+  const { data, error } = await q;
+  if (error) { $("#ds").innerHTML = "<p class='loi'>" + error.message + "</p>"; return; }
+  cacLop = data || [];
+  $("#chon-lop").innerHTML = cacLop.map(l => `<option value="${l.id}">${l.ten}</option>`).join("");
+  if (!cacLop.length) { $("#ds").innerHTML = "<p class='mo'>Chưa có lớp nào.</p>"; return; }
+  $("#ngay").value = new Date().toISOString().slice(0,10);
+  await napHocVien();
+}
+
+async function napHocVien(){
+  const lopId = $("#chon-lop").value, ngay = $("#ngay").value;
+  $("#ds").innerHTML = "<p class='mo'>Đang tải…</p>";
+  const { data: hs, error } = await sb.from("hoc_vien")
+    .select("ma_hv,ho_ten,ten_goi,trang_thai").eq("lop_id", lopId).order("ho_ten");
+  if (error) { $("#ds").innerHTML = "<p class='loi'>" + error.message + "</p>"; return; }
+  hocVien = (hs || []).filter(h => h.trang_thai === "đang học");
+  if (!hocVien.length) { $("#ds").innerHTML = "<p class='mo'>Lớp này chưa có học viên.</p>"; return; }
+
+  const { data: d } = await sb.from("diem").select("ma_hv,ky_nang,muc").eq("ngay", ngay).in("ma_hv", hocVien.map(h => h.ma_hv));
+  daLuu = {};
+  (d || []).forEach(r => { (daLuu[r.ma_hv] ||= {})[r.ky_nang] = r.muc; });
+
+  $("#ds").innerHTML = hocVien.map(h => `
+    <div class="hs" data-hv="${h.ma_hv}">
+      <div class="ten">${h.ho_ten}${h.ten_goi ? ` <span class="goi">(${h.ten_goi})</span>` : ""}</div>
+      <div class="diem">
+        ${KY_NANG.map(([k,t]) => `<label>${t}
+          <input type="number" min="0" max="7" step="1" inputmode="numeric"
+                 data-k="${k}" value="${daLuu[h.ma_hv]?.[k] ?? ""}"></label>`).join("")}
+      </div>
+    </div>`).join("");
+}
+
+async function luu(){
+  const ngay = $("#ngay").value;
+  const rows = [];
+  document.querySelectorAll(".hs").forEach(el => {
+    const ma = el.dataset.hv;
+    el.querySelectorAll("input[data-k]").forEach(inp => {
+      const v = inp.value.trim();
+      if (v === "") return;
+      rows.push({ ma_hv: ma, ngay, ky_nang: inp.dataset.k, muc: Number(v), gv_id: toi.id });
+    });
+  });
+  if (!rows.length) { thongBao("Chưa nhập điểm nào."); return; }
+  const { error } = await sb.from("diem").upsert(rows, { onConflict: "ma_hv,ngay,ky_nang" });
+  thongBao(error ? "Lỗi: " + error.message : `Đã lưu ${rows.length} điểm.`, !!error);
+}
+
+function thongBao(t, loi){ const el = $("#tt"); el.textContent = t; el.className = loi ? "loi" : "ok"; setTimeout(() => { el.textContent = ""; }, 4000); }
+
+$("#form-login").addEventListener("submit", dangNhap);
+$("#thoat").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
+$("#chon-lop").addEventListener("change", napHocVien);
+$("#ngay").addEventListener("change", napHocVien);
+$("#luu").addEventListener("click", luu);
+
+const { data: { session } } = await sb.auth.getSession();
+if (session) moApp(); else { $("#login").hidden = false; }
+</script>
+<style>
+  :root{--nau:#0f766e;--nen:#f6f7f5;--vien:#dcdfdb;--chu:#1b2320}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,"Segoe UI",Roboto,sans-serif;background:var(--nen);color:var(--chu)}
+  header{background:var(--nau);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  header b{font-size:15px;font-weight:600}
+  header button{background:rgba(255,255,255,.18);border:0;color:#fff;padding:8px 12px;border-radius:8px;font-size:13px}
+  main{max-width:760px;margin:0 auto;padding:16px}
+  .card{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:16px;margin-bottom:14px}
+  label{font-size:12px;color:#4a5a54;display:block;margin-bottom:4px}
+  input{width:100%;padding:10px;border:1px solid var(--vien);border-radius:9px;font-size:15px;background:#fff}
+  .hang{display:flex;gap:10px;flex-wrap:wrap}
+  .hang>div{flex:1;min-width:140px}
+  button.chinh{background:var(--nau);color:#fff;border:0;padding:12px 18px;border-radius:10px;font-size:15px;font-weight:600;width:100%;margin-top:12px}
+  .hs{background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px;margin-bottom:10px}
+  .hs .ten{font-weight:600;margin-bottom:8px}
+  .hs .goi{font-weight:400;color:#6b7a74;font-size:13px}
+  .diem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .diem label{font-size:11px;margin:0}
+  .diem input{padding:9px 6px;text-align:center;font-size:16px}
+  .mo{color:#6b7a74;font-size:14px}
+  .loi{color:#b42318;font-size:14px}
+  .ok{color:#067647;font-size:14px}
+  #login{position:fixed;inset:0;background:var(--nen);display:flex;align-items:center;justify-content:center;padding:20px}
+  #login .card{width:100%;max-width:380px}
+  h1{font-size:17px;margin:0 0 14px}
+</style>
+</head>
+<body>
+
+<section id="login" hidden>
+  <form class="card" id="form-login">
+    <h1>Quản lý lớp — bản thử</h1>
+    <label>Email</label><input id="email" type="email" autocomplete="username" required>
+    <div style="height:10px"></div>
+    <label>Mật khẩu</label><input id="pass" type="password" autocomplete="current-password" required>
+    <button class="chinh" type="submit">Đăng nhập</button>
+    <p id="loi" class="loi" style="margin:10px 0 0"></p>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header>
+    <b>Quản lý lớp</b>
+    <span style="display:flex;align-items:center;gap:10px">
+      <span id="ten-gv" style="font-size:13px"></span>
+      <button id="thoat">Thoát</button>
+    </span>
+  </header>
+  <main>
+    <div class="card hang">
+      <div><label>Lớp</label><select id="chon-lop" style="width:100%;padding:10px;border:1px solid var(--vien);border-radius:9px;font-size:15px"></select></div>
+      <div><label>Ngày</label><input id="ngay" type="date"></div>
+    </div>
+    <div id="ds"></div>
+    <button class="chinh" id="luu">Lưu điểm buổi này</button>
+    <p id="tt" style="text-align:center;margin-top:10px"></p>
+  </main>
+</div>
+
+</body>
+</html>
