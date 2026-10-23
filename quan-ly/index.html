@@ -228,7 +228,23 @@ header{padding:6px 10px}
 .seg button.on{background:var(--accent);color:#3a2c07;font-weight:700}
 .b .gv-ten{font-size:13.5px;font-weight:800;line-height:1.2}
 .b .cls-nho{font-size:11px;color:var(--dim);line-height:1.25}
-@media(max-width:760px){#thanhTuan{width:100%;max-width:100%;flex-wrap:wrap}#tuanBar{flex-wrap:wrap;gap:5px}#selTuan{max-width:148px}}
+@media(max-width:760px){
+  #thanhTuan{width:100%;max-width:100%;flex-wrap:wrap;padding:4px 5px}
+  #tuanBar{flex-wrap:wrap;gap:4px}
+  #selTuan{max-width:126px;font-size:12px;padding:3px 4px}
+  #tuanBar .ghost{padding:4px 7px;font-size:12.5px}
+  .seg button{padding:3px 8px;font-size:12px}
+}
+
+/* ===== logo thay tên web ===== */
+#thanhTuan{width:100%}
+.logo-web{display:block;height:32px;width:auto;object-fit:contain;flex:0 0 auto}
+#logoLon{height:34px}
+#logoLon{margin-left:auto}
+#logoNho{height:26px;display:none;margin:0 2px 0 8px}
+body.khong-tuan #logoNho{display:block}
+body.khong-tuan #logoLon{display:none}
+@media(max-width:760px){.logo-web{display:none!important}}
 </style>
 </head>
 <body>
@@ -246,7 +262,6 @@ header{padding:6px 10px}
 
 <header>
   <div class="hrow" id="thanhChinh">
-    <span class="brand" title="Học tiếng Anh dễ lắm">🐴 <b>Quản lý lớp</b> <span class="sub">Học tiếng Anh dễ lắm</span></span>
     <nav class="trangs" id="navTrang"></nav>
     <div class="tabs" id="tabCon"></div>
     <span style="flex:1"></span>
@@ -255,11 +270,13 @@ header{padding:6px 10px}
       <button id="btnXuat" class="ghost sm" title="Xuất toàn bộ dữ liệu ra tệp JSON">⬇</button>
       <button id="btnNhap" class="ghost sm" title="Nhập dữ liệu từ tệp JSON">⬆</button>
       <button id="btnIn" class="ghost sm" title="In trang đang xem">🖨</button>
+      <img id="logoNho" class="logo-web" src="logo-lop.png" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
     </span>
   </div>
   <div id="thanhTuan">
     <span class="row" id="tuanBar" style="gap:6px;margin:0">
       <select id="selTuan" title="Chọn tuần đang xem"></select>
+      <button id="btnLamMoi" class="ghost sm" title="Tải lại dữ liệu mới nhất từ máy chủ">🔄 Làm mới</button>
       <span class="seg" id="segXemTheo" title="Cách hiển thị lịch tổng — chỉ đổi cách xem, không đổi dữ liệu">
         <button data-xem="lop" class="on">Theo lớp</button>
         <button data-xem="gv">Theo giáo viên</button>
@@ -268,6 +285,7 @@ header{padding:6px 10px}
       <button id="btnTuanMoi" class="ghost sm" title="Tạo tuần kế tiếp bằng cách nhân bản tuần đang xem">＋ Tuần kế</button>
       <button id="btnXoaTuan" class="ghost sm" style="border-color:var(--del);color:var(--del)" title="Xoá tuần đang xem">🗑 Xoá tuần</button>
     </span>
+    <img id="logoLon" class="logo-web" src="logo-lop.png" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
   </div>
 </header>
 <div id="bannerVai" class="banner-vai" hidden></div>
@@ -605,6 +623,7 @@ function capNhatThanhTuan(){
   const tw=document.getElementById("thanhTuan"); if(!tw) return;
   const hien=(trangDangXem==="lichday" && (tabDangXem==="tuan"||tabDangXem==="gv"));
   tw.hidden=!hien;
+  document.body.classList.toggle("khong-tuan", !hien);
   const seg=document.getElementById("segXemTheo");
   if(seg) seg.style.display=(hien && tabDangXem==="tuan" && vaiHienTai()!=="giao_vien")?"":"none";
   const laGV=(vaiHienTai()==="giao_vien");
@@ -676,12 +695,37 @@ function moThemHocBu(){
   const dk=document.getElementById("selTuanDk");
   if(dk) dk.onchange=()=>{ tuanDangXem=+dk.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
 })();
+/* ================= LÀM MỚI DỮ LIỆU ================= */
+async function lamMoiDuLieu(){
+  const nut=document.getElementById("btnLamMoi"), cu=nut?nut.textContent:"";
+  if(nut){ nut.disabled=true; nut.textContent="⏳ Đang tải"; }
+  try{
+    if(typeof sb!=="undefined" && sb){
+      const {data:kho,error}=await sb.from("kho_lop").select("du_lieu,phien_ban").eq("id","main").maybeSingle();
+      if(error) throw error;
+      if(kho&&kho.du_lieu&&Object.keys(kho.du_lieu).length){
+        localStorage.setItem(KEY,JSON.stringify(kho.du_lieu)); phienBan=Number(kho.phien_ban)||0;
+      }
+    }
+    const giuVai=XEM_NHU, giuTrang=trangDangXem, giuTab=tabDangXem, giuTuan=tuanDangXem;
+    load();
+    XEM_NHU=giuVai;
+    tuanDangXem=Math.min(giuTuan||0, Math.max(0,S.tuan.length-1)); S.tuan_hien_tai=tuanDangXem;
+    trangDangXem=giuTrang; tabDangXem=giuTab;
+    dungQuyen(); render(); veNav(); apDungTab(); capNhatThanhTuan();
+    if(nut){ nut.textContent="✓ Đã làm mới"; setTimeout(()=>{ nut.textContent=cu; nut.disabled=false; },1200); }
+  }catch(e){
+    if(nut){ nut.textContent=cu; nut.disabled=false; }
+    alert("Không tải lại được dữ liệu: "+e.message);
+  }
+}
 /* ================= NÚT THÔNG BÁO ================= */
 (function(){
   const nut=document.getElementById("tbNut"), panel=document.getElementById("tbPanel");
   if(nut&&panel) nut.onclick=()=>{ panel.hidden=!panel.hidden; };
   const d=document.getElementById("tbDong"); if(d) d.onclick=()=>{ if(panel) panel.hidden=true; };
   const b=document.getElementById("btnThemBu"); if(b) b.onclick=moThemHocBu;
+  const lm=document.getElementById("btnLamMoi"); if(lm) lm.onclick=lamMoiDuLieu;
 })();
 
 /* ================= VẼ ================= */
@@ -1040,6 +1084,7 @@ function tinhHV(h){
   if(!h.dia_chi_nguyen_van) cb.push("thiếu địa chỉ");
   if(!h.hoc_phi_thang) cb.push("chưa có học phí");
   h.canh_bao=cb.join("; ");
+  h.can_xac_nhan=!!h.canh_bao;   // cờ cũ từ lúc nhập dữ liệu không còn hiệu lực
   if(h.trang_thai==null||h.trang_thai==="") h.trang_thai="đang học";
   return h;
 }
@@ -1550,12 +1595,16 @@ function render(){
   const ds=buoiTuanNay();
   const q=quyenTab(), co=(p,t)=>(q[p]||[]).includes(t);
   const xoa=id=>{ const e=document.getElementById(id); if(e) e.innerHTML=""; };
+  const quetCongNo=()=>{ ["cnNay","cnTruoc","cnTong"].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent="—"; });
+    ["cnNayInfo","cnTruocInfo","cnTongInfo","cnTheoThang","cnTungEm"].forEach(id=>{ const e=document.getElementById(id); if(e) e.innerHTML=""; }); };
+  const quetHocVien=()=>{ xoa("hvBody"); ["hvTong","hvCanXn"].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent="0"; });
+    ["hvTongInfo","hvCanXnInfo"].forEach(id=>{ const e=document.getElementById(id); if(e) e.innerHTML=""; }); };
   if(co("lichday","tuan")){ veCanhBaoRanh(); veTomTat(); veLuoi(); } else xoa("grid");
   if(co("lichday","gv")) veGV(); else xoa("gvBody");
   if(co("lichday","luong")) veLuong(); else xoa("luongBody");
   if(co("lop","kho")) veKho(); else xoa("khoBody");
-  if(co("lop","hocvien")) veHocVien(); else{ xoa("hvBody"); xoa("hvTong"); xoa("hvCanXn"); }
-  if(co("lop","congno")) veCongNo(); else xoa("cnBody");
+  if(co("lop","hocvien")) veHocVien(); else quetHocVien();
+  if(co("lop","congno")) veCongNo(); else quetCongNo();
   if(co("lichday","dangky")) veCauHinh(); else xoa("dsGV");
   if(co("lop","diemso")) veDiemSo(); else xoa("dsBody");
   if(co("lop","diemdanh")) veDiemDanh(); else xoa("ddBody");
