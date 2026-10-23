@@ -1453,16 +1453,18 @@ function veDiemSo(){
   <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 4, kỹ năng ≥ 3 · B1 cần TB ≥ 5, kỹ năng ≥ 4. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
   const td='padding:5px 6px;border-bottom:1px solid var(--line)';
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
-   <thead><tr>${["Lớp","Học viên",...KY_NANG.map(([,t])=>t),"TB","Tích lũy","Chuyên cần","Nhận xét",""].map(x=>`<th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--line);white-space:nowrap">${x}</th>`).join("")}</tr></thead>
+   <thead><tr>${[["Lớp","width:1%"],["Học viên",""],...KY_NANG.map(([,t])=>[t,"width:1%;text-align:center"]),
+      ["TB","width:1%;text-align:center"],["Tích lũy","width:1%;text-align:center"],["Chuyên cần","width:1%;text-align:center"],["Nhận xét",""],["","width:1%"]]
+      .map(([x,ex])=>`<th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--line);white-space:nowrap;${ex}">${x}</th>`).join("")}</tr></thead>
    <tbody>${rows.map(h=>{ const d=diemCua(h.ma_hv), cc=chuyenCan(h), tb=tongDiemKN(h.ma_hv), sn=laSinhNhat(h), dm=duoiMuc(h), tl=tichLuyTong(h.ma_hv);
     return `<tr>
-     <td style="${td}"><b>${esc(h.lop)}</b></td>
+     <td style="${td};white-space:nowrap;width:1%"><b>${esc(h.lop)}</b></td>
      <td style="${td};white-space:nowrap">${sn?"🎂 ":""}<b>${esc(h.ho_ten)}</b> <span class="hint">${esc(h.ten_goi_trong_lop||"")}</span></td>
-     ${KY_NANG.map(([k])=>`<td style="${td}"><input type="number" min="0" max="10" step="0.5" class="o-diem" data-diem="${esc(h.ma_hv)}:${k}" value="${d[k]==null?"":d[k]}" style="width:62px;text-align:right;padding:2px 5px"></td>`).join("")}
-     <td style="${td};text-align:right;white-space:nowrap"><b style="${dm&&dm.duoi?"color:var(--del)":""}" title="${dm&&dm.duoi?esc("Dưới mức "+dm.L.ten+" — cần: "+(dm.thieu.join(", "))):(dm?"Đạt mức "+dm.L.ten:"")}">${tb==null?"—":tb}${dm&&dm.duoi?" ⚠":""}</b>
-       <div class="hint" style="font-size:10.5px">${dm?esc(dm.L.ten.replace("Super Minds ","SM ")):"—"}</div></td>
-     <td style="${td};text-align:right"><b>${tl}</b></td>
-     <td style="${td};white-space:nowrap;${cc.canHomNay?'background:#fdeceb':''}" title="${cc.chuaGio?'Lớp chưa xếp giờ cố định — bấm để điểm danh từng buổi':''}">
+     ${KY_NANG.map(([k])=>`<td style="${td};width:1%;text-align:center"><input type="number" min="0" max="10" step="0.5" class="o-diem" data-diem="${esc(h.ma_hv)}:${k}" value="${d[k]==null?"":d[k]}" style="width:64px;text-align:center;padding:2px 5px"></td>`).join("")}
+     <td style="${td};text-align:center;white-space:nowrap;width:1%"><b style="${dm&&dm.duoi?"color:var(--del)":""}" title="${dm&&dm.duoi?esc("Dưới mức "+dm.L.ten+" — cần: "+(dm.thieu.join(", "))):(dm?"Đạt mức "+dm.L.ten:"")}">${tb==null?"—":tb}${dm&&dm.duoi?" ⚠":""}</b>
+       <div class="hint" style="font-size:10.5px;text-align:center;line-height:1.2">${dm?esc(dm.L.ten.replace("Super Minds ","SM ").replace("Open World ","")):"—"}</div></td>
+     <td style="${td};text-align:center;width:1%"><b>${tl}</b></td>
+     <td style="${td};white-space:nowrap;width:1%;text-align:center;${cc.canHomNay?'background:#fdeceb':''}" title="${cc.chuaGio?'Lớp chưa xếp giờ cố định — bấm để điểm danh từng buổi':''}">
        <button class="ghost sm" data-cc="${esc(h.ma_hv)}" title="Xem điểm danh 4 tuần gần đây" style="${cc.canHomNay?"border-color:var(--del);color:var(--del);font-weight:700":""}">
          ${cc.chuaGio?"chưa xếp giờ":cc.di+"/"+cc.tong+" buổi"}${cc.canHomNay?" ⚠":""}</button></td>
      <td style="${td}"><input data-nx="${esc(h.ma_hv)}" value="${esc(d.nhan_xet)}" placeholder="nhận xét…" style="width:100%;min-width:160px;padding:2px 6px"></td>
