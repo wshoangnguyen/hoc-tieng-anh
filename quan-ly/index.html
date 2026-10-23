@@ -127,6 +127,16 @@ textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,Consolas,mon
 .dg-chua{color:#e04b3f}.dg-dat{color:#3f8f4f}.dg-vuot{color:#c98a1b}
 button.can{border-color:var(--del);color:var(--del);font-weight:700}
 #ddSinhNhat{background:#fff7e3;border-color:var(--accent)}
+/* ---- gợi ý nhận xét ---- */
+.tshead{position:sticky;top:-1px;z-index:3;background:var(--card);padding-top:2px}
+.tsmuc{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:10px;background:var(--card)}
+.tsmuc h4{margin:2px 0 6px;font-size:14px}
+.tsbang{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.tsbang th{width:150px;text-align:left;vertical-align:top;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--dim);font-weight:600}
+.tsbang td{padding:4px 6px;border-bottom:1px solid var(--line);cursor:pointer;line-height:1.35}
+.tsbang td:hover{background:rgba(217,169,43,.14)}
+.tsmuc:last-child{margin-bottom:0}
+@media(max-width:640px){.tsbang th{width:96px;font-size:12px}.tsbang td{font-size:12.5px}}
 /* ---- thẻ lớp ở tab điểm danh ---- */
 .lopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:8px;margin-top:8px}
 .lopthe{--mc:#8a8172;--mcr:rgba(138,129,114,.08);position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
@@ -359,6 +369,7 @@ header{padding:6px 10px}
         <div class="field"><label>Tìm</label><input id="dsTim" placeholder="tên, tên gọi, mã HV…"></div>
         <div class="field"><label>Lớp</label><select id="dsLoc"></select></div>
         <span style="flex:1"></span>
+        <button id="btnDsGoiY" class="ghost" title="Xem toàn bộ thang nhận xét theo level (Google Sheet — tab Thang theo sách)">💡 Gợi ý nhận xét</button>
         <button id="btnDsPhieu" class="ghost" title="In phiếu thông tin của các học viên đang hiện">🖨 Phiếu học viên</button>
         <button id="btnDsCsv" class="ghost">⬇ CSV điểm</button>
         <button id="btnDsIn" class="ghost">🖨 In</button>
@@ -1487,6 +1498,11 @@ GAN("btnDsCsv","click",()=>{ tinhHet();
      return [h.lop,h.ho_ten,h.ten_goi_trong_lop,d.nghe,d.noi,d.doc,d.viet,tongDiemKN(h.ma_hv),dm?dm.L.ten:"",dm&&dm.duoi?"CÓ: "+dm.thieu.join(", "):"",tichLuyTong(h.ma_hv),cc.di,cc.tong,d.nhan_xet]; })]); });
 GAN("btnDsIn","click",()=>window.print());
 GAN("btnDsPhieu","click",inPhieuHV);
+GAN("btnDsGoiY","click",()=>{
+  let chi=null;
+  if(DS_HIEN.lop){ const L=mucLevel(DS_HIEN.lop); if(L){ const so=Number((/\d+/.exec(L.ten)||[])[0]); if(so) chi=so-1; } }
+  moThangSach(chi);
+});
 
 /* ---------- popup điểm danh một học viên (2 hoặc 4 tuần) ---------- */
 function moDiemDanh(ma,soNgay){
@@ -1630,6 +1646,53 @@ function inPhieuHV(){
   w.document.write(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Phiếu học viên</title><style>${css}</style></head><body>${ds.map(phieuHV).join("")}</body></html>`);
   w.document.close();
   w.focus(); setTimeout(()=>{ try{ w.print(); }catch(e){} }, 350);
+}
+
+const THANG_SACH={"ngay": "23/10/2026", "cot": ["Từ vựng", "Ngữ pháp", "Đọc", "Nghe", "Viết tại lớp (5–7 phút)", "Viết bài nộp", "Nói", "Tương tác", "Cần hỗ trợ", "Thiếu sót chấp nhận được"], "muc": [{"bac": "1", "level": "SM1", "cefr": "A1 (nửa đầu)", "o": ["Nhìn tranh gọi tên đúng đồ vật, con vật, màu, số; nhắc lại được từ vừa nghe", "Hỏi–đáp tên, tuổi, sở thích bằng câu mẫu, người nghe hiểu dù sai đuôi từ", "Đọc to 1 câu trong sách cho người khác hiểu; ghép đúng câu với tranh", "Làm đúng lệnh tiếng Anh không cần nhắc lại; chỉ đúng tranh khi nghe câu", "Chép lại câu mẫu trong 3 phút; điền 1 từ vào chỗ trống", "Không yêu cầu — tối đa 1 câu về mình", "Trả lời khi được gọi tên; nói 3–5 từ liền, không đọc nguyên câu mẫu", "Nhìn màn hình khi được hỏi; trả lời sau 1 lần nhắc", "Không gọi tên được đồ vật quen dù đã học; không lặp lại được từ vừa nghe; im cả buổi dù được mời 2 lần", "Viết sai chính tả, sai số ít/số nhiều, thiếu mạo từ; phát âm lệch nhưng hiểu được; trả lời 1 từ thay vì cả câu"]}, {"bac": "2", "level": "SM2", "cefr": "A1", "o": ["Xếp 6–8 từ vào đúng nhóm chủ đề khi nhìn tranh; dùng lại 2–3 từ mới trong câu của mình", "Kể 2 việc làm hằng ngày và 1 việc đang làm, câu 5–8 từ; hỏi lại được Can I…?", "Đọc đoạn ngắn trong sách, chỉ đúng nhân vật hoặc sự việc khi được hỏi", "Nghe hội thoại ngắn, chọn đúng tranh hoặc thông tin; nói lại 1 chi tiết", "Viết 3 câu về mình trong 5 phút, có chủ ngữ và động từ", "1–2 câu theo mẫu, cho phép sai chính tả", "Nói 3–4 câu liền về chủ đề quen; tự hỏi lại bạn 1 câu", "Bật mic khi được gọi; trả lời trong 3–5 giây; hỏi lại khi không hiểu", "Không nói được câu nào nếu không đọc mẫu; không trả lời dù được hỏi 2 lần", "Sai thì hiện tại đơn/tiếp diễn nhưng nghe hiểu; sai chính tả từ quen; câu thiếu từ nối"]}, {"bac": "3", "level": "SM3", "cefr": "A1+ → A2 đầu", "o": ["Đoán nghĩa 1 từ mới từ ngữ cảnh và nói ra; dùng lại từ của buổi trước trong câu mới", "Kể 3 việc đã làm hôm qua và 1 kế hoạch; tự sửa khi được nhắc đến thì quá khứ", "Đọc đoạn trong sách: trả lời 1 câu chi tiết và 1 câu ý chính bằng lời của mình", "Nghe đoạn 1–2 phút, nói lại 2 thông tin; phân biệt ai nói câu nào", "Viết tin nhắn 3–4 dòng trong 5 phút đúng mục đích", "Đoạn 4–6 câu có and/but/because", "Kể lại 4–6 câu việc đã làm, có trình tự thời gian", "Tự giơ tay ít nhất 1 lần; trả lời câu hỏi của bạn; xin nhắc lại khi cần", "Lẫn thời gian, không phân biệt việc đã xong với việc đang làm; không trả lời được câu hỏi chi tiết dù đã đọc", "Sai dạng quá khứ bất quy tắc; thiếu mạo từ; phát âm đuôi -ed chưa chuẩn; câu dài nhưng sai dấu câu"]}, {"bac": "4", "level": "SM4", "cefr": "A2", "o": ["Đoán nghĩa từ mới trong câu chuyện và giải thích bằng từ khác; dùng collocation quen (put up a tent)", "Kể việc đang xảy ra thì việc khác xen vào; so sánh 2 người hoặc 2 vật; nói thói quen cũ", "Đọc 1 trang sách: nêu ý chính 1 câu và 2 chi tiết; trả lời 1 câu suy luận", "Nghe hội thoại 2–3 phút, nói lại 3 thông tin và ai nói gì", "Viết thông báo hoặc quảng cáo 5 dòng trong 7 phút đúng khuôn", "Văn bản 40–60 từ đúng khuôn, có tiêu đề", "Kể chuyện 6–8 câu có trình tự; nêu lý do bằng because/so", "Chủ động kể trước khi được hỏi; phản hồi ý bạn (Me too, I don't think so); nói tiếp sau khi bị sửa", "Kể thành danh sách câu rời, không nối; không trả lời được câu suy luận; bỏ lượt khi bị sửa", "Lẫn quá khứ đơn và tiếp diễn nhưng ngữ cảnh rõ; sai chính tả từ dài; because/so đặt chưa đúng chỗ"]}, {"bac": "5", "level": "SM5", "cefr": "A2+", "o": ["Nói lại ý một câu khó bằng từ của mình; dùng cụm chức năng đúng tình huống (Could you…?, It's made of…)", "Nói 1 điều kiện, 1 kinh nghiệm, 1 nghĩa vụ trong cùng 1 lượt; tự sửa khi sai thì", "Đọc văn bản 2 phần, chỉ ra 1 điểm khác nhau giữa 2 đoạn", "Nghe 2–3 phút, ghi 4–5 ý; nói lại nội dung chính trong 30 giây", "Viết 5 bước quy trình trong 7 phút đúng thứ tự", "60–80 từ, 3 đoạn ngắn có mở–thân–kết", "Thuyết trình 1 phút có mở–thân–kết; trả lời 2 câu hỏi tiếp", "Tự mở lượt nói; đặt câu hỏi cho bạn; giữ lượt khi bị ngắt; tự sửa lỗi", "Nói rời rạc, không có mở–kết; không đối chiếu được 2 nguồn; im khi bị hỏi lại", "Sai for/since nhưng nghĩa rõ; phát âm từ dài chưa chuẩn; đoạn viết chưa liên kết chặt"]}, {"bac": "6", "level": "SM6", "cefr": "A2+ → B1 đầu", "o": ["Phân biệt 2 từ gần nghĩa khi được hỏi; dùng thành ngữ đơn giản đúng chỗ; nói lại câu khó bằng từ của mình", "Kể lại lời bạn nói (He said…); đặt câu hỏi gián tiếp; nói giả định (If I had…)", "Đọc bài dài trong sách, nói được thái độ hoặc ý định người viết kèm 1 dẫn chứng", "Nghe 3 phút, tóm tắt 3 ý; ghi chú trong lúc nghe", "Viết đoạn 3 câu nêu ý và lý do trong 7 phút", "80–120 từ, 3–4 đoạn, có từ nối", "Thảo luận 2–3 phút: nêu và bảo vệ ý kiến, phản hồi ý bạn", "Tự mở chủ đề; hỏi ngược lại; phản biện nhẹ; giữ lượt nói 1 phút không cần nhắc", "Chỉ trả lời đúng/sai, không nêu lý do; không tóm tắt được sau khi nghe", "Tường thuật lùi thì sai nhưng nghĩa rõ; lẫn âm cuối; dùng từ nối máy móc"]}, {"bac": "7", "level": "Ngoài sách (B1)", "cefr": "B1", "o": ["Paraphrase 1 câu khó; dùng từ học thuật đơn giản; tránh lặp từ", "Bị động nhiều thì, tường thuật đầy đủ, điều kiện loại 3 trong 1 lượt nói; tự sửa ngay", "Đọc bài ngoài sách: nêu quan điểm tác giả và 2 dẫn chứng", "Nghe 3–5 phút, nhiều giọng: tóm tắt 4 ý", "Viết 1 đoạn lập luận 5 câu trong 10 phút", "120–180 từ, 4–5 đoạn, có dẫn chứng", "Thuyết trình 2–3 phút; phản biện nhẹ", "Dẫn dắt thảo luận; mời bạn khác nói; giữ lượt khi bị ngắt; chấp nhận bị sửa trước lớp", "Không duy trì được lượt nói quá 30 giây; không phản biện được ý khác", "Lỗi cấu trúc phức tạp nhưng không cản trở hiểu; phát âm còn dấu tiếng Việt; lập luận còn một chiều"]}], "ghiChu": ["CÁCH DÙNG CHO OPEN WORLD A2", "Lớp Open World A2 (teen): dùng bậc 4–5, tức A2 đầu vào → A2+/B1 đầu ra.", "Mức Viết giữ nguyên như bảng, cao hơn chuẩn A2 Key (email ~25 từ, truyện ~35 từ). Đây là chuẩn của lớp, không phải chuẩn đề thi.", "Nếu phụ huynh cần chứng chỉ: cho làm đề A2 Key, chấm Viết theo 3 tiêu chí Content – Organisation – Language của Cambridge, không dùng tiêu chí trong bảng này."]};
+
+/* ---------- gợi ý nhận xét (tab "Thang theo sách") ---------- */
+function chepChu(t){
+  const x=document.createElement("textarea"); x.value=t; x.style.position="fixed"; x.style.opacity="0";
+  document.body.appendChild(x); x.select();
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+  x.remove();
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).catch(()=>{}); ok=true; }
+  return ok;
+}
+function moThangSach(bacChon){
+  const D=THANG_SACH;
+  const bd=document.createElement("div"); bd.className="backdrop";
+  bd.innerHTML=`<div class="modal" style="max-width:960px;max-height:86vh;overflow:auto" onclick="event.stopPropagation()">
+    <div class="row" style="align-items:center;gap:8px">
+      <h3 style="margin:0">💡 Gợi ý nhận xét — Thang theo sách</h3>
+      <span id="tsBao" class="chip" style="border-color:var(--ok);color:var(--ok);opacity:0;transition:opacity .2s">✓ Đã chép</span>
+      <span style="flex:1"></span><button class="ghost sm" id="tsDong">Đóng</button></div>
+    <div class="tshead">
+    <p class="hint" style="margin:4px 0 8px">Nguồn: Google Sheet <b>Thang đo kĩ năng từng level</b> · tab <b>Thang theo sách</b> (bản chép ${esc(D.ngay)}). Bấm vào một dòng để <b>chép câu gợi ý</b> rồi dán vào ô nhận xét.</p>
+    <div class="row" id="tsChips" style="gap:6px;margin:0 0 10px"></div>
+    </div>
+    <div id="tsNoi">${D.muc.map((m,i)=>`<div class="tsmuc" id="ts-m${i}">
+        <h4>Bậc ${esc(m.bac)} · ${esc(m.level)} · <span class="hint">${esc(m.cefr)}</span></h4>
+        <table class="tsbang">${D.cot.map((c,j)=>`<tr><th>${esc(c)}</th><td data-chep="${esc(m.o[j]||"")}" title="Bấm để chép">${esc(m.o[j]||"—")}</td></tr>`).join("")}</table>
+      </div>`).join("")}
+      ${D.ghiChu.length?`<div class="tsmuc"><h4>Ghi chú của sheet</h4><ul style="margin:4px 0 0 18px;padding:0">${D.ghiChu.map(x=>`<li style="margin-bottom:5px">${esc(x)}</li>`).join("")}</ul></div>`:""}
+    </div></div>`;
+  document.body.appendChild(bd);
+  bd.onclick=()=>bd.remove();
+  bd.querySelector("#tsDong").onclick=()=>bd.remove();
+  const chips=bd.querySelector("#tsChips");
+  chips.innerHTML=`<button class="ghost sm" data-di="0">Tất cả</button>`+D.muc.map((m,i)=>`<button class="ghost sm" data-di="${i+1}">${esc(m.level)}</button>`).join("");
+  chips.querySelectorAll("[data-di]").forEach(b=>b.onclick=()=>{
+    const i=Number(b.dataset.di);
+    if(!i){ bd.querySelector("#tsNoi").scrollTop=0; bd.querySelector(".modal").scrollTop=0; return; }
+    const el=bd.querySelector("#ts-m"+(i-1)); if(el) el.scrollIntoView({block:"start",behavior:"smooth"});
+  });
+  bd.querySelectorAll("[data-chep]").forEach(td=>td.onclick=()=>{
+    const ok=chepChu(td.dataset.chep);
+    const bao=bd.querySelector("#tsBao");
+    if(bao){ bao.textContent=ok?"✓ Đã chép":"Chọn và Ctrl+C"; bao.style.opacity=1; setTimeout(()=>bao.style.opacity=0,1400); }
+  });
+  if(bacChon!=null){ const el=bd.querySelector("#ts-m"+bacChon); if(el) setTimeout(()=>el.scrollIntoView({block:"start"}),120); }
 }
 
 /* ---------- đánh giá theo ngày ---------- */
