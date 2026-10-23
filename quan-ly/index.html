@@ -265,11 +265,19 @@ header{padding:6px 10px}
 
 /* ===== logo thay tên web ===== */
 #thanhTuan{width:100%}
-.logo-web{display:block;height:32px;width:auto;object-fit:contain;flex:0 0 auto}
-#logoLon{height:34px}
-#logoLon{margin-left:auto}
+/* ===== logo nổi ở góc: luôn hiện, lắc lư nhẹ ===== */
+#logoFloat{position:fixed;right:18px;bottom:14px;width:132px;height:auto;z-index:20;pointer-events:none;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.14));transform-origin:50% 88%;
+  animation:logoLac 7s ease-in-out infinite}
+@keyframes logoLac{
+  0%,100%{transform:rotate(-2deg) translateY(0)}
+  25%{transform:rotate(1.6deg) translateY(-3px)}
+  50%{transform:rotate(-1.2deg) translateY(0)}
+  75%{transform:rotate(2.2deg) translateY(-2px)}
+}
 
-@media(max-width:760px){.logo-web{display:none!important}}
+@media(prefers-reduced-motion:reduce){#logoFloat{animation:none}}
+@media(max-width:760px){#logoFloat{width:76px;right:10px;bottom:10px}}
 </style>
 </head>
 <body>
@@ -309,7 +317,6 @@ header{padding:6px 10px}
       <button id="btnTuanMoi" class="ghost sm" title="Tạo tuần kế tiếp bằng cách nhân bản tuần đang xem">＋ Tuần kế</button>
       <button id="btnXoaTuan" class="ghost sm" style="border-color:var(--del);color:var(--del)" title="Xoá tuần đang xem">🗑 Xoá tuần</button>
     </span>
-    <img id="logoLon" class="logo-web" src="logo-lop.png" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
   </div>
 </header>
 <div id="bannerVai" class="banner-vai" hidden></div>
@@ -2170,5 +2177,6 @@ async function khoiDong(){
 khoiDong();
 
 </script>
+<img id="logoFloat" src="logo-lop.png" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
 </body>
 </html>
