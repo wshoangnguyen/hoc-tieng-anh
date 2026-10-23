@@ -324,6 +324,12 @@ header{padding:6px 10px}
 .klop.thieugv,.klop.thieugio{border-color:var(--del)!important}
 .klop.thieugv .row span:last-child,.klop.thieugio .row span:last-child{font-weight:700}
 
+.lopthe{padding-bottom:20px}
+.lopthe .bdnut{position:absolute;bottom:3px;right:7px;border:none;background:transparent;
+  padding:0;font-size:10.5px;line-height:16px;color:var(--dim);font-weight:700;letter-spacing:.2px}
+.lopthe .bdnut:hover{border-color:var(--accent);color:inherit}
+#ddLopGrid{align-items:start}
+
 </style>
 </head>
 <body>
@@ -347,6 +353,7 @@ header{padding:6px 10px}
     <img id="logoFloat" src="logo-lop.png" loading="lazy" decoding="async" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
     <span class="row" id="congCu" style="gap:6px;margin:0">
       <select id="selVai" title="Xem giao diện với tư cách người khác" style="display:none"></select>
+      <button id="btnThuGon" class="ghost sm" title="Thu gọn đầu trang">⌃</button>
       <button id="btnXuat" class="ghost sm" title="Xuất toàn bộ dữ liệu ra tệp JSON">⬇</button>
       <button id="btnNhap" class="ghost sm" title="Nhập dữ liệu từ tệp JSON">⬆</button>
       <button id="btnIn" class="ghost sm" title="In trang đang xem">🖨</button>
@@ -435,7 +442,7 @@ header{padding:6px 10px}
 
   <section id="tab-diemdanh" class="hide" data-trang="lop">
     <div class="card" id="ddSinhNhat" style="display:none"></div>
-    <div class="card"><h3 style="margin-top:0">📚 Các lớp <span class="hint" id="ddDem"></span></h3>
+    <div class="card" id="ddCardLop"><h3 style="margin-top:0">📚 Các lớp <span class="hint" id="ddDem"></span></h3>
       <div class="row" style="margin:2px 0 0">
         <span class="seg" id="segLop">
           <button data-lopx="hom" class="on">Lớp hôm nay</button>
@@ -1851,17 +1858,15 @@ function moDanhGia(ma, ngay){
         ${["co","vang","tre"].map(k=>`<button class="ghost sm" data-dd="${k}" style="${dd===k?"background:var(--accent);border-color:var(--accent);color:#3a2c10;font-weight:700":""}">${NHAN_DD[k]}</button>`).join("")}</div>
       <div class="row" style="gap:6px;margin-bottom:8px"><span class="hint" style="min-width:78px">Mức độ</span>
         ${Object.keys(MUC).map(k=>`<button class="ghost sm" data-muc="${k}" style="${muc===k?"background:var(--accent);border-color:var(--accent);color:#3a2c10;font-weight:700":""}">${MUC[k].ten}</button>`).join("")}</div>
-      <div class="row" style="gap:6px;margin-bottom:8px"><span class="hint" style="min-width:78px">Điểm cộng</span>
-        <input id="dgDiem" type="number" min="0" max="20" step="0.5" value="${diem}" style="width:96px;text-align:right">
-        <span class="hint">chưa đạt 0 · đạt 1 · vượt 2 (sửa được)</span></div>
+      
       <textarea id="dgGhi" placeholder="Ghi chú của ngày này (nội dung học, điểm cần luyện…)" style="min-height:70px">${esc(cu.ghi_chu||"")}</textarea>
       <div class="row" style="margin-top:10px"><button class="ghost sm" id="dgLs">📅 Xem 3 tháng</button><span style="flex:1"></span>
         <button class="ghost" id="dgHuy">Huỷ</button><button class="primary" id="dgLuu">Lưu</button></div></div>`;
     bd.querySelectorAll("[data-dd]").forEach(b=>b.onclick=()=>{ dd=b.dataset.dd; ve(); });
     bd.querySelectorAll("[data-muc]").forEach(b=>b.onclick=()=>{ muc=b.dataset.muc; cu.diem=MUC[muc].diem; ve(); });
     bd.querySelector("#dgLuu").onclick=()=>{
-      const d=Number(String(bd.querySelector("#dgDiem").value).replace(",","."));
-      dgDat(ma,ng,{dd, muc, diem:isNaN(d)?0:d, sticker:stickerHomNay(ma).length, ghi_chu:bd.querySelector("#dgGhi").value.trim(), lop:h.lop});
+      const d=0;
+      dgDat(ma,ng,{dd, muc, diem:(cu.diem!=null?cu.diem:0), sticker:stickerHomNay(ma).length, ghi_chu:bd.querySelector("#dgGhi").value.trim(), lop:h.lop});
       ddDat(ng,h.lop,ma,dd);
       bd.remove(); render();
     };
@@ -1915,7 +1920,8 @@ function veDiemDanh(){
     return `<button class="lopthe${lh?" dang":""}" data-lop="${esc(l)}" style="--mc:${mc};--mcr:${hexRgba(mc,.08)}">
       <span class="ten">${esc(l)}</span>
       <span class="dem">${hs.length} em</span>
-      ${lh?`<span class="giay">hôm nay ${gioHom.join(", ")}${(()=>{const b=buoiTuanNay().find(x=>x.ngay===iso(new Date())&&x.lop.ten===l);return b&&b.gv?` · ${esc(b.gv)}`:" · <span style='color:var(--del)'>chưa có GV</span>";})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
+      <span class="bdnut" data-bd="${esc(l)}" title="Mở bài dạy của lớp hôm nay">Bài dạy ›</span>
+      ${lh?`<span class="giay">hôm nay ${gioHom.join(", ")}${(()=>{const g=gvCuaLopHomNay(l);return g?" · "+esc(g):" · <span style='color:var(--del)'>chưa có GV</span>";})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
       ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
     </button>`; };
   const dsHien=(DD_LOC==="hom"?lopHomNay:lopTatCa);
@@ -1944,6 +1950,9 @@ function veDiemDanh(){
   const dem=document.getElementById("ddDem"); if(dem) dem.textContent=`${dsHien.length} lớp${DD_LOC==="hom"?" có buổi hôm nay":""} · tổng ${lopTatCa.length} lớp`;
   document.querySelectorAll("#segLop button").forEach(b=>b.classList.toggle("on",b.dataset.lopx===DD_LOC));
   el.innerHTML=DD_LOP? roiLop(DD_LOP) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để mở danh sách học viên.</p>';
+  { const card=document.getElementById("ddCardLop"), body=document.getElementById("ddBody");
+    if(card&&body){ if(DD_LOP){ if(card.previousElementSibling!==body) card.parentNode.insertBefore(body,card); }
+      else { if(body.previousElementSibling!==card) body.parentNode.insertBefore(card,body); } } }
 }
 function roiLop(lop){
   const hs=hvTatCa().filter(h=>h.lop===lop).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
@@ -1964,7 +1973,6 @@ function roiLop(lop){
         <div class="ten"><span class="nm" title="${esc(h.ho_ten)}">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)}</span>
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
         <div class="nut">
-          <button class="primary sm" data-cong="${esc(h.ma_hv)}" title="Cộng điểm">⭐ ${Number(d.diem_thuong)||0}</button>
           <button class="ghost sm" data-dg="${esc(h.ma_hv)}" title="Đánh giá hôm nay">📝</button>
           <button class="ghost sm" data-sticker="${esc(h.ma_hv)}" title="Thưởng sticker">🎁${stHom.length?`<small>${stHom.length}</small>`:""}</button>
           <button class="ghost sm${cc.canHomNay?" can":""}" data-ddhn="${esc(h.ma_hv)}" title="Điểm danh 2 tuần">✅</button></div>
@@ -1973,6 +1981,7 @@ function roiLop(lop){
 GAN("segLop","click",e=>{ const b=e.target.closest("[data-lopx]"); if(!b) return;
   DD_LOC=b.dataset.lopx; veDiemDanh(); });
 GAN("tab-diemdanh","click",e=>{
+  const bd=e.target.closest("[data-bd]"); if(bd){ e.stopPropagation(); moBaiDay(bd.dataset.bd); return; }
   const b=e.target.closest("[data-lop]");
   if(b && !e.target.closest("#ddBody")){ DD_LOP=b.dataset.lop; veDiemDanh(); return; }
 });
@@ -2038,7 +2047,7 @@ function render(){
   const quetHocVien=()=>{ xoa("hvBody"); ["hvTong","hvCanXn"].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent="0"; });
     ["hvTongInfo","hvCanXnInfo"].forEach(id=>{ const e=document.getElementById(id); if(e) e.innerHTML=""; }); };
   if(co("lichday","tuan")){ veCanhBaoRanh(); veTomTat(); veLuoi(); } else xoa("grid");
-  if(co("lichday","gv")) veGV(); else xoa("gvBody");
+  if(co("lichday","gv")) { veGV(); if(typeof bdGvGonBar==="function") bdGvGonBar(); } else { xoa("gvBody"); const _b=document.getElementById("gvGonBar"); if(_b) _b.remove(); }
   if(co("lichday","luong")) veLuong(); else xoa("luongBody");
   if(co("lop","kho")) veKho(); else xoa("khoBody");
   if(co("lop","hocvien")) veHocVien(); else quetHocVien();
@@ -2611,6 +2620,52 @@ function bdCanhBaoKho(ds){
   if(!thieu.length) return "";
   return `<div class="bd-canhbao">⚠ <b>${thieu.length} lớp chưa có giờ học:</b> ${thieu.map(l=>esc(l.ten)).join(", ")}.
     Lớp chưa có giờ <b>không hiện</b> trong lịch tuần và điểm danh — cần thêm giờ để hiển thị.</div>`;
+}
+
+/* ===== v7.1: mở Bài dạy từ Điểm danh, thu gọn header, lịch GV gọn ===== */
+function gvCuaLopHomNay(tenLop){
+  const hom=iso(new Date());
+  const lop=(S.lop||[]).find(x=>String(x.ten).trim()===String(tenLop).trim());
+  const b=buoiTuanNay().find(x=>x.ngay===hom&&((lop&&x.lop.id===lop.id)||x.lop.ten===tenLop));
+  return (b&&b.gv)||(lop&&lop.gv)||"";
+}
+function moBaiDay(tenLop){
+  const lop=(S.lop||[]).find(x=>x.ten===tenLop);
+  BD.lopId=lop?lop.id:null; BD.chon.clear(); BD.unit=null;
+  const nav=[...document.querySelectorAll("#navTrang button")].find(x=>x.textContent.includes("Lịch dạy"));
+  if(nav) nav.click();
+  const mo=()=>{ try{ if(typeof chonTab==="function") chonTab("baiday"); }catch(e){}
+    const tab=[...document.querySelectorAll("#tabCon button")].find(x=>(x.dataset&&x.dataset.tab==="baiday")||x.textContent.trim()==="Bài dạy");
+    if(tab&&!tab.classList.contains("on")) tab.click();
+    veBaiDay(); };
+  setTimeout(mo,40); setTimeout(mo,180);
+}
+/* thu gọn đầu trang */
+(function(){
+  const nut=document.getElementById("btnThuGon");
+  if(!nut) return;
+  const ap=(gon)=>{ document.body.classList.toggle("header-gon",gon); nut.textContent=gon?"⌄":"⌃";
+    nut.title=gon?"Mở rộng đầu trang":"Thu gọn đầu trang";
+    try{ localStorage.setItem("lopThuGon",gon?"1":"0"); }catch(e){} };
+  nut.onclick=()=>ap(!document.body.classList.contains("header-gon"));
+  let cu=null; try{ cu=localStorage.getItem("lopThuGon"); }catch(e){}
+  ap(cu==="1");
+})();
+/* lịch giáo viên: thu nhỏ để xem cả tuần trên điện thoại */
+function bdGvGonBar(){
+  const gv=document.getElementById("gvBody");
+  if(!gv||document.getElementById("gvGonBar")) return;
+  const bar=document.createElement("div");
+  bar.id="gvGonBar"; bar.className="card noprint"; bar.style.padding="6px 10px";
+  bar.innerHTML=`<span class="hint">Xem cả tuần trên điện thoại:</span>
+    <button class="ghost sm" id="btnGvGon">⤢ Thu nhỏ bảng</button>
+    <span class="hint">(xoay ngang máy để xem đủ 7 ngày)</span>`;
+  gv.parentNode.insertBefore(bar,gv);
+  document.getElementById("btnGvGon").onclick=(e)=>{
+    const gon=!document.body.classList.contains("gv-gon");
+    document.body.classList.toggle("gv-gon",gon);
+    e.target.textContent=gon?"⤡ Phóng to bảng":"⤢ Thu nhỏ bảng";
+  };
 }
 
 </script>
