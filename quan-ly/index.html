@@ -1375,8 +1375,9 @@ const ddLay=(ngay,lop,ma)=>S.diem_danh[DD_KEY(ngay,lop,ma)]||"";
 function ddDat(ngay,lop,ma,tt){ const k=DD_KEY(ngay,lop,ma); if(tt) S.diem_danh[k]=tt; else delete S.diem_danh[k]; save(); }
 function ddXoay(ngay,lop,ma){ const t=ddLay(ngay,lop,ma); ddDat(ngay,lop,ma, t===""?"co":t==="co"?"vang":""); }
 const NHAN_DD={co:"✅ có mặt",vang:"❌ vắng",tre:"⏰ trễ","":"— chưa điểm danh"};
-function diemCua(ma){ if(!S.diem[ma]) S.diem[ma]={nghe:null,noi:null,doc:null,viet:null,nhan_xet:"",diem_thuong:0};
-  const d=S.diem[ma]; KY_NANG.forEach(([k])=>{ if(d[k]===undefined) d[k]=null; }); if(d.diem_thuong==null) d.diem_thuong=0; if(d.nhan_xet==null) d.nhan_xet=""; return d; }
+function diemCua(ma){ if(!S.diem[ma]) S.diem[ma]={nghe:null,noi:null,doc:null,viet:null,tuong_tac:"",ho_tro:"",nhan_xet:"",diem_thuong:0};
+  const d=S.diem[ma]; KY_NANG.forEach(([k])=>{ if(d[k]===undefined) d[k]=null; }); if(d.diem_thuong==null) d.diem_thuong=0;
+  ["tuong_tac","ho_tro","nhan_xet"].forEach(k=>{ if(d[k]==null) d[k]=""; }); return d; }
 function stickerCua(ma){ if(!S.sticker[ma]) S.sticker[ma]={ds:[]}; if(!S.sticker[ma].ds) S.sticker[ma].ds=[]; return S.sticker[ma]; }
 const tongDiemKN=ma=>{ const d=diemCua(ma);
   const so=KY_NANG.map(([k])=>d[k]).filter(v=>v!==null&&v!==undefined&&v!=="").map(Number).filter(v=>!isNaN(v));
@@ -1464,27 +1465,31 @@ function veDiemSo(){
   <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 4, kỹ năng ≥ 3 · B1 cần TB ≥ 5, kỹ năng ≥ 4. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
   const td='padding:5px 6px;border-bottom:1px solid var(--line)';
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
-   <thead><tr>${[["Lớp","width:1%"],["Học viên",""],...KY_NANG.map(([,t])=>[t,"width:1%;text-align:center"]),
-      ["TB","width:1%;text-align:center"],["Tích lũy","width:1%;text-align:center"],["Chuyên cần","width:1%;text-align:center"],["Nhận xét",""],["","width:1%"]]
+   <thead><tr>${[["Lớp","width:1%;min-width:62px"],["Mã HV","width:1%;min-width:76px"],["Học viên","min-width:185px"],...KY_NANG.map(([,t])=>[t,"width:1%;text-align:center"]),
+      ["TB","width:1%;text-align:center"],["Tích lũy","width:1%;text-align:center"],["Chuyên cần","width:1%;text-align:center"],
+      ["Tương tác","min-width:120px"],["Cần hỗ trợ","min-width:120px"],["Nhận xét","min-width:150px"],["","width:1%"]]
       .map(([x,ex])=>`<th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--line);white-space:nowrap;${ex}">${x}</th>`).join("")}</tr></thead>
    <tbody>${rows.map(h=>{ const d=diemCua(h.ma_hv), cc=chuyenCan(h), tb=tongDiemKN(h.ma_hv), sn=laSinhNhat(h), dm=duoiMuc(h), tl=tichLuyTong(h.ma_hv);
     return `<tr>
      <td style="${td};white-space:nowrap;width:1%"><b>${esc(h.lop)}</b></td>
-     <td style="${td};white-space:nowrap">${sn?"🎂 ":""}<b>${esc(h.ho_ten)}</b> <span class="hint">${esc(h.ten_goi_trong_lop||"")}</span></td>
-     ${KY_NANG.map(([k])=>`<td style="${td};width:1%;text-align:center"><input type="number" min="0" max="10" step="0.5" class="o-diem" data-diem="${esc(h.ma_hv)}:${k}" value="${d[k]==null?"":d[k]}" style="width:64px;text-align:center;padding:2px 5px"></td>`).join("")}
+     <td style="${td};white-space:nowrap;width:1%"><span class="hint" style="font-size:12px">${esc(h.ma_hv)}</span></td>
+     <td style="${td};white-space:nowrap;min-width:185px">${sn?"🎂 ":""}<b>${esc(h.ho_ten)}</b> <span class="hint">${esc(h.ten_goi_trong_lop||"")}</span></td>
+     ${KY_NANG.map(([k])=>`<td style="${td};width:1%;text-align:center"><input type="number" min="0" max="10" step="0.5" class="o-diem" data-diem="${esc(h.ma_hv)}:${k}" value="${d[k]==null?"":d[k]}" style="width:54px;text-align:center;padding:2px 4px"></td>`).join("")}
      <td style="${td};text-align:center;white-space:nowrap;width:1%"><b style="${dm&&dm.duoi?"color:var(--del)":""}" title="${dm&&dm.duoi?esc("Dưới mức "+dm.L.ten+" — cần: "+(dm.thieu.join(", "))):(dm?"Đạt mức "+dm.L.ten:"")}">${tb==null?"—":tb}${dm&&dm.duoi?" ⚠":""}</b>
        <div class="hint" style="font-size:10.5px;text-align:center;line-height:1.2">${dm?esc(dm.L.ten.replace("Super Minds ","SM ").replace("Open World ","")):"—"}</div></td>
      <td style="${td};text-align:center;width:1%"><b>${tl}</b></td>
      <td style="${td};white-space:nowrap;width:1%;text-align:center;${cc.canHomNay?'background:#fdeceb':''}" title="${cc.chuaGio?'Lớp chưa xếp giờ cố định — bấm để điểm danh từng buổi':''}">
        <button class="ghost sm" data-cc="${esc(h.ma_hv)}" title="Xem điểm danh 4 tuần gần đây" style="${cc.canHomNay?"border-color:var(--del);color:var(--del);font-weight:700":""}">
          ${cc.chuaGio?"chưa xếp giờ":cc.di+"/"+cc.tong+" buổi"}${cc.canHomNay?" ⚠":""}</button></td>
-     <td style="${td}"><input data-nx="${esc(h.ma_hv)}" value="${esc(d.nhan_xet)}" placeholder="nhận xét…" style="width:100%;min-width:160px;padding:2px 6px"></td>
+     <td style="${td}"><input data-nx="${esc(h.ma_hv)}:tuong_tac" value="${esc(d.tuong_tac)}" placeholder="tương tác…" style="width:100%;min-width:112px;padding:2px 5px"></td>
+     <td style="${td}"><input data-nx="${esc(h.ma_hv)}:ho_tro" value="${esc(d.ho_tro)}" placeholder="cần hỗ trợ…" style="width:100%;min-width:112px;padding:2px 5px"></td>
+     <td style="${td}"><input data-nx="${esc(h.ma_hv)}:nhan_xet" value="${esc(d.nhan_xet)}" placeholder="nhận xét…" style="width:100%;min-width:140px;padding:2px 5px"></td>
      <td style="${td};white-space:nowrap"><button class="ghost sm" data-ls="${esc(h.ma_hv)}" title="Đánh giá theo ngày — 3 tháng">📅</button></td></tr>`; }).join("")}</tbody></table>
    <p class="hint" style="margin-top:8px">Cột <b>Chuyên cần</b> đếm số buổi <b>có mặt / tổng buổi</b> của lớp trong <b>4 tuần</b> gần nhất. Ô <b>đỏ ⚠</b> = hôm nay lớp có buổi, đã quá giờ học mà chưa điểm danh — bấm vào để điểm danh luôn.</p>`;
   body.querySelectorAll("[data-diem]").forEach(i=>i.onchange=()=>{
     const [ma,k]=i.dataset.diem.split(":"); const v=i.value===""?null:Math.max(0,Math.min(10,Number(i.value)));
     diemCua(ma)[k]=v; save(); veDiemSo(); });
-  body.querySelectorAll("[data-nx]").forEach(i=>i.onchange=()=>{ diemCua(i.dataset.nx).nhan_xet=i.value.trim(); save(); });
+  body.querySelectorAll("[data-nx]").forEach(i=>i.onchange=()=>{ const [ma,k]=i.dataset.nx.split(":"); diemCua(ma)[k||"nhan_xet"]=i.value.trim(); save(); });
   body.querySelectorAll("[data-cc]").forEach(b=>b.onclick=()=>moDiemDanh(b.dataset.cc,28));
   body.querySelectorAll("[data-ls]").forEach(b=>b.onclick=()=>moLichSu(b.dataset.ls));
 }
@@ -1492,10 +1497,10 @@ GAN("dsTim","input",e=>{ DS_HIEN.tim=e.target.value; veDiemSo(); });
 GAN("dsLoc","change",e=>{ DS_HIEN.lop=e.target.value; veDiemSo(); });
 
 GAN("btnDsCsv","click",()=>{ tinhHet();
-  taiCsv("diem-so-"+iso(new Date())+".csv",[["Lớp","Học viên","Tên gọi","Nghe","Nói","Đọc","Viết","Trung bình","Mức level","Dưới mức","Tích lũy","Có mặt (4 tuần)","Tổng buổi (4 tuần)","Nhận xét"],
+  taiCsv("diem-so-"+iso(new Date())+".csv",[["Lớp","Mã HV","Học viên","Tên gọi","Nghe","Nói","Đọc","Viết","Trung bình","Mức level","Dưới mức","Tích lũy","Có mặt (4 tuần)","Tổng buổi (4 tuần)","Tương tác","Cần hỗ trợ","Nhận xét"],
    ...hvTatCa().sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi")).map(h=>{
      const d=diemCua(h.ma_hv), cc=chuyenCan(h), dm=duoiMuc(h);
-     return [h.lop,h.ho_ten,h.ten_goi_trong_lop,d.nghe,d.noi,d.doc,d.viet,tongDiemKN(h.ma_hv),dm?dm.L.ten:"",dm&&dm.duoi?"CÓ: "+dm.thieu.join(", "):"",tichLuyTong(h.ma_hv),cc.di,cc.tong,d.nhan_xet]; })]); });
+     return [h.lop,h.ma_hv,h.ho_ten,h.ten_goi_trong_lop,d.nghe,d.noi,d.doc,d.viet,tongDiemKN(h.ma_hv),dm?dm.L.ten:"",dm&&dm.duoi?"CÓ: "+dm.thieu.join(", "):"",tichLuyTong(h.ma_hv),cc.di,cc.tong,d.tuong_tac,d.ho_tro,d.nhan_xet]; })]); });
 GAN("btnDsIn","click",()=>window.print());
 GAN("btnDsPhieu","click",inPhieuHV);
 GAN("btnDsGoiY","click",()=>{
@@ -1609,8 +1614,9 @@ function phieuHV(h){
     <h4>Tổng hợp</h4>
     <table class="ptab"><tr><th>Chuyên cần (4 tuần)</th><th>Tích lũy</th><th>Sticker (90 ngày)</th><th>Trạng thái</th></tr>
       <tr><td>${cc.di}/${cc.tong} buổi${cc.tong?` (${Math.round(cc.di/cc.tong*100)}%)`:""}</td><td><b>${tichLuyTong(h.ma_hv)}</b> điểm</td><td>${st.length}</td><td>${esc(h.trang_thai||"đang học")}</td></tr></table>
-    <h4>Nhận xét của giáo viên</h4>
-    <p class="pngoai">${esc(d.nhan_xet||"Chưa có nhận xét.")}</p>
+    <h4>Tương tác · Cần hỗ trợ · Nhận xét</h4>
+    <table class="ptab"><tr><th style="width:22%">Tương tác</th><th style="width:22%">Cần hỗ trợ</th><th>Nhận xét</th></tr>
+      <tr><td>${esc(d.tuong_tac||"—")}</td><td>${esc(d.ho_tro||"—")}</td><td>${esc(d.nhan_xet||"—")}</td></tr></table>
     <h4>Đánh giá theo ngày (90 ngày gần nhất) — ${dsNgay.length} ngày</h4>
     ${dsNgay.length?`<table class="ptab ngay"><tr><th>Ngày</th><th>Điểm danh</th><th>Mức</th><th>Điểm</th><th>🎁</th><th>Ghi chú</th></tr>
       ${dsNgay.map(k=>{ const r=m[k], mu=r.muc&&MUC[r.muc];
