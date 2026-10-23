@@ -1500,7 +1500,11 @@ GAN("btnDsIn","click",()=>window.print());
 GAN("btnDsPhieu","click",inPhieuHV);
 GAN("btnDsGoiY","click",()=>{
   let chi=null;
-  if(DS_HIEN.lop){ const L=mucLevel(DS_HIEN.lop); if(L){ const so=Number((/\d+/.exec(L.ten)||[])[0]); if(so) chi=so-1; } }
+  if(DS_HIEN.lop){ const s=String(DS_HIEN.lop).toUpperCase();
+    if(/^SM/.test(s)){ const so=Number((/\d+/.exec(s)||[])[0]); if(so) chi=Math.min(6,so)-1; }
+    else if(/^A2/.test(s)) chi=3;      // A2 → bậc 4
+    else if(/^B1/.test(s)) chi=6;      // B1 → bậc 7
+  }
   moThangSach(chi);
 });
 
