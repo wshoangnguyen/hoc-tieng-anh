@@ -2292,6 +2292,7 @@ khoiDong();
 
 
 /* ===== dữ liệu & code v7 ===== */
+const DRIVE_MP={"SM1":{"sb":"194bNQegYmSXrS2qcbltcNyIYIElyLsbf","wb":"1LoTrFtnWKEzsW_2LkJkQdiE7uH0qxmf8"},"SM2":{"sb":"1cWgQH9gn-4Il0it2_WOuIfDHOff-XS1W","wb":"1s1friLTK6Mn3ANXUeugW6zoto-UPNzou"},"SM3":{"sb":"1nIH8Sqc50CLHKgA22aBN5bfpvxLs3bPJ","wb":"1HnpH8GWZTLwnp7aD6Ny6gT51NiM2LIgv"},"SM4":{"sb":"1qXkpIM4HUxyD2VYl0sNvAXLhFDLtuTO1","wb":"1ltc3bHtqLbO_eDex_XGaF2zBnMe-GaoO"},"SM5":{"sb":"1F6Q4-REWI1EAxtyjH9c02aTHljjEXPO7","wb":"1BBVVb3bCq6hRrkcjRDSX1M3WBVv6rVkc"},"SM6":{"sb":"1A9pEJb5DnYmZw7hsvOTV3WRFil911u5w","wb":"1vPlBUuIMIGD8zgT_PSxCB4f6CvhZEII-"},"A2":{"sb":"1CVLp6kPB3ZL-4gzdrn2D5V8BMiXjhtDy"},"B1":{"sb":"19tnkQjrqqC8W7HxrDMCe1HJCSOz66r7L"},"B2":{"sb":"16nUdybtI65bokhCafKBzebCBJPX0GE4g"}};
 const TV_GOC={"pb":1,"parts":[["tv","Từ vựng","Vocabulary","vocab"],["np1","Ngữ pháp 1","Grammar 1","grammar"],["np2","Ngữ pháp 2","Grammar 2","grammar"],["song","Bài hát","Song","listening"],["story","Truyện","Story","reading"],["review","Review","Review","review"],["hw","Homework (Workbook)","Workbook","homework"],["practice","Practice","Practice","practice"],["test","Test","Test","test"],["speaking","Speaking","Speaking","speaking"],["listening","Listening","Listening","listening"]],"books":[["SM1","Super Minds 1",[0,1,2,3,4,5,6,7,8,9]],["SM2","Super Minds 2",[0,1,2,3,4,5,6,7,8,9]],["SM3","Super Minds 3",[0,1,2,3,4,5,6,7,8,9]],["SM4","Super Minds 4",[0,1,2,3,4,5,6,7,8,9]],["SM5","Super Minds 5",[0,1,2,3,4,5,6,7,8,9]],["SM6","Super Minds 6",[0,1,2,3,4,5,6,7,8,9]],["A2","Open World A2 Key",[1,2,3,4,5,6,7,8,9,10,11,12]],["B1","Open World B1 Preliminary",[1,2,3,4,5,6,7,8,9,10,11,12]],["B2","Open World B2 First",[1,2,3,4,5,6,7,8,9,10,11,12]]]};
 /* ===== THƯ VIỆN MỤC — sinh tại chỗ từ bảng gọn (nhẹ hơn nhúng 1.056 mục) ===== */
 const THU_VIEN=(()=>{
@@ -2374,6 +2375,7 @@ function veBaiDay(){
   }
   if(!BD.lopId){ el.innerHTML='<p class="hint">Chưa có lớp nào.</p>'; return; }
   const lop=lopTheoId(BD.lopId); const sach=sachCuaLop(BD.lopId);
+  const tmS=sach?tmSach(sach):{sb:"",wb:""};
   const tagSach=document.getElementById("bdSach");
   if(tagSach) tagSach.innerHTML=sach?`Sách: <b>${esc(sach.ten)}</b> <select id="bdDoiSach" class="sm ghost" style="width:auto">${THU_VIEN.books.map(b=>`<option value="${b.id}" ${b.id===sach.id?"selected":""}>${esc(b.code)}</option>`).join("")}</select>`:`<span style="color:var(--del)">Chưa rõ sách — chọn:</span> <select id="bdDoiSach" class="sm">${THU_VIEN.books.map(b=>`<option value="${b.id}">${esc(b.code)}</option>`).join("")}</select>`;
   if(sel&&!sel.onchange) sel.onchange=()=>{ BD.lopId=sel.value; BD.chon.clear(); veBaiDay(); };
@@ -2390,6 +2392,9 @@ function veBaiDay(){
   let h=`<div class="card">`;
   h+=`<div class="row" style="margin-bottom:6px"><b>${esc(lop.ten)}</b><span class="hint">${hocVien.length} học viên</span><span style="flex:1"></span>
       <span class="hint">Unit:</span>${units.map(u=>{const s=soMucDaDay(BD.lopId,u);return `<button class="ghost sm ${u===BD.unit?"on":""}" data-bdu="${u}" style="${u===BD.unit?"background:var(--accent);color:#3a2c07;font-weight:700":""}">U${u} <small>${s.xong}/${s.tong}</small></button>`;}).join("")}</div>`;
+  const linkAudio=(tmS.sb?`<a class="ghost sm" style="text-decoration:none;display:inline-block" href="${tmS.sb}" target="_blank" rel="noopener">🔊 Audio bài học</a>`:"")+
+    (tmS.wb?` <a class="ghost sm" style="text-decoration:none;display:inline-block" href="${tmS.wb}" target="_blank" rel="noopener">📝 Audio bài tập</a>`:"");
+  if(linkAudio) h+=`<div class="row" style="margin:0 0 6px;gap:6px">${linkAudio}<span class="hint">mở thư mục, chọn bài nghe theo số track</span></div>`;
   if(banGiao) h+=banGiao;
   h+=`<h3 style="margin:10px 0 4px">Unit ${BD.unit} — chọn phần cho buổi hôm nay</h3>`;
   h+=`<div class="bd-muc">`+dsMuc.map(i=>{
@@ -2485,6 +2490,9 @@ function veBaiDay(){
   });
 }
 
+function tmSach(sach){ const m=(typeof DRIVE_MP!=="undefined"&&DRIVE_MP[sach.code])||{};
+  const u=id=>"https://drive.google.com/drive/folders/"+id;
+  return {sb:m.sb?u(m.sb):"", wb:m.wb?u(m.wb):""}; }
 function tenNgan(id){ return tenMuc(id).replace(/^Unit \d+ \u00b7 /,""); }
 function tenMuc(id){
   const it=THU_VIEN.items.find(i=>i.id===id); if(it) return it.ten;
@@ -2553,7 +2561,9 @@ function bdBanTin(){
   const dong=(b.items||[]).map(id=>{ const it=THU_VIEN.items.find(i=>i.id===id)||{};
     const lk=[...(it.audio||[]).map(u=>"🔊 "+u),...(it.video||[]).map(u=>"🎬 "+u)];
     return `• ${tenMuc(id)}${lk.length?"\n  "+lk.join("\n  "):""}`; }).join("\n");
-  const chung=`📚 ${lop.ten} — buổi ${ngayVN(b.ngay)}\n\nNội dung hôm nay:\n${dong}\n\n${(b.items||[]).some(id=>{const it=THU_VIEN.items.find(i=>i.id===id);return it&&it.part==="hw";})?"":"📝 Bài về nhà: xem lại các phần trên và làm bài tập trong workbook.\n"}`;
+  const tmB=tmSach(sachCuaLop(BD.lopId)||{code:""});
+  const linkTM=[tmB.sb?"🔊 Audio bài học: "+tmB.sb:"",tmB.wb?"📝 Audio bài tập: "+tmB.wb:""].filter(Boolean).join("\n");
+  const chung=`📚 ${lop.ten} — buổi ${ngayVN(b.ngay)}\n\nNội dung hôm nay:\n${dong}\n${linkTM?"\n"+linkTM+"\n":""}\n${(b.items||[]).some(id=>{const it=THU_VIEN.items.find(i=>i.id===id);return it&&it.part==="hw";})?"":"📝 Bài về nhà: xem lại các phần trên và làm bài tập trong workbook.\n"}`;
   const chuaDat=[]; hocVienCuaLop(BD.lopId).forEach(hv=>{(b.items||[]).forEach(id=>{const r=(S.tien_do[hv.ma_hv]||{})[id]; if(r&&r.t==="khong") chuaDat.push(hv.ho_ten);});});
   const notes=(S.ghi_chu||[]).filter(g=>g.lopId===BD.lopId&&!g.xu_ly&&g.buoiId===b.id);
   const rieng=`🔒 Nội bộ — ${lop.ten} · ${ngayVN(b.ngay)}\n`+
