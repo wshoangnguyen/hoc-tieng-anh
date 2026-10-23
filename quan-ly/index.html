@@ -668,11 +668,17 @@ function moThemHocBu(){
 /* ================= CHỌN CÁCH XEM + TUẦN Ở TAB ĐĂNG KÝ ================= */
 (function(){
   const seg=document.getElementById("segXemTheo");
-  if(seg) seg.querySelectorAll("button").forEach(b=>{ b.onclick=()=>{
-    XEM_THEO=b.dataset.xem;
-    seg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
-    if(trangDangXem==="lichday"&&tabDangXem==="tuan") veLuoi();
-  }; });
+  if(seg){
+    try{ const cu=localStorage.getItem("xem_theo"); if(cu==="gv"||cu==="lop") XEM_THEO=cu; }catch(e){}
+    const danh=(x)=>seg.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.xem===x));
+    danh(XEM_THEO);
+    seg.querySelectorAll("button").forEach(b=>{ b.onclick=()=>{
+      XEM_THEO=b.dataset.xem;
+      try{ localStorage.setItem("xem_theo",XEM_THEO); }catch(e){}
+      danh(XEM_THEO);
+      if(trangDangXem==="lichday"&&tabDangXem==="tuan") veLuoi();
+    }; });
+  }
   const dk=document.getElementById("selTuanDk");
   if(dk) dk.onchange=()=>{ tuanDangXem=+dk.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
 })();
