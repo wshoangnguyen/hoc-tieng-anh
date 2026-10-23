@@ -127,6 +127,18 @@ textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,Consolas,mon
 .dg-chua{color:#e04b3f}.dg-dat{color:#3f8f4f}.dg-vuot{color:#c98a1b}
 button.can{border-color:var(--del);color:var(--del);font-weight:700}
 #ddSinhNhat{background:#fff7e3;border-color:var(--accent)}
+/* ---- thẻ lớp ở tab điểm danh ---- */
+.lopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:8px;margin-top:8px}
+.lopthe{--mc:#8a8172;--mcr:rgba(138,129,114,.08);position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  min-height:86px;padding:9px 11px;border:1px solid var(--line);border-left:5px solid var(--mc);border-radius:12px;
+  background:var(--mcr);text-align:left;font:inherit;cursor:pointer;transition:box-shadow .12s,transform .12s}
+.lopthe:hover{box-shadow:0 3px 10px rgba(0,0,0,.09);transform:translateY(-1px)}
+.lopthe.dang{box-shadow:0 0 0 2px var(--mc) inset}
+.lopthe .ten{font-weight:800;font-size:15px;color:#2b2b2b;line-height:1.15}
+.lopthe .dem{font-size:12px;color:var(--dim)}
+.lopthe .giay{font-size:11.5px;font-weight:700;color:var(--mc)}
+.lopthe .chip{margin-top:2px;font-size:11px;padding:1px 7px}
+@media(max-width:560px){.lopgrid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}}
 /* ---- cuộn ngang cho bảng rộng ---- */
 .cuon{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;border-radius:10px}
 .cuon>table{min-width:620px}
@@ -347,6 +359,7 @@ header{padding:6px 10px}
         <div class="field"><label>Tìm</label><input id="dsTim" placeholder="tên, tên gọi, mã HV…"></div>
         <div class="field"><label>Lớp</label><select id="dsLoc"></select></div>
         <span style="flex:1"></span>
+        <button id="btnDsPhieu" class="ghost" title="In phiếu thông tin của các học viên đang hiện">🖨 Phiếu học viên</button>
         <button id="btnDsCsv" class="ghost">⬇ CSV điểm</button>
         <button id="btnDsIn" class="ghost">🖨 In</button>
       </div>
@@ -357,12 +370,9 @@ header{padding:6px 10px}
 
   <section id="tab-diemdanh" class="hide" data-trang="lop">
     <div class="card" id="ddSinhNhat" style="display:none"></div>
-    <div class="card"><h3 style="margin-top:0">🕒 Các lớp hôm nay</h3>
-      <div class="row"><label class="hint" style="min-width:64px">Chọn lớp</label><select id="selLopHomNay" style="min-width:260px"></select>
-        <span class="hint" id="ddHomNayInfo"></span></div></div>
-    <div class="card"><h3 style="margin-top:0">📚 Tất cả các lớp</h3>
-      <div class="row"><label class="hint" style="min-width:64px">Chọn lớp</label><select id="selLopTatCa" style="min-width:260px"></select>
-        <span class="hint" id="ddTatCaInfo"></span></div></div>
+    <div class="card"><h3 style="margin-top:0">📚 Các lớp <span class="hint" id="ddDem"></span></h3>
+      <div class="lopgrid" id="ddLopGrid"></div>
+      <p class="hint" style="margin:8px 2px 0">Thẻ có viền đậm và ghi giờ là lớp <b>có buổi hôm nay</b>. Bấm một thẻ để mở danh sách học viên.</p></div>
     <div id="ddBody"></div>
   </section>
 
@@ -1382,13 +1392,25 @@ const laSinhNhat=h=>{ if(!h.ngay_sinh) return false; const [,m,d]=h.ngay_sinh.sp
 /* ---------- TAB ĐIỂM SỐ ---------- */
 const DS_HIEN={tim:"",lop:""};
 
+/* ---------- màu theo level ---------- */
+const MAU_LEVEL=["#2f6fdb","#2e9e5b","#3aa8d8","#e07a2f","#d9a92b","#7b5cc7"];
+function mauLop(lop){
+  const s=String(lop||"").trim().toUpperCase();
+  const m=/^SM\s*-?\s*(\d+)/.exec(s);
+  if(m) return MAU_LEVEL[Math.min(5,Math.max(0,Number(m[1])-1))];
+  if(/^A2/.test(s)) return "#2f8f8f";
+  if(/^B1/.test(s)) return "#b0553f";
+  return "#8a8172";
+}
+function hexRgba(hex,a){ const n=parseInt(String(hex).replace("#",""),16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`; }
+
 /* ---------- mức yêu cầu theo level (bảng của chủ lớp) ---------- */
 function mucLevel(lop){
   const s=String(lop||"").trim().toUpperCase();
   const m=/^SM\s*-?\s*(\d+)/.exec(s);
   if(m){ const n=Math.max(1,Math.min(6,Number(m[1]))); return {ten:"Super Minds "+n, tb:n, min:n}; }
-  if(/^A2/.test(s)) return {ten:"Open World A2", tb:5, min:3};
-  if(/^B1/.test(s)) return {ten:"Open World B1", tb:6, min:4};
+  if(/^A2/.test(s)) return {ten:"Open World A2", tb:4, min:3};
+  if(/^B1/.test(s)) return {ten:"Open World B1", tb:5, min:4};
   return null;
 }
 function duoiMuc(h){
@@ -1422,7 +1444,7 @@ function veDiemSo(){
   const nhieuCan=rows.filter(h=>chuyenCan(h).canHomNay).length;
   const soDuoi=rows.filter(h=>{const x=duoiMuc(h);return x&&x.duoi;}).length;
   document.getElementById("dsInfo").innerHTML=`${rows.length} học viên${nhieuCan?` · <b>${nhieuCan}</b> em <span style="color:var(--del)">chưa điểm danh buổi hôm nay đã qua giờ</span>`:""}${soDuoi?` · <b style="color:var(--del)">${soDuoi} em dưới mức level</b>`:""} · điểm kỹ năng thang 0–10, gõ trực tiếp vào ô là lưu ngay.<br>
-  <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 5, kỹ năng ≥ 3 · B1 cần TB ≥ 6, kỹ năng ≥ 4. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
+  <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 4, kỹ năng ≥ 3 · B1 cần TB ≥ 5, kỹ năng ≥ 4. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
   const td='padding:5px 6px;border-bottom:1px solid var(--line)';
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
    <thead><tr>${["Lớp","Học viên",...KY_NANG.map(([,t])=>t),"TB","Tích lũy","Chuyên cần","Nhận xét",""].map(x=>`<th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--line);white-space:nowrap">${x}</th>`).join("")}</tr></thead>
@@ -1449,14 +1471,14 @@ function veDiemSo(){
 }
 GAN("dsTim","input",e=>{ DS_HIEN.tim=e.target.value; veDiemSo(); });
 GAN("dsLoc","change",e=>{ DS_HIEN.lop=e.target.value; veDiemSo(); });
-GAN("selLopHomNay","change",e=>{ DD_LOP=e.target.value||null; veDiemDanh(); window.scrollTo({top:0,behavior:"smooth"}); });
-GAN("selLopTatCa","change",e=>{ DD_LOP=e.target.value||null; veDiemDanh(); window.scrollTo({top:0,behavior:"smooth"}); });
+
 GAN("btnDsCsv","click",()=>{ tinhHet();
   taiCsv("diem-so-"+iso(new Date())+".csv",[["Lớp","Học viên","Tên gọi","Nghe","Nói","Đọc","Viết","Trung bình","Mức level","Dưới mức","Tích lũy","Có mặt (4 tuần)","Tổng buổi (4 tuần)","Nhận xét"],
    ...hvTatCa().sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi")).map(h=>{
      const d=diemCua(h.ma_hv), cc=chuyenCan(h), dm=duoiMuc(h);
      return [h.lop,h.ho_ten,h.ten_goi_trong_lop,d.nghe,d.noi,d.doc,d.viet,tongDiemKN(h.ma_hv),dm?dm.L.ten:"",dm&&dm.duoi?"CÓ: "+dm.thieu.join(", "):"",tichLuyTong(h.ma_hv),cc.di,cc.tong,d.nhan_xet]; })]); });
 GAN("btnDsIn","click",()=>window.print());
+GAN("btnDsPhieu","click",inPhieuHV);
 
 /* ---------- popup điểm danh một học viên (2 hoặc 4 tuần) ---------- */
 function moDiemDanh(ma,soNgay){
@@ -1540,6 +1562,68 @@ function moCongDiem(ma){
   d.diem_thuong=Math.max(0,(Number(d.diem_thuong)||0)+n); save(); render();
 }
 
+
+/* ---------- phiếu thông tin học viên ---------- */
+function phieuHV(h){
+  const d=diemCua(h.ma_hv), dm=duoiMuc(h), cc=chuyenCan(h), L=mucLevel(h.lop);
+  const gv=((S.lop||[]).find(l=>l.ten===h.lop)||{}).gv||"—";
+  const m=ngayCua(h.ma_hv), dsNgay=Object.keys(m).filter(trongBaThang).sort().reverse();
+  const st=stickerCua(h.ma_hv).ds.filter(x=>trongBaThang(x.ngay));
+  const kn=KY_NANG.map(([k,t])=>`<td>${d[k]==null?"—":d[k]}${d[k]!=null&&L&&Number(d[k])<L.min?' <b class="xau">▼</b>':""}</td>`).join("");
+  return `<section class="phieu">
+    <div class="phead"><div><div class="pten">${esc(h.ho_ten)}</div>
+      <div class="pgoi">${esc(h.ten_goi_trong_lop?("Tên gọi: "+h.ten_goi_trong_lop):"")}</div></div>
+      <div class="pmeta">Lớp <b>${esc(h.lop)}</b> · ${esc(L?L.ten:"chưa rõ level")}<br>GV: ${esc(gv)}<br>Mã HV: ${esc(h.ma_hv)}</div></div>
+    <h4>Điểm kỹ năng hiện tại</h4>
+    <table class="ptab"><tr><th>Nghe</th><th>Nói</th><th>Đọc</th><th>Viết</th><th>Trung bình</th></tr>
+      <tr>${kn}<td><b>${tongDiemKN(h.ma_hv)==null?"—":tongDiemKN(h.ma_hv)}</b></td></tr></table>
+    <p class="pnote">${L?`Mức yêu cầu ${esc(L.ten)}: trung bình ≥ <b>${L.tb}</b>, mỗi kỹ năng ≥ <b>${L.min}</b> — `:""}${dm&&dm.duoi?`<b class="xau">Đang dưới mức: ${esc(dm.thieu.join(", "))}</b>`:`<b class="tot">Đạt mức yêu cầu của level</b>`}</p>
+    <h4>Tổng hợp</h4>
+    <table class="ptab"><tr><th>Chuyên cần (4 tuần)</th><th>Tích lũy</th><th>Sticker (90 ngày)</th><th>Trạng thái</th></tr>
+      <tr><td>${cc.di}/${cc.tong} buổi${cc.tong?` (${Math.round(cc.di/cc.tong*100)}%)`:""}</td><td><b>${tichLuyTong(h.ma_hv)}</b> điểm</td><td>${st.length}</td><td>${esc(h.trang_thai||"đang học")}</td></tr></table>
+    <h4>Nhận xét của giáo viên</h4>
+    <p class="pngoai">${esc(d.nhan_xet||"Chưa có nhận xét.")}</p>
+    <h4>Đánh giá theo ngày (90 ngày gần nhất) — ${dsNgay.length} ngày</h4>
+    ${dsNgay.length?`<table class="ptab ngay"><tr><th>Ngày</th><th>Điểm danh</th><th>Mức</th><th>Điểm</th><th>🎁</th><th>Ghi chú</th></tr>
+      ${dsNgay.map(k=>{ const r=m[k], mu=r.muc&&MUC[r.muc];
+        return `<tr><td>${esc(dmy(k))}</td><td>${esc((NHAN_DD[r.dd||""]||"—").replace("✅ ","").replace("❌ ","").replace("⏰ ",""))}</td>
+          <td class="${mu?mu.lop:""}">${mu?mu.ten:"—"}</td><td>${r.diem==null?"—":r.diem}</td><td>${r.sticker||""}</td><td>${esc(r.ghi_chu||"")}</td></tr>`; }).join("")}</table>`
+      :'<p class="pnote">Chưa có đánh giá theo ngày.</p>'}
+    <p class="pky">Ngày in: ${esc(dmy(iso(new Date())))} · Giáo viên phụ trách: ................................</p>
+  </section>`;
+}
+function inPhieuHV(){
+  const t=DS_HIEN.tim.trim().toLowerCase();
+  const ds=hvTatCa().filter(h=>{ if(DS_HIEN.lop&&h.lop!==DS_HIEN.lop) return false;
+    return !t || [h.ho_ten,h.ten_goi_trong_lop,h.ma_hv,h.lop].join(" ").toLowerCase().includes(t); })
+    .sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
+  if(!ds.length) return alert("Không có học viên nào để in.");
+  const w=window.open("","_blank");
+  if(!w) return alert("Trình duyệt đang chặn cửa sổ in — anh cho phép popup của trang này rồi bấm lại nhé.");
+  const css=`@page{size:A4;margin:14mm 13mm}
+    body{font-family:"Segoe UI",Roboto,Arial,sans-serif;color:#222;font-size:12.5px;margin:0}
+    .phieu{page-break-after:always}
+    .phieu:last-child{page-break-after:auto}
+    .phead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2.5px solid #d9a92b;padding-bottom:7px;margin-bottom:10px}
+    .pten{font-size:20px;font-weight:800}
+    .pgoi{color:#666;font-size:12px}
+    .pmeta{text-align:right;font-size:11.5px;line-height:1.5;color:#444}
+    h4{margin:12px 0 5px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#8a6a1f}
+    .ptab{width:100%;border-collapse:collapse;font-size:12px}
+    .ptab th,.ptab td{border:1px solid #ddd;padding:4px 7px;text-align:left}
+    .ptab th{background:#faf5e6;font-weight:700}
+    .ptab td{vertical-align:top}
+    .ptab.ngay td:first-child{white-space:nowrap}
+    .pnote{margin:5px 0 0;font-size:12px;color:#444}
+    .pngoai{border:1px solid #eee;background:#fcfaf4;border-radius:6px;padding:7px 9px;margin:0;font-size:12.5px;white-space:pre-wrap}
+    .xau{color:#c0392b}.tot{color:#2e7d32}
+    .dg-chua{color:#c0392b;font-weight:700}.dg-dat{color:#2e7d32;font-weight:700}.dg-vuot{color:#b7791f;font-weight:700}
+    .pky{margin-top:14px;color:#666;font-size:11.5px}`;
+  w.document.write(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Phiếu học viên</title><style>${css}</style></head><body>${ds.map(phieuHV).join("")}</body></html>`);
+  w.document.close();
+  w.focus(); setTimeout(()=>{ try{ w.print(); }catch(e){} }, 350);
+}
+
 /* ---------- đánh giá theo ngày ---------- */
 const dmy=s=>{ const [y,m,d]=String(s||"").split("-"); return d?`${d}/${m}/${y}`:String(s||""); };
 function moDanhGia(ma, ngay){
@@ -1613,16 +1697,20 @@ function veDiemDanh(){
   const sn=all.filter(laSinhNhat);
   document.getElementById("ddSinhNhat").innerHTML=sn.length?`🎂 <b>Hôm nay sinh nhật: ${sn.map(x=>esc(x.ho_ten)+" ("+esc(x.lop)+")").join(" · ")}</b> — chúc mừng em nhé!`:"";
   document.getElementById("ddSinhNhat").style.display=sn.length?"":"none";
-  const nhan=l=>{ const hs=all.filter(h=>h.lop===l), cc=hs.map(h=>chuyenCan(h));
+  const the=l=>{ const hs=all.filter(h=>h.lop===l), cc=hs.map(h=>chuyenCan(h));
     const da=cc.filter(c=>c.daHomNay).length, can=cc.filter(c=>c.canHomNay).length;
-    return `${l} — ${hs.length} em${can?" · cần điểm danh":da?" · đã điểm danh":""}`; };
-  const doSel=(id,ds,trong)=>{
-    const s=document.getElementById(id); if(!s) return;
-    s.innerHTML=`<option value="">${trong}</option>`+ds.map(l=>`<option value="${esc(l)}" ${l===DD_LOP?"selected":""}>${esc(nhan(l))}</option>`).join("");
-  };
-  if(!lopHomNay.length){ const s=document.getElementById("selLopHomNay"); if(s) s.innerHTML='<option value="">Hôm nay không có lớp theo lịch</option>'; }
-  else doSel("selLopHomNay",lopHomNay,"— chọn lớp —");
-  doSel("selLopTatCa",lopTatCa,"— chọn lớp —");
+    const lh=lopHomNay.includes(l), b=(S.lop||[]).find(x=>x.ten===l)||{gio:[]};
+    const gioHom=(b.gio||[]).filter(g=>g.thu===THU[thuCua(iso(new Date()))]).map(g=>g.ca);
+    const mc=mauLop(l);
+    return `<button class="lopthe${lh?" dang":""}" data-lop="${esc(l)}" style="--mc:${mc};--mcr:${hexRgba(mc,.08)}">
+      <span class="ten">${esc(l)}</span>
+      <span class="dem">${hs.length} em</span>
+      ${lh?`<span class="giay">hôm nay ${gioHom.join(", ")}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
+      ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
+    </button>`; };
+  const grid=document.getElementById("ddLopGrid");
+  if(grid) grid.innerHTML=lopTatCa.map(the).join("")||'<span class="hint">Chưa có lớp nào.</span>';
+  const dem=document.getElementById("ddDem"); if(dem) dem.textContent=`${lopTatCa.length} lớp · ${lopHomNay.length} lớp có buổi hôm nay`;
   el.innerHTML=DD_LOP? roiLop(DD_LOP) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để mở danh sách học viên.</p>';
 }
 function roiLop(lop){
