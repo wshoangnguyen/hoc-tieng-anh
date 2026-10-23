@@ -371,6 +371,12 @@ header{padding:6px 10px}
   <section id="tab-diemdanh" class="hide" data-trang="lop">
     <div class="card" id="ddSinhNhat" style="display:none"></div>
     <div class="card"><h3 style="margin-top:0">📚 Các lớp <span class="hint" id="ddDem"></span></h3>
+      <div class="row" style="margin:2px 0 0">
+        <span class="seg" id="segLop">
+          <button data-lopx="hom" class="on">Lớp hôm nay</button>
+          <button data-lopx="tatca">Tất cả các lớp</button>
+        </span>
+      </div>
       <div class="lopgrid" id="ddLopGrid"></div>
       <p class="hint" style="margin:8px 2px 0">Thẻ có viền đậm và ghi giờ là lớp <b>có buổi hôm nay</b>. Bấm một thẻ để mở danh sách học viên.</p></div>
     <div id="ddBody"></div>
@@ -1687,7 +1693,7 @@ function moLichSu(ma){
 }
 
 /* ---------- TAB ĐIỂM DANH ---------- */
-let DD_LOP=null;
+let DD_LOP=null, DD_LOC="hom";
 function veDiemDanh(){
   const el=document.getElementById("ddBody"); if(!el) return;
   tinhHet();
@@ -1708,9 +1714,11 @@ function veDiemDanh(){
       ${lh?`<span class="giay">hôm nay ${gioHom.join(", ")}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
       ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
     </button>`; };
+  const dsHien=(DD_LOC==="hom"?lopHomNay:lopTatCa);
   const grid=document.getElementById("ddLopGrid");
-  if(grid) grid.innerHTML=lopTatCa.map(the).join("")||'<span class="hint">Chưa có lớp nào.</span>';
-  const dem=document.getElementById("ddDem"); if(dem) dem.textContent=`${lopTatCa.length} lớp · ${lopHomNay.length} lớp có buổi hôm nay`;
+  if(grid) grid.innerHTML=dsHien.map(the).join("")||`<span class="hint">${DD_LOC==="hom"?"Hôm nay không có lớp nào theo lịch.":"Chưa có lớp nào."}</span>`;
+  const dem=document.getElementById("ddDem"); if(dem) dem.textContent=`${dsHien.length} lớp${DD_LOC==="hom"?" có buổi hôm nay":""} · tổng ${lopTatCa.length} lớp`;
+  document.querySelectorAll("#segLop button").forEach(b=>b.classList.toggle("on",b.dataset.lopx===DD_LOC));
   el.innerHTML=DD_LOP? roiLop(DD_LOP) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để mở danh sách học viên.</p>';
 }
 function roiLop(lop){
@@ -1738,6 +1746,8 @@ function roiLop(lop){
           <button class="ghost sm${cc.canHomNay?" can":""}" data-ddhn="${esc(h.ma_hv)}" title="Điểm danh 2 tuần">✅</button></div>
         ${stHom.length?`<div class="stk">${stHom.map(x=>`<span data-xoastk="${esc(h.ma_hv)}:${x.i}" title="Bấm để xoá sticker">${x.loai}</span>`).join("")}</div>`:""}</div>`; }).join("") || '<p class="hint">Lớp này chưa có học viên.</p>'}</div>`;
 }
+GAN("segLop","click",e=>{ const b=e.target.closest("[data-lopx]"); if(!b) return;
+  DD_LOC=b.dataset.lopx; veDiemDanh(); });
 GAN("tab-diemdanh","click",e=>{
   const b=e.target.closest("[data-lop]");
   if(b && !e.target.closest("#ddBody")){ DD_LOP=b.dataset.lop; veDiemDanh(); return; }
