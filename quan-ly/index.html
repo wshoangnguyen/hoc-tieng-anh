@@ -546,7 +546,10 @@ function ranhHieuLuc(gv,w){ const r=ranhTuanCua(gv,w); if(r) return r;
 function gvRanh(gv,thu,ca,w){
   if(!ca||ca==="?") return true;
   const r=ranhHieuLuc(gv,w); if(!r) return true;
-  const ds=r[thu]; if(!ds||!ds.length) return true; return ds.includes(ca); }
+  const ds=r[thu];
+  if(!ds) return true;            // ngày chưa khai báo → coi như rảnh
+  return ds.includes(ca);         // khai báo nhưng bỏ hết tick = nghỉ cả ngày
+}
 function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; return Object.keys(b); }
 
 
@@ -690,7 +693,7 @@ function veCanhBaoRanh(){
     const moi=ranhTuanCua(ten,w)||{};
     const bo=[]; THU.forEach(t=>{ (macDinh[t]||[]).forEach(ca=>{ if(!(moi[t]||[]).includes(ca)) bo.push(`${THU_DAI[t]} ${ca}`); }); });
     const anh=ds.filter(b=>b.gv===ten&&b.tt!=="huy"&&!gvRanh(ten,b.thu,b.ca,w));
-    return `• <b>${esc(ten)}</b>${bo.length?` báo bận: ${bo.map(esc).join(", ")}`:""}`+
+    return `• <b>${esc(ten)}</b>${bo.length?` báo nghỉ/bận: ${bo.map(esc).join(", ")}`:""}`+
       (anh.length?` → <b>${anh.length} buổi cần người dạy bù</b>: ${anh.map(a=>`${a.lop.ten} (${THU_DAI[a.thu]} ${a.ca})`).map(esc).join(" · ")}`
                  :` → không ảnh hưởng buổi nào`);
   }).join("<br>");
@@ -727,12 +730,12 @@ function veLuoi(){
         const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!gvRanh(b.gv,t,ca,w);
         const nhan=b.them?'<span class="nhan-bu">học bù</span>':"";
         return `<div class="b ${b.tt==='huy'?'huy':''} ${chuaGV?'chua-gv':''} ${khongRanh?'khong-ranh':''} ${b.them?'hoc-bu':''}" data-k="${esc(b.k)}"
-          title="${chuaGV?"Chưa sắp giáo viên":(loi?"TRÙNG GIỜ":(khongRanh?"Giáo viên báo BẬN ca này trong tuần — cần người dạy bù":""))}">
+          title="${chuaGV?"Chưa sắp giáo viên":(loi?"TRÙNG GIỜ":(khongRanh?"Giáo viên không có trong lịch rảnh CỦA TUẦN NÀY (mặc định vẫn đăng ký) — cần người dạy bù":""))}">
           ${theoGV?`<div class="gv-ten" style="color:${mauGV(b.gv)}">${b.gv?esc(b.gv)+((loi?" ⛔":(khongRanh?" ⚠":""))):"⛔ chưa có GV"}</div>
             <div class="cls-nho">${esc(b.lop.ten)}${nhan}</div>`
           :`<div class="cls">${esc(b.lop.ten)}${nhan}</div>
             <div class="gv" style="color:${mauGV(b.gv)}">${b.gv?esc(b.gv)+((loi?" ⛔":(khongRanh?" ⚠":""))):"⛔ chưa có giáo viên"}</div>`}
-          ${khongRanh?`<div class="badge">cần dạy bù</div>`:""}
+          ${khongRanh?`<div class="badge">GV báo nghỉ · cần dạy bù</div>`:""}
           ${b.ghi?`<small>${esc(b.ghi)}</small>`:""}</div>`; }).join("");
       const ngayO=cong(w.bat_dau,THU.indexOf(t));
       h+=`<div class="cell ${ngayO===homNay?"homnay":""}" data-thu="${t}" data-ca="${ca}" data-ngay="${ngayO}">${items}</div>`;
