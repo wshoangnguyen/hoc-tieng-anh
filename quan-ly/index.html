@@ -345,15 +345,6 @@ header{padding:6px 10px}
   </section>
 
   <section id="tab-gv" data-trang="lichday" class="hide">
-    <div class="card noprint">
-      <div class="row">
-        <button id="btnLamMoi" class="primary">🔄 Làm mới lịch giáo viên</button>
-        <button id="btnInGV" class="ghost">🖨 In</button>
-        <span class="hint">Tất cả giáo viên hiện cùng lúc để so sánh. Tổng số giờ dạy trong tuần nằm ở <b>góc trên bên trái</b> mỗi bảng.</span>
-      </div>
-      <div id="gvSoSanh" class="cmp" style="margin-top:8px"></div>
-      <p class="hint" id="gvInfo"></p>
-    </div>
     <div id="gvBody"></div>
   </section>
 
@@ -753,10 +744,6 @@ function veLuoi(){
 function veGV(){
   const w=tuan(), all=buoiTuanNay(), HN=iso(new Date());
   const ok=b=>b.tt!=="huy";
-  document.getElementById("gvInfo").textContent=`Tuần ${ngayVN(w.bat_dau)} – ${ngayVN(cong(w.bat_dau,6))} · ${all.filter(ok).length} buổi trong tuần`;
-  document.getElementById("gvSoSanh").innerHTML=dsGV().map(g=>{
-    const n=all.filter(b=>b.gv===g.ten&&ok(b)).length;
-    return `<span class="chip" style="border-color:${mauGV(g.ten)}">${esc(g.ten)}: <b>&nbsp;${n} giờ/tuần</b></span>`; }).join("");
   const cas=cacCa().length?cacCa():S.ca;
   document.getElementById("gvBody").innerHTML=dsGV().map(g=>{
     const ds=all.filter(b=>b.gv===g.ten), tuanNay=ds.filter(ok);
@@ -1673,7 +1660,7 @@ document.getElementById("fileNhap").onchange=e=>{
   r.readAsText(f); e.target.value="";
 };
 document.getElementById("btnIn").onclick=()=>window.print();
-document.getElementById("btnInGV").onclick=()=>window.print();
+const _btnInGV=document.getElementById("btnInGV"); if(_btnInGV) _btnInGV.onclick=()=>window.print();
 async function copyLich(ten){
   const t=textLichGV(ten);
   try{ await navigator.clipboard.writeText(t); alert(`Đã copy lịch của ${ten} — dán vào Zalo là gửi được.`); }
@@ -1684,7 +1671,8 @@ function csvLich(ten){
   taiCsv(`lich-${ten.replace(/\s+/g,"-")}.csv`,[["Ngày","Thứ","Ca","Lớp","Ghi chú","Trạng thái"],
     ...ds.map(b=>[ngayVN(b.ngay),THU_DAI[b.thu],b.ca,b.lop.ten,b.ghi,b.tt])]);
 }
-document.getElementById("btnLamMoi").onclick=()=>{
+const _btnLamMoi=document.getElementById("btnLamMoi");
+if(_btnLamMoi) _btnLamMoi.onclick=()=>{
   const giu=tuanDangXem; load();
   tuanDangXem=Math.min(giu,S.tuan.length-1); S.tuan_hien_tai=tuanDangXem;
   render(); alert("Đã cập nhật lại lịch giáo viên.");
