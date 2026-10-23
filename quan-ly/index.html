@@ -167,8 +167,54 @@ button.can{border-color:var(--del);color:var(--del);font-weight:700}
 .dn-card button{margin-top:6px;padding:10px}
 .dn-mo{font-size:12.5px;color:var(--dim);margin:0;line-height:1.4}
 .dn-loi{color:var(--del);font-size:13px;margin:4px 0 0;display:none}
-#dn-chip{display:inline-flex;gap:8px;align-items:center;margin-left:auto;font-size:12.5px;color:var(--dim)}
+#dn-chip{display:inline-flex;gap:6px;align-items:center;margin-left:auto;font-size:12px;color:var(--dim);white-space:nowrap;flex:0 0 auto}
 #dn-chip button{padding:4px 10px;font-size:12px}
+
+/* ===== đầu trang gọn (bản 23/10) ===== */
+header{padding:6px 10px}
+#thanhChinh{flex-wrap:nowrap}
+.brand{display:inline-flex;align-items:baseline;gap:5px;font-size:13px;font-weight:700;white-space:nowrap;color:var(--ink);margin-right:2px}
+.brand .sub{font-weight:500;font-size:11px;color:var(--dim)}
+.trangs{margin:0;gap:6px;flex-wrap:nowrap}
+.trangs button{padding:6px 11px;white-space:nowrap;flex:0 0 auto}
+.tabs{margin:0;gap:5px;flex-wrap:nowrap}
+.tabs button{padding:6px 10px;font-size:13.5px;white-space:nowrap;flex:0 0 auto}
+#congCu{flex-wrap:nowrap}
+#thanhChinh{overflow-x:auto;scrollbar-width:none}
+#thanhChinh::-webkit-scrollbar{display:none}
+#thanhTuan{margin-top:4px;padding-top:4px;border-top:1px dashed var(--line);flex-wrap:nowrap}
+#thanhTuan[hidden]{display:none!important}
+#congCu .ghost{padding:4px 8px}
+#selVai{font-size:12.5px;padding:4px 6px;max-width:150px}
+.banner-vai{position:sticky;top:0;z-index:6;background:#fff3cd;border-bottom:1px solid #e5c97a;padding:5px 10px;font-size:12.5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* nút thông báo ở góc trái dưới */
+.tb-wrap{position:fixed;left:12px;bottom:12px;z-index:40;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.tb-nut{width:48px;height:48px;border-radius:50%;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.22);font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:2px;background:var(--ok);color:#fff;padding:0}
+.tb-nut.co-viec{background:var(--del)}
+.tb-nut .so{font-size:12px;font-weight:800}
+.tb-panel{width:min(400px,calc(100vw - 24px));max-height:min(62vh,540px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 10px 30px rgba(80,60,20,.25)}
+.tb-panel .tomtat{grid-template-columns:1fr;gap:6px;margin:6px 0 0}
+.tb-panel .tt{padding:7px 9px}
+.tb-panel .tt h3{font-size:12.5px;margin-bottom:4px}
+.b.hoc-bu{border-left-style:dashed;border-left-width:5px;background:#eef7f0}
+.b .nhan-bu{display:inline-block;white-space:nowrap;background:#2f8f5f;color:#fff;border-radius:5px;padding:0 4px;font-size:10px;font-weight:700;margin-left:4px}
+.vai-giao_vien #hangThemGV,.vai-giao_vien #cardCa,.vai-giao_vien #cardDuLieu,.vai-giao_vien [data-xoa]{display:none!important}
+.vai-giao_vien [data-ten]{pointer-events:none;background:#f4f0e6}
+@media(max-width:960px){.brand .sub{display:none}}
+@media(max-width:760px){
+  #thanhChinh{flex-wrap:wrap;gap:4px;overflow:visible}
+  .brand{font-size:12px;margin-right:0}
+  .brand b{display:none}
+  #dn-chip{display:none!important}
+  #selVai{display:none!important}
+  .trangs{overflow-x:auto;flex-wrap:nowrap;max-width:100%;gap:4px}
+  .trangs button{padding:5px 9px;font-size:13px}
+  .trangs button,.tabs button{white-space:nowrap}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;width:100%;order:5;padding-bottom:2px;gap:4px}
+  #thanhTuan{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap}
+  #tuanBar{flex-wrap:nowrap}
+}
+@media print{.tb-wrap,.banner-vai{display:none!important}}
 </style>
 </head>
 <body>
@@ -185,36 +231,33 @@ button.can{border-color:var(--del);color:var(--del);font-weight:700}
 </div>
 
 <header>
-  <div class="hrow">
-    <h1>🐴 Quản lý lớp học <span class="hint" style="font-weight:400;margin:0">— Học tiếng Anh dễ lắm</span></h1>
-    <span style="flex:1"></span>
-    <button id="btnXuat" class="ghost">⬇ Xuất JSON</button>
-    <button id="btnNhap" class="ghost">⬆ Nhập JSON</button>
-    <button id="btnIn" class="ghost">🖨 In</button>
-  </div>
-  <nav class="trangs" id="navTrang"></nav>
-  <div class="row" id="thanhTuan">
+  <div class="hrow" id="thanhChinh">
+    <span class="brand" title="Học tiếng Anh dễ lắm">🐴 <b>Quản lý lớp</b> <span class="sub">Học tiếng Anh dễ lắm</span></span>
+    <nav class="trangs" id="navTrang"></nav>
     <div class="tabs" id="tabCon"></div>
     <span style="flex:1"></span>
-    <span class="row" id="tuanBar" style="gap:8px;margin:0">
+    <span class="row" id="congCu" style="gap:6px;margin:0">
+      <select id="selVai" title="Xem giao diện với tư cách người khác" style="display:none"></select>
+      <button id="btnXuat" class="ghost sm" title="Xuất toàn bộ dữ liệu ra tệp JSON">⬇</button>
+      <button id="btnNhap" class="ghost sm" title="Nhập dữ liệu từ tệp JSON">⬆</button>
+      <button id="btnIn" class="ghost sm" title="In trang đang xem">🖨</button>
+    </span>
+  </div>
+  <div class="hrow" id="thanhTuan">
+    <span class="hint" id="tuanInfo" style="margin:0"></span>
+    <span style="flex:1"></span>
+    <span class="row" id="tuanBar" style="gap:6px;margin:0">
       <label class="hint" style="margin:0">Tuần:</label>
       <select id="selTuan" title="Chọn tuần — đổi tuần được từ bất cứ tab nào"></select>
+      <button id="btnThemBu" class="ghost sm" title="Thêm một buổi học bù — chỉ có trong tuần này">➕ Học bù</button>
       <button id="btnTuanMoi" class="ghost sm" title="Tạo tuần kế tiếp bằng cách nhân bản tuần đang xem">＋ Tuần kế</button>
       <button id="btnXoaTuan" class="ghost sm" style="border-color:var(--del);color:var(--del)" title="Xoá tuần đang xem">🗑 Xoá tuần</button>
     </span>
   </div>
 </header>
+<div id="bannerVai" class="banner-vai" hidden></div>
 <main>
   <section id="tab-tuan" data-trang="lichday">
-    <div id="canhBaoRanh"></div>
-    <div class="tomtat">
-      <div class="tt du"><h3>✅ Đã đủ giáo viên: <span id="demDu">0</span> lớp</h3><div id="dsDu"></div></div>
-      <div class="tt thieu"><h3>⚠️ Còn cần sắp giáo viên: <span id="demThieu">0</span> lớp</h3><div id="dsThieu"></div></div>
-    </div>
-    <div class="card noprint" style="padding:8px 12px;margin-bottom:10px">
-      <div class="row"><span class="hint" id="tuanInfo"></span><span style="flex:1"></span>
-      <span class="hint">Ô lịch tự lấy từ <b>Danh sách lớp</b> — bấm vào một buổi chỉ để <b>đổi giáo viên / ghi chú / huỷ</b>. Thêm-xoá lớp làm ở tab Danh sách lớp.</span></div>
-    </div>
     <div class="chi-mobile">← kéo ngang để xem hết tuần →</div>
     <div class="cuon"><div class="grid" id="grid"></div></div>
   </section>
@@ -314,20 +357,20 @@ button.can{border-color:var(--del);color:var(--del);font-weight:700}
   <section id="tab-dangky" class="hide" data-trang="lichday">
 <div class="card">
       <h3 style="margin-top:0">👩‍🏫 Giáo viên — lịch rảnh theo tuần</h3>
-      <p class="hint" style="margin-top:0">Ô tick = giờ giáo viên đó <b>rảnh</b>. <b>Đơn giá/giờ giáo viên tự điền</b> (khi có phân quyền) — hiện sửa ở tab <b>Giờ dạy &amp; lương</b>.
+      <p class="hint" style="margin-top:0">Ô tick = giờ giáo viên đó <b>rảnh</b>. Đơn giá/giờ do quản trị đặt trong tab <b>Giờ dạy &amp; lương</b>.
       <div class="row" style="margin-bottom:6px">
         <label class="hint">Lịch rảnh áp dụng cho:</label><select id="selPhamVi"></select>
         <button id="btnXoaRanhTuan" class="ghost sm">↺ Trả tuần này về mặc định</button>
       </div>
       <p class="hint" id="phamViInfo"></p>
       <div id="dsGV"></div>
-      <div class="row" style="margin-top:10px"><input id="gvMoi" placeholder="Tên giáo viên mới">
+      <div class="row" id="hangThemGV" style="margin-top:10px"><input id="gvMoi" placeholder="Tên giáo viên mới">
         <button id="btnThemGV" class="ghost">＋ Thêm</button></div>
       <p class="hint">Ô tick = giờ giáo viên đó <b>rảnh</b>. Xếp lớp vào giờ không tick sẽ bị cảnh báo.</p>
     </div>
-    <div class="card"><h3 style="margin-top:0">Các ca trong ngày</h3>
+    <div class="card" id="cardCa"><h3 style="margin-top:0">Các ca trong ngày</h3>
       <div id="dsCa"></div><button id="btnLuuCa" class="ghost">Lưu ca</button></div>
-    <div class="card"><h3 style="margin-top:0">Dữ liệu</h3><p class="hint" id="nguonInfo"></p>
+    <div class="card" id="cardDuLieu"><h3 style="margin-top:0">Dữ liệu</h3><p class="hint" id="nguonInfo"></p>
       <button id="btnXoaHet" class="ghost" style="border-color:var(--del);color:var(--del)">Xoá toàn bộ dữ liệu trên máy này</button></div>
   </section>
 
@@ -357,6 +400,21 @@ A2c&#9;2&#9;T2 20:00; T4 20:00&#9;&#9;cần tìm giáo viên"></textarea>
   </section>
 
   
+
+<div class="tb-wrap noprint">
+  <div class="tb-panel" id="tbPanel" hidden>
+    <div class="row" style="justify-content:space-between">
+      <b style="font-size:13px">Thông báo tuần này</b>
+      <button class="ghost sm" id="tbDong" title="Thu gọn">✕</button>
+    </div>
+    <div id="canhBaoRanh"></div>
+    <div class="tomtat">
+      <div class="tt du"><h3>✅ Đã đủ giáo viên: <span id="demDu">0</span> lớp</h3><div id="dsDu"></div></div>
+      <div class="tt thieu"><h3>⚠️ Còn cần sắp giáo viên: <span id="demThieu">0</span> lớp</h3><div id="dsThieu"></div></div>
+    </div>
+  </div>
+  <button class="tb-nut" id="tbNut" title="Thông báo của tuần">⚠<span class="so" id="tbSo"></span></button>
+</div>
 </main>
 <input type="file" id="fileNhap" accept=".json" class="hide">
 <input type="file" id="fileAnh" accept="image/*" class="hide">
@@ -428,6 +486,7 @@ function load(){
   if(!S.giao_vien) S.giao_vien=[];
   if(!S.ca||!S.ca.length) S.ca=["18:00","19:00","20:00"];
   if(!S.buoi) S.buoi={};
+  if(!S.buoi_them||typeof S.buoi_them!=="object") S.buoi_them={};
   if(!S.ranh_tuan) S.ranh_tuan={};
   if(!Array.isArray(S.hoc_vien)||!S.hoc_vien.length) S.hoc_vien=JSON.parse(JSON.stringify(HS_DATA||[]));
   if(!S.diem||typeof S.diem!=="object") S.diem={};
@@ -460,6 +519,12 @@ function buoiTuan(w){
     out.push({k, lop:l, thu:g.thu, ca:g.ca, ngay:cong(w.bat_dau, THU.indexOf(g.thu)),
       gv:(ov.gv!=null&&ov.gv!=="")?ov.gv:(l.gv||""), ghi:ov.ghi||"", tt:ov.tt||"binh_thuong"});
   }));
+  /* buổi học bù: chỉ thuộc đúng tuần đã thêm */
+  ((S.buoi_them||{})[w.bat_dau]||[]).forEach(x=>{
+    const l=(S.lop||[]).find(z=>z.id===x.lopId)||(S.lop||[]).find(z=>z.ten===x.lopTen)||{id:"",ten:x.lopTen||"Học bù",gio:[]};
+    out.push({k:"bu|"+x.id, lop:l, thu:x.thu, ca:x.ca, ngay:cong(w.bat_dau,THU.indexOf(x.thu)),
+      gv:x.gv||"", ghi:x.ghi||"", tt:x.tt||"binh_thuong", them:true, buId:x.id});
+  });
   return out;
 }
 const buoiTuanNay=()=>buoiTuan(tuan());
@@ -476,6 +541,112 @@ function gvRanh(gv,thu,ca,w){
   const r=ranhHieuLuc(gv,w); if(!r) return true;
   const ds=r[thu]; if(!ds||!ds.length) return true; return ds.includes(ca); }
 function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; return Object.keys(b); }
+
+
+/* ================= QUYỀN XEM ================= */
+let VAI="quan_ly", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={};
+const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
+  kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh"};
+const TEN_TRANG={lichday:"📅 Lịch dạy",lop:"🧑‍🎓 Lớp & học viên"};
+function vaiHienTai(){ return XEM_NHU?XEM_NHU.vai:VAI; }
+function tenHienTai(){ return XEM_NHU?XEM_NHU.ten:TEN_GV; }
+function quyenTab(){
+  const v=vaiHienTai();
+  if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh"]};
+  if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","dangky"], lop:["kho","hocvien","diemso","diemdanh"]};
+  return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh"]};
+}
+function dungQuyen(){
+  const q=quyenTab();
+  TRANG_HIEN=Object.keys(q).filter(k=>(q[k]||[]).length).map(k=>[k,TEN_TRANG[k]]);
+  TABCON_HIEN={}; Object.keys(q).forEach(k=>{ TABCON_HIEN[k]=(q[k]||[]).map(t=>[t,TEN_TAB[t]]); });
+  if(!TRANG_HIEN.some(([k])=>k===trangDangXem)) trangDangXem=(TRANG_HIEN[0]||["lichday"])[0];
+  if(!((TABCON_HIEN[trangDangXem]||[]).some(([k])=>k===tabDangXem))) tabDangXem=((TABCON_HIEN[trangDangXem]||[["tuan"]])[0][0]);
+  const laAdmin=(vaiHienTai()==="quan_ly");
+  ["btnXuat","btnNhap"].forEach(id=>{ const b=document.getElementById(id); if(b) b.style.display=laAdmin?"":"none"; });
+  const bBu=document.getElementById("btnThemBu"); if(bBu) bBu.style.display=(vaiHienTai()==="giao_vien")?"none":"";
+  const tb=document.querySelector(".tb-wrap"); if(tb) tb.style.display=((q.lichday||[]).includes("tuan"))?"":"none";
+  document.body.classList.toggle("vai-giao_vien", vaiHienTai()==="giao_vien");
+  const bv=document.getElementById("bannerVai");
+  if(bv){
+    if(XEM_NHU){ bv.hidden=false;
+      bv.innerHTML=`👁 Đang xem với tư cách <b>${esc(XEM_NHU.nhan)}</b> — quyền hiển thị đúng như người này thấy. <button class="ghost sm" id="bannerThoat">Thoát chế độ xem</button>`;
+      bv.querySelector("#bannerThoat").onclick=()=>{ XEM_NHU=null; dungQuyen(); veNav(); apDungTab(); render(); dungSelVai(); };
+    } else bv.hidden=true;
+  }
+}
+function dungSelVai(){
+  const sel=document.getElementById("selVai"); if(!sel) return;
+  if(VAI!=="quan_ly"){ sel.style.display="none"; return; }
+  sel.style.display="";
+  sel.innerHTML=`<option value="">👁 Xem như…</option><option value="quan_ly_giao_vien">Quản lý giáo viên</option>`+
+    S.giao_vien.map(g=>`<option value="gv|${esc(g.ten)}">Giáo viên: ${esc(g.ten)}</option>`).join("");
+  sel.value=XEM_NHU?(XEM_NHU.vai==="giao_vien"?"gv|"+XEM_NHU.ten:"quan_ly_giao_vien"):"";
+  sel.onchange=()=>{
+    const v=sel.value;
+    if(!v) XEM_NHU=null;
+    else if(v==="quan_ly_giao_vien") XEM_NHU={vai:"quan_ly_giao_vien",ten:"",nhan:"Quản lý giáo viên"};
+    else XEM_NHU={vai:"giao_vien",ten:v.slice(3),nhan:"Giáo viên "+v.slice(3)};
+    dungQuyen(); veNav(); apDungTab(); render(); dungSelVai();
+  };
+}
+function dsGV(){ return (vaiHienTai()==="giao_vien")?S.giao_vien.filter(g=>g.ten===tenHienTai()):S.giao_vien; }
+function capNhatNutThongBao(){
+  const nut=document.getElementById("tbNut"), so=document.getElementById("tbSo"); if(!nut||!so) return;
+  const thieu=+((document.getElementById("demThieu")||{}).textContent||0);
+  const ban=buoiBiAnhHuong().length;
+  const tong=thieu+ban;
+  nut.classList.toggle("co-viec", tong>0);
+  so.textContent=tong>0?(" "+tong):" ✓";
+  nut.title=tong>0?`${thieu} lớp cần sắp giáo viên · ${ban} buổi giáo viên báo bận`:"Không có việc gì cần xử lý";
+}
+function buoiBiAnhHuong(){
+  const w=tuan();
+  return buoiTuanNay().filter(b=>b.gv&&b.tt!=="huy"&&!gvRanh(b.gv,b.thu,b.ca,w));
+}
+/* ================= BUỔI HỌC BÙ (chỉ tuần này) ================= */
+function moThemHocBu(){
+  const w=tuan(), ca=cacCaFull().length?cacCaFull():S.ca;
+  const dsNgay=THU.map((t,i)=>({thu:t,ngay:cong(w.bat_dau,i)}));
+  if(!(S.lop||[]).length) return alert("Chưa có lớp nào trong danh sách lớp.");
+  const html=`<div class="modal" onclick="event.stopPropagation()">
+    <h3>➕ Thêm buổi học bù</h3>
+    <p class="hint">Chỉ có trong tuần <b>${ngayVN(w.bat_dau)} – ${ngayVN(cong(w.bat_dau,6))}</b>. Sang tuần khác buổi này không còn, cũng không tính vào tuần trước.</p>
+    <div class="field"><label>Lớp</label><select id="buLop">${S.lop.map(l=>`<option value="${esc(l.id)}">${esc(l.ten)}</option>`).join("")}</select></div>
+    <div class="field"><label>Ngày</label><select id="buNgay">${dsNgay.map((x,i)=>`<option value="${i}">${THU_DAI[x.thu]} ${ngayVN(x.ngay)}</option>`).join("")}</select></div>
+    <div class="field"><label>Giờ</label><input id="buCa" list="buCaDs" value="${esc(ca[0]||"18:00")}" placeholder="18:00"><datalist id="buCaDs">${ca.map(c=>`<option value="${esc(c)}">`).join("")}</datalist></div>
+    <div class="field"><label>Giáo viên</label><select id="buGV"><option value="">— chưa sắp —</option>${S.giao_vien.map(g=>`<option>${esc(g.ten)}</option>`).join("")}</select></div>
+    <div class="field"><label>Ghi chú</label><input id="buGhi" placeholder="học bù cho em…"></div>
+    <div id="buCanh"></div>
+    <div class="row" style="margin-top:12px"><button class="primary" id="buOk">Thêm vào tuần này</button><span style="flex:1"></span><button class="ghost" id="buHuy">Đóng</button></div></div>`;
+  const bd=document.createElement("div"); bd.className="backdrop"; bd.innerHTML=html;
+  bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
+  const $=q=>bd.querySelector(q);
+  $("#buHuy").onclick=()=>bd.remove();
+  function ktra(){
+    const i=+$("#buNgay").value, t=THU[i], gv=$("#buGV").value, c=$("#buCa").value.trim();
+    const ds=buoiTuanNay(), canh=[];
+    if(gv&&trungGV(ds,t,c,gv,"")) canh.push(`<div class="errbox">⛔ <b>${esc(gv)}</b> đã dạy lớp khác lúc ${esc(c)} ${THU_DAI[t]}.</div>`);
+    if(gv&&c&&!gvRanh(gv,t,c,w)) canh.push(`<div class="warnbox">⚠️ <b>${esc(gv)}</b> đang báo bận ${esc(c)} ${THU_DAI[t]} — vẫn thêm được nhưng nhớ đổi người.</div>`);
+    $("#buCanh").innerHTML=canh.join("");
+  }
+  ["#buNgay","#buGV","#buCa"].forEach(s=>{ $(s).oninput=ktra; $(s).onchange=ktra; });
+  $("#buOk").onclick=()=>{
+    const i=+$("#buNgay").value, c=$("#buCa").value.trim();
+    if(!c) return alert("Chưa có giờ học.");
+    S.buoi_them=S.buoi_them||{}; S.buoi_them[w.bat_dau]=S.buoi_them[w.bat_dau]||[];
+    S.buoi_them[w.bat_dau].push({id:uid("bu"),lopId:$("#buLop").value,thu:THU[i],ca:c,
+      gv:$("#buGV").value,ghi:$("#buGhi").value.trim(),tt:"binh_thuong"});
+    save(); bd.remove(); render(); alert("Đã thêm buổi học bù — chỉ trong tuần này.");
+  };
+}
+/* ================= NÚT THÔNG BÁO ================= */
+(function(){
+  const nut=document.getElementById("tbNut"), panel=document.getElementById("tbPanel");
+  if(nut&&panel) nut.onclick=()=>{ panel.hidden=!panel.hidden; };
+  const d=document.getElementById("tbDong"); if(d) d.onclick=()=>{ if(panel) panel.hidden=true; };
+  const b=document.getElementById("btnThemBu"); if(b) b.onclick=moThemHocBu;
+})();
 
 /* ================= VẼ ================= */
 function veCanhBaoRanh(){
@@ -504,6 +675,7 @@ function veTomTat(){
   document.getElementById("demThieu").textContent=thieu.length;
   document.getElementById("dsDu").innerHTML=du.length?du.sort().map(x=>`<span class="chip">${esc(x)}</span>`).join(""):`<span class="hint">chưa có lớp nào</span>`;
   document.getElementById("dsThieu").innerHTML=thieu.length?thieu.sort().map(x=>`<span class="chip mo">${esc(x)}</span>`).join(""):`<span class="hint">tất cả lớp đã có giáo viên 🎉</span>`;
+  capNhatNutThongBao();
 }
 function veLuoi(){
   const w=tuan(), ds=buoiTuanNay();
@@ -516,10 +688,10 @@ function veLuoi(){
     for(const t of THU){
       const o=ds.filter(b=>b.thu===t&&b.ca===ca).sort((a,b)=>soSanhLop(a.lop.ten,b.lop.ten)||gioSapXep(a.ca)-gioSapXep(b.ca));
       const items=o.map(b=>{ const chuaGV=!b.gv;
-        const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!gvRanh(b.gv,t,ca);
-        return `<div class="b ${b.tt==='huy'?'huy':''} ${chuaGV?'chua-gv':''} ${khongRanh?'khong-ranh':''}" data-k="${esc(b.k)}"
+        const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!gvRanh(b.gv,t,ca,w);
+        return `<div class="b ${b.tt==='huy'?'huy':''} ${chuaGV?'chua-gv':''} ${khongRanh?'khong-ranh':''} ${b.them?'hoc-bu':''}" data-k="${esc(b.k)}"
           title="${chuaGV?"Chưa sắp giáo viên":(loi?"TRÙNG GIỜ":(khongRanh?"Giáo viên báo BẬN ca này trong tuần — cần người dạy bù":""))}">
-          <div class="cls">${esc(b.lop.ten)}</div>
+          <div class="cls">${esc(b.lop.ten)}${b.them?'<span class="nhan-bu">học bù</span>':''}</div>
           <div class="gv" style="color:${mauGV(b.gv)}">${b.gv?esc(b.gv)+((loi?" ⛔":(khongRanh?" ⚠":""))):"⛔ chưa có giáo viên"}</div>
           ${khongRanh?`<div class="badge">cần dạy bù</div>`:""}
           ${b.ghi?`<small>${esc(b.ghi)}</small>`:""}</div>`; }).join("");
@@ -534,11 +706,11 @@ function veGV(){
   const w=tuan(), all=buoiTuanNay(), HN=iso(new Date());
   const ok=b=>b.tt!=="huy";
   document.getElementById("gvInfo").textContent=`Tuần ${ngayVN(w.bat_dau)} – ${ngayVN(cong(w.bat_dau,6))} · ${all.filter(ok).length} buổi trong tuần`;
-  document.getElementById("gvSoSanh").innerHTML=S.giao_vien.map(g=>{
+  document.getElementById("gvSoSanh").innerHTML=dsGV().map(g=>{
     const n=all.filter(b=>b.gv===g.ten&&ok(b)).length;
     return `<span class="chip" style="border-color:${mauGV(g.ten)}">${esc(g.ten)}: <b>&nbsp;${n} giờ/tuần</b></span>`; }).join("");
   const cas=cacCa().length?cacCa():S.ca;
-  document.getElementById("gvBody").innerHTML=S.giao_vien.map(g=>{
+  document.getElementById("gvBody").innerHTML=dsGV().map(g=>{
     const ds=all.filter(b=>b.gv===g.ten), tuanNay=ds.filter(ok);
     let h=`<div class="card gvcard"><div class="hd">
       <h3 style="margin:0;color:${mauGV(g.ten)}">${esc(g.ten)}</h3>
@@ -605,7 +777,8 @@ function veLuong(){
   if(!thangDangXem||!thangs.includes(thangDangXem)) thangDangXem=thangs.includes(thangNay)?thangNay:thangs[thangs.length-1];
   document.getElementById("selThang").innerHTML=thangs.map(m=>{ const [y,mm]=m.split("-");
     return `<option value="${m}" ${m===thangDangXem?"selected":""}>Tháng ${mm}/${y}</option>`; }).join("");
-  const rows=tinhLuongThang(thangDangXem);
+  let rows=tinhLuongThang(thangDangXem);
+  if(vaiHienTai()==="giao_vien") rows=rows.filter(r=>r.ten===tenHienTai());
   const tb=rows.reduce((s,r)=>s+r.buoi,0), tt=rows.reduce((s,r)=>s+r.tien,0);
   let h=`<div class="card"><h3 style="margin-top:0">Bảng lương chi tiết — Tháng ${thangDangXem.split("-")[1]}/${thangDangXem.split("-")[0]}</h3>
     <div class="cuon"><table><thead><tr><th>Giáo viên</th><th>Tuần</th><th class="num">Buổi</th><th class="num">Giờ</th>
@@ -613,12 +786,12 @@ function veLuong(){
   rows.forEach((r,i)=>{
     const n=r.tuanRows.length;
     if(!n){ h+=`<tr><td>${esc(r.ten)}</td><td class="hint">không có buổi nào trong tháng</td><td class="num">0</td><td class="num">0</td>
-      <td class="num"><input class="mini" data-i="${i}" type="number" min="0" step="1000" value="${r.gia||0}"></td><td class="num">—</td></tr>`; return; }
+      <td class="num"><input class="mini" data-i="${i}" ${vaiHienTai()==="giao_vien"?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td><td class="num">—</td></tr>`; return; }
     r.tuanRows.forEach((t,j)=>{
       h+=`<tr>${j===0?`<td rowspan="${n}">${esc(r.ten)}</td>`:""}
         <td>${ngayVNngan(t.bat_dau)} – ${ngayVNngan(t.het)}</td><td class="num">${t.nb}</td>
         ${j===0?`<td class="num" rowspan="${n}">${r.gio}</td><td class="num" rowspan="${n}">
-          <input class="mini" data-i="${i}" type="number" min="0" step="1000" value="${r.gia||0}"></td>`:""}
+          <input class="mini" data-i="${i}" ${vaiHienTai()==="giao_vien"?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td>`:""}
         <td class="num">${t.nb*(r.gia||0)?fmtTien(t.nb*r.gia):(j===0?(r.tien?fmtTien(r.tien):"—"):"—")}</td></tr>`;
     });
     if(n>1) h+=`<tr class="total"><td colspan="2">Cộng ${esc(r.ten)}</td><td class="num">${r.buoi}</td><td class="num">${r.gio}</td>
@@ -761,9 +934,10 @@ function veCauHinh(){
     ? `Đang sửa lịch rảnh <b>riêng cho tuần ${ngayVN(w.bat_dau)} – ${ngayVN(cong(w.bat_dau,6))}</b>. Bỏ tick ở đây sẽ hiện <b>cảnh báo ở trang Lịch tuần</b> và buổi của giáo viên đó bị tô vàng.`
     : `Đang sửa lịch rảnh <b>mặc định cho mọi tuần</b> (mọi tuần đều dùng bảng này, trừ tuần đã sửa riêng).`;
   document.getElementById("dsGV").innerHTML=S.giao_vien.map((g,i)=>{
+    if(vaiHienTai()==="giao_vien"&&g.ten!==tenHienTai()) return "";
     const coTuan=!!ranhTuanCua(g.ten,w);
     const r = phamVi==="tuan" ? (ranhTuanCua(g.ten,w)||ranhHieuLuc(g.ten,w)||ranhDayDu(cas)) : (g.ranh||ranhDayDu(cas));
-    return `<div class="field" style="margin-bottom:2px"><label>${i+1}</label>
+    return `<div class="field" style="margin-bottom:2px"><label>${vaiHienTai()==="giao_vien"?"GV":i+1}</label>
       <input value="${esc(g.ten)}" data-ten="${i}">
       ${coTuan?`<span class="chip" style="border-color:var(--warn);color:#fde68a">tuần này đã sửa riêng</span>`:""}
       <button class="ghost sm" data-xoa="${i}">Xoá</button></div>
@@ -1339,16 +1513,27 @@ function render(){
     return `<option value="${i}" ${i===tuanDangXem?"selected":""}>Tuần ${d}/${m}/${y}</option>`; }).join("");
   const ds=buoiTuanNay();
   document.getElementById("tuanInfo").textContent=`Tuần ${ngayVN(w.bat_dau)} – ${ngayVN(cong(w.bat_dau,6))} · ${ds.filter(b=>b.tt!=="huy").length} buổi`;
-  veCanhBaoRanh(); veTomTat(); veLuoi(); veGV(); veLuong(); veKho(); veCauHinh(); veHocVien(); veCongNo(); veDangKy(); veDiemSo(); veDiemDanh();
+  const q=quyenTab(), co=(p,t)=>(q[p]||[]).includes(t);
+  const xoa=id=>{ const e=document.getElementById(id); if(e) e.innerHTML=""; };
+  if(co("lichday","tuan")){ veCanhBaoRanh(); veTomTat(); veLuoi(); } else xoa("grid");
+  if(co("lichday","gv")) veGV(); else xoa("gvBody");
+  if(co("lichday","luong")) veLuong(); else xoa("luongBody");
+  if(co("lop","kho")) veKho(); else xoa("khoBody");
+  if(co("lop","hocvien")) veHocVien(); else{ xoa("hvBody"); xoa("hvTong"); xoa("hvCanXn"); }
+  if(co("lop","congno")) veCongNo(); else xoa("cnBody");
+  if(co("lichday","dangky")) veCauHinh(); else xoa("dsGV");
+  if(co("lop","diemso")) veDiemSo(); else xoa("dsBody");
+  if(co("lop","diemdanh")) veDiemDanh(); else xoa("ddBody");
+  veDangKy(); capNhatNutThongBao();
 }
 
 /* ---------- modal: chỉ sửa giáo viên / ghi chú / huỷ ---------- */
 function moSua(k){
   const b=buoiTuanNay().find(x=>x.k===k); if(!b) return;
-  const l=b.lop, ngay=b.ngay;
+  const l=b.lop, ngay=b.ngay, w=tuan();
   const html=`<div class="modal" onclick="event.stopPropagation()">
-    <h3>${esc(l.ten)} — ${THU_DAI[b.thu]} ${ngayVN(ngay)} · ${esc(b.ca)}</h3>
-    <p class="hint">Lớp và giờ học sửa ở <b>Danh sách lớp</b>. Ở đây chỉ đổi giáo viên dạy buổi này và ghi chú.</p>
+    <h3>${esc(l.ten)} — ${THU_DAI[b.thu]} ${ngayVN(ngay)} · ${esc(b.ca)}${b.them?' <span class="nhan-bu">học bù</span>':""}</h3>
+    <p class="hint">${b.them?"Buổi <b>học bù</b> — chỉ có trong tuần này.":"Lớp và giờ học sửa ở <b>Danh sách lớp</b>. Ở đây chỉ đổi giáo viên dạy buổi này và ghi chú."}</p>
     <div class="field"><label>Giáo viên</label><select id="mGV">
       <option value="">— chưa sắp —</option>${S.giao_vien.map(g=>`<option ${b.gv===g.ten?"selected":""}>${esc(g.ten)}</option>`).join("")}</select></div>
     <div class="field"><label>Buổi này</label><select id="mTT">
@@ -1358,24 +1543,34 @@ function moSua(k){
     <div class="field"><label>Ghi chú</label><input id="mGhi" value="${esc(b.ghi)}" placeholder="đổi giờ, học sinh vắng…"></div>
     <div id="mCanh"></div>
     <div class="row" style="margin-top:12px"><button class="primary" id="mOk">Lưu</button>
-      <button class="ghost" id="mDatLai">Đặt lại theo kho lớp</button><span style="flex:1"></span>
+      ${b.them?`<button class="ghost" id="mXoaBu" style="border-color:var(--del);color:var(--del)">🗑 Xoá buổi học bù</button>`:`<button class="ghost" id="mDatLai">Đặt lại theo kho lớp</button>`}<span style="flex:1"></span>
       <button class="ghost" id="mHuy">Đóng</button></div></div>`;
   const bd=document.createElement("div"); bd.className="backdrop"; bd.innerHTML=html;
   bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
   const $=q=>bd.querySelector(q);
   $("#mHuy").onclick=()=>bd.remove();
-  $("#mDatLai").onclick=()=>{ delete S.buoi[k]; save(); bd.remove(); render(); };
+  const dl=$("#mDatLai"); if(dl) dl.onclick=()=>{ delete S.buoi[k]; save(); bd.remove(); render(); };
+  const xb=$("#mXoaBu"); if(xb) xb.onclick=()=>{
+    if(!confirm("Xoá buổi học bù này? Chỉ tuần này bị ảnh hưởng.")) return;
+    const ds=S.buoi_them[w.bat_dau]||[]; S.buoi_them[w.bat_dau]=ds.filter(x=>x.id!==b.buId);
+    if(!S.buoi_them[w.bat_dau].length) delete S.buoi_them[w.bat_dau];
+    save(); bd.remove(); render();
+  };
   function ktra(){
     const gv=$("#mGV").value, tt=$("#mTT").value, ds=buoiTuanNay(), canh=[];
     if(tt!=="huy"&&gv&&gv!==l.gv&&trungGV(ds,b.thu,b.ca,gv,k))
       canh.push(`<div class="errbox">⛔ <b>${esc(gv)}</b> đã dạy lớp khác lúc ${esc(b.ca)} ${THU_DAI[b.thu]} — một giáo viên không dạy được hai lớp cùng lúc.</div>`);
-    if(tt!=="huy"&&gv&&!gvRanh(gv,b.thu,b.ca))
-      canh.push(`<div class="warnbox">⚠️ <b>${esc(gv)}</b> không có trong lịch rảnh đã cài cho ${esc(b.ca)} ${THU_DAI[b.thu]}.</div>`);
+    if(tt!=="huy"&&gv&&!gvRanh(gv,b.thu,b.ca,w))
+      canh.push(`<div class="warnbox">⚠️ <b>${esc(gv)}</b> không có trong lịch rảnh của ${esc(b.ca)} ${THU_DAI[b.thu]} (tuần này).</div>`);
     $("#mCanh").innerHTML=canh.join("");
   }
   ["#mGV","#mTT"].forEach(s=>{ $(s).onchange=ktra; }); ktra();
   $("#mOk").onclick=()=>{
-    datGhiDe(k,{gv:$("#mGV").value, ghi:$("#mGhi").value.trim(), tt:$("#mTT").value});
+    const gt={gv:$("#mGV").value, ghi:$("#mGhi").value.trim(), tt:$("#mTT").value};
+    if(b.them){
+      const ds=S.buoi_them[w.bat_dau]||[]; const x=ds.find(z=>z.id===b.buId);
+      if(x) Object.assign(x,gt); S.buoi_them[w.bat_dau]=ds; save();
+    } else datGhiDe(k,gt);
     bd.remove(); render();
   };
 }
@@ -1387,10 +1582,11 @@ const TABCON={lichday:[["tuan","Lịch tổng"],["gv","Lịch giáo viên"],["lu
 let trangDangXem="lichday", tabDangXem="tuan";
 function veNav(){
   const n=document.getElementById("navTrang"), c=document.getElementById("tabCon"); if(!n||!c) return;
-  n.innerHTML=TRANG.map(([k,ten])=>`<button data-trang="${k}" class="${k===trangDangXem?"on":""}">${ten}</button>`).join("");
-  c.innerHTML=(TABCON[trangDangXem]||[]).map(([k,ten])=>`<button data-tab="${k}" class="${k===tabDangXem?"on":""}">${ten}</button>`).join("");
+  n.innerHTML=TRANG_HIEN.map(([k,ten])=>`<button data-trang="${k}" class="${k===trangDangXem?"on":""}">${ten}</button>`).join("");
+  c.innerHTML=(TABCON_HIEN[trangDangXem]||[]).map(([k,ten])=>`<button data-tab="${k}" class="${k===tabDangXem?"on":""}">${ten}</button>`).join("");
   n.querySelectorAll("button").forEach(b=>b.onclick=()=>chonTrang(b.dataset.trang));
   c.querySelectorAll("button").forEach(b=>b.onclick=()=>chonTab(b.dataset.tab));
+  const tw=document.getElementById("thanhTuan"); if(tw) tw.hidden=(trangDangXem!=="lichday");
   const tb=document.getElementById("tuanBar"); if(tb) tb.style.display=(trangDangXem==="lichday")?"":"none";
 }
 function apDungTab(){
@@ -1399,7 +1595,7 @@ function apDungTab(){
   document.getElementById("tabCon").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.tab===tabDangXem));
   document.getElementById("navTrang").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.trang===trangDangXem));
 }
-function chonTrang(p){ trangDangXem=p; const ds=(TABCON[p]||[]).map(x=>x[0]); tabDangXem=ds[0]; veNav(); apDungTab(); }
+function chonTrang(p){ const ds=(TABCON_HIEN[p]||[]).map(x=>x[0]); if(!ds.length) return; trangDangXem=p; tabDangXem=ds[0]; veNav(); apDungTab(); }
 function chonTab(t){ tabDangXem=t; apDungTab(); }
 document.getElementById("selTuan").onchange=e=>{ tuanDangXem=+e.target.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
 document.getElementById("btnTuanMoi").onclick=()=>{
@@ -1416,6 +1612,7 @@ document.getElementById("btnXoaTuan").onclick=()=>{
   if(!confirm("Xoá tuần "+ngayVN(tuan().bat_dau)+"? (phần chỉnh riêng của tuần này cũng mất)")) return;
   const bd=tuan().bat_dau;
   Object.keys(S.buoi).forEach(k=>{ if(k.startsWith(bd+"|")) delete S.buoi[k]; });
+  if(S.buoi_them) delete S.buoi_them[bd];
   S.tuan.splice(tuanDangXem,1); tuanDangXem=Math.max(0,tuanDangXem-1); S.tuan_hien_tai=tuanDangXem; save(); render();
 };
 document.getElementById("btnXuat").onclick=()=>{
@@ -1533,6 +1730,7 @@ async function vaoApp(){
   if(!user){ document.getElementById("dn").hidden=false; return; }
   const {data:gv}=await sb.from("giao_vien").select("ten,vai").eq("id",user.id).maybeSingle();
   if(!gv){ dnLoi("Tài khoản này chưa được cấp quyền vào hệ thống."); await sb.auth.signOut(); return; }
+  VAI=gv.vai||"giao_vien"; TEN_GV=gv.ten||""; XEM_NHU=null;
   const {data:kho,error}=await sb.from("kho_lop").select("du_lieu,phien_ban").eq("id","main").maybeSingle();
   if(error){ dnLoi("Không đọc được dữ liệu: "+error.message); return; }
   const coDuLieu=!!(kho&&kho.du_lieu&&Object.keys(kho.du_lieu).length);
@@ -1541,7 +1739,7 @@ async function vaoApp(){
   document.getElementById("dn").hidden=true;
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
-  load(); render(); veNav(); apDungTab();
+  load(); dungQuyen(); render(); veNav(); apDungTab(); dungSelVai();
   dnTT("đã kết nối");
   if(!coDuLieu&&S) henDayLenMayChu();   // máy chủ trống: đẩy dữ liệu đang có trên máy lên
 }
