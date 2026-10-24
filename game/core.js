@@ -12,7 +12,7 @@ window.GAME = (function () {
   const API = "https://xtfusgawjlrcreiphwur.supabase.co";
   const KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3"; // khoá công khai, như web quản lý
   const LS_MA = "game_ma_hv", LS_CHO = "game_cho_gui", LS_DIEM = "game_diem_hom_nay";
-  const QUY_TAC = "Mỗi nấc xong +1 điểm · đủ 6 nấc +5 điểm · cả 6 nấc hoàn hảo +5 điểm · tối đa 15 điểm/ngày";
+  const QUY_TAC = "Mỗi nấc xong +1 điểm · đủ 6 nấc +5 điểm · cả 6 nấc hoàn hảo +5 điểm · tối đa 16 điểm/ngày";
 
   let cfg = { game: "?", sach: null, unit: null, nac: 1, soCau: 0 };
   let phien = null, daKetThuc = false;
@@ -81,7 +81,7 @@ window.GAME = (function () {
       o.textContent = "Nấc " + n + (nacXong.indexOf(n) >= 0 ? " ✓" : "");
     });
     const d = doc(LS_DIEM);
-    nhanDiem.textContent = m ? "⭐ " + (diemHomNay || d || 0) + "/15 hôm nay" : "";
+    nhanDiem.textContent = m ? "⭐ " + (diemHomNay || d || 0) + "/16 hôm nay" : "";
   }
 
   /* ---------- hộp nhập mã ---------- */
@@ -204,10 +204,10 @@ window.GAME = (function () {
       if (d.thuong_du_nac) dong("Thưởng đủ 6 nấc", "+" + d.thuong_du_nac);
       if (d.thuong_hoan_hao) dong("Thưởng hoàn hảo cả 6 nấc", "+" + d.thuong_hoan_hao);
       dong("Tổng lượt này", "+" + (d.diem_luot_tong || 0));
-      dong("Hôm nay", (d.diem_hom_nay || 0) + "/15 điểm");
+      dong("Hôm nay", (d.diem_hom_nay || 0) + "/16 điểm");
       hop.appendChild(bang);
       if ((d.con_lai_hom_nay || 0) === 0) {
-        hop.appendChild(el("p", "gcore-nhac", "Hôm nay con đã đạt 15 điểm — chơi thêm vẫn vui nhưng không cộng điểm nữa. Mai chơi tiếp nhé!"));
+        hop.appendChild(el("p", "gcore-nhac", "Hôm nay con đã đạt 16 điểm — chơi thêm vẫn vui nhưng không cộng điểm nữa. Mai chơi tiếp nhé!"));
       } else {
         hop.appendChild(el("p", "gcore-goiy", "Còn " + d.con_lai_hom_nay + " điểm cho hôm nay."));
       }
