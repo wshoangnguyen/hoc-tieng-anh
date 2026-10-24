@@ -1183,7 +1183,10 @@ function tinhHV(h){
   h.giam_gia=(h.hoc_phi_thang&&h.hoc_phi_thang<GIA_CHUAN)?GIA_CHUAN-h.hoc_phi_thang:0;
   if(!h.lich_su_thu) h.lich_su_thu=[];
   const T=THANG_NAY(), moc=mocDong(h);
-  const owed=Math.max(0, T-moc);                       // số tháng còn phải trả
+  /* v7.38 — chốt nợ khi bảo lưu */
+  const owed=(h.trang_thai==="bảo lưu")
+      ? Math.max(0, Number(h.no_chot_thang)||0)        /* v7.39 — giữ nợ khi bảo lưu */
+      : Math.max(0, T-moc);
   const gross=Math.round(owed*h.hoc_phi_thang);         // tiền phải trả khi chưa khuyến mãi
   let kmTien=0;
   if(h.km_kieu==="thang") kmTien=Math.round(Math.min(h.km_tri,owed)*h.hoc_phi_thang);
@@ -1384,7 +1387,16 @@ function moSuaHV(ma,laMoi){
     const d=doc(); if(!d.ho_ten) return alert("Chưa ghi họ tên.");
     if(!d.lop) return alert("Chưa ghi lớp (gõ tên lớp hoặc chọn trong danh sách).");
     const cu=hvTatCa().find(x=>x.ma_hv===goc.ma_hv);
-    if(cu){ Object.assign(cu,d); tinhHV(cu); }
+    if(cu){ const ttCu=cu.trang_thai; Object.assign(cu,d);
+      if(ttCu!=="bảo lưu" && d.trang_thai==="bảo lưu"){          /* v7.39 — chốt số tháng nợ lúc bảo lưu */
+        cu.no_chot_thang=Math.max(0, THANG_NAY()-mocDong(cu));
+      }
+      if(ttCu==="bảo lưu" && d.trang_thai!=="bảo lưu"){          /* quay lại học: miễn các tháng vắng, giữ nợ cũ */
+        const giu=Math.max(0, Number(cu.no_chot_thang)||0);
+        cu.da_dong_den_thang=Math.max(Number(cu.da_dong_den_thang)||0, THANG_NAY()-1-giu)||null;
+        cu.no_chot_thang=0;
+      }
+      tinhHV(cu); }
     else { const moi=Object.assign({ma_hv:goc.ma_hv,lich_su_thu:[]},d); S.hoc_vien.push(moi); tinhHV(moi); }
     save(); bd.remove(); veHocVien(); veCongNo();
   };
