@@ -3021,9 +3021,17 @@ function moTienTrinhHV(ma){
 /* ===== v7.5 (v7.15): tiến trình — lưới tổng quan + danh sách chi tiết ===== */
 let TT_BOOK=null, TT_UNIT=null, TT_HV=null;
 
+function mucCuaUnit(bookId, unit){
+  const base=THU_VIEN.items.filter(i=>i.book===bookId && (unit===undefined||i.unit===unit));
+  const extra=Object.keys(S.muc_them||{})
+    .filter(k=>k.indexOf(String(bookId)+"|")===0 && (unit===undefined||S.muc_them[k].unit===unit))
+    .map(k=>({id:S.muc_them[k].id, book:bookId, unit:S.muc_them[k].unit,
+              ten:S.muc_them[k].ten, part:S.muc_them[k].goc||"them"}));
+  return base.concat(extra);
+}
 function ttUnitCuoi(td, b){
   let m=-1;
-  THU_VIEN.items.filter(i=>i.book===b.id).forEach(i=>{ if((td[i.id]||{}).t) m=Math.max(m,i.unit); });
+  mucCuaUnit(b.id).forEach(i=>{ if((td[i.id]||{}).t) m=Math.max(m,i.unit); });
   return m<0 ? null : m;
 }
 
@@ -3040,14 +3048,14 @@ function moTienTrinhHV(ma, giu){
     const u=ttUnitCuoi(td,b);
     TT_UNIT = (u===null ? b.units[0] : u);
   }
-  const its=THU_VIEN.items.filter(i=>i.book===b.id&&i.unit===TT_UNIT);
+  const its=mucCuaUnit(b.id,TT_UNIT);
   const dem={chua:0,da:0,khong:0,dat:0,vuot:0};
-  THU_VIEN.items.forEach(i=>{ if(i.book!==b.id) return; const t=(td[i.id]||{}).t||"chua"; dem[t]++; });
+  mucCuaUnit(b.id).forEach(i=>{ const t=(td[i.id]||{}).t||"chua"; dem[t]++; });
   const soDaHoc=dem.da+dem.khong+dem.dat+dem.vuot;
 
   /* lưới tổng quan: mỗi dòng 1 unit, mỗi ô 1 đầu mục */
   const luoi=b.units.map(u=>{
-    const ms=THU_VIEN.items.filter(i=>i.book===b.id&&i.unit===u);
+    const ms=mucCuaUnit(b.id,u);
     const o=ms.map(i=>{ const t=(td[i.id]||{}).t||"chua";
       return `<span class="tt-g" style="background:${TT_MAU[t]}" title="${esc(String(i.ten).replace(/^Unit \d+ · /,""))} — ${TT_TEN[t]}"></span>`; }).join("");
     const daHoc=ms.filter(i=>(td[i.id]||{}).t).length;
