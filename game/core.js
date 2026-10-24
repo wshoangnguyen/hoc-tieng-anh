@@ -191,13 +191,29 @@ window.GAME = (function () {
     if (man || manDangTai) return;
     manDangTai = true;
     const p = (location.pathname.indexOf("/games/") >= 0) ? "../pic/manifest.json" : "pic/manifest.json";
-    fetch(p).then((r) => r.ok ? r.json() : null).then((d) => { man = d; }).catch(() => {});
+    fetch(p).then((r) => r.ok ? r.json() : null).then((d) => {
+      man = d;
+      if (d) doiAnhCu();
+    }).catch(() => {});
   }
   function anh(tu) {
     const goc = String(tu || "").toLowerCase();
     const nen = location.pathname.indexOf("/games/") >= 0 ? "../" : "";
     taiManifest();
     return nen + ((man && man[goc] && man[goc].anh) ? "pic/" + man[goc].anh : "pic/" + goc + ".jpg");
+  }
+
+  // ảnh đang hiện bằng .jpg/.png → đổi sang .webp khi manifest về (nhẹ hơn ~80%)
+  function doiAnhCu() {
+    document.querySelectorAll('img[src*="/pic/"]').forEach((im) => {
+      if (/\.(jpg|jpeg|png)$/i.test(im.src)) {
+        const ten = decodeURIComponent(im.src.split("/pic/")[1] || "").replace(/\.[a-z]+$/i, "").toLowerCase();
+        if (man[ten] && man[ten].anh) {
+          const nen = im.src.indexOf("/games/") >= 0 ? "../" : "";
+          im.src = nen + "pic/" + man[ten].anh;
+        }
+      }
+    });
   }
 
   /* ---------- tự chạy ---------- */
