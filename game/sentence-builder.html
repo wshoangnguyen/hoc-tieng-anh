@@ -1165,6 +1165,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="core.css">
+    <script src="core.js"></script>
 </head>
 <body>
     <div class="container">
@@ -1796,6 +1798,7 @@
 
         // ========== START GAME ==========
         function startGame() {
+            try { GAME.batDau({game:"sentence-builder", sach:(typeof currentLevel != "undefined" ? currentLevel : ""), unit:(typeof currentUnit != "undefined" ? currentUnit : null), soCau:0}); } catch(e){}
             // Check if sentences are loaded
             if (!sentences || sentences.length === 0) {
                 alert('No sentences loaded! Please select Level and Unit, then click LOAD SENTENCES.');
@@ -2174,6 +2177,7 @@ function prepareSentenceSlots() {
             correct: true,
             points: totalPoints
         });
+        try { GAME.ghi({tu: currentCorrectSentence, ok:true}); } catch(e){}
         
     } else {
         // Wrong answer
@@ -2390,6 +2394,7 @@ function prepareSentenceSlots() {
 
         // ========== END GAME ==========
         function endGame() {
+            try { GAME.ketThuc({soCau: (typeof sentences != "undefined" ? sentences.length : 0), soDung: (gameResults || []).filter(r => r.correct).length}); } catch(e){}
             stopTimer();
             
             const modal = document.getElementById('winnerModal');

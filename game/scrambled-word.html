@@ -912,6 +912,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="core.css">
+    <script src="core.js"></script>
 </head>
 <body>
     <div class="container">
@@ -1364,6 +1366,7 @@
         }
 
         function startGame() {
+            try { GAME.batDau({game:"scrambled", sach:(typeof currentLevel != "undefined" ? currentLevel : ""), unit:(typeof currentUnit != "undefined" ? currentUnit : null), soCau:0}); } catch(e){}
             console.log('DEBUG: Starting game with', words.length, 'words');
             console.log('DEBUG: Game state - currentIndex:', currentIndex, 'currentWord:', currentWord);
             
@@ -1989,6 +1992,11 @@
         }
 
         function endGame() {
+            try {
+                (gameResults || []).filter(r => !r.correct).forEach(r => GAME.loiTu(r.word));
+                GAME.ketThuc({soCau: (typeof words != "undefined" ? words.length : 0),
+                              soDung: (gameResults || []).filter(r => r.correct).length});
+            } catch(e){}
             stopTimer();
             
             const modal = document.getElementById('winnerModal');

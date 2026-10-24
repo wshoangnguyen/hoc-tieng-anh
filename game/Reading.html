@@ -268,6 +268,8 @@
             .units-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="core.css">
+    <script src="core.js"></script>
 </head>
 <body>
     <div class="brand-logo-float" id="brandLogoFloat">
@@ -401,6 +403,10 @@
                 speakSentence(fullSentenceArray);
                 statusSpan.innerHTML = "🎉 Tuyệt vời! Bạn đã mở hết câu! 🎉<br>👂 Nghe và đọc lại cả câu nhé!";
                 addCheerEffect(sentenceIdx);
+                try {
+                    GAME.ghi({tu: fullSentenceArray.join(' '), ok:true});
+                    if (sentencesState.every((_, i) => isSentenceFullyRevealed(i))) GAME.ketThuc();
+                } catch(e){}
             }, 200);
         }
     }
@@ -479,6 +485,7 @@
         if (!currentSentencesData.length) return;
         sentencesState = currentSentencesData.map(sentence => Array(sentence.length).fill(false));
         renderGame();
+        try { GAME.batDau({game:"reading", sach:"reading", unit: lessonIndex+1, soCau: currentSentencesData.length}); } catch(e){}
         statusSpan.innerHTML = "🔄 Đã làm lại! Hãy nhấn từng ô để mở chữ và tập đọc.";
         window.speechSynthesis.cancel();
     }

@@ -314,6 +314,8 @@
         .logo-container { position: fixed; bottom: 15px; right: 15px; z-index: 999; }
         .logo-container img { width: 100px; }
     </style>
+    <link rel="stylesheet" href="core.css">
+    <script src="core.js"></script>
 </head>
 <body>
 <div class="rotate-warning"><div class="warning-content"><div class="rotate-icon">🔄</div><h2>Vui lòng xoay ngang điện thoại</h2><p>Please rotate to landscape mode</p></div></div>
@@ -543,6 +545,7 @@ function parseVocabularyStructure(fileContent) {
     }
     
     function startGame() {
+        try { GAME.batDau({game:"words-fall", sach:(typeof selectedLevel != "undefined" ? selectedLevel : ""), unit:(typeof unit != "undefined" ? unit : null), soCau:0}); } catch(e){}
         if(!currentStory) return alert('Hãy load story trước!');
         score=0; combo=0; hintCount=3; timeElapsed=0; isPaused=false; isGameActive=true; selectedEnglishTile=null;
         easyMode = document.getElementById('easyModeSwitch').checked;
@@ -769,6 +772,7 @@ function parseVocabularyStructure(fileContent) {
     function pauseGame(){ isPaused=true; document.getElementById('pauseOverlay').style.display='flex'; }
     function resumeGame(){ isPaused=false; document.getElementById('pauseOverlay').style.display='none'; }
     function endGame(result){
+        try { GAME.ketThuc({soCau: (typeof totalWords != 'undefined' ? totalWords : 0), soDung: document.querySelectorAll('.viet-tile.matched').length}); } catch(e){}
         isGameActive=false; clearInterval(timerInterval); clearInterval(fallingInterval); if(animationFrame) cancelAnimationFrame(animationFrame);
         let modal=document.getElementById('resultModal'), contentDiv=document.getElementById('resultContent');
         let matchedCount=document.querySelectorAll('.viet-tile.matched').length;

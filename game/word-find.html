@@ -1025,6 +1025,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="core.css">
+    <script src="core.js"></script>
 </head>
 <body>
     <div id="logoContainer">
@@ -1631,6 +1633,7 @@
         }
 
         function startGame() {
+            try { GAME.batDau({game:"word-find", sach:(typeof selectedLevel != "undefined" ? selectedLevel : ""), unit:(typeof selectedUnit != "undefined" ? selectedUnit : null), soCau:0}); } catch(e){}
             if (!vocabLoaded) {
                 alert('⚠️ Chưa tải được file vocab.txt!');
                 return;
@@ -1969,6 +1972,7 @@
             } else {
                 if (!completedWords.includes(word)) {
                     completedWords.push(word);
+ try { GAME.ghi({tu: word, ok:true}); } catch(e){}
                     updateProgress();
                 }
             }
@@ -2111,6 +2115,7 @@
         }
 
         function endGame(completed, gridFull = false) {
+            try { GAME.ketThuc({soCau: targetWords.length, soDung: completedWords.length}); } catch(e){}
             isGameOver = true;
             clearInterval(letterSpawnInterval);
             document.querySelector('.control-buttons-left').style.display = 'none';
