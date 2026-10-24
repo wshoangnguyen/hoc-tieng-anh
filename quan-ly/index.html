@@ -2647,7 +2647,8 @@ function bdBanTin(){
   const dsId=(b.items||[]).slice();
   const muc=dsId.map(id=>mucTheoId(id)||{id,ten:tenMuc(id),part:""});
   const ngay=ngayVN(b.ngay);
-  const tmB=tmSach(sachCuaLop(BD.lopId)||{code:""});
+  const sach=sachCuaLop(BD.lopId)||{code:""};
+  const tmB=tmSach(sach);
   const audioChung=tmB.sb||"";
   const thieuAudio=muc.some(it=>!((it.video&&it.video[0])));
   const dongVi=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
@@ -2659,8 +2660,10 @@ function bdBanTin(){
   const audioVi=(thieuAudio&&audioChung)?`\n🔊 Nghe audio bài học: ${audioChung}`:"";
   const audioEn=(thieuAudio&&audioChung)?`\n🔊 Audio: ${audioChung}`:"";
   const coOnTap=muc.some(it=>it.part==="review"||it.part==="hw");
-  const vi=`📚Hôm nay ngày ${ngay}\nLớp chúng ta đã hoàn thành phần:\n${dongVi||"• (chưa chọn phần nào)"}${audioVi}\nCác bạn về nhà làm workbook nhé`;
-  const en=`📚Today, ${ngay}\nOur class completed:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
+  const dsU=[...new Set(muc.map(it=>it.unit).filter(u=>u!==undefined&&u!==null))].sort((a,b)=>a-b);
+  const nhanU=dsU.map(u=>{ const tr=trangUnit(sach,u); return `Unit ${u}${tr?" ("+tr+")":""}`; }).join(", ");
+  const vi=`📚Hôm nay ngày ${ngay}\nLớp chúng ta đã hoàn thành ${nhanU?nhanU+" ":""}phần:\n${dongVi||"• (chưa chọn phần nào)"}${audioVi}\nCác bạn về nhà làm workbook nhé`;
+  const en=`📚Today, ${ngay}\nOur class completed${nhanU?" "+nhanU.replace(/tr\./g,"pp."):""}:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
   moModal(`<h3>📨 Báo bài — ${esc(lop?lop.ten:"")} · Unit ${b.unit!=null?b.unit:"?"}</h3>
     <p class="hint">Chỉ gồm các phần của buổi ${ngay} (${muc.length} phần). Sửa trực tiếp trong ô rồi copy.</p>
     <textarea id="btAll" rows="14" style="width:100%;font-size:13px">${esc(vi+"\n\n"+en)}</textarea>
