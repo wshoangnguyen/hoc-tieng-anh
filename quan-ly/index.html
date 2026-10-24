@@ -690,7 +690,7 @@ function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; r
 
 
 /* ================= QUYỀN XEM ================= */
-let VAI="quan_ly", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
+let VAI="", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
 const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
   kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy"};
 const TEN_TRANG={lichday:"📅 Lịch dạy",lop:"🧑‍🎓 Lớp & học viên"};
@@ -698,6 +698,7 @@ function vaiHienTai(){ return XEM_NHU?XEM_NHU.vai:VAI; }
 function tenHienTai(){ return XEM_NHU?XEM_NHU.ten:TEN_GV; }
 function quyenTab(){
   const v=vaiHienTai();
+  if(!v) return {lichday:["gv"],lop:[]};
   if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday"]};
   if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","dangky"], lop:["kho","diemso","diemdanh","baiday"]};
   return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday"]};
@@ -723,10 +724,11 @@ function dungQuyen(){
 }
 function dungSelVai(){
   const sel=document.getElementById("selVai"); if(!sel) return;
-  if(VAI!=="quan_ly"){ sel.style.display="none"; return; }
+  if(VAI!=="quan_ly"){ sel.style.display="none"; sel.innerHTML=""; sel.hidden=true; return; }
+  sel.hidden=false;
   sel.style.display="";
   sel.innerHTML=`<option value="">👁 Xem như…</option><option value="quan_ly_giao_vien">Quản lý giáo viên</option>`+
-    S.giao_vien.map(g=>`<option value="gv|${esc(g.ten)}">Giáo viên: ${esc(g.ten)}</option>`).join("");
+    (S.giao_vien||[]).map(g=>`<option value="gv|${esc(g.ten)}">Giáo viên: ${esc(g.ten)}</option>`).join("");
   sel.value=XEM_NHU?(XEM_NHU.vai==="giao_vien"?"gv|"+XEM_NHU.ten:"quan_ly_giao_vien"):"";
   sel.onchange=()=>{
     const v=sel.value;
