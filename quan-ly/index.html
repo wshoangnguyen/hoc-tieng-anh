@@ -1509,9 +1509,9 @@ function mucLevel(lop){
 function duoiMuc(h){
   const L=mucLevel(h.lop); if(!L) return null;
   const d=diemCua(h.ma_hv), tb=tongDiemKN(h.ma_hv), thieu=[];
-  KY_NANG.forEach(([k,t])=>{ const v=d[k]; if(v!==null&&v!==undefined&&v!==""){ const n=Number(v); if(!isNaN(n)&&n<L.min) thieu.push(`${t} ${n}<${L.min}`); } });
-  if(tb!==null&&tb<L.tb) thieu.push(`TB ${tb}<${L.tb}`);
-  return {L, tb, min:L.min, thieu, duoi:thieu.length>0};
+  KY_NANG.forEach(([k,t])=>{ const v=d[k]; if(v!==null&&v!==undefined&&v!==""){ const n=Number(v); if(!isNaN(n)&&n<L.min-0.5) thieu.push(`${t} ${n}<${L.min-0.5}`); } });
+  if(tb!==null&&tb<L.tb-0.5) thieu.push(`TB ${tb}<${L.tb-0.5}`);
+  return {L, tb, min:L.min, nguong:L.min-0.5, thieu, duoi:thieu.length>0};
 }
 
 /* ---------- đánh giá theo ngày (giữ 3 tháng) ---------- */
@@ -1537,7 +1537,7 @@ function veDiemSo(){
   const nhieuCan=rows.filter(h=>chuyenCan(h).canHomNay).length;
   const soDuoi=rows.filter(h=>{const x=duoiMuc(h);return x&&x.duoi;}).length;
   document.getElementById("dsInfo").innerHTML=`${rows.length} học viên${nhieuCan?` · <b>${nhieuCan}</b> em <span style="color:var(--del)">chưa điểm danh buổi hôm nay đã qua giờ</span>`:""}${soDuoi?` · <b style="color:var(--del)">${soDuoi} em dưới mức level</b>`:""} · điểm kỹ năng thang 0–10, gõ trực tiếp vào ô là lưu ngay.<br>
-  <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 4, kỹ năng ≥ 3 · B1 cần TB ≥ 5, kỹ năng ≥ 4. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
+  <span style="color:var(--dim)">Mức yêu cầu: SM1–SM6 cần TB và từng kỹ năng ≥ số level · A2 cần TB ≥ 4, kỹ năng ≥ 3 · B1 cần TB ≥ 5, kỹ năng ≥ 4. <b>Cho phép thấp hơn 0,5</b>: SM3 được 2,5 vẫn đạt, dưới 2,5 mới cảnh báo. <b>Tích lũy</b> = điểm cộng các ngày (đánh giá 📅) + điểm ⭐ đã cộng tay.</span>`;
   const td='padding:5px 6px;border-bottom:1px solid var(--line)';
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
    <thead><tr>${[["Lớp","width:1%;min-width:62px"],["Mã HV","width:1%;min-width:76px"],["Học viên","min-width:185px"],...KY_NANG.map(([,t])=>[t,"width:1%;text-align:center"]),
@@ -1561,6 +1561,8 @@ function veDiemSo(){
      <td style="${td}"><input readonly data-nx="${esc(h.ma_hv)}:nhan_xet" value="${esc(d.nhan_xet)}" placeholder="nhận xét…" title="Bấm để xem và sửa đầy đủ" style="width:100%;min-width:140px;padding:2px 5px;cursor:pointer;background:var(--card)"></td>
      <td style="${td};white-space:nowrap"><button class="ghost sm" data-ls="${esc(h.ma_hv)}" title="Đánh giá theo ngày — 3 tháng">📅</button></td></tr>`; }).join("")}</tbody></table>
    <p class="hint" style="margin-top:8px">Cột <b>Chuyên cần</b> đếm số buổi <b>có mặt / tổng buổi</b> của lớp trong <b>4 tuần</b> gần nhất. Ô <b>đỏ ⚠</b> = hôm nay lớp có buổi, đã quá giờ học mà chưa điểm danh — bấm vào để điểm danh luôn.</p>`;
+  body.querySelectorAll("tbody tr").forEach(tr=>{ const inp=tr.querySelector("[data-diem]"); if(!inp) return; const ma=String(inp.dataset.diem).split(":")[0]; const td=tr.children[2]; if(!td||td.querySelector("[data-tt]")) return; const btn=document.createElement("button"); btn.className="ghost sm"; btn.dataset.tt=ma; btn.title="Tiến trình học tập"; btn.style.padding="1px 6px"; btn.textContent="📈"; btn.onclick=()=>moTienTrinhHV(ma); td.appendChild(btn); });
+  body.querySelectorAll("[data-tt]").forEach(b=>b.onclick=()=>moTienTrinhHV(b.dataset.tt));
   body.querySelectorAll("[data-diem]").forEach(i=>i.onchange=()=>{
     const [ma,k]=i.dataset.diem.split(":"); const v=i.value===""?null:Math.max(0,Math.min(10,Number(i.value)));
     diemCua(ma)[k]=v; save(); veDiemSo(); });
@@ -2789,6 +2791,56 @@ function bdGanThanhHocVien(){
   const sel=bar.querySelector("#hvBarLop");
   sel.innerHTML=(S.lop||[]).slice().sort(sapXepKho).map(l=>`<option value="${esc(l.ten)}">${esc(l.ten)}</option>`).join("");
   bar.querySelector("#hvBarMo").onclick=()=>moBaiDayModal(sel.value);
+}
+
+
+/* ===== v7.3: tiến trình học tập toàn bộ (từ SM1 tới hiện tại) ===== */
+function sachCuaHocVien(h){
+  const lop=(S.lop||[]).find(x=>x.ten===h.lop);
+  return lop?sachCuaLop(lop.id):null;
+}
+function moTienTrinhHV(ma){
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
+  const td=S.tien_do[ma]||{}, sachNay=sachCuaHocVien(h);
+  let tong={chua:0,da:0,khong:0,dat:0,vuot:0}, html="";
+  const books=THU_VIEN.books.filter(b=>{
+    const its=THU_VIEN.items.filter(i=>i.book===b.id);
+    return (sachNay&&b.id===sachNay.id) || its.some(i=>td[i.id]);
+  });
+  books.forEach(b=>{
+    const its=THU_VIEN.items.filter(i=>i.book===b.id);
+    const dem={chua:0,da:0,khong:0,dat:0,vuot:0};
+    its.forEach(i=>{const t=(td[i.id]||{}).t||"chua"; dem[t]++; tong[t]++;});
+    const daHoc=dem.da+dem.khong+dem.dat+dem.vuot;
+    html+=`<div class="tt-sach"><div class="row" style="margin:10px 0 4px"><b>${esc(b.ten)}</b>
+      <span class="hint">${daHoc}/${its.length} mục${b.id===(sachNay&&sachNay.id)?" · sách đang học":""}</span>
+      <span style="flex:1"></span><span class="chip">Đạt ${dem.dat} · Vượt ${dem.vuot}</span></div>
+      <div class="bd-luoi">`+b.units.map(u=>{
+        const ms=its.filter(i=>i.unit===u);
+        return `<div class="bd-hang"><span class="bd-u">U${u}</span>`+ms.map(i=>{const t=(td[i.id]||{}).t||"chua";
+          return `<span class="bd-c tt-o" data-ttitem="${i.id}" title="${esc(i.ten)} — ${TT_TEN[t]}" style="background:${TT_MAU[t]}"></span>`;}).join("")+`</div>`;
+      }).join("")+`</div></div>`;
+  });
+  if(!html) html='<p class="hint">Chưa có bài nào được ghi nhận.</p>';
+  const htm=`<div class="modal" style="max-width:940px"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
+    <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span>
+    <span class="chip">⭐ ${tichLuy(ma)}</span><button class="ghost sm" id="ttX">✕</button></div>
+    <p class="hint" style="margin:6px 0">Đã học <b>${tong.da+tong.khong+tong.dat+tong.vuot}</b> mục · Đạt <b>${tong.dat}</b> · Vượt <b>${tong.vuot}</b> · Chưa đạt <b>${tong.khong}</b>.
+      Bấm vào ô để đổi mức: Chưa học → Đã học → Đạt → Vượt → Chưa đạt.</p>
+    <div style="max-height:64vh;overflow:auto">${html}</div>
+    </div>`;
+  moModal(htm);
+  const m=document.getElementById("bdModal");
+  const dong=()=>{ if(m){ m.style.display="none"; m.dataset.bd=""; } };
+  const x1=document.getElementById("ttX"); if(x1) x1.onclick=dong;
+  m.querySelectorAll(".tt-o").forEach(o=>o.onclick=()=>{
+    const id=+o.dataset.ttitem; const cur=((S.tien_do[ma]||{})[id]||{t:"chua"}).t;
+    const nx={chua:"da",da:"dat",dat:"vuot",vuot:"khong",khong:"chua"}[cur]||"da";
+    S.tien_do[ma]=S.tien_do[ma]||{};
+    if(nx==="chua") delete S.tien_do[ma][id];
+    else S.tien_do[ma][id]={t:nx,n:"gv",d:iso(new Date())};
+    save(); moTienTrinhHV(ma);
+  });
 }
 
 </script>
