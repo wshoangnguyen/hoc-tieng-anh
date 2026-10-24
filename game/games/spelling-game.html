@@ -267,6 +267,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="../core.css">
+    <script src="../core.js"></script>
 </head>
 <body>
     <div class="brand-logo-float" id="brandLogoFloat">
@@ -379,6 +381,7 @@
             waitingForNext = false;
             updateScoreDisplay();
             loadQuestion();
+            try { GAME.batDau({game:"spelling", sach:"theo-chu-de", unit:null, soCau:questions.length}); } catch(e){}
         }
         
         function loadQuestion() {
@@ -448,6 +451,7 @@
     }
     
     answered++;
+    try { GAME.ghi({tu: correctAnswer, ok: (userAnswer === correctAnswer)}); } catch(e){}
     
     if (userAnswer === correctAnswer) {
         // THÊM DÒNG NÀY - Âm thanh đúng
@@ -496,6 +500,7 @@
         }
         
         function showCompletionMessage() {
+            try { GAME.ketThuc(); } catch(e){}
             const percentage = Math.round((score / questions.length) * 100);
             feedbackDiv.innerHTML = `
                 🎉 HOÀN THÀNH! 🎉<br>

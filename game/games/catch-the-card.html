@@ -305,6 +305,8 @@
             .progress-bar { width: 80px; }
         }
     </style>
+    <link rel="stylesheet" href="../core.css">
+    <script src="../core.js"></script>
 </head>
 <body>
 
@@ -632,6 +634,7 @@
     }
     
     function showWinSummary() {
+        try { GAME.ketThuc({soCau: Math.max(totalAttempts, score), soDung: score}); } catch(e){}
         cancelAnimationFrame(animationFrame);
         playBeep('win');
         
@@ -828,6 +831,7 @@
             playBeep('correct');
             shootConfetti();
             score++;
+            try { GAME.ghi({tu: currentTargetWord, ok:true}); } catch(e){}
             
             capturedWords.push({
                 word: currentTargetWord,
@@ -887,6 +891,7 @@
             }, 600);
         } else {
             playBeep('wrong');
+            try { GAME.loiTu(clickedWord); } catch(e){}
             feedbackDiv.innerHTML = `❌ Sai rồi! Từ cần bắt là "${currentTargetWord}" - ${currentTargetMeaning} ❌`;
             feedbackDiv.style.color = '#ffc2b3';
             gameActive = false;
@@ -987,6 +992,7 @@
         buildCategoryFilter();
         updateGameDimensions();
         initGame(false);
+        try { GAME.batDau({game:"catch", sach:"theo-chu-de", unit:null, soCau:0}); } catch(e){}
         animationFrame = requestAnimationFrame(animate);
     }
     

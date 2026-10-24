@@ -303,6 +303,8 @@
     		}
 	}        
     </style>
+    <link rel="stylesheet" href="../core.css">
+    <script src="../core.js"></script>
 </head>
 <body>
     <div class="brand-logo-float" id="brandLogoFloat">
@@ -447,6 +449,7 @@ if (vocab.length <= maxPairs) {
             updateStats();
             messageArea.textContent = '';
             renderBoard();
+            try { GAME.batDau({game:"matching", sach:"theo-chu-de", unit:null, soCau:0}); } catch(e){}
         }
         
         function shuffleCards() {
@@ -547,16 +550,17 @@ if (vocab.length <= maxPairs) {
         showTemporaryMessage('🎉 Chính xác!', true);
         
         flippedCards = [];
-        
         if (matchedPairs === cards.length / 2) {
             // THÊM DÒNG NÀY - Âm thanh chiến thắng
             playBeep('win');
+            try { GAME.ketThuc({soCau: Math.max(attempts, matchedPairs), soDung: matchedPairs}); } catch(e){}
             showWinMessage();
         }
     } else {
         // THÊM DÒNG NÀY - Âm thanh sai
         playBeep('wrong');
         
+        try { GAME.loiTu(card1.card.word); } catch(e){}
         showTemporaryMessage('❌ Chưa đúng, thử lại!', false);
         lockBoard = true;
         setTimeout(() => {

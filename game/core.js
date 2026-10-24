@@ -135,16 +135,25 @@ window.GAME = (function () {
     return { dung: phien.dung, sai: phien.sai };
   }
 
-  function ketThuc() {
+  // ghi nhận một từ sai mà không tăng bộ đếm (dùng cho game ghép cặp / bắt thẻ)
+  function loiTu(tu) {
+    if (!phien) batDau({});
+    const t = String(tu || "").trim();
+    if (t && !phien.loi.some((x) => x.tu === t)) phien.loi.push({ tu: t, item: null });
+  }
+
+  function ketThuc(extra) {
     if (!phien || daKetThuc) return Promise.resolve(null);
     daKetThuc = true;
     const giay = Math.round((Date.now() - phien.batDau) / 1000);
-    const ht = phien.soCau >= 5 && phien.dung / phien.soCau >= 0.6;
-    const hh = phien.soCau >= 5 && phien.dung === phien.soCau;
+    const soCau = extra && extra.soCau != null ? Number(extra.soCau) : phien.soCau;
+    const soDung = extra && extra.soDung != null ? Number(extra.soDung) : phien.dung;
+    const ht = soCau >= 5 && soDung / soCau >= 0.6;
+    const hh = soCau >= 5 && soDung === soCau;
     const kq = {
       game: cfg.game, sach: cfg.sach, unit: cfg.unit, nac: Number(cfg.nac) || 1,
-      so_cau: phien.soCau, so_dung: phien.dung, giay,
-      ti_le: phien.soCau ? Math.round(100 * phien.dung / phien.soCau) : 0,
+      so_cau: soCau, so_dung: soDung, giay,
+      ti_le: soCau ? Math.round(100 * soDung / soCau) : 0,
       ht, hh, loi: phien.loi,
     };
     if (!maHV()) { hienKetQua(kq, null); return Promise.resolve(kq); }
@@ -260,5 +269,5 @@ window.GAME = (function () {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", khoi);
   else khoi();
 
-  return { batDau, ghi, ketThuc, maHV, datMaHV, hoiMa, anh, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
 })();
