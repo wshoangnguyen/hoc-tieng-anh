@@ -119,9 +119,15 @@ textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,Consolas,mon
 .hsc.sn{border-color:var(--accent);background:#fff7e3;box-shadow:0 0 0 2px var(--accent) inset}
 .hsc .anh{aspect-ratio:1/1;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;color:var(--dim);font-size:12.5px;line-height:1.25}
 .hsc .anh img{width:100%;height:100%;object-fit:cover}
-.hsc .ten{font-weight:700;font-size:13.5px;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:4px}
+.hsc .ten{font-weight:700;font-size:13.5px;margin:0 0 6px;display:flex;align-items:center;justify-content:center;gap:4px}
 .hsc .ten .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:78%}
 .hsc .nut{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.hsc .nut .sao{display:inline-flex;align-items:center;font-size:12px}
+.tt-row{display:flex;gap:8px;align-items:center;padding:5px 6px;border-bottom:1px solid var(--line);font-size:13px}
+.tt-row:hover{background:var(--card2)}
+.tt-row .tt-ten{flex:1}
+.tt-row .tt-o2{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.tt-nhom{font-size:12.5px;color:var(--dim);margin:10px 0 2px;font-weight:700}
 .hsc .phu{font-size:11.5px;color:var(--dim);margin-top:4px;min-height:14px}
 .hsc .stk{display:flex;flex-wrap:wrap;gap:1px;justify-content:center;margin-top:3px;font-size:15px;line-height:1.1}
 .hsc .stk span{cursor:pointer;border-radius:6px;padding:0 1px}
@@ -1922,7 +1928,6 @@ function veDiemDanh(){
     return `<button class="lopthe${lh?" dang":""}" data-lop="${esc(l)}" style="--mc:${mc};--mcr:${hexRgba(mc,.08)}">
       <span class="ten">${esc(l)}</span>
       <span class="dem">${hs.length} em</span>
-      <span class="bdnut" data-bd="${esc(l)}" title="Mở bài dạy của lớp hôm nay">Bài dạy ›</span>
       ${lh?`<span class="giay">${(()=>{const g=gvCuaLopHomNay(l);const tg=(typeof DD_LOC!=="undefined"&&DD_LOC==="hom")?"":"hôm nay "+gioHom.join(", ");return [tg,g?esc(g):"<span style='color:var(--del)'>chưa có GV</span>"].filter(Boolean).join(" · ");})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
       ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
     </button>`; };
@@ -1971,10 +1976,11 @@ function roiLop(lop){
       const d=diemCua(h.ma_hv), st=stickerCua(h.ma_hv), stHom=stickerHomNay(h.ma_hv), sn=laSinhNhat(h), cc=chuyenCan(h);
       const anhm=S.anh[h.ma_hv];
       return `<div class="hsc${sn?" sn":""}">
-        <div class="anh" data-anh="${esc(h.ma_hv)}" title="Bấm để chọn ảnh">${anhm?`<img src="${anhm}" alt="">`:`<span>＋<br>ảnh</span>`}</div>
-        <div class="ten"><span class="nm" data-hoso="${esc(h.ma_hv)}" title="Bấm để xem hồ sơ" style="cursor:pointer">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)} </span><span class="chip sao" title="Điểm tích luỹ">⭐ ${tichLuy(h.ma_hv)}</span>
+        <div class="ten"><span class="nm" data-hoso="${esc(h.ma_hv)}" title="Bấm để xem hồ sơ" style="cursor:pointer">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)} </span>
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
+        <div class="anh" data-anh="${esc(h.ma_hv)}" title="Bấm để chọn ảnh">${anhm?`<img src="${anhm}" alt="">`:`<span>＋<br>ảnh</span>`}</div>
         <div class="nut">
+          <span class="chip sao" title="Điểm tích luỹ">⭐ ${tichLuy(h.ma_hv)}</span>
           <button class="ghost sm" data-dg="${esc(h.ma_hv)}" title="Đánh giá hôm nay">📝</button>
           <button class="ghost sm" data-sticker="${esc(h.ma_hv)}" title="Thưởng sticker">🎁${stHom.length?`<small>${stHom.length}</small>`:""}</button>
           <button class="ghost sm${cc.canHomNay?" can":""}" data-ddhn="${esc(h.ma_hv)}" title="Điểm danh 2 tuần">✅</button></div>
@@ -2835,6 +2841,61 @@ function moTienTrinhHV(ma){
   const x1=document.getElementById("ttX"); if(x1) x1.onclick=dong;
   m.querySelectorAll(".tt-o").forEach(o=>o.onclick=()=>{
     const id=+o.dataset.ttitem; const cur=((S.tien_do[ma]||{})[id]||{t:"chua"}).t;
+    const nx={chua:"da",da:"dat",dat:"vuot",vuot:"khong",khong:"chua"}[cur]||"da";
+    S.tien_do[ma]=S.tien_do[ma]||{};
+    if(nx==="chua") delete S.tien_do[ma][id];
+    else S.tien_do[ma][id]={t:nx,n:"gv",d:iso(new Date())};
+    save(); moTienTrinhHV(ma);
+  });
+}
+
+
+/* ===== v7.5: tiến trình học tập dạng danh sách, chọn level → unit ===== */
+let TT_BOOK=null, TT_UNIT=null, TT_HV=null;
+function moTienTrinhHV(ma){
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
+  TT_HV=ma;
+  const td=S.tien_do[ma]||{}, sachNay=sachCuaHocVien(h);
+  const books=THU_VIEN.books.filter(b=>b.id===(sachNay&&sachNay.id)||THU_VIEN.items.some(i=>i.book===b.id&&td[i.id]));
+  if(!books.length&&sachNay) books.push(sachNay);
+  if(!books.length){ moModal('<div class="modal"><p>Chưa có sách nào được ghi nhận cho học viên này.</p></div>'); return; }
+  if(!TT_BOOK||!books.some(b=>b.id===TT_BOOK)) TT_BOOK=(sachNay&&books.some(b=>b.id===sachNay.id))?sachNay.id:books[books.length-1].id;
+  const b=THU_VIEN.books.find(x=>x.id===TT_BOOK);
+  if(!TT_UNIT||b.units.indexOf(TT_UNIT)<0) TT_UNIT=b.units[0];
+  const its=THU_VIEN.items.filter(i=>i.book===b.id&&i.unit===TT_UNIT);
+  const dem={chua:0,da:0,khong:0,dat:0,vuot:0};
+  THU_VIEN.items.forEach(i=>{ if(i.book!==b.id) return; const t=(td[i.id]||{}).t||"chua"; dem[t]++; });
+  const soDaHoc=dem.da+dem.khong+dem.dat+dem.vuot;
+  const rows=its.map(i=>{
+    const o=td[i.id]||{}, t=o.t||"chua";
+    return `<div class="tt-row" data-ttid="${i.id}" title="Bấm để đổi mức">
+      <span class="tt-o2" style="background:${TT_MAU[t]}"></span>
+      <span class="tt-ten">${esc(String(i.ten).replace(/^Unit \d+ · /,""))}</span>
+      <span class="hint" style="font-size:11.5px">${o.d?esc(o.d):""}</span>
+      <span class="chip" style="font-size:11.5px;color:${t==="chua"?"var(--dim)":TT_MAU[t]};border-color:${t==="chua"?"var(--line)":TT_MAU[t]}">${TT_TEN[t]}</span></div>`;
+  }).join("");
+  const optBook=books.map(x=>`<option value="${x.id}"${x.id===b.id?" selected":""}>${esc(x.ten)}${x.id===(sachNay&&sachNay.id)?" (đang học)":""}</option>`).join("");
+  const optUnit=b.units.map(u=>`<option value="${u}"${u===TT_UNIT?" selected":""}>Unit ${u}</option>`).join("");
+  const htm=`<div class="modal" style="max-width:720px"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
+    <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span><span class="chip">⭐ ${tichLuy(ma)}</span>
+    <button class="ghost sm" id="ttX">✕</button></div>
+    <div class="row" style="margin:8px 0;gap:6px">
+      <select id="ttSach" style="max-width:260px">${optBook}</select>
+      <select id="ttUnit">${optUnit}</select>
+      <span style="flex:1"></span>
+      <span class="hint">Sách này: đã học <b>${soDaHoc}</b> · đạt <b>${dem.dat}</b> · vượt <b>${dem.vuot}</b> · chưa đạt <b>${dem.khong}</b></span>
+    </div>
+    <div style="max-height:56vh;overflow:auto;border:1px solid var(--line);border-radius:10px">${rows||'<p class="hint" style="padding:10px">Unit này chưa có mục nào.</p>'}</div>
+    <p class="hint" style="margin:8px 0 0">Bấm vào một dòng để đổi mức: Chưa học → Đã học → Đạt → Vượt → Chưa đạt. Lưu ngay.</p></div>`;
+  moModal(htm);
+  const m=document.getElementById("bdModal");
+  const dong=()=>{ if(m){ m.style.display="none"; m.dataset.bd=""; } };
+  const x=document.getElementById("ttX"); if(x) x.onclick=dong;
+  const s1=document.getElementById("ttSach"), s2=document.getElementById("ttUnit");
+  if(s1) s1.onchange=()=>{ TT_BOOK=s1.value; TT_UNIT=null; moTienTrinhHV(ma); };
+  if(s2) s2.onchange=()=>{ TT_UNIT=+s2.value; moTienTrinhHV(ma); };
+  m.querySelectorAll("[data-ttid]").forEach(r=>r.onclick=()=>{
+    const id=+r.dataset.ttid, cur=((S.tien_do[ma]||{})[id]||{t:"chua"}).t;
     const nx={chua:"da",da:"dat",dat:"vuot",vuot:"khong",khong:"chua"}[cur]||"da";
     S.tien_do[ma]=S.tien_do[ma]||{};
     if(nx==="chua") delete S.tien_do[ma][id];
