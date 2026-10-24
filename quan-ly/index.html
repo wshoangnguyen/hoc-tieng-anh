@@ -1923,7 +1923,7 @@ function veDiemDanh(){
       <span class="ten">${esc(l)}</span>
       <span class="dem">${hs.length} em</span>
       <span class="bdnut" data-bd="${esc(l)}" title="Mở bài dạy của lớp hôm nay">Bài dạy ›</span>
-      ${lh?`<span class="giay">hôm nay ${gioHom.join(", ")}${(()=>{const g=gvCuaLopHomNay(l);return g?" · "+esc(g):" · <span style='color:var(--del)'>chưa có GV</span>";})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
+      ${lh?`<span class="giay">${(()=>{const g=gvCuaLopHomNay(l);const tg=(typeof DD_LOC!=="undefined"&&DD_LOC==="hom")?"":"hôm nay "+gioHom.join(", ");return [tg,g?esc(g):"<span style='color:var(--del)'>chưa có GV</span>"].filter(Boolean).join(" · ");})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
       ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
     </button>`; };
   const dsHien=(DD_LOC==="hom"?lopHomNay:lopTatCa);
