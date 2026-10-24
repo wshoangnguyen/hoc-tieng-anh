@@ -2448,7 +2448,7 @@ function veBaiDay(){
   if(buoi){
     h+=`<div class="card"><div class="row"><b>Buổi ${ngayVN(buoi.ngay)} · ${esc(buoi.gv||"")}</b>
       <span class="hint">${buoi.trang_thai==="xong"?"đã hoàn thành":"đang mở"}</span><span style="flex:1"></span>
-      <button class="sm" id="bdTin">📨 Bản tin buổi học</button></div>`;
+      <button class="sm" id="bdTin">📨 Báo bài</button></div>`;
     const noteBuoi=(S.ghi_chu||[]).filter(g=>g.buoiId===buoi.id&&!g.hvId).slice(-1)[0];
     h+=`<div class="row" style="gap:6px;margin:6px 0">
       <input id="bdGhi" placeholder="Ghi chú của buổi: dạy tới đâu, phần nào còn dở…" style="flex:1" value="${noteBuoi?esc(noteBuoi.noi_dung):""}">
@@ -2577,29 +2577,49 @@ function theBanGiao(lopId){
     ${chuaDat.length?`<div style="color:var(--del)">⚠ Chưa đạt: ${[...new Set(chuaDat)].join(", ")}</div>`:""}
     ${note?`<div class="hint">Ghi chú: ${esc(note.noi_dung)}</div>`:""}</div>`;
 }
+const PART_EN={tv:"Vocabulary",np1:"Grammar 1",np2:"Grammar 2",story:"Story",skills:"Skills",song:"Song",
+  clil:"Think and learn",project:"Project",comm:"Communication",writing:"Writing",review:"Review",hw:"Workbook"};
+function linkCuaMuc(it){
+  if(!it) return "";
+  return (it.video&&it.video[0]) || (it.audio&&it.audio[0]) || "";
+}
 function bdBanTin(){
   const b=S.buoi_day.filter(x=>x.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc)[0];
-  if(!b) return alert("Chưa có buổi nào.");
+  if(!b) return alert("Chưa có buổi nào. Bấm “Hoàn thành buổi” trước rồi soạn báo bài.");
   const lop=lopTheoId(BD.lopId);
-  const dong=(b.items||[]).map(id=>{ const it=THU_VIEN.items.find(i=>i.id===id)||{};
-    const lk=[...(it.audio||[]).map(u=>"🔊 "+u),...(it.video||[]).map(u=>"🎬 "+u)];
-    return `• ${tenMuc(id)}${lk.length?"\n  "+lk.join("\n  "):""}`; }).join("\n");
+  const dsId=(b.items||[]).slice();
+  const muc=dsId.map(id=>THU_VIEN.items.find(i=>i.id===id)||{id,ten:tenMuc(id),part:""});
+  const ngay=ngayVN(b.ngay);
   const tmB=tmSach(sachCuaLop(BD.lopId)||{code:""});
-  const linkTM=[tmB.sb?"🔊 Audio bài học: "+tmB.sb:"",tmB.wb?"📝 Audio bài tập: "+tmB.wb:""].filter(Boolean).join("\n");
-  const chung=`📚 ${lop.ten} — buổi ${ngayVN(b.ngay)}\n\nNội dung hôm nay:\n${dong}\n${linkTM?"\n"+linkTM+"\n":""}\n${(b.items||[]).some(id=>{const it=THU_VIEN.items.find(i=>i.id===id);return it&&it.part==="hw";})?"":"📝 Bài về nhà: xem lại các phần trên và làm bài tập trong workbook.\n"}`;
-  const chuaDat=[]; hocVienCuaLop(BD.lopId).forEach(hv=>{(b.items||[]).forEach(id=>{const r=(S.tien_do[hv.ma_hv]||{})[id]; if(r&&r.t==="khong") chuaDat.push(hv.ho_ten);});});
-  const notes=(S.ghi_chu||[]).filter(g=>g.lopId===BD.lopId&&!g.xu_ly&&g.buoiId===b.id);
-  const rieng=`🔒 Nội bộ — ${lop.ten} · ${ngayVN(b.ngay)}\n`+
-    (chuaDat.length?`Cần ôn lại: ${[...new Set(chuaDat)].join(", ")}\n`:"")+
-    notes.map(n=>`• ${n.hvId?"["+hvByMa(n.hvId)+"] ":""}${n.noi_dung}`).join("\n");
-  moModal(`<h3>📨 Bản tin buổi học</h3>
-    <p class="hint">Bản nhóm: gửi group Zalo (GV · PH · HS). Bản riêng: chỉ gửi cho giáo viên.</p>
-    <label class="hint">Bản nhóm</label><textarea id="btNhom" rows="8" style="width:100%">${esc(chung)}</textarea>
-    <button class="sm" data-copy="btNhom">Copy bản nhóm</button>
-    <label class="hint" style="display:block;margin-top:8px">Bản riêng</label><textarea id="btRieng" rows="5" style="width:100%">${esc(rieng)}</textarea>
-    <button class="sm" data-copy="btRieng">Copy bản riêng</button>`);
-  document.querySelectorAll("[data-copy]").forEach(btn=>btn.onclick=()=>{ const t=document.getElementById(btn.dataset.copy);
-    t.select(); document.execCommand("copy"); btn.textContent="✔ Đã copy"; });
+  const audioChung=tmB.sb||"";
+  const thieuAudio=muc.some(it=>!((it.video&&it.video[0])));
+  const dongVi=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; return `• ${it.ten}${lk?" ("+lk+")":""}`; }).join("\n");
+  const dongEn=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const en=PART_EN[it.part]||it.ten; return `• ${en}${lk?" ("+lk+")":""}`; }).join("\n");
+  const audioVi=(thieuAudio&&audioChung)?`\n🔊 Nghe audio bài học: ${audioChung}`:"";
+  const audioEn=(thieuAudio&&audioChung)?`\n🔊 Audio: ${audioChung}`:"";
+  const coHW=muc.some(it=>it.part==="hw");
+  const vi=`📚Hôm nay ngày ${ngay}\nLớp chúng ta đã ôn tập, sửa bài tập (nếu có) và hoàn thành phần:\n${dongVi||"• (chưa chọn phần nào)"}${audioVi}\nCác bạn về nhà làm workbook nhé`;
+  const en=`📚Today, ${ngay}\nOur class reviewed and corrected the homework (if any) and completed:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
+  moModal(`<h3>📨 Báo bài — ${esc(lop?lop.ten:"")} · Unit ${b.unit!=null?b.unit:"?"}</h3>
+    <p class="hint">Chỉ gồm các phần của buổi ${ngay} (${muc.length} phần). Sửa trực tiếp trong ô nếu cần rồi copy.</p>
+    <label class="hint">Tiếng Việt</label><textarea id="btVi" rows="7" style="width:100%">${esc(vi)}</textarea>
+    <button class="sm" data-copy="btVi">Copy tiếng Việt</button>
+    <label class="hint" style="display:block;margin-top:8px">English</label><textarea id="btEn" rows="7" style="width:100%">${esc(en)}</textarea>
+    <button class="sm" data-copy="btEn">Copy English</button>
+    <div style="margin-top:8px"><button class="ghost sm" id="btQuay">← Quay lại bài dạy</button>
+    <button class="ghost sm" id="btLuuGhi">📌 Lưu làm ghi chú của lớp</button>
+    <span class="hint" id="btMsg" style="margin-left:6px"></span></div>`);
+  document.querySelectorAll("[data-copy]").forEach(btn=>btn.onclick=()=>{ const ta=document.getElementById(btn.dataset.copy);
+    ta.select(); document.execCommand("copy"); btn.textContent="✔ Đã copy"; });
+  const q=document.getElementById("btQuay"); if(q) q.onclick=()=>veBaiDayModal();
+  const lg=document.getElementById("btLuuGhi");
+  if(lg) lg.onclick=()=>{
+    S.ghi_chu=S.ghi_chu||[];
+    S.ghi_chu.push({id:"g"+Date.now(),lopId:BD.lopId,buoiId:b.id,hvId:null,ngay:b.ngay,
+      noi_dung:(document.getElementById("btVi").value||"").replace(/\n/g," · "),noi_bo:false,nguon:"bao_bai",luc:Date.now()});
+    save();
+    const m=document.getElementById("btMsg"); if(m) m.textContent="Đã lưu vào ghi chú lớp.";
+  };
 }
 function hvByMa(ma){ const h=hvTatCa().find(x=>x.ma_hv===ma); return h?h.ho_ten:ma; }
 function moModal(html){
@@ -2751,7 +2771,7 @@ function veBaiDayModal(){
       <button class="ghost sm" id="bdThem2">＋</button><span style="flex:1"></span>
       <span class="hint">${BD.chon.size} phần</span>
       <button class="sm" id="bdLuu2">Lưu buổi</button>
-      <button class="sm" id="bdXong2" style="background:var(--ok);color:#fff;border-color:var(--ok)">✔ Hoàn thành</button></div>`;
+      <button class="sm" id="bdXong2" style="background:var(--ok);color:#fff;border-color:var(--ok)">✔ Hoàn thành</button> <button class="sm" id="bdTin2" style="background:var(--accent2);color:#fff;border-color:var(--accent2)">📨 Báo bài</button></div>`;
   const buoi=S.buoi_day.filter(b=>b.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc)[0];
   if(buoi&&buoi.items&&buoi.items.length){
     h+=`<h4 style="margin:12px 0 4px">Buổi ${ngayVN(buoi.ngay)} — bấm ô để đổi mức</h4><div class="bd-luoi-em"><table class="bd-bang"><thead><tr><th>Học viên</th>${buoi.items.map(id=>`<th>${esc(tenNgan(id))}</th>`).join("")}<th>⭐</th></tr></thead><tbody>`;
@@ -2773,6 +2793,7 @@ function veBaiDayModal(){
     S.muc_them[`${key}|${n+1}`]={id:sach.id*100000+BD.unit*100+90+n,unit:BD.unit,ten:v}; save(); veBaiDayModal();};
   const luu=document.getElementById("bdLuu2"); if(luu) luu.onclick=()=>bdLuuBuoi();
   const xong=document.getElementById("bdXong2"); if(xong) xong.onclick=()=>bdHoanThanh();
+  const tin2=document.getElementById("bdTin2"); if(tin2) tin2.onclick=()=>bdBanTin();
   m.querySelectorAll("[data-mhv]").forEach(b=>b.onclick=()=>{const hv=b.dataset.mhv,id=+b.dataset.mit;
     const cur=((S.tien_do[hv]||{})[id]||{t:"chua"}).t; const nx={chua:"da",da:"dat",dat:"vuot",vuot:"khong",khong:"da"}[cur]||"da";
     S.tien_do[hv]=S.tien_do[hv]||{}; S.tien_do[hv][id]={t:nx,n:"gv",d:iso(new Date())}; save(); veBaiDayModal();});
