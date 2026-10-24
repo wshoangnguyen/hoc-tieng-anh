@@ -117,6 +117,10 @@ textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,Consolas,mon
 .hsc{border:1px solid var(--line);border-radius:16px;padding:8px;background:var(--card);text-align:center}
 @media (max-width:560px){.roster.to{--o:150px}.roster.vua{--o:120px}.roster.nho{--o:98px}.roster.ratnho{--o:84px}}
 .hsc.sn{border-color:var(--accent);background:#fff7e3;box-shadow:0 0 0 2px var(--accent) inset}
+.hsc.treo{border-color:#e5484d;background:#fff5f5;box-shadow:0 0 0 2px rgba(229,72,77,.35)}
+.hsc.treo .anh{border:2px solid #e5484d;box-shadow:0 0 0 3px rgba(229,72,77,.15)}
+.hsc.treo .ten .nm,.hsc.treo .ten{color:#c62b2f}
+.hsc.treo .phu{color:#c62b2f;font-weight:600}
 .hsc .anh{aspect-ratio:1/1;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;color:var(--dim);font-size:12.5px;line-height:1.25}
 .hsc .anh img{width:100%;height:100%;object-fit:cover}
 .hsc .ten{font-weight:700;font-size:13.5px;margin:0 0 6px;display:flex;align-items:center;justify-content:center;gap:4px}
@@ -1972,6 +1976,27 @@ function veDiemDanh(){
     if(card&&body){ if(DD_LOP){ if(card.previousElementSibling!==body) card.parentNode.insertBefore(body,card); }
       else { if(body.previousElementSibling!==card) body.parentNode.insertBefore(card,body); } } }
 }
+function gioBatDauPhut(ca){
+  const m=String(ca||"").match(/(\d{1,2})\s*[:h]\s*(\d{2})/);
+  return m? (+m[1])*60 + (+m[2]) : null;
+}
+function daVaoGio(lop, now){
+  now=now||new Date();
+  const b=(S.lop||[]).find(x=>x.ten===lop); if(!b) return false;
+  const thu=THU[thuCua(iso(now))];
+  const ds=(b.gio||[]).filter(g=>g.thu===thu).map(g=>gioBatDauPhut(g.ca)).filter(v=>v!==null);
+  if(!ds.length) return false;
+  return (now.getHours()*60+now.getMinutes()) >= Math.min.apply(null,ds);
+}
+function capNhatTreo(){
+  if(typeof DD_LOP==="undefined"||!DD_LOP) return;
+  const vao=daVaoGio(DD_LOP), ng=iso(new Date());
+  document.querySelectorAll("#rosterAnh .hsc").forEach(el=>{
+    const o=el.querySelector("[data-anh]"); if(!o) return;
+    const dd=ddLay(ng,DD_LOP,o.dataset.anh);
+    el.classList.toggle("treo", !!vao && !dd);
+  });
+}
 function roiLop(lop){
   const hs=hvTatCa().filter(h=>h.lop===lop).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
@@ -1984,10 +2009,11 @@ function roiLop(lop){
       <button class="primary" data-bd="${esc(lop)}">📖 Bài dạy</button>
       ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Có mặt cả lớp (hôm nay)</button>`:""}
       <button class="ghost" id="btnInLop">🖨 In</button></div>
-    <div class="roster ${co}" id="rosterAnh">${hs.map(h=>{
+    <div class="roster ${co}" id="rosterAnh" data-treo="${daVaoGio(lop)?1:0}">${hs.map(h=>{
       const d=diemCua(h.ma_hv), st=stickerCua(h.ma_hv), stHom=stickerHomNay(h.ma_hv), sn=laSinhNhat(h), cc=chuyenCan(h);
       const anhm=S.anh[h.ma_hv];
-      return `<div class="hsc${sn?" sn":""}">
+      const treo=daVaoGio(lop) && !ddLay(iso(new Date()),lop,h.ma_hv);
+      return `<div class="hsc${sn?" sn":""}${treo?" treo":""}">
         <div class="ten"><span class="nm" data-hoso="${esc(h.ma_hv)}" title="Bấm để xem hồ sơ" style="cursor:pointer">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)} </span>
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
         <div class="anh" data-anh="${esc(h.ma_hv)}" title="Bấm để chọn ảnh">${anhm?`<img src="${anhm}" alt="">`:`<span>＋<br>ảnh</span>`}</div>
@@ -3029,6 +3055,9 @@ function moTienTrinhHV(ma){
     save(); moTienTrinhHV(ma);
   });
 }
+
+/* tự cập nhật viền đỏ khi tới giờ học (không cần tải lại trang) */
+setInterval(()=>{ try{ if(typeof capNhatTreo==="function") capNhatTreo(); }catch(e){} }, 45000);
 
 </script>
 </body>
