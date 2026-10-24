@@ -2066,6 +2066,7 @@ GAN("fileAnh","change",e=>{
       const c=document.createElement("canvas"); c.width=Math.round(im.width*tl); c.height=Math.round(im.height*tl);
       c.getContext("2d").drawImage(im,0,0,c.width,c.height);
       S.anh[ma]=c.toDataURL("image/jpeg",0.72); save(); render();
+      try{ if(window.__sauDoiAnh) window.__sauDoiAnh(ma); }catch(e){}
     }; im.src=rd.result; };
   rd.readAsDataURL(f); e.target.value="";
 });
@@ -3092,7 +3093,7 @@ function moTienTrinhHV(ma, giu){
     </div>
     <div class="tt-2col">
       <div class="tt-left">
-        <div class="tt-ava">${S.anh[ma]?`<img src="${S.anh[ma]}" alt="">`:"＋ ảnh học viên"}</div>
+        <div class="tt-ava" data-ma="${esc(ma)}" title="Bấm để đổi ảnh" style="cursor:pointer">${S.anh[ma]?`<img src="${S.anh[ma]}" alt="">`:"＋ ảnh học viên"}</div>
         <div class="tt-grid">${luoi}</div>
         <p class="hint" style="margin:6px 0 0;font-size:11.5px">Mỗi dòng một Unit, mỗi ô một đầu mục. Bấm dòng để xem. <span style="color:${TT_MAU.da}">■ đã học</span> <span style="color:${TT_MAU.dat}">■ đạt</span> <span style="color:${TT_MAU.vuot}">■ vượt</span> <span style="color:${TT_MAU.khong}">■ chưa đạt</span></p>
       </div>
@@ -3122,6 +3123,17 @@ function moTienTrinhHV(ma, giu){
 
 /* tự cập nhật viền đỏ khi tới giờ học (không cần tải lại trang) */
 setInterval(()=>{ try{ if(typeof capNhatTreo==="function") capNhatTreo(); }catch(e){} }, 45000);
+/* bấm avatar trong cửa sổ tiến trình để đổi ảnh */
+document.addEventListener("click", e=>{
+  const a=e.target.closest(".tt-ava"); if(!a||!a.dataset.ma) return;
+  if(typeof chonAnh==="function") chonAnh(a.dataset.ma);
+});
+window.__sauDoiAnh = ma=>{
+  const m=document.getElementById("bdModal");
+  if(m && m.style.display!=="none" && m.querySelector(".tt-ava")){
+    if(typeof moTienTrinhHV==="function") moTienTrinhHV(ma,true);
+  }
+};
 
 </script>
 </body>
