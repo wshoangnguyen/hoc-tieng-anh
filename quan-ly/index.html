@@ -2356,6 +2356,8 @@ const TV_GOC={"pb":"2.0","parts":[["tv","Từ vựng","Vocabulary","vocab"],["np
  .tt-grid{display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:10px;padding:6px;background:var(--card2)}
  .tt-2col{display:flex;gap:14px;align-items:flex-start;margin-top:8px}
  .tt-left{flex:0 0 290px;max-width:290px}
+ .tt-ava{width:100%;aspect-ratio:1/1;max-height:210px;border-radius:14px;background:var(--card2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:8px;color:var(--dim);font-size:12px}
+ .tt-ava img{width:100%;height:100%;object-fit:cover}
  .tt-right{flex:1;min-width:0}
  .tt-list{border:1px solid var(--line);border-radius:10px;overflow:hidden}
  .tt-gu{display:flex;align-items:center;gap:2px;cursor:pointer;border-radius:6px;padding:2px 4px}
@@ -3087,6 +3089,7 @@ function moTienTrinhHV(ma, giu){
     </div>
     <div class="tt-2col">
       <div class="tt-left">
+        <div class="tt-ava">${S.anh[ma]?`<img src="${S.anh[ma]}" alt="">`:"＋ ảnh học viên"}</div>
         <div class="tt-grid">${luoi}</div>
         <p class="hint" style="margin:6px 0 0;font-size:11.5px">Mỗi dòng một Unit, mỗi ô một đầu mục. Bấm dòng để xem. <span style="color:${TT_MAU.da}">■ đã học</span> <span style="color:${TT_MAU.dat}">■ đạt</span> <span style="color:${TT_MAU.vuot}">■ vượt</span> <span style="color:${TT_MAU.khong}">■ chưa đạt</span></p>
       </div>
