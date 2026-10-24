@@ -2353,7 +2353,11 @@ const TV_GOC={"pb":"2.0","parts":[["tv","Từ vựng","Vocabulary","vocab"],["np
 /* lưới tiến trình */
 (()=>{ const s=document.createElement("style");
  s.textContent=`
- .tt-grid{display:flex;flex-direction:column;gap:3px;max-height:26vh;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:6px;background:var(--card2);margin-top:6px}
+ .tt-grid{display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:10px;padding:6px;background:var(--card2)}
+ .tt-2col{display:flex;gap:14px;align-items:flex-start;margin-top:8px}
+ .tt-left{flex:0 0 290px;max-width:290px}
+ .tt-right{flex:1;min-width:0}
+ .tt-list{border:1px solid var(--line);border-radius:10px;overflow:hidden}
  .tt-gu{display:flex;align-items:center;gap:2px;cursor:pointer;border-radius:6px;padding:2px 4px}
  .tt-gu:hover{background:#fff}
  .tt-gu.cur{background:#fff7e3;box-shadow:0 0 0 1px var(--accent) inset}
@@ -2665,7 +2669,9 @@ function hvByMa(ma){ const h=hvTatCa().find(x=>x.ma_hv===ma); return h?h.ho_ten:
 function moModal(html){
   let m=document.getElementById("bdModal");
   if(!m){ m=document.createElement("div"); m.id="bdModal"; m.className="modal-wrap"; document.body.appendChild(m); }
-  m.innerHTML=`<div class="modal">${html}<div style="text-align:right;margin-top:8px"><button class="ghost sm" id="bdDong">Đóng</button></div></div>`;
+  const _ft='<div style="text-align:right;margin-top:8px"><button class="ghost sm" id="bdDong">Đóng</button></div>';
+  const _m=/^\s*<div class="modal"([^>]*)>([\s\S]*)<\/div>\s*$/.exec(html);
+  m.innerHTML = _m ? `<div class="modal"${_m[1]}>${_m[2]}${_ft}</div>` : `<div class="modal">${html}${_ft}</div>`;
   m.style.display="flex";
   const d=document.getElementById("bdDong"); if(d) d.onclick=()=>{m.style.display="none";};
 }
@@ -3058,19 +3064,24 @@ function moTienTrinhHV(ma, giu){
   }).join("");
   const optBook=books.map(x=>`<option value="${x.id}"${x.id===b.id?" selected":""}>${esc(x.ten)}${x.id===(sachNay&&sachNay.id)?" (đang học)":""}</option>`).join("");
   const optUnit=b.units.map(u=>`<option value="${u}"${u===TT_UNIT?" selected":""}>Unit ${u}</option>`).join("");
-  const htm=`<div class="modal" style="max-width:820px"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
+  const htm=`<div class="modal" style="max-width:1000px;width:94vw"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
     <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span><span class="chip">⭐ ${tichLuy(ma)}</span>
     <button class="ghost sm" id="ttX">✕</button></div>
-    <div class="tt-grid">${luoi}</div>
-    <p class="hint" style="margin:2px 0 6px">Lưới: mỗi dòng một Unit, mỗi ô một đầu mục — bấm dòng để xem chi tiết. Màu: <span style="color:${TT_MAU.da}">đã học</span> · <span style="color:${TT_MAU.dat}">đạt</span> · <span style="color:${TT_MAU.vuot}">vượt</span> · <span style="color:${TT_MAU.khong}">chưa đạt</span>.</p>
-    <div class="row" style="margin:6px 0;gap:6px">
-      <select id="ttSach" style="max-width:260px">${optBook}</select>
+    <div class="row" style="margin:6px 0 2px;gap:6px;flex-wrap:wrap">
+      <select id="ttSach" style="max-width:250px">${optBook}</select>
       <select id="ttUnit">${optUnit}</select>
-      <span style="flex:1"></span>
-      <span class="hint">Sách này: đã học <b>${soDaHoc}</b> · đạt <b>${dem.dat}</b> · vượt <b>${dem.vuot}</b> · chưa đạt <b>${dem.khong}</b></span>
+      <span class="hint">đã học <b>${soDaHoc}</b> · đạt <b>${dem.dat}</b> · vượt <b>${dem.vuot}</b> · chưa đạt <b>${dem.khong}</b></span>
     </div>
-    <div style="max-height:50vh;overflow:auto;border:1px solid var(--line);border-radius:10px">${rows||'<p class="hint" style="padding:10px">Unit này chưa có mục nào.</p>'}</div>
-    <p class="hint" style="margin:8px 0 0">Bấm vào một dòng để đổi mức: Chưa học → Đã học → Đạt → Vượt → Chưa đạt. Lưu ngay.</p></div>`;
+    <div class="tt-2col">
+      <div class="tt-left">
+        <div class="tt-grid">${luoi}</div>
+        <p class="hint" style="margin:6px 0 0;font-size:11.5px">Mỗi dòng một Unit, mỗi ô một đầu mục. Bấm dòng để xem. <span style="color:${TT_MAU.da}">■ đã học</span> <span style="color:${TT_MAU.dat}">■ đạt</span> <span style="color:${TT_MAU.vuot}">■ vượt</span> <span style="color:${TT_MAU.khong}">■ chưa đạt</span></p>
+      </div>
+      <div class="tt-right">
+        <div class="row" style="margin:0 0 4px"><b style="font-size:13.5px">Unit ${TT_UNIT}</b><span style="flex:1"></span><span class="hint" style="font-size:11.5px">bấm dòng để đổi mức</span></div>
+        <div class="tt-list">${rows||'<p class="hint" style="padding:10px">Unit này chưa có mục nào.</p>'}</div>
+      </div>
+    </div></div>`;
   moModal(htm);
   const m=document.getElementById("bdModal");
   const dong=()=>{ if(m){ m.style.display="none"; m.dataset.bd=""; } };
