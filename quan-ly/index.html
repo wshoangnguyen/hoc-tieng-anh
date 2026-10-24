@@ -2011,7 +2011,7 @@ function roiLop(lop){
       <button class="ghost" id="btnInLop">🖨 In</button></div>
     <div class="roster ${co}" id="rosterAnh" data-treo="${daVaoGio(lop)?1:0}">${hs.map(h=>{
       const d=diemCua(h.ma_hv), st=stickerCua(h.ma_hv), stHom=stickerHomNay(h.ma_hv), sn=laSinhNhat(h), cc=chuyenCan(h);
-      const anhm=S.anh[h.ma_hv];
+      const anhm=(typeof anhSrc==="function")?anhSrc(h.ma_hv):S.anh[h.ma_hv];
       const treo=daVaoGio(lop) && !ddLay(iso(new Date()),lop,h.ma_hv);
       return `<div class="hsc${sn?" sn":""}${treo?" treo":""}">
         <div class="ten"><span class="nm" data-hoso="${esc(h.ma_hv)}" title="Bấm để xem hồ sơ" style="cursor:pointer">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)} </span>
@@ -2070,6 +2070,7 @@ GAN("fileAnh","change",e=>{
       while(d.length>35000 && q>0.4){ q-=0.08; d=c.toDataURL("image/jpeg",q); }
       S.anh[ma]=d; save(); render();
       try{ window.__anhMoiKB=Math.round(d.length*0.75/1024); }catch(e){}
+      try{ if(window.__sauLuuAnh) window.__sauLuuAnh(ma,d); }catch(e){}
       try{ if(window.__sauDoiAnh) window.__sauDoiAnh(ma); }catch(e){}
     }; im.src=rd.result; };
   rd.readAsDataURL(f); e.target.value="";
@@ -2324,6 +2325,7 @@ async function vaoApp(){
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
   load(); dungQuyen(); render(); veNav(); apDungTab(); dungSelVai();
+  try{ if(window.__dongBoAnh) window.__dongBoAnh(); }catch(e){}
   dnTT("đã kết nối");
   if(!coDuLieu&&S) henDayLenMayChu();   // máy chủ trống: đẩy dữ liệu đang có trên máy lên
 }
@@ -3097,7 +3099,7 @@ function moTienTrinhHV(ma, giu){
     </div>
     <div class="tt-2col">
       <div class="tt-left">
-        <div class="tt-ava" data-ma="${esc(ma)}" title="Bấm để đổi ảnh" style="cursor:pointer">${S.anh[ma]?`<img src="${S.anh[ma]}" alt="">`:"＋ ảnh học viên"}</div>
+        <div class="tt-ava" data-ma="${esc(ma)}" title="Bấm để đổi ảnh" style="cursor:pointer">${anhSrc(ma)?`<img src="${anhSrc(ma)}" alt="">`:"＋ ảnh học viên"}</div>
         <div class="tt-grid">${luoi}</div>
         <p class="hint" style="margin:6px 0 0;font-size:11.5px">Mỗi dòng một Unit, mỗi ô một đầu mục. Bấm dòng để xem. <span style="color:${TT_MAU.da}">■ đã học</span> <span style="color:${TT_MAU.dat}">■ đạt</span> <span style="color:${TT_MAU.vuot}">■ vượt</span> <span style="color:${TT_MAU.khong}">■ chưa đạt</span></p>
       </div>
@@ -3138,6 +3140,72 @@ window.__sauDoiAnh = ma=>{
     if(typeof moTienTrinhHV==="function") moTienTrinhHV(ma,true);
   }
 };
+/* ===== v7.24: ảnh học viên trên Supabase Storage ===== */
+const ANH_BUCKET="anh-hoc-vien";
+const ANH_URL={};
+function anhSrc(ma){
+  if(ANH_URL[ma]) return ANH_URL[ma];
+  const v=S.anh&&S.anh[ma];
+  if(!v) return "";
+  return String(v).startsWith("sb:") ? "" : v;   // sb: = đang chờ link tạm
+}
+function capNhatAnhTrenManHinh(){
+  document.querySelectorAll("[data-anh]").forEach(el=>{
+    const ma=el.dataset.anh, u=anhSrc(ma);
+    if(!u) return;
+    const i=el.querySelector("img");
+    if(i){ if(i.getAttribute("src")!==u) i.setAttribute("src",u); }
+    else el.innerHTML=`<img src="${u}" alt="">`;
+  });
+  document.querySelectorAll(".tt-ava[data-ma]").forEach(el=>{
+    const u=anhSrc(el.dataset.ma); if(!u) return;
+    el.innerHTML=`<img src="${u}" alt="">`;
+  });
+}
+async function kyLaiAnh(ma, p){
+  try{
+    const {data,error}=await sb.storage.from(ANH_BUCKET).createSignedUrl(p,3600);
+    if(!error&&data&&data.signedUrl){ ANH_URL[ma]=data.signedUrl; return true; }
+  }catch(e){}
+  return false;
+}
+async function dayAnhLen(ma, dataUrl){
+  if(!sb||!dataUrl) return;
+  try{
+    const blob=await (await fetch(dataUrl)).blob();
+    const p=`hv/${ma}.jpg`;
+    const {error}=await sb.storage.from(ANH_BUCKET).upload(p, blob, {upsert:true, contentType:"image/jpeg"});
+    if(error){ console.warn("Supabase Storage:", error.message); return; }
+    S.anh[ma]="sb:"+p;
+    if(await kyLaiAnh(ma,p)) capNhatAnhTrenManHinh();
+    save();
+  }catch(e){ console.warn(e); }
+}
+let __dangDongBoAnh=false;
+async function dongBoAnh(){
+  if(!sb||!S||__dangDongBoAnh) return;
+  __dangDongBoAnh=true;
+  let doi=false;
+  try{
+    for(const h of hvTatCa()){
+      const ma=h.ma_hv, v=S.anh&&S.anh[ma];
+      if(!v) continue;
+      if(String(v).startsWith("sb:")){ await kyLaiAnh(ma, String(v).slice(3)); }
+      else if(String(v).startsWith("data:")){
+        const blob=await (await fetch(v)).blob();
+        const p=`hv/${ma}.jpg`;
+        const {error}=await sb.storage.from(ANH_BUCKET).upload(p, blob, {upsert:true, contentType:"image/jpeg"});
+        if(!error){ S.anh[ma]="sb:"+p; doi=true; await kyLaiAnh(ma,p); }
+      }
+    }
+    if(doi) save();
+    capNhatAnhTrenManHinh();
+  }catch(e){ console.warn(e); }
+  __dangDongBoAnh=false;
+}
+window.__dongBoAnh=dongBoAnh;
+window.__sauLuuAnh=(ma,d)=>dayAnhLen(ma,d);
+setInterval(()=>{ try{ if(sb&&document.visibilityState==="visible") dongBoAnh(); }catch(e){} }, 25*60*1000);
 
 </script>
 </body>
