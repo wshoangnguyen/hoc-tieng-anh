@@ -2606,11 +2606,11 @@ function bdBanTin(){
   const audioChung=tmB.sb||"";
   const thieuAudio=muc.some(it=>!((it.video&&it.video[0])));
   const dongVi=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
-    const ten=String(it.ten).replace(/\s*\(lần \d+\)$/,""); const tr=lap?"":trangMuc(it);
-    return `• ${ten}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
+    const ten=String(it.ten).replace(/\s*\(lần \d+\)$/,"");
+    return `• ${ten}${lk?" ("+lk+")":""}`; }).join("\n");
   const dongEn=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
-    const en=PART_EN[it.part]||String(it.ten).replace(/\s*\(lần \d+\)$/,""); const tr=lap?"":trangMuc(it);
-    return `• ${en}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
+    const en=PART_EN[it.part]||String(it.ten).replace(/\s*\(lần \d+\)$/,"");
+    return `• ${en}${lk?" ("+lk+")":""}`; }).join("\n");
   const audioVi=(thieuAudio&&audioChung)?`\n🔊 Nghe audio bài học: ${audioChung}`:"";
   const audioEn=(thieuAudio&&audioChung)?`\n🔊 Audio: ${audioChung}`:"";
   const coOnTap=muc.some(it=>it.part==="review"||it.part==="hw");
@@ -2747,6 +2747,12 @@ function buoiDayPart(lopId,unit,part){
   return (S.buoi_day||[]).some(b=>b.lopId===lopId&&b.trang_thai==="xong"&&(b.items||[]).some(id=>{
     const it=mucTheoId(id); return it&&it.unit===unit&&it.part===part; }));
 }
+function trangUnit(sach,unit){
+  if(!sach) return "";
+  const c=String(sach.code||"");
+  if(/^SM/.test(c)){ if(unit===0) return "tr. 4–9"; const a=10+12*(unit-1); return `tr. ${a}–${a+11}`; }
+  return "";
+}
 function trangMuc(it){ const o=(S.trang_muc||{})[it.id]; return o!=null?o:(it.trang||""); }
 function themLanNua(id){
   const sach=sachCuaLop(BD.lopId); if(!sach) return;
@@ -2786,7 +2792,8 @@ function veBaiDayModal(){
   h+=`<div class="row" style="gap:4px;margin:6px 0;flex-wrap:wrap">`+units.map(u=>{const s=soMucDaDay(BD.lopId,u);
       return `<button class="ghost sm ${u===BD.unit?"on":""}" data-mu="${u}" style="${u===BD.unit?"background:var(--accent);font-weight:700":""}">U${u} <small>${s.xong}/${s.tong}</small></button>`;}).join("")+`</div>`;
   const bg=theBanGiao(BD.lopId); if(bg) h+=bg;
-  { const u0=dsMuc[0]||{}; h+=`<p class="hint" style="margin:2px 0 4px"><b>Unit ${BD.unit}${u0.unit_ten?" — "+esc(u0.unit_ten):""}</b>${u0.trang?" · "+esc(u0.trang):""}</p>`; }
+  { const u0=dsMuc[0]||{}, trU=trangUnit(sach,BD.unit);
+    h+=`<p class="hint" style="margin:2px 0 4px"><b>Unit ${BD.unit}${u0.unit_ten?" — "+esc(u0.unit_ten):""}</b>${trU?" · "+trU:""}</p>`; }
   { const bMoi=S.buoi_day.filter(b=>b.lopId===BD.lopId&&b.trang_thai!=="xong").sort((a,b)=>b.luc-a.luc)[0];
     const dsG=(S.ghi_chu||[]).filter(g=>g.lopId===BD.lopId&&!g.hvId&&!g.xu_ly&&(!bMoi||g.buoiId!==bMoi.id)).slice(-3);
     if(dsG.length) h+=`<div class="card" style="background:var(--nen-canhbao);border-color:var(--vien-canhbao);margin:6px 0">
@@ -2799,7 +2806,7 @@ function veBaiDayModal(){
       const daDay=!lap && buoiDayPart(BD.lopId,i.unit,i.part);
       const khoa=daDay && !chon && !(BD.moLai&&BD.moLai.has(i.id));
       return `<label class="bd-m ${chon?"chon":""}${khoa?" khoa":""}" ${khoa?'style="opacity:.45"':""}><input type="checkbox" data-mi="${i.id}" ${chon?"checked":""} ${khoa?"disabled":""}>
-        <span class="bd-ten">${esc(i.ten)}<small class="hint" style="margin-left:6px" data-trang="${i.id}" title="Bấm để sửa số trang" style="cursor:pointer;text-decoration:underline dotted">${esc(trangMuc(i)||"chưa rõ trang")}</small>${khoa?' <small class="hint">đã dạy</small>':""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
+        <span class="bd-ten">${esc(i.ten)}${khoa?' <small class="hint">đã dạy</small>':""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
         ${lap?`<button class="ghost sm" data-lap="${i.id}" title="Thêm một lần nữa cho buổi này" style="padding:0 6px">＋ lần</button>`:""}
         ${khoa?`<button class="ghost sm" data-revise="${i.id}" title="Mở lại để dạy lại phần này" style="padding:0 6px">↻ Revise</button>`:""}
         ${i.tu_them?`<button class="ghost sm" data-suathem="${i.id}" title="Đổi tên phần" style="padding:0 5px">✏️</button><button class="ghost sm" data-xoathem="${i.id}" title="Xoá phần này" style="padding:0 5px">🗑</button>`:""}
