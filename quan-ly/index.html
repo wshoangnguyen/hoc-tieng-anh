@@ -2062,10 +2062,14 @@ function chonAnh(ma){ maChonAnh=ma; const f=document.getElementById("fileAnh"); 
 GAN("fileAnh","change",e=>{
   const f=e.target.files[0]; if(!f||!maChonAnh) return; const ma=maChonAnh, rd=new FileReader();
   rd.onload=()=>{ const im=new Image(); im.onload=()=>{
-      const M=320, tl=Math.min(1, M/Math.max(im.width,im.height));
+      /* nén: cạnh dài tối đa 300px, hạ chất lượng dần cho tới khi ảnh <= ~26KB */
+      const M=300, tl=Math.min(1, M/Math.max(im.width,im.height));
       const c=document.createElement("canvas"); c.width=Math.round(im.width*tl); c.height=Math.round(im.height*tl);
       c.getContext("2d").drawImage(im,0,0,c.width,c.height);
-      S.anh[ma]=c.toDataURL("image/jpeg",0.72); save(); render();
+      let q=0.72, d=c.toDataURL("image/jpeg",q);
+      while(d.length>35000 && q>0.4){ q-=0.08; d=c.toDataURL("image/jpeg",q); }
+      S.anh[ma]=d; save(); render();
+      try{ window.__anhMoiKB=Math.round(d.length*0.75/1024); }catch(e){}
       try{ if(window.__sauDoiAnh) window.__sauDoiAnh(ma); }catch(e){}
     }; im.src=rd.result; };
   rd.readAsDataURL(f); e.target.value="";
