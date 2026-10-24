@@ -1517,7 +1517,7 @@ function mucLevel(lop){
   const m=/^SM\s*-?\s*(\d+)/.exec(s);
   if(m){ const n=Math.max(1,Math.min(6,Number(m[1]))); return {ten:"Super Minds "+n, tb:n, min:n}; }
   if(/^A2/.test(s)) return {ten:"Open World A2", tb:5, min:4};   // bậc 5
-  if(/^B1/.test(s)) return {ten:"Open World B1", tb:7, min:6};   // bậc 7
+  if(/^B1/.test(s)) return {ten:"Open World B1", tb:7, min:5};   // bậc 7
   if(/^B2/.test(s)) return {ten:"Open World B2", tb:8, min:7};   // bậc 8
   if(/^C1/.test(s)) return {ten:"C1", tb:9, min:8};              // bậc 9
   return null;
