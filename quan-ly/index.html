@@ -2565,7 +2565,10 @@ function veBaiDay(){
 function tmSach(sach){ const m=(typeof DRIVE_MP!=="undefined"&&DRIVE_MP[sach.code])||{};
   const u=id=>"https://drive.google.com/drive/folders/"+id;
   return {sb:m.sb?u(m.sb):"", wb:m.wb?u(m.wb):""}; }
-function tenNgan(id){ return tenMuc(id).replace(/^Unit \d+ \u00b7 /,""); }
+function tenNgan(id){
+  const it=mucTheoId(id), ten=String(tenMuc(id)).replace(/^Unit \d+ \u00b7 /,"").replace(/^U\d+\s+/,"");
+  return (it && it.unit!=null) ? `U${it.unit} ${ten}` : ten;
+}
 function tenMuc(id){
   const it=THU_VIEN.items.find(i=>i.id===id); if(it) return it.ten;
   for(const k in S.muc_them){ if(S.muc_them[k].id===id) return S.muc_them[k].ten; }
