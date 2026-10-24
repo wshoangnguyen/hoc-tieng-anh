@@ -2671,7 +2671,9 @@ function moModal(html){
   if(!m){ m=document.createElement("div"); m.id="bdModal"; m.className="modal-wrap"; document.body.appendChild(m); }
   const _ft='<div style="text-align:right;margin-top:8px"><button class="ghost sm" id="bdDong">Đóng</button></div>';
   const _m=/^\s*<div class="modal"([^>]*)>([\s\S]*)<\/div>\s*$/.exec(html);
-  m.innerHTML = _m ? `<div class="modal"${_m[1]}>${_m[2]}${_ft}</div>` : `<div class="modal">${html}${_ft}</div>`;
+  const _coDong=/<button[^>]*>\s*Đóng\s*<\/button>/.test(html);
+  const _f=_coDong?"":_ft;
+  m.innerHTML = _m ? `<div class="modal"${_m[1]}>${_m[2]}${_f}</div>` : `<div class="modal">${html}${_f}</div>`;
   m.style.display="flex";
   const d=document.getElementById("bdDong"); if(d) d.onclick=()=>{m.style.display="none";};
 }
