@@ -3473,6 +3473,8 @@ document.head.appendChild(_cssGY);
 .chat-chan textarea{flex:1;resize:none;height:44px;border:1px solid #d7dbe2;border-radius:9px;padding:8px 10px;font:14px inherit}
 .chat-chan button{background:#1f6feb;color:#fff;border:none;border-radius:9px;padding:0 14px;font-weight:600;cursor:pointer}
 .chat-chan button:disabled{opacity:.5;cursor:default}
+.chat-muc{display:flex;align-items:center;gap:6px;padding:8px 12px 0;background:#f6f7f9;font-size:12px;color:#5b6472}
+.chat-muc select{font:12px inherit;border:1px solid #d7dbe2;border-radius:8px;padding:3px 6px;background:#fff}
 .chat-goi{padding:8px 12px 0;display:flex;flex-wrap:wrap;gap:6px;background:#f6f7f9}
 .chat-goi button{font-size:12px;border:1px solid #d7dbe2;background:#fff;border-radius:14px;padding:4px 9px;cursor:pointer}
 </style>
@@ -3483,10 +3485,12 @@ const API="https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/hoi";
 const nut=document.createElement("button");
 nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="none";
 const hop=document.createElement("div"); hop.id="chatHop";
-hop.innerHTML='<div class="chat-dau">📚 Hỏi nội dung sách<small>· trả lời kèm số trang</small><button id="chatDong" title="Đóng">✕</button></div>'
- +'<div class="chat-goi"><button>Unit 5 B1 có ngữ pháp gì?</button><button>3 hoạt động cho phần từ vựng Unit 1 B1</button><button>Unit 2 A2 có kỹ năng gì?</button></div>'
+hop.innerHTML='<div class="chat-dau">📚 Gợi ý dạy theo sức học<small>· dựa trên sách + thang đo</small><button id="chatDong" title="Đóng">✕</button></div>'
+ +'<div class="chat-muc"><span>Sức học lớp:</span><select id="chatMuc"><option value="">Cả lớp</option>'
+ +'<option value="yeu">Phần lớn yếu</option><option value="tb">Trung bình</option><option value="kha">Phần lớn khá</option></select></div>'
+ +'<div class="chat-goi"><button>Unit 1 B1 từ vựng: 2 em yếu, 3 em khá — dạy thế nào?</button><button>Unit 5 B1 ngữ pháp: hoạt động cho học sinh yếu</button><button>Unit 2 A2: 3 hoạt động tăng dần độ khó</button></div>'
  +'<div id="chatThan"></div>'
- +'<div class="chat-chan"><textarea id="chatHoi" placeholder="Hỏi về nội dung sách… (Unit, kỹ năng, hoạt động)"></textarea><button id="chatGui">Gửi</button></div>';
+ +'<div class="chat-chan"><textarea id="chatHoi" placeholder="Hỏi cách dạy: unit nào, phần nào, lớp yếu/khá ra sao…"></textarea><button id="chatGui">Gửi</button></div>';
 document.body.appendChild(nut); document.body.appendChild(hop);
 
 const than=hop.querySelector("#chatThan"), o=hop.querySelector("#chatHoi"), gui=hop.querySelector("#chatGui");
@@ -3514,7 +3518,7 @@ async function guiHoi(){
   o.value=""; them(q,true);
   gui.disabled=true; const cho=them("Đang tra sách…", false);
   try{
-    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token})});
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token,muc:document.getElementById("chatMuc").value||null})});
     const d=await r.json();
     cho.remove();
     if(!r.ok){ them(d.loi||("Lỗi "+r.status), false); }
