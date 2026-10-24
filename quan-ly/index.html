@@ -2511,7 +2511,7 @@ function veBaiDay(){
     const chon=BD.chon.has(i.id);
     return `<label class="bd-m ${chon?"chon":""}" style="--tt:${TT_MAU[tt]}">
       <input type="checkbox" data-bdit="${i.id}" ${chon?"checked":""}>
-      <span class="bd-ten">${esc(i.ten)}${i.trang?` <small class="hint">${esc(i.trang)}</small>`:""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
+      <span class="bd-ten" data-gy="${i.id}" title="Bấm để xem tóm tắt và 6 nấc hoạt động">${esc(i.ten)}${i.trang?` <small class="hint">${esc(i.trang)}</small>`:""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
       <span class="bd-chip" style="background:${TT_MAU[tt]}22;color:${TT_MAU[tt]};border-color:${TT_MAU[tt]}">${TT_TEN[tt]}</span>
       ${tong?`<span class="hint">${c.dat+c.vuot}/${tong} đạt</span>`:""}
       ${(i.audio&&i.audio.length)?`<span class="hint">🔊${i.audio.length}</span>`:""}
@@ -2894,7 +2894,7 @@ function veBaiDayModal(){
       const daDay=!lap && buoiDayPart(BD.lopId,i.unit,i.part);
       const khoa=daDay && !chon && !(BD.moLai&&BD.moLai.has(i.id));
       return `<label class="bd-m ${chon?"chon":""}${khoa?" khoa":""}" ${khoa?'style="opacity:.45"':""}><input type="checkbox" data-mi="${i.id}" ${chon?"checked":""} ${khoa?"disabled":""}>
-        <span class="bd-ten">${esc(i.ten)}${khoa?' <small class="hint">đã dạy</small>':""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
+        <span class="bd-ten" data-gy="${i.id}" title="Bấm để xem tóm tắt và 6 nấc hoạt động">${esc(i.ten)}${khoa?' <small class="hint">đã dạy</small>':""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
         ${lap?`<button class="ghost sm" data-lap="${i.id}" title="Thêm một lần nữa cho buổi này" style="padding:0 6px">＋ lần</button>`:""}
         ${khoa?`<button class="ghost sm" data-revise="${i.id}" title="Mở lại để dạy lại phần này" style="padding:0 6px">↻ Revise</button>`:""}
         ${i.tu_them?`<button class="ghost sm" data-suathem="${i.id}" title="Đổi tên phần" style="padding:0 5px">✏️</button><button class="ghost sm" data-xoathem="${i.id}" title="Xoá phần này" style="padding:0 5px">🗑</button>`:""}
@@ -3339,6 +3339,70 @@ window.__xongLuu=__xongLuu;
 window.__taiLaiTuMayChu=async()=>{ try{ await __nhanThayDoi(); }catch(e){} };
 setInterval(()=>{ __kiemMayChu(); }, 8000);
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden) __kiemMayChu(); });
+
+
+/* ---------- Gợi ý hoạt động 6 nấc (bấm vào tên đầu mục) ---------- */
+let HD_DATA=null, HD_LOI=false, HD_DANG=false;
+function napHD(cb){
+  if(HD_DATA) return cb(HD_DATA);
+  if(HD_DANG) return;
+  HD_DANG=true;
+  fetch("hoat-dong-muc.json",{cache:"force-cache"}).then(r=>r.json())
+    .then(j=>{ HD_DATA=j.items||{}; HD_DANG=false; cb(HD_DATA); })
+    .catch(()=>{ HD_DANG=false; HD_LOI=true; cb(null); });
+}
+function moGoiY(id){
+  const it=mucTheoId(Number(id))||mucTheoId(id); if(!it) return;
+  napHD(d=>{
+    const bd=document.createElement("div"); bd.className="backdrop"; bd.style.zIndex="4000";
+    const hd=d&&d[String(id)];
+    if(!hd){
+      bd.innerHTML=`<div class="modal" style="max-width:520px" onclick="event.stopPropagation()">
+        <h3 style="margin:0 0 6px">💡 ${esc(it.ten)}</h3>
+        <p class="hint">${HD_LOI?"Chưa tải được tệp gợi ý hoạt động (mở web qua https, không mở trực tiếp tệp).":"Chưa có gợi ý cho đầu mục này."}</p>
+        <div class="row" style="margin-top:10px"><span style="flex:1"></span><button class="ghost" id="gyDong">Đóng</button></div></div>`;
+      bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
+      bd.querySelector("#gyDong").onclick=()=>bd.remove(); return;
+    }
+    const nu=it.unit!=null?`Unit ${it.unit}`:"";
+    bd.innerHTML=`<div class="modal" style="max-width:640px" onclick="event.stopPropagation()">
+      <h3 style="margin:0 0 2px">💡 ${esc(it.ten)}</h3>
+      <p class="hint" style="margin:0 0 10px">${esc(nu)}${it.unit_ten?" — "+esc(it.unit_ten):""}${it.trang?" · "+esc(it.trang):""}</p>
+      <div class="gy-tom">${esc(hd.tom_tat)}</div>
+      ${hd.tu_khoa&&hd.tu_khoa.length?`<p class="hint" style="margin:6px 0 0"><b>Từ khoá:</b> ${esc(hd.tu_khoa.join(", "))}</p>`:""}
+      ${hd.khuon_cau?`<p class="hint" style="margin:2px 0 0"><b>Cấu trúc:</b> ${esc(hd.khuon_cau)}</p>`:""}
+      ${hd.cau_mau?`<p class="hint" style="margin:2px 0 0"><b>Câu mẫu:</b> ${esc(hd.cau_mau)}</p>`:""}
+      <h4 style="margin:12px 0 4px">6 nấc hoạt động <span class="hint" style="font-weight:400">— leo 1→4, khá lên 5–6</span></h4>
+      <div class="gy-nac">${hd.nac.map(n=>`
+        <div class="gy-n" data-n="${n.n}">
+          <div class="gy-nh"><span class="gy-so">${n.n}</span><b>${esc(n.ten)}</b><span class="hint">· ${esc(n.do_cang||"")}</span></div>
+          <div class="gy-lam">${esc(n.lam)}</div>
+          ${n.muc_dich?`<div class="hint">Mục đích: ${esc(n.muc_dich)}</div>`:""}
+        </div>`).join("")}</div>
+      <p class="hint" style="margin:8px 0 0">Chèn vào buổi dạy: đóng cửa sổ này rồi tích đầu mục như bình thường.</p>
+      <div class="row" style="margin-top:10px"><span style="flex:1"></span><button class="primary" id="gyDong">Đóng</button></div></div>`;
+    bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
+    bd.querySelector("#gyDong").onclick=()=>bd.remove();
+  });
+}
+document.addEventListener("click",e=>{
+  const el=e.target.closest("[data-gy]"); if(!el) return;
+  e.preventDefault(); e.stopPropagation(); moGoiY(el.dataset.gy);
+},true);
+
+const _cssGY=document.createElement("style");
+_cssGY.textContent=`
+.bd-ten[data-gy]{cursor:pointer;border-bottom:1px dotted rgba(0,0,0,.25)}
+.bd-ten[data-gy]:hover{color:var(--accent)}
+.gy-tom{background:#fffdf6;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.45}
+.gy-nac{display:flex;flex-direction:column;gap:6px;max-height:44vh;overflow:auto}
+.gy-n{border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff}
+.gy-nh{display:flex;align-items:center;gap:6px;font-size:13.5px}
+.gy-so{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#3a2c10;font-weight:700;font-size:12px}
+.gy-lam{margin:3px 0 2px;font-size:13.5px;line-height:1.45}
+.gy-n[data-n="5"],.gy-n[data-n="6"]{background:#fff8ee}
+`;
+document.head.appendChild(_cssGY);
 
 </script>
 </body>
