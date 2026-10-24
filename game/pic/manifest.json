@@ -1,0 +1,1610 @@
+{
+"friday": {
+"anh": "webp/friday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.3
+},
+"monday": {
+"anh": "webp/monday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.3
+},
+"saturday": {
+"anh": "webp/saturday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.4
+},
+"sunday": {
+"anh": "webp/sunday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.6
+},
+"t-shirt": {
+"anh": "webp/t-shirt.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.5
+},
+"thursday": {
+"anh": "webp/thursday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.1
+},
+"tuesday": {
+"anh": "webp/tuesday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.4
+},
+"wednesday": {
+"anh": "webp/wednesday.webp",
+"rong": 640,
+"cao": 480,
+"kb": 29.5
+},
+"apple": {
+"anh": "webp/apple.webp",
+"rong": 440,
+"cao": 580,
+"kb": 10.7
+},
+"arm": {
+"anh": "webp/arm.webp",
+"rong": 440,
+"cao": 580,
+"kb": 9.5
+},
+"armchair": {
+"anh": "webp/armchair.webp",
+"rong": 264,
+"cao": 359,
+"kb": 3.6
+},
+"athletics": {
+"anh": "webp/athletics.webp",
+"rong": 264,
+"cao": 359,
+"kb": 11.2
+},
+"backwards": {
+"anh": "webp/backwards.webp",
+"rong": 192,
+"cao": 331,
+"kb": 3.9
+},
+"badminton": {
+"anh": "webp/badminton.webp",
+"rong": 264,
+"cao": 359,
+"kb": 11.9
+},
+"bag": {
+"anh": "webp/bag.webp",
+"rong": 440,
+"cao": 580,
+"kb": 12.8
+},
+"ball": {
+"anh": "webp/ball.webp",
+"rong": 440,
+"cao": 580,
+"kb": 10.7
+},
+"banana": {
+"anh": "webp/banana.webp",
+"rong": 440,
+"cao": 580,
+"kb": 12.2
+},
+"baseball cap": {
+"anh": "webp/baseball-cap.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.6
+},
+"baseball": {
+"anh": "webp/baseball.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.7
+},
+"basketball": {
+"anh": "webp/basketball.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.8
+},
+"bat": {
+"anh": "webp/bat.webp",
+"rong": 258,
+"cao": 190,
+"kb": 6.1
+},
+"bathroom": {
+"anh": "webp/bathroom.webp",
+"rong": 440,
+"cao": 580,
+"kb": 18.3
+},
+"beach": {
+"anh": "webp/beach.webp",
+"rong": 440,
+"cao": 324,
+"kb": 18.8
+},
+"beans": {
+"anh": "webp/beans.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.5
+},
+"bear": {
+"anh": "webp/bear.webp",
+"rong": 234,
+"cao": 241,
+"kb": 7.9
+},
+"beautiful": {
+"anh": "webp/beautiful.webp",
+"rong": 490,
+"cao": 345,
+"kb": 16.4
+},
+"bed": {
+"anh": "webp/bed.webp",
+"rong": 359,
+"cao": 264,
+"kb": 4.2
+},
+"bedroom": {
+"anh": "webp/bedroom.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.4
+},
+"big": {
+"anh": "webp/big.webp",
+"rong": 640,
+"cao": 392,
+"kb": 13.8
+},
+"bike": {
+"anh": "webp/bike.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.6
+},
+"bird": {
+"anh": "webp/bird.webp",
+"rong": 295,
+"cao": 250,
+"kb": 9.5
+},
+"black": {
+"anh": "webp/black.webp",
+"rong": 298,
+"cao": 282,
+"kb": 4.0
+},
+"blue": {
+"anh": "webp/blue.webp",
+"rong": 600,
+"cao": 600,
+"kb": 18.5
+},
+"board": {
+"anh": "webp/board.webp",
+"rong": 264,
+"cao": 349,
+"kb": 3.8
+},
+"boat": {
+"anh": "webp/boat.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.1
+},
+"book": {
+"anh": "webp/book.webp",
+"rong": 440,
+"cao": 580,
+"kb": 21.4
+},
+"bookcase": {
+"anh": "webp/bookcase.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.6
+},
+"box": {
+"anh": "webp/box.webp",
+"rong": 360,
+"cao": 360,
+"kb": 3.2
+},
+"bread": {
+"anh": "webp/bread.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.9
+},
+"brush your teeth": {
+"anh": "webp/brush-your-teeth.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.5
+},
+"build a tree house": {
+"anh": "webp/build-a-tree-house.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.8
+},
+"bus stop": {
+"anh": "webp/bus-stop.webp",
+"rong": 264,
+"cao": 349,
+"kb": 5.5
+},
+"bus": {
+"anh": "webp/bus.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.0
+},
+"butterfly": {
+"anh": "webp/butterfly.webp",
+"rong": 224,
+"cao": 203,
+"kb": 8.4
+},
+"café": {
+"anh": "webp/cafe.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.7
+},
+"cake": {
+"anh": "webp/cake.webp",
+"rong": 440,
+"cao": 580,
+"kb": 12.1
+},
+"campsite": {
+"anh": "webp/campsite.webp",
+"rong": 440,
+"cao": 324,
+"kb": 28.9
+},
+"car": {
+"anh": "webp/car.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.3
+},
+"carrots": {
+"anh": "webp/carrots.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.0
+},
+"cat": {
+"anh": "webp/cat.webp",
+"rong": 440,
+"cao": 580,
+"kb": 19.1
+},
+"catch a fish": {
+"anh": "webp/catch-a-fish.webp",
+"rong": 440,
+"cao": 582,
+"kb": 19.5
+},
+"cellar": {
+"anh": "webp/cellar.webp",
+"rong": 440,
+"cao": 580,
+"kb": 20.3
+},
+"chair": {
+"anh": "webp/chair.webp",
+"rong": 264,
+"cao": 349,
+"kb": 3.9
+},
+"cheeks": {
+"anh": "webp/cheeks.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.3
+},
+"cheese sandwich": {
+"anh": "webp/cheese-sandwich.webp",
+"rong": 440,
+"cao": 580,
+"kb": 9.8
+},
+"chicken": {
+"anh": "webp/chicken.webp",
+"rong": 233,
+"cao": 241,
+"kb": 6.3
+},
+"chin": {
+"anh": "webp/chin.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.3
+},
+"cinema": {
+"anh": "webp/cinema.webp",
+"rong": 264,
+"cao": 349,
+"kb": 8.9
+},
+"city": {
+"anh": "webp/city.webp",
+"rong": 440,
+"cao": 324,
+"kb": 21.6
+},
+"clock": {
+"anh": "webp/clock.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.3
+},
+"coconut": {
+"anh": "webp/coconut.webp",
+"rong": 360,
+"cao": 360,
+"kb": 8.1
+},
+"computer game": {
+"anh": "webp/computer-game.webp",
+"rong": 440,
+"cao": 580,
+"kb": 25.5
+},
+"countryside": {
+"anh": "webp/countryside.webp",
+"rong": 440,
+"cao": 324,
+"kb": 19.8
+},
+"cow": {
+"anh": "webp/cow.webp",
+"rong": 213,
+"cao": 203,
+"kb": 7.6
+},
+"crayon": {
+"anh": "webp/crayon.webp",
+"rong": 264,
+"cao": 349,
+"kb": 1.2
+},
+"crocodile": {
+"anh": "webp/crocodile.webp",
+"rong": 233,
+"cao": 220,
+"kb": 9.4
+},
+"cupboard": {
+"anh": "webp/cupboard.webp",
+"rong": 264,
+"cao": 349,
+"kb": 2.6
+},
+"desk": {
+"anh": "webp/desk.webp",
+"rong": 440,
+"cao": 580,
+"kb": 8.7
+},
+"dining room": {
+"anh": "webp/dining-room.webp",
+"rong": 440,
+"cao": 580,
+"kb": 19.6
+},
+"dog": {
+"anh": "webp/dog.webp",
+"rong": 440,
+"cao": 580,
+"kb": 16.1
+},
+"doll": {
+"anh": "webp/doll.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.0
+},
+"dolphin": {
+"anh": "webp/dolphin.webp",
+"rong": 481,
+"cao": 479,
+"kb": 22.3
+},
+"donkey": {
+"anh": "webp/donkey.webp",
+"rong": 440,
+"cao": 580,
+"kb": 9.3
+},
+"door": {
+"anh": "webp/door.webp",
+"rong": 264,
+"cao": 349,
+"kb": 1.8
+},
+"duck": {
+"anh": "webp/duck.webp",
+"rong": 224,
+"cao": 203,
+"kb": 5.7
+},
+"ears": {
+"anh": "webp/ears.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.5
+},
+"eat ice cream": {
+"anh": "webp/eat-ice-cream.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.6
+},
+"eggs": {
+"anh": "webp/eggs.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.0
+},
+"eight": {
+"anh": "webp/eight.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.7
+},
+"eighteen": {
+"anh": "webp/eighteen.webp",
+"rong": 87,
+"cao": 131,
+"kb": 0.9
+},
+"eighty": {
+"anh": "webp/eighty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.9
+},
+"elephant": {
+"anh": "webp/elephant.webp",
+"rong": 224,
+"cao": 203,
+"kb": 7.3
+},
+"eleven": {
+"anh": "webp/eleven.webp",
+"rong": 86,
+"cao": 131,
+"kb": 0.8
+},
+"eyes": {
+"anh": "webp/eyes.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.4
+},
+"fabric": {
+"anh": "webp/fabric.webp",
+"rong": 440,
+"cao": 412,
+"kb": 42.1
+},
+"face": {
+"anh": "webp/face.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.8
+},
+"fifteen": {
+"anh": "webp/fifteen.webp",
+"rong": 86,
+"cao": 131,
+"kb": 1.2
+},
+"fifty": {
+"anh": "webp/fifty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.6
+},
+"fingers": {
+"anh": "webp/fingers.webp",
+"rong": 440,
+"cao": 580,
+"kb": 13.5
+},
+"fish": {
+"anh": "webp/fish.webp",
+"rong": 295,
+"cao": 250,
+"kb": 10.5
+},
+"five": {
+"anh": "webp/five.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.5
+},
+"floor": {
+"anh": "webp/floor.webp",
+"rong": 264,
+"cao": 349,
+"kb": 2.7
+},
+"foot": {
+"anh": "webp/foot.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.2
+},
+"football": {
+"anh": "webp/football.webp",
+"rong": 264,
+"cao": 359,
+"kb": 7.9
+},
+"forty": {
+"anh": "webp/forty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.1
+},
+"forwards": {
+"anh": "webp/forwards.webp",
+"rong": 233,
+"cao": 334,
+"kb": 5.6
+},
+"four": {
+"anh": "webp/four.webp",
+"rong": 142,
+"cao": 202,
+"kb": 0.9
+},
+"fourteen": {
+"anh": "webp/fourteen.webp",
+"rong": 86,
+"cao": 131,
+"kb": 0.8
+},
+"frog": {
+"anh": "webp/frog.webp",
+"rong": 224,
+"cao": 203,
+"kb": 6.9
+},
+"get dressed": {
+"anh": "webp/get-dressed.webp",
+"rong": 264,
+"cao": 349,
+"kb": 5.9
+},
+"get up": {
+"anh": "webp/get-up.webp",
+"rong": 264,
+"cao": 349,
+"kb": 8.0
+},
+"giraffe": {
+"anh": "webp/giraffe.webp",
+"rong": 234,
+"cao": 254,
+"kb": 8.7
+},
+"glass": {
+"anh": "webp/glass.webp",
+"rong": 440,
+"cao": 412,
+"kb": 27.8
+},
+"glasses": {
+"anh": "webp/glasses.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.9
+},
+"go camping": {
+"anh": "webp/go-camping.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.9
+},
+"go hiking": {
+"anh": "webp/go-hiking.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.1
+},
+"go to bed": {
+"anh": "webp/go-to-bed.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.0
+},
+"go to school": {
+"anh": "webp/go-to-school.webp",
+"rong": 264,
+"cao": 349,
+"kb": 8.5
+},
+"go-kart": {
+"anh": "webp/go-kart.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.9
+},
+"goat": {
+"anh": "webp/goat.webp",
+"rong": 562,
+"cao": 580,
+"kb": 30.1
+},
+"grapes": {
+"anh": "webp/grapes.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.0
+},
+"grassland": {
+"anh": "webp/grassland.webp",
+"rong": 440,
+"cao": 275,
+"kb": 32.4
+},
+"green": {
+"anh": "webp/green.webp",
+"rong": 298,
+"cao": 282,
+"kb": 5.8
+},
+"greens": {
+"anh": "webp/greens.webp",
+"rong": 264,
+"cao": 359,
+"kb": 3.5
+},
+"guitar": {
+"anh": "webp/guitar.webp",
+"rong": 250,
+"cao": 409,
+"kb": 7.3
+},
+"hair": {
+"anh": "webp/hair.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.1
+},
+"hall": {
+"anh": "webp/hall.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.8
+},
+"hand": {
+"anh": "webp/hand.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.4
+},
+"hat": {
+"anh": "webp/hat.webp",
+"rong": 580,
+"cao": 386,
+"kb": 6.2
+},
+"have breakfast": {
+"anh": "webp/have-breakfast.webp",
+"rong": 264,
+"cao": 349,
+"kb": 7.6
+},
+"have dinner": {
+"anh": "webp/have-dinner.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.7
+},
+"have lunch": {
+"anh": "webp/have-lunch.webp",
+"rong": 264,
+"cao": 349,
+"kb": 7.9
+},
+"head": {
+"anh": "webp/head.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.0
+},
+"helicopter": {
+"anh": "webp/helicopter.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.7
+},
+"help in the garden": {
+"anh": "webp/help-in-the-garden.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.7
+},
+"hippo": {
+"anh": "webp/hippo.webp",
+"rong": 234,
+"cao": 241,
+"kb": 6.7
+},
+"hockey": {
+"anh": "webp/hockey.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.3
+},
+"horse": {
+"anh": "webp/horse.webp",
+"rong": 234,
+"cao": 241,
+"kb": 8.6
+},
+"hospital": {
+"anh": "webp/hospital.webp",
+"rong": 264,
+"cao": 349,
+"kb": 8.5
+},
+"jacket": {
+"anh": "webp/jacket.webp",
+"rong": 234,
+"cao": 156,
+"kb": 4.4
+},
+"jeans": {
+"anh": "webp/jeans.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.8
+},
+"jump": {
+"anh": "webp/jump.webp",
+"rong": 440,
+"cao": 580,
+"kb": 6.9
+},
+"keep a scrapbook": {
+"anh": "webp/keep-a-scrapbook.webp",
+"rong": 264,
+"cao": 359,
+"kb": 9.6
+},
+"kitchen": {
+"anh": "webp/kitchen.webp",
+"rong": 440,
+"cao": 580,
+"kb": 21.4
+},
+"kite": {
+"anh": "webp/kite.webp",
+"rong": 440,
+"cao": 580,
+"kb": 9.2
+},
+"kitten": {
+"anh": "webp/kitten.webp",
+"rong": 373,
+"cao": 337,
+"kb": 13.0
+},
+"kiwis": {
+"anh": "webp/kiwis.webp",
+"rong": 264,
+"cao": 359,
+"kb": 3.3
+},
+"knee": {
+"anh": "webp/knee.webp",
+"rong": 440,
+"cao": 580,
+"kb": 8.9
+},
+"lake": {
+"anh": "webp/lake.webp",
+"rong": 440,
+"cao": 324,
+"kb": 27.7
+},
+"lamp": {
+"anh": "webp/lamp.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.6
+},
+"learn to swim": {
+"anh": "webp/learn-to-swim.webp",
+"rong": 264,
+"cao": 359,
+"kb": 8.6
+},
+"leg": {
+"anh": "webp/leg.webp",
+"rong": 440,
+"cao": 580,
+"kb": 7.9
+},
+"lemons": {
+"anh": "webp/lemons.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.1
+},
+"lion": {
+"anh": "webp/lion.webp",
+"rong": 315,
+"cao": 316,
+"kb": 17.6
+},
+"listen to music": {
+"anh": "webp/listen-to-music.webp",
+"rong": 440,
+"cao": 580,
+"kb": 13.2
+},
+"living room": {
+"anh": "webp/living-room.webp",
+"rong": 440,
+"cao": 580,
+"kb": 16.9
+},
+"lizard": {
+"anh": "webp/lizard.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.2
+},
+"lizard2": {
+"anh": "webp/lizard2.webp",
+"rong": 426,
+"cao": 486,
+"kb": 22.9
+},
+"long": {
+"anh": "webp/long.webp",
+"rong": 640,
+"cao": 424,
+"kb": 4.1
+},
+"look for shells": {
+"anh": "webp/look-for-shells.webp",
+"rong": 440,
+"cao": 580,
+"kb": 17.3
+},
+"lorry": {
+"anh": "webp/lorry.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.2
+},
+"make a sandcastle": {
+"anh": "webp/make-a-sandcastle.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.3
+},
+"mangoes": {
+"anh": "webp/mangoes.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.2
+},
+"metal": {
+"anh": "webp/metal.webp",
+"rong": 440,
+"cao": 412,
+"kb": 32.3
+},
+"mirror": {
+"anh": "webp/mirror.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.8
+},
+"monkey": {
+"anh": "webp/monkey.webp",
+"rong": 233,
+"cao": 220,
+"kb": 8.8
+},
+"monster": {
+"anh": "webp/monster.webp",
+"rong": 440,
+"cao": 580,
+"kb": 13.5
+},
+"motorbike": {
+"anh": "webp/motorbike.webp",
+"rong": 264,
+"cao": 359,
+"kb": 7.1
+},
+"mountains": {
+"anh": "webp/mountains.webp",
+"rong": 440,
+"cao": 324,
+"kb": 28.7
+},
+"mouse": {
+"anh": "webp/mouse.webp",
+"rong": 233,
+"cao": 241,
+"kb": 8.1
+},
+"mouth": {
+"anh": "webp/mouth.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.0
+},
+"new": {
+"anh": "webp/new.webp",
+"rong": 640,
+"cao": 252,
+"kb": 12.0
+},
+"nine": {
+"anh": "webp/nine.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.6
+},
+"nineteen": {
+"anh": "webp/nineteen.webp",
+"rong": 87,
+"cao": 131,
+"kb": 0.8
+},
+"ninety": {
+"anh": "webp/ninety.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.6
+},
+"nose": {
+"anh": "webp/nose.webp",
+"rong": 264,
+"cao": 359,
+"kb": 5.1
+},
+"notebook": {
+"anh": "webp/notebook.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.1
+},
+"ocean": {
+"anh": "webp/ocean.webp",
+"rong": 440,
+"cao": 275,
+"kb": 11.3
+},
+"old": {
+"anh": "webp/old.webp",
+"rong": 640,
+"cao": 273,
+"kb": 12.0
+},
+"one hundred": {
+"anh": "webp/one-hundred.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.4
+},
+"one": {
+"anh": "webp/one.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.3
+},
+"orange": {
+"anh": "webp/orange.webp",
+"rong": 298,
+"cao": 282,
+"kb": 7.1
+},
+"paint a picture": {
+"anh": "webp/paint-a-picture.webp",
+"rong": 440,
+"cao": 580,
+"kb": 23.1
+},
+"paper": {
+"anh": "webp/paper.webp",
+"rong": 440,
+"cao": 580,
+"kb": 4.9
+},
+"park": {
+"anh": "webp/park.webp",
+"rong": 264,
+"cao": 349,
+"kb": 7.4
+},
+"parrot": {
+"anh": "webp/parrot.webp",
+"rong": 234,
+"cao": 254,
+"kb": 7.8
+},
+"peas": {
+"anh": "webp/peas.webp",
+"rong": 440,
+"cao": 580,
+"kb": 15.9
+},
+"pen": {
+"anh": "webp/pen.webp",
+"rong": 440,
+"cao": 580,
+"kb": 7.5
+},
+"pencil case": {
+"anh": "webp/pencil-case.webp",
+"rong": 440,
+"cao": 580,
+"kb": 10.8
+},
+"pencil": {
+"anh": "webp/pencil.webp",
+"rong": 440,
+"cao": 580,
+"kb": 9.2
+},
+"pig": {
+"anh": "webp/pig.webp",
+"rong": 234,
+"cao": 241,
+"kb": 7.6
+},
+"pink": {
+"anh": "webp/pink.webp",
+"rong": 600,
+"cao": 566,
+"kb": 9.2
+},
+"pizza": {
+"anh": "webp/pizza.webp",
+"rong": 440,
+"cao": 580,
+"kb": 19.2
+},
+"plane": {
+"anh": "webp/plane.webp",
+"rong": 440,
+"cao": 580,
+"kb": 13.8
+},
+"plastic": {
+"anh": "webp/plastic.webp",
+"rong": 440,
+"cao": 412,
+"kb": 3.5
+},
+"play in the park": {
+"anh": "webp/play-in-the-park.webp",
+"rong": 264,
+"cao": 349,
+"kb": 9.7
+},
+"play the guitar": {
+"anh": "webp/play-the-guitar.webp",
+"rong": 440,
+"cao": 580,
+"kb": 19.6
+},
+"playground": {
+"anh": "webp/playground.webp",
+"rong": 264,
+"cao": 349,
+"kb": 9.0
+},
+"polar bear": {
+"anh": "webp/polar-bear.webp",
+"rong": 264,
+"cao": 349,
+"kb": 3.0
+},
+"polar habitat": {
+"anh": "webp/polar-habitat.webp",
+"rong": 440,
+"cao": 275,
+"kb": 19.5
+},
+"poster": {
+"anh": "webp/poster.webp",
+"rong": 607,
+"cao": 640,
+"kb": 23.7
+},
+"potatoes": {
+"anh": "webp/potatoes.webp",
+"rong": 264,
+"cao": 359,
+"kb": 2.5
+},
+"puppy": {
+"anh": "webp/puppy.webp",
+"rong": 373,
+"cao": 337,
+"kb": 14.7
+},
+"purple": {
+"anh": "webp/purple.webp",
+"rong": 600,
+"cao": 593,
+"kb": 10.8
+},
+"rabbit": {
+"anh": "webp/rabbit.webp",
+"rong": 224,
+"cao": 203,
+"kb": 6.1
+},
+"rainforest": {
+"anh": "webp/rainforest.webp",
+"rong": 440,
+"cao": 275,
+"kb": 34.5
+},
+"rat": {
+"anh": "webp/rat.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.7
+},
+"read a book": {
+"anh": "webp/read-a-book.webp",
+"rong": 440,
+"cao": 580,
+"kb": 20.2
+},
+"read a comic": {
+"anh": "webp/read-a-comic.webp",
+"rong": 264,
+"cao": 359,
+"kb": 9.9
+},
+"red": {
+"anh": "webp/red.webp",
+"rong": 298,
+"cao": 255,
+"kb": 4.4
+},
+"robot": {
+"anh": "webp/robot.webp",
+"rong": 400,
+"cao": 400,
+"kb": 7.3
+},
+"rubber": {
+"anh": "webp/rubber.webp",
+"rong": 440,
+"cao": 580,
+"kb": 6.8
+},
+"rug": {
+"anh": "webp/rug.webp",
+"rong": 264,
+"cao": 359,
+"kb": 3.9
+},
+"ruler": {
+"anh": "webp/ruler.webp",
+"rong": 440,
+"cao": 580,
+"kb": 17.4
+},
+"sausage": {
+"anh": "webp/sausage.webp",
+"rong": 440,
+"cao": 580,
+"kb": 10.9
+},
+"school": {
+"anh": "webp/school.webp",
+"rong": 264,
+"cao": 349,
+"kb": 7.7
+},
+"scooter": {
+"anh": "webp/scooter.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.4
+},
+"seven": {
+"anh": "webp/seven.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.3
+},
+"seventeen": {
+"anh": "webp/seventeen.webp",
+"rong": 87,
+"cao": 131,
+"kb": 0.8
+},
+"seventy": {
+"anh": "webp/seventy.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.6
+},
+"shark": {
+"anh": "webp/shark.webp",
+"rong": 233,
+"cao": 220,
+"kb": 7.0
+},
+"sheep": {
+"anh": "webp/sheep.webp",
+"rong": 234,
+"cao": 241,
+"kb": 9.8
+},
+"ship": {
+"anh": "webp/ship.webp",
+"rong": 264,
+"cao": 359,
+"kb": 3.4
+},
+"shoes": {
+"anh": "webp/shoes.webp",
+"rong": 234,
+"cao": 156,
+"kb": 3.8
+},
+"shop": {
+"anh": "webp/shop.webp",
+"rong": 264,
+"cao": 349,
+"kb": 7.0
+},
+"short": {
+"anh": "webp/short.webp",
+"rong": 640,
+"cao": 423,
+"kb": 6.1
+},
+"shorts": {
+"anh": "webp/shorts.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.6
+},
+"sideways": {
+"anh": "webp/sideways.webp",
+"rong": 440,
+"cao": 580,
+"kb": 6.3
+},
+"six": {
+"anh": "webp/six.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.5
+},
+"sixteen": {
+"anh": "webp/sixteen.webp",
+"rong": 87,
+"cao": 131,
+"kb": 0.7
+},
+"sixty": {
+"anh": "webp/sixty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.6
+},
+"skateboard": {
+"anh": "webp/skateboard.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.1
+},
+"skirt": {
+"anh": "webp/skirt.webp",
+"rong": 234,
+"cao": 156,
+"kb": 3.2
+},
+"small": {
+"anh": "webp/small.webp",
+"rong": 640,
+"cao": 390,
+"kb": 13.9
+},
+"snake": {
+"anh": "webp/snake.webp",
+"rong": 224,
+"cao": 203,
+"kb": 6.2
+},
+"socks": {
+"anh": "webp/socks.webp",
+"rong": 234,
+"cao": 156,
+"kb": 3.0
+},
+"sofa": {
+"anh": "webp/sofa.webp",
+"rong": 359,
+"cao": 264,
+"kb": 4.5
+},
+"spider": {
+"anh": "webp/spider.webp",
+"rong": 240,
+"cao": 168,
+"kb": 5.4
+},
+"stairs": {
+"anh": "webp/stairs.webp",
+"rong": 440,
+"cao": 580,
+"kb": 16.0
+},
+"steak": {
+"anh": "webp/steak.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.8
+},
+"step": {
+"anh": "webp/step.webp",
+"rong": 440,
+"cao": 580,
+"kb": 6.1
+},
+"street": {
+"anh": "webp/street.webp",
+"rong": 264,
+"cao": 349,
+"kb": 6.2
+},
+"stretch": {
+"anh": "webp/stretch.webp",
+"rong": 440,
+"cao": 580,
+"kb": 6.0
+},
+"sweater": {
+"anh": "webp/sweater.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.7
+},
+"swimming pool": {
+"anh": "webp/swimming-pool.webp",
+"rong": 264,
+"cao": 349,
+"kb": 4.8
+},
+"swimming": {
+"anh": "webp/swimming.webp",
+"rong": 264,
+"cao": 359,
+"kb": 8.2
+},
+"table tennis": {
+"anh": "webp/table-tennis.webp",
+"rong": 264,
+"cao": 359,
+"kb": 11.9
+},
+"table": {
+"anh": "webp/table.webp",
+"rong": 264,
+"cao": 359,
+"kb": 2.7
+},
+"take a photo": {
+"anh": "webp/take-a-photo.webp",
+"rong": 440,
+"cao": 580,
+"kb": 13.8
+},
+"take riding lessons": {
+"anh": "webp/take-riding-lessons.webp",
+"rong": 264,
+"cao": 359,
+"kb": 9.5
+},
+"taxi": {
+"anh": "webp/taxi.webp",
+"rong": 264,
+"cao": 359,
+"kb": 6.6
+},
+"tears": {
+"anh": "webp/tears.webp",
+"rong": 264,
+"cao": 359,
+"kb": 4.9
+},
+"ten": {
+"anh": "webp/ten.webp",
+"rong": 148,
+"cao": 195,
+"kb": 1.1
+},
+"tennis": {
+"anh": "webp/tennis.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.3
+},
+"theme park": {
+"anh": "webp/theme-park.webp",
+"rong": 440,
+"cao": 324,
+"kb": 42.7
+},
+"thirteen": {
+"anh": "webp/thirteen.webp",
+"rong": 86,
+"cao": 131,
+"kb": 1.0
+},
+"thirty": {
+"anh": "webp/thirty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.5
+},
+"three": {
+"anh": "webp/three.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.4
+},
+"tiger": {
+"anh": "webp/tiger.webp",
+"rong": 233,
+"cao": 241,
+"kb": 10.8
+},
+"toes": {
+"anh": "webp/toes.webp",
+"rong": 440,
+"cao": 580,
+"kb": 11.6
+},
+"tomatoes": {
+"anh": "webp/tomatoes.webp",
+"rong": 264,
+"cao": 359,
+"kb": 6.5
+},
+"train station": {
+"anh": "webp/train-station.webp",
+"rong": 264,
+"cao": 349,
+"kb": 8.4
+},
+"train": {
+"anh": "webp/train.webp",
+"rong": 440,
+"cao": 580,
+"kb": 14.3
+},
+"trousers": {
+"anh": "webp/trousers.webp",
+"rong": 234,
+"cao": 156,
+"kb": 2.5
+},
+"turtle": {
+"anh": "webp/turtle.webp",
+"rong": 224,
+"cao": 203,
+"kb": 7.0
+},
+"twelve": {
+"anh": "webp/twelve.webp",
+"rong": 86,
+"cao": 131,
+"kb": 0.9
+},
+"twenty": {
+"anh": "webp/twenty.webp",
+"rong": 192,
+"cao": 257,
+"kb": 1.9
+},
+"two": {
+"anh": "webp/two.webp",
+"rong": 142,
+"cao": 202,
+"kb": 1.6
+},
+"ugly": {
+"anh": "webp/ugly.webp",
+"rong": 503,
+"cao": 336,
+"kb": 16.2
+},
+"visit cousins": {
+"anh": "webp/visit-cousins.webp",
+"rong": 264,
+"cao": 359,
+"kb": 10.0
+},
+"volleyball": {
+"anh": "webp/volleyball.webp",
+"rong": 264,
+"cao": 359,
+"kb": 11.1
+},
+"wall": {
+"anh": "webp/wall.webp",
+"rong": 264,
+"cao": 349,
+"kb": 2.1
+},
+"wardrobe": {
+"anh": "webp/wardrobe.webp",
+"rong": 264,
+"cao": 359,
+"kb": 2.4
+},
+"watermelons": {
+"anh": "webp/watermelons.webp",
+"rong": 264,
+"cao": 359,
+"kb": 7.4
+},
+"window": {
+"anh": "webp/window.webp",
+"rong": 264,
+"cao": 349,
+"kb": 2.3
+},
+"wood": {
+"anh": "webp/wood.webp",
+"rong": 440,
+"cao": 412,
+"kb": 21.8
+},
+"yellow": {
+"anh": "webp/yellow.webp",
+"rong": 400,
+"cao": 300,
+"kb": 12.1
+},
+"zebra": {
+"anh": "webp/zebra.webp",
+"rong": 264,
+"cao": 349,
+"kb": 9.3
+}
+}

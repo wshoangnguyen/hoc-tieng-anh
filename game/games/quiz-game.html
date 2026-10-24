@@ -306,6 +306,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="../core.css">
+    <script src="../core.js"></script>
 </head>
 <body>
     <div class="brand-logo-float" id="brandLogoFloat">
@@ -558,6 +560,7 @@
             answered = false;
             updateScoreDisplay();
             loadQuestion();
+            try { GAME.batDau({game:"quiz", sach:"theo-chu-de", unit:null, nac:1, soCau:questions.length}); } catch(e){}
         }
         
         function getRandomDistractors(correctWord, vocab, count) {
@@ -584,11 +587,11 @@
             currentCorrectAnswer = q.correct;
             
             // Load ảnh (có fallback)
-            quizImage.src = `${q.imagePath}.png`;
-            quizImage.onerror = function() { 
-                if (this.src.indexOf('.png') > -1) {
-                    this.src = `${q.imagePath}.jpg`;
-                }
+            quizImage.src = (window.GAME ? GAME.anh(q.word) : `${q.imagePath}.jpg`);
+            quizImage.onerror = function() {
+                if (/\.webp$/.test(this.src)) { this.src = `${q.imagePath}.png`; }
+                else if (/\.png$/.test(this.src)) { this.src = `${q.imagePath}.jpg`; }
+                else { this.onerror = null; }
             };
             
             // Reset trạng thái trả lời
@@ -633,6 +636,7 @@
             // Tính điểm thưởng tốc độ trước khi thay đổi giao diện
             const speedBonus = calculateSpeedBonus(); // số điểm thưởng dựa trên số ô chưa mất
             let isCorrect = (selected === correct);
+            try { GAME.ghi({tu: correct, ok: isCorrect, cau_hoi: "Chọn từ đúng cho tranh"}); } catch(e){}
             
             // Cộng điểm cơ bản nếu đúng
             if (isCorrect) {
@@ -746,6 +750,7 @@
             feedbackArea.style.color = '#ffb347';
             nextBtn.style.display = 'none';
             speakWord('Quiz completed! Great job!');
+            try { GAME.ketThuc(); } catch(e){}
             // Ẩn thông báo bonus
             bonusHintDiv.innerHTML = '';
         }
