@@ -2336,7 +2336,7 @@ const THU_VIEN=(()=>{
 const TT=["chua","da","khong","dat","vuot"];
 const TT_TEN={chua:"Chưa học",da:"Đã học",khong:"Chưa đạt",dat:"Đạt",vuot:"Vượt"};
 const TT_MAU={chua:"#b9b1a0",da:"#7b7fe8",khong:"#c0392b",dat:"#3f8f5f",vuot:"#e08a00"};
-const BD={lopId:null,unit:null,chon:new Set(),buoiId:null};
+const BD={lopId:null,unit:null,chon:new Set(),buoiId:null,moLai:new Set()};
 
 function bdKhoiTao(){
   if(!S) return;
@@ -2597,13 +2597,17 @@ function bdBanTin(){
   const tmB=tmSach(sachCuaLop(BD.lopId)||{code:""});
   const audioChung=tmB.sb||"";
   const thieuAudio=muc.some(it=>!((it.video&&it.video[0])));
-  const dongVi=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const tr=trangMuc(it); return `• ${it.ten}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
-  const dongEn=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const en=PART_EN[it.part]||it.ten; const tr=trangMuc(it); return `• ${en}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
+  const dongVi=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
+    const ten=String(it.ten).replace(/\s*\(lần \d+\)$/,""); const tr=lap?"":trangMuc(it);
+    return `• ${ten}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
+  const dongEn=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
+    const en=PART_EN[it.part]||String(it.ten).replace(/\s*\(lần \d+\)$/,""); const tr=lap?"":trangMuc(it);
+    return `• ${en}${tr?" — "+tr:""}${lk?" ("+lk+")":""}`; }).join("\n");
   const audioVi=(thieuAudio&&audioChung)?`\n🔊 Nghe audio bài học: ${audioChung}`:"";
   const audioEn=(thieuAudio&&audioChung)?`\n🔊 Audio: ${audioChung}`:"";
   const coOnTap=muc.some(it=>it.part==="review"||it.part==="hw");
-  const vi=`📚Hôm nay ngày ${ngay}\nLớp chúng ta ${coOnTap?"đã ôn tập, sửa bài tập (nếu có) và ":""}hoàn thành phần:\n${dongVi||"• (chưa chọn phần nào)"}${audioVi}\nCác bạn về nhà làm workbook nhé`;
-  const en=`📚Today, ${ngay}\nOur class ${coOnTap?"reviewed, corrected the homework (if any) and ":""}completed:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
+  const vi=`📚Hôm nay ngày ${ngay}\nLớp chúng ta đã hoàn thành phần:\n${dongVi||"• (chưa chọn phần nào)"}${audioVi}\nCác bạn về nhà làm workbook nhé`;
+  const en=`📚Today, ${ngay}\nOur class completed:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
   moModal(`<h3>📨 Báo bài — ${esc(lop?lop.ten:"")} · Unit ${b.unit!=null?b.unit:"?"}</h3>
     <p class="hint">Chỉ gồm các phần của buổi ${ngay} (${muc.length} phần). Sửa trực tiếp trong ô rồi copy.</p>
     <textarea id="btAll" rows="14" style="width:100%;font-size:13px">${esc(vi+"\n\n"+en)}</textarea>
@@ -2748,7 +2752,7 @@ function themLanNua(id){
 
 function moBaiDayModal(tenLop){
   const lop=(S.lop||[]).find(x=>x.ten===tenLop);
-  BD.lopId=lop?lop.id:null; BD.chon.clear(); BD.unit=lop?unitDangHoc(lop.id):null;
+  BD.lopId=lop?lop.id:null; BD.chon.clear(); BD.moLai=new Set(); BD.unit=lop?unitDangHoc(lop.id):null;
   let m=document.getElementById("bdModal");
   if(!m){ m=document.createElement("div"); m.id="bdModal"; m.className="modal-wrap"; document.body.appendChild(m); }
   m.dataset.bd="1"; m.style.display="flex";
@@ -2785,10 +2789,12 @@ function veBaiDayModal(){
       const tt=trangThaiChung(BD.lopId,i.id), chon=BD.chon.has(i.id);
       const lap=(i.part==="review"||i.part==="hw");
       const daDay=!lap && buoiDayPart(BD.lopId,i.unit,i.part);
-      const khoa=daDay && !chon;
+      const khoa=daDay && !chon && !(BD.moLai&&BD.moLai.has(i.id));
       return `<label class="bd-m ${chon?"chon":""}${khoa?" khoa":""}" ${khoa?'style="opacity:.45"':""}><input type="checkbox" data-mi="${i.id}" ${chon?"checked":""} ${khoa?"disabled":""}>
         <span class="bd-ten">${esc(i.ten)}<small class="hint" style="margin-left:6px" data-trang="${i.id}" title="Bấm để sửa số trang" style="cursor:pointer;text-decoration:underline dotted">${esc(trangMuc(i)||"chưa rõ trang")}</small>${khoa?' <small class="hint">đã dạy</small>':""}${i.tu_them?' <small class="hint">tự thêm</small>':""}</span>
         ${lap?`<button class="ghost sm" data-lap="${i.id}" title="Thêm một lần nữa cho buổi này" style="padding:0 6px">＋ lần</button>`:""}
+        ${khoa?`<button class="ghost sm" data-revise="${i.id}" title="Mở lại để dạy lại phần này" style="padding:0 6px">↻ Revise</button>`:""}
+        ${i.tu_them?`<button class="ghost sm" data-suathem="${i.id}" title="Đổi tên phần" style="padding:0 5px">✏️</button><button class="ghost sm" data-xoathem="${i.id}" title="Xoá phần này" style="padding:0 5px">🗑</button>`:""}
         ${(i.video&&i.video.length)?`<a class="hint" style="text-decoration:underline" href="${i.video[0]}" target="_blank" rel="noopener" onclick="event.preventDefault();event.stopPropagation();window.open(this.href,'_blank')">🎬 Video</a>`:""}
         <span class="bd-chip" style="background:${TT_MAU[tt]}22;color:${TT_MAU[tt]};border-color:${TT_MAU[tt]}">${TT_TEN[tt]}</span>
         ${tong?`<span class="hint">${c.dat+c.vuot}/${tong} đạt</span>`:""}</label>`;}).join("")+`</div>`;
@@ -2836,6 +2842,18 @@ function veBaiDayModal(){
   m.querySelectorAll("[data-xuly]").forEach(c=>c.onchange=()=>{ const g=(S.ghi_chu||[]).find(x=>x.id===c.dataset.xuly);
     if(g){ g.xu_ly=true; g.xu_ly_luc=Date.now(); save(); veBaiDayModal(); } });
   m.querySelectorAll("[data-lap]").forEach(b=>{ b.onclick=e=>{ e.preventDefault(); e.stopPropagation(); themLanNua(+b.dataset.lap); }; });
+  m.querySelectorAll("[data-revise]").forEach(b=>{ b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    BD.moLai.add(+b.dataset.revise); BD.chon.add(+b.dataset.revise); veBaiDayModal(); }; });
+  m.querySelectorAll("[data-suathem]").forEach(b=>{ b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    const id=+b.dataset.suathem, it=mucTheoId(id); if(!it) return;
+    const v=prompt("Tên phần:", it.ten); if(v===null||!v.trim()) return;
+    const k=Object.keys(S.muc_them||{}).find(k=>S.muc_them[k].id===id);
+    if(k){ S.muc_them[k].ten=v.trim(); save(); veBaiDayModal(); } }; });
+  m.querySelectorAll("[data-xoathem]").forEach(b=>{ b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    const id=+b.dataset.xoathem;
+    if(!confirm("Xoá phần này khỏi danh sách?")) return;
+    const k=Object.keys(S.muc_them||{}).find(k=>S.muc_them[k].id===id);
+    if(k){ delete S.muc_them[k]; BD.chon.delete(id); S.buoi_day.forEach(x=>{ if(x.items) x.items=x.items.filter(i=>i!==id); }); save(); veBaiDayModal(); } }; });
   m.querySelectorAll("[data-trang]").forEach(s=>{ s.onclick=e=>{ e.preventDefault(); e.stopPropagation();
     const id=+s.dataset.trang, it=mucTheoId(id); if(!it) return;
     const v=prompt("Số trang của phần này (vd: tr. 12–13)", trangMuc(it)||"");
