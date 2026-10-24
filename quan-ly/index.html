@@ -1210,7 +1210,7 @@ function tinhHV(h){
   return h;
 }
 const hvTatCa=()=>S.hoc_vien||[];
-const hvDangHoc=()=>hvTatCa().filter(h=>h.trang_thai!=="nghỉ");
+const hvDangHoc=()=>hvTatCa().filter(h=>h.trang_thai!=="nghỉ"&&h.trang_thai!=="bảo lưu");
 function tinhHet(){ hvTatCa().forEach(tinhHV); }
 const nhanKM=h=>{ const v=Number(h.km_tri)||0; if(!v||h.km_kieu==="khong") return "";
   if(h.km_kieu==="thang") return v+" tháng";
@@ -1398,7 +1398,7 @@ function moSuaHV(ma,laMoi){
 function veCongNo(){
   const T=THANG_NAY(), body=document.getElementById("cnBody"); if(!body) return;
   tinhHet();
-  const hoc=hvDangHoc(), nghi=hvTatCa().filter(h=>h.trang_thai==="nghỉ");
+  const hoc=hvDangHoc(), nghi=hvTatCa().filter(h=>h.trang_thai==="nghỉ"), baoLuu=hvTatCa().filter(h=>h.trang_thai==="bảo lưu");
   const nay=hoc.filter(h=>h.no_nay_tien>0), truoc=hoc.filter(h=>h.no_truoc_tien>0);
   const tienNay=nay.reduce((s,h)=>s+h.no_nay_tien,0), tienTruoc=truoc.reduce((s,h)=>s+h.no_truoc_tien,0);
   const thuThang=hvTatCa().reduce((s,h)=>s+h.lich_su_thu.filter(x=>x.thang===thangNam()).reduce((a,x)=>a+(x.tien||0),0),0);
@@ -1542,12 +1542,13 @@ function trongBaThang(ngay){ const t=new Date(ngay+"T00:00:00"), n=new Date(); n
 function veDiemSo(){
   const body=document.getElementById("dsBody"); if(!body) return;
   tinhHet(); const all=hvTatCa();
+  const baoLuu=all.filter(h=>h.trang_thai==="bảo lưu"), dangHoc=all.filter(h=>h.trang_thai!=="bảo lưu");
   const loc=document.getElementById("dsLoc"), cur=loc.value||DS_HIEN.lop;
   loc.innerHTML='<option value="">— tất cả lớp —</option>'+[...new Set(all.map(h=>h.lop))].sort(soSanhLop)
     .map(l=>`<option value="${esc(l)}" ${l===cur?"selected":""}>${esc(l)}</option>`).join("");
   document.getElementById("dsTim").value=DS_HIEN.tim;
   const t=DS_HIEN.tim.trim().toLowerCase();
-  const rows=all.filter(h=>{ if(DS_HIEN.lop&&h.lop!==DS_HIEN.lop) return false;
+  const rows=dangHoc.filter(h=>{ if(DS_HIEN.lop&&h.lop!==DS_HIEN.lop) return false;
     return !t || [h.ho_ten,h.ten_goi_trong_lop,h.ma_hv,h.lop].join(" ").toLowerCase().includes(t); })
     .sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const nhieuCan=rows.filter(h=>chuyenCan(h).canHomNay).length;
@@ -1582,6 +1583,26 @@ function veDiemSo(){
   body.querySelectorAll("[data-diem]").forEach(i=>i.onchange=()=>{
     const [ma,k]=i.dataset.diem.split(":"); const v=i.value===""?null:Math.max(0,Math.min(10,Number(i.value)));
     diemCua(ma)[k]=v; save(); veDiemSo(); });
+
+  if(baoLuu.length){
+    const bl=baoLuu.filter(h=>{ if(DS_HIEN.lop&&h.lop!==DS_HIEN.lop) return false;
+      return !t || [h.ho_ten,h.ten_goi_trong_lop,h.ma_hv,h.lop].join(" ").toLowerCase().includes(t); });
+    if(bl.length) body.insertAdjacentHTML("beforeend",
+      `<div class="hint" style="margin:16px 0 6px">🕓 <b>Bảo lưu (${bl.length})</b> — không tính vào danh sách đang học, không tính công nợ; bấm 📈 để tra tiến trình.</div>
+       <table style="width:100%;border-collapse:collapse;font-size:14px;opacity:.85">
+        <thead><tr>${[["Lớp",""],["Mã HV",""],["Học viên",""],["TB","text-align:center"],["Tích lũy","text-align:center"],["",""]]
+          .map(([x,s])=>`<th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--line);white-space:nowrap;${s}">${x}</th>`).join("")}</tr></thead>
+        <tbody>${bl.map(h=>`<tr>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line)"><b>${esc(h.lop)}</b></td>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line)" class="hint">${esc(h.ma_hv)}</td>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line)"><b>${esc(h.ho_ten)}</b></td>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line);text-align:center">${tongDiemKN(h.ma_hv)||"—"}</td>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line);text-align:center">${tichLuyTong(h.ma_hv)}</td>
+          <td style="padding:5px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap">
+            <button class="ghost sm" onclick="moTienTrinhHV('${esc(h.ma_hv)}')" title="Tiến trình học">📈</button>
+            <button class="ghost sm" onclick="moHoSoHV('${esc(h.ma_hv)}')" title="Hồ sơ">👤</button></td>
+        </tr>`).join("")}</tbody></table>`);
+  }
   body.querySelectorAll("[data-nx]").forEach(i=>{
     const mo=()=>{ const [ma,k]=i.dataset.nx.split(":"); moGhiChu(ma,k||"nhan_xet"); };
     i.onclick=mo; i.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); mo(); } };
@@ -1984,7 +2005,7 @@ let DD_LOP=null, DD_LOC="hom";
 function veDiemDanh(){
   const el=document.getElementById("ddBody"); if(!el) return;
   tinhHet();
-  const all=hvTatCa();
+  const all=hvTatCa().filter(h=>h.trang_thai!=="bảo lưu");
   const lopTatCa=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
   const lopHomNay=lopTatCa.filter(l=>{ const o=(S.lop||[]).find(x=>x.ten===l)||{}; return (o.gio||[]).length && buoiCuaLop(l,1).length; });
   const sn=all.filter(laSinhNhat);
