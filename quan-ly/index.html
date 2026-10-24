@@ -1634,7 +1634,7 @@ function moDiemDanh(ma,soNgay){
 function moTheHV(ma){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return; const d=diemCua(ma);
   const bd=document.createElement("div"); bd.className="backdrop"; const $=q=>bd.querySelector(q);
-  bd.innerHTML=`<div class="modal" style="max-width:560px" onclick="event.stopPropagation()">
+  bd.innerHTML=`<div class="modal" style="max-width:600px" onclick="event.stopPropagation()">
     <h3>✏️ ${esc(h.ho_ten)} <span class="hint">${esc(h.lop)} · ${esc(h.ma_hv)}</span></h3>
     <div class="row">
       <div class="field" style="flex:2"><label>Tên</label><input id="thTen" value="${esc(h.ho_ten)}"></div>
@@ -1861,7 +1861,9 @@ function moDanhGia(ma, ngay){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
   const ng=ngay||iso(new Date()), cu=dgLay(ma,ng)||{}, L=mucLevel(h.lop);
   let dd=cu.dd||ddLay(ng,h.lop,ma)||"", muc=cu.muc||"";
-  const kn={}; KY_NANG.forEach(([k])=>{ const v=(diemCua(ma)||{})[k]; kn[k]=(v===undefined?null:v); });
+  const kn={}; const _hoSo=diemCua(ma);
+  KY_NANG.forEach(([k])=>{ const v=_hoSo[k]; const n=(v===""||v==null)?null:Number(v); kn[k]=(n==null||isNaN(n))?null:n; });
+  let _knNgay=cu.kn_ngay||""; if(!_knNgay){ const _m=ngayCua(ma); const _ks=Object.keys(_m).filter(k=>_m[k]&&_m[k].kn_ngay).sort(); if(_ks.length) _knNgay=_ks[_ks.length-1]; }
   const bd=document.createElement("div"); bd.className="backdrop";
   const ve=()=>{
     const stHom=stickerHomNay(ma).length;
@@ -1877,18 +1879,34 @@ function moDanhGia(ma, ngay){
       <div class="row" style="gap:6px;margin-bottom:8px;flex-wrap:wrap"><span class="hint" style="min-width:78px">Kỹ năng</span>
         ${KY_NANG.map(([k,t])=>`<label class="hint" style="display:flex;align-items:center;gap:3px">${t}
           <input type="number" data-kn="${k}" min="0" max="10" step="0.5" value="${kn[k]==null?"":kn[k]}" style="width:62px;text-align:center;padding:3px"></label>`).join("")}
-        <span class="hint">thang 0–10, để trống nếu chưa chấm</span></div>
+        <span class="hint">thang 0–10, để trống nếu chưa chấm${_knNgay?` · chấm gần nhất ${esc(dmy(_knNgay))}`:""}</span></div>
+      <div class="row" style="gap:6px;margin-bottom:8px"><span class="hint" style="min-width:78px">Điểm cộng</span>
+        <input type="number" id="dgBonus" min="0" step="1" value="${cu.bonus!=null?cu.bonus:0}" style="width:70px;text-align:center;padding:3px">
+        <span class="hint">chỉ là điểm thưởng đổi quà — <b>không</b> liên quan mức độ</span></div>
       <textarea id="dgGhi" placeholder="Ghi chú của ngày này (nội dung học, điểm cần luyện…)" style="min-height:70px">${esc(cu.ghi_chu||"")}</textarea>
       <div class="row" style="margin-top:10px"><button class="ghost sm" id="dgLs">📅 Xem 3 tháng</button><span style="flex:1"></span>
         <button class="ghost" id="dgHuy">Huỷ</button><button class="primary" id="dgLuu">Lưu</button></div></div>`;
     bd.querySelectorAll("[data-dd]").forEach(b=>b.onclick=()=>{ dd=b.dataset.dd; ve(); });
-    bd.querySelectorAll("[data-muc]").forEach(b=>b.onclick=()=>{ muc=b.dataset.muc; cu.diem=MUC[muc].diem;
+    bd.querySelectorAll("[data-muc]").forEach(b=>b.onclick=()=>{ muc=b.dataset.muc;
       bd.querySelectorAll("[data-kn]").forEach(i=>{ const v=i.value; kn[i.dataset.kn]= v===""?null:Number(v); }); ve(); });
     bd.querySelectorAll("[data-kn]").forEach(i=>i.oninput=()=>{ const v=i.value; kn[i.dataset.kn]= v===""?null:Number(v); });
     bd.querySelector("#dgLuu").onclick=()=>{
       const d=0;
       KY_NANG.forEach(([k])=>{ const v=kn[k]; diemCua(ma)[k]=(v===null||v===undefined||isNaN(v))?null:Math.max(0,Math.min(10,Number(v))); });
-      dgDat(ma,ng,{dd, muc, diem:(cu.diem!=null?cu.diem:0), sticker:stickerHomNay(ma).length, ghi_chu:bd.querySelector("#dgGhi").value.trim(), lop:h.lop});
+      const _bonus=Number(bd.querySelector("#dgBonus").value)||0;
+      const _knLuu={}; KY_NANG.forEach(([k])=>{ _knLuu[k]=kn[k]; });
+      dgDat(ma,ng,{dd, muc, diem:_bonus, bonus:_bonus, sticker:stickerHomNay(ma).length,
+        ghi_chu:bd.querySelector("#dgGhi").value.trim(), lop:h.lop,
+        kn:_knLuu, kn_ngay:(Object.values(_knLuu).some(v=>v!=null)?ng:_knNgay)});
+      // mức độ -> tiến trình học của các đầu mục đã dạy trong buổi hôm nay
+      const _m={dat:"dat",vuot:"vuot",chua:"khong"}[muc];
+      if(_m){
+        const _ids=[...new Set((S.buoi_day||[]).filter(b=>b.lopId===h.lop&&b.ngay===ng)
+          .flatMap(b=>(b.items||[])))];
+        if(_ids.length){ S.tien_do[ma]=S.tien_do[ma]||{};
+          _ids.forEach(id=>{ S.tien_do[ma][id]={t:_m,n:"gv",d:ng}; });
+        }
+      }
       ddDat(ng,h.lop,ma,dd);
       bd.remove(); render();
     };
