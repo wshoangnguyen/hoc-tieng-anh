@@ -2578,7 +2578,8 @@ function veBaiDay(){
   });
 }
 
-function tmSach(sach){ const m=(typeof DRIVE_MP!=="undefined"&&DRIVE_MP[sach.code])||{};
+function tmSach(sach){ const M=(typeof DRIVE_MP!=="undefined")?DRIVE_MP:{};
+  const m=M[sach.code]||M[String(sach.code||"").replace(/^OW/,"")]||{};
   const u=id=>"https://drive.google.com/drive/folders/"+id;
   return {sb:m.sb?u(m.sb):"", wb:m.wb?u(m.wb):""}; }
 function tenNgan(id){
