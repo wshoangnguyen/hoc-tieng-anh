@@ -2292,6 +2292,12 @@ async function dayLenMayChu(){
   if(dangGhi){ ghiLaiSau=true; return; }
   dangGhi=true;
   try{
+    if(typeof window.__luuAnToan==="function"){
+      const gop=await window.__luuAnToan();
+      dnTT("Đã lưu "+new Date().toLocaleTimeString("vi-VN"));
+      if(typeof window.__xongLuu==="function") window.__xongLuu(gop);
+      return;
+    }
     let duLieu=S, json=JSON.stringify(S), boAnh=false;
     if(json.length>3_500_000 && S.anh){ duLieu={...S}; delete duLieu.anh; boAnh=true; }
     const {data,error}=await sb.rpc("luu_kho",{p_du_lieu:duLieu,p_phien_ban:phienBan});
@@ -2325,6 +2331,7 @@ async function vaoApp(){
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
   load(); dungQuyen(); render(); veNav(); apDungTab(); dungSelVai();
+  try{ if(window.__datBase) window.__datBase(); }catch(e){}
   try{ if(window.__dongBoAnh) window.__dongBoAnh(); }catch(e){}
   dnTT("đã kết nối");
   if(!coDuLieu&&S) henDayLenMayChu();   // máy chủ trống: đẩy dữ liệu đang có trên máy lên
@@ -3206,6 +3213,110 @@ async function dongBoAnh(){
 window.__dongBoAnh=dongBoAnh;
 window.__sauLuuAnh=(ma,d)=>dayAnhLen(ma,d);
 setInterval(()=>{ try{ if(sb&&document.visibilityState==="visible") dongBoAnh(); }catch(e){} }, 25*60*1000);
+/* ===== v7.25: đồng bộ an toàn nhiều giáo viên (gộp 3 chiều + tự cập nhật) ===== */
+let BASE=null, __hoiMayChu=false;
+const __chup=x=>JSON.parse(JSON.stringify(x==null?null:x));
+const __laObj=v=>v&&typeof v==="object"&&!Array.isArray(v);
+const __giong=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+
+function gop3(base, local, server){
+  if(__giong(local,base)) return server;
+  if(__giong(server,base)) return local;
+  if(Array.isArray(local)&&Array.isArray(server)){
+    const khoa=x=>x&&x.id!=null?("id:"+x.id):("th:"+String(JSON.stringify(x)).slice(0,80));
+    const bm=new Map((base||[]).map(x=>[khoa(x),x]));
+    const lm=new Map(local.map(x=>[khoa(x),x]));
+    const sm=new Map(server.map(x=>[khoa(x),x]));
+    const ra=[];
+    sm.forEach((sv,k)=>{ const lv=lm.get(k), bv=bm.get(k);
+      if(lv===undefined && bv!==undefined) return;         // máy này đã xoá
+      ra.push(lv===undefined?sv:gop3(bv,lv,sv));
+    });
+    lm.forEach((lv,k)=>{ if(!sm.has(k)&&!bm.has(k)) ra.push(lv); });
+    return ra;
+  }
+  if(__laObj(local)&&__laObj(server)){
+    const ra=Object.assign({},server);
+    const ks=new Set([...Object.keys(local),...Object.keys(base||{})]);
+    ks.forEach(k=>{
+      const lv=local[k], bv=(base||{})[k], sv=server[k];
+      if(lv===undefined){ if(sv!==undefined&&__giong(bv,sv)) delete ra[k]; return; }
+      ra[k]=(sv===undefined)?lv:gop3(bv,lv,sv);
+    });
+    return ra;
+  }
+  return local;
+}
+
+async function __layMayChu(){
+  const {data,error}=await sb.from("kho_lop").select("du_lieu,phien_ban").eq("id","main").maybeSingle();
+  if(error) throw error;
+  return {duLieu:(data&&data.du_lieu)||{}, phienBan:Number(data&&data.phien_ban)||0};
+}
+function __gonNhe(o){
+  try{ if(JSON.stringify(o).length>3_500_000 && o.anh){ const c=Object.assign({},o); delete c.anh; return c; } }catch(e){}
+  return o;
+}
+async function __luuAnToan(){
+  const mc=await __layMayChu();
+  let gop=BASE? gop3(BASE,S,mc.duLieu) : S;
+  gop=__gonNhe(gop);
+  let {data,error}=await sb.rpc("luu_kho",{p_du_lieu:gop,p_phien_ban:mc.phienBan});
+  if(error){
+    const mc2=await __layMayChu();
+    gop=__gonNhe(gop3(BASE,S,mc2.duLieu));
+    const r2=await sb.rpc("luu_kho",{p_du_lieu:gop,p_phien_ban:mc2.phienBan});
+    data=r2.data; error=r2.error;
+    if(!error) phienBan=(data!=null?Number(data):mc2.phienBan+1);
+  } else phienBan=(data!=null?Number(data):mc.phienBan+1);
+  if(error) throw error;
+  BASE=__chup(gop);
+  return gop;
+}
+function __datBase(){ BASE=__chup(S); }
+function __xongLuu(gop){ if(gop){ S=gop; try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} } }
+
+function __dangSua(){
+  const m=document.getElementById("bdModal");
+  if(m && m.style.display!=="none") return true;
+  const a=document.activeElement;
+  return !!(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
+}
+function __dai(t){
+  let d=document.getElementById("daiMayKhac");
+  if(!d){ d=document.createElement("div"); d.id="daiMayKhac";
+    d.style.cssText="position:fixed;right:14px;bottom:14px;z-index:9999;background:#fff7e3;border:1px solid #e0a800;border-radius:10px;padding:8px 12px;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,.12);cursor:pointer";
+    d.onclick=()=>{ d.remove(); if(window.__taiLaiTuMayChu) window.__taiLaiTuMayChu(); };
+    document.body.appendChild(d);
+  }
+  d.textContent="⟳ "+t+" — bấm để tải lại";
+}
+async function __nhanThayDoi(){
+  const mc=await __layMayChu();
+  if(!mc.phienBan||mc.phienBan<=phienBan) return;
+  const gop=gop3(BASE,S,mc.duLieu);
+  BASE=__chup(gop); S=gop; phienBan=mc.phienBan;
+  try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){}
+  if(__dangSua()) { __dai("Dữ liệu vừa thay đổi ở máy khác"); return; }
+  try{ render(); }catch(e){}
+  dnTT("đã cập nhật "+new Date().toLocaleTimeString("vi-VN"));
+}
+async function __kiemMayChu(){
+  if(!sb||__hoiMayChu||document.hidden) return;
+  __hoiMayChu=true;
+  try{
+    const {data}=await sb.from("kho_lop").select("phien_ban").eq("id","main").maybeSingle();
+    const pb=Number(data&&data.phien_ban)||0;
+    if(pb>phienBan) await __nhanThayDoi();
+  }catch(e){}
+  __hoiMayChu=false;
+}
+window.__luuAnToan=__luuAnToan;
+window.__datBase=__datBase;
+window.__xongLuu=__xongLuu;
+window.__taiLaiTuMayChu=async()=>{ try{ await __nhanThayDoi(); }catch(e){} };
+setInterval(()=>{ __kiemMayChu(); }, 8000);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) __kiemMayChu(); });
 
 </script>
 </body>
