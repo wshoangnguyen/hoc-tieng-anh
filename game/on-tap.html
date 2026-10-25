@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn từ hay sai — Học tiếng Anh dễ lắm</title>
+<style>
+  :root{--blue:#1f6feb;--green:#16a34a;--red:#dc2626;--line:#e5e7eb;--dim:#6b7280}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f6f8fb;color:#111827}
+  .wrap{max-width:720px;margin:0 auto;padding:16px 14px 40px}
+  h1{font-size:20px;margin:6px 0 2px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 14px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  input[type=text]{flex:1;min-width:140px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+  button{border:0;border-radius:10px;padding:10px 14px;font-size:15px;font-weight:600;cursor:pointer;background:var(--blue);color:#fff}
+  button.ghost{background:#fff;color:#111827;border:1px solid var(--line)}
+  button:disabled{opacity:.5;cursor:default}
+  .q{font-size:34px;font-weight:800;text-align:center;margin:18px 0 6px;letter-spacing:.5px}
+  .pron{text-align:center;color:var(--dim);margin-bottom:16px}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);color:#111827;font-weight:600;padding:13px 14px;border-radius:12px;margin-bottom:9px;font-size:16px}
+  .opt:hover{border-color:var(--blue)}
+  .opt.dung{border-color:var(--green);background:#eafaf0}
+  .opt.sai{border-color:var(--red);background:#fdeceb}
+  .thanh{height:8px;background:#e9eef6;border-radius:6px;overflow:hidden;margin:8px 0 4px}
+  .thanh>i{display:block;height:100%;background:var(--blue);width:0;transition:width .25s}
+  .hint{color:var(--dim);font-size:13.5px}
+  .chu{font-size:15px;margin-top:10px}
+  .tong{font-size:15px;line-height:1.6}
+  .tong b{color:var(--blue)}
+  .khung-an{text-align:center;font-size:44px;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔁 Ôn từ hay sai</h1>
+  <p class="sub">Lấy đúng những từ em đã làm sai trong các game, hỏi lại theo kiểu chọn nghĩa. Đúng 1 lần là bớt 1 lần sai.</p>
+
+  <div class="card" id="hopMa">
+    <div class="row">
+      <input id="ma" type="text" placeholder="Mã học viên (ví dụ HV11)" autocomplete="off">
+      <button id="nutLay">Lấy từ cần ôn</button>
+    </div>
+    <p class="hint" style="margin:8px 0 0">Không có mã vẫn chơi được: <a href="#" id="choiThu">chơi thử 10 từ bất kỳ</a>.</p>
+  </div>
+
+  <div id="noiDung"></div>
+</div>
+
+<script>
+const SB_URL = "https://xtfusgawjlrcreiphwur.supabase.co";
+const SB_KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+const $ = (s) => document.querySelector(s);
+let KHO = [], MA = "", DS = [], I = 0, DUNG = [], SAI = [], BAN_DAU = 0;
+
+function norm(s) { return String(s || "").trim().toLowerCase(); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function xao(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+/* ---------- nạp kho từ ---------- */
+async function napKho() {
+  const bo = new Map();
+  try {
+    const r = await fetch("vocabulary.json", { cache: "force-cache" });
+    if (r.ok) (await r.json()).forEach((x) => {
+      if (x && x.word && x.meaning) bo.set(norm(x.word), { word: x.word, meaning: x.meaning, pronunciation: x.pronunciation || "", category: x.category || "" });
+    });
+  } catch (e) {}
+  try {
+    JSON.parse(localStorage.getItem("flashcard_vocabulary") || "[]").forEach((x) => {
+      if (x && x.word && x.meaning) bo.set(norm(x.word), { word: x.word, meaning: x.meaning, pronunciation: x.pronunciation || "", category: x.category || "" });
+    });
+  } catch (e) {}
+  KHO = [...bo.values()];
+}
+
+/* ---------- lấy từ sai từ sổ điểm ---------- */
+async function rpc(ten, than) {
+  const r = await fetch(SB_URL + "/rest/v1/rpc/" + ten, {
+    method: "POST",
+    headers: { apikey: SB_KEY, Authorization: "Bearer " + SB_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify(than)
+  });
+  return r.ok ? r.json() : null;
+}
+
+async function layTuSai(ma) {
+  const d = await rpc("game_xem", { p_ma: ma });
+  if (!d) return { loi: "Không kết nối được sổ điểm. Kiểm tra mạng rồi thử lại." };
+  if (d.loi) return { loi: "Mã này chưa có trong sổ điểm. Nhờ cô kiểm tra mã giúp em nhé." };
+  const ds = (d.sai_gan_day || []).map((x) => {
+    const k = KHO.find((v) => norm(v.word) === norm(x.tu));
+    return k ? { ...k, so_lan: Number(x.so_lan) || 1 } : null;
+  }).filter(Boolean);
+  return { ds, tongSai: (d.sai_gan_day || []).length };
+}
+
+/* ---------- hiển thị ---------- */
+function veLoi(msg) { $("#noiDung").innerHTML = `<div class="card"><div class="chu">${esc(msg)}</div></div>`; }
+
+function batDau(ds, tieuDe) {
+  DS = xao(ds.slice()); I = 0; DUNG = []; SAI = []; BAN_DAU = DS.length;
+  $("#hopMa").style.display = MA ? "block" : "block";
+  $("#noiDung").innerHTML = `
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <span class="hint" id="dem"></span>
+        <span class="hint">${esc(tieuDe || "")}</span>
+      </div>
+      <div class="thanh"><i id="tiLe"></i></div>
+      <div id="hopCau"></div>
+    </div>`;
+  veCau();
+}
+
+function veCau() {
+  if (I >= DS.length) return ketThuc();
+  const w = DS[I];
+  $("#dem").textContent = `Câu ${I + 1}/${DS.length}`;
+  $("#tiLe").style.width = Math.round((I / DS.length) * 100) + "%";
+  const dungNghia = w.meaning;
+  const khac = xao(KHO.filter((x) => norm(x.meaning) !== norm(dungNghia)).map((x) => x.meaning)).slice(0, 3);
+  const chon = xao([dungNghia, ...khac]);
+  $("#hopCau").innerHTML = `
+    <div class="q">${esc(w.word)}</div>
+    <div class="pron">${esc(w.pronunciation || "")}${w.so_lan ? ` · đã sai ${w.so_lan} lần` : ""}</div>
+    ${chon.map((m, i) => `<button class="opt" data-m="${esc(m)}">${esc(m)}</button>`).join("")}
+    <div id="phanHoi" class="khung-an"></div>`;
+  $("#hopCau").querySelectorAll(".opt").forEach((b) => {
+    b.onclick = () => traLoi(b, b.dataset.m === dungNghia, dungNghia);
+  });
+}
+
+function traLoi(btn, dung, dungNghia) {
+  $("#hopCau").querySelectorAll(".opt").forEach((b) => { b.disabled = true; if (b.dataset.m === dungNghia) b.classList.add("dung"); });
+  if (!dung) btn.classList.add("sai");
+  $("#phanHoi").textContent = dung ? "✅ Đúng!" : "❌ Chưa đúng — nghĩa là: " + dungNghia;
+  const w = DS[I];
+  if (dung) DUNG.push(w.word); else SAI.push(w);
+  I++;
+  setTimeout(() => { if (I >= DS.length) ketThuc(); else veCau(); }, dung ? 650 : 1400);
+}
+
+async function ketThuc() {
+  const tl = BAN_DAU ? Math.round((DUNG.length / BAN_DAU) * 100) : 0;
+  let conLai = "";
+  if (MA && DUNG.length) {
+    const kq = await rpc("game_on_tap", { p_ma: MA, p_dung: DUNG });
+    if (kq && kq.ok) conLai = `<div class="hint" style="margin-top:8px">Sổ điểm đã ghi nhận ${DUNG.length} từ nhớ lại · còn <b>${kq.con_lai}</b> từ cần ôn.</div>`;
+  }
+  $("#noiDung").innerHTML = `
+    <div class="card">
+      <div class="tong">
+        <div style="font-size:20px;font-weight:800;margin-bottom:6px">Xong lượt ôn!</div>
+        Đúng <b>${DUNG.length}/${BAN_DAU}</b> từ (${tl}%).<br>
+        ${SAI.length ? `Còn cần ôn: ${SAI.map((w) => `<b>${esc(w.word)}</b>`).join(", ")}.` : "Em nhớ hết cả rồi 🎉"}
+        ${conLai}
+      </div>
+      <div class="row" style="margin-top:12px">
+        ${SAI.length ? `<button id="lai">Ôn lại ${SAI.length} từ còn sai</button>` : ""}
+        <button class="ghost" id="ve">Về trang game</button>
+      </div>
+    </div>`;
+  if ($("#lai")) $("#lai").onclick = () => batDau(SAI, "ôn lại từ còn sai");
+  $("#ve").onclick = () => { location.href = "../index.html"; };
+}
+
+/* ---------- điều khiển ---------- */
+$("#nutLay").onclick = async () => {
+  const ma = $("#ma").value.trim().toUpperCase();
+  if (!ma) return veLoi("Em nhập mã học viên trước nhé (hoặc bấm “chơi thử”).");
+  MA = ma; localStorage.setItem("game_ma_hv", ma);
+  $("#nutLay").disabled = true; veLoi("Đang lấy danh sách từ cần ôn…");
+  const kq = await layTuSai(ma);
+  $("#nutLay").disabled = false;
+  if (kq.loi) return veLoi(kq.loi);
+  if (!kq.ds.length) {
+    return veLoi(kq.tongSai
+      ? "Các từ em từng sai chưa có nghĩa trong kho từ của web, nên chưa ôn được. Nhờ cô bổ sung nhé."
+      : "Em chưa có từ sai nào. Chơi một game trước rồi quay lại ôn nhé!");
+  }
+  batDau(kq.ds.slice(0, 20), `mã ${ma}`);
+};
+
+$("#choiThu").onclick = (e) => {
+  e.preventDefault();
+  MA = "";
+  batDau(xao(KHO.slice()).slice(0, 10), "chơi thử");
+};
+
+/* khởi động */
+(async () => {
+  await napKho();
+  const maCu = localStorage.getItem("game_ma_hv") || "";
+  $("#ma").value = maCu;
+  if (maCu) $("#nutLay").click();
+})();
+</script>
+</body>
+</html>

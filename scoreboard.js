@@ -17,7 +17,15 @@ async function api(path, opts) {
 }
 
 async function loadData() {
-  try { data = await api("/api/data"); } catch(e) { console.warn("Load:", e.message); }
+  /* hiện ngay bản lưu trong máy, rồi tải bản mới ở nền (máy chủ ngoài hay ngủ 30 giây) */
+  try {
+    var c = localStorage.getItem("sb_cache");
+    if (c) { data = JSON.parse(c); try { render(); } catch(e) {} }
+  } catch(e) {}
+  try {
+    data = await api("/api/data");
+    try { localStorage.setItem("sb_cache", JSON.stringify(data)); } catch(e) {}
+  } catch(e) { console.warn("Load:", e.message); }
 }
 
 async function login() {
