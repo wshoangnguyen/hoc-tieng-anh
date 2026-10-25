@@ -397,6 +397,18 @@ header{padding:6px 10px}
   #gvBody .tkb th.corner,#gvBody .tkb td.mon{width:44px}
 }
 </style>
+
+<style id="css-gv-2cot">
+#gvBody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+#gvBody .gvcard{max-width:none;margin-bottom:0;width:auto}
+#gvBody>p.hint{grid-column:1/-1}
+#gvBody .tkb{table-layout:fixed;width:100%;min-width:0}
+#gvBody .tkb th,#gvBody .tkb td{padding-left:1px;padding-right:1px}
+#gvBody .tkb td.mon,#gvBody .tkb th.corner{width:48px}
+#gvBody .tkb .o{padding:3px 3px;font-size:11.5px}
+#gvBody .tkb .o small{font-size:10px}
+@media(max-width:980px){#gvBody{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
