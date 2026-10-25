@@ -3502,7 +3502,10 @@ document.head.appendChild(_cssGY);
 .chat-tin{margin:0 0 10px;padding:9px 11px;border-radius:10px;background:#fff;border:1px solid #e6e8ec;white-space:pre-wrap;line-height:1.45}
 .chat-tin.hoi{background:#e8f0fe;border-color:#d3e2fd;margin-left:40px}
 .chat-tin.loi{color:#b42318}
-.chat-nguon{margin:6px 0 0;font-size:12px;color:#5b6472;display:flex;flex-wrap:wrap;gap:6px}
+.chat-nguon{margin:6px 0 0;font-size:12px;color:#5b6472;display:none;flex-wrap:wrap;gap:6px}
+.chat-nguon.mo{display:flex}
+.chat-nguon-nut{margin:-2px 0 10px;background:none;border:none;color:#8a93a3;font-size:12px;cursor:pointer;padding:2px 0}
+.chat-nguon-nut:hover{color:#1f6feb;text-decoration:underline}
 .chat-nguon span{background:#eef2f7;border-radius:8px;padding:2px 7px}
 .chat-chan{border-top:1px solid #e6e8ec;padding:9px;display:flex;gap:7px;background:#fff}
 .chat-chan textarea{flex:1;resize:none;height:44px;border:1px solid #d7dbe2;border-radius:9px;padding:8px 10px;font:14px inherit}
@@ -3541,7 +3544,10 @@ function them(noiDung, laHoi, nguon){
   if(nguon&&nguon.length){
     const s=document.createElement("div"); s.className="chat-nguon";
     s.innerHTML=nguon.map(x=>'<span>'+x.sach+' tr. '+x.trang+(x.unit!=null?' · U'+x.unit:'')+'</span>').join("");
-    than.appendChild(s);
+    const nutN=document.createElement("button"); nutN.className="chat-nguon-nut";
+    nutN.textContent="ⓘ Nguồn ("+nguon.length+")";
+    nutN.onclick=()=>{ s.classList.toggle("mo"); nutN.textContent=(s.classList.contains("mo")?"▾ ":"ⓘ ")+"Nguồn ("+nguon.length+")"; };
+    than.appendChild(nutN); than.appendChild(s);
   }
   than.scrollTop=than.scrollHeight; return d;
 }
