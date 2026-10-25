@@ -370,6 +370,33 @@ header{padding:6px 10px}
   #gvBody .tkb td.cell-fix{height:32px}
 }
 </style>
+
+<style id="css-gv-gon2">
+/* ---- Lịch giáo viên: chữ to, khung hẹp ---- */
+#gvBody .gvcard{margin-bottom:8px;padding:10px 10px 6px;max-width:720px}
+#gvBody .tkb{table-layout:fixed;width:100%;min-width:0}
+#gvBody .tkb th{height:30px;font-size:12px;padding:3px 2px;line-height:1.25}
+#gvBody .tkb th .hint{font-size:11px}
+#gvBody .tkb td{padding:3px 2px;font-size:12.5px}
+#gvBody .tkb td.cell-fix{height:40px}
+#gvBody .tkb td.mon{font-size:12px;padding:3px 5px;width:56px}
+#gvBody .tkb th.corner{width:56px}
+#gvBody .tkb .corner{font-size:11.5px}
+#gvBody .tkb .corner b{font-size:14px}
+#gvBody .tkb .o{min-height:0;font-size:12px;line-height:1.2;padding:3px 4px;margin-bottom:2px;border-left-width:3px;border-radius:6px}
+#gvBody .tkb .o small{font-size:10.5px;line-height:1.15}
+#gvBody .tkb tr.tong td{font-size:11.5px;padding:3px}
+#gvBody .cuon>table{min-width:0}
+#gvBody>p.hint,#gvBody p.hint{font-size:11.5px;margin:5px 0 0;line-height:1.35}
+#gvBody .gvcard .hd h3{font-size:15px}
+#gvBody .gvcard .hd .chip{font-size:11.5px;padding:2px 8px}
+#gvBody .gvcard .hd .ghost.sm{font-size:11.5px;padding:3px 9px}
+@media(max-width:640px){
+  #gvBody .tkb th{font-size:10.5px}
+  #gvBody .tkb .o{font-size:10.8px}
+  #gvBody .tkb th.corner,#gvBody .tkb td.mon{width:44px}
+}
+</style>
 </head>
 <body>
 
@@ -944,7 +971,7 @@ function veGV(){
     const ds=all.filter(b=>b.gv===g.ten), tuanNay=ds.filter(ok);
     let h=`<div class="card gvcard"><div class="hd">
       <h3 style="margin:0;color:${mauGV(g.ten)}">${esc(g.ten)}</h3>
-      <span class="chip">Tổng tuần: <b>&nbsp;${tuanNay.length} giờ</b></span>
+      <span class="chip" title="Số buổi của TUẦN đang xem. Bảng lương tính theo THÁNG, nên tuần vắt qua hai tháng sẽ lệch — xem mục Đối chiếu trong tab Giờ dạy &amp; lương.">Tổng tuần: <b>&nbsp;${tuanNay.length} buổi</b></span>
       <span style="flex:1"></span>
       <button class="ghost sm" data-copylich="${esc(g.ten)}">📋 Copy gửi Zalo</button>
       <button class="ghost sm" data-csvlich="${esc(g.ten)}">⬇ CSV</button></div>
@@ -3691,5 +3718,159 @@ function veGameHV(ma) {
 window.addEventListener("load", function () { setTimeout(taiDiemGame, 1800); });
 </script>
 
+
+<script>
+/* js-luong-in */
+(() => {
+  const tien = (n) => (typeof fmtTien === "function" ? fmtTien(n) : (n || 0).toLocaleString("vi-VN") + " đ");
+
+  /* --- đếm buổi của 1 giáo viên trong 1 tuần: cả tuần và phần thuộc tháng --- */
+  function demTuan(ten, w, thang) {
+    const all = (typeof buoiTuan === "function" ? buoiTuan(w) : []).filter((b) => b.gv === ten && b.tt !== "huy");
+    const trong = all.filter((b) => String(b.ngay).slice(0, 7) === thang);
+    return { caTuan: all.length, trongThang: trong.length };
+  }
+
+  window.luongChiTiet = function (thang, ten) {
+    const ds = [];
+    (S.tuan || []).forEach((w) => {
+      const d = demTuan(ten, w, thang);
+      if (d.caTuan) ds.push({ bat_dau: w.bat_dau, het: cong(w.bat_dau, 6), caTuan: d.caTuan, trongThang: d.trongThang });
+    });
+    ds.sort((a, b) => (a.bat_dau < b.bat_dau ? -1 : 1));
+    const tongThang = ds.reduce((s, x) => s + x.trongThang, 0);
+    const tongCaTuan = ds.reduce((s, x) => s + x.caTuan, 0);
+    return { tuan: ds, tongThang, tongCaTuan };
+  };
+
+  /* --- in phiếu lương 1 giáo viên --- */
+  window.inBangLuong = function (ten, thang) {
+    const g = (S.giao_vien || []).find((x) => x.ten === ten) || { ten: ten, don_gia: 0 };
+    const gia = g.don_gia || 0;
+    const kq = window.luongChiTiet(thang, ten);
+    const [y, m] = thang.split("-");
+    let dong = "", stt = 0;
+    kq.tuan.forEach((t) => {
+      stt++;
+      const lech = t.caTuan !== t.trongThang;
+      dong += "<tr><td style='text-align:center'>" + stt + "</td>" +
+        "<td>" + ngayVNngan(t.bat_dau) + " – " + ngayVNngan(t.het) + "</td>" +
+        "<td style='text-align:center'>" + t.trongThang + "</td>" +
+        "<td style='text-align:center'>" + (lech ? t.caTuan + " (cả tuần)" : "—") + "</td>" +
+        "<td style='text-align:right'>" + tien(t.trongThang * gia) + "</td></tr>";
+    });
+    if (!stt) dong = "<tr><td colspan='5' style='text-align:center;padding:14px'>Không có buổi dạy nào trong tháng</td></tr>";
+    const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Bảng lương ${ten} — ${m}/${y}</title>
+<style>
+ @page{size:A4;margin:14mm}
+ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#111;font-size:13px}
+ h1{font-size:19px;margin:0 0 2px;text-align:center;text-transform:uppercase}
+ .sub{text-align:center;color:#555;margin:0 0 14px;font-size:12.5px}
+ .info{display:flex;justify-content:space-between;margin:0 0 10px;font-size:13px}
+ table{width:100%;border-collapse:collapse}
+ th,td{border:1px solid #999;padding:6px 7px}
+ th{background:#eef2f7;font-size:12.5px}
+ tfoot td{font-weight:700;background:#f7f9fc}
+ .ghi{margin-top:12px;font-size:12px;color:#444;line-height:1.5}
+ .ky{display:flex;justify-content:space-between;margin-top:38px;text-align:center;font-size:12.5px}
+ .ky div{width:45%}
+ .ky b{display:block;margin-bottom:52px}
+</style></head><body>
+<h1>Bảng lương tháng ${m}/${y}</h1>
+<p class="sub">Lịch dạy, số buổi và thành tiền theo từng tuần</p>
+<div class="info"><div><b>Giáo viên:</b> ${ten}</div><div><b>Đơn giá:</b> ${tien(gia)} / giờ</div></div>
+<table>
+ <thead><tr><th style="width:34px">STT</th><th>Tuần</th><th style="width:110px">Số buổi trong tháng</th><th style="width:110px">Đếm cả tuần</th><th style="width:130px">Thành tiền</th></tr></thead>
+ <tbody>${dong}</tbody>
+ <tfoot>
+  <tr><td colspan="2">TỔNG CỘNG</td><td style="text-align:center">${kq.tongThang}</td><td style="text-align:center">${kq.tongCaTuan !== kq.tongThang ? kq.tongCaTuan : "—"}</td><td style="text-align:right">${tien(kq.tongThang * gia)}</td></tr>
+ </tfoot>
+</table>
+<p class="ghi">
+ Ghi chú: mỗi buổi tính 1 giờ. Chỉ tính buổi có ngày thật nằm trong tháng ${m}/${y}; buổi “đã huỷ” không tính.
+ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Đếm cả tuần” là số buổi của tuần vắt qua hai tháng — phần chênh lệch thuộc tháng bên kia, không mất buổi nào." : ""}
+</p>
+<div class="ky"><div><b>Người lập</b>(ký, ghi rõ họ tên)</div><div><b>Giáo viên</b>(ký, ghi rõ họ tên)</div></div>
+</body></html>`;
+    const w = window.open("", "_blank");
+    if (!w) { alert("Trình duyệt đang chặn cửa sổ in. Cho phép pop-up rồi bấm lại."); return; }
+    w.document.write(html); w.document.close();
+    w.onload = () => setTimeout(() => w.print(), 250);
+  };
+
+  /* --- vẽ lại tab Giờ dạy & lương --- */
+  window.veLuong = function () {
+    const thangs = dsThang();
+    const thangNay = iso(new Date()).slice(0, 7);
+    if (!thangDangXem || !thangs.includes(thangDangXem)) thangDangXem = thangs.includes(thangNay) ? thangNay : thangs[thangs.length - 1];
+    const selThang = document.getElementById("selThang");
+    if (selThang) selThang.innerHTML = thangs.map((m) => {
+      const [y, mm] = m.split("-");
+      return `<option value="${m}" ${m === thangDangXem ? "selected" : ""}>Tháng ${mm}/${y}</option>`;
+    }).join("");
+
+    let rows = tinhLuongThang(thangDangXem);
+    if (vaiHienTai() === "giao_vien") rows = rows.filter((r) => r.ten === tenHienTai());
+    const tb = rows.reduce((s, r) => s + r.buoi, 0), tt = rows.reduce((s, r) => s + r.tien, 0);
+    const dsTen = rows.map((r) => r.ten);
+
+    let h = `<div class="card"><h3 style="margin-top:0">Bảng lương chi tiết — Tháng ${thangDangXem.split("-")[1]}/${thangDangXem.split("-")[0]}</h3>
+      <div class="row" style="gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap">
+        <span class="hint" style="margin:0">In phiếu lương:</span>
+        <select id="inGV" style="max-width:200px">${dsTen.map((t) => `<option>${esc(t)}</option>`).join("")}</select>
+        <button class="ghost" id="btnInLuong">🖨 In lịch &amp; lương tháng</button>
+      </div>
+      <div class="cuon"><table><thead><tr><th>Giáo viên</th><th>Tuần</th><th class="num">Số buổi trong tháng</th>
+      <th class="num">Đếm cả tuần</th><th class="num">Đơn giá / giờ</th><th class="num">Thành tiền</th></tr></thead><tbody>`;
+
+    rows.forEach((r, i) => {
+      const n = r.tuanRows.length;
+      if (!n) {
+        h += `<tr><td>${esc(r.ten)}</td><td class="hint">không có buổi nào trong tháng</td><td class="num">0</td><td class="num">—</td>
+          <td class="num"><input class="mini" data-i="${i}" ${vaiHienTai() === "giao_vien" ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td><td class="num">—</td></tr>`;
+        return;
+      }
+      r.tuanRows.forEach((t, j) => {
+        const ct = window.luongChiTiet(thangDangXem, r.ten).tuan.find((x) => x.bat_dau === t.bat_dau);
+        const caTuan = ct ? ct.caTuan : t.nb;
+        h += `<tr>${j === 0 ? `<td rowspan="${n}">${esc(r.ten)}</td>` : ""}
+          <td>${ngayVNngan(t.bat_dau)} – ${ngayVNngan(t.het)}</td><td class="num">${t.nb}</td>
+          <td class="num">${caTuan !== t.nb ? `<span style="color:#b45309">${caTuan}</span>` : "—"}</td>
+          ${j === 0 ? `<td class="num" rowspan="${n}">
+            <input class="mini" data-i="${i}" ${vaiHienTai() === "giao_vien" ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td>` : ""}
+          <td class="num">${t.nb * (r.gia || 0) ? fmtTien(t.nb * r.gia) : "—"}</td></tr>`;
+      });
+      if (n > 1) h += `<tr class="total"><td colspan="2">Cộng ${esc(r.ten)}</td><td class="num">${r.buoi}</td><td class="num">—</td>
+        <td class="num">${r.gia ? fmtTien(r.gia) : "—"}</td><td class="num">${r.tien ? fmtTien(r.tien) : "—"}</td></tr>`;
+    });
+    h += `<tr class="total"><td colspan="2">TỔNG THÁNG</td><td class="num">${tb}</td><td class="num">—</td><td class="num">—</td>
+      <td class="num">${tt ? fmtTien(tt) : "—"}</td></tr></tbody></table></div>
+      <p class="hint">Cách tính: quét <b>từng buổi theo ngày thật</b> trong tháng đang chọn (buổi “đã huỷ” không tính), cộng theo từng tuần.
+      1 buổi = 1 giờ. Cột “Đếm cả tuần” chỉ khác khi tuần đó vắt qua hai tháng — số buổi không mất, chỉ chuyển sang tháng bên kia.</p></div>`;
+
+    /* bảng đối chiếu: lịch tuần vs lương tháng */
+    h += `<div class="card"><h3 style="margin-top:0">Đối chiếu với lịch giáo viên</h3>
+      <p class="hint" style="margin-top:0">Nếu hai nơi lệch nhau, gần như luôn là do <b>tuần vắt qua hai tháng</b>: lịch tuần đếm cả tuần, bảng lương chỉ đếm phần ngày thuộc tháng đang chọn.</p>
+      <div class="cuon"><table><thead><tr><th>Giáo viên</th><th class="num">Lương tháng</th><th class="num">Nếu đếm cả tuần</th><th class="num">Chênh</th><th>Tuần gây chênh</th></tr></thead><tbody>`;
+    rows.forEach((r) => {
+      const kq = window.luongChiTiet(thangDangXem, r.ten);
+      const lech = kq.tongCaTuan - kq.tongThang;
+      const tuanLech = kq.tuan.filter((t) => t.caTuan !== t.trongThang)
+        .map((t) => `${ngayVNngan(t.bat_dau)}–${ngayVNngan(t.het)} (${t.trongThang}/${t.caTuan})`).join("<br>");
+      h += `<tr><td>${esc(r.ten)}</td><td class="num">${kq.tongThang}</td><td class="num">${kq.tongCaTuan}</td>
+        <td class="num" style="color:${lech ? "#b45309" : "#15803d"}">${lech ? "+" + lech : "0"}</td>
+        <td class="hint">${tuanLech || "—"}</td></tr>`;
+    });
+    h += `</tbody></table></div></div>`;
+
+    document.getElementById("luongBody").innerHTML = h;
+    document.querySelectorAll("#luongBody input.mini").forEach((inp) => {
+      inp.onchange = () => { S.giao_vien[+inp.dataset.i].don_gia = +inp.value || 0; save(); window.veLuong(); };
+    });
+    const b = document.getElementById("btnInLuong");
+    if (b) b.onclick = () => window.inBangLuong(document.getElementById("inGV").value, thangDangXem);
+  };
+})();
+</script>
 </body>
 </html>
