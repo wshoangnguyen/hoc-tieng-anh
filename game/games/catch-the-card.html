@@ -350,7 +350,6 @@
 </div>
 
 <script src="../js/game-utils.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
     // ---------- BIẾN TOÀN CỤC ----------
     let activeCards = [];
@@ -574,66 +573,16 @@
     }
     
     function shootConfetti() {
-        if (typeof canvasConfetti === 'undefined') {
-            simpleConfetti();
-            return;
-        }
-        canvasConfetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            startVelocity: 20,
-            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']
-        });
-        setTimeout(() => {
-            canvasConfetti({
-                particleCount: 50,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0, y: 0.7 },
-                startVelocity: 25,
-            });
-            canvasConfetti({
-                particleCount: 50,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1, y: 0.7 },
-                startVelocity: 25,
-            });
-        }, 100);
+        if (window.GAME && GAME.phaoHoa) { GAME.phaoHoa(4); return; }
+        simpleConfetti();
     }
-    
+
     function shootStrongConfetti() {
-        if (typeof canvasConfetti !== 'undefined') {
-            canvasConfetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                startVelocity: 30,
-                decay: 0.9,
-                colors: ['#ffd700', '#ffb347', '#ff6b6b', '#4ecdc4', '#45b7d1']
-            });
-            setTimeout(() => {
-                canvasConfetti({
-                    particleCount: 80,
-                    angle: 45,
-                    spread: 60,
-                    origin: { x: 0, y: 0.5 },
-                });
-                canvasConfetti({
-                    particleCount: 80,
-                    angle: 135,
-                    spread: 60,
-                    origin: { x: 1, y: 0.5 },
-                });
-            }, 150);
-        } else {
-            simpleConfetti();
-            setTimeout(() => simpleConfetti(), 150);
-        }
+        if (window.GAME && GAME.phaoHoa) { GAME.phaoHoa(9); return; }
+        simpleConfetti(); simpleConfetti();
     }
-    
-    function showWinSummary() {
+
+function showWinSummary() {
         try { GAME.ketThuc({soCau: Math.max(totalAttempts, score), soDung: score}); } catch(e){}
         cancelAnimationFrame(animationFrame);
         playBeep('win');

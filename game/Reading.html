@@ -270,6 +270,7 @@
     </style>
     <link rel="stylesheet" href="core.css">
     <script src="core.js"></script>
+    <script src="am-thanh.js"></script>
 </head>
 <body>
     <div class="brand-logo-float" id="brandLogoFloat">
@@ -356,6 +357,7 @@
     }
 
     function speakText(text, rate = 0.88) {
+        if (window.NOI && NOI.tu) { NOI.tu(text); return; }
         if (!window.speechSynthesis) return;
         
         window.speechSynthesis.cancel();
@@ -373,10 +375,12 @@
     }
 
     function speakWord(word) {
+        if (window.NOI && NOI.tu) { NOI.tu(word); return; }
         speakText(word, 0.85);
     }
 
     function speakSentence(sentenceWords) {
+        if (window.NOI && NOI.tu) { NOI.tu(sentence); return; }
         const fullSentence = sentenceWords.join(" ");
         speakText(fullSentence, 0.88);
     }

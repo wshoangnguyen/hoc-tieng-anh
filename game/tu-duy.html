@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nấc 5 · Tư duy — Học tiếng Anh dễ lắm</title>
+<link rel="stylesheet" href="core.css">
+<script src="core.js"></script>
+<style>
+  :root{--blue:#1f6feb;--green:#16a34a;--red:#dc2626;--line:#e5e7eb;--dim:#6b7280}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f6f8fb;color:#111827}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  h1{font-size:21px;margin:8px 0 2px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 14px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .nhan{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:#7c3aed;background:#f3e8ff;border-radius:999px;padding:4px 10px;margin-bottom:10px}
+  .cau{font-size:19px;line-height:1.55;margin:2px 0 14px}
+  .cau u{text-decoration:none;border-bottom:2px dashed var(--blue);padding:0 22px;font-weight:700;color:var(--blue)}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);color:#111827;font-weight:600;padding:13px 14px;border-radius:12px;margin-bottom:9px;font-size:16px}
+  .opt:hover{border-color:var(--blue)}
+  .opt.dung{border-color:var(--green);background:#eafaf0}
+  .opt.sai{border-color:var(--red);background:#fdeceb}
+  .thanh{height:8px;background:#e9eef6;border-radius:6px;overflow:hidden;margin:4px 0 12px}
+  .thanh>i{display:block;height:100%;background:#7c3aed;width:0;transition:width .25s}
+  .hint{color:var(--dim);font-size:13.5px}
+  .fb{font-size:15px;margin-top:6px;min-height:22px}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  button.ghost{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer}
+  .game-icon{font-size:22px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🧠 Nấc 5 · Tư duy</h1>
+  <p class="sub">Không chỉ nhớ nghĩa: phải loại suy và chọn từ đúng trong câu. Làm xong 8 câu là tính 1 điểm nấc.</p>
+  <div class="card" id="the">
+    <div class="row" style="justify-content:space-between">
+      <span class="hint" id="dem">Đang chuẩn bị…</span>
+      <span class="hint" id="kieu"></span>
+    </div>
+    <div class="thanh"><i id="tiLe"></i></div>
+    <div id="noiDung"></div>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const xao = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+let KHO = [], CAU = [], I = 0, DUNG = 0;
+
+async function napDuLieu() {
+  const bo = new Map();
+  try {
+    const r = await fetch("vocabulary.json", { cache: "force-cache" });
+    if (r.ok) (await r.json()).forEach((x) => {
+      if (x && x.word && x.meaning) bo.set(String(x.word).toLowerCase(), { word: x.word, meaning: x.meaning, category: (x.category || "").toLowerCase() });
+    });
+  } catch (e) {}
+  try {
+    JSON.parse(localStorage.getItem("flashcard_vocabulary") || "[]").forEach((x) => {
+      if (x && x.word && x.meaning && !bo.has(String(x.word).toLowerCase())) bo.set(String(x.word).toLowerCase(), { word: x.word, meaning: x.meaning, category: (x.category || "").toLowerCase() });
+    });
+  } catch (e) {}
+  KHO = [...bo.values()].filter((x) => /^[a-zA-Z][a-zA-Z' -]*$/.test(x.word));
+
+  /* câu mẫu: mỗi dòng "English | English | công thức | tiếng Việt" */
+  let cau = [];
+  try {
+    const r = await fetch("sentences.txt", { cache: "force-cache" });
+    if (r.ok) {
+      (await r.text()).split(/\r?\n/).forEach((line) => {
+        if (!line || /^===|^\[/.test(line.trim())) return;
+        const phan = line.split("|").map((s) => s.trim());
+        if (phan.length < 2) return;
+        if (phan[0] && phan[0] === phan[1]) cau.push(phan[0]);
+      });
+    }
+  } catch (e) {}
+  return cau;
+}
+
+/* ---------- 1. từ khác loại ---------- */
+function cauKhacLoai() {
+  const theoNhom = new Map();
+  KHO.forEach((w) => { if (w.category) { if (!theoNhom.has(w.category)) theoNhom.set(w.category, []); theoNhom.get(w.category).push(w); } });
+  const nhom = [...theoNhom.keys()].filter((k) => theoNhom.get(k).length >= 3);
+  if (nhom.length < 2) return null;
+  const goc = nhom[Math.floor(Math.random() * nhom.length)];
+  const ba = xao(theoNhom.get(goc).slice()).slice(0, 3);
+  const khacNhom = nhom.filter((k) => k !== goc);
+  const nhomKhac = khacNhom[Math.floor(Math.random() * khacNhom.length)];
+  const le = theoNhom.get(nhomKhac)[Math.floor(Math.random() * theoNhom.get(nhomKhac).length)];
+  return {
+    kieu: "Từ khác loại",
+    hoi: "Từ nào <b>không cùng nhóm</b> với ba từ còn lại?",
+    chon: xao([...ba.map((w) => w.word), le.word]),
+    dapAn: le.word,
+    viSao: `“${le.word}” thuộc nhóm ${nhomKhac}; ba từ kia cùng nhóm ${goc}.`
+  };
+}
+
+/* ---------- 2. điền từ vào câu ---------- */
+function cauDienTu(cauMau) {
+  const co = KHO.filter((w) => w.word.length >= 3 && w.word.length <= 12 && w.word.indexOf(" ") < 0);
+  for (let lan = 0; lan < 40; lan++) {
+    const cau = cauMau[Math.floor(Math.random() * cauMau.length)];
+    if (!cau || cau.length > 110) continue;
+    const tu = cau.split(/\s+/);
+    const vitri = [];
+    tu.forEach((t, i) => {
+      const sach = t.replace(/[^a-zA-Z']/g, "").toLowerCase();
+      if (sach.length >= 3 && co.some((w) => w.word.toLowerCase() === sach)) vitri.push(i);
+    });
+    if (!vitri.length) continue;
+    const i = vitri[Math.floor(Math.random() * vitri.length)];
+    const dung = tu[i].replace(/[^a-zA-Z']/g, "");
+    const cungNhom = KHO.filter((w) => w.word.toLowerCase() === dung.toLowerCase())[0];
+    let nhieu = KHO.filter((w) => w.word.toLowerCase() !== dung.toLowerCase() &&
+      (cungNhom && cungNhom.category ? w.category === cungNhom.category : true) &&
+      Math.abs(w.word.length - dung.length) <= 3).map((w) => w.word);
+    if (nhieu.length < 3) nhieu = KHO.filter((w) => w.word.toLowerCase() !== dung.toLowerCase()).map((w) => w.word);
+    nhieu = xao([...new Set(nhieu)]).slice(0, 3);
+    if (nhieu.length < 3) continue;
+    const hien = tu.slice(); hien[i] = "<u>____</u>";
+    return {
+      kieu: "Điền từ vào câu",
+      hoi: hien.join(" "),
+      chon: xao([dung, ...nhieu]),
+      dapAn: dung,
+      viSao: `Câu đầy đủ: “${cau}”`
+    };
+  }
+  return null;
+}
+
+function taoBoCau(cauMau) {
+  const ds = [];
+  for (let i = 0; i < 4; i++) { const c = cauKhacLoai(); if (c) ds.push(c); }
+  for (let i = 0; i < 4; i++) { const c = cauDienTu(cauMau); if (c) ds.push(c); }
+  return xao(ds).slice(0, 8);
+}
+
+/* ---------- chạy ---------- */
+function veCau() {
+  if (I >= CAU.length) return ketThuc();
+  const c = CAU[I];
+  $("#dem").textContent = `Câu ${I + 1}/${CAU.length}`;
+  $("#kieu").textContent = c.kieu;
+  $("#tiLe").style.width = Math.round((I / CAU.length) * 100) + "%";
+  $("#noiDung").innerHTML = `
+    <div class="cau">${c.hoi}</div>
+    ${c.chon.map((x) => `<button class="opt" data-x="${esc(x)}">${esc(x)}</button>`).join("")}
+    <div class="fb" id="fb"></div>`;
+  $("#noiDung").querySelectorAll(".opt").forEach((b) => {
+    b.onclick = () => chon(b, b.dataset.x === c.dapAn, c);
+  });
+}
+
+function chon(btn, dung, c) {
+  $("#noiDung").querySelectorAll(".opt").forEach((b) => { b.disabled = true; if (b.dataset.x === c.dapAn) b.classList.add("dung"); });
+  if (!dung) btn.classList.add("sai");
+  $("#fb").innerHTML = (dung ? "✅ Đúng! " : "❌ Chưa đúng. ") + `<span class="hint">${esc(c.viSao)}</span>`;
+  if (dung) DUNG++;
+  try { GAME.ghi({ tu: c.dapAn, ok: dung }); } catch (e) {}
+  I++;
+  setTimeout(() => { if (I >= CAU.length) ketThuc(); else veCau(); }, dung ? 900 : 2000);
+}
+
+async function ketThuc() {
+  $("#tiLe").style.width = "100%";
+  $("#dem").textContent = `Xong ${CAU.length} câu`;
+  $("#noiDung").innerHTML = `<div class="hint">Đang ghi kết quả…</div>`;
+  let kq = null;
+  try { kq = await GAME.ketThuc(); } catch (e) {}
+  $("#noiDung").innerHTML = `
+    <div style="font-size:18px;font-weight:700;margin-bottom:6px">Nấc 5 hoàn tất: đúng ${DUNG}/${CAU.length}</div>
+    <div class="hint" style="margin-bottom:12px">${DUNG >= Math.ceil(CAU.length * 0.6) ? "Đạt nấc 5 — điểm đã cộng vào sổ." : "Chưa đạt 60% — làm lại để lấy điểm nấc này nhé."}</div>
+    <div class="row">
+      <button class="ghost" id="lai">Làm bộ khác</button>
+      <button class="ghost" id="ve">Về trang chủ</button>
+    </div>`;
+  if (DUNG >= Math.ceil(CAU.length * 0.6)) { try { GAME.phaoHoa(5); } catch (e) {} }
+  $("#lai").onclick = () => location.reload();
+  $("#ve").onclick = () => { location.href = "../index.html"; };
+}
+
+(async () => {
+  const cauMau = await napDuLieu();
+  CAU = taoBoCau(cauMau);
+  if (!CAU.length) { $("#noiDung").innerHTML = '<div class="hint">Chưa nạp được dữ liệu từ vựng. Kiểm tra mạng rồi tải lại trang.</div>'; return; }
+  try { GAME.batDau({ game: "tu-duy", sach: "tu-duy", unit: null, soCau: CAU.length, nac: 5, khoaNac: true }); } catch (e) {}
+  veCau();
+})();
+</script>
+</body>
+</html>

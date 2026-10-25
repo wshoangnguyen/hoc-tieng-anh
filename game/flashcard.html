@@ -372,6 +372,7 @@
             }
         }
     </style>
+    <script src="am-thanh.js"></script>
 </head>
 <body>
 
@@ -606,6 +607,9 @@
     
     // Phát âm thanh bằng Web Speech API
     function speakWord(word) {
+        /* ưu tiên bộ phát âm dùng chung: mp3 người thật, hỏng thì giọng máy */
+        if (window.NOI && NOI.tu) { NOI.tu(word); return; }
+        if (window.GAME && GAME.noi) { GAME.noi(word); return; }
         if (!window.speechSynthesis) {
             console.warn("Trình duyệt không hỗ trợ phát âm");
             return;

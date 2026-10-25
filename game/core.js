@@ -46,8 +46,10 @@ window.GAME = (function () {
           nacXong = d.nac_da_xong || [];
           nacHoanHao = d.nac_hoan_hao || [];
           diemHomNay = d.diem_hom_nay || 0;
-          const thieu = [1, 2, 3, 4, 5, 6].find((n) => nacXong.indexOf(n) < 0);
-          cfg.nac = thieu || 6;
+          if (!cfg.khoaNac) {
+            const thieu = [1, 2, 3, 4, 5, 6].find((n) => nacXong.indexOf(n) < 0);
+            cfg.nac = thieu || 6;
+          }
           luu(LS_DIEM, diemHomNay);
         }
       })
@@ -112,6 +114,7 @@ window.GAME = (function () {
   function batDau(c) {
     cfg = Object.assign(cfg, c || {});
     if (c && c.nac) cfg.nac = Number(c.nac);
+    if (c && c.khoaNac) cfg.khoaNac = true;
     phien = { batDau: Date.now(), soCau: cfg.soCau || 0, dung: 0, sai: 0, loi: [] };
     daKetThuc = false;
     dungThanh();
@@ -225,6 +228,8 @@ window.GAME = (function () {
       hop.appendChild(el("p", "gcore-goiy", "Ước tính +" + (kq.ht ? 1 : 0) + " điểm — sẽ cộng khi có mạng."));
     }
 
+    if (kq.ht) { try { phaoHoa(kq.hh ? 7 : 3); } catch (e) {} }
+
     if (kq.loi.length) {
       const ds = el("div", "gcore-loi");
       ds.appendChild(el("strong", null, "Từ cần ôn lại: "));
@@ -264,10 +269,94 @@ window.GAME = (function () {
     });
   }
 
+
+  /* ---------- phát âm: audio thật trước, giọng máy sau ---------- */
+  const AM = { cache: null };
+  function napAm() { try { AM.cache = JSON.parse(localStorage.getItem("game_am") || "{}"); } catch (e) { AM.cache = {}; } }
+  function luuAm(k, v) { if (!AM.cache) napAm(); AM.cache[k] = v;
+    try { localStorage.setItem("game_am", JSON.stringify(AM.cache)); } catch (e) {} }
+
+  function noiMay(tu) {
+    const s = window.speechSynthesis; if (!s) return false;
+    try {
+      const u = new SpeechSynthesisUtterance(tu);
+      u.lang = "en-US"; u.rate = 0.85;
+      const ds = (s.getVoices ? s.getVoices() : []).filter((v) => /^en/i.test(v.lang));
+      if (ds.length) u.voice = ds.find((v) => /google|natural|samantha|zira|aria/i.test(v.name)) || ds[0];
+      s.cancel();
+      setTimeout(() => { try { s.resume && s.resume(); } catch (e) {} try { s.speak(u); } catch (e) {} }, 90);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* Trả về Promise<boolean>. Ưu tiên mp3 có sẵn (nghe như người thật), hỏng thì dùng giọng máy. */
+  function noi(tu) {
+    const t = String(tu || "").trim();
+    if (!t) return Promise.resolve(false);
+    if (!AM.cache) napAm();
+    const k = t.toLowerCase();
+    return new Promise((resolve) => {
+      const dungMay = () => resolve(noiMay(t));
+      if (AM.cache[k] === "no") return dungMay();
+      if (!/^[a-z][a-z'\- ]*$/i.test(t) || t.length > 32) return dungMay();
+      const url = "https://ssl.gstatic.com/dictionary/static/sounds/20200429/" + encodeURIComponent(k) + "--_us_1.mp3";
+      let xongRoi = false, a;
+      try { a = new Audio(url); a.preload = "auto"; } catch (e) { return dungMay(); }
+      const hong = () => { if (xongRoi) return; xongRoi = true; luuAm(k, "no"); dungMay(); };
+      a.addEventListener("error", hong);
+      a.addEventListener("playing", () => { if (xongRoi) return; xongRoi = true; luuAm(k, "ok"); resolve(true); });
+      setTimeout(() => { if (!xongRoi) { try { a.pause(); } catch (e) {} hong(); } }, 2200);
+      try { const pr = a.play(); if (pr && pr.catch) pr.catch(hong); } catch (e) { hong(); }
+    });
+  }
+
+  /* ---------- pháo hoa (tự vẽ, không phụ thuộc mạng) ---------- */
+  function phaoHoa(soQua) {
+    const n = Math.max(1, Number(soQua) || 5);
+    let cv = document.getElementById("phaohoa");
+    if (!cv) {
+      cv = document.createElement("canvas");
+      cv.id = "phaohoa";
+      cv.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100000";
+      document.body.appendChild(cv);
+    }
+    const ctx = cv.getContext("2d");
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    const hat = [], mau = ["#ffd166", "#ff6b6b", "#4ecdc4", "#a78bfa", "#34d399", "#f472b6", "#60a5fa"];
+    let daNo = 0;
+    const no = (x, y) => {
+      const c = mau[(Math.random() * mau.length) | 0], k = 36 + ((Math.random() * 24) | 0);
+      for (let i = 0; i < k; i++) {
+        const g = (Math.PI * 2 * i) / k, v = 1.7 + Math.random() * 3.6;
+        hat.push({ x, y, vx: Math.cos(g) * v, vy: Math.sin(g) * v, life: 1, c });
+      }
+    };
+    const dan = setInterval(() => {
+      no(cv.width * (0.18 + Math.random() * 0.64), cv.height * (0.12 + Math.random() * 0.36));
+      daNo++;
+      if (daNo >= n) clearInterval(dan);
+    }, 340);
+    const ve = () => {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (let i = hat.length - 1; i >= 0; i--) {
+        const p = hat[i];
+        p.vy += 0.035; p.vx *= 0.985; p.vy *= 0.985; p.x += p.vx; p.y += p.vy; p.life -= 0.011;
+        if (p.life <= 0) { hat.splice(i, 1); continue; }
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.fillStyle = p.c;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (hat.length || daNo < n) requestAnimationFrame(ve);
+      else { try { cv.remove(); } catch (e) {} }
+    };
+    requestAnimationFrame(ve);
+  }
+
   /* ---------- tự chạy ---------- */
   const khoi = () => { dungThanh(); taiManifest(); taiTrangThai(); };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", khoi);
   else khoi();
 
-  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
 })();
