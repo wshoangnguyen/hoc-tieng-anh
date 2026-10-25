@@ -3492,7 +3492,7 @@ document.head.appendChild(_cssGY);
 #chatNut{position:fixed;right:18px;bottom:18px;z-index:1500;background:#1f6feb;color:#fff;border:none;
  border-radius:26px;padding:13px 20px;font:600 15px/1 inherit;box-shadow:0 6px 20px rgba(0,0,0,.28);cursor:pointer}
 #chatNut:hover{background:#2b7cf5}
-#chatHop{position:fixed;right:18px;bottom:78px;width:380px;max-width:calc(100vw - 24px);height:520px;max-height:calc(100vh - 110px);
+#chatHop{position:fixed;right:18px;bottom:78px;width:430px;max-width:calc(100vw - 24px);height:580px;max-height:calc(100vh - 110px);
  background:#fff;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);z-index:1501;display:none;flex-direction:column;overflow:hidden}
 #chatHop.mo{display:flex}
 .chat-dau{background:#1f6feb;color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px;font-weight:600}
@@ -3512,6 +3512,7 @@ document.head.appendChild(_cssGY);
 .chat-muc select{font:12px inherit;border:1px solid #d7dbe2;border-radius:8px;padding:3px 6px;background:#fff}
 .chat-goi{padding:8px 12px 0;display:flex;flex-wrap:wrap;gap:6px;background:#f6f7f9}
 .chat-goi button{font-size:12px;border:1px solid #d7dbe2;background:#fff;border-radius:14px;padding:4px 9px;cursor:pointer}
+#chatHop.da-chat .chat-goi{display:none}
 </style>
 
 <script>
@@ -3520,10 +3521,10 @@ const API="https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/hoi";
 const nut=document.createElement("button");
 nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="none";
 const hop=document.createElement("div"); hop.id="chatHop";
-hop.innerHTML='<div class="chat-dau">📚 Gợi ý dạy theo sức học<small>· dựa trên sách + thang đo</small><button id="chatDong" title="Đóng">✕</button></div>'
+hop.innerHTML='<div class="chat-dau">💬 AI hỗ trợ giáo viên<button id="chatDong" title="Đóng">✕</button></div>'
  +'<div class="chat-muc"><span>Sức học lớp:</span><select id="chatMuc"><option value="">Cả lớp</option>'
  +'<option value="yeu">Phần lớn yếu</option><option value="tb">Trung bình</option><option value="kha">Phần lớn khá</option></select></div>'
- +'<div class="chat-goi"><button>Unit 1 B1 từ vựng: 2 em yếu, 3 em khá — dạy thế nào?</button><button>Unit 5 B1 ngữ pháp: hoạt động cho học sinh yếu</button><button>Unit 2 A2: 3 hoạt động tăng dần độ khó</button></div>'
+ +'<div class="chat-goi"><button>SM3 Unit 3: dạy some/any cho lớp yếu</button><button>B1 Unit 5: từ vựng cho lớp trung bình</button><button>A2 Unit 2: bài đọc, lớp phần lớn yếu</button></div>'
  +'<div id="chatThan"></div>'
  +'<div class="chat-chan"><textarea id="chatHoi" placeholder="Hỏi cách dạy: unit nào, phần nào, lớp yếu/khá ra sao…"></textarea><button id="chatGui">Gửi</button></div>';
 document.body.appendChild(nut); document.body.appendChild(hop);
@@ -3547,6 +3548,7 @@ function them(noiDung, laHoi, nguon){
 
 async function guiHoi(){
   const q=o.value.trim(); if(!q||gui.disabled) return;
+  hop.classList.add("da-chat");   /* đã chat thì ẩn hàng gợi ý cho rộng chỗ */
   let token="";
   try{ const {data}=await sb.auth.getSession(); token=data&&data.session?data.session.access_token:""; }catch(e){}
   if(!token){ them("Cần đăng nhập bằng tài khoản giáo viên mới dùng được.", false); return; }
