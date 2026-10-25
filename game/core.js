@@ -77,7 +77,7 @@ window.GAME = (function () {
     const m = maHV();
     nutMa.textContent = m ? "👤 " + m : "👤 Nhập mã học viên";
     nutMa.classList.toggle("thieu", !m);
-    chonNac.value = cfg.nac || 1;
+    chonNac.value = String(cfg.nac || 1);
     [...chonNac.options].forEach((o) => {
       const n = Number(o.value);
       o.textContent = "Nấc " + n + (nacXong.indexOf(n) >= 0 ? " ✓" : "");

@@ -191,7 +191,11 @@ async function ketThuc() {
   const cauMau = await napDuLieu();
   CAU = taoBoCau(cauMau);
   if (!CAU.length) { $("#noiDung").innerHTML = '<div class="hint">Chưa nạp được dữ liệu từ vựng. Kiểm tra mạng rồi tải lại trang.</div>'; return; }
-  try { GAME.batDau({ game: "tu-duy", sach: "tu-duy", unit: null, soCau: CAU.length, nac: 5, khoaNac: true }); } catch (e) {}
+  try {
+    GAME.batDau({ game: "tu-duy", sach: "tu-duy", unit: null, soCau: CAU.length, nac: 5, khoaNac: true });
+    const chon = document.querySelector(".gcore-nac");
+    if (chon) chon.value = "5";
+  } catch (e) {}
   veCau();
 })();
 </script>
