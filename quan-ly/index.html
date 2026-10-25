@@ -3502,7 +3502,7 @@ document.head.appendChild(_cssGY);
 .chat-tin{margin:0 0 10px;padding:9px 11px;border-radius:10px;background:#fff;border:1px solid #e6e8ec;white-space:pre-wrap;line-height:1.45}
 .chat-tin.hoi{background:#e8f0fe;border-color:#d3e2fd;margin-left:40px}
 .chat-tin.loi{color:#b42318}
-.chat-nguon{margin:6px 0 0;font-size:12px;color:#5b6472;display:none;flex-wrap:wrap;gap:6px}
+.chat-nguon{margin:6px 0 0;font-size:12px;color:#5b6472;display:flex;flex-wrap:wrap;gap:6px}
 .chat-nguon.mo{display:flex}
 .chat-nguon-nut{margin:-2px 0 10px;background:none;border:none;color:#8a93a3;font-size:12px;cursor:pointer;padding:2px 0}
 .chat-nguon-nut:hover{color:#1f6feb;text-decoration:underline}
@@ -3521,6 +3521,7 @@ document.head.appendChild(_cssGY);
 <script>
 (()=>{
 const API="https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/hoi";
+const lichSu=[];   /* giữ ngữ cảnh để AI trả lời theo một luồng */
 const nut=document.createElement("button");
 nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="none";
 const hop=document.createElement("div"); hop.id="chatHop";
@@ -3547,13 +3548,14 @@ function them(noiDung, laHoi, nguon){
     const nutN=document.createElement("button"); nutN.className="chat-nguon-nut";
     nutN.textContent="ⓘ Nguồn ("+nguon.length+")";
     nutN.onclick=()=>{ s.classList.toggle("mo"); nutN.textContent=(s.classList.contains("mo")?"▾ ":"ⓘ ")+"Nguồn ("+nguon.length+")"; };
-    than.appendChild(nutN); than.appendChild(s);
+    than.appendChild(s);
   }
   than.scrollTop=than.scrollHeight; return d;
 }
 
 async function guiHoi(){
   const q=o.value.trim(); if(!q||gui.disabled) return;
+  const lsGui=lichSu.slice(-6).map(x=>({vai:x.vai, noi_dung:x.noi_dung}));
   hop.classList.add("da-chat");   /* đã chat thì ẩn hàng gợi ý cho rộng chỗ */
   let token="";
   try{ const {data}=await sb.auth.getSession(); token=data&&data.session?data.session.access_token:""; }catch(e){}
@@ -3561,11 +3563,11 @@ async function guiHoi(){
   o.value=""; them(q,true);
   gui.disabled=true; const cho=them("Đang tra sách…", false);
   try{
-    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token,muc:document.getElementById("chatMuc").value||null})});
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token,muc:document.getElementById("chatMuc").value||null,lich_su:lsGui})});
     const d=await r.json();
     cho.remove();
     if(!r.ok){ them(d.loi||("Lỗi "+r.status), false); }
-    else { them(d.tra_loi, false, d.nguon); }
+    else { them(d.tra_loi, false, d.nguon); lichSu.push({vai:"gv", noi_dung:q}); lichSu.push({vai:"ai", noi_dung:d.tra_loi}); }
   }catch(e){ cho.remove(); them("Không gọi được máy chủ tra cứu: "+e.message, false); }
   gui.disabled=false; o.focus();
 }
