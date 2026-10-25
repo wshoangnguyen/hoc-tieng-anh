@@ -357,6 +357,7 @@
     }
 
     function speakText(text, rate = 0.88) {
+        if (window.NOI && NOI.cau && text.trim().split(/\s+/).length > 1) { NOI.cau(text); return; }
         if (window.NOI && NOI.tu) { NOI.tu(text); return; }
         if (!window.speechSynthesis) return;
         
@@ -380,8 +381,8 @@
     }
 
     function speakSentence(sentenceWords) {
-        if (window.NOI && NOI.tu) { NOI.tu(sentence); return; }
         const fullSentence = sentenceWords.join(" ");
+        if (window.NOI && NOI.cau) { NOI.cau(fullSentence); return; }
         speakText(fullSentence, 0.88);
     }
 

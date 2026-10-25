@@ -293,6 +293,7 @@ window.GAME = (function () {
   function noi(tu) {
     const t = String(tu || "").trim();
     if (!t) return Promise.resolve(false);
+    if (window.NOI && NOI.tu) return NOI.tu(t);   // bộ phát âm chung (audio tự lưu + Google TTS)
     if (!AM.cache) napAm();
     const k = t.toLowerCase();
     return new Promise((resolve) => {
