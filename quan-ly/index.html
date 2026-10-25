@@ -3512,6 +3512,8 @@ document.head.appendChild(_cssGY);
 .chat-chan button{background:#1f6feb;color:#fff;border:none;border-radius:9px;padding:0 14px;font-weight:600;cursor:pointer}
 .chat-chan button:disabled{opacity:.5;cursor:default}
 .chat-muc{display:flex;align-items:center;gap:6px;padding:8px 12px 0;background:#f6f7f9;font-size:12px;color:#5b6472}
+.chat-ngcanh{display:none;padding:6px 12px 0;font-size:12px;color:#1f6feb;background:#f6f7f9}
+.chat-ngcanh.mo{display:block}
 .chat-muc select{font:12px inherit;border:1px solid #d7dbe2;border-radius:8px;padding:3px 6px;background:#fff}
 .chat-goi{padding:8px 12px 0;display:flex;flex-wrap:wrap;gap:6px;background:#f6f7f9}
 .chat-goi button{font-size:12px;border:1px solid #d7dbe2;background:#fff;border-radius:14px;padding:4px 9px;cursor:pointer}
@@ -3522,10 +3524,13 @@ document.head.appendChild(_cssGY);
 (()=>{
 const API="https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/hoi";
 const lichSu=[];   /* giữ ngữ cảnh để AI trả lời theo một luồng */
+let sachDangHoi="";   /* nhớ sách của lượt trước để không trả lời lạc sách */
+let unitDangHoi=null;   /* nhớ unit đang bàn */
 const nut=document.createElement("button");
 nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="none";
 const hop=document.createElement("div"); hop.id="chatHop";
 hop.innerHTML='<div class="chat-dau">💬 AI hỗ trợ giáo viên<button id="chatDong" title="Đóng">✕</button></div>'
+ +'<div class="chat-ngcanh" id="chatNgCanh"></div>'
  +'<div class="chat-muc"><span>Sức học lớp:</span><select id="chatMuc"><option value="">Cả lớp</option>'
  +'<option value="yeu">Phần lớn yếu</option><option value="tb">Trung bình</option><option value="kha">Phần lớn khá</option></select></div>'
  +'<div class="chat-goi"><button>SM3 Unit 3: dạy some/any cho lớp yếu</button><button>B1 Unit 5: từ vựng cho lớp trung bình</button><button>A2 Unit 2: bài đọc, lớp phần lớn yếu</button></div>'
@@ -3553,6 +3558,14 @@ function them(noiDung, laHoi, nguon){
   than.scrollTop=than.scrollHeight; return d;
 }
 
+function capNhatNguCanh(){
+  const d=document.getElementById("chatNgCanh"); if(!d) return;
+  if(!sachDangHoi){ d.className="chat-ngcanh"; d.textContent=""; return; }
+  const ten={"SM1":"Super Minds 1","SM2":"Super Minds 2","SM3":"Super Minds 3","SM4":"Super Minds 4","SM5":"Super Minds 5","SM6":"Super Minds 6","OWA2":"Open World A2","OWB1":"Open World B1"}[sachDangHoi]||sachDangHoi;
+  d.className="chat-ngcanh mo";
+  d.textContent="Đang hỏi: "+ten+(unitDangHoi!=null?" · Unit "+unitDangHoi:"");
+}
+
 async function guiHoi(){
   const q=o.value.trim(); if(!q||gui.disabled) return;
   const lsGui=lichSu.slice(-6).map(x=>({vai:x.vai, noi_dung:x.noi_dung}));
@@ -3563,11 +3576,13 @@ async function guiHoi(){
   o.value=""; them(q,true);
   gui.disabled=true; const cho=them("Đang tra sách…", false);
   try{
-    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token,muc:document.getElementById("chatMuc").value||null,lich_su:lsGui})});
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cau_hoi:q,token,muc:document.getElementById("chatMuc").value||null,lich_su:lsGui,sach:sachDangHoi||null,unit:unitDangHoi})});
     const d=await r.json();
     cho.remove();
     if(!r.ok){ them(d.loi||("Lỗi "+r.status), false); }
-    else { them(d.tra_loi, false, d.nguon); lichSu.push({vai:"gv", noi_dung:q}); lichSu.push({vai:"ai", noi_dung:d.tra_loi}); }
+    else { them(d.tra_loi, false, d.nguon);
+      if(d.nguon&&d.nguon.length&&d.nguon[0].ma){ sachDangHoi=d.nguon[0].ma; unitDangHoi=d.nguon[0].unit; capNhatNguCanh(); }
+      lichSu.push({vai:"gv", noi_dung:q}); lichSu.push({vai:"ai", noi_dung:d.tra_loi}); }
   }catch(e){ cho.remove(); them("Không gọi được máy chủ tra cứu: "+e.message, false); }
   gui.disabled=false; o.focus();
 }
