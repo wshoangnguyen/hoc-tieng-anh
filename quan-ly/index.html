@@ -3581,6 +3581,13 @@ if (_tlTongGoc) {
     return Math.round((_tlTongGoc(ma) + (Number(GAME_DIEM[ma]) || 0)) * 10) / 10;
   };
 }
+function gameThemMa(ma) {
+  return fetch(SB_URL + "/rest/v1/rpc/game_them_ma", {
+    method: "POST",
+    headers: { apikey: SB_KEY, Authorization: "Bearer " + SB_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ p_ma: ma })
+  }).then(function (r) { return r.ok; }).catch(function () { return false; });
+}
 function gameXem(ma) {
   return fetch(SB_URL + "/rest/v1/rpc/game_xem", {
     method: "POST",
@@ -3594,7 +3601,12 @@ function taiDiemGame() {
   var ds = (hvTatCa() || []).map(function (h) { return h.ma_hv; }).filter(Boolean).slice(0, 150);
   return Promise.all(ds.map(function (ma) {
     return gameXem(ma).then(function (d) {
-      if (d && !d.loi) { GAME_DIEM[ma] = Number(d.diem_game) || 0; GAME_CHI[ma] = d; }
+      if (d && d.loi) {
+        return gameThemMa(ma).then(function () { return gameXem(ma); }).then(function (d2) {
+          if (d2 && !d2.loi) { GAME_DIEM[ma] = Number(d2.diem_game) || 0; GAME_CHI[ma] = d2; }
+        });
+      }
+      if (d) { GAME_DIEM[ma] = Number(d.diem_game) || 0; GAME_CHI[ma] = d; }
     });
   })).then(function () {
     GAME_DANG_TAI = false;
@@ -3603,7 +3615,7 @@ function taiDiemGame() {
       var m = el.getAttribute("data-gdiem");
       el.textContent = "🎮 " + (Number(GAME_DIEM[m]) || 0);
     });
-  });
+  }).catch(function () { GAME_DANG_TAI = false; });
 }
 function veGameHV(ma) {
   var hop = document.getElementById("hsGame");
@@ -3611,7 +3623,7 @@ function veGameHV(ma) {
   hop.innerHTML = '<h4 style="margin:12px 0 4px">🎮 Điểm game (chơi ở nhà)</h4><div class="hint">Đang tải…</div>';
   gameXem(ma).then(function (d) {
     if (!d) { hop.innerHTML = '<h4 style="margin:12px 0 4px">🎮 Điểm game</h4><div class="hint">Không kết nối được sổ game.</div>'; return; }
-    if (d.loi) { hop.innerHTML = '<h4 style="margin:12px 0 4px">🎮 Điểm game</h4><div class="hint">Mã này chưa nạp vào sổ game — chạy tệp đồng bộ mã.</div>'; return; }
+    if (d.loi) { gameThemMa(ma).then(function () { veGameHV(ma); }); return; }
     GAME_DIEM[ma] = Number(d.diem_game) || 0; GAME_CHI[ma] = d;
     var sai = (d.sai_gan_day || []).slice(0, 10);
     var html = '<h4 style="margin:12px 0 4px">🎮 Điểm game (chơi ở nhà)</h4>';
