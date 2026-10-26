@@ -766,7 +766,7 @@ function quyenTab(){
   const v=vaiHienTai();
   if(!v) return {lichday:["gv"],lop:[]};
   if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday"]};
-  if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","dangky"], lop:["kho","diemso","diemdanh","baiday"]};
+  if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","luong","dangky"], lop:["kho","diemso","diemdanh","baiday"]};
   return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday"]};
 }
 function dungQuyen(){
@@ -1047,7 +1047,7 @@ function veLuong(){
   document.getElementById("selThang").innerHTML=thangs.map(m=>{ const [y,mm]=m.split("-");
     return `<option value="${m}" ${m===thangDangXem?"selected":""}>Tháng ${mm}/${y}</option>`; }).join("");
   let rows=tinhLuongThang(thangDangXem);
-  if(vaiHienTai()==="giao_vien") rows=rows.filter(r=>r.ten===tenHienTai());
+  if(vaiHienTai()==="giao_vien" || (vaiHienTai()==="quan_ly_giao_vien" && tenHienTai())) rows=rows.filter(r=>r.ten===tenHienTai());
   const tb=rows.reduce((s,r)=>s+r.buoi,0), tt=rows.reduce((s,r)=>s+r.tien,0);
   let h=`<div class="card"><h3 style="margin-top:0">Bảng lương chi tiết — Tháng ${thangDangXem.split("-")[1]}/${thangDangXem.split("-")[0]}</h3>
     <div class="cuon"><table><thead><tr><th>Giáo viên</th><th>Tuần</th><th class="num">Số giờ dạy</th>
@@ -3385,6 +3385,7 @@ async function dayAnhLen(ma, dataUrl){
     const {error}=await sb.storage.from(ANH_BUCKET).upload(p, blob, {upsert:true, contentType:"image/jpeg"});
     if(error){ console.warn("Supabase Storage:", error.message); return; }
     S.anh[ma]="sb:"+p;
+    if(window.__donAnhCu) await window.__donAnhCu(ma, p);
     if(await kyLaiAnh(ma,p)) capNhatAnhTrenManHinh();
     save();
   }catch(e){ console.warn(e); }
@@ -3403,7 +3404,7 @@ async function dongBoAnh(){
         const blob=await (await fetch(v)).blob();
         const p=`hv/${ma}.jpg`;
         const {error}=await sb.storage.from(ANH_BUCKET).upload(p, blob, {upsert:true, contentType:"image/jpeg"});
-        if(!error){ S.anh[ma]="sb:"+p; doi=true; await kyLaiAnh(ma,p); }
+        if(!error){ S.anh[ma]="sb:"+p; doi=true; if(window.__donAnhCu) await window.__donAnhCu(ma, p); await kyLaiAnh(ma,p); }
       }
     }
     if(doi) save();
@@ -4231,17 +4232,60 @@ document.addEventListener("click", function(e){
   }
 
   nut.onclick = function(){
+    if(!duocPhep()){ nut.remove(); hop.remove(); return; }
     if(hop.style.display === "none"){ ve(); hop.style.display = "block"; } else hop.style.display = "none";
   };
   document.addEventListener("click", function(e){
     if(hop.style.display !== "none" && !hop.contains(e.target) && e.target !== nut) hop.style.display = "none";
   });
 
+  function duocPhep(){
+    return (typeof VAI !== "undefined") && VAI === "quan_ly"
+      && (typeof XEM_NHU === "undefined" || !XEM_NHU);
+  }
   function gan(){
     if(!document.body) return setTimeout(gan, 300);
+    if(!duocPhep() || nut.isConnected) return;
     document.body.appendChild(nut); document.body.appendChild(hop);
   }
+  window.__taoLaiNutSaoLuu = gan;
   gan();
+})();
+</script>
+
+<script>
+/* ===== v7.51 — siết quyền nút sao lưu + dọn ảnh cũ ===== */
+(function(){
+  /* --- 1. nút sao lưu chỉ hiện với chủ tài khoản --- */
+  function dongBoNutSaoLuu(){
+    var nut = document.getElementById("nutSaoLuu");
+    var hop = document.getElementById("hopSaoLuu");
+    var duoc = (typeof VAI !== "undefined") && VAI === "quan_ly" && (typeof XEM_NHU === "undefined" || !XEM_NHU);
+    if(!duoc){
+      if(nut) nut.remove();
+      if(hop) hop.remove();
+      return;
+    }
+    if(nut){ return; }
+    /* nút do khối v7.50 tạo ra nhưng đã bị gỡ khi đổi vai → tạo lại */
+    if(typeof window.__taoLaiNutSaoLuu === "function"){ window.__taoLaiNutSaoLuu(); }
+  }
+  setInterval(dongBoNutSaoLuu, 1500);
+  setTimeout(dongBoNutSaoLuu, 800);
+
+  /* --- 2. xoá ảnh cũ khi thay ảnh mới --- */
+  if(typeof window.__donAnhCu !== "function"){
+    window.__donAnhCu = async function(ma, giuLai){
+      try{
+        if(!sb) return;
+        var bucket = (typeof ANH_BUCKET !== "undefined") ? ANH_BUCKET : "anh-hoc-vien";
+        var { data: ds } = await sb.storage.from(bucket).list("hv", { search: ma, limit: 100 });
+        var xoa = (ds || []).filter(function(f){ return f.name.indexOf(ma + ".") === 0 && ("hv/" + f.name) !== giuLai; })
+                          .map(function(f){ return "hv/" + f.name; });
+        if(xoa.length){ await sb.storage.from(bucket).remove(xoa); }
+      }catch(e){}
+    };
+  }
 })();
 </script>
 </body>
