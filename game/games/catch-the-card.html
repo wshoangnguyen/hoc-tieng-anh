@@ -139,10 +139,10 @@
 
         .moving-card {
             position: absolute;
-            width: 110px;
-            height: 130px;
+            width: 165px;
+            height: 195px;
             background: white;
-            border-radius: 20px;
+            border-radius: 22px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             cursor: pointer;
             transition: transform 0.05s linear, box-shadow 0.1s;
@@ -150,7 +150,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 8px;
+            padding: 6px;
             z-index: 10;
         }
 
@@ -160,17 +160,26 @@
         }
 
         .moving-card img {
-            max-width: 80%;
-            max-height: 70px;
+            flex: 1 1 auto;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 16px;
             pointer-events: none;
         }
 
         .moving-card .card-word {
             font-weight: bold;
-            font-size: 0.7rem;
-            margin-top: 5px;
+            font-size: 0.82rem;
+            line-height: 1.15;
+            margin-top: 3px;
+            padding: 2px 9px;
+            max-width: 96%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: #1e5a7a;
             background: #fff0d6;
             padding: 2px 8px;
@@ -299,8 +308,8 @@
         
         @media (max-width: 700px) {
             .brand-logo-float { width: 55px; top: 12px; right: 12px; bottom: auto; }
-            .moving-card { width: 85px; height: 100px; }
-            .moving-card img { max-height: 50px; }
+            .moving-card { width: 128px; height: 150px; }
+            .moving-card img { max-height: none; }
             .question-text { font-size: 1.5rem; }
             .progress-bar { width: 80px; }
         }
@@ -398,11 +407,11 @@
         gameWidth = rect.width;
         gameHeight = rect.height;
         if (gameWidth < 500) {
-            cardWidth = 85;
-            cardHeight = 100;
+            cardWidth = 128;
+            cardHeight = 150;
         } else {
-            cardWidth = 110;
-            cardHeight = 130;
+            cardWidth = 165;
+            cardHeight = 195;
         }
     }
     

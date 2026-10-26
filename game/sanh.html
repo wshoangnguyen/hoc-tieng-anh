@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sảnh trò chơi · Học tiếng Anh dễ lắm</title>
+<link rel="icon" href="../favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nen:#F5F2E9; --the:#fff; --chu:#2b2a26; --nhat:#7a7365;
+    --vien:#e7e0cf; --vang:#f0b429; --cam:#e08a00;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:
+      radial-gradient(1200px 500px at 50% -10%, #fff9e8 0%, transparent 60%), var(--nen);
+    color:var(--chu); font-family:"Quicksand",system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  header{
+    padding:26px 16px 12px; text-align:center;
+  }
+  header h1{
+    font-family:"Baloo Bhaina 2",cursive; margin:0; font-size:clamp(22px,5.4vw,34px); letter-spacing:.2px;
+  }
+  header p{margin:6px 0 0; color:var(--nhat); font-size:clamp(12px,3.2vw,15px)}
+  .ve{display:inline-block;margin-top:10px;font-size:13px;color:#8a7b52;text-decoration:none;border-bottom:1px dashed #cfc3a4}
+  main{max-width:1080px;margin:0 auto;padding:8px 14px 40px}
+
+  section{margin:18px 0 6px}
+  .nhom{
+    display:flex; align-items:center; gap:10px; margin:0 0 10px 2px;
+  }
+  .so{
+    width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+    font-family:"Baloo Bhaina 2",cursive;font-size:18px;color:#fff;flex:none;
+  }
+  .nhom h2{font-size:clamp(15px,3.9vw,19px);margin:0;font-family:"Baloo Bhaina 2",cursive;font-weight:700}
+  .nhom small{display:block;color:var(--nhat);font-size:11.5px;font-weight:600;margin-top:1px}
+
+  .luoi{
+    display:grid; grid-template-columns:repeat(auto-fill,160px); gap:12px;
+    justify-content:center;
+  }
+  .tro{
+    background:var(--the); border:1px solid var(--vien); border-radius:18px;
+    padding:14px 10px 12px; text-decoration:none; color:inherit;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    box-shadow:0 2px 0 #e9e2d1, 0 8px 18px rgba(80,70,40,.06);
+    transition:transform .12s ease, box-shadow .12s ease; min-height:132px;
+    justify-content:center; -webkit-tap-highlight-color:transparent;
+  }
+  .tro:active{transform:scale(.97)}
+  @media(hover:hover){ .tro:hover{transform:translateY(-3px); box-shadow:0 4px 0 #e9e2d1,0 14px 24px rgba(80,70,40,.12)} }
+  .tro .icon{width:72px;height:72px;display:grid;place-items:center;border-radius:16px;font-size:34px;line-height:1;background:#fbf7ec}
+  .tro .icon img{width:64px;height:64px;object-fit:contain;border-radius:12px}
+  .tro b{font-size:14.5px;font-weight:700;text-align:center;line-height:1.25}
+  .tro span.phu{font-size:11.5px;color:var(--nhat);text-align:center}
+
+  .khac .tro{background:#fffdf7}
+
+  @media (max-width:430px){
+    .luoi{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:340px; margin:0 auto}
+    .tro{min-height:128px;padding:12px 8px 10px}
+    .tro .icon{width:64px;height:64px;font-size:30px}
+    .tro .icon img{width:56px;height:56px}
+    .tro b{font-size:13.5px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎮 Sảnh trò chơi</h1>
+  <p>Chọn trò theo nấc — càng lên nấc, trò càng cần nghĩ nhiều hơn</p>
+  <a class="ve" href="../index.html" target="_blank" rel="noopener">← Về trang chủ</a>
+</header>
+
+<main id="sanh"></main>
+
+<script>
+const NHOM = [
+  { so:1, ten:"Nhận diện", mo:"Nhìn hình / nghe từ rồi hiểu nghĩa", mau:"#4ecdc4",
+    tro:[
+      {ten:"Thẻ từ", phu:"Lật thẻ học từ", href:"flashcard.html", img:"flashcard.png", icon:"🃏"},
+      {ten:"Ghép cặp", phu:"Từ ↔ nghĩa", href:"games/matching-game.html", icon:"🃏", nen:"#eef2ff"},
+      {ten:"Bắt thẻ", phu:"Bắt đúng hình đang bay", href:"games/catch-the-card.html", icon:"🫳", nen:"#eef2ff"}
+    ]},
+  { so:2, ten:"Lặp lại", mo:"Nhớ mặt chữ và viết lại cho đúng", mau:"#f0a24b",
+    tro:[
+      {ten:"Đánh vần", phu:"Nghe rồi viết từng chữ", href:"games/spelling-game.html", icon:"✍️", nen:"#eef2ff"},
+      {ten:"Xếp chữ", phu:"Xếp lại các chữ cái", href:"scrambled-word.html", img:"scrambled-word.png", icon:"🔤"},
+      {ten:"Tìm từ", phu:"Tìm từ trong ô chữ", href:"word-find.html", img:"word-find.png", icon:"🔎"}
+    ]},
+  { so:3, ten:"Dùng theo mẫu", mo:"Chọn và ghép theo câu mẫu", mau:"#7b9ef0",
+    tro:[
+      {ten:"Trắc nghiệm", phu:"Chọn đáp án đúng", href:"games/quiz-game.html", icon:"🎯", nen:"#eef2ff"},
+      {ten:"Xếp thành câu", phu:"Ghép từ thành câu đúng", href:"sentence-builder.html", img:"sentence-builder.png", icon:"🧩"}
+    ]},
+  { so:4, ten:"Dùng tự do", mo:"Đọc và hiểu cả đoạn", mau:"#a78bfa",
+    tro:[
+      {ten:"Tập đọc", phu:"Đọc bài, nghe phát âm", href:"Reading.html", icon:"📖", nen:"#f5f0ff"},
+      {ten:"Dịch truyện", phu:"Từ rơi — chọn nghĩa đúng", href:"words-fall.html", img:"words-fall.png", icon:"🌧️"}
+    ]},
+  { so:5, ten:"Tư duy", mo:"Suy luận, tự phát hiện lỗi", mau:"#e0679b",
+    tro:[
+      {ten:"Tư duy", phu:"Câu hỏi cần suy nghĩ", href:"tu-duy.html", icon:"🧠", nen:"#f3e8ff"},
+      {ten:"Ôn từ hay sai", phu:"Chỉ ôn những từ mình sai", href:"on-tap.html", icon:"🔁", nen:"#fff7ed"}
+    ]}
+];
+
+const KHAC = { ten:"Dùng trong lớp", mo:"Công cụ cho giáo viên", mau:"#8a8577",
+  tro:[ {ten:"Chọn ngẫu nhiên", phu:"Gọi tên / chọn nhóm", href:"random.html", img:"../random.png", icon:"🎲"} ]};
+
+const html = NHOM.concat([KHAC]).map(n=>`
+  <section class="${n.so?"":"khac"}">
+    <div class="nhom">
+      <div class="so" style="background:${n.mau}">${n.so||"★"}</div>
+      <div><h2>${n.so?("Nấc "+n.so+" · "):""}${n.ten}</h2><small>${n.mo}</small></div>
+    </div>
+    <div class="luoi">
+      ${n.tro.map(t=>`
+        <a class="tro" href="${t.href}" target="_blank" rel="noopener">
+          <span class="icon" ${t.nen?`style="background:${t.nen}"`:""}>${t.img?`<img src="${t.img}" alt="" loading="lazy">`:t.icon}</span>
+          <b>${t.ten}</b><span class="phu">${t.phu||""}</span>
+        </a>`).join("")}
+    </div>
+  </section>`).join("");
+
+document.getElementById("sanh").innerHTML = html;
+</script>
+</body>
+</html>
