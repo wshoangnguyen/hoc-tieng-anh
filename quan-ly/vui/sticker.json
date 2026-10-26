@@ -1,0 +1,82 @@
+{
+"🐶": {
+"ten": "dog",
+"file": "stk-dog.mp3",
+"cau": "You have got a dog!"
+},
+"🐱": {
+"ten": "cat",
+"file": "stk-cat.mp3",
+"cau": "You have got a cat!"
+},
+"🌭": {
+"ten": "sausage",
+"file": "stk-sausage.mp3",
+"cau": "You have got a sausage!"
+},
+"🦴": {
+"ten": "bone",
+"file": "stk-bone.mp3",
+"cau": "You have got a bone!"
+},
+"💩": {
+"ten": "poop",
+"file": "stk-poop.mp3",
+"cau": "You have got a poop!"
+},
+"🐷": {
+"ten": "pig",
+"file": "stk-pig.mp3",
+"cau": "You have got a pig!"
+},
+"🐸": {
+"ten": "frog",
+"file": "stk-frog.mp3",
+"cau": "You have got a frog!"
+},
+"🐵": {
+"ten": "monkey",
+"file": "stk-monkey.mp3",
+"cau": "You have got a monkey!"
+},
+"🦖": {
+"ten": "dinosaur",
+"file": "stk-dinosaur.mp3",
+"cau": "You have got a dinosaur!"
+},
+"🦄": {
+"ten": "unicorn",
+"file": "stk-unicorn.mp3",
+"cau": "You have got a unicorn!"
+},
+"🐙": {
+"ten": "octopus",
+"file": "stk-octopus.mp3",
+"cau": "You have got an octopus!"
+},
+"🐍": {
+"ten": "snake",
+"file": "stk-snake.mp3",
+"cau": "You have got a snake!"
+},
+"🦈": {
+"ten": "shark",
+"file": "stk-shark.mp3",
+"cau": "You have got a shark!"
+},
+"🍕": {
+"ten": "pizza",
+"file": "stk-pizza.mp3",
+"cau": "You have got a pizza!"
+},
+"🍭": {
+"ten": "candy",
+"file": "stk-candy.mp3",
+"cau": "You have got a candy!"
+},
+"👽": {
+"ten": "alien",
+"file": "stk-alien.mp3",
+"cau": "You have got an alien!"
+}
+}
