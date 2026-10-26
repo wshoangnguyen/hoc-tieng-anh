@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nấc 6 · Sáng tạo — Học tiếng Anh dễ lắm</title>
+<link rel="stylesheet" href="core.css">
+<script src="core.js"></script>
+<script src="ho-so.js"></script>
+<style>
+  :root{--line:#e5e7eb;--dim:#6b7280;--tim:#7c3aed;--green:#16a34a;--red:#dc2626}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f6f8fb;color:#111827}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  h1{font-size:21px;margin:8px 0 2px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .hs-hang{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+  .hs-hang label{font-size:12.5px;color:var(--dim);display:flex;flex-direction:column;gap:4px;font-weight:600}
+  .hs-hang select,.hs-hang input{font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;min-width:120px}
+  .hs-hang input{width:130px;text-transform:uppercase}
+  .hs-nhac{font-size:13px;color:#6b7280;background:#f8fafc;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
+  .hs-nhac.dung{color:#15803d;background:#f0fdf4;border-color:#bbf7d0}
+  .hs-nhac.sai{color:#b45309;background:#fffbeb;border-color:#fde68a}
+
+  .thanh{height:8px;background:#ede9fe;border-radius:6px;overflow:hidden;margin:6px 0 14px}
+  .thanh>i{display:block;height:100%;background:var(--tim);width:0;transition:width .25s}
+  .de{font-size:18px;line-height:1.5;margin:0 0 10px}
+  .tu{display:inline-block;background:#f3e8ff;color:#5b21b6;font-weight:800;border-radius:8px;padding:2px 8px;margin:2px 4px 2px 0}
+  .goi{font-size:14px;color:var(--dim);margin:0 0 10px}
+  textarea{width:100%;min-height:92px;font-size:16px;padding:12px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--tim)}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  button{font-family:inherit}
+  .nut{background:var(--tim);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;font-size:15px;cursor:pointer}
+  .nut:disabled{opacity:.5}
+  .ghost{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-weight:600;cursor:pointer}
+  .fb{font-size:15px;margin-top:10px;min-height:24px;line-height:1.45}
+  .ok{color:var(--green);font-weight:700}
+  .loi{color:var(--red);font-weight:700}
+  .mau{background:#fffdf6;border:1px solid #f1e6c8;border-radius:10px;padding:10px;margin-top:8px;font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>✨ Nấc 6 · Sáng tạo</h1>
+  <p class="sub">Con tự viết câu tiếng Anh bằng từ của bài. Làm đủ 6 câu là tính điểm nấc 6.</p>
+
+  <div class="card" style="margin-bottom:12px"><div id="hsBar"></div></div>
+  <div class="card" id="the">
+    <div class="row" style="justify-content:space-between;margin-top:0">
+      <span class="hint" id="dem">Đang chuẩn bị…</span>
+      <span class="hint" id="diem">Đúng 0/6</span>
+    </div>
+    <div class="thanh"><i id="tiLe"></i></div>
+    <div id="noiDung"></div>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const xao = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const chuan = (s) => s.toLowerCase().replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
+
+let SACH = "SM3", UNIT = 1, VONG = [], I = 0, DUNG = 0, BAR = null, DA_THU = false;
+
+function taoVong() {
+  const b = HS.bank(SACH, UNIT);
+  if (!b) return [];
+  const tu = (b.tu || []).filter((w) => w.indexOf(" ") < 0 && w.length >= 3);
+  if (tu.length < 2) return [];
+  const cauMau = (b.cau || []).filter((c) => c.length < 110);
+  const khuon = (b.khuon || [])[0] || "";
+  const ds = xao(tu.slice());
+  const vong = [];
+  const de = [
+    "Viết một câu kể có từ bên dưới.",
+    "Viết một câu nói về bản thân con, có từ bên dưới.",
+    "Viết một câu về lớp học của con, có từ bên dưới.",
+    "Viết một câu có “and” nối hai ý, có từ bên dưới.",
+    "Viết một câu hỏi có từ bên dưới.",
+    "Viết một câu hỏi và một câu trả lời, có từ bên dưới.",
+  ];
+  for (let i = 0; i < 6; i++) {
+    const t1 = ds[i % ds.length];
+    const t2 = ds[(i + 3) % ds.length];
+    vong.push({
+      tu: i % 2 === 0 ? [t1] : [t1, t2],
+      de: de[i],
+      khuon: khuon,
+      mau: cauMau.length ? cauMau[i % cauMau.length] : "",
+      toiThieu: i % 2 === 0 ? 5 : 7,
+    });
+  }
+  return vong;
+}
+
+function coTu(cau, tu) {
+  const c = " " + chuan(cau) + " ";
+  const goc = chuan(tu);
+  if (c.indexOf(" " + goc + " ") >= 0) return true;
+  const bien = [goc + "s", goc + "es", goc + "ed", goc + "ing", goc + "d"];
+  return bien.some((b) => c.indexOf(" " + b + " ") >= 0);
+}
+
+function kiem(cau, v) {
+  const loi = [];
+  if (!cau.trim()) loi.push("Con chưa viết câu nào.");
+  v.tu.forEach((t) => { if (!coTu(cau, t)) loi.push(`Thiếu từ “${t}”.`); });
+  const soTu = chuan(cau).split(" ").filter(Boolean).length;
+  if (soTu < v.toiThieu) loi.push(`Câu cần ít nhất ${v.toiThieu} từ (hiện ${soTu}).`);
+  if (cau && !/^[A-Z]/.test(cau.trim())) loi.push("Chữ đầu câu phải viết hoa.");
+  if (cau && !/[.!?]\s*$/.test(cau.trim())) loi.push("Cuối câu cần dấu . hoặc ?");
+  return loi;
+}
+
+function ve() {
+  if (I >= VONG.length) return ketThuc();
+  const v = VONG[I];
+  DA_THU = false;
+  $("#dem").textContent = `Câu ${I + 1}/6`;
+  $("#diem").textContent = `Đúng ${DUNG}/6`;
+  $("#tiLe").style.width = Math.round((I / 6) * 100) + "%";
+  $("#noiDung").innerHTML = `
+    <div class="de">${esc(v.de)}</div>
+    <div style="margin-bottom:6px">${v.tu.map((t) => `<span class="tu">${esc(t)}</span>`).join("")}</div>
+    ${v.khuon ? `<div class="goi">Cấu trúc của bài: ${esc(v.khuon)}</div>` : ""}
+    <textarea id="ta" placeholder="Viết câu tiếng Anh của con ở đây…" autocomplete="off" spellcheck="false"></textarea>
+    <div class="row">
+      <button class="nut" id="kt">Kiểm tra</button>
+      <button class="ghost" id="mau">Xem câu mẫu</button>
+      <button class="ghost" id="bo">Bỏ qua</button>
+    </div>
+    <div class="fb" id="fb"></div>`;
+  const ta = $("#ta");
+  ta.focus();
+  $("#kt").onclick = () => {
+    const cau = ta.value;
+    const loi = kiem(cau, v);
+    if (!loi.length) {
+      $("#fb").innerHTML = `<span class="ok">✅ Đúng rồi!</span> Câu của con: “${esc(cau.trim())}”`;
+      DUNG++;
+      try { GAME.ghi({ tu: v.tu[0], ok: true }); } catch (e) {}
+      setTimeout(() => { I++; ve(); }, 1400);
+      return;
+    }
+    if (!DA_THU) {
+      DA_THU = true;
+      $("#fb").innerHTML = `<span class="loi">Chưa đạt:</span> ${loi.map(esc).join(" ")} <span class="hint">Sửa rồi bấm Kiểm tra lần nữa.</span>`;
+      return;
+    }
+    $("#fb").innerHTML = `<span class="loi">Chưa đạt:</span> ${loi.map(esc).join(" ")}`
+      + (v.mau ? `<div class="mau">Câu mẫu của bài: <b>${esc(v.mau)}</b></div>` : "");
+    try { GAME.ghi({ tu: v.tu[0], ok: false }); } catch (e) {}
+    setTimeout(() => { I++; ve(); }, 2200);
+  };
+  $("#mau").onclick = () => {
+    if (v.mau) $("#fb").innerHTML = `<div class="mau">Câu mẫu của bài: <b>${esc(v.mau)}</b></div>`;
+    else $("#fb").innerHTML = `<span class="hint">Bài này chưa có câu mẫu — con tự viết theo cấu trúc nhé.</span>`;
+  };
+  $("#bo").onclick = () => { try { GAME.ghi({ tu: v.tu[0], ok: false }); } catch (e) {} I++; ve(); };
+  ta.addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) $("#kt").click(); });
+}
+
+async function ketThuc() {
+  $("#tiLe").style.width = "100%";
+  $("#dem").textContent = "Xong 6 câu";
+  $("#diem").textContent = `Đúng ${DUNG}/6`;
+  $("#noiDung").innerHTML = `<div class="hint">Đang ghi kết quả…</div>`;
+  if (HS.khopBai() !== false) { try { await GAME.ketThuc(); } catch (e) {} }
+  const dat = DUNG >= 4;
+  const khop = HS.khopBai();
+  const loiNhac = khop === false
+    ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
+    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+  $("#noiDung").innerHTML = `
+    <div style="font-size:18px;font-weight:700;margin-bottom:6px">Nấc 6: viết đạt ${DUNG}/6 câu</div>
+    <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Cần đạt ít nhất 4/6 câu. Đọc lại từ và cấu trúc của bài rồi làm lại nhé."}</div>
+    <div class="row">
+      <button class="nut" id="lai">Làm lại</button>
+      <button class="ghost" id="doi">Đổi Unit</button>
+      <button class="ghost" id="ve">Về sảnh game</button>
+    </div>`;
+  if (dat) { try { GAME.phaoHoa(5); } catch (e) {} }
+  $("#lai").onclick = () => batDauLai();
+  $("#doi").onclick = () => location.reload();
+  $("#ve").onclick = () => { location.href = "sanh.html"; };
+}
+
+function batDauLai() {
+  VONG = taoVong();
+  I = 0; DUNG = 0;
+  if (VONG.length < 6) {
+    $("#noiDung").innerHTML = '<div class="hint">Unit này chưa đủ từ để luyện viết. Chọn Unit khác nhé.</div>';
+    return;
+  }
+  try {
+    GAME.batDau({ game: "sang-tao", sach: SACH, unit: UNIT, soCau: 6, nac: 6, khoaNac: true });
+    const c = document.querySelector(".gcore-nac"); if (c) c.value = "6";
+  } catch (e) {}
+  ve();
+}
+
+(async () => {
+  await HS.nap();
+  BAR = HS.thanh($("#hsBar"), { onChange: (s, u) => { SACH = s; UNIT = u; batDauLai(); } });
+  SACH = BAR.sach(); UNIT = BAR.unit();
+  const c = HS.chonTruoc(); if (c.sach) { SACH = c.sach; UNIT = c.unit; }
+  batDauLai();
+})();
+</script>
+</body>
+</html>

@@ -711,7 +711,7 @@ function load(){
   if(S.tuan_hien_tai==null||S.tuan_hien_tai>=S.tuan.length) S.tuan_hien_tai=0;
   tuanDangXem=S.tuan_hien_tai;
 }
-const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); henDayLenMayChu(); }
+const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
   catch(e){ alert("Máy không lưu được nữa (bộ nhớ trình duyệt đầy — thường do ảnh học viên).\nHãy bấm ⬇ Xuất JSON để giữ dữ liệu, rồi bỏ bớt ảnh."); } };
 const tuan=()=>S.tuan[tuanDangXem];
 const lopTheoId=id=>(S.lop||[]).find(l=>l.id===id);
@@ -4084,6 +4084,71 @@ document.addEventListener("click", function(e){
   e.preventDefault(); e.stopPropagation();
   if(typeof moCongDiem === "function") moCongDiem(c.getAttribute("data-congdiem"));
 }, true);
+</script>
+
+<script>
+/* ===== v7.49 — mục tiêu game: mỗi học viên đang học sách nào, unit nào ===== */
+(function(){
+  var lanCuoi = 0, dangChay = false;
+
+  function sachCuaLop(ten){
+    var m = /^\s*(SM\s*[1-6]|A2|B1|B2)/i.exec(String(ten||""));
+    if(!m) return null;
+    return m[1].replace(/\s+/g,"").toUpperCase();
+  }
+
+  function unitDangHoc(ma, sachCode){
+    var sach = null;
+    try { sach = (THU_VIEN.books||[]).find(function(b){ return b.code === sachCode; }); } catch(e){}
+    if(!sach) return null;
+    var td = (S.tien_do && S.tien_do[ma]) || {};
+    var max = null;
+    (THU_VIEN.items||[]).forEach(function(it){
+      if(it.book !== sach.id) return;
+      var x = td[it.id];
+      if(!x || !x.t) return;
+      if(x.t === "chua_hoc") return;
+      if(max === null || it.unit > max) max = it.unit;
+    });
+    return max;
+  }
+
+  function danhSach(){
+    var ra = [];
+    (S.hoc_vien||[]).forEach(function(h){
+      if(!h.ma_hv || h.trang_thai === "bảo lưu" || h.trang_thai === "nghỉ") return;
+      var sach = sachCuaLop(h.lop);
+      if(!sach) return;
+      var unit = unitDangHoc(h.ma_hv, sach);
+      if(unit == null) return;            /* chưa có tiến trình: không khoá điểm */
+      ra.push({ma: h.ma_hv, sach: sach, unit: unit});
+    });
+    return ra;
+  }
+
+  window.dayMucTieuGame = function(ep){
+    if(dangChay) return;
+    if(ep && Date.now() - lanCuoi < 20000) return;
+    if(typeof sb === "undefined" || !sb) return;
+    var ds = danhSach();
+    if(!ds.length) return;
+    dangChay = true; lanCuoi = Date.now();
+    sb.auth.getSession().then(function(r){
+      var tk = r && r.data && r.data.session ? r.data.session.access_token : "";
+      if(!tk) { dangChay = false; return; }
+      return sb.rpc("game_dat_muc_tieu", {p_list: ds}).then(function(res){
+        dangChay = false;
+        if(window.console && res && res.error) console.warn("mục tiêu game:", res.error.message);
+      }).catch(function(){ dangChay = false; });
+    }).catch(function(){ dangChay = false; });
+  };
+
+  setTimeout(function(){ dayMucTieuGame(); }, 5000);
+  setInterval(function(){ dayMucTieuGame(true); }, 120000);
+
+  /* lưu xong (điểm danh, tiến trình) thì đẩy lại sớm — móc trong save() */
+
+})();
 </script>
 </body>
 </html>
