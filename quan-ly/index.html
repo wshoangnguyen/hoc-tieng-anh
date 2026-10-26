@@ -3689,6 +3689,8 @@ async function guiHoi(){
     cho.remove();
     if(!r.ok){ them(d.loi||("Lỗi "+r.status), false); }
     else { them(d.tra_loi, false, d.nguon);
+      try{ than.appendChild(hopGopY(d.ma)); }catch(e){}
+      if(d.cong_cu && d.cong_cu.length){ const g=document.createElement("div"); g.className="chat-gopy"; g.innerHTML='<span>🔎 đã tra: '+d.cong_cu.length+" bước</span>"; than.appendChild(g); }
       if(d.nguon&&d.nguon.length&&d.nguon[0].ma){ sachDangHoi=d.nguon[0].ma; unitDangHoi=d.nguon[0].unit; capNhatNguCanh(); }
       lichSu.push({vai:"gv", noi_dung:q}); lichSu.push({vai:"ai", noi_dung:d.tra_loi}); }
   }catch(e){ cho.remove(); them("Không gọi được máy chủ tra cứu: "+e.message, false); }
@@ -3696,6 +3698,21 @@ async function guiHoi(){
 }
 gui.onclick=guiHoi;
 o.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); guiHoi(); }});
+
+
+function hopGopY(ma){
+  const d=document.createElement("div"); d.className="chat-gopy";
+  if(!ma){ return d; }
+  d.innerHTML='<span>Câu trả lời này:</span><button data-gy="1">👍 Dùng được</button><button data-gy="-1">👎 Chưa đúng</button>';
+  d.querySelectorAll("button").forEach(b=>b.onclick=async()=>{
+    d.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    try{ await fetch(API.replace(/\/hoi$/,"/gop-y"),{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ma:ma, danh_gia:Number(b.dataset.gy)})}); }catch(e){}
+    const s=d.querySelector("span"); if(s) s.textContent="Cảm ơn, đã ghi nhận.";
+  });
+  return d;
+}
 
 async function xemDangNhap(){
   try{ const {data}=await sb.auth.getSession(); nut.style.display=data&&data.session?"block":"none"; }
@@ -3883,7 +3900,15 @@ window.addEventListener("load", function () { setTimeout(taiDiemGame, 1800); });
  .ky{display:flex;justify-content:space-between;margin-top:30px;text-align:center;font-size:12px}
  .ky div{width:45%}.ky b{display:block;margin-bottom:46px}
  @media print{h2{break-after:avoid} table{break-inside:auto} tr{break-inside:avoid}}
-</style></head><body>
+</style><style>
+.chat-gopy{display:flex;gap:6px;align-items:center;margin:-4px 0 10px 2px}
+.chat-gopy button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:3px 10px;
+  font-size:12px;cursor:pointer;color:#5c6470}
+.chat-gopy button:hover{border-color:#c8b98d;color:#3b3a35}
+.chat-gopy button.on{background:#fff4d6;border-color:#e0b64a;color:#7a5a00}
+.chat-gopy span{font-size:11.5px;color:#8a93a3}
+</style>
+</head><body>
 <h1>Bảng lương tháng ${m}/${y}</h1>
 <p class="sub">Lịch dạy chi tiết, lịch các tuần và thành tiền</p>
 <div class="info"><div><b>Giáo viên:</b> ${ten}</div><div><b>Đơn giá:</b> ${tien(gia)} / giờ</div><div><b>Tổng buổi:</b> ${ds.length}</div></div>
