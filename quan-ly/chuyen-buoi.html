@@ -141,6 +141,7 @@ function veGV(){
 
 function tinhBuoi(){
   const w=(S.tuan||[])[tuanChon];
+  if(!w){ $("#tomTat").textContent="Dữ liệu chưa có tuần nào để xếp lịch."; $("#than").innerHTML=""; $("#nutChuyen").disabled=true; return; }
   const thu=$("#selThu").value;
   const tu=$("#selTu").value;
   const mocToi=17;
