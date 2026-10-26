@@ -1787,10 +1787,48 @@ function moSticker(ma){
 }
 /* ---------- popup cộng điểm ---------- */
 function moCongDiem(ma){
-  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return; const d=diemCua(ma);
-  const v=prompt(`Cộng điểm cho ${h.ho_ten}\nĐang có: ${d.diem_thuong} điểm\nGõ số muốn cộng (gõ -2 để trừ):`,"1");
-  if(v==null) return; const n=Number(String(v).replace(",",".")); if(!n) return;
-  d.diem_thuong=Math.max(0,(Number(d.diem_thuong)||0)+n); save(); render(); if(n>0 && typeof window.vuiMung==="function") window.vuiMung("diem");
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
+  const d=diemCua(ma);
+  let buoi=Math.round(tichLuy(ma)*10)/10, thuong=Number(d.diem_thuong)||0, dc=Number(d.dieu_chinh)||0;
+  let tong=tichLuyTong(ma);
+  const bd=document.createElement("div"); bd.className="backdrop";
+  bd.innerHTML=`<div class="modal" style="max-width:390px" onclick="event.stopPropagation()">
+    <h3>⭐ Cộng điểm — ${esc(h.ho_ten)}</h3>
+    <p class="hint">Tổng tích luỹ hiện tại: <b id="cdTong" style="font-size:1.25em;color:#e08a00">${tong}</b> điểm<br>
+      <span id="cdChi">Buổi học ${buoi} · Cô cộng ${thuong} · Điều chỉnh ${dc}</span></p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0">
+      ${[1,2,3,5,10].map(n=>`<button class="ghost cdNhanh" data-n="${n}" style="font-size:18px;padding:12px 0;font-weight:700">+${n}</button>`).join("")}
+    </div>
+    <label class="hint">Hoặc gõ số điểm muốn cộng (gõ -2 để trừ):</label>
+    <input id="cdSo" type="number" inputmode="decimal" step="0.5" value="1"
+      style="width:100%;padding:12px;font-size:20px;margin:6px 0 12px;border-radius:12px;border:1px solid #d9d2c3;text-align:center">
+    <div class="row"><button class="ghost" id="cdHuy">Xong</button><span style="flex:1"></span>
+      <button class="primary" id="cdOk">Cộng điểm</button></div>
+  </div>`;
+  bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
+
+  function capNhat(){
+    const t=bd.querySelector("#cdTong"); if(t) t.textContent=Math.round((buoi+thuong+dc)*10)/10;
+    const c=bd.querySelector("#cdChi"); if(c) c.textContent=`Buổi học ${Math.round(buoi*10)/10} · Cô cộng ${thuong} · Điều chỉnh ${dc}`;
+  }
+  function cong(n){
+    if(!n) return;
+    const moi=Math.max(0,(Number(d.diem_thuong)||0)+n);
+    const thay=moi-(Number(d.diem_thuong)||0);
+    d.diem_thuong=moi; thuong=moi;
+    try{ save(); }catch(e){}
+    try{ render(); }catch(e){}
+    capNhat();
+    if(thay>0 && typeof window.vuiMung==="function") window.vuiMung("diem");
+  }
+  bd.querySelectorAll(".cdNhanh").forEach(b=>b.onclick=()=>cong(Number(b.dataset.n)));
+  bd.querySelector("#cdHuy").onclick=()=>bd.remove();
+  bd.querySelector("#cdOk").onclick=()=>{
+    const v=Number(String(bd.querySelector("#cdSo").value).replace(",","."));
+    if(!v){ bd.remove(); return; }
+    cong(v); bd.remove();
+  };
+  setTimeout(()=>{ const i=bd.querySelector("#cdSo"); if(i){ i.focus(); i.select(); } }, 60);
 }
 
 
@@ -2177,7 +2215,7 @@ function roiLop(lop){
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
         <div class="anh" data-anh="${esc(h.ma_hv)}" title="Bấm để chọn ảnh">${anhm?`<img src="${anhm}" alt="">`:`<span>＋<br>ảnh</span>`}</div>
         <div class="nut">
-          <span class="chip sao" title="Tổng điểm tích luỹ (các buổi + điểm cộng + điều chỉnh)">⭐ ${tichLuyTong(h.ma_hv)}</span>
+          <button class="chip sao" data-congdiem="${esc(h.ma_hv)}" style="cursor:pointer;border:0;font:inherit;padding:2px 8px" title="Bấm để cộng điểm · tổng = điểm các buổi + cô cộng + điều chỉnh">⭐ ${tichLuyTong(h.ma_hv)}</button>
           <button class="ghost sm" data-dg="${esc(h.ma_hv)}" title="Đánh giá hôm nay">📝</button>
           <button class="ghost sm" data-sticker="${esc(h.ma_hv)}" title="Thưởng sticker">🎁${stHom.length?`<small>${stHom.length}</small>`:""}</button>
           <button class="ghost sm${cc.canHomNay?" can":""}" data-ddhn="${esc(h.ma_hv)}" title="Điểm danh 2 tuần">✅</button></div>
@@ -4012,6 +4050,15 @@ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi củ
     phaoHoa();
   };
 })();
+</script>
+
+<script>
+document.addEventListener("click", function(e){
+  var c = e.target.closest ? e.target.closest("[data-congdiem]") : null;
+  if(!c) return;
+  e.preventDefault(); e.stopPropagation();
+  if(typeof moCongDiem === "function") moCongDiem(c.getAttribute("data-congdiem"));
+}, true);
 </script>
 </body>
 </html>
