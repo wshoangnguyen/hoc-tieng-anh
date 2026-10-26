@@ -150,7 +150,7 @@ function tinhBuoi(){
   if(!dsBuoi.length){
     const tatCa=buoiCuaTuan(w).filter(b=>b.gv===tu && b.tt!=="huy").sort((a,b)=>THU.indexOf(a.thu)-THU.indexOf(b.thu));
     $("#tomTat").textContent = tatCa.length
-      ? `${tu} không có buổi tối ${thu} tuần này. Các buổi khác của cô trong tuần: ${tatCa.map(b=>THU.indexOf(b.thu)===THU.indexOf(thu)?"":"").join("")}${tatCa.length} buổi — đổi “Thứ” hoặc giáo viên để xem.`
+      ? `${tu} không có buổi tối ${thu} tuần này (cả tuần cô có ${tatCa.length} buổi: ${tatCa.map(b=>b.thu.slice(-1)+" "+b.ca).join(", ")}).`
       : `${tu} không có buổi nào trong tuần này.`;
   } else {
     $("#tomTat").textContent = `${tu} có ${dsBuoi.length} buổi tối ${thu} tuần này.`;
@@ -193,6 +193,7 @@ async function chuyen(){
 
   const nut=$("#nutChuyen"); nut.disabled=true; $("#ketQua").innerHTML="";
   const S2=JSON.parse(JSON.stringify(S));
+  S2.buoi=S2.buoi||{}; S2.buoi_them=S2.buoi_them||{};
   chon.forEach(b=>{
     if(b.them) return;
     S2.buoi[b.k]=Object.assign({},S2.buoi[b.k]||{},{gv:den});
