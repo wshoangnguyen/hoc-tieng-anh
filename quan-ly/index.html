@@ -1542,8 +1542,8 @@ const ddLay=(ngay,lop,ma)=>S.diem_danh[DD_KEY(ngay,lop,ma)]||"";
 function ddDat(ngay,lop,ma,tt){ const k=DD_KEY(ngay,lop,ma); if(tt) S.diem_danh[k]=tt; else delete S.diem_danh[k]; save(); }
 function ddXoay(ngay,lop,ma){ const t=ddLay(ngay,lop,ma); ddDat(ngay,lop,ma, t===""?"co":t==="co"?"vang":""); }
 const NHAN_DD={co:"✅ có mặt",vang:"❌ vắng",tre:"⏰ trễ","":"— chưa điểm danh"};
-function diemCua(ma){ if(!S.diem[ma]) S.diem[ma]={nghe:null,noi:null,doc:null,viet:null,tuong_tac:"",ho_tro:"",nhan_xet:"",diem_thuong:0};
-  const d=S.diem[ma]; KY_NANG.forEach(([k])=>{ if(d[k]===undefined) d[k]=null; }); if(d.diem_thuong==null) d.diem_thuong=0;
+function diemCua(ma){ if(!S.diem[ma]) S.diem[ma]={nghe:null,noi:null,doc:null,viet:null,tuong_tac:"",ho_tro:"",nhan_xet:"",diem_thuong:0,dieu_chinh:0};
+  const d=S.diem[ma]; KY_NANG.forEach(([k])=>{ if(d[k]===undefined) d[k]=null; }); if(d.diem_thuong==null) d.diem_thuong=0; if(d.dieu_chinh==null) d.dieu_chinh=0;
   ["tuong_tac","ho_tro","nhan_xet"].forEach(k=>{ if(d[k]==null) d[k]=""; }); return d; }
 function stickerCua(ma){ if(!S.sticker[ma]) S.sticker[ma]={ds:[]}; if(!S.sticker[ma].ds) S.sticker[ma].ds=[]; return S.sticker[ma]; }
 const tongDiemKN=ma=>{ const d=diemCua(ma);
@@ -1614,7 +1614,7 @@ function ngayCua(ma){ if(!S.diem_ngay) S.diem_ngay={}; if(!S.diem_ngay[ma]) S.di
 function dgLay(ma,ngay){ const m=ngayCua(ma); return m[ngay]||null; }
 function dgDat(ma,ngay,o){ const m=ngayCua(ma); if(o) m[ngay]=o; else delete m[ngay]; save(); }
 function tichLuy(ma){ const m=ngayCua(ma); let s=0; Object.keys(m).forEach(k=>{ s+=Number(m[k].diem)||0; }); return Math.round(s*10)/10; }
-function tichLuyTong(ma){ return Math.round((tichLuy(ma)+(Number(diemCua(ma).diem_thuong)||0))*10)/10; }
+function tichLuyTong(ma){ const d=diemCua(ma); return Math.round((tichLuy(ma)+(Number(d.diem_thuong)||0)+(Number(d.dieu_chinh)||0))*10)/10; }
 function stickerHomNay(ma){ const hom=iso(new Date()); return stickerCua(ma).ds.map((x,i)=>({loai:x.loai,ngay:x.ngay,i})).filter(x=>x.ngay===hom); }
 function trongBaThang(ngay){ const t=new Date(ngay+"T00:00:00"), n=new Date(); n.setHours(0,0,0,0); const d=(n-t)/86400000; return d>=-1 && d<=92; }
 function veDiemSo(){
@@ -1747,6 +1747,7 @@ function moTheHV(ma){
       <div class="field"><label>Ngày sinh</label><input id="thNS" type="date" value="${esc(h.ngay_sinh||"")}"></div>
       <div class="field"><label>Lớp</label><input id="thLop" value="${esc(h.lop)}"></div>
       <div class="field"><label>Tổng điểm</label><input id="thDT" type="number" value="${Number(d.diem_thuong)||0}"></div>
+      <div class="field"><label>Điều chỉnh chốt sổ</label><input id="thDC" type="number" value="${Number(d.dieu_chinh)||0}" title="Chênh lệch cộng vào điểm tích luỹ để khớp bảng chấm của giáo viên"></div>
     </div>
     <div class="row">${KY_NANG.map(([k,t])=>`<div class="field" style="flex:1"><label>${t}</label><input id="th_${k}" type="number" min="0" max="10" step="0.5" value="${d[k]==null?"":d[k]}"></div>`).join("")}</div>
     <div class="field"><label>Nhận xét</label><input id="thNX" value="${esc(d.nhan_xet)}" placeholder="nhận xét của giáo viên…"></div>
@@ -1761,7 +1762,7 @@ function moTheHV(ma){
   $("#thOk").onclick=()=>{
     h.ho_ten=$("#thTen").value.trim()||h.ho_ten; h.ten_goi_trong_lop=$("#thGoi").value.trim();
     h.ngay_sinh=$("#thNS").value; h.lop=$("#thLop").value.trim()||h.lop;
-    const dd=diemCua(ma); dd.diem_thuong=Number($("#thDT").value)||0; dd.nhan_xet=$("#thNX").value.trim();
+    const dd=diemCua(ma); dd.diem_thuong=Number($("#thDT").value)||0; dd.dieu_chinh=Number(($("#thDC")||{}).value)||0; dd.nhan_xet=$("#thNX").value.trim();
     KY_NANG.forEach(([k])=>{ const v=$("#th_"+k).value; dd[k]=v===""?null:Number(v); });
     h.phu_huynh=$("#thPH").value.trim(); h.sdt_phu_huynh=$("#thSDT").value.trim();
     save(); bd.remove(); render();
