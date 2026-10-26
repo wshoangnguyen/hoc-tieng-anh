@@ -756,6 +756,7 @@ function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; r
 
 
 /* ================= QUYỀN XEM ================= */
+/* v7.52: quản lý giáo viên ngang chủ về LỊCH (tuần, xếp GV, đăng ký); không xem công nợ/học phí, không sửa đơn giá, không xoá giáo viên, không thấy nút sao lưu. */
 let VAI="", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
 const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
   kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy"};
@@ -1055,12 +1056,12 @@ function veLuong(){
   rows.forEach((r,i)=>{
     const n=r.tuanRows.length;
     if(!n){ h+=`<tr><td>${esc(r.ten)}</td><td class="hint">không có buổi nào trong tháng</td><td class="num">0</td>
-      <td class="num"><input class="mini" data-i="${i}" ${vaiHienTai()==="giao_vien"?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td><td class="num">—</td></tr>`; return; }
+      <td class="num"><input class="mini" data-i="${i}" ${(vaiHienTai()==="giao_vien"||vaiHienTai()==="quan_ly_giao_vien")?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td><td class="num">—</td></tr>`; return; }
     r.tuanRows.forEach((t,j)=>{
       h+=`<tr>${j===0?`<td rowspan="${n}">${esc(r.ten)}</td>`:""}
         <td>${ngayVNngan(t.bat_dau)} – ${ngayVNngan(t.het)}</td><td class="num">${t.nb}</td>
         ${j===0?`<td class="num" rowspan="${n}">
-          <input class="mini" data-i="${i}" ${vaiHienTai()==="giao_vien"?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td>`:""}
+          <input class="mini" data-i="${i}" ${(vaiHienTai()==="giao_vien"||vaiHienTai()==="quan_ly_giao_vien")?"disabled":""} type="number" min="0" step="1000" value="${r.gia||0}"></td>`:""}
         <td class="num">${t.nb*(r.gia||0)?fmtTien(t.nb*r.gia):(j===0?(r.tien?fmtTien(r.tien):"—"):"—")}</td></tr>`;
     });
     if(n>1) h+=`<tr class="total"><td colspan="2">Cộng ${esc(r.ten)}</td><td class="num">${r.buoi}</td>
@@ -1227,7 +1228,7 @@ function veCauHinh(){
   document.querySelectorAll("[data-ten]").forEach(inp=>{ inp.onchange=()=>{ const i=+inp.dataset.ten,cu=S.giao_vien[i].ten,moi=inp.value.trim(); if(!moi) return;
     S.giao_vien[i].ten=moi; S.lop.forEach(l=>{ if(l.gv===cu) l.gv=moi; });
     Object.keys(S.buoi).forEach(k=>{ if(S.buoi[k].gv===cu) S.buoi[k].gv=moi; }); save(); render(); }; });
-  document.querySelectorAll("[data-xoa]").forEach(b=>{ b.onclick=()=>{ const i=+b.dataset.xoa;
+  document.querySelectorAll("[data-xoa]").forEach(b=>{ b.style.display=(VAI==="quan_ly"&&!XEM_NHU)?"":"none"; b.onclick=()=>{ if(!(VAI==="quan_ly"&&!XEM_NHU)) return; const i=+b.dataset.xoa;
     if(!confirm("Xoá giáo viên "+S.giao_vien[i].ten+"?")) return; const ten=S.giao_vien[i].ten;
     S.giao_vien.splice(i,1); S.lop.forEach(l=>{ if(l.gv===ten) l.gv=""; });
     Object.keys(S.buoi).forEach(k=>{ if(S.buoi[k].gv===ten) S.buoi[k].gv=""; }); save(); render(); }; });
@@ -3950,7 +3951,7 @@ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi củ
     }).join("");
 
     let rows = tinhLuongThang(thangDangXem);
-    if (vaiHienTai() === "giao_vien") rows = rows.filter((r) => r.ten === tenHienTai());
+    if (vaiHienTai() === "giao_vien" || (vaiHienTai() === "quan_ly_giao_vien" && tenHienTai())) rows = rows.filter((r) => r.ten === tenHienTai());
     const tb = rows.reduce((s, r) => s + r.buoi, 0), tt = rows.reduce((s, r) => s + r.tien, 0);
     const dsTen = rows.map((r) => r.ten);
 
@@ -3967,7 +3968,7 @@ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi củ
       const n = r.tuanRows.length;
       if (!n) {
         h += `<tr><td>${esc(r.ten)}</td><td class="hint">không có buổi nào trong tháng</td><td class="num">0</td><td class="num">—</td>
-          <td class="num"><input class="mini" data-i="${i}" ${vaiHienTai() === "giao_vien" ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td><td class="num">—</td></tr>`;
+          <td class="num"><input class="mini" data-i="${i}" ${(vaiHienTai() === "giao_vien" || vaiHienTai() === "quan_ly_giao_vien") ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td><td class="num">—</td></tr>`;
         return;
       }
       r.tuanRows.forEach((t, j) => {
@@ -3977,7 +3978,7 @@ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi củ
           <td>${ngayVNngan(t.bat_dau)} – ${ngayVNngan(t.het)}</td><td class="num">${t.nb}</td>
           <td class="num">${caTuan !== t.nb ? `<span style="color:#b45309">${caTuan}</span>` : "—"}</td>
           ${j === 0 ? `<td class="num" rowspan="${n}">
-            <input class="mini" data-i="${i}" ${vaiHienTai() === "giao_vien" ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td>` : ""}
+            <input class="mini" data-i="${i}" ${(vaiHienTai() === "giao_vien" || vaiHienTai() === "quan_ly_giao_vien") ? "disabled" : ""} type="number" min="0" step="1000" value="${r.gia || 0}"></td>` : ""}
           <td class="num">${t.nb * (r.gia || 0) ? fmtTien(t.nb * r.gia) : "—"}</td></tr>`;
       });
       if (n > 1) h += `<tr class="total"><td colspan="2">Cộng ${esc(r.ten)}</td><td class="num">${r.buoi}</td><td class="num">—</td>
