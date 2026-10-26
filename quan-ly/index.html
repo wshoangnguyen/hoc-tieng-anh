@@ -342,6 +342,38 @@ header{padding:6px 10px}
 .lopthe .bdnut:hover{border-color:var(--accent);color:inherit}
 #ddLopGrid{align-items:start}
 
+
+<style id="css-gv-zoom">
+/* Lịch giáo viên: cỡ nhỏ (mặc định) và phóng to ×1,5 */
+#gvBody{--gvz:1}
+#gvBody.gv-to .gvcard{max-width:1080px}
+#gvBody.gv-to .gvcard .hd h3{font-size:22.5px}
+#gvBody.gv-to .gvcard .hd .chip{font-size:17px;padding:3px 12px}
+#gvBody.gv-to .gvcard .hd .ghost.sm{font-size:17px;padding:5px 13px}
+#gvBody.gv-to .tkb th{height:45px;font-size:18px}
+#gvBody.gv-to .tkb th .hint{font-size:16.5px}
+#gvBody.gv-to .tkb td{padding:4px 3px;font-size:18.5px}
+#gvBody.gv-to .tkb td.cell-fix{height:60px}
+#gvBody.gv-to .tkb td.mon{font-size:18px;width:84px;padding:4px 7px}
+#gvBody.gv-to .tkb th.corner{width:84px}
+#gvBody.gv-to .tkb .corner{font-size:17px}
+#gvBody.gv-to .tkb .corner b{font-size:21px}
+#gvBody.gv-to .tkb .o{font-size:18px;line-height:1.25;padding:5px 6px;margin-bottom:3px;border-left-width:4px;border-radius:8px}
+#gvBody.gv-to .tkb .o small{font-size:15px}
+#gvBody.gv-to .tkb tr.tong td{font-size:17px;padding:4px}
+#gvBody.gv-to>p.hint,#gvBody.gv-to p.hint{font-size:16.5px}
+#gvBody.gv-to{grid-template-columns:1fr;justify-items:center}
+#gvBody.gv-to .cuon>table{min-width:0}
+@media(max-width:640px){
+  #gvBody.gv-to .tkb th{font-size:13px}
+  #gvBody.gv-to .tkb .o{font-size:13px}
+  #gvBody.gv-to .tkb td.cell-fix{height:48px}
+  #gvBody.gv-to .tkb td.mon,#gvBody.gv-to .tkb th.corner{width:58px}
+}
+#gvThanh{display:flex;align-items:center;gap:10px;padding:8px 10px;margin:0 0 8px;background:#fff;border:1px solid var(--line);border-radius:12px}
+#gvThanh .nhan{font-size:13px;color:var(--dim)}
+@media(max-width:700px){ #gvThanh{display:none} }
+</style>
 </style>
 
 <style id="css-gv-gon">
@@ -546,6 +578,15 @@ header{padding:6px 10px}
   </section>
 
   <section id="tab-gv" data-trang="lichday" class="hide">
+    <div id="gvThanh">
+      <span class="nhan">Cỡ lịch:</span>
+      <div class="seg" id="gvZoom">
+        <button type="button" data-z="1">Thu nhỏ</button>
+        <button type="button" data-z="1.5">Phóng to ×1,5</button>
+      </div>
+      <span style="flex:1"></span>
+      <span class="nhan" id="gvZoomGhi">Chỉ hiện những ca có lớp dạy</span>
+    </div>
     <div id="gvBody"></div>
   </section>
 
@@ -757,6 +798,7 @@ function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; r
 
 /* ================= QUYỀN XEM ================= */
 /* v7.52: quản lý giáo viên ngang chủ về LỊCH (tuần, xếp GV, đăng ký); không xem công nợ/học phí, không sửa đơn giá, không xoá giáo viên, không thấy nút sao lưu. */
+/* v7.53: Lịch giáo viên — nút Thu nhỏ / Phóng to ×1,5 (nhớ lựa chọn); ẩn hàng giờ không có lớp dạy; điện thoại luôn cỡ nhỏ. */
 let VAI="", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
 const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
   kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy"};
@@ -991,7 +1033,9 @@ function veGV(){
     <div class="cuon"><table class="tkb"><thead><tr>
       <th class="corner">Giờ dạy<b>${tuanNay.length}</b></th>
       ${THU.map((t,i)=>{ const ng=cong(w.bat_dau,i); return `<th class="${ng===HN?"homnay":""}">${THU_DAI[t]}<br><span class="${ng===HN?"":"hint"}">${ngayVNngan(ng)}</span></th>`; }).join("")}</tr></thead><tbody>`;
-    for(const ca of cas){
+    /* chỉ giữ những ca giáo viên này có lớp trong tuần đang xem */
+    const casGV=cas.filter(ca=>ds.some(b=>b.ca===ca));
+    for(const ca of casGV){
       h+=`<tr><td class="mon">${esc(ca)}</td>`;
       for(const t of THU){
         const o=ds.filter(b=>b.thu===t&&b.ca===ca);
@@ -4287,6 +4331,38 @@ document.addEventListener("click", function(e){
       }catch(e){}
     };
   }
+})();
+</script>
+
+<script>
+(function(){
+  var KEY="gv_co_lich";
+  function apDung(){
+    var to=(localStorage.getItem(KEY)==="1.5");
+    var b=document.getElementById("gvBody");
+    var hep=window.innerWidth<701;   /* điện thoại: giữ cỡ hiện tại cho vừa khung */
+    if(b) b.classList.toggle("gv-to", to && !hep);
+    document.querySelectorAll("#gvZoom button").forEach(function(x){
+      x.classList.toggle("on", (x.dataset.z==="1.5")===to);
+    });
+  }
+  window.gvApDungCo=apDung;
+  function gan(){
+    var hop=document.getElementById("gvZoom"); if(!hop||hop.dataset.gan) return;
+    hop.dataset.gan="1";
+    hop.addEventListener("click",function(e){
+      var b=e.target.closest("button[data-z]"); if(!b) return;
+      localStorage.setItem(KEY,b.dataset.z); apDung();
+    });
+    apDung();
+  }
+  var goc=window.veGV;
+  if(typeof goc==="function"){
+    window.veGV=function(){ var r=goc.apply(this,arguments); apDung(); return r; };
+  }
+  window.addEventListener("resize",apDung);
+  document.addEventListener("DOMContentLoaded",gan);
+  setTimeout(gan,600); setTimeout(gan,2000);
 })();
 </script>
 </body>
