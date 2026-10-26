@@ -1539,7 +1539,7 @@ const KY_NANG=[["nghe","Nghe"],["noi","Nói"],["doc","Đọc"],["viet","Viết"]
 const STICKERS=["🌟","⭐","💖","🎉","👏","🔥","🍀","🦄","🌈","🎈","🐴","🍬","🏆","😍","🥳","👍"];
 const DD_KEY=(ngay,lop,ma)=>ngay+"|"+lop+"|"+ma;
 const ddLay=(ngay,lop,ma)=>S.diem_danh[DD_KEY(ngay,lop,ma)]||"";
-function ddDat(ngay,lop,ma,tt){ const k=DD_KEY(ngay,lop,ma); if(tt) S.diem_danh[k]=tt; else delete S.diem_danh[k]; save(); }
+function ddDat(ngay,lop,ma,tt){ const k=DD_KEY(ngay,lop,ma); if(tt) S.diem_danh[k]=tt; else delete S.diem_danh[k]; save(); if(tt==="co" && typeof window.vuiMung==="function") window.vuiMung("diemdanh"); }
 function ddXoay(ngay,lop,ma){ const t=ddLay(ngay,lop,ma); ddDat(ngay,lop,ma, t===""?"co":t==="co"?"vang":""); }
 const NHAN_DD={co:"✅ có mặt",vang:"❌ vắng",tre:"⏰ trễ","":"— chưa điểm danh"};
 function diemCua(ma){ if(!S.diem[ma]) S.diem[ma]={nghe:null,noi:null,doc:null,viet:null,tuong_tac:"",ho_tro:"",nhan_xet:"",diem_thuong:0,dieu_chinh:0};
@@ -1781,14 +1781,14 @@ function moSticker(ma){
   bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
   bd.querySelector("#stDong").onclick=()=>{ bd.remove(); render(); };
   bd.querySelectorAll("[data-st]").forEach(b=>b.onclick=()=>{
-    st.ds.push({ngay:iso(new Date()), loai:b.dataset.st}); save(); bd.remove(); render(); });
+    st.ds.push({ngay:iso(new Date()), loai:b.dataset.st}); save(); bd.remove(); render(); if(typeof window.vuiMung==="function") window.vuiMung("sticker"); });
 }
 /* ---------- popup cộng điểm ---------- */
 function moCongDiem(ma){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return; const d=diemCua(ma);
   const v=prompt(`Cộng điểm cho ${h.ho_ten}\nĐang có: ${d.diem_thuong} điểm\nGõ số muốn cộng (gõ -2 để trừ):`,"1");
   if(v==null) return; const n=Number(String(v).replace(",",".")); if(!n) return;
-  d.diem_thuong=Math.max(0,(Number(d.diem_thuong)||0)+n); save(); render();
+  d.diem_thuong=Math.max(0,(Number(d.diem_thuong)||0)+n); save(); render(); if(n>0 && typeof window.vuiMung==="function") window.vuiMung("diem");
 }
 
 
@@ -2046,6 +2046,7 @@ function moDanhGia(ma, ngay){
         }
       }
       ddDat(ng,h.lop,ma,dd);
+      if(_bonus>0 && typeof window.vuiMung==="function") window.vuiMung("diem");
       bd.remove(); render();
     };
     bd.querySelector("#dgHuy").onclick=()=>bd.remove();
@@ -2174,7 +2175,7 @@ function roiLop(lop){
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
         <div class="anh" data-anh="${esc(h.ma_hv)}" title="Bấm để chọn ảnh">${anhm?`<img src="${anhm}" alt="">`:`<span>＋<br>ảnh</span>`}</div>
         <div class="nut">
-          <span class="chip sao" title="Điểm tích luỹ">⭐ ${tichLuy(h.ma_hv)}</span>
+          <span class="chip sao" title="Tổng điểm tích luỹ (các buổi + điểm cộng + điều chỉnh)">⭐ ${tichLuyTong(h.ma_hv)}</span>
           <button class="ghost sm" data-dg="${esc(h.ma_hv)}" title="Đánh giá hôm nay">📝</button>
           <button class="ghost sm" data-sticker="${esc(h.ma_hv)}" title="Thưởng sticker">🎁${stHom.length?`<small>${stHom.length}</small>`:""}</button>
           <button class="ghost sm${cc.canHomNay?" can":""}" data-ddhn="${esc(h.ma_hv)}" title="Điểm danh 2 tuần">✅</button></div>
@@ -3942,6 +3943,71 @@ ${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi củ
     });
     const b = document.getElementById("btnInLuong");
     if (b) b.onclick = () => window.inBangLuong(document.getElementById("inGV").value, thangDangXem);
+  };
+})();
+</script>
+
+<script>
+/* ===== v7.44 — ăn mừng nhẹ: pháo hoa + vỗ tay ===== */
+(function(){
+  var lanCuoi = 0, dangMo = false;
+
+  function phatVo(){
+    try {
+      var a = new Audio("vui.mp3");
+      a.volume = 0.85;
+      var p = a.play();
+      if (p && p.catch) p.catch(function(){});
+    } catch (e) {}
+  }
+
+  function phaoHoa(){
+    if (dangMo) return;
+    dangMo = true;
+    var cv = document.createElement("canvas");
+    cv.id = "vui-phao";
+    cv.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99999";
+    document.body.appendChild(cv);
+    var ctx = cv.getContext("2d");
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    var mau = ["#ffd166","#ff6b6b","#4ecdc4","#a78bfa","#34d399","#f472b6","#60a5fa"];
+    var hat = [], no = 0, tong = 5;
+
+    function bung(x, y){
+      var c = mau[(Math.random()*mau.length)|0], k = 30 + ((Math.random()*18)|0);
+      for (var i=0;i<k;i++){
+        var g = Math.PI*2*i/k, v = 1.6 + Math.random()*3.4;
+        hat.push({x:x, y:y, vx:Math.cos(g)*v, vy:Math.sin(g)*v, life:1, c:c});
+      }
+    }
+
+    var dan = setInterval(function(){
+      bung(cv.width*(0.2+Math.random()*0.6), cv.height*(0.14+Math.random()*0.3));
+      if (++no >= tong) clearInterval(dan);
+    }, 260);
+
+    (function ve(){
+      ctx.clearRect(0,0,cv.width,cv.height);
+      for (var i=hat.length-1;i>=0;i--){
+        var p = hat[i];
+        p.vy += 0.035; p.vx *= 0.985; p.vy *= 0.985; p.x += p.vx; p.y += p.vy; p.life -= 0.012;
+        if (p.life <= 0){ hat.splice(i,1); continue; }
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.fillStyle = p.c;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2.4, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (hat.length || no < tong) requestAnimationFrame(ve);
+      else { try { cv.remove(); } catch(e){} dangMo = false; }
+    })();
+  }
+
+  window.vuiMung = function(){
+    var now = Date.now();
+    if (now - lanCuoi < 900) return;   /* bấm cả lớp: chỉ ăn mừng 1 lần */
+    lanCuoi = now;
+    phatVo();
+    phaoHoa();
   };
 })();
 </script>
