@@ -3526,7 +3526,7 @@ function napHD(cb){
   if(HD_DATA) return cb(HD_DATA);
   if(HD_DANG) return;
   HD_DANG=true;
-  fetch("hoat-dong-muc.json",{cache:"force-cache"}).then(r=>r.json())
+  fetch("hoat-dong-muc.json?v=2026-10-26b",{cache:"force-cache"}).then(r=>r.json())
     .then(j=>{ HD_DATA=j.items||{}; HD_DANG=false; cb(HD_DATA); })
     .catch(()=>{ HD_DANG=false; HD_LOI=true; cb(null); });
 }
