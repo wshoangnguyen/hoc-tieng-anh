@@ -711,7 +711,7 @@ function load(){
   if(S.tuan_hien_tai==null||S.tuan_hien_tai>=S.tuan.length) S.tuan_hien_tai=0;
   tuanDangXem=S.tuan_hien_tai;
 }
-const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
+const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); try{ window.__chupNhanh&&__chupNhanh(); }catch(e){} henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
   catch(e){ alert("Máy không lưu được nữa (bộ nhớ trình duyệt đầy — thường do ảnh học viên).\nHãy bấm ⬇ Xuất JSON để giữ dữ liệu, rồi bỏ bớt ảnh."); } };
 const tuan=()=>S.tuan[tuanDangXem];
 const lopTheoId=id=>(S.lop||[]).find(l=>l.id===id);
@@ -4148,6 +4148,100 @@ document.addEventListener("click", function(e){
 
   /* lưu xong (điểm danh, tiến trình) thì đẩy lại sớm — móc trong save() */
 
+})();
+</script>
+
+<script>
+/* ===== v7.50 — sao lưu & an toàn dữ liệu ===== */
+(function(){
+  var KHOA = "lichday_v4";
+  function coKB(){ try{ var b=JSON.stringify(S).length; return b<1024? ("<1") : (Math.round(b/1024*10)/10); }catch(e){ return 0; } }
+
+  /* bản tự động: giữ 3 bản gần nhất, mỗi giờ tối đa 1 bản */
+  window.__chupNhanh = function(){
+    try{
+      var j = JSON.stringify(S);
+      if(j.length > 1500000) return;                 /* quá lớn thì không nhân bản */
+      var k = "lichday_snap_" + new Date().toISOString().slice(0,13);
+      localStorage.setItem(k, j);
+      var ds = Object.keys(localStorage).filter(function(x){ return x.indexOf("lichday_snap_")===0; }).sort();
+      while(ds.length > 3){ localStorage.removeItem(ds.shift()); }
+    }catch(e){}
+  };
+
+  function banCuoi(){
+    var ds = Object.keys(localStorage).filter(function(x){ return x.indexOf("lichday_snap_")===0; }).sort();
+    return ds.length ? ds[ds.length-1] : null;
+  }
+
+  function taiVe(){
+    try{
+      var b = new Blob([JSON.stringify(S)], {type:"application/json"});
+      var a = document.createElement("a");
+      var d = new Date();
+      a.href = URL.createObjectURL(b);
+      a.download = "so-lop-" + d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2) + ".json";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 3000);
+    }catch(e){ alert("Không tải được: " + e.message); }
+  }
+
+  function khoiPhuc(tep){
+    var r = new FileReader();
+    r.onload = function(){
+      try{
+        var d = JSON.parse(r.result);
+        if(!d || !d.hoc_vien){ alert("Tệp này không phải bản sao lưu của sổ lớp."); return; }
+        if(!confirm("Khôi phục bản sao lưu?\nCó " + (d.hoc_vien||[]).length + " học viên, " + (d.lop||[]).length + " lớp.\nDữ liệu hiện tại sẽ bị thay bằng bản này (vẫn lưu lên máy chủ).")) return;
+        S = d; save(); render();
+        alert("Đã khôi phục.");
+      }catch(e){ alert("Tệp lỗi: " + e.message); }
+    };
+    r.readAsText(tep);
+  }
+
+  /* nút nổi */
+  var nut = document.createElement("button");
+  nut.id = "nutSaoLuu";
+  nut.title = "Sao lưu dữ liệu";
+  nut.textContent = "💾";
+  nut.style.cssText = "position:fixed;left:14px;bottom:14px;z-index:9000;width:44px;height:44px;border-radius:50%;border:1px solid #e2d9c3;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.12);font-size:20px;cursor:pointer";
+
+  var hop = document.createElement("div");
+  hop.id = "hopSaoLuu";
+  hop.style.cssText = "display:none;position:fixed;left:14px;bottom:66px;z-index:9001;background:#fff;border:1px solid #e2d9c3;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px;width:250px;font-size:13px";
+
+  function ve(){
+    var cu = banCuoi();
+    var luc = cu ? cu.replace("lichday_snap_","").replace("T"," ") + "h" : "chưa có";
+    hop.innerHTML = '<div style="font-weight:700;margin-bottom:6px">Sao lưu sổ lớp</div>'
+      + '<div style="color:#7a7365;margin-bottom:8px">Dữ liệu hiện tại: <b>' + coKB() + ' KB</b><br>Bản tự động gần nhất: ' + luc + '</div>'
+      + '<button id="slTai" style="width:100%;margin-bottom:6px;padding:9px;border-radius:10px;border:0;background:#f0b429;font-weight:700;cursor:pointer">⬇ Tải bản sao lưu (.json)</button>'
+      + '<button id="slKhoi" style="width:100%;margin-bottom:6px;padding:9px;border-radius:10px;border:1px solid #e2d9c3;background:#fff;cursor:pointer">↩ Khôi phục từ tệp</button>'
+      + (cu ? '<button id="slCu" style="width:100%;padding:9px;border-radius:10px;border:1px solid #e2d9c3;background:#fff;cursor:pointer">🕓 Dùng bản tự động gần nhất</button>' : '')
+      + '<input type="file" id="slTep" accept="application/json,.json" style="display:none">';
+    hop.querySelector("#slTai").onclick = taiVe;
+    hop.querySelector("#slKhoi").onclick = function(){ hop.querySelector("#slTep").click(); };
+    hop.querySelector("#slTep").onchange = function(e){ if(e.target.files[0]) khoiPhuc(e.target.files[0]); };
+    var c2 = hop.querySelector("#slCu");
+    if(c2) c2.onclick = function(){
+      if(!confirm("Quay lại bản tự động gần nhất? Thay đổi sau thời điểm đó sẽ mất.")) return;
+      try{ S = JSON.parse(localStorage.getItem(banCuoi())); save(); render(); hop.style.display="none"; }catch(e){ alert("Bản tự động lỗi."); }
+    };
+  }
+
+  nut.onclick = function(){
+    if(hop.style.display === "none"){ ve(); hop.style.display = "block"; } else hop.style.display = "none";
+  };
+  document.addEventListener("click", function(e){
+    if(hop.style.display !== "none" && !hop.contains(e.target) && e.target !== nut) hop.style.display = "none";
+  });
+
+  function gan(){
+    if(!document.body) return setTimeout(gan, 300);
+    document.body.appendChild(nut); document.body.appendChild(hop);
+  }
+  gan();
 })();
 </script>
 </body>
