@@ -35,7 +35,8 @@
   .ai{align-self:flex-start;background:var(--tim-nhat);border:1px solid #e6dcfb;border-bottom-left-radius:5px}
   .hs{align-self:flex-end;background:#2c2416;color:#fff;border-bottom-right-radius:5px}
   .ai .nhan{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#6d28d9;margin-bottom:5px}
-  .av{width:26px;height:26px;border-radius:50%;background:#7c3aed;color:#fff;display:grid;place-items:center;font-size:14px}
+  .av{width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid #e6dcfb;display:grid;place-items:center;font-size:14px;overflow:hidden}
+  .av img{width:100%;height:100%;object-fit:cover;display:block}
   .phan{display:inline-block;font-size:11.5px;font-weight:800;color:#7c4a03;background:#fdf0d3;border:1px solid #f3dfae;border-radius:999px;padding:2px 9px;margin-bottom:7px}
   .meo{font-size:12.5px;color:#8a6d3b;background:#fffaee;border:1px solid #f3e6c8;border-radius:10px;padding:7px 10px;margin-top:8px}
 
@@ -120,8 +121,8 @@ function taoKichBan(b) {
   const ten = (b.ten || "").trim();
 
   const ds = [
-    { hoi: `Hi! I'm Miu, your AI friend. What's your name?`,
-      vi: "Chào con! Cô là Miu — bạn AI của con. Con tên là gì?",
+    { hoi: `Hi! I'm Buddy, your AI friend. What's your name?`,
+      vi: "Chào con! Mình là Buddy — bạn AI của con. Con tên là gì?",
       tu: [], loai: "tra_loi",
       meo: "Với AI, trả lời đúng câu hỏi là đủ — ngắn cũng được, không cần câu dài." },
     { hoi: coDanhTu ? `Nice to meet you! This unit is “${ten}”. Do you have ${mangA(t(0))}?`
@@ -149,7 +150,7 @@ function taoKichBan(b) {
       tu: [t(3), "because"], loai: "tra_loi",
       meo: "Nói lý do thì AI trả lời sát hơn. Dùng “because” để nêu lý do." },
     { hoi: `Last one: you ask me a question with “${t(4)}”. Don't forget the question mark.`,
-      vi: `Cuối cùng: con hỏi cô một câu có từ “${t(4)}”, nhớ dấu hỏi nhé.`,
+      vi: `Cuối cùng: con hỏi Buddy một câu có từ “${t(4)}”, nhớ dấu hỏi nhé.`,
       tu: [t(4)], loai: "cau_hoi",
       meo: "Muốn AI làm gì, hãy hỏi rõ ràng. Câu hỏi phải có dấu ?" },
   ];
@@ -161,7 +162,7 @@ function themBong(vai, noiDung, phan, vi) {
   const d = document.createElement("div");
   d.className = "bong " + vai;
   if (vai === "ai") {
-    d.innerHTML = `<div class="nhan"><span class="av">🤖</span>Miu</div>`
+    d.innerHTML = `<div class="nhan"><span class="av"><img src="/logo.png" alt="Buddy"></span>Buddy</div>`
       + (phan ? `<span class="phan">${esc(phan)}</span><br>` : "")
       + esc(noiDung)
       + (vi ? `<div class="vi">🇻🇳 ${esc(vi)}</div>` : "");
@@ -220,7 +221,7 @@ async function gui() {
 
   const cho = document.createElement("div");
   cho.className = "bong ai";
-  cho.innerHTML = '<span class="hint">Miu đang chấm…</span>';
+  cho.innerHTML = '<span class="hint">Buddy đang chấm…</span>';
   $("#chat").appendChild(cho);
   cuoiChat();
 
