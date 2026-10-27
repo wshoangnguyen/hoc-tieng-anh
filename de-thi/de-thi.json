@@ -67,54 +67,60 @@
   {
    "ma": "SM4",
    "ten": "Super Minds 4",
-   "muc": "",
+   "muc": "Lớp 9–10 tuổi · có viết đoạn",
    "bai": [
     {
      "ten": "Kiểm tra cuối sách",
-     "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được",
+     "mo_ta": "Nghe (2 file) · Đọc & Viết · làm và chấm ngay trên web",
      "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/nghe-de.pdf",
      "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/doc-viet-de.pdf",
      "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/noi-de.pdf",
      "nhan": [
-      "Bản PDF",
-      "Chưa có đáp án"
-     ]
+      "Làm trên web · tự chấm",
+      "Nghe 2 file",
+      "GV chấm 6 câu viết"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/lam-bai/"
     }
    ]
   },
   {
    "ma": "SM5",
    "ten": "Super Minds 5",
-   "muc": "",
+   "muc": "Lớp 10–11 tuổi · nghe 2 file",
    "bai": [
     {
      "ten": "Kiểm tra cuối sách",
-     "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được",
+     "mo_ta": "Nghe (2 file) · Đọc & Viết · làm và chấm ngay trên web",
      "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/nghe-de.pdf",
      "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/doc-viet-de.pdf",
      "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/noi-de.pdf",
      "nhan": [
-      "Bản PDF",
-      "Chưa có đáp án"
-     ]
+      "Làm trên web · tự chấm",
+      "Nghe 2 file",
+      "GV chấm bài viết 20+ từ"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/lam-bai/"
     }
    ]
   },
   {
    "ma": "SM6",
    "ten": "Super Minds 6",
-   "muc": "",
+   "muc": "Lớp 11–12 tuổi · nghe hội thoại",
    "bai": [
     {
      "ten": "Kiểm tra cuối sách",
-     "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được",
+     "mo_ta": "Nghe (2 file) · Đọc & Viết · làm và chấm ngay trên web",
      "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/nghe-de.pdf",
      "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/doc-viet-de.pdf",
      "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/noi-de.pdf",
      "nhan": [
-      "Bản PDF",
-      "Chưa có đáp án"
-     ]
+      "Làm trên web · tự chấm",
+      "Nghe 2 file",
+      "GV chấm bưu thiếp 35–45 từ"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/lam-bai/"
     }
    ]
   },
