@@ -2427,35 +2427,45 @@ function moSua(k){
   };
 }
 
-const DT_GOC={"cap_nhat": "28/10/2026", "drive_root": "https://drive.google.com/drive/folders/1QOAFilHJlcTQlDxys4vICq1lraiRpNfg", "de_thi": [{"ma": "SM-EOB", "ten": "Kiểm tra cuối sách · Super Minds 1–6", "muc": "Mỗi level một bài cuối sách: Nghe (có file nghe) · Đọc & Viết · Nói · in giấy", "nhan": ["SM1 → SM6", "Có file nghe", "Đáp án: SM1–SM2"], "lam_bai": "/de-thi/cuoi-sach/"}, {"ma": "OWA2", "ten": "Thi hết sách · Open World A2", "muc": "Mô phỏng A2 Key (KET) · 55 câu tự chấm + 1 bài viết · 90 phút", "nhan": ["Nghe 5 file · 2–3 phút", "Đọc & Viết 6 part", "Viết 25 từ"], "lam_bai": "/de-thi/owa2/lam-bai.html", "nghe_web": "/de-thi/owa2/", "de_pdf": "/de-thi/owa2/De-thi-Open-World-A2-KET.pdf", "drive": {"folder": "https://drive.google.com/drive/folders/1gEipsXkAN_X3pSZ9Bc2D5C6Pk9wRhYbS", "de": "https://drive.google.com/file/d/1pv4LgFsAZe5zg3twqa_FKczVOPFJiEq4/view", "dapan": "https://drive.google.com/file/d/1n6eXkaJRVZg-FL0A3cmhwaRVCxHsQ3yI/view", "bai_lam": "https://drive.google.com/drive/folders/1zgR-efm-AtE7OLAmH2yGzIHpQGKXMQuc", "audio": ["https://drive.google.com/file/d/1dfdJF9OU3vCa1vOhFVKmNCsX5vBU8-wA/view", "https://drive.google.com/file/d/13Y2aOXoD3o4a4roYm-BvARdJh-ok0KOw/view", "https://drive.google.com/file/d/1z3YahD_pZn-zifSNblbCdCsvGFi67Fs6/view", "https://drive.google.com/file/d/1Oz02Sm5JcqUThcYlIFNQAepxwJC-uBSx/view", "https://drive.google.com/file/d/1kIlxMZXOC6SsmfOinqkvOMdsFgzp-4um/view"]}}], "sap_co": [{"ma": "SM", "ten": "Kiểm tra theo cấp độ Super Minds", "muc": "Kiểm tra hết mỗi level Super Minds 1–6 · 30–40 phút"}, {"ma": "B1", "ten": "Thi hết sách · Open World B1", "muc": "Mô phỏng B1 Preliminary (PET) · khoảng 2 giờ"}]}; /*nạp từ de-thi.json*/
+/* ---------- Đề thi & kiểm tra: danh sách theo level ---------- */
+const DT_GOC={"cap_nhat": "28/10/2026", "drive_root": "https://drive.google.com/drive/folders/1QOAFilHJlcTQlDxys4vICq1lraiRpNfg", "levels": [{"ma": "SM1", "ten": "Super Minds 1", "muc": "Lớp nhỏ · nối hình, tô màu", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm1/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm1/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm1/noi-de.pdf", "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm1/lam-bai/", "nhan": ["Làm trên web · tự chấm", "Vẽ – tô màu trên hình", "Nộp về Drive"], "dapan": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm1/nghe-dapan.pdf"}]}, {"ma": "SM2", "ten": "Super Minds 2", "muc": "Lớp nhỏ · nối hình, tô màu", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm2/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm2/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm2/noi-de.pdf", "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm2/lam-bai/", "nhan": ["Làm trên web · tự chấm", "Vẽ – tô màu trên hình", "Nộp về Drive"], "dapan": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm2/nghe-dapan.pdf"}]}, {"ma": "SM3", "ten": "Super Minds 3", "muc": "", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/noi-de.pdf", "nhan": ["Bản PDF", "Chưa có đáp án"]}]}, {"ma": "SM4", "ten": "Super Minds 4", "muc": "", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm4/noi-de.pdf", "nhan": ["Bản PDF", "Chưa có đáp án"]}]}, {"ma": "SM5", "ten": "Super Minds 5", "muc": "", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm5/noi-de.pdf", "nhan": ["Bản PDF", "Chưa có đáp án"]}]}, {"ma": "SM6", "ten": "Super Minds 6", "muc": "", "bai": [{"ten": "Kiểm tra cuối sách", "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được", "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/nghe-de.pdf", "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/doc-viet-de.pdf", "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm6/noi-de.pdf", "nhan": ["Bản PDF", "Chưa có đáp án"]}]}, {"ma": "A2", "ten": "Open World A2 · A2 Key", "muc": "Mô phỏng đề KET", "bai": [{"ten": "Đề A2 Key mô phỏng", "mo_ta": "Nghe 25 câu · Đọc & Viết 30 điểm · 90 phút", "lam_bai": "https://hoctienganhdelam.com/de-thi/owa2/lam-bai.html", "pdf": "https://hoctienganhdelam.com/de-thi/owa2/De-thi-Open-World-A2-KET.pdf", "nghe_web": "https://hoctienganhdelam.com/de-thi/owa2/", "nhan": ["Nghe trước", "Tự chấm /55", "Lưu Drive"]}]}, {"ma": "B1", "ten": "Open World B1 · B1 Preliminary", "muc": "Đang soạn", "bai": []}]}; /*nạp từ de-thi.json*/
+let dtLevel=0;
 function veDeThi(){
   const el=document.getElementById("dtBody"); if(!el) return;
-  const D=DT_GOC||{}, ds=D.de_thi||[];
-  let h="";
-  if(!ds.length) h+=`<p class="hint">Chưa có đề nào trong danh mục.</p>`;
-  h+=ds.map(d=>{
-    const dr=d.drive||{};
-    const cN="display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;font-weight:600;font-size:13.5px;color:inherit;margin:2px 0";
-    const cC=cN+";background:var(--accent);border-color:#e0a800;color:#3a2c07";
-    const nut=[
-      d.lam_bai?`<a style="${cC}" href="${esc(d.lam_bai)}" target="_blank" rel="noopener">▶ Vào làm bài</a>`:"",
-      d.de_pdf?`<a style="${cN}" href="${esc(d.de_pdf)}" target="_blank" rel="noopener">Đề PDF (in giấy)</a>`:"",
-      d.nghe_web?`<a style="${cN}" href="${esc(d.nghe_web)}" target="_blank" rel="noopener">Nghe trên web</a>`:"",
-      dr.dapan?`<a style="${cN}" href="${esc(dr.dapan)}" target="_blank" rel="noopener">Đáp án</a>`:"",
-      dr.bai_lam?`<a style="${cN}" href="${esc(dr.bai_lam)}" target="_blank" rel="noopener">Bài làm học sinh</a>`:""
-    ].filter(Boolean).join(" ");
-    const nhan=(d.nhan||[]).map(x=>`<span class="chip" style="font-size:12px">${esc(x)}</span>`).join(" ");
-    const audio=(dr.audio||[]).map((u,i)=>`<a style="text-decoration:underline" href="${esc(u)}" target="_blank" rel="noopener">Part ${i+1}</a>`).join(" · ");
-    return `<div class="card" style="margin:10px 0">
-      <div class="row" style="gap:8px"><b>${esc(d.ten||d.ma||"")}</b><span class="hint">${esc(d.muc||"")}</span></div>
-      <div class="row" style="gap:6px;margin:6px 0">${nhan}</div>
-      <div class="row" style="gap:6px">${nut}</div>
-      ${audio?`<div class="hint" style="margin-top:6px">File nghe trên Drive: ${audio}</div>`:""}
-    </div>`;}).join("");
-  const sc=D.sap_co||[];
-  if(sc.length) h+=`<p class="hint">Sắp có: ${sc.map(x=>esc(x.ten)).join(" · ")}</p>`;
-  h+=`<p class="hint">Toàn bộ kho đề trên Drive: ${D.drive_root?`<a href="${esc(D.drive_root)}" target="_blank" rel="noopener">mở kho đề</a>`:"—"}${D.cap_nhat?" · cập nhật "+esc(D.cap_nhat):""}</p>`;
-  el.innerHTML=h;
+  const D=DT_GOC||{}, L=D.levels||[];
+  if(!L.length){ el.innerHTML='<p class="hint">Chưa có đề nào trong danh mục.</p>'; return; }
+  const cN="display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;font-weight:600;font-size:13.5px;color:inherit;margin:2px 0";
+  const cC=cN+";background:var(--accent);border-color:#e0a800;color:#3a2c07";
+  function dsCua(i){
+    const l=L[i]||{bai:[]};
+    if(!l.bai||!l.bai.length) return '<p class="hint">Level này chưa có bài nào.</p>';
+    return l.bai.map(b=>{
+      const nut=[
+        b.lam_bai?`<a style="${cC}" href="${esc(b.lam_bai)}" target="_blank" rel="noopener">▶ Làm bài trên web</a>`:"",
+        b.pdf?`<a style="${cN}" href="${esc(b.pdf)}" target="_blank" rel="noopener">Đề Nghe (PDF)</a>`:"",
+        b.pdf2?`<a style="${cN}" href="${esc(b.pdf2)}" target="_blank" rel="noopener">Đọc & Viết (PDF)</a>`:"",
+        b.pdf3?`<a style="${cN}" href="${esc(b.pdf3)}" target="_blank" rel="noopener">Nói (PDF)</a>`:"",
+        b.nghe_web?`<a style="${cN}" href="${esc(b.nghe_web)}" target="_blank" rel="noopener">Nghe trên web</a>`:"",
+        b.dapan?`<a style="${cN}" href="${esc(b.dapan)}" target="_blank" rel="noopener">🔑 Đáp án</a>`:""
+      ].filter(Boolean).join(" ");
+      const nhan=(b.nhan||[]).map(x=>`<span class="chip" style="font-size:12px">${esc(x)}</span>`).join(" ");
+      return `<div class="card" style="margin:9px 0">
+        <div class="row" style="gap:8px"><b>${esc(b.ten||"")}</b><span class="hint">${esc(b.mo_ta||"")}</span></div>
+        <div class="row" style="gap:6px;margin:6px 0">${nhan}</div>
+        <div class="row" style="gap:6px">${nut}</div>
+      </div>`;
+    }).join("");
+  }
+  const tabs=L.map((l,i)=>`<button class="dt-lv${i===dtLevel?" on":""}" data-i="${i}">${esc(l.ma)}</button>`).join("");
+  el.innerHTML=`<div class="dt-tabs">${tabs}</div>
+    <p class="hint" id="dtMuc" style="margin:2px 0 0">${esc(L[dtLevel].ten||"")}${L[dtLevel].muc?" · "+esc(L[dtLevel].muc):""}</p>
+    <div id="dtDs"></div>
+    <p class="hint" style="margin-top:10px">Kho đề trên Drive: ${D.drive_root?`<a href="${esc(D.drive_root)}" target="_blank" rel="noopener">mở kho đề</a>`:"—"}${D.cap_nhat?" · cập nhật "+esc(D.cap_nhat):""}</p>`;
+  const ve=i=>{ dtLevel=i; el.querySelectorAll(".dt-lv").forEach((b,j)=>b.classList.toggle("on",j===i));
+    document.getElementById("dtMuc").textContent=(L[i].ten||"")+(L[i].muc?" · "+L[i].muc:"");
+    document.getElementById("dtDs").innerHTML=dsCua(i); };
+  el.querySelectorAll(".dt-lv").forEach(b=>b.onclick=()=>ve(+b.dataset.i));
+  ve(dtLevel);
 }
 
 /* ---------- sự kiện chung ---------- */
@@ -4018,6 +4028,9 @@ window.addEventListener("load", function () { setTimeout(taiDiemGame, 1800); });
 .chat-gopy button:hover{border-color:#c8b98d;color:#3b3a35}
 .chat-gopy button.on{background:#fff4d6;border-color:#e0b64a;color:#7a5a00}
 .chat-gopy span{font-size:11.5px;color:#8a93a3}
+.dt-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.dt-lv{border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-weight:700;font-size:13.5px;cursor:pointer;color:inherit;font-family:inherit}
+.dt-lv.on{background:#6b4fa1;border-color:#6b4fa1;color:#fff}
 </style>
 </head><body>
 <h1>Bảng lương tháng ${m}/${y}</h1>

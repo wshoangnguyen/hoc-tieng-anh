@@ -161,6 +161,7 @@ const DU = {"level": 1, "ten": "Super Minds 1", "thoi_gian": "khoảng 40 phút 
 const KHOA = "eo_sm" + DU.level;
 const KHOA_VE = "eo_sm" + DU.level + "_ve";
 const KHOA_BAT = "eo_sm" + DU.level + "_bat";
+const KHOA_CHO = "eo_sm" + DU.level + "_cho";
 const API = "https://vm-4-15-ubuntu.tailcfa324.ts.net:8443";
 const PHUT = DU.phut || 40;
 let dap = {}, net = {}, daCham = false, daNop = false, hetLuc = 0, batDauLuc = 0;
@@ -449,9 +450,10 @@ function nopBai(){
   const o=document.getElementById("luu");
   o.className="luu"; o.textContent="Đang lưu bài vào Drive của thầy…";
   daNop=true;
+  const than={sach:DU.ten,ten,lop,ma,dung:(window.__kq||{}).dung,tong:(window.__kq||{}).tong,
+              phut:phut+" phút",tra_loi:items,anh};
   fetch(API+"/luu-bai-sm",{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({sach:DU.ten,ten,lop,ma,dung:(window.__kq||{}).dung,tong:(window.__kq||{}).tong,
-                         phut:phut+" phút",tra_loi:items,anh})})
+    body:JSON.stringify(than)})
   .then(r=>r.json())
   .then(d=>{
     if(d && d.ok){
@@ -464,7 +466,8 @@ function nopBai(){
     }
   })
   .catch(e=>{ o.className="luu loi";
-    o.textContent="Mất mạng nên chưa gửi được lên Drive. Bài vẫn lưu trên máy; con bấm “Chấm bài” để gửi lại, hoặc gửi Zalo cho thầy.";
+    o.textContent="Mất mạng nên chưa gửi được lên Drive. Bài vẫn lưu trên máy và sẽ tự gửi lại khi có mạng; con cũng có thể gửi Zalo cho thầy.";
+    try{localStorage.setItem(KHOA_CHO, JSON.stringify(than));}catch(err){}
     daNop=false; });
 }
 
@@ -498,6 +501,19 @@ document.getElementById("btBatDau").onclick=()=>{
   luu(); moBai(false);
 };
 
+function guiLai(){
+  let cho=null;
+  try{cho=JSON.parse(localStorage.getItem(KHOA_CHO)||"null");}catch(e){}
+  if(!cho) return;
+  fetch(API+"/luu-bai-sm",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(cho)})
+    .then(r=>r.json())
+    .then(d=>{ if(d&&d.ok){ localStorage.removeItem(KHOA_CHO);
+      const o=document.getElementById("luu"); if(o){o.className="luu ok";
+        o.innerHTML="✅ Bài làm trước đã được gửi lại vào Drive · tệp: <b>"+(d.file||"")+"</b>";} } })
+    .catch(()=>{});
+}
+window.addEventListener("online", guiLai);
+
 /* khôi phục */
 (function(){
   let tt=null,v=null;
@@ -514,6 +530,7 @@ document.getElementById("btBatDau").onclick=()=>{
   if(tt && tt.hetLuc && tt.hetLuc > Date.now()-1000){
     batDauLuc=tt.batDauLuc||Date.now(); hetLuc=tt.hetLuc; moBai(true);
   }
+  guiLai();
 })();
 </script>
 </body>
