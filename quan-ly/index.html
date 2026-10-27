@@ -798,7 +798,6 @@ function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; r
 
 /* ================= QUYỀN XEM ================= */
 /* v7.52: quản lý giáo viên ngang chủ về LỊCH (tuần, xếp GV, đăng ký); không xem công nợ/học phí, không sửa đơn giá, không xoá giáo viên, không thấy nút sao lưu. */
-/* v7.53: Lịch giáo viên — nút Thu nhỏ / Phóng to ×1,5 (nhớ lựa chọn); ẩn hàng giờ không có lớp dạy; điện thoại luôn cỡ nhỏ. */
 let VAI="", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
 const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
   kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy"};
@@ -1324,7 +1323,10 @@ function tinhHV(h){
   return h;
 }
 const hvTatCa=()=>S.hoc_vien||[];
-const hvDangHoc=()=>hvTatCa().filter(h=>h.trang_thai!=="nghỉ"&&h.trang_thai!=="bảo lưu");
+const chuanTT = v => String(v||"").trim().toLowerCase();
+const laBaoLuu = h => chuanTT(h.trang_thai)==="bảo lưu";
+const laNghi = h => chuanTT(h.trang_thai)==="nghỉ";
+const hvDangHoc=()=>hvTatCa().filter(h=>!laNghi(h)&&!laBaoLuu(h));
 function tinhHet(){ hvTatCa().forEach(tinhHV); }
 const nhanKM=h=>{ const v=Number(h.km_tri)||0; if(!v||h.km_kieu==="khong") return "";
   if(h.km_kieu==="thang") return v+" tháng";
@@ -2170,7 +2172,7 @@ let DD_LOP=null, DD_LOC="hom";
 function veDiemDanh(){
   const el=document.getElementById("ddBody"); if(!el) return;
   tinhHet();
-  const all=hvTatCa().filter(h=>h.trang_thai!=="bảo lưu");
+  const all=hvTatCa().filter(h=>!laBaoLuu(h));
   const lopTatCa=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
   const lopHomNay=lopTatCa.filter(l=>{ const o=(S.lop||[]).find(x=>x.ten===l)||{}; return (o.gio||[]).length && buoiCuaLop(l,1).length; });
   const sn=all.filter(laSinhNhat);
@@ -2186,7 +2188,7 @@ function veDiemDanh(){
       <span class="dem">${hs.length} em</span>
       ${lh?`<span class="giay">${(()=>{const g=gvCuaLopHomNay(l);const tg=(typeof DD_LOC!=="undefined"&&DD_LOC==="hom")?"":"hôm nay "+gioHom.join(", ");return [tg,g?esc(g):"<span style='color:var(--del)'>chưa có GV</span>"].filter(Boolean).join(" · ");})()}</span>`:`<span class="giay" style="color:var(--dim)">không có buổi hôm nay</span>`}
       <span class="bdto" data-bd="${esc(l)}" title="Mở bài dạy của lớp">Bài dạy ▸</span>
-      ${can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
+      ${(da>0&&can>0)?`<span class="chip" style="border-color:#d99100;color:#a26b00">chưa vào lớp đủ ${da}/${hs.length}</span>`:can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`:da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
     </button>`; };
   const dsHien=(DD_LOC==="hom"?lopHomNay:lopTatCa);
   const grid=document.getElementById("ddLopGrid");
@@ -2240,7 +2242,7 @@ function capNhatTreo(){
   });
 }
 function roiLop(lop){
-  const hs=hvTatCa().filter(h=>h.lop===lop).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
+  const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
   const n=hs.length, co=n<=4?"to":n<=6?"vua":n<=9?"nho":"ratnho";
   const hom=iso(new Date()), buoiHomNay=(b.gio||[]).filter(g=>g.thu===THU[thuCua(hom)]);
@@ -2280,7 +2282,7 @@ GAN("ddBody","click",e=>{
   if(t.id==="ddCa"){ const lop=DD_LOP;
     const bs=buoiCuaLop(lop,1).filter(b=>!b.chuaGio);
     if(!bs.length) return alert("Lớp này chưa xếp giờ cố định — hãy điểm danh từng em bằng nút ✅.");
-    hvTatCa().filter(h=>h.lop===lop).forEach(h=>bs.forEach(b=>ddDat(b.ngay,lop,h.ma_hv,"co")));
+    hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).forEach(h=>bs.forEach(b=>ddDat(b.ngay,lop,h.ma_hv,"co")));
     render(); return; }
   if(t.dataset.anh!==undefined && t.classList.contains("anh")) return;
   if(t.dataset.the) return moTheHV(t.dataset.the);
