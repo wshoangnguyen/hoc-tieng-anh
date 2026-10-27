@@ -205,6 +205,15 @@ footer img{height:40px;width:auto;margin-bottom:8px}
   .faq .tall{max-height:420px}
   .faq .sq{width:38%;right:0;bottom:-14px}
 }
+
+.how .rail.six{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);overflow:visible;margin-top:32px}
+.how .rail.six .moment{flex:none}
+@media(max-width:900px){.how .rail.six{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.how .rail.six{grid-template-columns:1fr}}
+.lvrow{border-top:1px solid #efe4cd;padding:10px 0}
+.lvrow:first-child{border-top:0;padding-top:0}
+.lvrow b{display:block;color:#6b4fa1;font-size:12.6px;letter-spacing:.2px;text-transform:uppercase}
+.lvrow p{margin:3px 0 0;font-size:14.6px;line-height:1.45;color:#3b2f1c}
 </style>
 </head>
 <body>
@@ -308,7 +317,7 @@ footer img{height:40px;width:auto;margin-bottom:8px}
       <p class="lead rv">Bước nào cũng có người trả lời. Ba mẹ không phải tự đoán con đang ở đâu.</p>
     </div>
   </div>
-  <div class="rail" tabindex="0" aria-label="Sáu bước đăng ký và học">
+  <div class="rail six" tabindex="0" aria-label="Sáu bước đăng ký và học">
     <article class="moment rv"><b>Bước một</b><h3>Nhắn Zalo</h3><p>Tên con, tuổi, giờ ba mẹ rảnh. Giáo viên trả lời trong ngày.</p></article>
     <article class="moment rv"><b>Bước hai</b><h3>Học thử một tuần</h3><p>Ba buổi thật, đúng lớp đúng trình độ. Chưa đóng phí.</p></article>
     <article class="moment rv"><b>Bước ba</b><h3>Ba mẹ quyết</h3><p>Nghe nhận xét của giáo viên sau tuần thử. Không hợp thì dừng, không mất gì.</p></article>
@@ -346,24 +355,19 @@ footer img{height:40px;width:auto;margin-bottom:8px}
   <div class="grid">
     <div>
       <h2 class="h2 rv">Con đang ở bậc nào</h2>
-      <p class="lead rv">Mỗi bé một phiếu đo <b>năng lực và hành vi học</b> — không chỉ một con điểm cuối kỳ. Thang đầy đủ có tám cột: sáu năng lực ngôn ngữ, cách tương tác trong lớp và những lỗi còn chấp nhận được ở từng level. Dưới đây là mốc theo lứa tuổi; <a href="/thang-do/" style="color:#6b4fa1;font-weight:600">xem thang đo đầy đủ →</a></p>
-      <div class="switch" role="group" aria-label="Chọn tuổi của con">
-        <button type="button" data-t="t1" aria-pressed="true">6–8 tuổi</button>
-        <button type="button" data-t="t2" aria-pressed="false">8–11 tuổi</button>
-        <button type="button" data-t="t3" aria-pressed="false">11–14 tuổi</button>
-      </div>
+      <p class="lead rv">Mỗi bé một phiếu đo <b>năng lực</b> và <b>hành vi học</b> — không chỉ một con điểm cuối kỳ. Tám cột: sáu năng lực ngôn ngữ, cách tương tác trong lớp, và những lỗi còn chấp nhận được ở từng level.</p>
+      <div class="switch" id="lvSwitch" role="group" aria-label="Chọn level của con"></div>
+      <p class="lead" id="lvSach" style="font-size:14.5px;margin-top:14px;font-weight:600;color:#6b4fa1"></p>
+      <p class="lead" style="font-size:14.5px;margin-top:10px">
+        <a href="https://hoctienganhdelam.com/thang-do/Thang-do-nang-luc-va-hanh-vi.pdf" style="color:#6b4fa1;font-weight:600;text-decoration:none">↓ Bảng A3 để dán lớp</a>
+        &nbsp;·&nbsp;
+        <a href="https://hoctienganhdelam.com/thang-do/Phieu-cham-nang-luc-hoc-sinh.pdf" style="color:#6b4fa1;font-weight:600;text-decoration:none">↓ Phiếu A4 chấm từng em</a>
+      </p>
     </div>
     <div class="card rv" id="hocba">
-      <p class="cap">Phiếu năng lực · năm học 2026–2027</p>
-      <h3 id="hb-title">Làm quen bằng bài hát và câu ngắn</h3>
-      <div class="photo"><img id="hb-img" src="moi/img/me-va-con.jpg" alt="Mẹ và bé gái cùng xem bài học" loading="lazy"></div>
-      <dl id="hb-list">
-        <dt>Nghe</dt><dd>Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.</dd>
-        <dt>Nói</dt><dd>Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.</dd>
-        <dt>Đọc</dt><dd>Đọc từ và câu mẫu có hình đi kèm.</dd>
-        <dt>Viết</dt><dd>Chép đúng từ, điền từ vào chỗ trống.</dd>
-        <dt>Mốc để đo</dt><dd>Đầu năm ở bậc 1–2; cuối năm đo lại xem con lên được bậc nào.</dd>
-      </dl>
+      <p class="cap" style="text-align:left">Tóm tắt · bốn trong tám cột</p>
+      <div id="lvCards"></div>
+      <p class="lead" style="font-size:13.2px;margin-top:10px;color:#6d5c3d">Đọc · Nghe · Viết và cột “lỗi còn chấp nhận được” ở bảng đầy đủ. Ô để trống nghĩa là buổi đó không có hoạt động ấy — <b>không phải con yếu</b>.</p>
     </div>
   </div>
 </section>
@@ -437,37 +441,27 @@ footer img{height:40px;width:auto;margin-bottom:8px}
     els.forEach(function(el,i){ el.style.transitionDelay=(Math.min(i%6,5)*70)+'ms'; io.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('in'); }); }
 
-  var DATA={
-    t1:{title:'Làm quen bằng bài hát và câu ngắn',img:'img/me-va-con.jpg',rows:[
-      ['Nghe','Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.'],
-      ['Nói','Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.'],
-      ['Đọc','Đọc từ và câu mẫu có hình đi kèm.'],
-      ['Viết','Chép đúng từ, điền từ vào chỗ trống.'],
-      ['Mốc để đo','Đầu năm ở bậc 1–2; cuối năm đo lại xem con lên được bậc nào.']]},
-    t2:{title:'Đọc hiểu đoạn ngắn, nói thành câu',img:'img/be-hoc.jpg',rows:[
-      ['Nghe','Nghe một đoạn hội thoại ngắn, trả lời được câu hỏi chính.'],
-      ['Nói','Kể lại việc đã làm trong ngày, dùng thì quá khứ đơn.'],
-      ['Đọc','Đọc đoạn 80–120 từ, tìm ý chính và từ mới theo ngữ cảnh.'],
-      ['Viết','Viết đoạn 40–60 từ có mở, thân, kết.'],
-      ['Mốc để đo','Đầu năm ở bậc 3–4; lớp A2 tính là bậc 5. Cuối năm đo lại.']]},
-    t3:{title:'Trình bày ý kiến, chuẩn bị thi chứng chỉ',img:'img/be-thuyet-trinh.jpg',rows:[
-      ['Nghe','Nghe bài giảng, ghi chú ý chính và chi tiết hỗ trợ.'],
-      ['Nói','Trình bày hai phút có mở đầu, lý do và ví dụ; trả lời câu hỏi.'],
-      ['Đọc','Đọc bài 200–300 từ, phân biệt ý kiến và dẫn chứng.'],
-      ['Viết','Viết bài 120–150 từ đúng ba phần, dùng liên kết câu.'],
-      ['Mốc để đo','Đầu năm ở bậc 6; B1 tính là bậc 7, sàn B1 là bậc 5. Cuối năm đo lại.']]}
-  };
-  var btns=document.querySelectorAll('.switch button'),
-      title=document.getElementById('hb-title'), img=document.getElementById('hb-img'), list=document.getElementById('hb-list');
-  btns.forEach(function(b){
-    b.addEventListener('click',function(){
-      btns.forEach(function(x){x.setAttribute('aria-pressed','false')});
-      b.setAttribute('aria-pressed','true');
-      var d=DATA[b.dataset.t];
-      title.textContent=d.title; img.src=d.img;
-      list.innerHTML=d.rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');
+  var LVDATA = [{"ten": "1", "sach": "Super Minds 1 · A1", "cards": [{"t": "Từ vựng", "m": "Gọi tên 8–10 từ (đồ vật, con vật, thức ăn) khi nhìn tranh; nhắc lại được từ của buổi trước khi có gợi ý."}, {"t": "Ngữ pháp", "m": "Trả lời bằng câu mẫu: It's a…, I like…, There are three…; sai đuôi từ vẫn hiểu."}, {"t": "Nói", "m": "Nói 1–3 câu mẫu về mình (tên, tuổi, sở thích), người nghe hiểu."}, {"t": "Tương tác", "m": "Nhìn giáo viên khi được hỏi, trả lời trong 3 giây; nói “again, please” khi chưa hiểu."}]}, {"ten": "2", "sach": "Super Minds 2 · A1+", "cards": [{"t": "Từ vựng", "m": "Gọi tên 10–12 từ theo chủ đề (thói quen, nơi chốn, thức ăn); nói 1 câu có 2 từ cùng chủ đề."}, {"t": "Ngữ pháp", "m": "Hỏi–đáp giờ và thói quen (What time do you…? I … at …); dùng some/any, Can I…?, would like…"}, {"t": "Nói", "m": "Nói 3–4 câu liền về thói quen hằng ngày, có giờ giấc."}, {"t": "Tương tác", "m": "Trả lời câu hỏi của bạn cùng lớp 1 lần; xin nhắc lại bằng “Sorry?” hoặc “Can you repeat?”"}]}, {"ten": "3", "sach": "Super Minds 3 · A2-", "cards": [{"t": "Từ vựng", "m": "Dùng 8–10 từ của unit trong câu của mình; dùng lại 3 từ buổi trước; đoán nghĩa từ mới qua ngữ cảnh và nói ra."}, {"t": "Ngữ pháp", "m": "Kể 4 việc đã làm hôm qua (quá khứ đơn); so sánh 2 vật; nói điều phải làm (have to / must)."}, {"t": "Nói", "m": "Nói 4–6 câu liền mạch về việc đã làm, có because nêu lý do."}, {"t": "Tương tác", "m": "Tự mở lượt kể trước khi được hỏi; nói tiếp sau khi bị sửa; hỏi lại khi không hiểu."}]}, {"ten": "4", "sach": "Super Minds 4 · Open World A2 · A2", "cards": [{"t": "Từ vựng", "m": "Dùng 6–8 cụm của unit khi kể trải nghiệm (tidy up, put up a tent…); chọn đúng từ trong 2 từ gần nghĩa."}, {"t": "Ngữ pháp", "m": "Kể câu chuyện 5–6 câu có quá khứ đơn + quá khứ tiếp diễn (while/when); so sánh trước–giờ bằng used to."}, {"t": "Nói", "m": "Kể 6–8 câu có trình tự thời gian, nêu lý do và cảm xúc."}, {"t": "Tương tác", "m": "Phản hồi ý bạn (Me too / I don't think so) và đặt 1 câu hỏi ngược cho bạn."}]}, {"ten": "5", "sach": "Super Minds 5 · Open World A2 · A2+", "cards": [{"t": "Từ vựng", "m": "Dùng collocation đúng (make a decision, take a photo); tự sửa khi dùng sai từ; giải thích 1 từ bằng tiếng Anh đơn giản."}, {"t": "Ngữ pháp", "m": "Kể trải nghiệm với hiện tại hoàn thành (already/yet); nói điều kiện loại 0/1; miêu tả đồ vật bằng bị động (is made of)."}, {"t": "Nói", "m": "Nói 8–10 câu theo dàn ý 3 phần (first / then / because / so), giữ lượt 1 phút."}, {"t": "Tương tác", "m": "Chủ động hỏi lại để làm rõ; giữ lượt nói 1 phút; mời bạn nói (What about you?)."}]}, {"ten": "6", "sach": "Super Minds 6 · Open World A2 · Open World B1 · B1", "cards": [{"t": "Từ vựng", "m": "Dùng từ nhiều chủ đề, có thành ngữ quen; chọn từ hợp văn phong; giải thích 1 từ bằng 2 câu tiếng Anh."}, {"t": "Ngữ pháp", "m": "Tường thuật lời người khác (He said that…), câu hỏi đuôi, may/might, điều kiện loại 2; tự phát hiện và sửa lỗi."}, {"t": "Nói", "m": "Thuyết trình 1–2 phút theo dàn ý; trả lời 2 câu hỏi mở; tự sửa khi sai."}, {"t": "Tương tác", "m": "Phản biện nhẹ (I see your point, but…), dẫn dắt lượt, không chen lời, hỏi lại khi cần."}]}, {"ten": "7", "sach": "Open World B1 · B1", "cards": [{"t": "Từ vựng", "m": "Dùng từ B1 theo chủ đề quen; paraphrase khi không nhớ từ; dùng cụm động từ thông dụng."}, {"t": "Ngữ pháp", "m": "Dùng bị động, tường thuật, điều kiện 1–2, mệnh đề quan hệ, hiện tại hoàn thành for/since trong nói và viết."}, {"t": "Nói", "m": "Nói 1 phút về tranh, thảo luận 2 phút với bạn, trả lời câu hỏi mở rộng."}, {"t": "Tương tác", "m": "Duy trì hội thoại 2 phút, nêu ý kiến + lý do, phản hồi bạn, xử lý khi bí từ."}]}, {"ten": "8", "sach": "Open World B1 · B1+ (hướng B2)", "cards": [{"t": "Từ vựng", "m": "Dùng từ học thuật nhẹ; diễn đạt lại ý khi bí từ; chọn từ hợp ngữ cảnh trang trọng hoặc thân mật."}, {"t": "Ngữ pháp", "m": "Kiểm soát thì khi kể và khi lập luận; câu phức nhiều mệnh đề, điều kiện loại 2–3, bị động nhiều thì; tự sửa lỗi."}, {"t": "Nói", "m": "Thảo luận 2–3 phút: đưa 2 lý do, phản hồi ý bạn, xử lý khi bí từ."}, {"t": "Tương tác", "m": "Dẫn dắt lượt, phản biện nhẹ, mời bạn nói, không chen lời, hỏi lại khi cần."}]}];
+  var lvWrap=document.getElementById('lvSwitch'),
+      lvCards=document.getElementById('lvCards'),
+      lvSach=document.getElementById('lvSach');
+  lvWrap.innerHTML = LVDATA.map(function(l,i){
+    return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===0)+'">Level '+l.ten+'</button>';
+  }).join('');
+  function veLv(i){
+    var l=LVDATA[i];
+    lvSach.textContent = 'Level '+l.ten+' · '+l.sach;
+    lvCards.innerHTML = l.cards.map(function(c){
+      return '<div class="lvrow"><b>'+c.t+'</b><p>'+c.m+'</p></div>';
+    }).join('');
+    [].forEach.call(lvWrap.children,function(bt){
+      bt.setAttribute('aria-pressed', String(+bt.dataset.i===i));
     });
+  }
+  lvWrap.addEventListener('click',function(e){
+    var bt=e.target.closest('button'); if(bt) veLv(+bt.dataset.i);
   });
+  veLv(0);
 
   var lb=document.getElementById('lb'), lbAnh=document.getElementById('lbAnh'), lbDong=document.getElementById('lbDong');
   document.querySelectorAll('a.zoom').forEach(function(a){
