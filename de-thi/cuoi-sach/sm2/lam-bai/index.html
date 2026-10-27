@@ -78,8 +78,11 @@ h1{font-size:21px;margin:4px 0 2px}
            border:1.5px solid var(--vien);border-radius:7px;padding:4px 7px;cursor:pointer}
 .butve .cu.on{background:var(--tim);border-color:var(--tim);color:#fff}
 .khung-anh{position:relative;margin:0}
-.khung-anh img{display:block;width:100%;height:auto;border:1px solid var(--vien);border-radius:8px;background:#fff}
-@media (max-width:700px){.khung-anh img{width:auto;max-width:100%;max-height:68vh;margin:0 auto}}
+.khung-anh{text-align:center}
+.khung-anh img{display:block;margin:0 auto;width:auto;max-width:100%;max-height:72vh;height:auto;border:1px solid var(--vien);border-radius:8px;background:#fff}
+.khung-anh.to img{max-height:none;width:100%}
+.khung-anh .nut-anh{position:absolute;right:8px;top:8px;z-index:4;border:1px solid var(--vien);background:#fff;border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:700;color:#4a3f2a;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media (max-width:700px){.khung-anh img{max-height:66vh}}
 .khung-anh canvas{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:8px;touch-action:none;display:none;cursor:crosshair}
 .khung-anh.ve canvas{display:block}
 .xemanh{font-size:11.5px;color:var(--tim);text-decoration:none;display:inline-block;margin:3px 0 0}
@@ -301,7 +304,12 @@ function ve(){
           cotAnh.appendChild(bar);
         }
         const khung=document.createElement("div"); khung.className="khung-anh"; khung.dataset.cho=id;
-        khung.innerHTML='<img src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas>';
+        khung.innerHTML='<img src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas><button type="button" class="nut-anh">⤢ Xem lớn</button>';
+        khung.querySelector(".nut-anh").onclick=function(){
+          const to=khung.classList.toggle("to");
+          this.textContent = to ? "⤡ Thu nhỏ" : "⤢ Xem lớn";
+          setTimeout(()=>window.dispatchEvent(new Event("resize")),60);
+        };
         cotAnh.appendChild(khung);
         const zoom=document.createElement("a"); zoom.className="xemanh"; zoom.href=bai.anh;
         zoom.target="_blank"; zoom.rel="noopener"; zoom.textContent="View full size"; cotAnh.appendChild(zoom);
