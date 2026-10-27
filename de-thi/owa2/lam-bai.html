@@ -68,6 +68,33 @@
   th{color:var(--nau2);font-weight:600}
   .badge{display:inline-block;background:#efe6ff;color:var(--tim);border-radius:8px;padding:3px 9px;font-size:13px}
   .hide{display:none!important}
+
+  @media print{
+    @page{size:A4;margin:14mm 13mm}
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    header,.bar,#start,#exam,#result .nav,.noprint{display:none!important}
+    .card{box-shadow:none;border:0;padding:0;margin:0 0 10px}
+    #result h2{margin:0 0 6px}
+    .phieu{display:block!important}
+    #result .card:not(.res){display:none!important}
+    .res>*:not(.phieu){display:none!important}
+    .phieu table{page-break-inside:auto}
+    .phieu tr{page-break-inside:avoid}
+    .big{color:#000!important}
+    .badge{border:1px solid #999;background:#fff!important;color:#000!important}
+    a{color:#000;text-decoration:none}
+  }
+  .phieu{display:none}
+  .phieu .row{display:flex;gap:10px;font-size:13px;margin:2px 0}
+  .phieu .row b{min-width:86px;color:#6d5c3d}
+  .phieu h3{font-size:14px;margin:12px 0 4px}
+  .phieu .dap{font-size:12.5px}
+  .phieu .dap td{padding:4px 5px;border-bottom:1px solid #e3d6bb}
+  .phieu .viet{white-space:pre-line;border:1px solid #ccc;border-radius:6px;padding:8px 10px;font-size:13px}
+  .phieu .dau{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #b8923f;padding-bottom:6px;margin-bottom:8px}
+  .phieu .dau img{width:120px;height:40px;object-fit:contain}
+  .phieu .diem{font-size:26px;font-weight:800}
   @media(max-width:520px){.wrap{padding:12px 11px 110px}h2{font-size:17px}.big{font-size:30px!important}}
 </style>
 </head>
@@ -81,8 +108,8 @@
   <div id="start">
     <div class="card">
       <h2>Chào con 👋</h2>
-      <p class="muted">Bài gồm 2 phần: <b>Đọc &amp; Viết</b> (60 phút) và <b>Nghe</b> (5 file, mỗi file nghe 2 lần).
-         Con làm xong rồi bấm Nộp bài, máy chấm ngay 55 câu và báo điểm từng phần.</p>
+      <p class="muted">Bài làm <b>phần Nghe trước</b> (5 file, mỗi file nghe 2 lần) để giáo viên hỗ trợ ngay nếu file lỗi,
+         rồi làm <b>Đọc &amp; Viết</b> (60 phút). Xong bấm Nộp bài, máy chấm ngay 55 câu và báo điểm từng phần.</p>
       <label class="f" for="ten">Họ và tên</label>
       <input class="txt" id="ten" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="name">
       <label class="f" for="lop">Lớp</label>
@@ -144,8 +171,8 @@ function cauHoi(it, part, nguon){
   return h + '</div>';
 }
 
-function dungDe(){
-  let h = '<div class="sec">PHẦN A · ĐỌC &amp; VIẾT — 60 phút</div>';
+function khoiDoc(){
+  let h = '<div class="sec">PHẦN B · ĐỌC &amp; VIẾT — 60 phút</div>';
   DATA.reading.forEach(p => {
     h += '<div class="part"><div class="h">'+esc(p.title)+'</div><p class="muted">'+esc(p.intro)+'</p>';
     if(p.people) p.people.forEach(x => h += '<div class="box"><b>'+esc(x.ten)+'</b> — '+esc(x.text)+'</div>');
@@ -159,8 +186,11 @@ function dungDe(){
     p.items.forEach(it => h += cauHoi(it, p, 'reading'));
     h += '</div>';
   });
+  return h;
+}
 
-  h += '<div class="sec">PHẦN B · NGHE — khoảng 30 phút</div>';
+function khoiNghe(){
+  let h = '<div class="sec">PHẦN A · NGHE — khoảng 30 phút</div>';
   DATA.listening.forEach(p => {
     h += '<div class="part"><div class="h">'+esc(p.title)+'</div><p class="muted">'+esc(p.intro)+'</p>';
     h += '<audio controls preload="none" src="/de-thi/owa2/part'+p.part+'.mp3"></audio>';
@@ -177,6 +207,10 @@ function dungDe(){
     h += '</div>';
   });
   return h;
+}
+
+function dungDe(){
+  return khoiNghe() + khoiDoc();
 }
 
 /* ---------- đếm & lưu ---------- */
@@ -291,12 +325,15 @@ function nopBai(tuDong){
   theoPhan.forEach(x => h += '<tr><td>'+esc(x.ten)+'</td><td><b>'+x.dung+'</b>/'+x.tong+'</td></tr>');
   h += '</table>';
   h += '<p class="muted" style="margin-top:10px">Bài viết: '+(soTu?soTu+' từ':'chưa viết')+' — giáo viên chấm tay phần này.</p>';
-  h += '<div class="nav"><button class="btn ghost" onclick="location.reload()">Làm lại</button>'+
+  h += '<div class="nav noprint"><button class="btn" onclick="inPhieu()">Tải PDF bài làm</button>'+
+       '<button class="btn ghost" onclick="location.reload()">Làm lại</button>'+
        '<a class="btn" href="https://zalo.me/0346281292" target="_blank" rel="noopener">Gửi kết quả cho giáo viên</a></div>';
   h += '<p class="muted" style="margin-top:10px">Chụp màn hình này gửi Zalo, hoặc bấm nút trên rồi dán ảnh. '+
        'Giáo viên trả nhận xét và đáp án trong 2 ngày.</p></div>';
   h += '<div class="card"><h3>Bài viết của con</h3><div class="box">'+(viet?esc(viet):'<span class="muted">Con chưa viết phần này.</span>')+'</div></div>';
 
+  // phiếu in
+  h += phieuIn(ten, lop, ma, tongDung, docDung, theoPhan, viet, soTu);
   document.getElementById('exam').classList.add('hide');
   document.getElementById('start').classList.add('hide');
   const r = document.getElementById('result');
@@ -339,6 +376,60 @@ function khoiPhuc(){
     }, 80);
   }catch(e){}
 }
+
+
+/* ---------- phiếu bài làm để in / lưu PDF ---------- */
+function chuCua(it){
+  const id = it.id || it.n, v = KQ[id];
+  if(v === undefined || String(v).trim() === '') return '<i>—</i>';
+  if(it.opts){
+    const i = String(v).charCodeAt(0) - 65;
+    return esc(v) + '. ' + esc(it.opts[i] || '');
+  }
+  return esc(v);
+}
+function khoaCua(it){
+  if(it.opts){ const i = String(it.key).charCodeAt(0) - 65; return esc(it.key) + '. ' + esc(it.opts[i] || ''); }
+  return esc(it.key);
+}
+function phieuIn(ten, lop, ma, tongDung, docDung, theoPhan, viet, soTu){
+  const luc = new Date();
+  const ngay = luc.toLocaleDateString('vi-VN') + ' ' + luc.toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'});
+  let h = '<div class="phieu"><div class="dau"><div><b style="font-size:15px">PHIẾU BÀI LÀM — Open World A2 (A2 Key)</b><br>'+
+          '<span style="font-size:12px;color:#6d5c3d">Học Tiếng Anh Dễ Lắm · hoctienganhdelam.com</span></div>'+
+          '<img src="/logo.png" alt=""></div>';
+  h += '<div class="row"><b>Học sinh</b><span>'+esc(ten)+'</span></div>';
+  h += '<div class="row"><b>Lớp</b><span>'+esc(lop||'—')+'</span></div>';
+  h += '<div class="row"><b>Mã học viên</b><span>'+esc(ma||'—')+'</span></div>';
+  h += '<div class="row"><b>Nộp lúc</b><span>'+ngay+'</span></div>';
+  h += '<div class="row"><b>Kết quả</b><span class="diem">'+tongDung+'/55</span> &nbsp;· Đọc &amp; Viết '+docDung+'/30 · Nghe '+(tongDung-docDung)+'/25</div>';
+  h += '<table style="margin-top:8px"><tr><th>Phần</th><th>Đúng</th><th>Bài làm</th><th>Đáp án</th></tr>';
+
+  const nhom = [
+    {ten:'A · Đọc & Viết', parts:DATA.reading},
+    {ten:'B · Nghe', parts:DATA.listening}
+  ];
+  nhom.forEach(g=>{
+    h += '<tr><td colspan="4" style="background:#f3ead7;font-weight:700">'+g.ten+'</td></tr>';
+    g.parts.forEach(p=>{
+      if(!p.items || !p.items.length) return;
+      const d = p.items.filter(it=>dungCau(it)).length;
+      h += '<tr><td colspan="4" style="font-weight:600;padding-top:7px">'+esc(p.title)+' — '+d+'/'+p.items.length+'</td></tr>';
+      p.items.forEach(it=>{
+        const ok = dungCau(it);
+        h += '<tr class="dap"><td style="width:34px">'+it.n+'</td><td style="width:22px">'+(ok?'✓':'✗')+'</td>'+
+             '<td>'+chuCua(it)+'</td><td style="color:#555">'+khoaCua(it)+'</td></tr>';
+      });
+    });
+  });
+  h += '</table>';
+  h += '<h3>Bài viết (giáo viên chấm tay) — '+soTu+' từ</h3>';
+  h += '<div class="viet">'+(viet?esc(viet):'<i>Chưa viết</i>')+'</div>';
+  h += '<p style="font-size:11.5px;color:#6d5c3d;margin-top:10px">Máy chấm 55 câu nghe + đọc. Điểm viết do giáo viên chấm. '+
+       'File này lưu trên máy học sinh; gửi Zalo 0346 281 292 để giáo viên lưu hồ sơ.</p>';
+  return h + '</div>';
+}
+function inPhieu(){ window.print(); }
 
 /* ---------- khởi động ---------- */
 document.getElementById('body').innerHTML = dungDe();
