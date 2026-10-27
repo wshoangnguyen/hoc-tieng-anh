@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nấc 5 · Tư duy — Học tiếng Anh dễ lắm</title>
+<title>Level 5 · Tư duy — Học tiếng Anh dễ lắm</title>
 <link rel="stylesheet" href="core.css">
 <script src="core.js"></script>
 <script src="ho-so.js"></script>
@@ -39,7 +39,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>🧠 Nấc 5 · Tư duy</h1>
+  <h1>🧠 Level 5 · Tư duy</h1>
   <p class="sub">Chọn sách và Unit con vừa học. Làm 8 câu: loại từ khác nhóm và chọn từ đúng điền vào câu.</p>
 
   <div class="card" style="margin-bottom:12px">
@@ -175,7 +175,7 @@ async function ketThuc() {
     ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
     : (khop === null ? "Chưa xác định được bài đang học — điểm được tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
   $("#noiDung").innerHTML = `
-    <div style="font-size:18px;font-weight:700;margin-bottom:6px">Nấc 5 hoàn tất: đúng ${DUNG}/${CAU.length}</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:6px">Level 5 hoàn tất: đúng ${DUNG}/${CAU.length}</div>
     <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Chưa đạt 60% — làm lại để lấy điểm nấc này nhé."}</div>
     <div class="row">
       <button class="ghost" id="lai">Làm bộ khác</button>

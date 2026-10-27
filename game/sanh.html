@@ -40,39 +40,43 @@
   .nhom small{display:block;color:var(--nhat);font-size:11.5px;font-weight:600;margin-top:1px}
 
   .luoi{
-    display:grid; grid-template-columns:repeat(auto-fill,160px); gap:12px;
-    justify-content:center;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px;
   }
   .tro{
-    background:var(--the); border:1px solid var(--vien); border-radius:18px;
-    padding:14px 10px 12px; text-decoration:none; color:inherit;
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    box-shadow:0 2px 0 #e9e2d1, 0 8px 18px rgba(80,70,40,.06);
-    transition:transform .12s ease, box-shadow .12s ease; min-height:132px;
-    justify-content:center; -webkit-tap-highlight-color:transparent;
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#fffdf8,#fff); border:1px solid var(--vien); border-radius:20px;
+    padding:0 0 12px; text-decoration:none; color:inherit; display:flex; flex-direction:column;
+    box-shadow:0 2px 0 #e9e2d1, 0 10px 22px rgba(80,70,40,.07);
+    transition:transform .14s ease, box-shadow .14s ease; -webkit-tap-highlight-color:transparent;
   }
-  .tro:active{transform:scale(.97)}
-  @media(hover:hover){ .tro:hover{transform:translateY(-3px); box-shadow:0 4px 0 #e9e2d1,0 14px 24px rgba(80,70,40,.12)} }
-  .tro .icon{width:72px;height:72px;display:grid;place-items:center;border-radius:16px;font-size:34px;line-height:1;background:#fbf7ec}
-  .tro .icon img{width:64px;height:64px;object-fit:contain;border-radius:12px}
-  .tro b{font-size:14.5px;font-weight:700;text-align:center;line-height:1.25}
-  .tro span.phu{font-size:11.5px;color:var(--nhat);text-align:center}
+  .tro:active{transform:scale(.98)}
+  @media(hover:hover){ .tro:hover{transform:translateY(-4px); box-shadow:0 5px 0 #e9e2d1,0 18px 30px rgba(80,70,40,.14)} }
+  .tro .logo{
+    width:100%; height:118px; display:flex; align-items:center; justify-content:center; overflow:hidden;
+    background:#f5f2e9;
+    border-bottom:1px solid #f0e7d4;
+  }
+  .tro .logo img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; padding:10px 12px}
+  .tro .logo .emo{font-size:46px;line-height:1}
+  .tro b{font-size:15.5px;font-weight:800;text-align:center;line-height:1.25;padding:10px 12px 0}
+  .tro span.phu{font-size:12px;color:var(--nhat);text-align:center;padding:2px 12px 0;line-height:1.35}
+  .tro .goc{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;
+    font-family:"Baloo Bhaina 2",cursive;font-size:14px;color:#fff;opacity:.95}
 
   .khac .tro{background:#fffdf7}
 
   @media (max-width:430px){
-    .luoi{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:340px; margin:0 auto}
-    .tro{min-height:128px;padding:12px 8px 10px}
-    .tro .icon{width:64px;height:64px;font-size:30px}
-    .tro .icon img{width:56px;height:56px}
+    .luoi{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+    .tro .logo{height:88px}
     .tro b{font-size:13.5px}
+    .tro span.phu{font-size:11px}
   }
 </style>
 </head>
 <body>
 <header>
   <h1>🎮 Sảnh trò chơi</h1>
-  <p>Chọn trò theo nấc — càng lên nấc, trò càng cần nghĩ nhiều hơn</p>
+  <p>Chọn trò theo level — càng lên level, trò càng cần nghĩ nhiều hơn</p>
   <a class="ve" href="../index.html" target="_blank" rel="noopener">← Về trang chủ</a>
 </header>
 
@@ -82,34 +86,34 @@
 const NHOM = [
   { so:1, ten:"Nhận diện", mo:"Nhìn hình / nghe từ rồi hiểu nghĩa", mau:"#4ecdc4",
     tro:[
-      {ten:"Thẻ từ", phu:"Lật thẻ học từ", href:"flashcard.html", img:"flashcard.png", icon:"🃏"},
-      {ten:"Ghép cặp", phu:"Từ ↔ nghĩa", href:"games/matching-game.html", icon:"🃏", nen:"#eef2ff"},
-      {ten:"Bắt thẻ", phu:"Bắt đúng hình đang bay", href:"games/catch-the-card.html", icon:"🫳", nen:"#eef2ff"}
+      {ten:"Thẻ từ", phu:"Lật thẻ học từ", href:"flashcard.html", img:"flashcard.png"},
+      {ten:"Ghép cặp", phu:"Từ ↔ nghĩa", href:"games/matching-game.html", img:"matching.png"},
+      {ten:"Bắt thẻ", phu:"Bắt đúng hình đang bay", href:"games/catch-the-card.html", img:"catch-the-card.png"}
     ]},
   { so:2, ten:"Lặp lại", mo:"Nhớ mặt chữ và viết lại cho đúng", mau:"#f0a24b",
     tro:[
-      {ten:"Đánh vần", phu:"Nghe rồi viết từng chữ", href:"games/spelling-game.html", icon:"✍️", nen:"#eef2ff"},
-      {ten:"Xếp chữ", phu:"Xếp lại các chữ cái", href:"scrambled-word.html", img:"scrambled-word.png", icon:"🔤"},
-      {ten:"Tìm từ", phu:"Tìm từ trong ô chữ", href:"word-find.html", img:"word-find.png", icon:"🔎"}
+      {ten:"Đánh vần", phu:"Nghe rồi viết từng chữ", href:"games/spelling-game.html", img:"spelling.png"},
+      {ten:"Xếp chữ", phu:"Xếp lại các chữ cái", href:"scrambled-word.html", img:"scrambled-word.png"},
+      {ten:"Tìm từ", phu:"Tìm từ trong ô chữ", href:"word-find.html", img:"word-find.png"}
     ]},
   { so:3, ten:"Dùng theo mẫu", mo:"Chọn và ghép theo câu mẫu", mau:"#7b9ef0",
     tro:[
-      {ten:"Trắc nghiệm", phu:"Chọn đáp án đúng", href:"games/quiz-game.html", icon:"🎯", nen:"#eef2ff"},
-      {ten:"Xếp thành câu", phu:"Ghép từ thành câu đúng", href:"sentence-builder.html", img:"sentence-builder.png", icon:"🧩"}
+      {ten:"Trắc nghiệm", phu:"Chọn đáp án đúng", href:"games/quiz-game.html", img:"quiz.png"},
+      {ten:"Xếp thành câu", phu:"Ghép từ thành câu đúng", href:"sentence-builder.html", img:"sentence-builder.png"}
     ]},
   { so:4, ten:"Dùng tự do", mo:"Đọc và hiểu cả đoạn", mau:"#a78bfa",
     tro:[
-      {ten:"Tập đọc", phu:"Đọc bài, nghe phát âm", href:"Reading.html", icon:"📖", nen:"#f5f0ff"},
-      {ten:"Dịch truyện", phu:"Từ rơi — chọn nghĩa đúng", href:"words-fall.html", img:"words-fall.png", icon:"🌧️"}
+      {ten:"Tập đọc", phu:"Đọc bài, nghe phát âm", href:"Reading.html", img:"tap-doc.png"},
+      {ten:"Dịch truyện", phu:"Từ rơi — chọn nghĩa đúng", href:"words-fall.html", img:"words-fall.png"}
     ]},
   { so:5, ten:"Tư duy", mo:"Suy luận, tự phát hiện lỗi", mau:"#e0679b",
     tro:[
-      {ten:"Tư duy", phu:"Chọn sách · Unit rồi làm câu đố", href:"tu-duy.html", icon:"🧠", nen:"#f3e8ff"},
-      {ten:"Ôn từ hay sai", phu:"Chỉ ôn những từ mình sai", href:"on-tap.html", icon:"🔁", nen:"#fff7ed"}
+      {ten:"Tư duy", phu:"Chọn sách · Unit rồi làm câu đố", href:"tu-duy.html", img:"tu-duy.png"},
+      {ten:"Ôn từ hay sai", phu:"Chỉ ôn những từ mình sai", href:"on-tap.html", img:"on-tap.png"}
     ]},
   { so:6, ten:"Sáng tạo", mo:"Nói chuyện với AI bằng tiếng Anh, dùng từ và cấu trúc của bài", mau:"#0ea5a4",
     tro:[
-      {ten:"Nói chuyện với AI", phu:"6 lượt hỏi–đáp, AI chấm từng câu", href:"noi-chuyen.html", icon:"💬", nen:"#ecfeff"}
+      {ten:"Nói chuyện với AI", phu:"6 lượt hỏi–đáp, AI chấm từng câu", href:"noi-chuyen.html", img:"noi-chuyen.png"}
     ]}
 ];
 
@@ -120,12 +124,13 @@ const html = NHOM.concat([KHAC]).map(n=>`
   <section class="${n.so?"":"khac"}">
     <div class="nhom">
       <div class="so" style="background:${n.mau}">${n.so||"★"}</div>
-      <div><h2>${n.so?("Nấc "+n.so+" · "):""}${n.ten}</h2><small>${n.mo}</small></div>
+      <div><h2>${n.so?("Level "+n.so+" · "):""}${n.ten}</h2><small>${n.mo}</small></div>
     </div>
     <div class="luoi">
       ${n.tro.map(t=>`
         <a class="tro" href="${t.href}" target="_blank" rel="noopener">
-          <span class="icon" ${t.nen?`style="background:${t.nen}"`:""}>${t.img?`<img src="${t.img}" alt="" loading="lazy">`:t.icon}</span>
+          ${n.so?`<span class="goc" style="background:${n.mau}">${n.so}</span>`:""}
+          <span class="logo">${t.img?`<img src="${t.img}" alt="${t.ten}" loading="lazy">`:`<span class="emo">${t.icon||"🎮"}</span>`}</span>
           <b>${t.ten}</b><span class="phu">${t.phu||""}</span>
         </a>`).join("")}
     </div>

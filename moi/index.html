@@ -92,6 +92,16 @@ section{position:relative;scroll-margin-top:96px}
 .msgs img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px}
 .msgs figcaption{font-size:14px;color:var(--ink-soft);padding:10px 4px 2px;font-weight:600}
 
+
+.msgs a.zoom{display:block;border-radius:12px;overflow:hidden;cursor:zoom-in}
+.msgs a.zoom img{transition:transform .25s ease}
+.msgs a.zoom:hover img{transform:scale(1.03)}
+.nhin{display:block;text-align:center;font-size:12px;color:#9a8567;font-weight:600;margin-top:-4px}
+.lb{position:fixed;inset:0;background:rgba(28,20,12,.9);display:none;z-index:200;padding:14px;overflow:auto}
+.lb.on{display:block}
+.lb img{display:block;margin:0 auto;max-width:min(560px,100%);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .dong{position:fixed;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#3a2b1e;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.lb .hd{color:#f6ecd9;text-align:center;font-size:13px;margin:0 0 10px}
 .how{padding-block:clamp(60px,7vw,100px)}
 .how .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .rail{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;margin-top:32px;padding-bottom:14px;scrollbar-width:none}
@@ -151,7 +161,7 @@ details p{padding-bottom:16px;color:var(--ink-soft);font-size:16px}
 .cta .do{background:rgba(255,255,255,.14);border-radius:var(--r);padding:clamp(20px,3vw,30px);text-align:center}
 .cta .do .btn{width:100%;background:var(--gold);color:#4a3410}
 .cta .do .btn:hover{filter:brightness(1.05)}
-.cta .do .alt{margin-top:12px;font-size:14px;color:#efecff}
+.cta .do .alt{margin-top:12px;font-size:14px;color:#fff}
 .cta .do .fb{display:inline-block;margin-top:12px;font-size:14px;color:#fff;text-decoration:underline;text-underline-offset:3px}
 
 footer{padding:34px 0 46px;font-size:14px;color:var(--ink-soft)}
@@ -281,13 +291,13 @@ footer img{height:40px;width:auto;margin-bottom:8px}
 
 <section class="msg wrap" id="phu-huynh">
   <h2 class="h2 rv">Phụ huynh nhắn sau buổi học</h2>
-  <p class="lead rv">Tin nhắn thật của phụ huynh gửi giáo viên. Em chỉ làm mờ tên và ảnh đại diện, không sửa nội dung.</p>
+  <p class="lead rv">Tin nhắn thật của phụ huynh gửi giáo viên. Em chỉ làm mờ tên người gửi, không sửa nội dung. Bấm vào ảnh để đọc đầy đủ.</p>
   <div class="msgs">
-    <figure class="rv"><img src="/tin-nhan-1.jpg" alt="Tin nhắn phụ huynh cảm ơn sau buổi học" loading="lazy"></figure>
-    <figure class="rv"><img src="/tin-nhan-2.jpg" alt="Tin nhắn phụ huynh kể con tiến bộ" loading="lazy"></figure>
-    <figure class="rv"><img src="/tin-nhan-3.jpg" alt="Tin nhắn phụ huynh hỏi bài cho con" loading="lazy"></figure>
-    <figure class="rv"><img src="/tin-nhan-4.jpg" alt="Tin nhắn phụ huynh xin học thử" loading="lazy"></figure>
-    <figure class="rv"><img src="/tin-nhan-5.jpg" alt="Tin nhắn phụ huynh nhận xét giáo viên" loading="lazy"></figure>
+    <figure class="rv"><a class="zoom" href="/tin-nhan-1.jpg" aria-label="Xem đầy đủ tin nhắn"><img src="/tin-nhan-1.jpg" alt="Tin nhắn phụ huynh cảm ơn sau buổi học" loading="lazy"></a></figure>
+    <figure class="rv"><a class="zoom" href="/tin-nhan-2.jpg" aria-label="Xem đầy đủ tin nhắn"><img src="/tin-nhan-2.jpg" alt="Tin nhắn phụ huynh kể con tiến bộ" loading="lazy"></a></figure>
+    <figure class="rv"><a class="zoom" href="/tin-nhan-3.jpg" aria-label="Xem đầy đủ tin nhắn"><img src="/tin-nhan-3.jpg" alt="Tin nhắn phụ huynh hỏi bài cho con" loading="lazy"></a></figure>
+    <figure class="rv"><a class="zoom" href="/tin-nhan-4.jpg" aria-label="Xem đầy đủ tin nhắn"><img src="/tin-nhan-4.jpg" alt="Tin nhắn phụ huynh xin học thử" loading="lazy"></a></figure>
+    <figure class="rv"><a class="zoom" href="/tin-nhan-5.jpg" aria-label="Xem đầy đủ tin nhắn"><img src="/tin-nhan-5.jpg" alt="Tin nhắn phụ huynh nhận xét giáo viên" loading="lazy"></a></figure>
   </div>
 </section>
 
@@ -380,7 +390,7 @@ footer img{height:40px;width:auto;margin-bottom:8px}
   <div class="box">
     <div>
       <h2 class="rv">Cho con học thử một tuần</h2>
-      <p class="rv">Ba buổi thật, chưa đóng phí. Ba mẹ nhắn tên con, tuổi và giờ rảnh — giáo viên xếp lớp trong hai ngày.</p>
+      <p class="rv">Ba buổi thật, chưa đóng phí. Giáo viên xếp lớp trong hai ngày.</p>
     </div>
     <div class="do rv">
       <a class="btn" href="https://zalo.me/0346281292">Nhắn Zalo cho giáo viên</a>
@@ -389,6 +399,12 @@ footer img{height:40px;width:auto;margin-bottom:8px}
     </div>
   </div>
 </section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Ảnh tin nhắn phụ huynh">
+  <button class="dong" id="lbDong" aria-label="Đóng">×</button>
+  <p class="hd">Bấm × hoặc phím Esc để đóng</p>
+  <img id="lbAnh" alt="Tin nhắn phụ huynh">
+</div>
 
 <footer>
   <div class="wrap cols">
@@ -450,6 +466,20 @@ footer img{height:40px;width:auto;margin-bottom:8px}
       list.innerHTML=d.rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');
     });
   });
+
+  var lb=document.getElementById('lb'), lbAnh=document.getElementById('lbAnh'), lbDong=document.getElementById('lbDong');
+  document.querySelectorAll('a.zoom').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      lbAnh.src=a.getAttribute('href');
+      lb.classList.add('on');
+      document.body.style.overflow='hidden';
+    });
+  });
+  function dongLb(){ lb.classList.remove('on'); lbAnh.src=''; document.body.style.overflow=''; }
+  lb.addEventListener('click',function(e){ if(e.target===lb) dongLb(); });
+  lbDong.addEventListener('click',dongLb);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') dongLb(); });
 
   document.querySelectorAll('.folder[href]').forEach(function(a){
     a.addEventListener('click',function(e){
