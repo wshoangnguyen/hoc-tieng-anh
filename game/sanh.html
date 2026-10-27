@@ -65,6 +65,40 @@
 
   .khac .tro{background:#fffdf7}
 
+
+  /* thẻ học viên ở đầu sảnh */
+  .hoso{max-width:1080px;margin:6px auto 0;padding:0 14px}
+  .hs-card{
+    background:linear-gradient(180deg,#fffdf6,#fff); border:1px solid var(--vien); border-radius:22px;
+    padding:16px 18px; box-shadow:0 2px 0 #e9e2d1, 0 12px 26px rgba(80,70,40,.09);
+  }
+  .hs-card h2{font-family:"Baloo Bhaina 2",cursive;font-size:clamp(16px,4vw,20px);margin:0 0 3px}
+  .hs-card .mo{color:var(--nhat);font-size:clamp(12px,3.1vw,14px);margin:0 0 12px}
+  .hs-nhap{display:flex;gap:10px;flex-wrap:wrap}
+  .hs-nhap input{
+    flex:1 1 180px; min-width:0; font:inherit; font-weight:700; letter-spacing:.6px; text-transform:uppercase;
+    padding:14px 16px; border-radius:14px; border:2px solid #e6dcc4; background:#fff; color:var(--chu);
+  }
+  .hs-nhap input:focus{outline:none;border-color:var(--vang)}
+  .hs-nhap button{
+    flex:0 0 auto; font:inherit; font-weight:800; padding:14px 22px; border-radius:14px; border:0; cursor:pointer;
+    background:var(--vang); color:#4a3300; box-shadow:0 3px 0 #d19a12;
+  }
+  .hs-nhap button:active{transform:translateY(2px);box-shadow:0 1px 0 #d19a12}
+  .hs-ten{margin-top:12px;display:none;gap:10px;align-items:center;flex-wrap:wrap}
+  .hs-ten.on{display:flex}
+  .hs-ten label{font-size:clamp(12.5px,3.2vw,14px);color:var(--nhat);font-weight:700}
+  .hs-ten input{font:inherit;padding:11px 14px;border-radius:12px;border:2px solid #e6dcc4;background:#fff;min-width:0;flex:1 1 160px}
+  .hs-kq{margin:12px 0 0;font-size:clamp(13px,3.3vw,15px);color:var(--nhat)}
+  .hs-kq.ok{color:#1f6f4a;font-weight:700}
+  .hs-kq sai{color:#a33}
+  .hs-diem{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .hs-so{
+    background:#fff8e6;border:1px solid #f0dfb4;border-radius:14px;padding:9px 14px;min-width:104px;
+  }
+  .hs-so b{display:block;font-family:"Baloo Bhaina 2",cursive;font-size:22px;line-height:1.1;color:#8a5b00}
+  .hs-so span{font-size:12px;color:#8a7b52;font-weight:600}
+
   @media (max-width:430px){
     .luoi{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
     .tro .logo{height:88px}
@@ -79,6 +113,24 @@
   <p>Chọn trò theo level — càng lên level, trò càng cần nghĩ nhiều hơn</p>
   <a class="ve" href="../index.html" target="_blank" rel="noopener">← Về trang chủ</a>
 </header>
+
+
+<section class="hoso">
+  <div class="hs-card">
+    <h2>👋 Con nhập mã học viên một lần</h2>
+    <p class="mo">Nhập ở đây rồi vào trò nào cũng được — điểm tự cộng vào phiếu của con, không phải nhập lại.</p>
+    <div class="hs-nhap">
+      <input id="maHV" placeholder="VD: HV11" autocomplete="off" spellcheck="false" aria-label="Mã học viên">
+      <button id="luuMa" type="button">Lưu mã</button>
+    </div>
+    <div class="hs-ten" id="hsTen">
+      <label for="tenHS">Con tên gì?</label>
+      <input id="tenHS" placeholder="VD: Minh An" autocomplete="off">
+    </div>
+    <p class="hs-kq" id="hsKq">Chưa nhập mã thì vẫn chơi được, nhưng điểm sẽ không về phiếu.</p>
+    <div class="hs-diem" id="hsDiem"></div>
+  </div>
+</section>
 
 <main id="sanh"></main>
 
@@ -137,6 +189,80 @@ const html = NHOM.concat([KHAC]).map(n=>`
   </section>`).join("");
 
 document.getElementById("sanh").innerHTML = html;
+/* ---------- thẻ học viên ở đầu sảnh ---------- */
+(function(){
+  const API = "https://xtfusgawjlrcreiphwur.supabase.co";
+  const KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+  const oMa = document.getElementById("maHV"), nut = document.getElementById("luuMa"),
+        kq = document.getElementById("hsKq"), hopDiem = document.getElementById("hsDiem"),
+        hopTen = document.getElementById("hsTen"), oTen = document.getElementById("tenHS");
+  const rpc = (ten, body) => fetch(API + "/rest/v1/rpc/" + ten, {
+    method: "POST",
+    headers: { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" },
+    body: JSON.stringify(body || {})
+  }).then(r => r.ok ? r.json() : null).catch(() => null);
+
+  function tenDaLuu(ma){ return (localStorage.getItem("game_ten_" + ma) || "").trim(); }
+
+  function veDiem(d, ten){
+    const diem = d ? (d.diem_tong || 0) : 0;
+    const homNay = d ? (d.diem_hom_nay || 0) : 0;
+    const luot = d ? (d.so_luot || 0) : 0;
+    hopDiem.innerHTML =
+      `<div class="hs-so"><b>${diem}</b><span>điểm tích luỹ</span></div>` +
+      `<div class="hs-so"><b>${homNay}<small style="font-size:13px;color:#a08c5e">/16</small></b><span>điểm hôm nay</span></div>` +
+      `<div class="hs-so"><b>${luot}</b><span>lượt chơi</span></div>`;
+    kq.className = "hs-kq ok";
+    kq.innerHTML = (ten ? `Xin chào <b>${ten}</b>! ` : "") +
+      `Điểm của con đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
+    if (!ten) { hopTen.classList.add("on"); oTen.value = ""; oTen.placeholder = "VD: Minh An"; }
+  }
+
+  async function nap(ma){
+    oMa.value = ma;
+    const [x, h] = await Promise.all([rpc("game_xem", { p_ma: ma }), rpc("game_ho_so", { p_ma: ma })]);
+    if (!x || x.ma == null) {
+      kq.className = "hs-kq";
+      kq.innerHTML = "Chưa tìm thấy mã này. Con kiểm tra lại mã rồi bấm Lưu mã nhé (vẫn chơi được, nhưng chưa cộng điểm).";
+      hopDiem.innerHTML = "";
+      return;
+    }
+    veDiem(x, (h && h.ten) ? h.ten : tenDaLuu(ma));
+  }
+
+  async function luu(){
+    const ma = (oMa.value || "").trim().toUpperCase();
+    if (ma.length < 3) {
+      kq.className = "hs-kq";
+      kq.textContent = "Mã học viên có dạng HV11 — con nhập lại giúp cô nhé.";
+      return;
+    }
+    localStorage.setItem("game_ma_hv", ma);
+    localStorage.removeItem("game_da_hoi_ma");
+    kq.className = "hs-kq";
+    kq.textContent = "Đang kiểm tra mã…";
+    await nap(ma);
+  }
+
+  function luuTen(){
+    const ma = (oMa.value || "").trim().toUpperCase();
+    const ten = (oTen.value || "").trim();
+    if (!ma || !ten) return;
+    localStorage.setItem("game_ten_" + ma, ten);
+    hopTen.classList.remove("on");
+    nap(ma);
+  }
+  oTen.addEventListener("keydown", e => { if (e.key === "Enter") luuTen(); });
+  oTen.addEventListener("blur", luuTen);
+
+  nut.addEventListener("click", luu);
+  oMa.addEventListener("keydown", e => { if (e.key === "Enter") luu(); });
+
+  const cu = (localStorage.getItem("game_ma_hv") || "").trim().toUpperCase();
+  if (cu) nap(cu);
+  else oMa.focus();
+})();
+
 </script>
 </body>
 </html>
