@@ -372,7 +372,7 @@ function ve(){
   (DU.phan[0].audio||[]).forEach(a=>{
     const o=document.createElement("div"); o.className="o";
     const b=document.createElement("b"); b.textContent=a.ten.replace("File nghe ","Nghe ");
-    const au=document.createElement("audio"); au.controls=true; au.preload="none"; au.src=a.src;
+    const au=document.createElement("audio"); au.controls=true; au.preload="metadata"; au.src=a.src;
     o.appendChild(b); o.appendChild(au); strip.appendChild(o);
   });
 
@@ -397,7 +397,8 @@ function duLieu(){
   DU.phan.forEach(p=>p.bai.forEach(b=>(b.cau||[]).forEach(c=>{
     const o=document.getElementById(c.id), v=chuan(o.value);
     items.push({so:p.ma+b.so+"."+(items.length+1), hoi:c.hoi, tra_loi:o.value,
-                dap:(c.dap||[])[0]||"", dung:!!(v && c.dap.some(x=>chuan(x)===v))});
+                dap:(c.dap||[])[0]||"", tu_luan:!!c.tu_luan,
+                dung:c.tu_luan?null:!!(v && c.dap.some(x=>chuan(x)===v))});
   })));
   Object.keys(veApi).forEach(id=>{
     const src=veApi[id].anh();
@@ -409,24 +410,26 @@ function duLieu(){
 function cham(hetGio){
   daCham=true;
   const {items,anh}=duLieu();
-  const dung = items.filter(x=>x.dung).length;
+  const dung = items.filter(x=>x.dung===true).length;
   // tô màu ô đúng/sai
   DU.phan.forEach(p=>p.bai.forEach(b=>(b.cau||[]).forEach(c=>{
+    if(c.tu_luan) return;
     const o=document.getElementById(c.id), v=chuan(o.value);
     const ok=!!(v && c.dap.some(x=>chuan(x)===v));
     o.closest(".cau").classList.toggle("dung",ok);
     o.closest(".cau").classList.toggle("sai",!ok);
     document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
   })));
-  const tong=items.length;
+  const tong=items.filter(x=>!x.tu_luan).length;
   document.getElementById("khoiCham").style.display="block";
   const hop=document.getElementById("kqhop"); hop.classList.add("on");
   const ten=document.getElementById("fTen").value.trim();
   let loi="<b>"+dung+"/"+tong+"</b> câu đúng ("+(tong?Math.round(dung/tong*100):0)+"%)";
   DU.phan.forEach(p=>{
-    const soCau=p.bai.reduce((s,b)=>s+(b.cau||[]).length,0);
+    const soCau=p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>!c.tu_luan).length,0);
     if(soCau){
       const d=p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>{
+        if(c.tu_luan) return false;
         const o=document.getElementById(c.id); const v=chuan(o.value);
         return v && c.dap.some(x=>chuan(x)===v);
       }).length,0);
