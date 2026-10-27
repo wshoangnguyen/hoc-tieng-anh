@@ -2,80 +2,114 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Super Minds 2 · Kiểm tra cuối sách — Học Tiếng Anh Dễ Lắm</title>
 <link rel="icon" href="/logo.png">
 <style>
 :root{--nau:#3b2f1c;--nau2:#6d5c3d;--gold:#b8923f;--tim:#6b4fa1;--vien:#e3d6bb;--nen:#fffdf7;--xanh:#2f6b28;--do:#a8322b}
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--nau);
      background:linear-gradient(160deg,#fbf6ea,#f2e8d5 60%,#efe3cc);min-height:100vh}
-.wrap{max-width:860px;margin:0 auto;padding:18px 14px 90px}
-header{display:flex;align-items:center;gap:14px}
-header img{width:118px;height:52px;object-fit:contain}
-header b{display:block;font-size:13px;color:var(--nau2)}
-header span{font-size:12px;color:var(--nau2)}
-.crumb{font-size:13px;color:var(--nau2);margin:12px 0 0}
+.wrap{max-width:980px;margin:0 auto;padding:14px 12px 80px}
+header{display:flex;align-items:center;gap:12px}
+header img{width:104px;height:46px;object-fit:contain}
+header b{display:block;font-size:12.5px;color:var(--nau2)}
+header span{font-size:11.5px;color:var(--nau2)}
+.crumb{font-size:12.5px;color:var(--nau2);margin:10px 0 0}
 .crumb a{color:var(--tim);text-decoration:none}
-h1{font-size:23px;margin:6px 0 2px}
-.sub{color:var(--nau2);font-size:14px;margin:0 0 14px}
-.card{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:16px;margin:0 0 14px;
+h1{font-size:21px;margin:4px 0 2px}
+.sub{color:var(--nau2);font-size:13.5px;margin:0 0 10px}
+
+/* thanh trên: đồng hồ + file nghe */
+.thanh{position:sticky;top:0;z-index:40;background:rgba(255,253,247,.98);border:1px solid var(--vien);
+       border-radius:14px;padding:7px 9px;margin:0 0 12px;display:none;gap:8px;align-items:center;
+       box-shadow:0 4px 14px rgba(120,90,20,.10);backdrop-filter:blur(4px)}
+.thanh.on{display:flex}
+.dongho{flex:none;font-weight:800;font-size:16px;color:var(--tim);background:#f1e8f7;border-radius:10px;padding:6px 10px;min-width:86px;text-align:center}
+.dongho.sap{color:#a8322b;background:#fdeceb}
+.audio-strip{display:flex;gap:8px;align-items:center;flex:1;min-width:0}
+.audio-strip .o{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:1px}
+.audio-strip b{font-size:10px;color:var(--nau2);text-transform:uppercase;letter-spacing:.3px;line-height:1}
+.audio-strip audio{width:100%;height:30px}
+
+/* cửa sổ bắt đầu */
+.cua{position:fixed;inset:0;z-index:90;background:rgba(40,30,15,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.cua.off{display:none}
+.hop{background:var(--nen);border:1px solid var(--vien);border-radius:18px;padding:20px;max-width:420px;width:100%;
+     box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.hop h2{font-size:19px;margin:0 0 4px}
+.hop p{font-size:13px;color:var(--nau2);margin:0 0 12px}
+.hop label{display:block;font-size:12.5px;color:var(--nau2);font-weight:600;margin:0 0 3px}
+.hop input{width:100%;padding:11px;border:1.5px solid var(--vien);border-radius:10px;font-size:15px;margin:0 0 10px;font-family:inherit}
+.hop input:focus{outline:none;border-color:var(--tim)}
+.hop .loi{color:var(--do);font-size:12.5px;margin:0 0 8px;display:none}
+
+.card{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:14px;margin:0 0 12px;
       box-shadow:0 8px 20px rgba(120,90,20,.07)}
-.card h2{font-size:17px;margin:0 0 8px}
-.thongtin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.thongtin .rong{grid-column:1/-1}
-label{display:block;font-size:12.5px;color:var(--nau2);margin-bottom:3px;font-weight:600}
-input[type=text]{width:100%;padding:10px 11px;border:1.5px solid var(--vien);border-radius:10px;font-size:15px;background:#fff;color:var(--nau)}
-input[type=text]:focus{outline:none;border-color:var(--tim)}
-select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10px;font-size:17px;background:#fff;color:var(--nau);min-width:76px}
 .chon{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
 .tabbtn{border:1.5px solid var(--vien);background:#fff;color:var(--nau2);font-weight:700;font-size:14px;
         padding:9px 13px;border-radius:10px;cursor:pointer}
 .tabbtn.on{background:var(--tim);border-color:var(--tim);color:#fff}
-.phan{display:none}
-.phan.on{display:block}
-.audio{background:#faf6ec;border:1px solid var(--vien);border-radius:12px;padding:10px 12px;margin:0 0 12px}
-.audio b{display:block;font-size:12.5px;color:var(--nau2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
-.audio audio{width:100%;margin-top:6px;max-width:420px}
-.bai{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:14px;margin:0 0 12px}
-.bai .dau{display:flex;gap:10px;align-items:baseline}
-.so{flex:none;min-width:26px;height:26px;border-radius:8px;background:#f1e8d4;color:var(--gold);
+.phan{display:none}.phan.on{display:block}
+
+.bai{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:12px;margin:0 0 12px}
+.bai .dau{display:flex;gap:9px;align-items:baseline;margin:0 0 6px}
+.so{flex:none;min-width:25px;height:25px;border-radius:8px;background:#f1e8d4;color:var(--gold);
     font-weight:800;display:grid;place-items:center;font-size:13px}
-.bai h3{font-size:15px;margin:0;line-height:1.35}
-.ghichu{font-size:13px;color:var(--nau2);background:#faf6ec;border-left:3px solid var(--gold);
-        padding:7px 10px;border-radius:0 8px 8px 0;margin:9px 0 10px}
-.butve{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 7px;background:#faf6ec;
-       border:1px solid var(--vien);border-radius:10px;padding:6px 8px}
-.butve .mau{width:23px;height:23px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #cfc1a3;cursor:pointer;padding:0}
+.bai h3{font-size:14.5px;margin:0;line-height:1.3}
+.ghichu{font-size:12.5px;color:var(--nau2);background:#faf6ec;border-left:3px solid var(--gold);
+        padding:6px 9px;border-radius:0 8px 8px 0;margin:0 0 8px}
+
+.than2{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:12px;align-items:start}
+.cot-hoi{min-width:0}
+@media(max-width:640px){
+  .than2{grid-template-columns:minmax(0,1fr) minmax(0,0.98fr);gap:8px}
+  .bai{padding:10px}
+  .audio-strip audio{height:28px}
+  .dongho{font-size:14px;min-width:74px;padding:5px 7px}
+}
+
+.butve{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:0 0 6px;background:#faf6ec;
+       border:1px solid var(--vien);border-radius:9px;padding:5px 6px}
+.butve .mau{width:21px;height:21px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #cfc1a3;cursor:pointer;padding:0}
 .butve .mau.on{box-shadow:0 0 0 2.5px var(--tim)}
-.butve .cu{font-family:inherit;font-size:12.5px;font-weight:700;background:#fff;color:var(--nau2);
-           border:1.5px solid var(--vien);border-radius:8px;padding:5px 8px;cursor:pointer}
+.butve .cu{font-family:inherit;font-size:12px;font-weight:700;background:#fff;color:var(--nau2);
+           border:1.5px solid var(--vien);border-radius:7px;padding:4px 7px;cursor:pointer}
 .butve .cu.on{background:var(--tim);border-color:var(--tim);color:#fff}
-.khung-anh{position:relative;margin:0 0 6px}
-.khung-anh img{display:block;width:100%;border:1px solid var(--vien);border-radius:10px;background:#fff}
-.khung-anh canvas{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:10px;
-                  touch-action:none;display:none;cursor:crosshair}
+.khung-anh{position:relative;margin:0}
+.khung-anh img{display:block;width:100%;border:1px solid var(--vien);border-radius:8px;background:#fff}
+.khung-anh canvas{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:8px;touch-action:none;display:none;cursor:crosshair}
 .khung-anh.ve canvas{display:block}
-.xemanh{font-size:12px;color:var(--tim);text-decoration:none;display:inline-block;margin:0 0 10px}
-.cau{display:flex;gap:9px;align-items:flex-start;margin:0 0 9px}
-.cau .socau{flex:none;width:22px;font-weight:700;color:var(--nau2);font-size:14px;padding-top:9px}
-.cau .than{flex:1}
-.cau .hoi{font-size:14.5px;margin:0 0 4px;line-height:1.35}
-.cau .o{display:flex;gap:7px;align-items:center}
-.cau .kq{flex:none;font-size:15px;width:18px}
-.dung input{border-color:#8bc98a;background:#f1fbef}
-.sai input{border-color:#e6a49e;background:#fff5f4}
-.cham{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 0}
-.nut{border:0;border-radius:11px;padding:12px 18px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
+.xemanh{font-size:11.5px;color:var(--tim);text-decoration:none;display:inline-block;margin:3px 0 0}
+
+.cau{display:flex;gap:7px;align-items:flex-start;margin:0 0 7px}
+.cau .socau{flex:none;width:18px;font-weight:700;color:var(--nau2);font-size:13px;padding-top:9px}
+.cau .than{flex:1;min-width:0}
+.cau .hoi{font-size:13.5px;margin:0 0 3px;line-height:1.3}
+.cau .o{display:flex;gap:5px;align-items:center}
+.cau input[type=text]{width:100%;padding:9px 10px;border:1.5px solid var(--vien);border-radius:9px;font-size:15px;font-family:inherit}
+.cau input[type=text]:focus{outline:none;border-color:var(--tim)}
+.cau select{padding:9px 8px;border:1.5px solid var(--vien);border-radius:9px;font-size:16px;font-family:inherit;background:#fff;min-width:70px}
+.cau .kq{flex:none;font-size:14px;width:16px}
+.dung input,.dung select{border-color:#8bc98a;background:#f1fbef}
+.sai input,.sai select{border-color:#e6a49e;background:#fff5f4}
+
+.cham{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.nut{border:0;border-radius:11px;padding:12px 17px;font-size:14.5px;font-weight:800;cursor:pointer;font-family:inherit}
 .nut.chinh{background:var(--tim);color:#fff}
 .nut.phu{background:#fff;color:var(--tim);border:1.5px solid var(--tim)}
 .nut.zalo{background:#1a7fe0;color:#fff}
-.kqhop{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:14px;margin:10px 0 0;display:none}
+.nut.di{width:100%;margin:2px 0 4px}
+.kqhop{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:13px;margin:10px 0 0;display:none}
 .kqhop.on{display:block}
-.diem{font-size:15px;line-height:1.6}
-.diem b{font-size:19px;color:var(--tim)}
-.nho{font-size:12.5px;color:var(--nau2);margin-top:6px}
-@media(max-width:560px){.thongtin{grid-template-columns:1fr}h1{font-size:20px}}
+.diem{font-size:14.5px;line-height:1.55}
+.diem b{font-size:18px;color:var(--tim)}
+.nho{font-size:12px;color:var(--nau2);margin-top:5px}
+.luu{font-size:13px;margin:8px 0 0;padding:8px 10px;border-radius:9px;display:none}
+.luu.ok{display:block;background:#eef8ec;color:#2f6b28;border:1px solid #bfe0bb}
+.luu.loi{display:block;background:#fdeceb;color:#8a2a24;border:1px solid #f0c3bf}
+.luu a{color:#1a5fb4}
 </style>
 </head>
 <body>
@@ -86,317 +120,401 @@ select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10p
   </header>
   <p class="crumb"><a href="../">← Bộ đề cuối sách</a></p>
   <h1>Super Minds 2 · Kiểm tra cuối sách</h1>
-  <p class="sub">khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút) · Làm trực tiếp trên web: bút vẽ/tô màu ngay trên hình, gõ câu trả lời và máy tự chấm phần gõ được.</p>
+  <p class="sub">Làm trực tiếp trên web: nghe, vẽ – tô màu ngay trên hình, gõ câu trả lời. Máy tự chấm và lưu bài vào Drive của thầy.</p>
 
-  <div class="card">
-    <h2>Thông tin học sinh</h2>
-    <div class="thongtin">
-      <div><label>Họ và tên</label><input type="text" id="ten" placeholder="Ví dụ: Nguyễn Minh An"></div>
-      <div><label>Lớp</label><input type="text" id="lop" placeholder="Ví dụ: SM1 · Lớp 3A"></div>
-      <div class="rong"><label>Mã học viên (nếu có)</label><input type="text" id="ma" placeholder="Ví dụ: HV12"></div>
-    </div>
+  <div class="thanh" id="thanh">
+    <div class="dongho" id="dongho">⏱ --:--</div>
+    <div class="audio-strip" id="audioStrip"></div>
   </div>
 
   <div class="chon" id="tabs"></div>
   <div id="than"></div>
 
-  <div class="card">
+  <div class="card" id="khoiCham" style="display:none">
     <div class="cham">
       <button class="nut chinh" id="btCham">Chấm bài</button>
-      <button class="nut phu" id="btLai">Làm lại</button>
-      <button class="nut zalo" id="btZalo">Gửi kết quả cho giáo viên</button>
+      <button class="nut phu" id="btZalo">Gửi Zalo cho thầy</button>
     </div>
     <div class="kqhop" id="kqhop">
       <div class="diem" id="diem"></div>
+      <div class="luu" id="luu"></div>
       <p class="nho" id="ghicham"></p>
     </div>
   </div>
 </div>
 
+<div class="cua" id="cua">
+  <div class="hop">
+    <h2>Bắt đầu bài kiểm tra</h2>
+    <p>Super Minds 2 · khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút) · làm một mạch, máy tự lưu nếu mất mạng.</p>
+    <label>Họ và tên</label><input id="fTen" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="off">
+    <label>Lớp</label><input id="fLop" placeholder="Ví dụ: SM2 · Lớp 3A" autocomplete="off">
+    <label>Mã học viên (nếu có)</label><input id="fMa" placeholder="Ví dụ: HV12" autocomplete="off">
+    <p class="loi" id="fLoi">Con điền họ tên và lớp giúp thầy nhé.</p>
+    <button class="nut chinh di" id="btBatDau">Bắt đầu làm bài</button>
+    <p class="nho">Đồng hồ sẽ chạy ngay khi bấm. Làm xong bấm “Chấm bài” để nộp.</p>
+  </div>
+</div>
+
 <script>
-const DU = {"level": 2, "ten": "Super Minds 2", "thoi_gian": "khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút)", "phan": [{"ma": "A", "ten": "Phần A · Nghe", "audio": [{"ten": "File nghe 1", "src": "../audio-1.mp3"}, {"ten": "File nghe 2", "src": "../audio-2.mp3"}], "bai": [{"so": 1, "de": "Listen and draw lines. There is one example.", "anh": "../trang/nghe-1.jpg", "ghi_chu": "Bật nút “Bút” rồi nối tên với đúng hình ngay trên ảnh. Giáo viên chấm trên ảnh con tải về (5 điểm).", "cau": [], "ve": true}, {"so": 2, "de": "Look, listen and colour.", "anh": "../trang/nghe-2.jpg", "ghi_chu": "Nghe rồi tô màu ngay trên ảnh: chọn màu ở thanh công cụ rồi tô (tent – blue, skateboard – purple, café – orange, bus – red, socks – yellow/brown). Giáo viên chấm trên ảnh (5 điểm).", "cau": [], "ve": true}]}, {"ma": "B", "ten": "Phần B · Đọc & Viết", "bai": [{"so": 1, "de": "Look at the pictures. Look at the letters. Write the words.", "anh": "../trang/rw-1.jpg", "ghi_chu": "Xếp lại các chữ cái thành từ đúng. Ví dụ: enathelp → elephant.", "cau": [{"id": "R1-1", "hoi": "odrab", "dap": ["board"]}, {"id": "R1-2", "hoi": "ppioh", "dap": ["hippo"]}, {"id": "R1-3", "hoi": "wnisg", "dap": ["swing"]}, {"id": "R1-4", "hoi": "ggse", "dap": ["eggs"]}, {"id": "R1-5", "hoi": "tbeomriok", "dap": ["motorbike"]}], "ve": false}, {"so": 2, "de": "Read this. Choose a word from the box. Write the correct word next to numbers 1–5.", "anh": "../trang/rw-2.jpg", "ghi_chu": "Chọn từ trong khung: small · beautiful · caterpillar · bear · egg · watermelon · leaf · plants.", "cau": [{"id": "R2-1", "hoi": "Butterflies are (1) ______ animals", "dap": ["beautiful"]}, {"id": "R2-2", "hoi": "The butterfly's life begins as a small (2) ______", "dap": ["egg"]}, {"id": "R2-3", "hoi": "The small egg lives on a (3) ______", "dap": ["leaf"]}, {"id": "R2-4", "hoi": "When the egg opens, a (4) ______ comes out", "dap": ["caterpillar"]}, {"id": "R2-5", "hoi": "It usually eats (5) ______ and leaves", "dap": ["plants"]}], "ve": false}, {"so": 3, "de": "Look and read. Put a tick (✓) or a cross (✗) in the box.", "anh": "../trang/rw-3.jpg", "kieu": "chon", "lua": ["✓", "✗"], "ghi_chu": "Chọn ✓ nếu câu đúng với hình, chọn ✗ nếu sai.", "cau": [{"id": "R3-1", "hoi": "This is a sofa.", "dap": ["✓"]}, {"id": "R3-2", "hoi": "These are ears.", "dap": ["✗"]}, {"id": "R3-3", "hoi": "This is a taxi.", "dap": ["✓"]}, {"id": "R3-4", "hoi": "This is a queen.", "dap": ["✗"]}, {"id": "R3-5", "hoi": "This is a sandy beach.", "dap": ["✓"]}], "ve": false}, {"so": 4, "de": "Look at the pictures and read the questions. Write one-word answers.", "anh": "../trang/rw-4.jpg", "ghi_chu": "Trả lời bằng MỘT từ. Ví dụ: Where are the people? → museum.", "cau": [{"id": "R4-1", "hoi": "What is the boy doing? He is riding his ______", "dap": ["skateboard"]}, {"id": "R4-2", "hoi": "Is the man angry?", "dap": ["yes"]}, {"id": "R4-3", "hoi": "What is the girl doing? She is eating ______", "dap": ["watermelon"]}, {"id": "R4-4", "hoi": "What is the boy with the rucksack doing? Riding a ______", "dap": ["motorbike"]}, {"id": "R4-5", "hoi": "Where is the teacher? Under the ______", "dap": ["helicopter"]}], "ve": false}]}]};
+const DU = {"level": 2, "ten": "Super Minds 2", "thoi_gian": "khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút)", "phan": [{"ma": "A", "ten": "Phần A · Nghe", "audio": [{"ten": "File nghe 1", "src": "../audio-1.mp3"}, {"ten": "File nghe 2", "src": "../audio-2.mp3"}], "bai": [{"so": 1, "de": "Listen and draw lines. There is one example.", "anh": "../trang/nghe-1.jpg", "ghi_chu": "Bật nút “Bút” rồi nối tên với đúng hình ngay trên ảnh. Giáo viên chấm trên ảnh con tải về (5 điểm).", "cau": [], "ve": true}, {"so": 2, "de": "Look, listen and colour.", "anh": "../trang/nghe-2.jpg", "ghi_chu": "Nghe rồi tô màu ngay trên ảnh: chọn màu ở thanh công cụ rồi tô (tent – blue, skateboard – purple, café – orange, bus – red, socks – yellow/brown). Giáo viên chấm trên ảnh (5 điểm).", "cau": [], "ve": true}]}, {"ma": "B", "ten": "Phần B · Đọc & Viết", "bai": [{"so": 1, "de": "Look at the pictures. Look at the letters. Write the words.", "anh": "../trang/rw-1.jpg", "ghi_chu": "Xếp lại các chữ cái thành từ đúng. Ví dụ: enathelp → elephant.", "cau": [{"id": "R1-1", "hoi": "odrab", "dap": ["board"]}, {"id": "R1-2", "hoi": "ppioh", "dap": ["hippo"]}, {"id": "R1-3", "hoi": "wnisg", "dap": ["swing"]}, {"id": "R1-4", "hoi": "ggse", "dap": ["eggs"]}, {"id": "R1-5", "hoi": "tbeomriok", "dap": ["motorbike"]}], "ve": false}, {"so": 2, "de": "Read this. Choose a word from the box. Write the correct word next to numbers 1–5.", "anh": "../trang/rw-2.jpg", "ghi_chu": "Chọn từ trong khung: small · beautiful · caterpillar · bear · egg · watermelon · leaf · plants.", "cau": [{"id": "R2-1", "hoi": "Butterflies are (1) ______ animals", "dap": ["beautiful"]}, {"id": "R2-2", "hoi": "The butterfly's life begins as a small (2) ______", "dap": ["egg"]}, {"id": "R2-3", "hoi": "The small egg lives on a (3) ______", "dap": ["leaf"]}, {"id": "R2-4", "hoi": "When the egg opens, a (4) ______ comes out", "dap": ["caterpillar"]}, {"id": "R2-5", "hoi": "It usually eats (5) ______ and leaves", "dap": ["plants"]}], "ve": false}, {"so": 3, "de": "Look and read. Put a tick (✓) or a cross (✗) in the box.", "anh": "../trang/rw-3.jpg", "kieu": "chon", "lua": ["✓", "✗"], "ghi_chu": "Chọn ✓ nếu câu đúng với hình, chọn ✗ nếu sai.", "cau": [{"id": "R3-1", "hoi": "This is a sofa.", "dap": ["✓"]}, {"id": "R3-2", "hoi": "These are ears.", "dap": ["✗"]}, {"id": "R3-3", "hoi": "This is a taxi.", "dap": ["✓"]}, {"id": "R3-4", "hoi": "This is a queen.", "dap": ["✗"]}, {"id": "R3-5", "hoi": "This is a sandy beach.", "dap": ["✓"]}], "ve": false}, {"so": 4, "de": "Look at the pictures and read the questions. Write one-word answers.", "anh": "../trang/rw-4.jpg", "ghi_chu": "Trả lời bằng MỘT từ. Ví dụ: Where are the people? → museum.", "cau": [{"id": "R4-1", "hoi": "What is the boy doing? He is riding his ______", "dap": ["skateboard"]}, {"id": "R4-2", "hoi": "Is the man angry?", "dap": ["yes"]}, {"id": "R4-3", "hoi": "What is the girl doing? She is eating ______", "dap": ["watermelon"]}, {"id": "R4-4", "hoi": "What is the boy with the rucksack doing? Riding a ______", "dap": ["motorbike"]}, {"id": "R4-5", "hoi": "Where is the teacher? Under the ______", "dap": ["helicopter"]}], "ve": false}]}], "phut": 40};
 const KHOA = "eo_sm" + DU.level;
 const KHOA_VE = "eo_sm" + DU.level + "_ve";
-let dap = {}, net = {};
+const KHOA_BAT = "eo_sm" + DU.level + "_bat";
+const API = "https://vm-4-15-ubuntu.tailcfa324.ts.net:8443";
+const PHUT = DU.phut || 40;
+let dap = {}, net = {}, daCham = false, daNop = false, hetLuc = 0, batDauLuc = 0;
 
 function chuan(s){
   return String(s||"").toLowerCase().trim()
     .replace(/[.,!?;:"'`´’]/g,"").replace(/\s+/g," ")
     .replace(/^(a|an|the)\s+/,"");
 }
-function luu(){
-  const tt = {ten:document.getElementById("ten").value, lop:document.getElementById("lop").value,
-              ma:document.getElementById("ma").value, dap:dap};
+function luu(extra){
+  const tt = Object.assign({ten:document.getElementById("fTen").value,
+                            lop:document.getElementById("fLop").value,
+                            ma:document.getElementById("fMa").value,
+                            dap:dap, hetLuc:hetLuc, batDauLuc:batDauLuc}, extra||{});
   try{localStorage.setItem(KHOA, JSON.stringify(tt));}catch(e){}
-}
-function luuVe(){
   try{localStorage.setItem(KHOA_VE, JSON.stringify(net));}catch(e){}
 }
-function nap(){
-  let tt=null, v=null;
-  try{tt=JSON.parse(localStorage.getItem(KHOA)||"null");}catch(e){}
-  try{v=JSON.parse(localStorage.getItem(KHOA_VE)||"null");}catch(e){}
-  if(tt){
-    document.getElementById("ten").value = tt.ten||"";
-    document.getElementById("lop").value = tt.lop||"";
-    document.getElementById("ma").value = tt.ma||"";
-    dap = tt.dap||{};
-  }
-  net = v||{};
+
+/* ---------- đồng hồ ---------- */
+function mmss(ms){
+  ms = Math.max(0, ms);
+  const s = Math.floor(ms/1000), m = Math.floor(s/60);
+  return String(m).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+}
+function chayDongHo(){
+  const con = hetLuc - Date.now();
+  const el = document.getElementById("dongho");
+  el.textContent = "⏱ " + mmss(con);
+  el.classList.toggle("sap", con < 5*60*1000);
+  if(con <= 0){ if(!daCham) { cham(true); } return; }
+  setTimeout(chayDongHo, 500);
 }
 
-/* ---------- bút vẽ trên hình ---------- */
+/* ---------- bút vẽ ---------- */
 const MAU_BUT = ["#111111","#d32f2f","#1976d2","#f9a825","#7b1fa2","#2e7d32","#ef6c00","#8d6e63"];
-
 function khoiTaoVe(hop, id){
-  const img = hop.querySelector("img");
-  const cv  = hop.querySelector("canvas");
-  const ctx = cv.getContext("2d");
+  const img = hop.querySelector("img"), cv = hop.querySelector("canvas"), ctx = cv.getContext("2d");
   let mau = "#111111", day = 3, tay = false, dang = null;
   const ds = net[id] || (net[id] = []);
-
   function co(){
     const r = img.getBoundingClientRect();
-    let w = r.width || img.clientWidth;
-    if(!w){ w = hop.clientWidth || 600; }
-    let h = r.height;
-    if(!h && img.naturalWidth){ h = w * img.naturalHeight / img.naturalWidth; }
-    if(!h){ h = Math.round(w * 0.7); }
+    let w = r.width || img.clientWidth || hop.clientWidth || 600;
+    let h = r.height || (img.naturalWidth ? w*img.naturalHeight/img.naturalWidth : Math.round(w*0.7));
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
-    cv.style.height = h + "px";
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    return {w:w, h:h};
+    cv.style.height = h + "px"; ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {w:w,h:h};
   }
-  img.addEventListener("load", ()=>{ if(hop.classList.contains("ve")) veLai(); });
-  try{
-    const ro = new ResizeObserver(()=>{ if(hop.classList.contains("ve")) veLai(); });
-    ro.observe(img);
-  }catch(e){}
   function veLai(){
-    const {w,h} = co();
-    ctx.clearRect(0,0,w,h);
+    const {w,h} = co(); ctx.clearRect(0,0,w,h);
     ds.forEach(n=>{
-      ctx.beginPath();
-      ctx.globalCompositeOperation = n.t ? "destination-out" : "source-over";
-      ctx.strokeStyle = n.c; ctx.lineWidth = Math.max(1, n.d*w); ctx.lineCap="round"; ctx.lineJoin="round";
-      n.p.forEach((pt,i)=>{ const x=pt[0]*w, y=pt[1]*h; i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
-      if(n.p.length===1){ const x=n.p[0][0]*w, y=n.p[0][1]*h; ctx.lineTo(x+0.1,y+0.1); }
+      ctx.beginPath(); ctx.globalCompositeOperation = n.t ? "destination-out":"source-over";
+      ctx.strokeStyle=n.c; ctx.lineWidth=Math.max(1,n.d*w);
+      ctx.lineCap="round"; ctx.lineJoin="round";
+      n.p.forEach((pt,i)=>{const x=pt[0]*w,y=pt[1]*h; i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+      if(n.p.length===1){const x=n.p[0][0]*w,y=n.p[0][1]*h;ctx.lineTo(x+0.1,y+0.1);}
       ctx.stroke();
     });
-    ctx.globalCompositeOperation = "source-over";
+    ctx.globalCompositeOperation="source-over";
   }
-  function toa(e){
-    const r = cv.getBoundingClientRect();
-    return [ (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height ];
-  }
+  const toa = e => { const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]; };
   cv.addEventListener("pointerdown", e=>{
     if(!hop.classList.contains("ve")) return;
-    e.preventDefault();
-    try{ cv.setPointerCapture(e.pointerId); }catch(err){}
-    dang = {c:mau, d:day/1000, t:tay, p:[toa(e)]};
-    ds.push(dang); veLai();
+    e.preventDefault(); try{cv.setPointerCapture(e.pointerId);}catch(err){}
+    dang={c:mau,d:day/1000,t:tay,p:[toa(e)]}; ds.push(dang); veLai();
   });
   cv.addEventListener("pointermove", e=>{
-    if(!dang) return;
-    e.preventDefault();
-    const p = toa(e), cuoi = dang.p[dang.p.length-1];
-    dang.p.push(p);
-    const {w,h} = {w:cv.clientWidth, h:cv.clientHeight};
-    ctx.beginPath();
-    ctx.globalCompositeOperation = dang.t ? "destination-out" : "source-over";
-    ctx.strokeStyle = dang.c; ctx.lineWidth = Math.max(1, dang.d*w);
+    if(!dang) return; e.preventDefault();
+    const p=toa(e), cuoi=dang.p[dang.p.length-1]; dang.p.push(p);
+    const w=cv.clientWidth,h=cv.clientHeight;
+    ctx.beginPath(); ctx.globalCompositeOperation = dang.t?"destination-out":"source-over";
+    ctx.strokeStyle=dang.c; ctx.lineWidth=Math.max(1,dang.d*w);
     ctx.lineCap="round"; ctx.lineJoin="round";
-    ctx.moveTo(cuoi[0]*w, cuoi[1]*h); ctx.lineTo(p[0]*w, p[1]*h); ctx.stroke();
-    ctx.globalCompositeOperation = "source-over";
+    ctx.moveTo(cuoi[0]*w,cuoi[1]*h); ctx.lineTo(p[0]*w,p[1]*h); ctx.stroke();
+    ctx.globalCompositeOperation="source-over";
   });
-  const ket = e=>{ if(dang){ dang=null; luuVe(); } };
-  cv.addEventListener("pointerup", ket);
-  cv.addEventListener("pointercancel", ket);
-  cv.addEventListener("pointerleave", ket);
-
+  const ket=()=>{ if(dang){dang=null; luu();} };
+  ["pointerup","pointercancel","pointerleave"].forEach(t=>cv.addEventListener(t,ket));
+  img.addEventListener("load", ()=>{ if(hop.classList.contains("ve")) veLai(); });
+  try{ new ResizeObserver(()=>{ if(hop.classList.contains("ve")) veLai(); }).observe(img); }catch(e){}
   return {
     bat(on){ hop.classList.toggle("ve", on); if(on) veLai(); },
-    datMau(m){ mau = m; tay=false; },
-    datDay(d){ day = d; },
-    tay(){ tay = !tay; return tay; },
-    undo(){ ds.pop(); veLai(); luuVe(); },
-    xoa(){ ds.length=0; veLai(); luuVe(); },
-    tai(){
-      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
-      const tam = document.createElement("canvas"); tam.width=w; tam.height=h;
-      const c2 = tam.getContext("2d");
-      c2.drawImage(img,0,0,w,h);
+    datMau(m){ mau=m; tay=false; },
+    datDay(d){ day=d; },
+    tay(){ tay=!tay; return tay; },
+    undo(){ ds.pop(); veLai(); luu(); },
+    xoa(){ ds.length=0; veLai(); luu(); },
+    anh(){
+      const w=img.naturalWidth||img.width, h=img.naturalHeight||img.height;
+      if(!w||!h) return "";
+      const tam=document.createElement("canvas"); tam.width=w; tam.height=h;
+      const c2=tam.getContext("2d"); c2.drawImage(img,0,0,w,h);
       c2.lineCap="round"; c2.lineJoin="round";
       ds.forEach(n=>{
-        c2.beginPath(); c2.globalCompositeOperation = n.t ? "destination-out":"source-over";
+        c2.beginPath(); c2.globalCompositeOperation=n.t?"destination-out":"source-over";
         c2.strokeStyle=n.c; c2.lineWidth=Math.max(1,n.d*w);
         n.p.forEach((pt,i)=>{const x=pt[0]*w,y=pt[1]*h; i?c2.lineTo(x,y):c2.moveTo(x,y);});
         if(n.p.length===1){const x=n.p[0][0]*w,y=n.p[0][1]*h;c2.lineTo(x+0.1,y+0.1);}
         c2.stroke();
       });
-      const a=document.createElement("a");
-      a.href = tam.toDataURL("image/jpeg",0.85);
-      a.download = "bai-lam-"+id+".jpg"; a.click();
+      return tam.toDataURL("image/jpeg",0.82);
+    },
+    tai(){
+      const src=this.anh(); if(!src) return;
+      const a=document.createElement("a"); a.href=src; a.download="bai-lam-"+id+".jpg"; a.click();
     },
     veLai
   };
 }
 
 /* ---------- dựng trang ---------- */
+let veApi = {};
 function ve(){
   const tabs=document.getElementById("tabs"), than=document.getElementById("than");
   DU.phan.forEach((p,i)=>{
-    const b=document.createElement("button");
-    b.className="tabbtn"+(i===0?" on":""); b.textContent=p.ten;
-    b.onclick=()=>{
-      document.querySelectorAll(".tabbtn").forEach(x=>x.classList.toggle("on",x===b));
-      document.querySelectorAll(".phan").forEach((x,j)=>x.classList.toggle("on",j===i));
-    };
+    const b=document.createElement("button"); b.className="tabbtn"+(i===0?" on":""); b.textContent=p.ten;
+    b.onclick=()=>chuyenPhan(i);
     tabs.appendChild(b);
-    const hop=document.createElement("div");
-    hop.className="phan"+(i===0?" on":"");
-    (p.audio||[]).forEach(a=>{
-      const d=document.createElement("div"); d.className="audio";
-      d.innerHTML='<b>'+a.ten+'</b><audio controls preload="none" src="'+a.src+'"></audio>';
-      hop.appendChild(d);
-    });
+    const hop=document.createElement("div"); hop.className="phan"+(i===0?" on":"");
     p.bai.forEach(bai=>{
-      const id = p.ma + bai.so;
+      const id=p.ma+bai.so;
       const k=document.createElement("div"); k.className="bai";
       let h='<div class="dau"><div class="so">'+bai.so+'</div><h3>'+bai.de+'</h3></div>';
       if(bai.ghi_chu) h+='<div class="ghichu">'+bai.ghi_chu+'</div>';
       k.innerHTML=h;
+      const hai = document.createElement("div"); hai.className="than2";
+      // cột ảnh
+      const cotAnh = document.createElement("div");
       if(bai.anh){
-        const veHop = document.createElement("div"); veHop.className="khung-anh"; veHop.dataset.cho=id;
-        veHop.innerHTML='<img class="anhde" src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas>';
         if(bai.ve){
           const bar=document.createElement("div"); bar.className="butve";
-          const mauHtml = '<button class="cu" data-vai="but">✏️ Bút</button>' +
-            MAU_BUT.map((c,i)=>'<button class="mau'+(i===0?' on':'')+'" data-mau="'+c+'" style="background:'+c+'" title="Màu"></button>').join("") +
-            '<button class="cu" data-vai="day">Nét dầy</button>' +
-            '<button class="cu" data-vai="tay">🧽 Tẩy</button>' +
-            '<button class="cu" data-vai="undo">↶ Hoàn tác</button>' +
-            '<button class="cu" data-vai="xoa">Xoá hết</button>' +
-            '<button class="cu" data-vai="tai">⬇️ Tải ảnh bài làm</button>';
-          bar.innerHTML = mauHtml;
-          k.appendChild(bar);
+          bar.innerHTML = '<button class="cu" data-vai="but">✏️ Bút</button>' +
+            MAU_BUT.map((c,i2)=>'<button class="mau'+(i2===0?' on':'')+'" data-mau="'+c+'" style="background:'+c+'"></button>').join("") +
+            '<button class="cu" data-vai="day">Nét dầy</button><button class="cu" data-vai="tay">🧽 Tẩy</button>' +
+            '<button class="cu" data-vai="undo">↶</button><button class="cu" data-vai="xoa">Xoá</button>' +
+            '<button class="cu" data-vai="tai">⬇️ Ảnh</button>';
+          cotAnh.appendChild(bar);
         }
-        k.appendChild(veHop);
-        k.insertAdjacentHTML("beforeend", '<a class="xemanh" href="'+bai.anh+'" target="_blank" rel="noopener">Xem ảnh lớn</a>');
+        const khung=document.createElement("div"); khung.className="khung-anh"; khung.dataset.cho=id;
+        khung.innerHTML='<img src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas>';
+        cotAnh.appendChild(khung);
+        const zoom=document.createElement("a"); zoom.className="xemanh"; zoom.href=bai.anh;
+        zoom.target="_blank"; zoom.rel="noopener"; zoom.textContent="Xem ảnh lớn"; cotAnh.appendChild(zoom);
       }
+      // cột hỏi
+      const cotHoi=document.createElement("div"); cotHoi.className="cot-hoi";
       (bai.cau||[]).forEach((c,j)=>{
         const d=document.createElement("div"); d.className="cau"; d.dataset.id=c.id;
         const o = (bai.kieu==="chon")
-          ? '<select id="'+c.id+'" class="chon-o"><option value=""></option>'+
-            (bai.lua||[]).map(x=>'<option value="'+x+'">'+x+'</option>').join('')+'</select>'
+          ? '<select id="'+c.id+'"><option value=""></option>'+(bai.lua||[]).map(x=>'<option value="'+x+'">'+x+'</option>').join('')+'</select>'
           : '<input type="text" id="'+c.id+'" autocomplete="off" autocapitalize="off" spellcheck="false">';
         d.innerHTML='<div class="socau">'+(j+1)+'</div><div class="than"><p class="hoi">'+c.hoi+
           '</p><div class="o">'+o+'<span class="kq" id="kq-'+c.id+'"></span></div></div>';
-        k.appendChild(d);
+        cotHoi.appendChild(d);
       });
+      if(!(bai.cau||[]).length){
+        cotHoi.innerHTML='<p class="nho">Phần này con làm trực tiếp trên hình bên trái (nối / tô màu). Thầy chấm trên ảnh con nộp.</p>';
+      }
+      const coCau = (bai.cau||[]).length > 0;
+      hai.style.gridTemplateColumns = coCau ? "minmax(0,1.45fr) minmax(0,1fr)" : "1fr";
+      hai.appendChild(cotAnh);
+      if(coCau || !bai.ve) hai.appendChild(cotHoi);
+      k.appendChild(hai);
       hop.appendChild(k);
 
       if(bai.ve){
-        const hopAnh = k.querySelector('.khung-anh[data-cho="'+id+'"]');
-        const bar = k.querySelector(".butve");
-        const tep = khoiTaoVe(hopAnh, id);
-        window["__ve_"+id] = tep;
-        bar.addEventListener("click", ev=>{
-          const nut = ev.target.closest("button"); if(!nut) return;
+        const khung=k.querySelector('.khung-anh[data-cho="'+id+'"]');
+        const bar=k.querySelector(".butve");
+        const tep=khoiTaoVe(khung,id); veApi[id]=tep;
+        bar.addEventListener("click",ev=>{
+          const nut=ev.target.closest("button"); if(!nut) return;
           if(nut.dataset.mau){
-            bar.querySelectorAll(".mau").forEach(x=>x.classList.toggle("on", x===nut));
+            bar.querySelectorAll(".mau").forEach(x=>x.classList.toggle("on",x===nut));
             tep.datMau(nut.dataset.mau);
-            if(!hopAnh.classList.contains("ve")) tep.bat(true);
-            bar.querySelector('[data-vai="but"]').classList.add("on");
-            return;
+            if(!khung.classList.contains("ve")) tep.bat(true);
+            bar.querySelector('[data-vai="but"]').classList.add("on"); return;
           }
-          const vai = nut.dataset.vai;
-          if(vai==="but"){ tep.bat(!hopAnh.classList.contains("ve")); nut.classList.toggle("on"); }
-          if(vai==="day"){ const d = nut.dataset.day==="1"?3:9; nut.dataset.day = d===9?"1":"0"; tep.datDay(d);
-                           nut.textContent = d===9?"Nét mảnh":"Nét dầy"; nut.classList.toggle("on", d===9); }
-          if(vai==="tay"){ const t=tep.tay(); nut.classList.toggle("on", t); }
+          const vai=nut.dataset.vai;
+          if(vai==="but"){ tep.bat(!khung.classList.contains("ve")); nut.classList.toggle("on"); }
+          if(vai==="day"){ const d=nut.dataset.day==="1"?3:9; nut.dataset.day=d===9?"1":"0"; tep.datDay(d);
+                           nut.textContent=d===9?"Nét mảnh":"Nét dầy"; nut.classList.toggle("on",d===9); }
+          if(vai==="tay"){ nut.classList.toggle("on", tep.tay()); }
           if(vai==="undo") tep.undo();
           if(vai==="xoa"){ if(confirm("Xoá hết nét vẽ của bài này?")) tep.xoa(); }
           if(vai==="tai") tep.tai();
         });
-        if(net[id]) tep.bat(true);
+        if(net[id] && net[id].length) tep.bat(true);
       }
     });
+    // nút chuyển phần
+    const cuoi=document.createElement("div"); cuoi.className="card";
+    if(i < DU.phan.length-1){
+      const b2=document.createElement("button"); b2.className="nut chinh di";
+      b2.textContent="Qua phần "+(DU.phan[i+1].ten.replace(/^Phần [A-Z] · /,""))+" →";
+      b2.onclick=()=>chuyenPhan(i+1);
+      cuoi.appendChild(b2);
+      cuoi.insertAdjacentHTML("beforeend",'<p class="nho">Làm xong phần này rồi bấm nút trên để sang phần tiếp theo. Chưa chấm điểm ở đây.</p>');
+    }else{
+      const b3=document.createElement("button"); b3.className="nut chinh di"; b3.textContent="Làm xong · Chấm bài & nộp";
+      b3.onclick=()=>cham(false);
+      cuoi.appendChild(b3);
+    }
+    hop.appendChild(cuoi);
     than.appendChild(hop);
+  });
+
+  // audio lên thanh trên
+  const strip=document.getElementById("audioStrip");
+  (DU.phan[0].audio||[]).forEach(a=>{
+    const o=document.createElement("div"); o.className="o";
+    const b=document.createElement("b"); b.textContent=a.ten.replace("File nghe ","Nghe ");
+    const au=document.createElement("audio"); au.controls=true; au.preload="none"; au.src=a.src;
+    o.appendChild(b); o.appendChild(au); strip.appendChild(o);
   });
 
   document.querySelectorAll("input[id],select[id]").forEach(i=>{
     if(dap[i.id]!==undefined) i.value=dap[i.id];
     if(i.id && i.id.indexOf("-")>0){
-      i.addEventListener("input",()=>{dap[i.id]=i.value;luu();});
-      i.addEventListener("change",()=>{dap[i.id]=i.value;luu();});
+      const f=()=>{dap[i.id]=i.value; luu();};
+      i.addEventListener("input",f); i.addEventListener("change",f);
     }
-  });
-  setTimeout(()=>{Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>{try{window[k].veLai()}catch(e){}});}, 600);
-  window.addEventListener("load", ()=>{Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>{try{window[k].veLai()}catch(e){}});});
-  window.addEventListener("resize", ()=>{
-    Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>window[k].veLai());
   });
 }
 
-function cham(){
-  let dung=0, tong=0;
+function chuyenPhan(i){
+  document.querySelectorAll(".tabbtn").forEach((x,j)=>x.classList.toggle("on",j===i));
+  document.querySelectorAll(".phan").forEach((x,j)=>x.classList.toggle("on",j===i));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- chấm + nộp ---------- */
+function duLieu(){
+  const items=[], anh=[];
   DU.phan.forEach(p=>p.bai.forEach(b=>(b.cau||[]).forEach(c=>{
-    tong++;
-    const o=document.getElementById(c.id);
-    const v=chuan(o.value);
-    const ok=v && c.dap.some(x=>chuan(x)===v);
-    const hang=o.closest(".cau");
-    hang.classList.toggle("dung",!!ok); hang.classList.toggle("sai",!ok);
-    document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
-    if(ok) dung++;
+    const o=document.getElementById(c.id), v=chuan(o.value);
+    items.push({so:p.ma+b.so+"."+(items.length+1), hoi:c.hoi, tra_loi:o.value,
+                dap:(c.dap||[])[0]||"", dung:!!(v && c.dap.some(x=>chuan(x)===v))});
   })));
+  Object.keys(veApi).forEach(id=>{
+    const src=veApi[id].anh();
+    if(src && net[id] && net[id].length) anh.push({ten:"Bài "+id, data:src});
+  });
+  return {items, anh};
+}
+
+function cham(hetGio){
+  daCham=true;
+  const {items,anh}=duLieu();
+  const dung = items.filter(x=>x.dung).length;
+  // tô màu ô đúng/sai
+  DU.phan.forEach(p=>p.bai.forEach(b=>(b.cau||[]).forEach(c=>{
+    const o=document.getElementById(c.id), v=chuan(o.value);
+    const ok=!!(v && c.dap.some(x=>chuan(x)===v));
+    o.closest(".cau").classList.toggle("dung",ok);
+    o.closest(".cau").classList.toggle("sai",!ok);
+    document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
+  })));
+  const tong=items.length;
+  document.getElementById("khoiCham").style.display="block";
   const hop=document.getElementById("kqhop"); hop.classList.add("on");
-  const ten=document.getElementById("ten").value.trim();
-  let loi = "<b>"+dung+"/"+tong+"</b> câu đúng ("+(tong?Math.round(dung/tong*100):0)+"%) · phần gõ được trên web.";
+  const ten=document.getElementById("fTen").value.trim();
+  let loi="<b>"+dung+"/"+tong+"</b> câu đúng ("+(tong?Math.round(dung/tong*100):0)+"%)";
   DU.phan.forEach(p=>{
     const soCau=p.bai.reduce((s,b)=>s+(b.cau||[]).length,0);
     if(soCau){
       const d=p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>{
-        const o=document.getElementById(c.id); return chuan(o.value)&&c.dap.some(x=>chuan(x)===chuan(o.value));
+        const o=document.getElementById(c.id); const v=chuan(o.value);
+        return v && c.dap.some(x=>chuan(x)===v);
       }).length,0);
-      loi += "<br>"+p.ten+": "+d+"/"+soCau+" câu";
+      loi+="<br>"+p.ten+": "+d+"/"+soCau;
     }
   });
-  const soVe = DU.phan.reduce((s,p)=>s+p.bai.filter(b=>b.ve).length,0);
-  if(soVe) loi += "<br>Phần vẽ/tô màu: "+soVe+" bài — làm xong bấm “Tải ảnh bài làm” để gửi giáo viên chấm.";
-  document.getElementById("diem").innerHTML = (ten?("<b>"+ten+"</b> · "):"") + loi;
-  document.getElementById("ghicham").textContent = "Ô xanh là đúng, ô đỏ là chưa đúng. Đáp án chi tiết giáo viên gửi sau buổi; phần vẽ giáo viên chấm trên ảnh con tải về.";
-  window.__kq = {dung, tong};
-  luu();
+  if(hetGio) loi="⏰ Hết giờ · "+loi;
+  document.getElementById("diem").innerHTML=(ten?"<b>"+ten+"</b> · ":"")+loi;
+  document.getElementById("ghicham").textContent="Ô xanh là đúng, ô đỏ là chưa đúng. Bài của con được lưu thành một tệp PDF gửi vào Drive của thầy, kèm ảnh vẽ tay.";
+  window.__kq={dung,tong,items,anh};
+  if(!daNop) nopBai();
 }
 
-document.getElementById("btCham").onclick=cham;
-document.getElementById("btLai").onclick=()=>{
-  if(!confirm("Xoá hết câu trả lời và nét vẽ để làm lại từ đầu?")) return;
-  dap={};
-  document.querySelectorAll("input[id],select[id]").forEach(i=>{if(i.id.indexOf("-")>0) i.value="";});
-  document.querySelectorAll(".cau").forEach(c=>c.classList.remove("dung","sai"));
-  document.querySelectorAll(".kq").forEach(k=>k.textContent="");
-  document.getElementById("kqhop").classList.remove("on");
-  Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>window[k].xoa());
-  net={}; luuVe(); luu();
-};
+function nopBai(){
+  const {items,anh}=window.__kq||{items:[],anh:[]};
+  const ten=document.getElementById("fTen").value.trim();
+  const lop=document.getElementById("fLop").value.trim();
+  const ma=document.getElementById("fMa").value.trim();
+  const phut=Math.max(1, Math.round((Date.now()-batDauLuc)/60000));
+  const o=document.getElementById("luu");
+  o.className="luu"; o.textContent="Đang lưu bài vào Drive của thầy…";
+  daNop=true;
+  fetch(API+"/luu-bai-sm",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({sach:DU.ten,ten,lop,ma,dung:(window.__kq||{}).dung,tong:(window.__kq||{}).tong,
+                         phut:phut+" phút",tra_loi:items,anh})})
+  .then(r=>r.json())
+  .then(d=>{
+    if(d && d.ok){
+      o.className="luu ok";
+      o.innerHTML="✅ Đã lưu bài của con vào Drive của thầy · tệp: <b>"+(d.file||"")+"</b>"+
+        (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở tệp</a>':"");
+    }else{
+      o.className="luu loi"; o.textContent="Chưa lưu được lên Drive ("+(d&&d.loi||"lỗi mạng")+"). Con bấm “Chấm bài” lần nữa để gửi lại, hoặc gửi Zalo cho thầy.";
+      daNop=false;
+    }
+  })
+  .catch(e=>{ o.className="luu loi";
+    o.textContent="Mất mạng nên chưa gửi được lên Drive. Bài vẫn lưu trên máy; con bấm “Chấm bài” để gửi lại, hoặc gửi Zalo cho thầy.";
+    daNop=false; });
+}
+
+document.getElementById("btCham").onclick=()=>cham(false);
 document.getElementById("btZalo").onclick=()=>{
-  const ten=document.getElementById("ten").value.trim()||"(chưa ghi tên)";
-  const lop=document.getElementById("lop").value.trim();
-  const ma=document.getElementById("ma").value.trim();
+  const ten=document.getElementById("fTen").value.trim()||"(chưa ghi tên)";
   const kq=window.__kq||{dung:0,tong:0};
   const loi="Chào thầy, con đã làm bài "+DU.ten+" cuối sách trên web. Tên: "+ten+
-    (lop?" · Lớp: "+lop:"")+(ma?" · Mã HV: "+ma:"")+
     ". Kết quả tự chấm: "+kq.dung+"/"+kq.tong+" câu đúng.";
   navigator.clipboard.writeText(loi).catch(()=>{});
   window.open("https://zalo.me/0346281292","_blank");
-  alert("Đã copy nội dung kết quả. Con dán vào Zalo cho thầy nhé!");
 };
 
-nap(); ve();
+/* ---------- bắt đầu ---------- */
+function moBai(tuDong){
+  document.getElementById("cua").classList.add("off");
+  document.getElementById("thanh").classList.add("on");
+  document.getElementById("khoiCham").style.display="block";
+  chayDongHo();
+}
+document.getElementById("btBatDau").onclick=()=>{
+  const ten=document.getElementById("fTen").value.trim();
+  const lop=document.getElementById("fLop").value.trim();
+  if(!ten || !lop){
+    document.getElementById("fLoi").style.display="block";
+    document.getElementById("fTen").style.borderColor = ten? "var(--vien)":"#e6a49e";
+    document.getElementById("fLop").style.borderColor = lop? "var(--vien)":"#e6a49e";
+    return;
+  }
+  batDauLuc=Date.now(); hetLuc=batDauLuc+PHUT*60000;
+  luu(); moBai(false);
+};
+
+/* khôi phục */
+(function(){
+  let tt=null,v=null;
+  try{tt=JSON.parse(localStorage.getItem(KHOA)||"null");}catch(e){}
+  try{v=JSON.parse(localStorage.getItem(KHOA_VE)||"null");}catch(e){}
+  if(tt){
+    document.getElementById("fTen").value=tt.ten||"";
+    document.getElementById("fLop").value=tt.lop||"";
+    document.getElementById("fMa").value=tt.ma||"";
+    dap=tt.dap||{};
+  }
+  net=v||{};
+  ve();
+  if(tt && tt.hetLuc && tt.hetLuc > Date.now()-1000){
+    batDauLuc=tt.batDauLuc||Date.now(); hetLuc=tt.hetLuc; moBai(true);
+  }
+})();
 </script>
 </body>
 </html>
