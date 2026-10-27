@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Học Tiếng Anh Dễ Lắm — lớp online nhóm nhỏ, tối đa 5 bạn</title>
+<meta name="description" content="Lớp tiếng Anh online nhóm nhỏ tối đa 5 bạn cho trẻ 6–14 tuổi. Học thử một tuần, hợp rồi mới đóng phí. Báo bài sau từng buổi, phụ huynh xem được tiến bộ.">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fffbf0; --beige:#f7e9cf; --sand:#f2ddb9; --card:#fffaf2;
+  --ink:#3a2b1e; --ink-soft:#6b5544; --gold:#fcbe5d; --gold-deep:#f0a93b;
+  --plum:#6c5ce7; --plum-soft:#a29bfe;
+  --r:18px; --r-lg:26px;
+  --pad:clamp(20px,4vw,52px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:"Quicksand",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;
+  background:linear-gradient(160deg,#fffdf7 0%,#fdf3e2 38%,#f8e7c9 72%,#f4dcb4 100%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:54px;padding:0 28px;background:var(--plum);color:#fff;text-decoration:none;border:0;border-radius:999px;font:inherit;font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;box-shadow:none}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:translateY(0)}
+.btn-gold{background:var(--gold);color:#4a3410}
+.btn-gold:hover{filter:brightness(1.05)}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,251,240,.92);backdrop-filter:blur(8px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px var(--pad);max-width:1240px;margin:0 auto}
+.nav img{height:76px;width:auto}
+.nav nav{display:flex;gap:26px;font-weight:600;font-size:15px}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.nav .btn{min-height:46px;padding:0 20px;font-size:15px}
+
+.hero{padding:clamp(30px,5vw,64px) 0 0;position:relative;overflow:hidden}
+.hero .head{text-align:center;margin:0 auto}
+.hero h1{font-size:clamp(38px,7.4vw,102px);line-height:1;letter-spacing:-.02em;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--plum)}
+.hero .sub{margin:22px auto 0;max-width:52ch;font-size:clamp(17px,1.7vw,21px);color:var(--ink-soft);font-weight:500}
+.hero .cta-row{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero .tiny{font-size:14px;color:var(--ink-soft);text-align:center;margin-top:14px}
+
+.stack{position:relative;margin-top:clamp(40px,6vw,74px);height:560px}
+.folder{position:absolute;left:50%;transform:translateX(-50%);width:min(88vw,1060px);border-radius:var(--r-lg) var(--r-lg) 0 0;cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.folder .tab{position:absolute;top:-32px;height:34px;padding:0 22px;display:flex;align-items:center;font-size:16px;font-weight:700;background:inherit;color:inherit;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%)}
+.f1{background:var(--card);z-index:6;bottom:0;height:360px;cursor:default;border:2px solid #efd9b4;border-bottom:0}
+.f2{background:#f0c98a;color:#4a3410;z-index:5;bottom:44px;height:360px}
+.f3{background:#e9b978;color:#4a3410;z-index:4;bottom:88px;height:360px}
+.f4{background:var(--plum-soft);color:#231d5c;z-index:3;bottom:132px;height:360px}
+.f5{background:var(--plum);color:#fff;z-index:2;bottom:176px;height:360px}
+.stack:hover .f2{transform:translateX(-50%) translateY(-8px)}
+.stack:hover .f3{transform:translateX(-50%) translateY(-14px)}
+.stack:hover .f4{transform:translateX(-50%) translateY(-20px)}
+.f1 .inner{height:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,3vw,40px);padding:clamp(22px,3vw,38px);align-items:center}
+.f1 h2{font-size:clamp(23px,2.6vw,32px);line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.f1 p{margin-top:12px;color:var(--ink-soft);max-width:40ch}
+.f1 .act{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.f1 .pic{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;border:3px solid #f6e3c4}
+.f1 .pic img{width:100%;height:100%;object-fit:cover}
+
+section{position:relative}
+.h2{font-size:clamp(28px,3.6vw,46px);line-height:1.12;font-weight:700;letter-spacing:-.015em}
+.lead{margin-top:16px;font-size:clamp(17px,1.7vw,20px);color:var(--ink-soft);max-width:42ch}
+
+.facts-sec{padding-block:clamp(70px,8vw,120px) clamp(50px,6vw,80px)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,26px);margin-top:clamp(30px,4vw,46px)}
+.fact{background:var(--card);border-radius:var(--r);padding:clamp(18px,2.4vw,28px);border:2px solid #f2dfbf}
+.fact b{display:block;font-size:clamp(26px,3.2vw,40px);line-height:1.05;letter-spacing:-.02em;color:var(--plum)}
+.fact span{display:block;margin-top:8px;font-size:15px;color:var(--ink-soft);font-weight:500}
+
+.videos{padding-block:clamp(30px,5vw,60px) clamp(70px,8vw,110px)}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(26px,3.4vw,40px)}
+.vid{background:var(--card);border-radius:var(--r);overflow:hidden;border:2px solid #f2dfbf}
+.vid video{width:100%;aspect-ratio:16/10;object-fit:cover;background:#2b2118;display:block}
+.vid{border-radius:var(--r);overflow:hidden}
+.vid .cap{padding:14px 16px 18px;font-size:15px;color:var(--ink-soft);font-weight:600}
+
+.msg{padding-block:clamp(60px,7vw,100px)}
+.msgs{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,18px);margin-top:clamp(26px,3.4vw,40px);align-items:start}
+.msgs figure{margin:0;background:var(--card);border-radius:var(--r);padding:10px;border:2px solid #f2dfbf;display:flex;flex-direction:column}
+.msgs img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px}
+.msgs figcaption{font-size:14px;color:var(--ink-soft);padding:10px 4px 2px;font-weight:600}
+
+.how{padding-block:clamp(60px,7vw,100px)}
+.how .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.rail{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;margin-top:32px;padding-bottom:14px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.moment{flex:0 0 268px;scroll-snap-align:start;background:var(--card);border-radius:var(--r);padding:22px;border:2px solid #f2dfbf}
+.moment b{display:block;font-size:13px;color:var(--plum);font-weight:700;letter-spacing:.02em}
+.moment h3{font-size:19px;margin-top:6px;font-weight:700}
+.moment p{margin-top:8px;font-size:15px;color:var(--ink-soft)}
+
+
+.game{padding-block:clamp(60px,7vw,100px)}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(24px,3.2vw,36px)}
+.tier{display:block;background:var(--card);border:2px solid #f2dfbf;border-radius:var(--r);padding:clamp(14px,2vw,20px) clamp(16px,2.4vw,24px)}
+.tier .t-name{font-weight:700;font-size:17px}
+.tier .t-sub{display:block;font-size:14px;color:var(--ink-soft);font-weight:500;margin-top:2px}
+.games{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.games a{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#fdf1dc;border:2px solid #f4e0bd;text-decoration:none;font-size:15px;font-weight:600;transition:background .16s,border-color .16s,transform .16s}
+.games a:hover{background:#fbe6c4;border-color:#eccf9c;transform:translateY(-1px)}
+.game .more{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.game .more a.btn{min-height:50px}
+@media (max-width:900px){
+  .tiers{grid-template-columns:1fr}
+  .games a{font-size:14px;padding:8px 12px}
+}
+.proof{padding-block:clamp(60px,7vw,100px)}
+.proof .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,4vw,60px);align-items:center}
+.switch{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.switch button{font:inherit;font-weight:700;font-size:15px;min-height:48px;padding:0 18px;border-radius:999px;border:2px solid #e6cfa8;background:var(--card);color:var(--ink);cursor:pointer;transition:background .18s,color .18s}
+.switch button[aria-pressed="true"]{background:var(--plum);border-color:var(--plum);color:#fff}
+.card{background:var(--card);border-radius:var(--r-lg);padding:clamp(20px,3.4vw,44px);border:2px solid #f0dcba;transform:rotate(-1deg);min-width:0}
+.card .cap{text-align:center;font-size:13px;color:var(--ink-soft);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.card h3{text-align:center;font-size:clamp(20px,2.2vw,26px);margin-top:8px;font-weight:700}
+.card .photo{aspect-ratio:16/9;overflow:hidden;border-radius:14px;margin:20px 0}
+.card .photo img{width:100%;height:100%;object-fit:cover}
+.card dl{display:grid;grid-template-columns:82px minmax(0,1fr);gap:10px 14px;margin:0;font-size:16px}
+.card dd{overflow-wrap:anywhere}
+.card dt{color:var(--ink-soft);font-weight:700}
+.card dd{margin:0}
+
+.faq{padding-block:clamp(60px,7vw,100px)}
+.faq .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,60px)}
+.faq .pics{position:relative;align-self:start}
+.faq .tall{border-radius:var(--r-lg);overflow:hidden;border:3px solid #f6e3c4;aspect-ratio:4/5;max-height:560px}
+.faq .tall img{width:100%;height:100%;object-fit:cover}
+.faq .sq{position:absolute;right:8px;bottom:-18px;width:42%;border-radius:var(--r);overflow:hidden;border:6px solid #fdf3e2}
+details{margin-top:16px;background:var(--card);border-radius:var(--r);padding:6px 20px;border:2px solid #f2dfbf}
+details summary{list-style:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:52px}
+details summary::-webkit-details-marker{display:none}
+details summary svg{flex:0 0 auto;transition:transform .2s}
+details[open] summary svg{transform:rotate(180deg)}
+details p{padding-bottom:16px;color:var(--ink-soft);font-size:16px}
+
+.cta{padding-block:clamp(50px,6vw,90px) clamp(70px,8vw,110px)}
+.cta .box{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;border-radius:var(--r-lg);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px);align-items:center}
+.cta h2{font-size:clamp(26px,3.4vw,42px);line-height:1.12;font-weight:700}
+.cta p{margin-top:14px;color:#efecff;max-width:40ch}
+.cta .do{background:rgba(255,255,255,.14);border-radius:var(--r);padding:clamp(20px,3vw,30px);text-align:center}
+.cta .do .btn{width:100%;background:var(--gold);color:#4a3410}
+.cta .do .btn:hover{filter:brightness(1.05)}
+.cta .do .alt{margin-top:12px;font-size:14px;color:#efecff}
+
+footer{padding:34px 0 46px;font-size:14px;color:var(--ink-soft)}
+footer .cols{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{height:40px;width:auto;margin-bottom:8px}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.stack:hover .f2,.stack:hover .f3,.stack:hover .f4{transform:translateX(-50%)}}
+
+@media (max-width:900px){
+  .nav-in{flex-wrap:wrap;row-gap:6px;padding-bottom:8px}
+  .nav nav{order:3;width:100%;overflow-x:auto;gap:18px;font-size:14px;white-space:nowrap;padding:2px 0 4px;scrollbar-width:none}
+  .nav nav::-webkit-scrollbar{display:none}
+  .nav img{height:44px}
+  .nav .btn{min-height:42px;padding:0 16px;font-size:14px}
+  .hero h1{font-size:clamp(34px,10vw,62px)}
+  .hero .sub{font-size:16px}
+  .stack{height:420px;margin-top:46px}
+  .folder{width:94vw}
+  .f1{height:280px}
+  .f2{height:280px;bottom:38px}.f3{height:280px;bottom:76px}.f4{height:280px;bottom:114px}.f5{height:280px;bottom:152px}
+  .folder .tab{font-size:13px;height:28px;top:-26px;padding:0 12px}
+  .f5 .tab{left:4%!important}
+  .f4 .tab{left:22%!important}
+  .f3 .tab{left:46%!important}
+  .f2 .tab{left:68%!important}
+  .f1 .inner{grid-template-columns:1fr;padding:20px}
+  .f1 .pic{display:none}
+  .f1 h2{font-size:22px}
+  .f1 p{font-size:15px}
+  .facts{grid-template-columns:1fr 1fr}
+  .vids{grid-template-columns:1fr}
+  .msgs{display:flex;overflow-x:auto;gap:12px;padding-bottom:10px;scrollbar-width:none}
+  .msgs figure{flex:0 0 68vw}
+  .moment{flex:0 0 74vw}
+  .proof .grid,.faq .grid,.cta .box{grid-template-columns:1fr}
+  .card{transform:none}
+  .card dl{grid-template-columns:74px minmax(0,1fr);font-size:15px}
+  .faq .pics{order:-1}
+  .faq .tall{max-height:420px}
+  .faq .sq{width:38%;right:0;bottom:-14px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
+    <nav>
+      <a href="#trong-lop">Trong lớp</a>
+      <a href="#lop-that">Lớp thật</a>
+      <a href="#phu-huynh">Phụ huynh nói</a>
+      <a href="#game">Trò chơi</a>
+      <a href="#sau-buoc">Sáu bước</a>
+      <a href="#hoi-dap">Hỏi đáp</a>
+    </nav>
+    <a class="btn" href="#dat-cho">Học thử một tuần</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="head">
+      <h1 class="rv">Học tiếng Anh<br><em>dễ lắm</em></h1>
+      <p class="sub rv">Lớp online nhóm nhỏ, tối đa 5 bạn, trẻ 6–14 tuổi. Con học thử một tuần trước, hợp rồi ba mẹ mới tính phí.</p>
+      <div class="cta-row rv">
+        <a class="btn" href="#dat-cho">Đăng ký tuần học thử</a>
+        <a class="btn btn-gold" href="#lop-that">Xem lớp thật</a>
+      </div>
+      <p class="tiny rv">3 buổi mỗi tuần · 60 phút mỗi buổi · tối 18–21h</p>
+    </div>
+  </div>
+
+  <div class="stack" id="stack">
+    <a class="folder f5" href="#trong-lop" aria-label="Trong lớp có gì"><span class="tab" style="left:18%">Trong lớp</span></a>
+    <a class="folder f4" href="#lop-that" aria-label="Lớp thật"><span class="tab" style="left:40%">Lớp thật</span></a>
+    <a class="folder f3" href="#phu-huynh" aria-label="Phụ huynh nói"><span class="tab" style="left:60%">Phụ huynh nói</span></a>
+    <a class="folder f2" href="#sau-buoc" aria-label="Sáu bước"><span class="tab" style="left:36%">Sáu bước</span></a>
+    <div class="folder f1">
+      <span class="tab" style="left:12%"></span>
+      <div class="inner">
+        <div>
+          <h2>Tuần đầu học thử, chưa đóng đồng nào</h2>
+          <p>Con vào lớp thật ba buổi. Sau tuần đó ba mẹ nghe lại nhận xét của giáo viên rồi mới quyết định.</p>
+          <div class="act">
+            <a class="btn" href="#dat-cho">Đặt tuần học thử</a>
+            <span style="font-size:14px;color:var(--ink-soft)">Nhắn Zalo, xếp lớp trong 2 ngày</span>
+          </div>
+        </div>
+        <div class="pic"><img src="img/be-hoc.jpg" alt="Một bé gái đeo tai nghe học tiếng Anh trước laptop buổi tối" width="1184" height="864"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="facts-sec wrap" id="trong-lop">
+  <h2 class="h2 rv">Trong lớp có gì</h2>
+  <p class="lead rv">Lớp nhỏ để giáo viên nghe được từng con nói. Ba buổi mỗi tuần, mỗi buổi một giờ, học đều mới lên được.</p>
+  <div class="facts">
+    <div class="fact rv"><b>5 bạn</b><span>tối đa mỗi lớp, xếp cùng trình độ</span></div>
+    <div class="fact rv"><b>3 buổi</b><span>mỗi tuần, 60 phút một buổi</span></div>
+    <div class="fact rv"><b>18–21h</b><span>ba ca tối, thứ Hai đến thứ Sáu</span></div>
+    <div class="fact rv"><b>1 tuần</b><span>học thử miễn phí trước khi đóng phí</span></div>
+  </div>
+</section>
+
+<section class="videos wrap" id="lop-that">
+  <h2 class="h2 rv">Lớp thật, không phải ảnh chụp</h2>
+  <p class="lead rv">Ba đoạn quay trong buổi học: con đọc to, cả lớp cùng chơi, giáo viên chữa bài từng bạn.</p>
+  <div class="vids">
+    <figure class="vid rv">
+      <video src="/video-lop-hoc.mp4" poster="img/poster-video-lop-hoc.jpg" controls playsinline preload="none"></video>
+      
+    </figure>
+    <figure class="vid rv">
+      <video src="/video-lop-hoc-2.mp4" poster="img/poster-video-lop-hoc-2.jpg" controls playsinline preload="none"></video>
+      
+    </figure>
+    <figure class="vid rv">
+      <video src="/video-lop-hoc-4.mp4" poster="img/poster-video-lop-hoc-4.jpg" controls playsinline preload="none"></video>
+      
+    </figure>
+  </div>
+</section>
+
+<section class="msg wrap" id="phu-huynh">
+  <h2 class="h2 rv">Phụ huynh nhắn sau buổi học</h2>
+  <p class="lead rv">Tin nhắn thật của phụ huynh gửi giáo viên. Tên và ảnh đại diện đã được làm mờ.</p>
+  <div class="msgs">
+    <figure class="rv"><img src="/tin-nhan-1.jpg" alt="Tin nhắn phụ huynh cảm ơn sau buổi học" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-2.jpg" alt="Tin nhắn phụ huynh kể con tiến bộ" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-3.jpg" alt="Tin nhắn phụ huynh hỏi bài cho con" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-4.jpg" alt="Tin nhắn phụ huynh xin học thử" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-5.jpg" alt="Tin nhắn phụ huynh nhận xét giáo viên" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="how wrap" id="sau-buoc">
+  <div class="head">
+    <div>
+      <h2 class="h2 rv">Sáu bước từ lúc nhắn đến lúc con học đều</h2>
+      <p class="lead rv">Bước nào cũng có người trả lời. Ba mẹ không phải tự đoán con đang ở đâu.</p>
+    </div>
+  </div>
+  <div class="rail" tabindex="0" aria-label="Sáu bước đăng ký và học">
+    <article class="moment rv"><b>Bước một</b><h3>Nhắn Zalo</h3><p>Tên con, tuổi, giờ ba mẹ rảnh. Giáo viên trả lời trong ngày.</p></article>
+    <article class="moment rv"><b>Bước hai</b><h3>Học thử một tuần</h3><p>Ba buổi thật, đúng lớp đúng trình độ. Chưa đóng phí.</p></article>
+    <article class="moment rv"><b>Bước ba</b><h3>Ba mẹ quyết</h3><p>Nghe nhận xét của giáo viên sau tuần thử. Không hợp thì dừng, không mất gì.</p></article>
+    <article class="moment rv"><b>Bước bốn</b><h3>Xếp lớp theo thang</h3><p>Xếp theo năng lực, không theo tuổi. Con yếu hơn thì vào lớp thấp hơn một bậc.</p></article>
+    <article class="moment rv"><b>Bước năm</b><h3>Báo bài mỗi buổi</h3><p>Học phần nào, trang nào, con nói được gì, về nhà làm gì — gửi ngay sau buổi.</p></article>
+    <article class="moment rv"><b>Bước sáu</b><h3>Cuối tháng xem học bạ</h3><p>Mức đạt từng kỹ năng và mốc cần bù, mở bằng mã của con.</p></article>
+  </div>
+</section>
+
+
+<section class="game wrap" id="game">
+  <h2 class="h2 rv">Con chơi ở nhà, giáo viên thấy kết quả</h2>
+  <p class="lead rv">Mỗi unit có một bộ trò chơi xếp theo sáu nấc: từ nhận mặt chữ đến tự viết câu. Con mở bằng mã học viên, điểm cộng dồn vào phiếu của con.</p>
+  <div class="tiers">
+    <div class="tier rv"><div><div class="t-name">Nấc một · Nhận diện</div><span class="t-sub">Nhìn hình hoặc nghe từ rồi hiểu nghĩa</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/flashcard.html">Thẻ từ</a><a href="https://hoctienganhdelam.com/game/games/matching-game.html">Ghép cặp</a><a href="https://hoctienganhdelam.com/game/games/catch-the-card.html">Bắt thẻ</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc hai · Lặp lại</div><span class="t-sub">Nhớ mặt chữ và viết lại cho đúng</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/games/spelling-game.html">Đánh vần</a><a href="https://hoctienganhdelam.com/game/scrambled-word.html">Xếp chữ</a><a href="https://hoctienganhdelam.com/game/word-find.html">Tìm từ</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc ba · Dùng theo mẫu</div><span class="t-sub">Chọn và ghép theo câu mẫu</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/games/quiz-game.html">Trắc nghiệm</a><a href="https://hoctienganhdelam.com/game/sentence-builder.html">Xếp thành câu</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc bốn · Dùng tự do</div><span class="t-sub">Đọc và hiểu cả đoạn</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/Reading.html">Tập đọc</a><a href="https://hoctienganhdelam.com/game/words-fall.html">Dịch truyện</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc năm · Tư duy</div><span class="t-sub">Suy luận, tự phát hiện lỗi</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/tu-duy.html">Tư duy</a><a href="https://hoctienganhdelam.com/game/on-tap.html">Ôn từ hay sai</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc sáu · Sáng tạo</div><span class="t-sub">Tự viết câu của mình bằng từ của bài</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/sang-tao.html">Sáng tạo câu</a></div></div>
+  </div>
+  <div class="more rv">
+    <a class="btn" href="https://hoctienganhdelam.com/game/sanh.html">Vào sảnh trò chơi</a>
+    <a class="btn btn-gold" href="https://hoctienganhdelam.com/scoreboard.html">Xem bảng điểm</a>
+  </div>
+</section>
+
+<section class="proof wrap" id="thang-do">
+  <div class="grid">
+    <div>
+      <h2 class="h2 rv">Con đang ở bậc nào</h2>
+      <p class="lead rv">Mỗi bé một phiếu, đo bốn kỹ năng trên thang chín bậc. Chọn tuổi để xem mốc năm nay.</p>
+      <div class="switch" role="group" aria-label="Chọn tuổi của con">
+        <button type="button" data-t="t1" aria-pressed="true">6–8 tuổi</button>
+        <button type="button" data-t="t2" aria-pressed="false">8–11 tuổi</button>
+        <button type="button" data-t="t3" aria-pressed="false">11–14 tuổi</button>
+      </div>
+    </div>
+    <div class="card rv" id="hocba">
+      <p class="cap">Phiếu năng lực · năm học 2026–2027</p>
+      <h3 id="hb-title">Làm quen bằng bài hát và câu ngắn</h3>
+      <div class="photo"><img id="hb-img" src="img/me-va-con.jpg" alt="Mẹ và bé gái cùng xem bài học" loading="lazy"></div>
+      <dl id="hb-list">
+        <dt>Nghe</dt><dd>Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.</dd>
+        <dt>Nói</dt><dd>Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.</dd>
+        <dt>Đọc</dt><dd>Đọc từ và câu mẫu có hình đi kèm.</dd>
+        <dt>Viết</dt><dd>Chép đúng từ, điền từ vào chỗ trống.</dd>
+        <dt>Mốc năm nay</dt><dd>Từ bậc 1 lên bậc 2 của thang chín bậc.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="faq wrap" id="hoi-dap">
+  <div class="grid">
+    <div>
+      <h2 class="h2 rv">Câu hỏi thường gặp</h2>
+      <details class="rv" open><summary>Học thử một tuần là thế nào?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Con vào lớp thật, học đủ ba buổi trong tuần đầu. Hết tuần, giáo viên gửi nhận xét. Ba mẹ đồng ý thì mới tính phí từ tuần sau; không đồng ý thì dừng, không mất gì.</p></details>
+      <details class="rv"><summary>Học phí bao nhiêu?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Lớp không đăng học phí lên web vì mỗi lớp một mức, tuỳ số buổi và trình độ. Ba mẹ nhắn Zalo, giáo viên báo đúng mức cho lớp của con trước khi bắt đầu tuần thử.</p></details>
+      <details class="rv"><summary>Con ở tỉnh khác có học được không?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Được. Lớp học qua Zoom, hiện có học viên ở nhiều tỉnh và cả ở nước ngoài. Cần mạng ổn định và một chỗ ngồi yên tĩnh.</p></details>
+      <details class="rv"><summary>Con mất gốc thì sao?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Con vào lớp thấp hơn một bậc so với tuổi. Phần nền được dạy lại như một tầng riêng trong buổi học, không phải học lại cả khoá.</p></details>
+      <details class="rv"><summary>Ba mẹ theo dõi tiến bộ bằng cách nào?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Hai đường: tin báo bài trên Zalo sau mỗi buổi, và trang học bạ mở bằng mã của con — có điểm danh, bài đã học và mức đạt từng đầu mục.</p></details>
+      <details class="rv"><summary>Một lớp mấy bạn, ai dạy?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Tối đa năm bạn cùng trình độ. Lớp do một giáo viên phụ trách cả khoá, có bạn trợ giảng kèm riêng em cần thêm.</p></details>
+    </div>
+    <div class="pics rv">
+      <div class="tall"><img src="img/be-thuyet-trinh.jpg" alt="Một bé trai đứng cạnh bản đồ, cầm vở để thuyết trình" loading="lazy"></div>
+      <div class="sq"><img src="img/be-noi.jpg" alt="Một bé trai học trước laptop buổi sáng" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta wrap" id="dat-cho">
+  <div class="box">
+    <div>
+      <h2 class="rv">Cho con học thử một tuần</h2>
+      <p class="rv">Ba buổi thật, chưa đóng phí. Ba mẹ nhắn tên con, tuổi và giờ rảnh — giáo viên xếp lớp trong hai ngày.</p>
+    </div>
+    <div class="do rv">
+      <a class="btn" href="https://zalo.me/09xxxxxxxx">Nhắn Zalo cho giáo viên</a>
+      <p class="alt">Hoặc gọi 09xx xxx xxx · 8h–21h</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
+      <div>hoctienganhdelam.com · Lớp tiếng Anh online cho trẻ 6–14 tuổi</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:14px">
+        <a href="https://hoctienganhdelam.com/game/sanh.html">Sảnh trò chơi</a>
+        <a href="https://hoctienganhdelam.com/scoreboard.html">Bảng điểm</a>
+        <a href="https://hoctienganhdelam.com/chat.html">Chat với AI</a>
+        <a href="https://hoctienganhdelam.com/blog.html">Blog</a>
+        <a href="https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1">Vào lớp</a>
+      </div>
+    </div>
+    <div>Ảnh trẻ em do AI tạo để bảo vệ hình ảnh học viên. Video và tin nhắn là thật, đã làm mờ tên.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+    els.forEach(function(el,i){ el.style.transitionDelay=(Math.min(i%6,5)*70)+'ms'; io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  var DATA={
+    t1:{title:'Làm quen bằng bài hát và câu ngắn',img:'img/me-va-con.jpg',rows:[
+      ['Nghe','Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.'],
+      ['Nói','Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.'],
+      ['Đọc','Đọc từ và câu mẫu có hình đi kèm.'],
+      ['Viết','Chép đúng từ, điền từ vào chỗ trống.'],
+      ['Mốc năm nay','Từ bậc 1 lên bậc 2 của thang chín bậc.']]},
+    t2:{title:'Đọc hiểu đoạn ngắn, nói thành câu',img:'img/be-hoc.jpg',rows:[
+      ['Nghe','Nghe một đoạn hội thoại ngắn, trả lời được câu hỏi chính.'],
+      ['Nói','Kể lại việc đã làm trong ngày, dùng thì quá khứ đơn.'],
+      ['Đọc','Đọc đoạn 80–120 từ, tìm ý chính và từ mới theo ngữ cảnh.'],
+      ['Viết','Viết đoạn 40–60 từ có mở, thân, kết.'],
+      ['Mốc năm nay','Từ bậc 3 lên bậc 4; lớp A2 tính là bậc 5.']]},
+    t3:{title:'Trình bày ý kiến, chuẩn bị thi chứng chỉ',img:'img/be-thuyet-trinh.jpg',rows:[
+      ['Nghe','Nghe bài giảng, ghi chú ý chính và chi tiết hỗ trợ.'],
+      ['Nói','Trình bày hai phút có mở đầu, lý do và ví dụ; trả lời câu hỏi.'],
+      ['Đọc','Đọc bài 200–300 từ, phân biệt ý kiến và dẫn chứng.'],
+      ['Viết','Viết bài 120–150 từ đúng ba phần, dùng liên kết câu.'],
+      ['Mốc năm nay','Bậc 6 lên bậc 7 (B1); sàn B1 là bậc 5.']]}
+  };
+  var btns=document.querySelectorAll('.switch button'),
+      title=document.getElementById('hb-title'), img=document.getElementById('hb-img'), list=document.getElementById('hb-list');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var d=DATA[b.dataset.t];
+      title.textContent=d.title; img.src=d.img;
+      list.innerHTML=d.rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');
+    });
+  });
+
+  document.querySelectorAll('.folder[href]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

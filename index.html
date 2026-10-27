@@ -1,2642 +1,458 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<link rel="icon" type="image/x-icon" href="favicon.png">
-  <!-- Link Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Học Tiếng Anh Dễ Lắm — lớp online nhóm nhỏ, tối đa 5 bạn</title>
+<meta name="description" content="Lớp tiếng Anh online nhóm nhỏ tối đa 5 bạn cho trẻ 6–14 tuổi. Học thử một tuần, hợp rồi mới đóng phí. Báo bài sau từng buổi, phụ huynh xem được tiến bộ.">
+<link rel="icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Học Tiếng Anh Dễ Lắm</title>
-  
-  <!-- Meta tags SEO -->
-  <meta name="description" content="Học tiếng Anh online hiệu quả cho trẻ em. Phương pháp học hiện đại, giáo viên chất lượng, lớp học chỉ 5 học viên. Sách Cambridge Super Minds, Prepare, Open World.">
-  <meta name="keywords" content="học tiếng Anh, tiếng Anh online, tiếng Anh trẻ em, Cambridge, Super Minds, Prepare, Open World, lớp học tiếng Anh, học thử miễn phí">
-  <meta name="author" content="Học Tiếng Anh Dễ Lắm">
-  <meta property="og:title" content="Học Tiếng Anh Dễ Lắm">
-  <meta property="og:description" content="Phương pháp học tiếng Anh online hiệu quả, lớp chỉ 5 học viên, giáo viên chất lượng từ khắp thế giới.">
-  <meta property="og:image" content="https://hoctienganhdelam.com/logo.png">
-  <meta property="og:url" content="https://hoctienganhdelam.com">
-  <meta name="robots" content="index, follow">
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="banner.jpg" as="image">
-  <link rel="preload" href="logo.png" as="image">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400..800&display=swap" as="style">
-
-  <style>
-    /* Reset CSS */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Smooth scroll */
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
-
-    body {
-      font-family: Quicksand, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      padding-top: 80px;
-      background: #F5F5F0; /* White Beige background */
-    }
-    
-    h1, h2, h3 {
-      font-family: "Baloo Bhaina 2", serif;
-      font-weight: Bold;
-      color: #f7d281;
-    }
-
-    /* ========== NAVBAR STYLES ========== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 251, 240, 0.98); /* White beige with opacity */
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      z-index: 1000;
-      padding: 12px 0;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid #e8e4da;
-    }
-
-    .navbar.scrolled {
-      padding: 8px 0;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      background: rgba(255, 251, 240, 0.98);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-img {
-      height: 45px;
-      width: auto;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover .logo-img {
-      transform: scale(1.05);
-    }
-
-    .logo-text {
-      font-family: "Baloo Bhaina 2", serif;
-      font-weight: 800;
-      font-size: 22px;
-      color: #f7d281;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .logo-subtext {
-      font-size: 11px;
-      color: #fcbe5d;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-    }
-
-    .nav-menu li {
-      position: relative;
-    }
-
-    .nav-menu a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 700;
-      font-size: 15px;
-      transition: all 0.3s ease;
-      padding: 8px 5px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(to right, #fcbe5d, #f7d281);
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-
-    .nav-menu a:hover {
-      color: #fcbe5d;
-    }
-
-    .nav-menu a:hover::after {
-      width: 100%;
-    }
-
-    .nav-menu a.active {
-      color: #fcbe5d;
-    }
-
-    .nav-menu a.active::after {
-      width: 100%;
-    }
-
-    /* Dropdown menu */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown > a span {
-      font-size: 10px;
-      margin-left: 3px;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #FFFBF0; /* White beige */
-      min-width: 250px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      border-radius: 12px;
-      padding: 10px 0;
-      z-index: 1001;
-      animation: fadeIn 0.3s ease;
-      border: 1px solid #e8e4da;
-    }
-
-    .dropdown-content a {
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #555;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-content a::before {
-      display: none;
-    }
-
-    .dropdown-content a:hover {
-      background: linear-gradient(to right, #fff8e1, #fffbf0);
-      color: #fcbe5d;
-      padding-left: 25px;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Game icon styles */
-    .game-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    /* Badge HOT */
-    .hot-badge {
-      display: inline-block;
-      background: linear-gradient(45deg, #ff0000, #ff6b6b);
-      color: white;
-      font-size: 7px;
-      font-weight: bold;
-      padding: 3px 8px;
-      border-radius: 12px;
-      margin-left: 8px;
-      animation: pulse 2s infinite;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
-      position: relative;
-      top: -1px;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.05);
-        opacity: 0.9;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* CTA Buttons in Nav */
-    .nav-cta {
-      margin-left: 20px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .nav-cta .cta-button {
-      background: linear-gradient(135deg, #fcbe5d, #e0a800);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      box-shadow: 0 4px 15px rgba(245, 181, 54, 0.3);
-      transition: all 0.3s ease;
-      display: inline-block;
-      border: none;
-      cursor: pointer;
-    }
-
-    .nav-cta .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(245, 181, 54, 0.4);
-      background: linear-gradient(135deg, #ffc107, #fcbe5d);
-    }
-
-    .nav-cta .chat-ai-button {
-      background: linear-gradient(135deg, #6C5CE7, #a29bfe);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
-      transition: all 0.3s ease;
-      display: inline-block;
-      border: none;
-      cursor: pointer;
-      animation: pulse-ai 2s infinite;
-    }
-
-    .nav-cta .chat-ai-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(108, 92, 231, 0.45);
-      background: linear-gradient(135deg, #5f4dd0, #8c7ae6);
-    }
-
-    @keyframes pulse-ai {
-      0%, 100% { box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); }
-      50% { box-shadow: 0 4px 25px rgba(108, 92, 231, 0.55); }
-    }
-
-    /* Hamburger Menu (Mobile) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-      z-index: 1001;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #f7d281;
-      margin: 4px 0;
-      transition: 0.3s;
-      border-radius: 2px;
-      display: block;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* ========== MAIN CONTENT STYLES ========== */
-
-/* Banner */
-.banner-container {
-  width: 98%;
-  max-height: 50%;
-  border-radius: 50px;
-  overflow: hidden;
-  position: relative;
-  animation: drop 1s;
-  margin: 20px auto 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-
-.banner {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@keyframes drop {
-  0% {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Container cho logo và nút CTA */
-.floating-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 999;
-}
-
-/* Logo */
-.floating-logo {
-  width: 150px;
-  height: auto;
-  animation: shake 5s infinite;
-}
-
-/* Hiệu ứng lúc lắc */
-@keyframes shake {
-  0%, 100% {
-    transform: translateX(0) rotate(0deg);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-5px) rotate(-3deg);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translateX(5px) rotate(3deg);
-  }
-}
-
-/* Nút CTA */
-.floating-cta-button {
-  background: linear-gradient(to bottom, #FFFFFF, #fcbe5d);
-  color: #333;
-  padding: 15px 25px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
-  font-weight: bold;
-}
-
-.floating-cta-button:hover {
-  background: #e0a800;
-  transform: translateY(-2px);
-}
-
-    /* Giới thiệu */
-    .intro {
-      padding: 70px 20px;
-      text-align: center;
-      background: #FFFBF0; /* White beige */
-      margin: 40px auto;
-      border-radius: 20px;
-      max-width: 1200px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e8e4da;
-    }
-
-    .intro h2 {
-      font-size: 36px;
-      margin-bottom: 30px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .intro h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, #fcbe5d, #f7d281);
-      border-radius: 2px;
-    }
-
-    .intro p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: 0 auto 40px;
-      color: #555;
-    }
-
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 35px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.video-container {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  background: #000;
-}
-
-.video-container:hover {
-  transform: translateY(-5px);
-}
-
-video {
-  width: 100%;
-  max-height: 320px;
-  display: block;
-  border-radius: 15px;
-}
-
-
-/* Phần lợi ích */
-.benefits {
-  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
-  text-align: center;
-  padding: 70px 20px;
-  margin: 40px 0;
-  border-radius: 20px;
-  max-width: 1200px;
-  margin: 40px auto;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e8e4da;
-}
-
-.benefits-header h2 {
-  font-size: 36px;
-  margin-bottom: 80px;
-  position: relative;
-  display: inline-block;
-}
-
-.benefits-header h2::before {
-  content: '"';
-  color: #fcbe5d;
-  font-size: 80px;
-  position: absolute;
-  top: -40px;
-  left: -40px;
-}
-
-.benefits-header h2::after {
-  content: '"';
-  color: #fcbe5d;
-  font-size: 80px;
-  position: absolute;
-  bottom: -60px;
-  right: -40px;
-}
-
-.benefits-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.benefit-card {
-  flex: 1 1 300px;
-  position: relative;
-  background: #FFFBF0; /* White beige */
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 40px 25px 25px;
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.benefit-card:hover {
-  transform: translateY(-10px);
-  border-color: #fcbe5d;
-  box-shadow: 0 15px 35px rgba(245, 181, 54, 0.15);
-}
-
-.benefit-logo {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 160px;
-  padding: 10px;
-  background: #FFFBF0; /* White beige */
-  border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.benefit-card h3 {
-  margin-top: 40px;
-  font-size: 24px;
-  color: #f7d281;
-  margin-bottom: 15px;
-}
-
-.benefit-card p {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.7;
-}
-
-/* Chương trình học */
-.curriculum {
-  padding: 70px 20px;
-  text-align: center;
-  background: #FFFBF0;
-  margin: 40px auto;
-  border-radius: 20px;
-  max-width: 1200px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e8e4da;
-}
-
-.curriculum h2 {
-  font-size: 36px;
-  color: #f7d281;
-  margin-bottom: 50px;
-  font-family: "Baloo Bhaina 2", serif;
-}
-
-.curriculum h2 .subtitle {
-  display: block;
-  font-size: 18px;
-  color: #777;
-  font-weight: 400;
-  margin-top: 6px;
-  font-family: Quicksand, sans-serif;
-}
-
-/* Philosophy banner */
-.curriculum-philosophy {
-  background: linear-gradient(135deg, #fff9e6, #fff3c4);
-  border: 2px dashed #fcbe5d;
-  border-radius: 16px;
-  padding: 30px 36px;
-  max-width: 1000px;
-  margin: 0 auto 50px auto;
-  text-align: center;
-}
-
-.curriculum-philosophy p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #6b5200;
-  margin: 0;
-  font-weight: 600;
-}
-
-.curriculum-philosophy .highlight {
-  color: #e0a800;
-  font-weight: 800;
-}
-
-/* Level cards */
-.curriculum-levels {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  max-width: 1050px;
-  margin: 0 auto 50px auto;
-}
-
-.level-card {
-  background: white;
-  border-radius: 16px;
-  padding: 36px 28px;
-  text-align: left;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid #eee;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.level-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-  border-color: #f7d281;
-}
-
-.level-card .level-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, #f7d281, #fcbe5d);
-  color: white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 800;
-  margin-bottom: 16px;
-  letter-spacing: 0.5px;
-}
-
-.level-card h3 {
-  font-family: "Baloo Bhaina 2", serif;
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 12px;
-}
-
-.level-card p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #666;
-}
-
-.level-card .skill-tags {
-  margin-top: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.level-card .skill-tags span {
-  background: #f0f0e8;
-  color: #777;
-  padding: 5px 12px;
-  border-radius: 14px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* Tech section */
-.curriculum-tech {
-  max-width: 1000px;
-  margin: 50px auto 50px auto;
-  text-align: center;
-  padding: 40px 28px;
-  background: linear-gradient(135deg, #f0f4ff, #e8edf5);
-  border-radius: 20px;
-  border: 1px solid #dde;
-}
-
-.curriculum-tech h3 {
-  font-family: "Baloo Bhaina 2", serif;
-  font-size: 24px;
-  color: #5f4dd0;
-  margin-bottom: 30px;
-}
-
-.curriculum-tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.tech-card {
-  background: white;
-  border-radius: 14px;
-  padding: 28px 20px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.tech-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(95, 77, 208, 0.12);
-}
-
-.tech-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
-}
-
-.tech-card h4 {
-  font-family: "Baloo Bhaina 2", serif;
-  font-size: 17px;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.tech-card p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #777;
-}
-
-/* Scaffold illustration */
-.curriculum-scaffold {
-  max-width: 1000px;
-  margin: 50px auto 0 auto;
-  text-align: center;
-}
-
-.curriculum-scaffold h3 {
-  font-family: "Baloo Bhaina 2", serif;
-  font-size: 24px;
-  color: #f7d281;
-  margin-bottom: 24px;
-}
-
-.scaffold-steps {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.scaffold-step {
-  background: white;
-  border: 2px solid #e8e4da;
-  border-radius: 12px;
-  padding: 20px 18px;
-  min-width: 140px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.scaffold-step:hover {
-  border-color: #f7d281;
-  transform: translateY(-2px);
-}
-
-.scaffold-step .step-icon {
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-
-.scaffold-step .step-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: #333;
-}
-
-.scaffold-step .step-desc {
-  font-size: 12px;
-  color: #999;
-  margin-top: 4px;
-}
-
-.scaffold-arrow {
-  font-size: 24px;
-  color: #fcbe5d;
-  font-weight: bold;
-}
-
-/* Footnote */
-.curriculum-footnote {
-  margin-top: 40px;
-  padding: 20px 30px;
-  background: #f9f6ed;
-  border-radius: 12px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  border-left: 4px solid #f7d281;
-  text-align: left;
-}
-
-.curriculum-footnote p {
-  font-size: 14px;
-  color: #888;
-  line-height: 1.7;
-  margin: 0;
-}
-
-.curriculum-footnote strong {
-  color: #f7d281;
-}
-
-@media (max-width: 768px) {
-  .curriculum {
-    padding: 40px 16px;
-  }
-  .curriculum-philosophy {
-    padding: 20px 18px;
-  }
-  .curriculum-philosophy p {
-    font-size: 15px;
-  }
-  .curriculum-levels {
-    grid-template-columns: 1fr;
-  }
-  .scaffold-steps {
-    flex-direction: column;
-  }
-  .scaffold-arrow {
-    transform: rotate(90deg);
-  }
-}
-
-/* Cảm nhận từ phụ huynh */
-.testimonials {
-  padding: 70px 20px;
-  text-align: center;
-  background: #FFFBF0; /* White beige */
-  margin: 40px 0;
-  border-radius: 20px;
-  max-width: 1200px;
-  margin: 40px auto;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e8e4da;
-}
-
-.testimonials h2 {
-  font-size: 36px;
-  margin-bottom: 50px;
-  color: #f7d281;
-  position: relative;
-  display: inline-block;
-}
-
-.testimonials h2::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(to right, #fcbe5d, #f7d281);
-  border-radius: 2px;
-}
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.testimonial-card {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  background: white;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.testimonial-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.3s ease;
-}
-
-.testimonial-card img:hover {
-  transform: scale(1.03);
-}
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      padding: 20px;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      animation: zoomIn 0.3s ease;
-    }
-
-    @keyframes zoomIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    /* Form đăng ký */
-    .registration {
-  background: linear-gradient(135deg, #f7d281 0%, #faca7a 100%);
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
-      border-radius: 20px;
-      margin: 40px auto;
-      max-width: 1200px;
-      box-shadow: 0 10px 30px rgba(75, 30, 138, 0.2);
-    }
-
-    .registration h2 {
-      font-size: 36px;
-      margin-bottom: 30px;
-      color: white;
-    }
-
-    .registration form {
-      max-width: 500px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .registration input {
-      width: 100%;
-      padding: 16px 20px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.95);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .registration input:focus {
-      outline: none;
-      border-color: #fcbe5d;
-      box-shadow: 0 0 0 3px rgba(245, 181, 54, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .registration button {
-      background: linear-gradient(135deg, #fcbe5d, #ffc107);
-      color: #333;
-      padding: 18px 40px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(245, 181, 54, 0.3);
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-    }
-
-    .registration button:hover {
-      background: linear-gradient(135deg, #ffc107, #fcbe5d);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(245, 181, 54, 0.4);
-    }
-
-    /* Social proof section */
-    .social-proof {
-      background: #FFFBF0; /* White beige */
-      padding: 70px 20px;
-      text-align: center;
-      margin: 40px 0;
-      border-radius: 20px;
-      max-width: 1200px;
-      margin: 40px auto;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e8e4da;
-    }
-    
-    .social-proof h2 {
-      font-size: 36px;
-      margin-bottom: 50px;
-      color: #f7d281;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .social-proof h2::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(to right, #f7d281, #fcbe5d);
-      border-radius: 2px;
-    }
-    
-    .stats-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .stat-item {
-      flex: 1;
-      min-width: 200px;
-      padding: 30px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .stat-item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .stat-number {
-      font-size: 48px;
-      font-weight: bold;
-      color: #fcbe5d;
-      margin-bottom: 15px;
-      font-family: "Baloo Bhaina 2", serif;
-    }
-    
-    .stat-text {
-      font-size: 18px;
-      color: #555;
-      font-weight: 600;
-    }
-    
-    /* Loading spinner */
-    .loading-spinner {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2001;
-      background: rgba(255, 251, 240, 0.95); /* White beige */
-      padding: 40px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-    
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #fcbe5d;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Exit intent popup */
-    .exit-popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    .popup-content {
-      background: #FFFBF0; /* White beige */
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 450px;
-      text-align: center;
-      position: relative;
-      animation: slideUp 0.4s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    
-    .close-popup {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
-      cursor: pointer;
-      color: #666;
-      transition: color 0.3s;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-
-    .close-popup:hover {
-      color: #fcbe5d;
-      background: #f8f9fa;
-    }
-    
-    .popup-content h3 {
-      color: #f7d281;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-    
-    .popup-content p {
-      color: #666;
-      margin-bottom: 25px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* ========== FOOTER STYLES ========== */
-    .footer {
-      background: linear-gradient(135deg, #2d1b69 0%, #f7d281 100%);
-      color: white;
-      padding: 60px 20px 30px;
-      margin-top: 60px;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-section h3 {
-      color: white;
-      font-size: 24px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-section h3::before {
-      content: '';
-      width: 30px;
-      height: 3px;
-      background: #fcbe5d;
-      display: block;
-    }
-
-    .footer-section h4 {
-      color: #fcbe5d;
-      font-size: 18px;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-
-    /* ========== BUDDY AI SECTION ========== */
-    .buddy-ai {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 70px 20px;
-      color: white;
-      text-align: center;
-      border-radius: 20px;
-      max-width: 1200px;
-      margin: 40px auto;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .buddy-ai-header {
-      max-width: 900px;
-      margin: 0 auto 40px auto;
-    }
-
-    .buddy-ai-header h2 {
-      font-family: "Baloo Bhaina 2", serif;
-      font-size: 32px;
-      color: white;
-      margin-bottom: 12px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .buddy-ai-header p {
-      font-size: 17px;
-      opacity: 0.95;
-      line-height: 1.7;
-    }
-
-    .buddy-feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1050px;
-      margin: 0 auto 40px auto;
-    }
-
-    .buddy-feature-card {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      padding: 30px 24px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .buddy-feature-card:hover {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .buddy-feature-icon {
-      font-size: 44px;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .buddy-feature-card h3 {
-      font-family: "Baloo Bhaina 2", serif;
-      font-size: 18px;
-      color: #ffd700;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .buddy-feature-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0.9;
-      color: white;
-    }
-
-    .buddy-ai-cta {
-      margin-top: 20px;
-    }
-
-    .buddy-chat-button {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, #ffd700, #ffb347);
-      color: #4a2c6e;
-      padding: 20px 48px;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 22px;
-      font-family: "Baloo Bhaina 2", serif;
-      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    .buddy-chat-button:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.55);
-    }
-
-    .buddy-btn-icon {
-      font-size: 28px;
-    }
-
-    .buddy-btn-sub {
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0.8;
-      font-family: Quicksand, sans-serif;
-    }
-
-    @media (max-width: 768px) {
-      .buddy-ai {
-        padding: 40px 16px;
-      }
-      .buddy-ai-header h2 {
-        font-size: 24px;
-      }
-      .buddy-feature-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .buddy-chat-button {
-        padding: 16px 32px;
-        font-size: 18px;
-      }
-    }
-
-    .footer-section h4::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .footer-section p {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 12px;
-    }
-
-    .footer-section ul li a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-section ul li a:hover {
-      color: #fcbe5d;
-      padding-left: 5px;
-    }
-
-    .footer-section ul li a::before {
-      display: none;
-    }
-
-    .footer-section ul li a:hover::before {
-      opacity: 1;
-    }
-
-    .game-link::before {
-      content: '🎮' !important;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-bottom p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 14px;
-    }
-
-    .footer-bottom p:last-child {
-      color: #fcbe5d;
-      font-weight: 600;
-    }
-
-    /* ========== RESPONSIVE STYLES ========== */
-    
-    /* Tablet */
-    @media (max-width: 1024px) {
-      .nav-menu {
-        gap: 20px;
-      }
-      
-      .banner-container {
-        border-radius: 30px;
-      }
-      
-      .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      
-      .testimonial-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .floating-logo {
-        width: 120px;
-      }
-      
-      .floating-cta-button {
-        padding: 12px 20px;
-        font-size: 14px;
-      }
-      
-      .stat-number {
-        font-size: 36px;
-      }
-      
-      .intro h2,
-      .benefits-header h2,
-      .curriculum h2,
-      .testimonials h2,
-      .registration h2,
-      .social-proof h2 {
-        font-size: 30px;
-      }
-    }
-    
-    /* Mobile */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 70px;
-      }
-      
-      .navbar {
-        padding: 10px 0;
-      }
-      
-      .logo-text {
-        font-size: 18px;
-      }
-      
-      .logo-subtext {
-        font-size: 9px;
-      }
-      
-      .logo-img {
-        height: 35px;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .nav-menu {
-        display: none;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #FFFBF0; /* White beige */
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        gap: 0;
-        border-top: 1px solid #e8e4da;
-      }
-      
-      .nav-menu.active {
-        display: flex;
-      }
-      
-      .nav-menu li {
-        width: 100%;
-      }
-      
-      .nav-menu a {
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-        font-size: 16px;
-      }
-      
-      .nav-menu a::after {
-        display: none;
-      }
-      
-      .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background: #f8f9fa;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border-radius: 10px;
-      }
-      
-      .nav-cta {
-        display: none;
-      }
-      
-      /* Banner */
-      .banner-container {
-        width: 95%;
-        border-radius: 20px;
-        margin-top: 10px;
-      }
-      
-      /* Video Grid */
-      .video-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 10px;
-      }
-      
-      video {
-        max-height: 250px;
-      }
-      
-      /* Benefits */
-      .benefits {
-        padding: 40px 15px;
-      }
-      
-      .benefits-header h2 {
-        font-size: 28px;
-        margin-bottom: 100px;
-      }
-      
-      .benefits-header h2::before,
-      .benefits-header h2::after {
-        font-size: 60px;
-      }
-      
-      .benefits-header h2::before {
-        left: -30px;
-        top: -30px;
-      }
-      
-      .benefits-header h2::after {
-        right: -30px;
-        bottom: -50px;
-      }
-      
-      .benefit-card {
-        flex: 1 1 100%;
-        margin-bottom: 80px;
-        padding: 40px 20px 20px;
-      }
-      
-      .benefit-logo {
-        width: 140px;
-      }
-      
-      /* Curriculum */
-      .curriculum {
-        padding: 40px 15px;
-      }
-      
-      /* Testimonials */
-      .testimonial-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .testimonial-card img {
-        height: 200px;
-      }
-      
-      /* Social Proof */
-      .stats-container {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .stat-item {
-        min-width: auto;
-      }
-      
-      /* Floating CTA */
-      .floating-container {
-        bottom: 10px;
-        right: 10px;
-      }
-      
-      .floating-logo {
-        width: 100px;
-      }
-      
-      .floating-cta-button {
-        padding: 10px 16px;
-        font-size: 13px;
-      }
-      
-      /* Popup */
-      .popup-content {
-        max-width: 90%;
-        margin: 0 20px;
-        padding: 30px;
-      }
-      
-      /* Footer */
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      /* General Text */
-      .intro h2,
-      .benefits-header h2,
-      .curriculum h2,
-      .testimonials h2,
-      .registration h2,
-      .social-proof h2 {
-        font-size: 28px;
-      }
-      
-      .intro p,
-      .benefit-card p,
-      .testimonials p {
-        font-size: 16px;
-      }
-    }
-    
-    /* Small Mobile */
-    @media (max-width: 480px) {
-      .banner-container {
-        border-radius: 15px;
-      }
-      
-      .intro {
-        padding: 40px 15px;
-      }
-      
-      .video-grid {
-        gap: 10px;
-      }
-      
-      video {
-        max-height: 200px;
-      }
-      
-      .benefits {
-        padding: 30px 10px;
-      }
-      
-      .benefits-header h2 {
-        margin-bottom: 120px;
-        font-size: 24px;
-      }
-      
-      .benefit-card {
-        padding: 40px 15px 15px;
-        margin-bottom: 90px;
-      }
-      
-      .benefit-logo {
-        width: 120px;
-      }
-      
-      .benefit-card h3 {
-        margin-top: 30px;
-        font-size: 20px;
-      }
-      
-      .curriculum {
-        padding: 40px 15px;
-      }
-
-      .testimonials {
-        padding: 40px 15px;
-      }
-      
-      .social-proof {
-        padding: 40px 15px;
-      }
-      
-      .registration {
-        padding: 40px 15px;
-      }
-      
-      .registration form {
-        max-width: 100%;
-      }
-      
-      .floating-logo {
-        width: 80px;
-      }
-      
-      .floating-cta-button {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-      
-      .stat-number {
-        font-size: 32px;
-      }
-    }
-    
-    /* Touch device optimization */
-    @media (hover: none) and (pointer: coarse) {
-      .benefit-card:hover,
-      .testimonial-card:hover {
-        transform: none;
-      }
-      
-      .floating-cta-button:hover {
-        transform: none;
-      }
-      
-      .nav-cta .cta-button:hover {
-        transform: none;
-      }
-      
-      .registration button:hover {
-        transform: none;
-      }
-    }
-    
-    /* High contrast for accessibility */
-    @media (prefers-contrast: high) {
-      .benefit-card {
-        background-color: #ffcc00;
-      }
-      
-      .registration button {
-        background-color: #ff9900;
-      }
-      
-      h1, h2, h3 {
-        color: #2a0055;
-      }
-    }
-  </style>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fffbf0; --beige:#f7e9cf; --sand:#f2ddb9; --card:#fffaf2;
+  --ink:#3a2b1e; --ink-soft:#6b5544; --gold:#fcbe5d; --gold-deep:#f0a93b;
+  --plum:#6c5ce7; --plum-soft:#a29bfe;
+  --r:18px; --r-lg:26px;
+  --pad:clamp(20px,4vw,52px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:"Quicksand",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;
+  background:linear-gradient(160deg,#fffdf7 0%,#fdf3e2 38%,#f8e7c9 72%,#f4dcb4 100%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:54px;padding:0 28px;background:var(--plum);color:#fff;text-decoration:none;border:0;border-radius:999px;font:inherit;font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;box-shadow:none}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:translateY(0)}
+.btn-gold{background:var(--gold);color:#4a3410}
+.btn-gold:hover{filter:brightness(1.05)}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,251,240,.92);backdrop-filter:blur(8px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px var(--pad);max-width:1240px;margin:0 auto}
+.nav img{height:76px;width:auto}
+.nav nav{display:flex;gap:26px;font-weight:600;font-size:15px}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.nav .btn{min-height:46px;padding:0 20px;font-size:15px}
+
+.hero{padding:clamp(30px,5vw,64px) 0 0;position:relative;overflow:hidden}
+.hero .head{text-align:center;margin:0 auto}
+.hero h1{font-size:clamp(38px,7.4vw,102px);line-height:1;letter-spacing:-.02em;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--plum)}
+.hero .sub{margin:22px auto 0;max-width:52ch;font-size:clamp(17px,1.7vw,21px);color:var(--ink-soft);font-weight:500}
+.hero .cta-row{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero .tiny{font-size:14px;color:var(--ink-soft);text-align:center;margin-top:14px}
+
+.stack{position:relative;margin-top:clamp(40px,6vw,74px);height:560px}
+.folder{position:absolute;left:50%;transform:translateX(-50%);width:min(88vw,1060px);border-radius:var(--r-lg) var(--r-lg) 0 0;cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.folder .tab{position:absolute;top:-32px;height:34px;padding:0 22px;display:flex;align-items:center;font-size:16px;font-weight:700;background:inherit;color:inherit;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%)}
+.f1{background:var(--card);z-index:6;bottom:0;height:360px;cursor:default;border:2px solid #efd9b4;border-bottom:0}
+.f2{background:#f0c98a;color:#4a3410;z-index:5;bottom:44px;height:360px}
+.f3{background:#e9b978;color:#4a3410;z-index:4;bottom:88px;height:360px}
+.f4{background:var(--plum-soft);color:#231d5c;z-index:3;bottom:132px;height:360px}
+.f5{background:var(--plum);color:#fff;z-index:2;bottom:176px;height:360px}
+.stack:hover .f2{transform:translateX(-50%) translateY(-8px)}
+.stack:hover .f3{transform:translateX(-50%) translateY(-14px)}
+.stack:hover .f4{transform:translateX(-50%) translateY(-20px)}
+.f1 .inner{height:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,3vw,40px);padding:clamp(22px,3vw,38px);align-items:center}
+.f1 h2{font-size:clamp(23px,2.6vw,32px);line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.f1 p{margin-top:12px;color:var(--ink-soft);max-width:40ch}
+.f1 .act{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.f1 .pic{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;border:3px solid #f6e3c4}
+.f1 .pic img{width:100%;height:100%;object-fit:cover}
+
+section{position:relative}
+.h2{font-size:clamp(28px,3.6vw,46px);line-height:1.12;font-weight:700;letter-spacing:-.015em}
+.lead{margin-top:16px;font-size:clamp(17px,1.7vw,20px);color:var(--ink-soft);max-width:42ch}
+
+.facts-sec{padding-block:clamp(70px,8vw,120px) clamp(50px,6vw,80px)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,26px);margin-top:clamp(30px,4vw,46px)}
+.fact{background:var(--card);border-radius:var(--r);padding:clamp(18px,2.4vw,28px);border:2px solid #f2dfbf}
+.fact b{display:block;font-size:clamp(26px,3.2vw,40px);line-height:1.05;letter-spacing:-.02em;color:var(--plum)}
+.fact span{display:block;margin-top:8px;font-size:15px;color:var(--ink-soft);font-weight:500}
+
+.videos{padding-block:clamp(30px,5vw,60px) clamp(70px,8vw,110px)}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(26px,3.4vw,40px)}
+.vid{background:var(--card);border-radius:var(--r);overflow:hidden;border:2px solid #f2dfbf}
+.vid video{width:100%;aspect-ratio:16/10;object-fit:cover;background:#2b2118;display:block}
+.vid{border-radius:var(--r);overflow:hidden}
+.vid .cap{padding:14px 16px 18px;font-size:15px;color:var(--ink-soft);font-weight:600}
+
+.msg{padding-block:clamp(60px,7vw,100px)}
+.msgs{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,18px);margin-top:clamp(26px,3.4vw,40px);align-items:start}
+.msgs figure{margin:0;background:var(--card);border-radius:var(--r);padding:10px;border:2px solid #f2dfbf;display:flex;flex-direction:column}
+.msgs img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px}
+.msgs figcaption{font-size:14px;color:var(--ink-soft);padding:10px 4px 2px;font-weight:600}
+
+.how{padding-block:clamp(60px,7vw,100px)}
+.how .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.rail{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;margin-top:32px;padding-bottom:14px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.moment{flex:0 0 268px;scroll-snap-align:start;background:var(--card);border-radius:var(--r);padding:22px;border:2px solid #f2dfbf}
+.moment b{display:block;font-size:13px;color:var(--plum);font-weight:700;letter-spacing:.02em}
+.moment h3{font-size:19px;margin-top:6px;font-weight:700}
+.moment p{margin-top:8px;font-size:15px;color:var(--ink-soft)}
+
+
+.game{padding-block:clamp(60px,7vw,100px)}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(24px,3.2vw,36px)}
+.tier{display:block;background:var(--card);border:2px solid #f2dfbf;border-radius:var(--r);padding:clamp(14px,2vw,20px) clamp(16px,2.4vw,24px)}
+.tier .t-name{font-weight:700;font-size:17px}
+.tier .t-sub{display:block;font-size:14px;color:var(--ink-soft);font-weight:500;margin-top:2px}
+.games{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.games a{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#fdf1dc;border:2px solid #f4e0bd;text-decoration:none;font-size:15px;font-weight:600;transition:background .16s,border-color .16s,transform .16s}
+.games a:hover{background:#fbe6c4;border-color:#eccf9c;transform:translateY(-1px)}
+.game .more{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.game .more a.btn{min-height:50px}
+@media (max-width:900px){
+  .tiers{grid-template-columns:1fr}
+  .games a{font-size:14px;padding:8px 12px}
+}
+.proof{padding-block:clamp(60px,7vw,100px)}
+.proof .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,4vw,60px);align-items:center}
+.switch{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.switch button{font:inherit;font-weight:700;font-size:15px;min-height:48px;padding:0 18px;border-radius:999px;border:2px solid #e6cfa8;background:var(--card);color:var(--ink);cursor:pointer;transition:background .18s,color .18s}
+.switch button[aria-pressed="true"]{background:var(--plum);border-color:var(--plum);color:#fff}
+.card{background:var(--card);border-radius:var(--r-lg);padding:clamp(20px,3.4vw,44px);border:2px solid #f0dcba;transform:rotate(-1deg);min-width:0}
+.card .cap{text-align:center;font-size:13px;color:var(--ink-soft);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.card h3{text-align:center;font-size:clamp(20px,2.2vw,26px);margin-top:8px;font-weight:700}
+.card .photo{aspect-ratio:16/9;overflow:hidden;border-radius:14px;margin:20px 0}
+.card .photo img{width:100%;height:100%;object-fit:cover}
+.card dl{display:grid;grid-template-columns:82px minmax(0,1fr);gap:10px 14px;margin:0;font-size:16px}
+.card dd{overflow-wrap:anywhere}
+.card dt{color:var(--ink-soft);font-weight:700}
+.card dd{margin:0}
+
+.faq{padding-block:clamp(60px,7vw,100px)}
+.faq .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,60px)}
+.faq .pics{position:relative;align-self:start}
+.faq .tall{border-radius:var(--r-lg);overflow:hidden;border:3px solid #f6e3c4;aspect-ratio:4/5;max-height:560px}
+.faq .tall img{width:100%;height:100%;object-fit:cover}
+.faq .sq{position:absolute;right:8px;bottom:-18px;width:42%;border-radius:var(--r);overflow:hidden;border:6px solid #fdf3e2}
+details{margin-top:16px;background:var(--card);border-radius:var(--r);padding:6px 20px;border:2px solid #f2dfbf}
+details summary{list-style:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:52px}
+details summary::-webkit-details-marker{display:none}
+details summary svg{flex:0 0 auto;transition:transform .2s}
+details[open] summary svg{transform:rotate(180deg)}
+details p{padding-bottom:16px;color:var(--ink-soft);font-size:16px}
+
+.cta{padding-block:clamp(50px,6vw,90px) clamp(70px,8vw,110px)}
+.cta .box{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;border-radius:var(--r-lg);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px);align-items:center}
+.cta h2{font-size:clamp(26px,3.4vw,42px);line-height:1.12;font-weight:700}
+.cta p{margin-top:14px;color:#efecff;max-width:40ch}
+.cta .do{background:rgba(255,255,255,.14);border-radius:var(--r);padding:clamp(20px,3vw,30px);text-align:center}
+.cta .do .btn{width:100%;background:var(--gold);color:#4a3410}
+.cta .do .btn:hover{filter:brightness(1.05)}
+.cta .do .alt{margin-top:12px;font-size:14px;color:#efecff}
+
+footer{padding:34px 0 46px;font-size:14px;color:var(--ink-soft)}
+footer .cols{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{height:40px;width:auto;margin-bottom:8px}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.stack:hover .f2,.stack:hover .f3,.stack:hover .f4{transform:translateX(-50%)}}
+
+@media (max-width:900px){
+  .nav-in{flex-wrap:wrap;row-gap:6px;padding-bottom:8px}
+  .nav nav{order:3;width:100%;overflow-x:auto;gap:18px;font-size:14px;white-space:nowrap;padding:2px 0 4px;scrollbar-width:none}
+  .nav nav::-webkit-scrollbar{display:none}
+  .nav img{height:44px}
+  .nav .btn{min-height:42px;padding:0 16px;font-size:14px}
+  .hero h1{font-size:clamp(34px,10vw,62px)}
+  .hero .sub{font-size:16px}
+  .stack{height:420px;margin-top:46px}
+  .folder{width:94vw}
+  .f1{height:280px}
+  .f2{height:280px;bottom:38px}.f3{height:280px;bottom:76px}.f4{height:280px;bottom:114px}.f5{height:280px;bottom:152px}
+  .folder .tab{font-size:13px;height:28px;top:-26px;padding:0 12px}
+  .f5 .tab{left:4%!important}
+  .f4 .tab{left:22%!important}
+  .f3 .tab{left:46%!important}
+  .f2 .tab{left:68%!important}
+  .f1 .inner{grid-template-columns:1fr;padding:20px}
+  .f1 .pic{display:none}
+  .f1 h2{font-size:22px}
+  .f1 p{font-size:15px}
+  .facts{grid-template-columns:1fr 1fr}
+  .vids{grid-template-columns:1fr}
+  .msgs{display:flex;overflow-x:auto;gap:12px;padding-bottom:10px;scrollbar-width:none}
+  .msgs figure{flex:0 0 68vw}
+  .moment{flex:0 0 74vw}
+  .proof .grid,.faq .grid,.cta .box{grid-template-columns:1fr}
+  .card{transform:none}
+  .card dl{grid-template-columns:74px minmax(0,1fr);font-size:15px}
+  .faq .pics{order:-1}
+  .faq .tall{max-height:420px}
+  .faq .sq{width:38%;right:0;bottom:-14px}
+}
+</style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <a href="#" class="logo">
-      <img src="logo.png" alt="Học Tiếng Anh Dễ Lắm" class="logo-img">
-      <div class="logo-text">
-        
-        <span class="logo-subtext">TIẾNG ANH CHO TRẺ EM</span>
+<header class="nav">
+  <div class="nav-in">
+    <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
+    <nav>
+      <a href="#trong-lop">Trong lớp</a>
+      <a href="#lop-that">Lớp thật</a>
+      <a href="#phu-huynh">Phụ huynh nói</a>
+      <a href="#game">Trò chơi</a>
+      <a href="#sau-buoc">Sáu bước</a>
+      <a href="#hoi-dap">Hỏi đáp</a>
+    </nav>
+    <a class="btn" href="#dat-cho">Học thử một tuần</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="head">
+      <h1 class="rv">Học tiếng Anh<br><em>dễ lắm</em></h1>
+      <p class="sub rv">Lớp online nhóm nhỏ, tối đa 5 bạn, trẻ 6–14 tuổi. Con học thử một tuần trước, hợp rồi ba mẹ mới tính phí.</p>
+      <div class="cta-row rv">
+        <a class="btn" href="#dat-cho">Đăng ký tuần học thử</a>
+        <a class="btn btn-gold" href="#lop-that">Xem lớp thật</a>
       </div>
-    </a>
-    
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="#intro" class="nav-link">Giới thiệu</a></li>
-      <li><a href="#testimonials" class="nav-link">Phản hồi</a></li>
+      <p class="tiny rv">3 buổi mỗi tuần · 60 phút mỗi buổi · tối 18–21h</p>
+    </div>
+  </div>
 
-
-      <li><a href="game/sanh.html" target="_blank" rel="noopener" class="nav-link" id="navGame">🎮 Games<span class="hot-badge">hot</span></a></li>
-      <li><a href="blog.html" class="nav-link">Blog</a></li>
-	    <li class="dropdown">
-        <a href="javascript:void(0)" class="nav-link">Sổ điểm</a>
-        <div class="dropdown-content">
-          <a href="javascript:void(0)" onclick="checkPasswordAndRedirect('student')">
-            Học sinh
-          </a>
-          <a href="javascript:void(0)" onclick="checkPasswordAndRedirect('teacher')">
-            Giáo viên
-          </a>
+  <div class="stack" id="stack">
+    <a class="folder f5" href="#trong-lop" aria-label="Trong lớp có gì"><span class="tab" style="left:18%">Trong lớp</span></a>
+    <a class="folder f4" href="#lop-that" aria-label="Lớp thật"><span class="tab" style="left:40%">Lớp thật</span></a>
+    <a class="folder f3" href="#phu-huynh" aria-label="Phụ huynh nói"><span class="tab" style="left:60%">Phụ huynh nói</span></a>
+    <a class="folder f2" href="#sau-buoc" aria-label="Sáu bước"><span class="tab" style="left:36%">Sáu bước</span></a>
+    <div class="folder f1">
+      <span class="tab" style="left:12%"></span>
+      <div class="inner">
+        <div>
+          <h2>Tuần đầu học thử, chưa đóng đồng nào</h2>
+          <p>Con vào lớp thật ba buổi. Sau tuần đó ba mẹ nghe lại nhận xét của giáo viên rồi mới quyết định.</p>
+          <div class="act">
+            <a class="btn" href="#dat-cho">Đặt tuần học thử</a>
+            <span style="font-size:14px;color:var(--ink-soft)">Nhắn Zalo, xếp lớp trong 2 ngày</span>
+          </div>
         </div>
-      </li>
-			<li><a href="https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1" class="nav-link">Vào lớp</a></li>
-    </ul>
-    
-    <div class="nav-cta">
-      <a href="chat.html" class="chat-ai-button">🤖 Chat với AI</a>
-      <a href="scoreboard.html" class="cta-button" style="background:linear-gradient(135deg,#6C5CE7,#a29bfe);color:#fff">⭐ Bảng điểm</a>
-      <a href="#registration" class="cta-button">Học thử</a>
-    </div>
-    
-    <button class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Banner -->
-<div class="banner-container">
-  <img src="banner.jpg" alt="Banner Học Tiếng Anh Dễ Lắm" class="banner" loading="eager">
-</div>
-
-<!-- Social Proof Section -->
-<div class="social-proof">
-  <h2>Hàng Nghìn Phụ Huynh Đã Tin Tưởng</h2>
-  <div class="stats-container">
-    <div class="stat-item">
-      <div class="stat-number" id="studentCount">1000+</div>
-      <div class="stat-text">Học Viên Đã Được Hỗ Trợ</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" id="classCount">100+</div>
-      <div class="stat-text">Giờ Dạy Hàng Tuần</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" id="successRate">95%</div>
-      <div class="stat-text">Hài Lòng & Tiến Bộ</div>
-    </div>
-  </div>
-</div>
-
-<!-- Giới thiệu -->
-<div class="intro" id="intro">
-  <h2>Giới Thiệu Về Lớp Học</h2>
-  <p>Chúng tôi mang đến phương pháp học tiếng Anh online hiệu quả, giúp bé phát triển toàn diện kỹ năng ngôn ngữ và tự tin giao tiếp.</p>
-  
-  <!-- Thêm video vào đây -->
-  <div class="video-grid">
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="video-lop-hoc.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ video.
-      </video>
-    </div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="video-lop-hoc-2.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ video.
-      </video>
-    </div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="video-lop-hoc-3.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ video.
-      </video>
-    </div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="video-lop-hoc-4.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ video.
-      </video>
-    </div>
-  </div> 
-</div>
-
-  <!-- Cảm nhận từ phụ huynh -->
-<div class="testimonials" id="testimonials">
-  <h2>Phụ Huynh Nói Gì Về Chúng Tôi?</h2>
-  <div class="testimonial-grid">
-    <div class="testimonial-card" onclick="openLightbox('tin-nhan-1.jpg')">
-      <img src="tin-nhan-1.jpg" alt="Tin nhắn phản hồi tích cực từ phụ huynh 1" loading="lazy">
-    </div>
-    <div class="testimonial-card" onclick="openLightbox('tin-nhan-2.jpg')">
-      <img src="tin-nhan-2.jpg" alt="Tin nhắn phản hồi tích cực từ phụ huynh 2" loading="lazy">
-    </div>
-    <div class="testimonial-card" onclick="openLightbox('tin-nhan-3.jpg')">
-      <img src="tin-nhan-3.jpg" alt="Tin nhắn phản hồi tích cực từ phụ huynh 3" loading="lazy">
-    </div>
-    <div class="testimonial-card" onclick="openLightbox('tin-nhan-4.jpg')">
-      <img src="tin-nhan-4.jpg" alt="Tin nhắn phản hồi tích cực từ phụ huynh 4" loading="lazy">
-    </div>
-    <div class="testimonial-card" onclick="openLightbox('tin-nhan-5.jpg')">
-      <img src="tin-nhan-5.jpg" alt="Tin nhắn phản hồi tích cực từ phụ huynh 5" loading="lazy">
-    </div>
-            <div class="testimonial-card" onclick="openLightbox('6.png')">
-      <img src="6.png" alt="Tin nhắn từ phụ huynh 6">
-    </div>
-        <div class="testimonial-card" onclick="openLightbox('7.png')">
-      <img src="7.png" alt="Tin nhắn từ phụ huynh 7">
-    </div>
-        <div class="testimonial-card" onclick="openLightbox('8.png')">
-      <img src="8.png" alt="Tin nhắn từ phụ huynh 8">
-    </div>
-        <div class="testimonial-card" onclick="openLightbox('9.png')">
-      <img src="9.png" alt="Tin nhắn từ phụ huynh 9">
-    </div>
-  </div>
-</div>
-
-<!-- Lợi ích -->
-<div class="benefits" id="benefits">
-  <div class="benefits-header">
-    <h2>"Học Tiếng Anh Dễ Lắm" bởi vì</h2>
-  </div>
-  <div class="benefits-content">
-    <div class="benefit-card">
-      <img src="logo-1.png" alt="Logo lớp học nhỏ" class="benefit-logo" loading="lazy">
-      <h3>Số Lượng Giới Hạn</h3>
-      <p>5 học viên/lớp là số lượng tuyệt vời để giáo viên theo sát từng bé, bé cũng có bạn để thực hành giao tiếp tự nhiên.</p>
-    </div>
-    <div class="benefit-card">
-      <img src="logo-2.png" alt="Logo thiên tài" class="benefit-logo" loading="lazy">
-      <h3>Mỗi Bạn Nhỏ Là Một Thiên Tài</h3>
-      <p>Mỗi bé có trí thông minh khác nhau, chúng tôi dựa vào đó để hỗ trợ các bé học tập theo cách phù hợp nhất.</p>
-    </div>
-    <div class="benefit-card">
-      <img src="logo-3.png" alt="Logo thế giới" class="benefit-logo" loading="lazy">
-      <h3>Lớp học không biên giới</h3>
-      <p>Giáo viên từ khắp nơi trên thế giới kết hợp với giáo viên Việt Nam, giúp trẻ vững vàng bước ra thế giới.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Chương trình học → Phương pháp giảng dạy -->
-<div class="curriculum" id="curriculum">
-  <h2>Phương Pháp Giảng Dạy<span class="subtitle">Không rập khuôn — lấy học sinh làm trung tâm</span></h2>
-
-  <div class="curriculum-philosophy">
-    <p>
-      💡 <span class="highlight">Mỗi bạn nhỏ là một thiên tài</span> với tốc độ và cách học riêng. 
-      Chúng tôi không dạy theo khuôn mẫu — mà <span class="highlight">đồng hành, quan sát, đánh giá liên tục</span> 
-      để điều chỉnh phương pháp phù hợp với từng bé.
-    </p>
-  </div>
-
-  <!-- 3 cấp độ -->
-  <div class="curriculum-levels">
-    <div class="level-card">
-      <span class="level-badge">🧒 Khởi Đầu</span>
-      <h3>6 – 8 tuổi</h3>
-      <p>Làm quen tiếng Anh qua bài hát, truyện kể và trò chơi tương tác. Bé <strong>nghe và bắt chước</strong> một cách tự nhiên, xây dựng phản xạ ngôn ngữ từ sớm.</p>
-      <div class="skill-tags">
-        <span>🎵 Bài hát</span>
-        <span>📖 Truyện tranh</span>
-        <span>🎮 Trò chơi</span>
-        <span>🗣️ Phát âm</span>
-      </div>
-    </div>
-
-    <div class="level-card">
-      <span class="level-badge">🧑 Phát Triển</span>
-      <h3>8 – 11 tuổi</h3>
-      <p>Xây dựng nền tảng <strong>từ vựng và ngữ pháp</strong> vững chắc. Bé bắt đầu <strong>đọc hiểu đoạn văn</strong> và tự tin <strong>giao tiếp bằng câu hoàn chỉnh</strong>.</p>
-      <div class="skill-tags">
-        <span>📚 Đọc hiểu</span>
-        <span>✍️ Ngữ pháp</span>
-        <span>💬 Hội thoại</span>
-        <span>📝 Viết câu</span>
-      </div>
-    </div>
-
-    <div class="level-card">
-      <span class="level-badge">👦 Nâng Cao</span>
-      <h3>11 – 14 tuổi</h3>
-      <p>Thành thạo <strong>Nghe – Nói – Đọc – Viết</strong>. Bé tự tin <strong>trình bày ý kiến, viết đoạn văn mạch lạc</strong> và sẵn sàng cho các kỳ thi chứng chỉ quốc tế.</p>
-      <div class="skill-tags">
-        <span>🎤 Thuyết trình</span>
-        <span>📝 Viết luận</span>
-        <span>🏆 Luyện thi</span>
-        <span>🌍 Giao tiếp</span>
+        <div class="pic"><img src="moi/img/be-hoc.jpg" alt="Một bé gái đeo tai nghe học tiếng Anh trước laptop buổi tối" width="1184" height="864"></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Ứng dụng công nghệ -->
-  <div class="curriculum-tech">
-    <h3>💻 Hiện Đại &amp; Ứng Dụng Công Nghệ</h3>
-    <div class="curriculum-tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">🖥️</div>
-        <h4>Lớp Học Trực Tuyến</h4>
-        <p>Học 1 kèm 1 hoặc nhóm nhỏ qua Zoom với bảng tương tác, flashcard số, video sinh động.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🤖</div>
-        <h4>Buddy AI 24/7</h4>
-        <p>Trợ lý AI đồng hành cùng bé ngoài giờ học — giải đáp thắc mắc, luyện từ vựng, chấm bài tập tức thì.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🎮</div>
-        <h4>Game Học Tập</h4>
-        <p>Flashcard, xếp chữ, tìm từ, đọc truyện tương tác — học mà như chơi ngay trên trình duyệt.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">📊</div>
-        <h4>Theo Dõi Tiến Bộ</h4>
-        <p>Bảng đánh giá năng lực số hóa — phụ huynh nắm rõ từng bước tiến của con qua báo cáo trực quan.</p>
-      </div>
-    </div>
+<section class="facts-sec wrap" id="trong-lop">
+  <h2 class="h2 rv">Trong lớp có gì</h2>
+  <p class="lead rv">Lớp nhỏ để giáo viên nghe được từng con nói. Ba buổi mỗi tuần, mỗi buổi một giờ, học đều mới lên được.</p>
+  <div class="facts">
+    <div class="fact rv"><b>5 bạn</b><span>tối đa mỗi lớp, xếp cùng trình độ</span></div>
+    <div class="fact rv"><b>3 buổi</b><span>mỗi tuần, 60 phút một buổi</span></div>
+    <div class="fact rv"><b>18–21h</b><span>ba ca tối, thứ Hai đến thứ Sáu</span></div>
+    <div class="fact rv"><b>1 tuần</b><span>học thử miễn phí trước khi đóng phí</span></div>
   </div>
+</section>
 
-  <!-- Thang đo 5 bước -->
-  <div class="curriculum-scaffold">
-    <h3>🧭 Hành Trình 5 Bước — Từ Làm Quen Đến Thành Thạo</h3>
-    <div class="scaffold-steps">
-      <div class="scaffold-step">
-        <div class="step-icon">👂</div>
-        <div class="step-label">Bước 1</div>
-        <div class="step-desc">Nghe &amp; Lặp lại</div>
-      </div>
-      <div class="scaffold-arrow">→</div>
-      <div class="scaffold-step">
-        <div class="step-icon">🔍</div>
-        <div class="step-label">Bước 2</div>
-        <div class="step-desc">Nhận biết Đúng/Sai</div>
-      </div>
-      <div class="scaffold-arrow">→</div>
-      <div class="scaffold-step">
-        <div class="step-icon">💪</div>
-        <div class="step-label">Bước 3</div>
-        <div class="step-desc">Hiểu &amp; Dùng được</div>
-      </div>
-      <div class="scaffold-arrow">→</div>
-      <div class="scaffold-step">
-        <div class="step-icon">✅</div>
-        <div class="step-label">Bước 4</div>
-        <div class="step-desc">Dùng đúng hoàn cảnh</div>
-      </div>
-      <div class="scaffold-arrow">→</div>
-      <div class="scaffold-step">
-        <div class="step-icon">🚀</div>
-        <div class="step-label">Bước 5</div>
-        <div class="step-desc">Mở rộng &amp; Sáng tạo</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="curriculum-footnote">
-    <p>
-      📋 <strong>Đánh giá liên tục, không so sánh:</strong> Giáo viên theo dõi sát từng bé qua thang đo 5 cấp độ cho <strong>Từ vựng, Ngữ pháp, Nghe, Đọc, Nói, Viết</strong>. 
-      Mỗi buổi học, giáo viên ghi nhận tiến bộ và điều chỉnh bài tập phù hợp — <strong>sai là một phần của học, thành công là khi bé dám thử.</strong>
-    </p>
-  </div>
-</div>
-
-
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="Hình ảnh phóng to">
-</div>
-
-<!-- Form đăng ký -->
-<div class="registration" id="registration">
-  <h2>Đăng Ký Học Thử Miễn Phí</h2>
-  <form id="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfd3-jq0yB1sOVzUo-ynxH-vgN36yc--lh3g0QviiJG_dJBrQ/formResponse" method="POST">
-    <input type="text" name="entry.1904311514" placeholder="Tên phụ huynh" required aria-label="Tên phụ huynh">
-    <input type="tel" name="entry.1055270928" placeholder="Số điện thoại" required aria-label="Số điện thoại">
-    <input type="email" name="entry.738983665" placeholder="Email (không bắt buộc)" aria-label="Email">
-    <button type="submit" aria-label="Đăng ký học thử miễn phí ngay">Đăng ký ngay!</button>
-  </form>
-</div>
-
-<!-- Buddy AI Chatbot Section -->
-<div class="buddy-ai" id="buddy-ai">
-  <div class="buddy-ai-header">
-    <h2>🤖 Buddy AI — Trợ Lý Học Tiếng Anh 24/7</h2>
-    <p>Bạn nhỏ cần giúp đỡ bài tập? Có thắc mắc về từ vựng, ngữ pháp? <strong>Buddy</strong> luôn sẵn sàng!</p>
-  </div>
-  
-  <div class="buddy-ai-content">
-    <div class="buddy-feature-grid">
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">🧠</div>
-        <h3>Không Làm Hộ — Chỉ Hướng Dẫn</h3>
-        <p>Buddy không đưa đáp án sẵn. Bé sẽ được dẫn dắt từng bước để <strong>tự mình tìm ra câu trả lời</strong>, giúp nhớ lâu và hiểu sâu.</p>
-      </div>
+<section class="videos wrap" id="lop-that">
+  <h2 class="h2 rv">Lớp thật, không phải ảnh chụp</h2>
+  <p class="lead rv">Ba đoạn quay trong buổi học: con đọc to, cả lớp cùng chơi, giáo viên chữa bài từng bạn.</p>
+  <div class="vids">
+    <figure class="vid rv">
+      <video src="/video-lop-hoc.mp4" poster="moi/img/poster-video-lop-hoc.jpg" controls playsinline preload="none"></video>
       
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">⚡</div>
-        <h3>Phản Hồi Trong 2 Giây</h3>
-        <p>Hỏi là trả lời ngay — không cần chờ đợi. Buddy hoạt động <strong>24/7</strong> nên bé có thể học bất cứ lúc nào, kể cả 10 giờ tối!</p>
-      </div>
+    </figure>
+    <figure class="vid rv">
+      <video src="/video-lop-hoc-2.mp4" poster="moi/img/poster-video-lop-hoc-2.jpg" controls playsinline preload="none"></video>
       
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">📚</div>
-        <h3>Bám Sát Chương Trình Cambridge</h3>
-        <p>Buddy hiểu rõ giáo trình Super Minds, Prepare, Open World. Mọi giải thích đều <strong>phù hợp với trình độ</strong> của bé.</p>
-      </div>
+    </figure>
+    <figure class="vid rv">
+      <video src="/video-lop-hoc-4.mp4" poster="moi/img/poster-video-lop-hoc-4.jpg" controls playsinline preload="none"></video>
       
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">🎮</div>
-        <h3>Học Mà Như Chơi</h3>
-        <p>Mini games, câu đố vui, thử thách nho nhỏ — Buddy biến mỗi câu hỏi thành <strong>một trò chơi thú vị</strong>.</p>
-      </div>
-      
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">🇻🇳</div>
-        <h3>Song Ngữ Việt - Anh</h3>
-        <p>Buddy giao tiếp bằng <strong>tiếng Việt</strong> để bé dễ hiểu, nhưng luôn kèm ví dụ tiếng Anh để bé làm quen dần.</p>
-      </div>
-      
-      <div class="buddy-feature-card">
-        <div class="buddy-feature-icon">🆓</div>
-        <h3>Hoàn Toàn Miễn Phí</h3>
-        <p>Không giới hạn câu hỏi, không phí ẩn. Đội ngũ <strong>Học Tiếng Anh Dễ Lắm</strong> tạo ra Buddy để mọi trẻ em Việt Nam đều được học tốt.</p>
-      </div>
-    </div>
+    </figure>
+  </div>
+</section>
 
-    <div class="buddy-ai-cta">
-      <a href="chat.html" class="buddy-chat-button">
-        <span class="buddy-btn-icon">💬</span>
-        Chat với Buddy ngay!
-        <span class="buddy-btn-sub">Miễn phí • Trả lời trong 2 giây</span>
-      </a>
+<section class="msg wrap" id="phu-huynh">
+  <h2 class="h2 rv">Phụ huynh nhắn sau buổi học</h2>
+  <p class="lead rv">Tin nhắn thật của phụ huynh gửi giáo viên. Tên và ảnh đại diện đã được làm mờ.</p>
+  <div class="msgs">
+    <figure class="rv"><img src="/tin-nhan-1.jpg" alt="Tin nhắn phụ huynh cảm ơn sau buổi học" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-2.jpg" alt="Tin nhắn phụ huynh kể con tiến bộ" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-3.jpg" alt="Tin nhắn phụ huynh hỏi bài cho con" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-4.jpg" alt="Tin nhắn phụ huynh xin học thử" loading="lazy"></figure>
+    <figure class="rv"><img src="/tin-nhan-5.jpg" alt="Tin nhắn phụ huynh nhận xét giáo viên" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="how wrap" id="sau-buoc">
+  <div class="head">
+    <div>
+      <h2 class="h2 rv">Sáu bước từ lúc nhắn đến lúc con học đều</h2>
+      <p class="lead rv">Bước nào cũng có người trả lời. Ba mẹ không phải tự đoán con đang ở đâu.</p>
     </div>
   </div>
-</div>
+  <div class="rail" tabindex="0" aria-label="Sáu bước đăng ký và học">
+    <article class="moment rv"><b>Bước một</b><h3>Nhắn Zalo</h3><p>Tên con, tuổi, giờ ba mẹ rảnh. Giáo viên trả lời trong ngày.</p></article>
+    <article class="moment rv"><b>Bước hai</b><h3>Học thử một tuần</h3><p>Ba buổi thật, đúng lớp đúng trình độ. Chưa đóng phí.</p></article>
+    <article class="moment rv"><b>Bước ba</b><h3>Ba mẹ quyết</h3><p>Nghe nhận xét của giáo viên sau tuần thử. Không hợp thì dừng, không mất gì.</p></article>
+    <article class="moment rv"><b>Bước bốn</b><h3>Xếp lớp theo thang</h3><p>Xếp theo năng lực, không theo tuổi. Con yếu hơn thì vào lớp thấp hơn một bậc.</p></article>
+    <article class="moment rv"><b>Bước năm</b><h3>Báo bài mỗi buổi</h3><p>Học phần nào, trang nào, con nói được gì, về nhà làm gì — gửi ngay sau buổi.</p></article>
+    <article class="moment rv"><b>Bước sáu</b><h3>Cuối tháng xem học bạ</h3><p>Mức đạt từng kỹ năng và mốc cần bù, mở bằng mã của con.</p></article>
+  </div>
+</section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-section">
-      <h3>Học Tiếng Anh Dễ Lắm</h3>
-      <p>Giúp bé yêu thích và giỏi tiếng Anh một cách tự nhiên với phương pháp học hiện đại, giáo viên chất lượng.</p>
-      <p><strong>Email:</strong> <a href="mailto:HocTiengAnhDeLam001@gmail.com">HocTiengAnhDeLam001@gmail.com</a></p>
-      <p><strong>Điện thoại:</strong> 0346 28 12 92</p>
+
+<section class="game wrap" id="game">
+  <h2 class="h2 rv">Con chơi ở nhà, giáo viên thấy kết quả</h2>
+  <p class="lead rv">Mỗi unit có một bộ trò chơi xếp theo sáu nấc: từ nhận mặt chữ đến tự viết câu. Con mở bằng mã học viên, điểm cộng dồn vào phiếu của con.</p>
+  <div class="tiers">
+    <div class="tier rv"><div><div class="t-name">Nấc một · Nhận diện</div><span class="t-sub">Nhìn hình hoặc nghe từ rồi hiểu nghĩa</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/flashcard.html">Thẻ từ</a><a href="https://hoctienganhdelam.com/game/games/matching-game.html">Ghép cặp</a><a href="https://hoctienganhdelam.com/game/games/catch-the-card.html">Bắt thẻ</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc hai · Lặp lại</div><span class="t-sub">Nhớ mặt chữ và viết lại cho đúng</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/games/spelling-game.html">Đánh vần</a><a href="https://hoctienganhdelam.com/game/scrambled-word.html">Xếp chữ</a><a href="https://hoctienganhdelam.com/game/word-find.html">Tìm từ</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc ba · Dùng theo mẫu</div><span class="t-sub">Chọn và ghép theo câu mẫu</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/games/quiz-game.html">Trắc nghiệm</a><a href="https://hoctienganhdelam.com/game/sentence-builder.html">Xếp thành câu</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc bốn · Dùng tự do</div><span class="t-sub">Đọc và hiểu cả đoạn</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/Reading.html">Tập đọc</a><a href="https://hoctienganhdelam.com/game/words-fall.html">Dịch truyện</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc năm · Tư duy</div><span class="t-sub">Suy luận, tự phát hiện lỗi</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/tu-duy.html">Tư duy</a><a href="https://hoctienganhdelam.com/game/on-tap.html">Ôn từ hay sai</a></div></div>
+    <div class="tier rv"><div><div class="t-name">Nấc sáu · Sáng tạo</div><span class="t-sub">Tự viết câu của mình bằng từ của bài</span></div>
+      <div class="games"><a href="https://hoctienganhdelam.com/game/sang-tao.html">Sáng tạo câu</a></div></div>
+  </div>
+  <div class="more rv">
+    <a class="btn" href="https://hoctienganhdelam.com/game/sanh.html">Vào sảnh trò chơi</a>
+    <a class="btn btn-gold" href="https://hoctienganhdelam.com/scoreboard.html">Xem bảng điểm</a>
+  </div>
+</section>
+
+<section class="proof wrap" id="thang-do">
+  <div class="grid">
+    <div>
+      <h2 class="h2 rv">Con đang ở bậc nào</h2>
+      <p class="lead rv">Mỗi bé một phiếu, đo bốn kỹ năng trên thang chín bậc. Chọn tuổi để xem mốc năm nay.</p>
+      <div class="switch" role="group" aria-label="Chọn tuổi của con">
+        <button type="button" data-t="t1" aria-pressed="true">6–8 tuổi</button>
+        <button type="button" data-t="t2" aria-pressed="false">8–11 tuổi</button>
+        <button type="button" data-t="t3" aria-pressed="false">11–14 tuổi</button>
+      </div>
     </div>
-    
-    <div class="footer-section">
-      <h4>Liên kết nhanh</h4>
-      <ul>
-        <li><a href="#intro">Giới thiệu</a></li>
-        <li><a href="#testimonials">Phản hồi phụ huynh</a></li>
-        <li><a href="#benefits">Lợi ích</a></li>
-        <li><a href="#curriculum">Phương pháp giảng dạy</a></li>
-        
-        <li><a href="#registration">Đăng ký học thử</a></li>
-      </ul>
-    </div>
-    
-    <div class="footer-section">
-      <h4>Trò chơi giáo dục</h4>
-      <ul>
-        <li><a href="game/sanh.html" target="_blank" rel="noopener" class="game-link">🎮 Sảnh trò chơi — chọn theo nấc</a></li>
-      </ul>
-    </div>
-    
-    <div class="footer-section">
-      <h4>Giờ làm việc</h4>
-      <p><strong>Thứ 2 - Chủ nhật:</strong> 8:00 - 20:00</p>
-      <p><strong>Học thử:</strong> Miễn phí 2 buổi</p>
-      <p><strong>Lớp học:</strong> 5 học viên/lớp</p>
-      <p><strong>Độ tuổi:</strong> 6 tuổi trở lên</p>
+    <div class="card rv" id="hocba">
+      <p class="cap">Phiếu năng lực · năm học 2026–2027</p>
+      <h3 id="hb-title">Làm quen bằng bài hát và câu ngắn</h3>
+      <div class="photo"><img id="hb-img" src="moi/img/me-va-con.jpg" alt="Mẹ và bé gái cùng xem bài học" loading="lazy"></div>
+      <dl id="hb-list">
+        <dt>Nghe</dt><dd>Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.</dd>
+        <dt>Nói</dt><dd>Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.</dd>
+        <dt>Đọc</dt><dd>Đọc từ và câu mẫu có hình đi kèm.</dd>
+        <dt>Viết</dt><dd>Chép đúng từ, điền từ vào chỗ trống.</dd>
+        <dt>Mốc năm nay</dt><dd>Từ bậc 1 lên bậc 2 của thang chín bậc.</dd>
+      </dl>
     </div>
   </div>
-  
-  <div class="footer-bottom">
-    <p>© <span id="currentYear">2023</span> Học Tiếng Anh Dễ Lắm. All rights reserved.</p>
-    <p>Được thiết kế với ❤️ cho trẻ em Việt Nam</p>
+</section>
+
+<section class="faq wrap" id="hoi-dap">
+  <div class="grid">
+    <div>
+      <h2 class="h2 rv">Câu hỏi thường gặp</h2>
+      <details class="rv" open><summary>Học thử một tuần là thế nào?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Con vào lớp thật, học đủ ba buổi trong tuần đầu. Hết tuần, giáo viên gửi nhận xét. Ba mẹ đồng ý thì mới tính phí từ tuần sau; không đồng ý thì dừng, không mất gì.</p></details>
+      <details class="rv"><summary>Học phí bao nhiêu?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Lớp không đăng học phí lên web vì mỗi lớp một mức, tuỳ số buổi và trình độ. Ba mẹ nhắn Zalo, giáo viên báo đúng mức cho lớp của con trước khi bắt đầu tuần thử.</p></details>
+      <details class="rv"><summary>Con ở tỉnh khác có học được không?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Được. Lớp học qua Zoom, hiện có học viên ở nhiều tỉnh và cả ở nước ngoài. Cần mạng ổn định và một chỗ ngồi yên tĩnh.</p></details>
+      <details class="rv"><summary>Con mất gốc thì sao?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Con vào lớp thấp hơn một bậc so với tuổi. Phần nền được dạy lại như một tầng riêng trong buổi học, không phải học lại cả khoá.</p></details>
+      <details class="rv"><summary>Ba mẹ theo dõi tiến bộ bằng cách nào?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Hai đường: tin báo bài trên Zalo sau mỗi buổi, và trang học bạ mở bằng mã của con — có điểm danh, bài đã học và mức đạt từng đầu mục.</p></details>
+      <details class="rv"><summary>Một lớp mấy bạn, ai dạy?<svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1l8 7 8-7" stroke="currentColor" stroke-width="2.4"/></svg></summary><p>Tối đa năm bạn cùng trình độ. Lớp do một giáo viên phụ trách cả khoá, có bạn trợ giảng kèm riêng em cần thêm.</p></details>
+    </div>
+    <div class="pics rv">
+      <div class="tall"><img src="moi/img/be-thuyet-trinh.jpg" alt="Một bé trai đứng cạnh bản đồ, cầm vở để thuyết trình" loading="lazy"></div>
+      <div class="sq"><img src="moi/img/be-noi.jpg" alt="Một bé trai học trước laptop buổi sáng" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta wrap" id="dat-cho">
+  <div class="box">
+    <div>
+      <h2 class="rv">Cho con học thử một tuần</h2>
+      <p class="rv">Ba buổi thật, chưa đóng phí. Ba mẹ nhắn tên con, tuổi và giờ rảnh — giáo viên xếp lớp trong hai ngày.</p>
+    </div>
+    <div class="do rv">
+      <a class="btn" href="https://zalo.me/09xxxxxxxx">Nhắn Zalo cho giáo viên</a>
+      <p class="alt">Hoặc gọi 09xx xxx xxx · 8h–21h</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
+      <div>hoctienganhdelam.com · Lớp tiếng Anh online cho trẻ 6–14 tuổi</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:14px">
+        <a href="https://hoctienganhdelam.com/game/sanh.html">Sảnh trò chơi</a>
+        <a href="https://hoctienganhdelam.com/scoreboard.html">Bảng điểm</a>
+        <a href="https://hoctienganhdelam.com/chat.html">Chat với AI</a>
+        <a href="https://hoctienganhdelam.com/blog.html">Blog</a>
+        <a href="https://zoom.us/j/2096639147?pwd=BrT4hq8qp2HAiJN8XyUqdSQFgjuagh.1">Vào lớp</a>
+      </div>
+    </div>
+    <div>Ảnh trẻ em do AI tạo để bảo vệ hình ảnh học viên. Video và tin nhắn là thật, đã làm mờ tên.</div>
   </div>
 </footer>
 
-<!-- Loading Spinner -->
-<div class="loading-spinner" id="loadingSpinner">
-  <div class="spinner"></div>
-  <p>Đang xử lý đăng ký...</p>
-</div>
-
-<!-- Exit Intent Popup -->
-<div class="exit-popup" id="exitPopup">
-  <div class="popup-content">
-    <div class="close-popup" onclick="closeExitPopup()">×</div>
-    <h3>Đợi chút! Bạn sắp bỏ lỡ cơ hội học thử MIỄN PHÍ</h3>
-    <p>Đăng ký ngay để nhận 2 buổi học thử và tư vấn lộ trình học phù hợp cho bé!</p>
-    <a href="#registration" class="floating-cta-button" onclick="closeExitPopup()" style="display: inline-block; margin-top: 15px;">Đăng ký ngay!</a>
-  </div>
-</div>
-
-<!-- Logo và nút CTA luôn hiển thị -->
-<div class="floating-container">
-  <img src="logo.png" alt="Logo Học Tiếng Anh Dễ Lắm" class="floating-logo" loading="lazy">
-  <a href="#registration" class="floating-cta-button">Đăng ký học thử ngay!</a>
-</div>
-
-<script>
-  // DOM Elements
-  const navbar = document.getElementById('navbar');
-  const navMenu = document.getElementById('navMenu');
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const registrationForm = document.getElementById('registration-form');
-  const loadingSpinner = document.getElementById('loadingSpinner');
-  const exitPopup = document.getElementById('exitPopup');
-  const currentYearSpan = document.getElementById('currentYear');
-  
-  // Set current year in footer
-  currentYearSpan.textContent = new Date().getFullYear();
-  
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-    
-    // Update active nav link
-    const scrollPos = window.scrollY + 100;
-    navLinks.forEach(link => {
-      const section = document.querySelector(link.hash);
-      if (section) {
-        if (section.offsetTop <= scrollPos && 
-            section.offsetTop + section.offsetHeight > scrollPos) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-        }
-      }
-    });
-  });
-  
-  // Mobile menu toggle
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
-  
-  // Close mobile menu when clicking a link
-// Tìm đoạn code xử lý click cho navLinks và sửa như sau:
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    // Nếu là dropdown toggle, không đóng menu
-    if (link.parentElement.classList.contains('dropdown')) {
-      e.stopPropagation(); // Quan trọng: ngăn sự kiện lan truyền
-      return;
-    }
-    
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-  });
-});
-  
-  // Close menu when clicking outside on mobile
-  document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      }
-    }
-  });
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        const offsetTop = targetElement.offsetTop - 80;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-  
-  // Lightbox functions
-  function openLightbox(imageSrc) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = imageSrc;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-  
-  // Close lightbox with ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeLightbox();
-    }
-  });
-  
-  // Exit popup functions
-  function showExitPopup() {
-    // Only show if user hasn't submitted the form
-    if (!localStorage.getItem('formSubmitted')) {
-      exitPopup.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-  }
-  
-  function closeExitPopup() {
-    exitPopup.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-  
-  // Form submission with loading spinner
-  registrationForm.addEventListener('submit', async function (event) {
-    event.preventDefault();
-    
-    // Show loading spinner
-    loadingSpinner.style.display = 'block';
-    
-    const form = event.target;
-    const formData = new FormData(form);
-    
-    try {
-      // Send data to Google Form
-      await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
-      });
-      
-      // Hide loading spinner
-      loadingSpinner.style.display = 'none';
-      
-      // Show success message
-      alert("🎉 Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
-      
-      // Mark form as submitted
-      localStorage.setItem('formSubmitted', 'true');
-      
-      // Reset form
-      form.reset();
-      
-      // Track conversion (for analytics - placeholder)
-      trackConversion();
-      
-    } catch (error) {
-      loadingSpinner.style.display = 'none';
-      alert("❌ Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi qua số điện thoại!");
-    }
-  });
-  
-  // Mobile detection
-  document.addEventListener('DOMContentLoaded', function() {
-    // Add touch device class
-    if ('ontouchstart' in window || navigator.maxTouchPoints) {
-      document.body.classList.add('touch-device');
-    }
-    
-    // Animate stats counter
-    animateStatsCounter();
-    
-    // Setup exit intent detection
-    setupExitIntent();
-  });
-  
-  // Animate stats counter
-  function animateStatsCounter() {
-    const stats = {
-      studentCount: { element: document.getElementById('studentCount'), target: 1000, duration: 2000 },
-      classCount: { element: document.getElementById('classCount'), target: 100, duration: 2000 },
-      successRate: { element: document.getElementById('successRate'), target: 95, duration: 2000 }
-    };
-    
-    // Check if element is in viewport
-    function isInViewport(element) {
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-        rect.bottom >= 0
-      );
-    }
-    
-    // Animate number
-    function animateNumber(element, target, duration) {
-      let start = 0;
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          element.textContent = target + (target === 95 ? '%' : '+');
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(start) + (target === 95 ? '%' : '+');
-        }
-      }, 16);
-    }
-    
-    // Check on scroll
-    let animated = false;
-    window.addEventListener('scroll', function() {
-      if (!animated && isInViewport(document.querySelector('.social-proof'))) {
-        animated = true;
-        for (const key in stats) {
-          if (stats[key].element) {
-            animateNumber(stats[key].element, stats[key].target, stats[key].duration);
-          }
-        }
-      }
-    });
-    
-    // Initial check
-    if (isInViewport(document.querySelector('.social-proof'))) {
-      animated = true;
-      for (const key in stats) {
-        if (stats[key].element) {
-          animateNumber(stats[key].element, stats[key].target, stats[key].duration);
-        }
-      }
-    }
-  }
-  
-  // Exit intent detection
-  function setupExitIntent() {
-    let mouseY = 0;
-    let shownPopup = false;
-    
-    document.addEventListener('mousemove', function(e) {
-      mouseY = e.clientY;
-    });
-    
-    document.addEventListener('mouseleave', function(e) {
-      if (!shownPopup && e.clientY < 50 && mouseY < 50) {
-        shownPopup = true;
-        setTimeout(showExitPopup, 500);
-      }
-    });
-    
-    // Also detect when user tries to go back/close
-    window.addEventListener('beforeunload', function(e) {
-      if (!localStorage.getItem('formSubmitted') && !shownPopup) {
-        shownPopup = true;
-        // We can't show popup here due to browser restrictions
-      }
-    });
-  }
-  
-  // Track conversion (placeholder for analytics)
-  function trackConversion() {
-    // This is where you would add Google Analytics conversion tracking
-    console.log('🎯 Conversion tracked: Form submission');
-    
-    // Example GA4 event
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'conversion', {
-        'send_to': 'AW-123456789/AbC-D_efGhIjKlMnOpQrS',
-        'value': 1.0,
-        'currency': 'VND'
-      });
-    }
-  }
-
-  // Function kiểm tra mật khẩu và chuyển hướng
-function checkPasswordAndRedirect(role) {
-  let targetUrl = '';
-  
-  if (role === 'student') {
-    targetUrl = 'https://hoctienganhdelam.com/management/login.html';
-  } else if (role === 'teacher') {
-    targetUrl = 'https://hoctienganhdelam.com/student/point.html';
-  }
-  
-  // Hiển thị prompt nhập mật khẩu
-  const password = prompt('Vui lòng nhập mật khẩu để truy cập:');
-  
-  // Kiểm tra mật khẩu
-  if (password === 'Vuiqua123') {
-    window.location.href = targetUrl;
-  } else if (password !== null) {
-    alert('Mật khẩu không đúng! Vui lòng thử lại.');
-  }
-}
-  
-  // Input validation
-  const phoneInput = document.querySelector('input[type="tel"]');
-  if (phoneInput) {
-    phoneInput.addEventListener('input', function(e) {
-      this.value = this.value.replace(/[^0-9+]/g, '');
-    });
-  }
-  
-  // Lazy loading enhancement
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-          }
-          observer.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px'
-    });
-    
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-      imageObserver.observe(img);
-    });
-  }
-  
-  // Detect iOS for special handling
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (isIOS) {
-    document.body.classList.add('ios-device');
-  }
-</script>
-
-<!-- Google Analytics Placeholder -->
-<script>
-  // This is a placeholder for Google Analytics
-  // Replace with your actual GA4 measurement ID
-  /*
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-  */
-  
-  // Facebook Pixel placeholder
-  /*
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR_PIXEL_ID');
-  fbq('track', 'PageView');
-  */
-</script>
-
-
-
-<style>
-  #hopGame{display:none;position:fixed;inset:0;z-index:99999;background:rgba(32,26,14,.55);
-    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);align-items:center;justify-content:center}
-  #hopGame.mo{display:flex}
-  #hopGameTrong{position:relative;width:min(1080px,94vw);height:min(780px,88vh);background:#fff;
-    border-radius:20px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.4)}
-  #hopGameDong{position:absolute;right:10px;top:10px;z-index:3;width:40px;height:40px;border-radius:50%;
-    border:0;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.18);font-size:20px;cursor:pointer}
-  #hopGameIframe{width:100%;height:100%;border:0;display:block}
-  @media (max-width:700px){
-    #hopGameTrong{width:100%;height:100%;border-radius:0}
-    #hopGameDong{top:auto;bottom:14px;right:14px;width:46px;height:46px;background:#fff}
-  }
-</style>
-<div id="hopGame" role="dialog" aria-label="Sảnh trò chơi">
-  <div id="hopGameTrong">
-    <button id="hopGameDong" title="Đóng">✕</button>
-    <iframe id="hopGameIframe" src="about:blank" title="Sảnh trò chơi" loading="lazy"></iframe>
-  </div>
-</div>
 <script>
 (function(){
-  var hop = document.getElementById("hopGame"),
-      khung = document.getElementById("hopGameIframe"),
-      nut = document.getElementById("navGame"),
-      dong = document.getElementById("hopGameDong");
-  if(!hop || !nut) return;
-  function mo(e){
-    if(e) e.preventDefault();
-    if(!khung.getAttribute("src") || khung.getAttribute("src") === "about:blank"){
-      khung.src = "game/sanh.html?v=" + Date.now();
-    }
-    hop.classList.add("mo");
-    document.documentElement.style.overflow = "hidden";
-    var m = document.getElementById("navMenu"); if(m) m.classList.remove("active");
-  }
-  function tat(){
-    hop.classList.remove("mo");
-    document.documentElement.style.overflow = "";
-  }
-  nut.addEventListener("click", mo);
-  dong.addEventListener("click", tat);
-  hop.addEventListener("click", function(e){ if(e.target === hop) tat(); });
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && hop.classList.contains("mo")) tat(); });
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+    els.forEach(function(el,i){ el.style.transitionDelay=(Math.min(i%6,5)*70)+'ms'; io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  var DATA={
+    t1:{title:'Làm quen bằng bài hát và câu ngắn',img:'img/me-va-con.jpg',rows:[
+      ['Nghe','Nghe hiểu chỉ dẫn quen thuộc, làm theo câu lệnh ngắn.'],
+      ['Nói','Nói câu ba đến năm từ: tên, tuổi, đồ vật của mình.'],
+      ['Đọc','Đọc từ và câu mẫu có hình đi kèm.'],
+      ['Viết','Chép đúng từ, điền từ vào chỗ trống.'],
+      ['Mốc năm nay','Từ bậc 1 lên bậc 2 của thang chín bậc.']]},
+    t2:{title:'Đọc hiểu đoạn ngắn, nói thành câu',img:'img/be-hoc.jpg',rows:[
+      ['Nghe','Nghe một đoạn hội thoại ngắn, trả lời được câu hỏi chính.'],
+      ['Nói','Kể lại việc đã làm trong ngày, dùng thì quá khứ đơn.'],
+      ['Đọc','Đọc đoạn 80–120 từ, tìm ý chính và từ mới theo ngữ cảnh.'],
+      ['Viết','Viết đoạn 40–60 từ có mở, thân, kết.'],
+      ['Mốc năm nay','Từ bậc 3 lên bậc 4; lớp A2 tính là bậc 5.']]},
+    t3:{title:'Trình bày ý kiến, chuẩn bị thi chứng chỉ',img:'img/be-thuyet-trinh.jpg',rows:[
+      ['Nghe','Nghe bài giảng, ghi chú ý chính và chi tiết hỗ trợ.'],
+      ['Nói','Trình bày hai phút có mở đầu, lý do và ví dụ; trả lời câu hỏi.'],
+      ['Đọc','Đọc bài 200–300 từ, phân biệt ý kiến và dẫn chứng.'],
+      ['Viết','Viết bài 120–150 từ đúng ba phần, dùng liên kết câu.'],
+      ['Mốc năm nay','Bậc 6 lên bậc 7 (B1); sàn B1 là bậc 5.']]}
+  };
+  var btns=document.querySelectorAll('.switch button'),
+      title=document.getElementById('hb-title'), img=document.getElementById('hb-img'), list=document.getElementById('hb-list');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var d=DATA[b.dataset.t];
+      title.textContent=d.title; img.src=d.img;
+      list.innerHTML=d.rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');
+    });
+  });
+
+  document.querySelectorAll('.folder[href]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
 })();
 </script>
 </body>
