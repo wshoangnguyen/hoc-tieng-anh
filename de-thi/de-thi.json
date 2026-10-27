@@ -47,18 +47,20 @@
   {
    "ma": "SM3",
    "ten": "Super Minds 3",
-   "muc": "",
+   "muc": "Lớp 8–9 tuổi · có viết đoạn",
    "bai": [
     {
      "ten": "Kiểm tra cuối sách",
-     "mo_ta": "Nghe (file nghe) · Đọc & Viết · Nói · in giấy được",
+     "mo_ta": "Nghe (2 file) · Đọc & Viết · làm và chấm ngay trên web",
      "pdf": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/nghe-de.pdf",
      "pdf2": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/doc-viet-de.pdf",
      "pdf3": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/noi-de.pdf",
      "nhan": [
-      "Bản PDF",
-      "Chưa có đáp án"
-     ]
+      "Làm trên web · tự chấm",
+      "Nghe 2 file",
+      "GV chấm 6 câu viết"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cuoi-sach/sm3/lam-bai/"
     }
    ]
   },
