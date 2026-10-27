@@ -44,8 +44,19 @@ select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10p
 .bai h3{font-size:15px;margin:0;line-height:1.35}
 .ghichu{font-size:13px;color:var(--nau2);background:#faf6ec;border-left:3px solid var(--gold);
         padding:7px 10px;border-radius:0 8px 8px 0;margin:9px 0 10px}
-.anhde{display:block;width:100%;border:1px solid var(--vien);border-radius:10px;margin:0 0 6px;background:#fff}
-.xemanh{font-size:12px;color:var(--tim);text-decoration:none;display:inline-block;margin-bottom:10px}
+.butve{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 7px;background:#faf6ec;
+       border:1px solid var(--vien);border-radius:10px;padding:6px 8px}
+.butve .mau{width:23px;height:23px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #cfc1a3;cursor:pointer;padding:0}
+.butve .mau.on{box-shadow:0 0 0 2.5px var(--tim)}
+.butve .cu{font-family:inherit;font-size:12.5px;font-weight:700;background:#fff;color:var(--nau2);
+           border:1.5px solid var(--vien);border-radius:8px;padding:5px 8px;cursor:pointer}
+.butve .cu.on{background:var(--tim);border-color:var(--tim);color:#fff}
+.khung-anh{position:relative;margin:0 0 6px}
+.khung-anh img{display:block;width:100%;border:1px solid var(--vien);border-radius:10px;background:#fff}
+.khung-anh canvas{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:10px;
+                  touch-action:none;display:none;cursor:crosshair}
+.khung-anh.ve canvas{display:block}
+.xemanh{font-size:12px;color:var(--tim);text-decoration:none;display:inline-block;margin:0 0 10px}
 .cau{display:flex;gap:9px;align-items:flex-start;margin:0 0 9px}
 .cau .socau{flex:none;width:22px;font-weight:700;color:var(--nau2);font-size:14px;padding-top:9px}
 .cau .than{flex:1}
@@ -75,7 +86,7 @@ select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10p
   </header>
   <p class="crumb"><a href="../">← Bộ đề cuối sách</a></p>
   <h1>Super Minds 2 · Kiểm tra cuối sách</h1>
-  <p class="sub">khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút) · Làm trực tiếp trên web, máy tự chấm phần gõ được. Bài tự lưu trên máy này.</p>
+  <p class="sub">khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút) · Làm trực tiếp trên web: bút vẽ/tô màu ngay trên hình, gõ câu trả lời và máy tự chấm phần gõ được.</p>
 
   <div class="card">
     <h2>Thông tin học sinh</h2>
@@ -103,9 +114,10 @@ select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10p
 </div>
 
 <script>
-const DU = {"level": 2, "ten": "Super Minds 2", "thoi_gian": "khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút)", "phan": [{"ma": "A", "ten": "Phần A · Nghe", "audio": [{"ten": "File nghe 1", "src": "../audio-1.mp3"}, {"ten": "File nghe 2", "src": "../audio-2.mp3"}], "bai": [{"so": 1, "de": "Listen and draw lines. There is one example.", "anh": "../trang/nghe-1.jpg", "ghi_chu": "Nghe rồi nối tên với hình bằng bút trên giấy. Giáo viên chấm tay (5 điểm).", "cau": []}, {"so": 2, "de": "Look, listen and colour.", "anh": "../trang/nghe-2.jpg", "ghi_chu": "Nghe rồi tô màu theo lời hướng dẫn (tent – blue, skateboard – purple, café – orange, bus – red, socks – yellow/brown). Làm trên giấy, giáo viên chấm tay (5 điểm).", "cau": []}]}, {"ma": "B", "ten": "Phần B · Đọc & Viết", "bai": [{"so": 1, "de": "Look at the pictures. Look at the letters. Write the words.", "anh": "../trang/rw-1.jpg", "ghi_chu": "Xếp lại các chữ cái thành từ đúng. Ví dụ: enathelp → elephant.", "cau": [{"id": "R1-1", "hoi": "odrab", "dap": ["board"]}, {"id": "R1-2", "hoi": "ppioh", "dap": ["hippo"]}, {"id": "R1-3", "hoi": "wnisg", "dap": ["swing"]}, {"id": "R1-4", "hoi": "ggse", "dap": ["eggs"]}, {"id": "R1-5", "hoi": "tbeomriok", "dap": ["motorbike"]}]}, {"so": 2, "de": "Read this. Choose a word from the box. Write the correct word next to numbers 1–5.", "anh": "../trang/rw-2.jpg", "ghi_chu": "Chọn từ trong khung: small · beautiful · caterpillar · bear · egg · watermelon · leaf · plants.", "cau": [{"id": "R2-1", "hoi": "Butterflies are (1) ______ animals", "dap": ["beautiful"]}, {"id": "R2-2", "hoi": "The butterfly's life begins as a small (2) ______", "dap": ["egg"]}, {"id": "R2-3", "hoi": "The small egg lives on a (3) ______", "dap": ["leaf"]}, {"id": "R2-4", "hoi": "When the egg opens, a (4) ______ comes out", "dap": ["caterpillar"]}, {"id": "R2-5", "hoi": "It usually eats (5) ______ and leaves", "dap": ["plants"]}]}, {"so": 3, "de": "Look and read. Put a tick (✓) or a cross (✗) in the box.", "anh": "../trang/rw-3.jpg", "kieu": "chon", "lua": ["✓", "✗"], "ghi_chu": "Chọn ✓ nếu câu đúng với hình, chọn ✗ nếu sai.", "cau": [{"id": "R3-1", "hoi": "This is a sofa.", "dap": ["✓"]}, {"id": "R3-2", "hoi": "These are ears.", "dap": ["✗"]}, {"id": "R3-3", "hoi": "This is a taxi.", "dap": ["✓"]}, {"id": "R3-4", "hoi": "This is a queen.", "dap": ["✗"]}, {"id": "R3-5", "hoi": "This is a sandy beach.", "dap": ["✓"]}]}, {"so": 4, "de": "Look at the pictures and read the questions. Write one-word answers.", "anh": "../trang/rw-4.jpg", "ghi_chu": "Trả lời bằng MỘT từ. Ví dụ: Where are the people? → museum.", "cau": [{"id": "R4-1", "hoi": "What is the boy doing? He is riding his ______", "dap": ["skateboard"]}, {"id": "R4-2", "hoi": "Is the man angry?", "dap": ["yes"]}, {"id": "R4-3", "hoi": "What is the girl doing? She is eating ______", "dap": ["watermelon"]}, {"id": "R4-4", "hoi": "What is the boy with the rucksack doing? Riding a ______", "dap": ["motorbike"]}, {"id": "R4-5", "hoi": "Where is the teacher? Under the ______", "dap": ["helicopter"]}]}]}]};
+const DU = {"level": 2, "ten": "Super Minds 2", "thoi_gian": "khoảng 40 phút (Nghe 10 phút · Đọc & Viết 30 phút)", "phan": [{"ma": "A", "ten": "Phần A · Nghe", "audio": [{"ten": "File nghe 1", "src": "../audio-1.mp3"}, {"ten": "File nghe 2", "src": "../audio-2.mp3"}], "bai": [{"so": 1, "de": "Listen and draw lines. There is one example.", "anh": "../trang/nghe-1.jpg", "ghi_chu": "Bật nút “Bút” rồi nối tên với đúng hình ngay trên ảnh. Giáo viên chấm trên ảnh con tải về (5 điểm).", "cau": [], "ve": true}, {"so": 2, "de": "Look, listen and colour.", "anh": "../trang/nghe-2.jpg", "ghi_chu": "Nghe rồi tô màu ngay trên ảnh: chọn màu ở thanh công cụ rồi tô (tent – blue, skateboard – purple, café – orange, bus – red, socks – yellow/brown). Giáo viên chấm trên ảnh (5 điểm).", "cau": [], "ve": true}]}, {"ma": "B", "ten": "Phần B · Đọc & Viết", "bai": [{"so": 1, "de": "Look at the pictures. Look at the letters. Write the words.", "anh": "../trang/rw-1.jpg", "ghi_chu": "Xếp lại các chữ cái thành từ đúng. Ví dụ: enathelp → elephant.", "cau": [{"id": "R1-1", "hoi": "odrab", "dap": ["board"]}, {"id": "R1-2", "hoi": "ppioh", "dap": ["hippo"]}, {"id": "R1-3", "hoi": "wnisg", "dap": ["swing"]}, {"id": "R1-4", "hoi": "ggse", "dap": ["eggs"]}, {"id": "R1-5", "hoi": "tbeomriok", "dap": ["motorbike"]}], "ve": false}, {"so": 2, "de": "Read this. Choose a word from the box. Write the correct word next to numbers 1–5.", "anh": "../trang/rw-2.jpg", "ghi_chu": "Chọn từ trong khung: small · beautiful · caterpillar · bear · egg · watermelon · leaf · plants.", "cau": [{"id": "R2-1", "hoi": "Butterflies are (1) ______ animals", "dap": ["beautiful"]}, {"id": "R2-2", "hoi": "The butterfly's life begins as a small (2) ______", "dap": ["egg"]}, {"id": "R2-3", "hoi": "The small egg lives on a (3) ______", "dap": ["leaf"]}, {"id": "R2-4", "hoi": "When the egg opens, a (4) ______ comes out", "dap": ["caterpillar"]}, {"id": "R2-5", "hoi": "It usually eats (5) ______ and leaves", "dap": ["plants"]}], "ve": false}, {"so": 3, "de": "Look and read. Put a tick (✓) or a cross (✗) in the box.", "anh": "../trang/rw-3.jpg", "kieu": "chon", "lua": ["✓", "✗"], "ghi_chu": "Chọn ✓ nếu câu đúng với hình, chọn ✗ nếu sai.", "cau": [{"id": "R3-1", "hoi": "This is a sofa.", "dap": ["✓"]}, {"id": "R3-2", "hoi": "These are ears.", "dap": ["✗"]}, {"id": "R3-3", "hoi": "This is a taxi.", "dap": ["✓"]}, {"id": "R3-4", "hoi": "This is a queen.", "dap": ["✗"]}, {"id": "R3-5", "hoi": "This is a sandy beach.", "dap": ["✓"]}], "ve": false}, {"so": 4, "de": "Look at the pictures and read the questions. Write one-word answers.", "anh": "../trang/rw-4.jpg", "ghi_chu": "Trả lời bằng MỘT từ. Ví dụ: Where are the people? → museum.", "cau": [{"id": "R4-1", "hoi": "What is the boy doing? He is riding his ______", "dap": ["skateboard"]}, {"id": "R4-2", "hoi": "Is the man angry?", "dap": ["yes"]}, {"id": "R4-3", "hoi": "What is the girl doing? She is eating ______", "dap": ["watermelon"]}, {"id": "R4-4", "hoi": "What is the boy with the rucksack doing? Riding a ______", "dap": ["motorbike"]}, {"id": "R4-5", "hoi": "Where is the teacher? Under the ______", "dap": ["helicopter"]}], "ve": false}]}]};
 const KHOA = "eo_sm" + DU.level;
-let dap = {};
+const KHOA_VE = "eo_sm" + DU.level + "_ve";
+let dap = {}, net = {};
 
 function chuan(s){
   return String(s||"").toLowerCase().trim()
@@ -117,21 +129,126 @@ function luu(){
               ma:document.getElementById("ma").value, dap:dap};
   try{localStorage.setItem(KHOA, JSON.stringify(tt));}catch(e){}
 }
-function nap(){
-  let tt=null; try{tt=JSON.parse(localStorage.getItem(KHOA)||"null");}catch(e){}
-  if(!tt) return;
-  document.getElementById("ten").value = tt.ten||"";
-  document.getElementById("lop").value = tt.lop||"";
-  document.getElementById("ma").value = tt.ma||"";
-  dap = tt.dap||{};
+function luuVe(){
+  try{localStorage.setItem(KHOA_VE, JSON.stringify(net));}catch(e){}
 }
-["ten","lop","ma"].forEach(id=>document.addEventListener("input",e=>{if(e.target.id===id) luu();}));
+function nap(){
+  let tt=null, v=null;
+  try{tt=JSON.parse(localStorage.getItem(KHOA)||"null");}catch(e){}
+  try{v=JSON.parse(localStorage.getItem(KHOA_VE)||"null");}catch(e){}
+  if(tt){
+    document.getElementById("ten").value = tt.ten||"";
+    document.getElementById("lop").value = tt.lop||"";
+    document.getElementById("ma").value = tt.ma||"";
+    dap = tt.dap||{};
+  }
+  net = v||{};
+}
 
+/* ---------- bút vẽ trên hình ---------- */
+const MAU_BUT = ["#111111","#d32f2f","#1976d2","#f9a825","#7b1fa2","#2e7d32","#ef6c00","#8d6e63"];
+
+function khoiTaoVe(hop, id){
+  const img = hop.querySelector("img");
+  const cv  = hop.querySelector("canvas");
+  const ctx = cv.getContext("2d");
+  let mau = "#111111", day = 3, tay = false, dang = null;
+  const ds = net[id] || (net[id] = []);
+
+  function co(){
+    const r = img.getBoundingClientRect();
+    let w = r.width || img.clientWidth;
+    if(!w){ w = hop.clientWidth || 600; }
+    let h = r.height;
+    if(!h && img.naturalWidth){ h = w * img.naturalHeight / img.naturalWidth; }
+    if(!h){ h = Math.round(w * 0.7); }
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+    cv.style.height = h + "px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {w:w, h:h};
+  }
+  img.addEventListener("load", ()=>{ if(hop.classList.contains("ve")) veLai(); });
+  try{
+    const ro = new ResizeObserver(()=>{ if(hop.classList.contains("ve")) veLai(); });
+    ro.observe(img);
+  }catch(e){}
+  function veLai(){
+    const {w,h} = co();
+    ctx.clearRect(0,0,w,h);
+    ds.forEach(n=>{
+      ctx.beginPath();
+      ctx.globalCompositeOperation = n.t ? "destination-out" : "source-over";
+      ctx.strokeStyle = n.c; ctx.lineWidth = Math.max(1, n.d*w); ctx.lineCap="round"; ctx.lineJoin="round";
+      n.p.forEach((pt,i)=>{ const x=pt[0]*w, y=pt[1]*h; i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+      if(n.p.length===1){ const x=n.p[0][0]*w, y=n.p[0][1]*h; ctx.lineTo(x+0.1,y+0.1); }
+      ctx.stroke();
+    });
+    ctx.globalCompositeOperation = "source-over";
+  }
+  function toa(e){
+    const r = cv.getBoundingClientRect();
+    return [ (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height ];
+  }
+  cv.addEventListener("pointerdown", e=>{
+    if(!hop.classList.contains("ve")) return;
+    e.preventDefault();
+    try{ cv.setPointerCapture(e.pointerId); }catch(err){}
+    dang = {c:mau, d:day/1000, t:tay, p:[toa(e)]};
+    ds.push(dang); veLai();
+  });
+  cv.addEventListener("pointermove", e=>{
+    if(!dang) return;
+    e.preventDefault();
+    const p = toa(e), cuoi = dang.p[dang.p.length-1];
+    dang.p.push(p);
+    const {w,h} = {w:cv.clientWidth, h:cv.clientHeight};
+    ctx.beginPath();
+    ctx.globalCompositeOperation = dang.t ? "destination-out" : "source-over";
+    ctx.strokeStyle = dang.c; ctx.lineWidth = Math.max(1, dang.d*w);
+    ctx.lineCap="round"; ctx.lineJoin="round";
+    ctx.moveTo(cuoi[0]*w, cuoi[1]*h); ctx.lineTo(p[0]*w, p[1]*h); ctx.stroke();
+    ctx.globalCompositeOperation = "source-over";
+  });
+  const ket = e=>{ if(dang){ dang=null; luuVe(); } };
+  cv.addEventListener("pointerup", ket);
+  cv.addEventListener("pointercancel", ket);
+  cv.addEventListener("pointerleave", ket);
+
+  return {
+    bat(on){ hop.classList.toggle("ve", on); if(on) veLai(); },
+    datMau(m){ mau = m; tay=false; },
+    datDay(d){ day = d; },
+    tay(){ tay = !tay; return tay; },
+    undo(){ ds.pop(); veLai(); luuVe(); },
+    xoa(){ ds.length=0; veLai(); luuVe(); },
+    tai(){
+      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+      const tam = document.createElement("canvas"); tam.width=w; tam.height=h;
+      const c2 = tam.getContext("2d");
+      c2.drawImage(img,0,0,w,h);
+      c2.lineCap="round"; c2.lineJoin="round";
+      ds.forEach(n=>{
+        c2.beginPath(); c2.globalCompositeOperation = n.t ? "destination-out":"source-over";
+        c2.strokeStyle=n.c; c2.lineWidth=Math.max(1,n.d*w);
+        n.p.forEach((pt,i)=>{const x=pt[0]*w,y=pt[1]*h; i?c2.lineTo(x,y):c2.moveTo(x,y);});
+        if(n.p.length===1){const x=n.p[0][0]*w,y=n.p[0][1]*h;c2.lineTo(x+0.1,y+0.1);}
+        c2.stroke();
+      });
+      const a=document.createElement("a");
+      a.href = tam.toDataURL("image/jpeg",0.85);
+      a.download = "bai-lam-"+id+".jpg"; a.click();
+    },
+    veLai
+  };
+}
+
+/* ---------- dựng trang ---------- */
 function ve(){
   const tabs=document.getElementById("tabs"), than=document.getElementById("than");
   DU.phan.forEach((p,i)=>{
     const b=document.createElement("button");
-    b.className="tabbtn"+(i===0?" on":""); b.textContent=p.ten; b.dataset.i=i;
+    b.className="tabbtn"+(i===0?" on":""); b.textContent=p.ten;
     b.onclick=()=>{
       document.querySelectorAll(".tabbtn").forEach(x=>x.classList.toggle("on",x===b));
       document.querySelectorAll(".phan").forEach((x,j)=>x.classList.toggle("on",j===i));
@@ -139,20 +256,35 @@ function ve(){
     tabs.appendChild(b);
     const hop=document.createElement("div");
     hop.className="phan"+(i===0?" on":"");
-    if(p.audio && p.audio.length){
-      p.audio.forEach(a=>{
-        const d=document.createElement("div"); d.className="audio";
-        d.innerHTML='<b>'+a.ten+'</b><audio controls preload="none" src="'+a.src+'"></audio>';
-        hop.appendChild(d);
-      });
-    }
+    (p.audio||[]).forEach(a=>{
+      const d=document.createElement("div"); d.className="audio";
+      d.innerHTML='<b>'+a.ten+'</b><audio controls preload="none" src="'+a.src+'"></audio>';
+      hop.appendChild(d);
+    });
     p.bai.forEach(bai=>{
+      const id = p.ma + bai.so;
       const k=document.createElement("div"); k.className="bai";
       let h='<div class="dau"><div class="so">'+bai.so+'</div><h3>'+bai.de+'</h3></div>';
-      if(bai.anh) h+='<img class="anhde" src="'+bai.anh+'" alt="Đề bài '+bai.so+'" loading="lazy">'+
-                    '<a class="xemanh" href="'+bai.anh+'" target="_blank" rel="noopener">Xem ảnh lớn</a>';
       if(bai.ghi_chu) h+='<div class="ghichu">'+bai.ghi_chu+'</div>';
       k.innerHTML=h;
+      if(bai.anh){
+        const veHop = document.createElement("div"); veHop.className="khung-anh"; veHop.dataset.cho=id;
+        veHop.innerHTML='<img class="anhde" src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas>';
+        if(bai.ve){
+          const bar=document.createElement("div"); bar.className="butve";
+          const mauHtml = '<button class="cu" data-vai="but">✏️ Bút</button>' +
+            MAU_BUT.map((c,i)=>'<button class="mau'+(i===0?' on':'')+'" data-mau="'+c+'" style="background:'+c+'" title="Màu"></button>').join("") +
+            '<button class="cu" data-vai="day">Nét dầy</button>' +
+            '<button class="cu" data-vai="tay">🧽 Tẩy</button>' +
+            '<button class="cu" data-vai="undo">↶ Hoàn tác</button>' +
+            '<button class="cu" data-vai="xoa">Xoá hết</button>' +
+            '<button class="cu" data-vai="tai">⬇️ Tải ảnh bài làm</button>';
+          bar.innerHTML = mauHtml;
+          k.appendChild(bar);
+        }
+        k.appendChild(veHop);
+        k.insertAdjacentHTML("beforeend", '<a class="xemanh" href="'+bai.anh+'" target="_blank" rel="noopener">Xem ảnh lớn</a>');
+      }
       (bai.cau||[]).forEach((c,j)=>{
         const d=document.createElement("div"); d.className="cau"; d.dataset.id=c.id;
         const o = (bai.kieu==="chon")
@@ -164,19 +296,52 @@ function ve(){
         k.appendChild(d);
       });
       hop.appendChild(k);
+
+      if(bai.ve){
+        const hopAnh = k.querySelector('.khung-anh[data-cho="'+id+'"]');
+        const bar = k.querySelector(".butve");
+        const tep = khoiTaoVe(hopAnh, id);
+        window["__ve_"+id] = tep;
+        bar.addEventListener("click", ev=>{
+          const nut = ev.target.closest("button"); if(!nut) return;
+          if(nut.dataset.mau){
+            bar.querySelectorAll(".mau").forEach(x=>x.classList.toggle("on", x===nut));
+            tep.datMau(nut.dataset.mau);
+            if(!hopAnh.classList.contains("ve")) tep.bat(true);
+            bar.querySelector('[data-vai="but"]').classList.add("on");
+            return;
+          }
+          const vai = nut.dataset.vai;
+          if(vai==="but"){ tep.bat(!hopAnh.classList.contains("ve")); nut.classList.toggle("on"); }
+          if(vai==="day"){ const d = nut.dataset.day==="1"?3:9; nut.dataset.day = d===9?"1":"0"; tep.datDay(d);
+                           nut.textContent = d===9?"Nét mảnh":"Nét dầy"; nut.classList.toggle("on", d===9); }
+          if(vai==="tay"){ const t=tep.tay(); nut.classList.toggle("on", t); }
+          if(vai==="undo") tep.undo();
+          if(vai==="xoa"){ if(confirm("Xoá hết nét vẽ của bài này?")) tep.xoa(); }
+          if(vai==="tai") tep.tai();
+        });
+        if(net[id]) tep.bat(true);
+      }
     });
     than.appendChild(hop);
   });
-  // đổ đáp án đã lưu
+
   document.querySelectorAll("input[id],select[id]").forEach(i=>{
     if(dap[i.id]!==undefined) i.value=dap[i.id];
-    if(i.id && i.id.indexOf("-")>0) i.addEventListener("input",()=>{dap[i.id]=i.value;luu();});
-    if(i.tagName==="SELECT") i.addEventListener("change",()=>{dap[i.id]=i.value;luu();});
+    if(i.id && i.id.indexOf("-")>0){
+      i.addEventListener("input",()=>{dap[i.id]=i.value;luu();});
+      i.addEventListener("change",()=>{dap[i.id]=i.value;luu();});
+    }
+  });
+  setTimeout(()=>{Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>{try{window[k].veLai()}catch(e){}});}, 600);
+  window.addEventListener("load", ()=>{Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>{try{window[k].veLai()}catch(e){}});});
+  window.addEventListener("resize", ()=>{
+    Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>window[k].veLai());
   });
 }
 
 function cham(){
-  let dung=0, tong=0, sai=[];
+  let dung=0, tong=0;
   DU.phan.forEach(p=>p.bai.forEach(b=>(b.cau||[]).forEach(c=>{
     tong++;
     const o=document.getElementById(c.id);
@@ -185,32 +350,38 @@ function cham(){
     const hang=o.closest(".cau");
     hang.classList.toggle("dung",!!ok); hang.classList.toggle("sai",!ok);
     document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
-    if(ok) dung++; else sai.push(c.id);
+    if(ok) dung++;
   })));
   const hop=document.getElementById("kqhop"); hop.classList.add("on");
   const ten=document.getElementById("ten").value.trim();
-  const phanTram= tong? Math.round(dung/tong*100):0;
-  let loi = "<b>"+dung+"/"+tong+"</b> câu đúng ("+phanTram+"%) · phần gõ được trên web.";
+  let loi = "<b>"+dung+"/"+tong+"</b> câu đúng ("+(tong?Math.round(dung/tong*100):0)+"%) · phần gõ được trên web.";
   DU.phan.forEach(p=>{
     const soCau=p.bai.reduce((s,b)=>s+(b.cau||[]).length,0);
-    if(soCau) loi += "<br>"+p.ten+": "+p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>{
-      const o=document.getElementById(c.id); return chuan(o.value)&&c.dap.some(x=>chuan(x)===chuan(o.value));
-    }).length,0)+"/"+soCau+" câu";
+    if(soCau){
+      const d=p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>{
+        const o=document.getElementById(c.id); return chuan(o.value)&&c.dap.some(x=>chuan(x)===chuan(o.value));
+      }).length,0);
+      loi += "<br>"+p.ten+": "+d+"/"+soCau+" câu";
+    }
   });
+  const soVe = DU.phan.reduce((s,p)=>s+p.bai.filter(b=>b.ve).length,0);
+  if(soVe) loi += "<br>Phần vẽ/tô màu: "+soVe+" bài — làm xong bấm “Tải ảnh bài làm” để gửi giáo viên chấm.";
   document.getElementById("diem").innerHTML = (ten?("<b>"+ten+"</b> · "):"") + loi;
-  document.getElementById("ghicham").textContent = "Ô xanh là đúng, ô đỏ là chưa đúng. Đáp án chi tiết giáo viên gửi sau buổi — con sửa lại rồi bấm Chấm bài lần nữa để xem tiến bộ.";
+  document.getElementById("ghicham").textContent = "Ô xanh là đúng, ô đỏ là chưa đúng. Đáp án chi tiết giáo viên gửi sau buổi; phần vẽ giáo viên chấm trên ảnh con tải về.";
   window.__kq = {dung, tong};
   luu();
 }
 
 document.getElementById("btCham").onclick=cham;
 document.getElementById("btLai").onclick=()=>{
-  if(!confirm("Xoá hết câu trả lời để làm lại từ đầu?")) return;
-  dap={}; document.querySelectorAll("input[id],select[id]").forEach(i=>{if(i.id.indexOf("-")>0) i.value="";});
+  if(!confirm("Xoá hết câu trả lời và nét vẽ để làm lại từ đầu?")) return;
+  dap={};
+  document.querySelectorAll("input[id],select[id]").forEach(i=>{if(i.id.indexOf("-")>0) i.value="";});
   document.querySelectorAll(".cau").forEach(c=>c.classList.remove("dung","sai"));
   document.querySelectorAll(".kq").forEach(k=>k.textContent="");
   document.getElementById("kqhop").classList.remove("on");
-  luu();
+  Object.keys(window).filter(k=>k.indexOf("__ve_")===0).forEach(k=>window[k].xoa());
+  net={}; luuVe(); luu();
 };
 document.getElementById("btZalo").onclick=()=>{
   const ten=document.getElementById("ten").value.trim()||"(chưa ghi tên)";
