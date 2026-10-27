@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đề thi hết sách Open World A2 — làm bài</title>
+<link rel="icon" href="/logo.png">
+<style>
+  :root{--be:#f7f1e3;--nau:#3b2f1c;--nau2:#6d5c3d;--gold:#b8923f;--tim:#6b4fa1;--tim2:#8a6fc0;
+        --ok:#2f7d4f;--sai:#b23b3b;--vien:#e3d6bb;--nen:#fffdf7}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--nau);
+       background:linear-gradient(160deg,#fbf6ea,#f2e8d5 60%,#efe3cc);min-height:100vh;line-height:1.55}
+  .wrap{max-width:820px;margin:0 auto;padding:16px 14px 120px}
+  header{display:flex;align-items:center;gap:10px;margin:6px 0 14px}
+  header img{width:104px;height:46px;object-fit:contain}
+  header .t{font-size:13px;color:var(--nau2)}
+  header .t b{display:block;font-size:17px;color:var(--nau)}
+  .card{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:16px 16px;
+        box-shadow:0 6px 18px rgba(120,90,20,.07);margin:0 0 14px}
+  h2{font-size:18px;margin:0 0 8px}
+  h3{font-size:15px;margin:0 0 6px}
+  p{margin:0 0 10px;font-size:15px}
+  .muted{color:var(--nau2);font-size:14px}
+  label.f{display:block;font-size:13px;color:var(--nau2);margin:10px 0 4px}
+  input.txt{width:100%;padding:11px 12px;border:1px solid var(--vien);border-radius:10px;font-size:16px;
+            background:#fff;color:var(--nau);font-family:inherit}
+  input.txt:focus{outline:2px solid var(--tim2);outline-offset:1px}
+  .btn{display:inline-block;border:0;background:var(--tim);color:#fff;font-weight:700;font-size:16px;
+       padding:13px 22px;border-radius:12px;cursor:pointer;font-family:inherit}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:#fff;color:var(--tim);border:1.5px solid var(--tim)}
+  .btn[disabled]{opacity:.5;cursor:default}
+  .bar{position:sticky;top:0;z-index:20;background:rgba(251,246,234,.96);backdrop-filter:blur(6px);
+       border-bottom:1px solid var(--vien);margin:0 -14px 14px;padding:9px 14px;display:flex;gap:10px;
+       align-items:center;justify-content:space-between;font-size:14px}
+  .bar .prog{flex:1;height:7px;background:#e8dcc4;border-radius:20px;overflow:hidden;max-width:260px}
+  .bar .prog i{display:block;height:100%;width:0;background:var(--tim);transition:width .25s}
+  .time{font-variant-numeric:tabular-nums;font-weight:700}
+  .time.sap{color:var(--sai)}
+  .sec{background:#f3ead7;border-radius:12px;padding:9px 13px;margin:26px 0 10px;font-weight:700;font-size:16px}
+  .part{margin:0 0 6px}
+  .part>.h{font-weight:700;margin:18px 0 6px;font-size:16px;color:var(--tim)}
+  .box{background:#f6f2e7;border-left:3px solid var(--gold);border-radius:8px;padding:9px 12px;margin:8px 0;
+       white-space:pre-line;font-size:14.5px}
+  .q{padding:12px 0 4px;border-top:1px dashed #e8dcc4}
+  .q:first-of-type{border-top:0}
+  .q .num{font-weight:700;color:var(--gold);margin-right:4px}
+  .q .qt{font-size:15px;margin-bottom:8px}
+  .opts{display:flex;flex-direction:column;gap:7px;margin-bottom:4px}
+  .opt{display:flex;gap:9px;align-items:flex-start;border:1.5px solid var(--vien);border-radius:10px;
+       padding:9px 11px;cursor:pointer;background:#fff;font-size:15px}
+  .opt input{margin:2px 0 0;accent-color:var(--tim);width:17px;height:17px;flex:none}
+  .opt.on{border-color:var(--tim);background:#f6f1ff}
+  .opt.ok{border-color:var(--ok);background:#eef8f1}
+  .opt.sai{border-color:var(--sai);background:#fbeeee}
+  .fill{width:100%;padding:10px 12px;border:1.5px solid var(--vien);border-radius:10px;font-size:16px;
+        font-family:inherit;background:#fff}
+  .fill.ok{border-color:var(--ok);background:#eef8f1}
+  .fill.sai{border-color:var(--sai);background:#fbeeee}
+  audio{width:100%;height:38px;margin:6px 0 2px}
+  .audio{font-size:13px;color:var(--nau2)}
+  .nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .res{font-size:15px}
+  .res .big{font-size:34px;font-weight:800;color:var(--tim);line-height:1.1}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+  td,th{border-bottom:1px solid var(--vien);padding:7px 6px;text-align:left}
+  th{color:var(--nau2);font-weight:600}
+  .badge{display:inline-block;background:#efe6ff;color:var(--tim);border-radius:8px;padding:3px 9px;font-size:13px}
+  .hide{display:none!important}
+  @media(max-width:520px){.wrap{padding:12px 11px 110px}h2{font-size:17px}.big{font-size:30px!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
+    <div class="t"><b>Đề thi hết sách Open World A2</b>Mô phỏng A2 Key (KET) · 90 phút</div>
+  </header>
+
+  <div id="start">
+    <div class="card">
+      <h2>Chào con 👋</h2>
+      <p class="muted">Bài gồm 2 phần: <b>Đọc &amp; Viết</b> (60 phút) và <b>Nghe</b> (5 file, mỗi file nghe 2 lần).
+         Con làm xong rồi bấm Nộp bài, máy chấm ngay 55 câu và báo điểm từng phần.</p>
+      <label class="f" for="ten">Họ và tên</label>
+      <input class="txt" id="ten" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="name">
+      <label class="f" for="lop">Lớp / giáo viên phụ trách</label>
+      <input class="txt" id="lop" placeholder="Ví dụ: SM4 · thầy Hoàng">
+      <label class="f" for="ma">Mã học viên (nếu có — để ghi điểm vào phiếu)</label>
+      <input class="txt" id="ma" placeholder="Ví dụ: HV11" autocapitalize="characters">
+      <div class="nav"><button class="btn" id="batdau">Bắt đầu làm bài</button>
+      <span class="muted" style="align-self:center">Đồng hồ sẽ chạy 90 phút.</span></div>
+    </div>
+    <div class="card">
+      <h3>Trước khi làm</h3>
+      <p class="muted">· Nghe mỗi part <b>hai lần</b>, không tua lại giữa câu.<br>
+        · Không dùng từ điển. Bài viết 25 từ trở lên.<br>
+        · Mất mạng vẫn làm tiếp được; bài chỉ mất khi con xoá dữ liệu trình duyệt.</p>
+    </div>
+  </div>
+
+  <div id="exam" class="hide">
+    <div class="bar">
+      <span id="dem">0/55</span>
+      <span class="prog"><i id="prog"></i></span>
+      <span class="time" id="time">90:00</span>
+    </div>
+    <div id="body"></div>
+    <div class="nav" style="margin-top:22px">
+      <button class="btn" id="nop">Nộp bài &amp; chấm điểm</button>
+      <button class="btn ghost" id="luu">Lưu bài trên máy này</button>
+    </div>
+    <p class="muted" id="nhac" style="margin-top:8px">Còn câu chưa làm vẫn nộp được — máy chỉ tính câu đã làm.</p>
+  </div>
+
+  <div id="result" class="hide"></div>
+</div>
+
+<script>
+const DATA = {"reading": [{"part": 1, "title": "Part 1 — Questions 1–6", "intro": "For each question, choose the correct answer.", "items": [{"n": 1, "q": "What does Dad want to tell Mia?", "key": "B", "opts": ["The sports centre is open on Monday.", "They will play badminton on a different day.", "He has cancelled the badminton court."], "tieude": "Dad's note", "text": "Mia — the sports centre is closed on Monday, so I've booked the badminton court for Tuesday at 5 instead. Don't be late! Dad"}, {"n": 2, "q": "What does the notice say?", "key": "A", "opts": ["You should bring food to the club.", "The club meets after school.", "You must know how to play chess."], "tieude": "School notice", "text": "CHESS CLUB — Wednesday lunchtime, Room 12. Bring your lunch with you; we finish at 1.15. New members welcome."}, {"n": 3, "q": "What does Lena want Sam to do?", "key": "C", "opts": ["Meet her inside the library.", "Return a book to the library.", "Bring something to the library."], "tieude": "Text message", "text": "Sam, I'm at the town library. I forgot my science book — can you bring it? I'll wait outside the main door until 4. Thanks, Lena"}, {"n": 4, "q": "What does the sign mean?", "key": "B", "opts": ["Students pay less every day.", "Students do not pay on Fridays.", "The museum is open every day."], "tieude": "Sign at the museum", "text": "STUDENTS GO FREE ON FRIDAYS\nPlease show your student card at the desk.\nThe museum is closed on public holidays."}, {"n": 5, "q": "What should students do if they are ill?", "key": "B", "opts": ["Give the project on Friday.", "Email a photo of the project.", "Ask a friend to bring it."], "tieude": "Email from a teacher", "text": "From: Mr Hall\nSubject: Your project\nPlease give me your project by Thursday. If you are ill and cannot come to school, send me a photo of it by email before 6 p.m. on Thursday."}, {"n": 6, "q": "What does the advert say?", "key": "C", "opts": ["You must bring your own tools.", "The workshop is on Sunday morning.", "You can learn to repair a bicycle."], "tieude": "Advert", "text": "BIKE REPAIR WORKSHOP\nSaturdays 10–12, at the youth centre.\nBring your bike and learn to fix it. Only £5 for the whole morning. Bikes and tools provided."}]}, {"part": 2, "title": "Part 2 — Questions 7–13", "intro": "Read the three texts about how three young people spend their free time. For each question, choose the correct person.", "people": [{"ten": "Maya", "text": "I started making short films with my phone two years ago. At first I only filmed my dog, but now my friends and I write little stories and film them in the park. We don't have expensive cameras — the phone is enough. The hard part is the editing: I usually spend three or four evenings on a five-minute film. My parents say I should do my homework first, and they're right! Last month our film won a prize at a school competition."}, {"ten": "Tom", "text": "I'm in a swimming club and I train four times a week, so I don't have much free time. When I do, I like cooking. I'm not very good at it, but I'm learning. My grandfather taught me to make bread, and now I make it every Sunday. The kitchen gets very messy, and my sister complains about the flour everywhere. I'd like to take a cooking course next summer, but it's expensive, so I'm saving money."}, {"ten": "Inés", "text": "I love getting letters and postcards, so I joined a club where you write to people in other countries. I write to a girl in Japan and a boy in Brazil. We write about school, music and our families, and we send photos too. It takes time — I write one long letter every month — but I prefer it to texting because I can say more. My English has got much better, and I've learned some Japanese words as well."}], "items": [{"n": 7, "q": "Who has won something for their hobby?", "key": "Maya"}, {"n": 8, "q": "Who spends a lot of time on one part of their hobby?", "key": "Maya"}, {"n": 9, "q": "Who is saving money for a course?", "key": "Tom"}, {"n": 10, "q": "Who learned something from an older family member?", "key": "Tom"}, {"n": 11, "q": "Who writes to people in different countries?", "key": "Inés"}, {"n": 12, "q": "Who says their language skills have improved?", "key": "Inés"}, {"n": 13, "q": "Who sometimes makes a mess at home?", "key": "Tom"}]}, {"part": 3, "title": "Part 3 — Questions 14–18", "intro": "Read the article about a library of things. For each question, choose the correct answer.", "article": {"tieude": "Borrow it, don't buy it", "text": "When Ella was twelve, she needed a drill to put up a shelf in her bedroom. Her family did not have one, and a new drill cost more than £40. \"I only needed it for ten minutes,\" she says. \"It seemed silly to buy one.\"\n\nElla's father took her to a 'library of things' in their town. It is a shop where people borrow objects — tools, camping equipment, musical instruments, sports things — in the same way they borrow books. You join for £10 a year and then you pay nothing to borrow. Ella borrowed the drill, fixed her shelf, and gave it back the next day.\n\nSix months later, Ella started helping at the library every Saturday morning. She checks the objects, cleans them and writes the names in a computer. \"People are always surprised that we have so much,\" she says. \"Last week someone borrowed a guitar, and a family borrowed a tent for the weekend.\"\n\nElla thinks young people should use the library more. \"You don't need to ask your parents for money, and you don't fill your house with things you use once. It's also good for the planet.\" Her favourite object? \"The sewing machine. I made a bag from an old pair of jeans. My friends couldn't believe I made it myself.\""}, "items": [{"n": 14, "q": "Why did Ella need a drill?", "key": "B", "opts": ["to help her father", "to put up a shelf", "to repair a chair"]}, {"n": 15, "q": "What did Ella think about buying a drill?", "key": "A", "opts": ["It was too expensive for one small job.", "It was better than borrowing one.", "It was difficult to find in shops."]}, {"n": 16, "q": "How much does it cost to borrow things after you join?", "key": "C", "opts": ["£10 each time", "a small amount every month", "nothing"]}, {"n": 17, "q": "What does Ella do at the library now?", "key": "B", "opts": ["She teaches people to use tools.", "She looks after the objects.", "She sells new equipment."]}, {"n": 18, "q": "Why does Ella say young people should use the library?", "key": "C", "opts": ["They can meet other young people.", "They can learn to make clothes.", "They save money and help the environment."]}]}, {"part": 4, "title": "Part 4 — Questions 19–24", "intro": "Read the email from Ana to her friend. Choose the best word for each space.", "email": "Hi Ben,\n\nHow are you? I'm writing because we're going (19) ____ a school trip next month and I want you to come.\n\nIt's a trip to the science museum in Manchester (20) ____ Friday 12th. We're going by train — the school has booked seats for everyone. We (21) ____ leave at 8.15 in the morning, so please don't be late!\n\nAt the museum there's a new exhibition about space. I (22) ____ been there before, but my brother says it's amazing. We'll also have time to buy lunch, (23) ____ you should bring some money — about £10.\n\nThe trip costs £14 and you (24) ____ give the money to Mr Price before Wednesday.\n\nWrite soon,\nAna", "items": [{"n": 19, "q": "", "key": "A", "opts": ["on", "to", "for"]}, {"n": 20, "q": "", "key": "C", "opts": ["in", "at", "on"]}, {"n": 21, "q": "", "key": "B", "opts": ["are", "will", "have"]}, {"n": 22, "q": "", "key": "A", "opts": ["haven't", "didn't", "wasn't"]}, {"n": 23, "q": "", "key": "B", "opts": ["but", "so", "because"]}, {"n": 24, "q": "", "key": "A", "opts": ["must", "can", "may"]}]}, {"part": 5, "title": "Part 5 — Questions 25–30", "intro": "Read the text and write ONE word for each space.", "text": "Last summer my family went camping in Scotland. We (25) ____ never been camping before, so we didn't know what to take. My mother made a long list (26) ____ things: a tent, sleeping bags, a lamp and lots of food.\n\nThe first night was terrible. It rained and the tent was wet, and I couldn't sleep (27) ____ I was cold. In the morning the sun came out and everything looked beautiful. We walked to a lake and swam in the water.\n\nOn the last day my father said, \"Next year we (28) ____ stay in a hotel.\" But when we got home, we all agreed it was the best holiday we (29) ____ ever had. Now we want to go again — but this time we'll take (30) ____ warm clothes!", "items": [{"n": 25, "q": "", "key": "had"}, {"n": 26, "q": "", "key": "of"}, {"n": 27, "q": "", "key": "because"}, {"n": 28, "q": "", "key": "will"}, {"n": 29, "q": "", "key": "have"}, {"n": 30, "q": "", "key": "more"}]}, {"part": 6, "title": "Part 6 — Writing (Question 31)", "intro": "You must answer this question. Write your answer in 25 words or more.", "task": "Your English friend Sam wants to know about the school trip you went on last week.\n\nWrite an email to Sam. In your email:\n•  say where you went\n•  say what you did there\n•  ask Sam a question about his school.\n\nWrite 25 words or more. Write the email on your answer sheet.", "items": []}], "listening": [{"part": 1, "title": "Part 1 — Questions 1–5", "intro": "For each question, choose the correct answer.", "items": [{"n": 1, "id": 101, "q": "What time does the film start?", "key": "B", "opts": ["7.30", "7.45", "8.00"]}, {"n": 2, "id": 102, "q": "What will the boy take to the picnic?", "key": "B", "opts": ["fruit", "water", "a hat"]}, {"n": 3, "id": 103, "q": "Where will the friends meet?", "key": "B", "opts": ["at the bus station", "at the park gate", "at the café"]}, {"n": 4, "id": 104, "q": "Which homework must the girl finish tonight?", "key": "B", "opts": ["maths", "English", "science"]}, {"n": 5, "id": 105, "q": "What present will they buy for their teacher?", "key": "C", "opts": ["flowers", "chocolate", "a book"]}]}, {"part": 2, "title": "Part 2 — Questions 6–10", "intro": "Listen to a coach talking about a summer sports camp. Write ONE word or number for each gap.", "items": [{"n": 6, "id": 106, "q": "The camp starts on Monday ____ July.", "key": "21 / twenty-first"}, {"n": 7, "id": 107, "q": "It finishes at ____ in the afternoon.", "key": "3.30 / half past three"}, {"n": 8, "id": 108, "q": "On Wednesday they go ____.", "key": "swimming"}, {"n": 9, "id": 109, "q": "The camp costs £____ for one week.", "key": "60 / sixty"}, {"n": 10, "id": 110, "q": "The camp is at the North Street ____ Centre.", "key": "Sports"}]}, {"part": 3, "title": "Part 3 — Questions 11–15", "intro": "Listen to Jess talking to her friend Marco about a school trip. For each question, choose the correct answer.", "items": [{"n": 11, "id": 111, "q": "How did Jess travel to the museum?", "key": "B", "opts": ["by train", "by coach", "by car"]}, {"n": 12, "id": 112, "q": "What did Jess enjoy most?", "key": "B", "opts": ["the robot exhibition", "the space show", "the shop"]}, {"n": 13, "id": 113, "q": "What was difficult at the museum?", "key": "A", "opts": ["finding the way", "understanding the teachers", "waiting in queues"]}, {"n": 14, "id": 114, "q": "What did Jess buy?", "key": "C", "opts": ["a T-shirt", "a book", "a poster"]}, {"n": 15, "id": 115, "q": "What will Marco do on Saturday?", "key": "A", "opts": ["go early with his brother", "meet Jess at the museum", "go in the afternoon"]}]}, {"part": 4, "title": "Part 4 — Questions 16–20", "intro": "Listen to Amy talking about her life as a young tennis player. For each question, choose the correct answer.", "items": [{"n": 16, "id": 116, "q": "When did Amy first play tennis?", "key": "B", "opts": ["when she was six", "when she was seven", "when she was ten"]}, {"n": 17, "id": 117, "q": "Who taught Amy first?", "key": "B", "opts": ["her uncle", "her mother", "a club coach"]}, {"n": 18, "id": 118, "q": "What does Amy do before a match?", "key": "C", "opts": ["she rests in a quiet room", "she eats a big meal", "she listens to music"]}, {"n": 19, "id": 119, "q": "What is the hardest thing for Amy?", "key": "B", "opts": ["training every day", "being away from her friends", "doing school work"]}, {"n": 20, "id": 120, "q": "What does Amy want to do next year?", "key": "A", "opts": ["play in Spain", "go to America", "start a new sport"]}]}, {"part": 5, "title": "Part 5 — Questions 21–25", "intro": "You will hear five people talking about how they practise English. Match each person to the correct sentence.", "items": [{"n": 21, "id": 121, "q": "Speaker 1", "key": "E"}, {"n": 22, "id": 122, "q": "Speaker 2", "key": "A"}, {"n": 23, "id": 123, "q": "Speaker 3", "key": "G"}, {"n": 24, "id": 124, "q": "Speaker 4", "key": "C"}, {"n": 25, "id": 125, "q": "Speaker 5", "key": "H"}], "opts": ["A  writes a few lines about the day", "B  reads English books in the library", "C  listens to English programmes while travelling", "D  watches English films with subtitles", "E  watches English series without subtitles", "F  learns words from songs", "G  speaks to a relative online", "H  plays games with the language in English"]}]};
+const TONG = 55;                      // 30 câu Đọc & Viết + 25 câu Nghe
+const KQ = {};                        // n -> giá trị đã chọn/điền
+
+/* ---------- dựng đề ---------- */
+function esc(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function cauHoi(it, part, nguon){
+  const id = it.id || it.n;
+  let h = '<div class="q" id="q'+id+'" data-id="'+id+'">';
+  if(it.tieude) h += '<div class="box">'+esc(it.text)+'</div>';
+  h += '<div class="qt"><span class="num">'+it.n+'.</span>'+esc(it.q)+'</div>';
+  if(it.opts){
+    h += '<div class="opts">';
+    it.opts.forEach((o,i) => {
+      const nhan = String.fromCharCode(65+i);
+      h += '<label class="opt" data-k="'+nhan+'"><input type="radio" name="q'+id+'" value="'+nhan+'" data-n="'+id+'">'+
+           '<span><b>'+nhan+'.</b> '+esc(o)+'</span></label>';
+    });
+    h += '</div>';
+  } else {
+    h += '<input class="fill" data-n="'+id+'" placeholder="Viết câu trả lời…" autocomplete="off">';
+  }
+  return h + '</div>';
+}
+
+function dungDe(){
+  let h = '<div class="sec">PHẦN A · ĐỌC &amp; VIẾT — 60 phút</div>';
+  DATA.reading.forEach(p => {
+    h += '<div class="part"><div class="h">'+esc(p.title)+'</div><p class="muted">'+esc(p.intro)+'</p>';
+    if(p.people) p.people.forEach(x => h += '<div class="box"><b>'+esc(x.ten)+'</b> — '+esc(x.text)+'</div>');
+    if(p.article) h += '<p><b>'+esc(p.article.tieude)+'</b></p><p>'+esc(p.article.text)+'</p>';
+    if(p.email) h += '<div class="box">'+esc(p.email)+'</div>';
+    if(p.text) h += '<div class="box">'+esc(p.text)+'</div>';
+    if(p.task){
+      h += '<div class="box">'+esc(p.task)+'</div>';
+      h += '<textarea class="fill" id="viet" rows="9" placeholder="Viết email của con ở đây (25 từ trở lên)…"></textarea>';
+    }
+    p.items.forEach(it => h += cauHoi(it, p, 'reading'));
+    h += '</div>';
+  });
+
+  h += '<div class="sec">PHẦN B · NGHE — khoảng 30 phút</div>';
+  DATA.listening.forEach(p => {
+    h += '<div class="part"><div class="h">'+esc(p.title)+'</div><p class="muted">'+esc(p.intro)+'</p>';
+    h += '<audio controls preload="none" src="/de-thi/owa2/part'+p.part+'.mp3"></audio>';
+    h += '<div class="audio">Nghe hai lần. Nếu mạng yếu, bấm play lại sau khi tải xong.</div>';
+    if(p.part === 5 && p.opts){
+      h += '<div class="box">'+p.opts.map(o => esc(o)).join('<br>')+'</div>';
+    }
+    p.items.forEach(it => {
+      if(p.part === 5 && p.opts){
+        const opts = p.opts.map(o => o.split('  ').slice(1).join('  '));
+        h += cauHoi({...it, opts}, p, 'listening');
+      } else h += cauHoi(it, p, 'listening');
+    });
+    h += '</div>';
+  });
+  return h;
+}
+
+/* ---------- đếm & lưu ---------- */
+function capNhat(){
+  let d = 0;
+  for(const n in KQ) if(String(KQ[n]).trim() !== '') d++;
+  document.getElementById('dem').textContent = d+'/'+TONG;
+  document.getElementById('prog').style.width = Math.min(100, d/TONG*100)+'%';
+}
+
+document.addEventListener('change', e => {
+  const t = e.target;
+  if(t.type === 'radio'){
+    const n = t.dataset.n; KQ[n] = t.value;
+    document.querySelectorAll('input[name="q'+n+'"]').forEach(r => r.closest('.opt').classList.toggle('on', r.checked));
+    capNhat();
+  }
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if(t.classList.contains('fill') && t.dataset.n){ KQ[t.dataset.n] = t.value; capNhat(); }
+});
+
+/* ---------- đồng hồ ---------- */
+let hetGio = null;
+function chayDongHo(){
+  let con = 90*60;
+  const el = document.getElementById('time');
+  hetGio = setInterval(() => {
+    con--;
+    if(con <= 0){ clearInterval(hetGio); nopBai(true); return; }
+    const m = String(Math.floor(con/60)).padStart(2,'0'), s = String(con%60).padStart(2,'0');
+    el.textContent = m+':'+s;
+    el.classList.toggle('sap', con < 300);
+    if(con % 15 === 0) luuTam();
+  }, 1000);
+}
+
+/* ---------- chấm ---------- */
+function chuan(s){
+  return String(s||'').toLowerCase().trim()
+    .replace(/[.,!?;:'"“”‘’]/g,'').replace(/\s+/g,' ')
+    .replace(/^a\s+/,'').replace(/^an\s+/,'').replace(/^the\s+/,'');
+}
+const CHAP_NHAN = {
+  6:['21','21st','twenty-first','twenty first','21 july'],
+  7:['3.30','330','3:30','half past three','half past 3','three thirty'],
+  8:['swimming','swim'],
+  9:['60','sixty','£60','60 pounds','sixty pounds'],
+  10:['sports','sport','sports centre','sports center']
+};
+function dungCau(it){
+  const k = chuan(it.key), t = chuan(KQ[it.id || it.n]);
+  if(!t) return false;
+  if(it.opts) return t === k;
+  if(CHAP_NHAN[it.n] && CHAP_NHAN[it.n].some(x => chuan(x) === t)) return true;
+  return t === k;
+}
+
+function nopBai(tuDong){
+  if(hetGio) clearInterval(hetGio);
+  let tongDung = 0, theoPhan = [];
+  DATA.reading.forEach(p => {
+    let d = 0; p.items.forEach(it => { if(dungCau(it)) d++; });
+    tongDung += d; theoPhan.push({ten: p.title, dung: d, tong: p.items.length});
+  });
+  let docDung = tongDung;
+  DATA.listening.forEach(p => {
+    let d = 0; p.items.forEach(it => { if(dungCau(it)) d++; });
+    tongDung += d; theoPhan.push({ten: p.title, dung: d, tong: p.items.length});
+  });
+
+  // tô đáp án đúng/sai
+  document.querySelectorAll('.q').forEach(q => {
+    const id = +q.dataset.id;
+    const it = [...DATA.reading, ...DATA.listening].flatMap(p => p.items).find(x => (x.id || x.n) === id);
+    if(!it) return;
+    const ok = dungCau(it);
+    if(it.opts){
+      q.querySelectorAll('.opt').forEach(o => {
+        const k = o.dataset.k;
+        o.classList.remove('ok','sai');
+        if(k === it.key) o.classList.add('ok');
+        else if(o.querySelector('input').checked) o.classList.add('sai');
+        o.querySelector('input').disabled = true;
+      });
+    } else {
+      const f = q.querySelector('.fill');
+      if(f){ f.classList.add(ok ? 'ok' : 'sai'); f.disabled = true; f.value = KQ[id] || ''; }
+    }
+  });
+  document.getElementById('viet')?.setAttribute('disabled','');
+
+  const ten = document.getElementById('ten').value.trim() || 'Học sinh';
+  const lop = document.getElementById('lop').value.trim();
+  const ma = document.getElementById('ma').value.trim().toUpperCase();
+  const viet = document.getElementById('viet')?.value.trim() || '';
+  const soTu = viet ? viet.split(/\s+/).length : 0;
+  const phanTram = Math.round(docDung/30*100);
+  let nhanXet = phanTram >= 85 ? 'Rất tốt — trình độ A2 vững, sẵn sàng lên B1.'
+    : phanTram >= 70 ? 'Tốt — đạt mức A2, cần ôn thêm phần còn yếu.'
+    : phanTram >= 50 ? 'Trung bình — đã có nền A2 nhưng còn lỗ hổng, nên ôn lại theo bảng dưới.'
+    : 'Cần ôn lại từ đầu — giáo viên sẽ dò đúng chỗ thiếu, không học lại toàn bộ.';
+
+  let h = '<div class="card res"><h2>'+(tuDong?'Hết giờ — bài đã được nộp':'Đã nộp bài')+'</h2>';
+  h += '<div><span class="big">'+tongDung+'</span><span class="muted"> / 55 câu đúng</span></div>';
+  h += '<p class="muted" style="margin-top:6px">'+esc(ten)+(lop?' · '+esc(lop):'')+(ma?' · mã '+esc(ma):'')+'</p>';
+  h += '<p><span class="badge">Đọc &amp; Viết '+docDung+'/30 ('+phanTram+'%)</span> '+
+       '<span class="badge">Nghe '+(tongDung-docDung)+'/25</span></p>';
+  h += '<p>'+nhanXet+'</p>';
+  h += '<table><tr><th>Phần</th><th>Đúng</th></tr>';
+  theoPhan.forEach(x => h += '<tr><td>'+esc(x.ten)+'</td><td><b>'+x.dung+'</b>/'+x.tong+'</td></tr>');
+  h += '</table>';
+  h += '<p class="muted" style="margin-top:10px">Bài viết: '+(soTu?soTu+' từ':'chưa viết')+' — giáo viên chấm tay phần này.</p>';
+  h += '<div class="nav"><button class="btn ghost" onclick="location.reload()">Làm lại</button>'+
+       '<a class="btn" href="https://zalo.me/0346281292" target="_blank" rel="noopener">Gửi kết quả cho giáo viên</a></div>';
+  h += '<p class="muted" style="margin-top:10px">Chụp màn hình này gửi Zalo, hoặc bấm nút trên rồi dán ảnh. '+
+       'Giáo viên trả nhận xét và đáp án trong 2 ngày.</p></div>';
+  h += '<div class="card"><h3>Bài viết của con</h3><div class="box">'+(viet?esc(viet):'<span class="muted">Con chưa viết phần này.</span>')+'</div></div>';
+
+  document.getElementById('exam').classList.add('hide');
+  document.getElementById('start').classList.add('hide');
+  const r = document.getElementById('result');
+  r.innerHTML = h; r.classList.remove('hide');
+  window.scrollTo(0,0);
+  luuKetQua({ten, lop, ma, tongDung, docDung, viet, luc: new Date().toISOString()});
+  window.onbeforeunload = null;
+}
+
+/* ---------- lưu trên máy ---------- */
+const KHOA = 'de_owa2_v1';
+function luuTam(){
+  const d = {ten: document.getElementById('ten').value, lop: document.getElementById('lop').value,
+             ma: document.getElementById('ma').value, kq: KQ, viet: document.getElementById('viet')?.value || ''};
+  try{ localStorage.setItem(KHOA, JSON.stringify(d)); }catch(e){}
+}
+function luuKetQua(x){
+  try{
+    const ds = JSON.parse(localStorage.getItem('de_owa2_ketqua') || '[]');
+    ds.unshift(x); localStorage.setItem('de_owa2_ketqua', JSON.stringify(ds.slice(0,20)));
+    localStorage.removeItem(KHOA);
+  }catch(e){}
+}
+function khoiPhuc(){
+  try{
+    const d = JSON.parse(localStorage.getItem(KHOA) || 'null');
+    if(!d) return;
+    document.getElementById('ten').value = d.ten || '';
+    document.getElementById('lop').value = d.lop || '';
+    document.getElementById('ma').value = d.ma || '';
+    Object.assign(KQ, d.kq || {});
+    setTimeout(() => {
+      for(const n in KQ){
+        const r = document.querySelector('input[name="q'+n+'"][value="'+KQ[n]+'"]') || document.querySelector('input[name="q'+n+'"][value="'+KQ[n]+'"]');
+        if(r){ r.checked = true; r.closest('.opt').classList.add('on'); }
+        const f = document.querySelector('.fill[data-n="'+n+'"]'); if(f) f.value = KQ[n];
+      }
+      const v = document.getElementById('viet'); if(v) v.value = d.viet || '';
+      capNhat();
+    }, 80);
+  }catch(e){}
+}
+
+/* ---------- khởi động ---------- */
+document.getElementById('body').innerHTML = dungDe();
+document.getElementById('batdau').onclick = () => {
+  const ten = document.getElementById('ten').value.trim();
+  if(ten.length < 2){ document.getElementById('ten').focus(); document.getElementById('ten').style.borderColor = '#b23b3b'; return; }
+  document.getElementById('start').classList.add('hide');
+  document.getElementById('exam').classList.remove('hide');
+  window.scrollTo(0,0);
+  chayDongHo();
+  window.onbeforeunload = () => 'Con chưa nộp bài, chắc chắn rời trang?';
+};
+document.getElementById('nop').onclick = () => {
+  const chua = TONG - Object.keys(KQ).filter(n => String(KQ[n]).trim()).length;
+  if(chua > 0 && !confirm('Còn '+chua+' câu chưa làm. Vẫn nộp bài?')) return;
+  nopBai(false);
+};
+document.getElementById('luu').onclick = () => { luuTam(); document.getElementById('nhac').textContent = 'Đã lưu trên máy này. Mở lại trang sẽ thấy bài cũ.'; };
+khoiPhuc();
+</script>
+</body>
+</html>
