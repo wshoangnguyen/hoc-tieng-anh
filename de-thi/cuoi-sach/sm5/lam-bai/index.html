@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Super Minds 5 · Kiểm tra cuối sách — Học Tiếng Anh Dễ Lắm</title>
+<title>Super Minds 5 · End of Level Test — Học Tiếng Anh Dễ Lắm</title>
 <link rel="icon" href="/logo.png">
 <style>
 :root{--nau:#3b2f1c;--nau2:#6d5c3d;--gold:#b8923f;--tim:#6b4fa1;--vien:#e3d6bb;--nen:#fffdf7;--xanh:#2f6b28;--do:#a8322b}
@@ -116,10 +116,10 @@ h1{font-size:21px;margin:4px 0 2px}
 <div class="wrap">
   <header>
     <img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm">
-    <div><b>Học Tiếng Anh Dễ Lắm</b><span>Lớp tiếng Anh online cho trẻ 6–14 tuổi</span></div>
+    <div><b>Học Tiếng Anh Dễ Lắm</b><span>Online English classes for children aged 6–14</span></div>
   </header>
-  <h1>Super Minds 5 · Kiểm tra cuối sách</h1>
-  <p class="sub">Làm trực tiếp trên web: nghe, vẽ – tô màu ngay trên hình, gõ câu trả lời. Máy tự chấm và lưu bài vào Drive của thầy.</p>
+  <h1>Super Minds 5 · End of Level Test</h1>
+  <p class="sub">Do it online: listen, draw and colour on the picture, type your answers. The test is marked and saved to your teacher's Drive.</p>
 
   <div class="thanh" id="thanh">
     <div class="dongho" id="dongho">⏱ --:--</div>
@@ -131,7 +131,7 @@ h1{font-size:21px;margin:4px 0 2px}
 
   <div class="card" id="khoiCham" style="display:none">
     <div class="cham">
-      <button class="nut chinh" id="btCham">Chấm bài</button>
+      <button class="nut chinh" id="btCham">Check</button>
       <button class="nut phu" id="btZalo">Gửi Zalo cho thầy</button>
     </div>
     <div class="kqhop" id="kqhop">
@@ -144,19 +144,19 @@ h1{font-size:21px;margin:4px 0 2px}
 
 <div class="cua" id="cua">
   <div class="hop">
-    <h2>Bắt đầu bài kiểm tra</h2>
-    <p>Super Minds 5 · khoảng 45 phút · làm một mạch, máy tự lưu nếu mất mạng.</p>
-    <label>Họ và tên</label><input id="fTen" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="off">
-    <label>Lớp</label><input id="fLop" placeholder="Ví dụ: SM2 · Lớp 3A" autocomplete="off">
-    <label>Mã học viên (nếu có)</label><input id="fMa" placeholder="Ví dụ: HV12" autocomplete="off">
-    <p class="loi" id="fLoi">Con điền họ tên và lớp giúp thầy nhé.</p>
-    <button class="nut chinh di" id="btBatDau">Bắt đầu làm bài</button>
-    <p class="nho">Đồng hồ sẽ chạy ngay khi bấm. Làm xong bấm “Chấm bài” để nộp.</p>
+    <h2>Start the test</h2>
+    <p>Super Minds 5 · about 45 minutes · do it in one go; your work is saved on this device if the internet drops.</p>
+    <label>Full name</label><input id="fTen" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="off">
+    <label>Class</label><input id="fLop" placeholder="e.g. SM2 · Class 3A" autocomplete="off">
+    <label>Student code (optional)</label><input id="fMa" placeholder="Ví dụ: HV12" autocomplete="off">
+    <p class="loi" id="fLoi">Please type your full name and class.</p>
+    <button class="nut chinh di" id="btBatDau">Start</button>
+    <p class="nho">The timer starts when you press Start. When you finish, press Check & submit.</p>
   </div>
 </div>
 
 <script>
-const DU = {"level": 5, "ten": "Super Minds 5", "phut": 45, "thoi_gian": "khoảng 45 phút", "phan": [{"ma": "A", "ten": "Part A · Listening", "audio": [{"ten": "Listening 1", "src": "../audio-1.mp3"}, {"ten": "Listening 2", "src": "../audio-2.mp3"}], "bai": [{"so": "1", "anh": "../trang/nghe-1.jpg", "ve": true, "cau": [], "de": "Listen and colour and write."}, {"so": "2", "anh": "../trang/nghe-2.jpg", "kieu": "chon", "lua": ["A", "B", "C", "D", "E", "F", "G", "H"], "de": "Where should Harry put everything? Listen and write a letter on each line.", "cau": [{"id": "A2-1", "hoi": "the biscuits", "dap": ["A"]}, {"id": "A2-2", "hoi": "the dessert", "dap": ["F"]}, {"id": "A2-3", "hoi": "the napkins", "dap": ["D"]}, {"id": "A2-4", "hoi": "the spoons", "dap": ["G"]}, {"id": "A2-5", "hoi": "the chicken", "dap": ["E"]}]}]}, {"ma": "B", "ten": "Part B · Reading & Writing", "audio": [], "bai": [{"so": "1", "anh": "../trang/rw-1.jpg", "de": "Look and read. Choose the correct words and write them on the lines.", "cau": [{"id": "B1-1", "hoi": "A horse pulls this. It has wheels but it doesn't have an engine.", "dap": ["a cart", "cart", "the cart"]}, {"id": "B1-2", "hoi": "Things like saddles and handbags are made of this.", "dap": ["leather"]}, {"id": "B1-3", "hoi": "This is someone who works in a café or a restaurant.", "dap": ["a waiter", "waiter", "the waiter"]}, {"id": "B1-4", "hoi": "If you do a science experiment, you should wear these to protect your eyes.", "dap": ["goggles"]}, {"id": "B1-5", "hoi": "You can put this in your pocket. You use it to cut things.", "dap": ["a penknife", "penknife", "the penknife"]}, {"id": "B1-6", "hoi": "This person works in a theatre, on TV or in films.", "dap": ["an actor", "actor", "the actor"]}, {"id": "B1-7", "hoi": "Birds pick up food and eat it with this. Toucans have a very large one.", "dap": ["a beak", "beak", "the beak"]}, {"id": "B1-8", "hoi": "This animal usually moves very slowly. It climbs trees and holds onto branches with its arms.", "dap": ["a sloth", "sloth", "the sloth"]}, {"id": "B1-9", "hoi": "If a police officer catches a robber, the robber may have to go to this place.", "dap": ["a jail", "jail", "the jail", "prison"]}, {"id": "B1-10", "hoi": "People use two of these together to eat food.", "dap": ["chopsticks"]}]}, {"so": "2", "anh": "../trang/rw-2.jpg", "kieu": "chon", "lua": ["A", "B", "C", "D", "E", "F", "G", "H"], "de": "Read the conversation and choose the best answer. Write a letter (A–H) for each answer.", "cau": [{"id": "B2-1", "hoi": "How much money have you got to spend?", "dap": ["C"]}, {"id": "B2-2", "hoi": "Look at these earrings. Do you like them, Sophia?", "dap": ["E"]}, {"id": "B2-3", "hoi": "These silver and glass earrings are really cool.", "dap": ["A"]}, {"id": "B2-4", "hoi": "Do you think we should try another shop now?", "dap": ["H"]}, {"id": "B2-5", "hoi": "Which is the best clothes shop on this street?", "dap": ["F"]}]}, {"so": "3", "anh": "../trang/rw-3.jpg", "de": "Read the text. Choose the right words and write them on the lines.", "cau": [{"id": "B3-1", "hoi": "They spend nearly all of their time in trees, and sleep in them, ______.", "dap": ["too"]}, {"id": "B3-2", "hoi": "But if you ______ a sloth on a tree branch...", "dap": ["see"]}, {"id": "B3-3", "hoi": "...you don't know if it is awake ______ asleep.", "dap": ["or"]}, {"id": "B3-4", "hoi": "Sloths eat leaves and fruit from the trees ______ night.", "dap": ["at"]}, {"id": "B3-5", "hoi": "They don't ______ to drink much water.", "dap": ["have"]}, {"id": "B3-6", "hoi": "Some sloths have three very long toes, and some have ______ two.", "dap": ["only"]}, {"id": "B3-7", "hoi": "These toes are ______ to hold onto tree branches.", "dap": ["used"]}, {"id": "B3-8", "hoi": "If they fall off a tree branch into a river, they ______ to the nearest bit of land.", "dap": ["swim"]}, {"id": "B3-9", "hoi": "______ necks are very unusual.", "dap": ["Sloths'", "Sloths’"]}, {"id": "B3-10", "hoi": "They can turn their heads around much further ______ other mammals.", "dap": ["than"]}]}, {"so": "4", "anh": "../trang/rw-4.jpg", "de": "Look at the three pictures. Write about this story. Write 20 or more words.", "cau": [{"id": "B4-1", "hoi": "Write about the story in the three pictures. (20 or more words)", "dap": [], "tu_luan": true}]}]}]};
+const DU = {"level": 5, "ten": "Super Minds 5", "phut": 45, "thoi_gian": "about 45 phút", "phan": [{"ma": "A", "ten": "Part A · Listening", "audio": [{"ten": "Listening 1", "src": "../audio-1.mp3"}, {"ten": "Listening 2", "src": "../audio-2.mp3"}], "bai": [{"so": "1", "anh": "../trang/nghe-1.jpg", "ve": true, "cau": [], "de": "Listen and colour and write."}, {"so": "2", "anh": "../trang/nghe-2.jpg", "kieu": "chon", "lua": ["A", "B", "C", "D", "E", "F", "G", "H"], "de": "Where should Harry put everything? Listen and write a letter on each line.", "cau": [{"id": "A2-1", "hoi": "the biscuits", "dap": ["A"]}, {"id": "A2-2", "hoi": "the dessert", "dap": ["F"]}, {"id": "A2-3", "hoi": "the napkins", "dap": ["D"]}, {"id": "A2-4", "hoi": "the spoons", "dap": ["G"]}, {"id": "A2-5", "hoi": "the chicken", "dap": ["E"]}]}]}, {"ma": "B", "ten": "Part B · Reading & Writing", "audio": [], "bai": [{"so": "1", "anh": "../trang/rw-1.jpg", "de": "Look and read. Choose the correct words and write them on the lines.", "cau": [{"id": "B1-1", "hoi": "A horse pulls this. It has wheels but it doesn't have an engine.", "dap": ["a cart", "cart", "the cart"]}, {"id": "B1-2", "hoi": "Things like saddles and handbags are made of this.", "dap": ["leather"]}, {"id": "B1-3", "hoi": "This is someone who works in a café or a restaurant.", "dap": ["a waiter", "waiter", "the waiter"]}, {"id": "B1-4", "hoi": "If you do a science experiment, you should wear these to protect your eyes.", "dap": ["goggles"]}, {"id": "B1-5", "hoi": "You can put this in your pocket. You use it to cut things.", "dap": ["a penknife", "penknife", "the penknife"]}, {"id": "B1-6", "hoi": "This person works in a theatre, on TV or in films.", "dap": ["an actor", "actor", "the actor"]}, {"id": "B1-7", "hoi": "Birds pick up food and eat it with this. Toucans have a very large one.", "dap": ["a beak", "beak", "the beak"]}, {"id": "B1-8", "hoi": "This animal usually moves very slowly. It climbs trees and holds onto branches with its arms.", "dap": ["a sloth", "sloth", "the sloth"]}, {"id": "B1-9", "hoi": "If a police officer catches a robber, the robber may have to go to this place.", "dap": ["a jail", "jail", "the jail", "prison"]}, {"id": "B1-10", "hoi": "People use two of these together to eat food.", "dap": ["chopsticks"]}]}, {"so": "2", "anh": "../trang/rw-2.jpg", "kieu": "chon", "lua": ["A", "B", "C", "D", "E", "F", "G", "H"], "de": "Read the conversation and choose the best answer. Write a letter (A–H) for each answer.", "cau": [{"id": "B2-1", "hoi": "How much money have you got to spend?", "dap": ["C"]}, {"id": "B2-2", "hoi": "Look at these earrings. Do you like them, Sophia?", "dap": ["E"]}, {"id": "B2-3", "hoi": "These silver and glass earrings are really cool.", "dap": ["A"]}, {"id": "B2-4", "hoi": "Do you think we should try another shop now?", "dap": ["H"]}, {"id": "B2-5", "hoi": "Which is the best clothes shop on this street?", "dap": ["F"]}]}, {"so": "3", "anh": "../trang/rw-3.jpg", "de": "Read the text. Choose the right words and write them on the lines.", "cau": [{"id": "B3-1", "hoi": "They spend nearly all of their time in trees, and sleep in them, ______.", "dap": ["too"]}, {"id": "B3-2", "hoi": "But if you ______ a sloth on a tree branch...", "dap": ["see"]}, {"id": "B3-3", "hoi": "...you don't know if it is awake ______ asleep.", "dap": ["or"]}, {"id": "B3-4", "hoi": "Sloths eat leaves and fruit from the trees ______ night.", "dap": ["at"]}, {"id": "B3-5", "hoi": "They don't ______ to drink much water.", "dap": ["have"]}, {"id": "B3-6", "hoi": "Some sloths have three very long toes, and some have ______ two.", "dap": ["only"]}, {"id": "B3-7", "hoi": "These toes are ______ to hold onto tree branches.", "dap": ["used"]}, {"id": "B3-8", "hoi": "If they fall off a tree branch into a river, they ______ to the nearest bit of land.", "dap": ["swim"]}, {"id": "B3-9", "hoi": "______ necks are very unusual.", "dap": ["Sloths'", "Sloths’"]}, {"id": "B3-10", "hoi": "They can turn their heads around much further ______ other mammals.", "dap": ["than"]}]}, {"so": "4", "anh": "../trang/rw-4.jpg", "de": "Look at the three pictures. Write about this story. Write 20 or more words.", "cau": [{"id": "B4-1", "hoi": "Write about the story in the three pictures. (20 or more words)", "dap": [], "tu_luan": true}]}]}]};
 const KHOA = "eo_sm" + DU.level;
 const KHOA_VE = "eo_sm" + DU.level + "_ve";
 const KHOA_BAT = "eo_sm" + DU.level + "_bat";
@@ -294,13 +294,13 @@ function ve(){
           const bar=document.createElement("div"); bar.className="butve";
           bar.innerHTML = '<button class="cu" data-vai="but">✏️ Bút</button>' +
             MAU_BUT.map((c,i2)=>'<button class="mau'+(i2===0?' on':'')+'" data-mau="'+c+'" style="background:'+c+'"></button>').join("") +
-            '<button class="cu" data-vai="day">Nét dầy</button><button class="cu" data-vai="tay">🧽 Tẩy</button>' +
-            '<button class="cu" data-vai="undo">↶</button><button class="cu" data-vai="xoa">Xoá</button>' +
-            '<button class="cu" data-vai="tai">⬇️ Ảnh</button>';
+            '<button class="cu" data-vai="day">Thick</button><button class="cu" data-vai="tay">🧽 Tẩy</button>' +
+            '<button class="cu" data-vai="undo">↶</button><button class="cu" data-vai="xoa">Clear</button>' +
+            '<button class="cu" data-vai="tai">⬇️ Image</button>';
           cotAnh.appendChild(bar);
         }
         const khung=document.createElement("div"); khung.className="khung-anh"; khung.dataset.cho=id;
-        khung.innerHTML='<img src="'+bai.anh+'" alt="Đề bài '+bai.so+'"><canvas></canvas>';
+        khung.innerHTML='<img src="'+bai.anh+'" alt="Task '+bai.so+'"><canvas></canvas>';
         cotAnh.appendChild(khung);
         const zoom=document.createElement("a"); zoom.className="xemanh"; zoom.href=bai.anh;
         zoom.target="_blank"; zoom.rel="noopener"; zoom.textContent="View full size"; cotAnh.appendChild(zoom);
@@ -341,10 +341,10 @@ function ve(){
           const vai=nut.dataset.vai;
           if(vai==="but"){ tep.bat(!khung.classList.contains("ve")); nut.classList.toggle("on"); }
           if(vai==="day"){ const d=nut.dataset.day==="1"?3:9; nut.dataset.day=d===9?"1":"0"; tep.datDay(d);
-                           nut.textContent=d===9?"Nét mảnh":"Nét dầy"; nut.classList.toggle("on",d===9); }
+                           nut.textContent=d===9?"Thin":"Thick"; nut.classList.toggle("on",d===9); }
           if(vai==="tay"){ nut.classList.toggle("on", tep.tay()); }
           if(vai==="undo") tep.undo();
-          if(vai==="xoa"){ if(confirm("Xoá hết nét vẽ của bài này?")) tep.xoa(); }
+          if(vai==="xoa"){ if(confirm("Clear all your drawing on this task?")) tep.xoa(); }
           if(vai==="tai") tep.tai();
         });
         if(net[id] && net[id].length) tep.bat(true);
@@ -357,9 +357,9 @@ function ve(){
       b2.textContent="Qua phần "+(DU.phan[i+1].ten.replace(/^Phần [A-Z] · /,""))+" →";
       b2.onclick=()=>chuyenPhan(i+1);
       cuoi.appendChild(b2);
-      cuoi.insertAdjacentHTML("beforeend",'<p class="nho">Làm xong phần này rồi bấm nút trên để sang phần tiếp theo. Chưa chấm điểm ở đây.</p>');
+      cuoi.insertAdjacentHTML("beforeend",'<p class="nho">Finished this part? Press the button above to go to the next part. Nothing is marked yet.</p>');
     }else{
-      const b3=document.createElement("button"); b3.className="nut chinh di"; b3.textContent="Làm xong · Chấm bài & nộp";
+      const b3=document.createElement("button"); b3.className="nut chinh di"; b3.textContent="Finish · Check & submit";
       b3.onclick=()=>cham(false);
       cuoi.appendChild(b3);
     }
@@ -402,7 +402,7 @@ function duLieu(){
   })));
   Object.keys(veApi).forEach(id=>{
     const src=veApi[id].anh();
-    if(src && net[id] && net[id].length) anh.push({ten:"Bài "+id, data:src});
+    if(src && net[id] && net[id].length) anh.push({ten:"Task "+id, data:src});
   });
   return {items, anh};
 }
@@ -424,7 +424,7 @@ function cham(hetGio){
   document.getElementById("khoiCham").style.display="block";
   const hop=document.getElementById("kqhop"); hop.classList.add("on");
   const ten=document.getElementById("fTen").value.trim();
-  let loi="<b>"+dung+"/"+tong+"</b> câu đúng ("+(tong?Math.round(dung/tong*100):0)+"%)";
+  let loi="<b>"+dung+"/"+tong+"</b> correct ("+(tong?Math.round(dung/tong*100):0)+"%)";
   DU.phan.forEach(p=>{
     const soCau=p.bai.reduce((s,b)=>s+(b.cau||[]).filter(c=>!c.tu_luan).length,0);
     if(soCau){
@@ -438,7 +438,7 @@ function cham(hetGio){
   });
   if(hetGio) loi="⏰ Hết giờ · "+loi;
   document.getElementById("diem").innerHTML=(ten?"<b>"+ten+"</b> · ":"")+loi;
-  document.getElementById("ghicham").textContent="Ô xanh là đúng, ô đỏ là chưa đúng. Bài của con được lưu thành một tệp PDF gửi vào Drive của thầy, kèm ảnh vẽ tay.";
+  document.getElementById("ghicham").textContent="Green boxes are correct, red boxes are not. Your work is saved as a PDF in your teacher's Drive, together with your drawings.";
   window.__kq={dung,tong,items,anh};
   if(!daNop) nopBai();
 }
@@ -450,7 +450,7 @@ function nopBai(){
   const ma=document.getElementById("fMa").value.trim();
   const phut=Math.max(1, Math.round((Date.now()-batDauLuc)/60000));
   const o=document.getElementById("luu");
-  o.className="luu"; o.textContent="Đang lưu bài vào Drive của thầy…";
+  o.className="luu"; o.textContent="Saving your work to Drive…";
   daNop=true;
   const than={sach:DU.ten,ten,lop,ma,dung:(window.__kq||{}).dung,tong:(window.__kq||{}).tong,
               phut:phut+" phút",tra_loi:items,anh};
@@ -460,25 +460,25 @@ function nopBai(){
   .then(d=>{
     if(d && d.ok){
       o.className="luu ok";
-      o.innerHTML="✅ Đã lưu bài của con vào Drive của thầy · tệp: <b>"+(d.file||"")+"</b>"+
+      o.innerHTML="✅ Saved to your teacher's Drive · file: <b>"+(d.file||"")+"</b>"+
         (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở tệp</a>':"");
     }else{
-      o.className="luu loi"; o.textContent="Chưa lưu được lên Drive ("+(d&&d.loi||"lỗi mạng")+"). Con bấm “Chấm bài” lần nữa để gửi lại, hoặc gửi Zalo cho thầy.";
+      o.className="luu loi"; o.textContent="Couldn't save to Drive ("+(d&&d.loi||"network error")+"). Press “Check & submit” again to retry, or send it to your teacher on Zalo.";
       daNop=false;
     }
   })
   .catch(e=>{ o.className="luu loi";
-    o.textContent="Mất mạng nên chưa gửi được lên Drive. Bài vẫn lưu trên máy và sẽ tự gửi lại khi có mạng; con cũng có thể gửi Zalo cho thầy.";
+    o.textContent="No internet, so it wasn't sent to Drive. Your work is still saved on this device and will be sent automatically when you're back online; you can also send it to your teacher on Zalo.";
     try{localStorage.setItem(KHOA_CHO, JSON.stringify(than));}catch(err){}
     daNop=false; });
 }
 
 document.getElementById("btCham").onclick=()=>cham(false);
 document.getElementById("btZalo").onclick=()=>{
-  const ten=document.getElementById("fTen").value.trim()||"(chưa ghi tên)";
+  const ten=document.getElementById("fTen").value.trim()||"(no name)";
   const kq=window.__kq||{dung:0,tong:0};
-  const loi="Chào thầy, con đã làm bài "+DU.ten+" cuối sách trên web. Tên: "+ten+
-    ". Kết quả tự chấm: "+kq.dung+"/"+kq.tong+" câu đúng.";
+  const loi="Hello teacher, I have done "+DU.ten+" end-of-level test on the website. Name: "+ten+
+    ". Auto-marked score: "+kq.dung+"/"+kq.tong+" correct.";
   navigator.clipboard.writeText(loi).catch(()=>{});
   window.open("https://zalo.me/0346281292","_blank");
 };
@@ -511,7 +511,7 @@ function guiLai(){
     .then(r=>r.json())
     .then(d=>{ if(d&&d.ok){ localStorage.removeItem(KHOA_CHO);
       const o=document.getElementById("luu"); if(o){o.className="luu ok";
-        o.innerHTML="✅ Bài làm trước đã được gửi lại vào Drive · tệp: <b>"+(d.file||"")+"</b>";} } })
+        o.innerHTML="✅ Your earlier work has been sent to Drive · file: <b>"+(d.file||"")+"</b>";} } })
     .catch(()=>{});
 }
 window.addEventListener("online", guiLai);
