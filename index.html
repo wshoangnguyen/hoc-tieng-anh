@@ -214,6 +214,14 @@ footer img{height:40px;width:auto;margin-bottom:8px}
 .lvrow:first-child{border-top:0;padding-top:0}
 .lvrow b{display:block;color:#6b4fa1;font-size:12.6px;letter-spacing:.2px;text-transform:uppercase}
 .lvrow p{margin:3px 0 0;font-size:14.6px;line-height:1.45;color:#3b2f1c}
+
+.sanh-shot{display:block;position:relative;border-radius:22px;overflow:hidden;border:1px solid #e7dcc4;
+  box-shadow:0 10px 30px rgba(90,70,20,.12);margin-top:18px;text-decoration:none}
+.sanh-shot img{display:block;width:100%;height:auto}
+.sanh-shot .vao{position:absolute;left:14px;bottom:14px;background:#6b4fa1;color:#fff;font-weight:800;
+  font-size:15px;padding:11px 18px;border-radius:12px;box-shadow:0 4px 14px rgba(60,40,110,.35)}
+.sanh-shot:active .vao{transform:translateY(1px)}
+@media(max-width:600px){.sanh-shot .vao{font-size:13px;padding:9px 14px;left:10px;bottom:10px}}
 </style>
 </head>
 <body>
@@ -331,20 +339,11 @@ footer img{height:40px;width:auto;margin-bottom:8px}
 <section class="game wrap" id="game">
   <h2 class="h2 rv">Con chơi ở nhà, điểm về phiếu của con</h2>
   <p class="lead rv">Mỗi unit có một bộ trò chơi xếp theo sáu level: từ nhận mặt chữ đến nói chuyện với AI. Con mở bằng mã học viên, điểm cộng dồn vào phiếu của con.</p>
-  <div class="tiers">
-    <div class="tier rv"><div><div class="t-name">Level 1 · Nhận diện</div><span class="t-sub">Nhìn hình hoặc nghe từ rồi hiểu nghĩa</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/flashcard.html">Thẻ từ</a><a href="https://hoctienganhdelam.com/game/games/matching-game.html">Ghép cặp</a><a href="https://hoctienganhdelam.com/game/games/catch-the-card.html">Bắt thẻ</a></div></div>
-    <div class="tier rv"><div><div class="t-name">Level 2 · Lặp lại</div><span class="t-sub">Nhớ mặt chữ và viết lại cho đúng</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/games/spelling-game.html">Đánh vần</a><a href="https://hoctienganhdelam.com/game/scrambled-word.html">Xếp chữ</a><a href="https://hoctienganhdelam.com/game/word-find.html">Tìm từ</a></div></div>
-    <div class="tier rv"><div><div class="t-name">Level 3 · Dùng theo mẫu</div><span class="t-sub">Chọn và ghép theo câu mẫu</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/games/quiz-game.html">Trắc nghiệm</a><a href="https://hoctienganhdelam.com/game/sentence-builder.html">Xếp thành câu</a></div></div>
-    <div class="tier rv"><div><div class="t-name">Level 4 · Dùng tự do</div><span class="t-sub">Đọc và hiểu cả đoạn</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/Reading.html">Tập đọc</a><a href="https://hoctienganhdelam.com/game/words-fall.html">Dịch truyện</a></div></div>
-    <div class="tier rv"><div><div class="t-name">Level 5 · Tư duy</div><span class="t-sub">Suy luận, tự phát hiện lỗi</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/tu-duy.html">Tư duy</a><a href="https://hoctienganhdelam.com/game/on-tap.html">Ôn từ hay sai</a></div></div>
-    <div class="tier rv"><div><div class="t-name">Level 6 · Nói chuyện với AI</div><span class="t-sub">6 lượt hỏi–đáp với AI, AI chấm từng câu</span></div>
-      <div class="games"><a href="https://hoctienganhdelam.com/game/noi-chuyen.html">Nói chuyện với AI</a></div></div>
-  </div>
+  <a class="sanh-shot" href="https://hoctienganhdelam.com/game/sanh.html">
+    <img src="/game/sanh-anh.jpg" alt="Sảnh trò chơi: 6 level, mỗi trò một logo, ô nhập mã học viên ở đầu sảnh" loading="lazy">
+    <span class="vao">Nhấn vào sảnh để chọn trò →</span>
+  </a>
+  <p class="lead" style="margin-top:14px">Con nhập <b>mã học viên một lần</b> ngay đầu sảnh: sảnh hiện <b>tên và điểm tích luỹ</b>, rồi vào trò nào điểm cũng tự về phiếu của con — không phải nhập lại.</p>
   <div class="more rv">
     <a class="btn" href="https://hoctienganhdelam.com/game/sanh.html">Vào sảnh trò chơi</a>
     <a class="btn btn-gold" href="https://hoctienganhdelam.com/scoreboard.html">Xem bảng điểm</a>
