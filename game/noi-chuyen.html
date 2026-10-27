@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nấc 6 · Nói chuyện với AI — Học tiếng Anh dễ lắm</title>
+<link rel="stylesheet" href="core.css">
+<script src="core.js"></script>
+<script src="ho-so.js"></script>
+<style>
+  :root{--line:#eadfc9;--dim:#6b7280;--tim:#7c3aed;--tim-nhat:#f5f0ff;--green:#16a34a;--red:#dc2626;--be:#fdf6e8}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Quicksand,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(160deg,#fffdf7,#fdf3e2 45%,#f8e7c9);color:#2c2416}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 90px}
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .top a{font-size:14px;color:#6b5b3e;text-decoration:none}
+  h1{font-size:21px;margin:6px 0 2px}
+  .sub{color:#6b5b3e;font-size:14px;margin:0 0 12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .hs-hang{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+  .hs-hang label{font-size:12.5px;color:#6b5b3e;display:flex;flex-direction:column;gap:4px;font-weight:700}
+  .hs-hang select,.hs-hang input{font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;min-width:120px;font-family:inherit}
+  .hs-hang input{width:130px;text-transform:uppercase}
+  .hs-nhac{font-size:13px;color:#6b7280;background:#fdfaf3;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
+  .hs-nhac.dung{color:#15803d;background:#f0fdf4;border-color:#bbf7d0}
+  .hs-nhac.sai{color:#b45309;background:#fffbeb;border-color:#fde68a}
+
+  .thanh{height:8px;background:#efe7fb;border-radius:6px;overflow:hidden;margin:6px 0 14px}
+  .thanh>i{display:block;height:100%;background:var(--tim);width:0;transition:width .25s}
+  .hang{display:flex;justify-content:space-between;font-size:13.5px;color:#6b5b3e;font-weight:700}
+
+  .chat{display:flex;flex-direction:column;gap:10px;margin:4px 0 12px}
+  .bong{max-width:88%;padding:12px 14px;border-radius:16px;font-size:16.5px;line-height:1.45;white-space:pre-wrap}
+  .ai{align-self:flex-start;background:var(--tim-nhat);border:1px solid #e6dcfb;border-bottom-left-radius:5px}
+  .hs{align-self:flex-end;background:#2c2416;color:#fff;border-bottom-right-radius:5px}
+  .ai .nhan{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#6d28d9;margin-bottom:5px}
+  .av{width:26px;height:26px;border-radius:50%;background:#7c3aed;color:#fff;display:grid;place-items:center;font-size:14px}
+  .phan{display:inline-block;font-size:11.5px;font-weight:800;color:#7c4a03;background:#fdf0d3;border:1px solid #f3dfae;border-radius:999px;padding:2px 9px;margin-bottom:7px}
+  .meo{font-size:12.5px;color:#8a6d3b;background:#fffaee;border:1px solid #f3e6c8;border-radius:10px;padding:7px 10px;margin-top:8px}
+
+  .fb{margin:2px 0 10px;font-size:15px;line-height:1.5}
+  .fb .ok{color:var(--green);font-weight:800}
+  .fb .loi{color:var(--red);font-weight:800}
+  .fb .sua{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:8px 10px;margin-top:7px}
+  .fb .sua b{color:#15803d}
+
+  textarea{width:100%;min-height:64px;font-size:16.5px;padding:12px;border:1.5px solid var(--line);border-radius:14px;font-family:inherit;resize:vertical;background:#fffdf8}
+  textarea:focus{outline:none;border-color:var(--tim)}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .nut{background:var(--tim);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+  .nut:disabled{opacity:.5;cursor:default}
+  .ghost{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-weight:700;cursor:pointer;font-family:inherit}
+  .hint{font-size:13px;color:#6b7280}
+  .ketqua{font-size:18px;font-weight:800;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="sanh.html">← Sảnh trò chơi</a></div>
+  <h1>💬 Nấc 6 · Nói chuyện với AI</h1>
+  <p class="sub">Con nói chuyện với bạn AI bằng tiếng Anh, 6 lượt cho mỗi Unit. Mỗi câu trả lời được chấm ngay: đúng thì đi tiếp, chưa đúng thì AI chỉ đúng chỗ cần sửa.</p>
+
+  <div class="card" style="margin-bottom:12px"><div id="hsBar"></div></div>
+
+  <div class="card">
+    <div class="hang"><span id="dem">Đang chuẩn bị…</span><span id="diem">Đúng 0/6</span></div>
+    <div class="thanh"><i id="tiLe"></i></div>
+    <div class="chat" id="chat"></div>
+    <div id="vungTraLoi">
+      <textarea id="ta" placeholder="Trả lời bằng tiếng Anh…" autocomplete="off" autocapitalize="sentences" spellcheck="false"></textarea>
+      <div class="row">
+        <button class="nut" id="gui">Gửi câu trả lời</button>
+        <button class="ghost" id="bo">Bỏ qua lượt này</button>
+        <span class="hint" id="goiY">Enter để gửi · Shift+Enter để xuống dòng</span>
+      </div>
+    </div>
+    <div id="ketThuc"></div>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const API = "https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/cham";
+
+let SACH = "SM1", UNIT = 1, BAR = null, VONG = [], I = 0, DUNG = 0, DA_THU = false, DANG_CHO = false;
+
+/* ---------- kịch bản: 6 lượt, mỗi lượt gắn một phần của bài ---------- */
+function phanCuaBai(b, i) {
+  const p = (b.phan || []).filter(Boolean);
+  const mac = ["Từ vựng", "Từ vựng", "Ngữ pháp", "Truyện / Project", "Kỹ năng", "Sáng tạo câu"];
+  return p.length ? (p[i] || mac[i]) : mac[i];
+}
+
+const KHONG_DEM = new Set(("upstairs downstairs inside outside around behind between under near far home school park "+
+  "beach city morning evening night today tomorrow yesterday always never sometimes often good bad big small "+
+  "happy sad tired hungry thirsty fast slow quiet loud beautiful ugly fun boring easy difficult here there "+
+  "hello goodbye please sorry thanks yes no very really too also again now then").split(" "));
+
+function laTuDem(w) {
+  const x = String(w || "").toLowerCase().trim();
+  if (x.length < 3 || KHONG_DEM.has(x) || /ly$/.test(x)) return false;
+  if (/s$/.test(x) && !/^(bus|glass|dress|class|grass)$/.test(x)) return false;
+  return true;
+}
+function mangA(w) { return /^[aeiou]/i.test(w) ? "an " + w : "a " + w; }
+
+function taoKichBan(b) {
+  const tuAll = (b.tu || []).filter((w) => w && w.length > 1);
+  if (!tuAll.length) return [];
+  const tuDem = tuAll.filter(laTuDem);
+  const coDanhTu = tuDem.length >= 2;
+  const dung = coDanhTu ? tuDem : tuAll;
+  const khuon0 = (b.khuon || [])[0] || "";
+  const khuon = (khuon0.split(/\s+/).length >= 4 && !/^(connectors?|vocabulary|grammar|pronunciation)$/i.test(khuon0.trim())) ? khuon0 : "";
+  const t = (i) => dung[i % dung.length];
+  const ten = (b.ten || "").trim();
+
+  const ds = [
+    { hoi: `Hi! I'm Miu, your AI friend. What's your name?`,
+      tu: [], loai: "tra_loi",
+      meo: "Với AI, trả lời đúng câu hỏi là đủ — ngắn cũng được, không cần câu dài." },
+    { hoi: coDanhTu ? `Nice to meet you! This unit is “${ten}”. Do you have ${mangA(t(0))}?`
+                     : `Nice to meet you! This unit is “${ten}”. Can you write one sentence with “${t(0)}”?`,
+      tu: [t(0)], loai: "tra_loi",
+      meo: "Câu hỏi Yes/No thì trả lời “Yes, I do.” hoặc “No, I don't.” rồi thêm một chi tiết." },
+    { hoi: khuon ? `Use the structure from your book: “${khuon}”. Write your own sentence.`
+                 : `Can you write one sentence with “${t(1)}”?`,
+      tu: khuon ? [] : [t(1)], loai: "tra_loi",
+      meo: "Bám đúng cấu trúc của bài, đổi từ bên trong là thành câu của con." },
+    { hoi: coDanhTu ? `Tell me one thing you do with ${mangA(t(2))}. One sentence is enough.`
+                    : `Write one sentence about your day, and include “${t(2)}”.`,
+      tu: [t(2)], loai: "tra_loi",
+      meo: "AI hiểu câu đơn giản tốt hơn câu dài mà rối. Viết đúng ý trước." },
+    { hoi: coDanhTu ? `Do you like “${t(3)}”? Tell me why, and use “because”.`
+                    : `What do you think about “${t(3)}”? Answer with “because”.`,
+      tu: [t(3), "because"], loai: "tra_loi",
+      meo: "Nói lý do thì AI trả lời sát hơn. Dùng “because” để nêu lý do." },
+    { hoi: `Last one: you ask me a question with “${t(4)}”. Don't forget the question mark.`,
+      tu: [t(4)], loai: "cau_hoi",
+      meo: "Muốn AI làm gì, hãy hỏi rõ ràng. Câu hỏi phải có dấu ?" },
+  ];
+  return ds.map((x, i) => Object.assign({}, x, { phan: phanCuaBai(b, i) }));
+}
+
+/* ---------- chat ---------- */
+function themBong(vai, noiDung, phan) {
+  const d = document.createElement("div");
+  d.className = "bong " + vai;
+  if (vai === "ai") {
+    d.innerHTML = `<div class="nhan"><span class="av">🤖</span>Miu</div>`
+      + (phan ? `<span class="phan">${esc(phan)}</span><br>` : "")
+      + esc(noiDung);
+  } else {
+    d.textContent = noiDung;
+  }
+  $("#chat").appendChild(d);
+  d.scrollIntoView({ behavior: "smooth", block: "end" });
+  return d;
+}
+
+function capNhatDiem() {
+  $("#dem").textContent = I >= VONG.length ? "Xong 6 lượt" : `Lượt ${I + 1}/6`;
+  $("#diem").textContent = `Đúng ${DUNG}/6`;
+  $("#tiLe").style.width = Math.round((I / 6) * 100) + "%";
+}
+
+function hoiTiep() {
+  if (I >= VONG.length) return ketThuc();
+  const v = VONG[I];
+  DA_THU = false;
+  capNhatDiem();
+  themBong("ai", v.hoi, v.phan);
+  if (v.meo && I === 0) {
+    const m = document.createElement("div");
+    m.className = "meo";
+    m.textContent = "Mẹo: " + v.meo;
+    $("#chat").appendChild(m);
+  }
+  $("#ta").value = "";
+  $("#ta").focus();
+}
+
+async function cham(v, cau) {
+  const r = await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sach: SACH, unit: String(UNIT), hoi: v.hoi, tra_loi: cau, tu: v.tu, loai: v.loai }),
+  });
+  const j = await r.json();
+  if (!r.ok || j.loi) throw new Error(j.loi || ("lỗi " + r.status));
+  return j;
+}
+
+async function gui() {
+  if (DANG_CHO) return;
+  const cau = $("#ta").value.trim();
+  if (!cau) { $("#ta").focus(); return; }
+  const v = VONG[I];
+  themBong("hs", cau);
+  $("#ta").value = "";
+  DANG_CHO = true; $("#gui").disabled = true;
+
+  const cho = document.createElement("div");
+  cho.className = "bong ai";
+  cho.innerHTML = '<span class="hint">Miu đang chấm…</span>';
+  $("#chat").appendChild(cho);
+
+  let kq = null, loi = "";
+  try { kq = await cham(v, cau); } catch (e) { loi = String(e.message || e); }
+  cho.remove();
+  DANG_CHO = false; $("#gui").disabled = false;
+
+  if (!kq) {
+    themBong("ai", "Mình chưa chấm được câu này (" + loi + "). Con thử gửi lại giúp mình nhé.");
+    $("#ta").value = cau;
+    $("#ta").focus();
+    return;
+  }
+
+  const fb = document.createElement("div");
+  fb.className = "fb";
+  let html = kq.dat
+    ? `<span class="ok">✅ Đúng rồi.</span> ${esc(kq.goi_y || "")}`
+    : `<span class="loi">Chưa đúng.</span> ${esc(kq.goi_y || "")}`;
+  if (kq.sua) html += `<div class="sua">Cách nói tốt hơn: <b>${esc(kq.sua)}</b></div>`;
+  fb.innerHTML = html;
+  $("#chat").appendChild(fb);
+
+  try { GAME.ghi({ tu: (v.tu && v.tu[0]) || "", ok: !!kq.dat }); } catch (e) {}
+
+  if (kq.dat) {
+    DUNG++;
+    capNhatDiem();
+    setTimeout(() => { I++; hoiTiep(); }, 1200);
+    return;
+  }
+
+  if (!DA_THU) {
+    DA_THU = true;
+    $("#goiY").textContent = "Sửa theo gợi ý rồi gửi lại — con còn một lượt cho câu này.";
+    $("#ta").focus();
+    capNhatDiem();
+    return;
+  }
+  $("#goiY").textContent = "Enter để gửi · Shift+Enter để xuống dòng";
+  setTimeout(() => { I++; hoiTiep(); }, 2000);
+}
+
+async function ketThuc() {
+  $("#tiLe").style.width = "100%";
+  $("#vungTraLoi").style.display = "none";
+  capNhatDiem();
+  if (HS.khopBai() !== false) { try { await GAME.ketThuc(); } catch (e) {} }
+  const dat = DUNG >= 4;
+  const khop = HS.khopBai();
+  const nhac = khop === false
+    ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit rồi chơi lại nhé."
+    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+  $("#ketThuc").innerHTML = `
+    <div class="ketqua">Trả lời đạt ${DUNG}/6 lượt</div>
+    <div class="hint" style="margin-bottom:12px">${dat ? nhac : "Cần đạt ít nhất 4/6 lượt. Đọc lại từ và cấu trúc của bài rồi chơi lại nhé."}</div>
+    <div class="row">
+      <button class="nut" id="lai">Chơi lại</button>
+      <button class="ghost" id="doi">Đổi Unit</button>
+      <button class="ghost" id="ve">Về sảnh</button>
+    </div>`;
+  if (dat) { try { GAME.phaoHoa(5); } catch (e) {} }
+  $("#lai").onclick = () => batDau();
+  $("#doi").onclick = () => location.reload();
+  $("#ve").onclick = () => { location.href = "sanh.html"; };
+}
+
+function batDau() {
+  const b = HS.bank(SACH, UNIT);
+  VONG = b ? taoKichBan(b) : [];
+  I = 0; DUNG = 0;
+  $("#chat").innerHTML = "";
+  $("#ketThuc").innerHTML = "";
+  $("#vungTraLoi").style.display = "";
+  $("#goiY").textContent = "Enter để gửi · Shift+Enter để xuống dòng";
+  if (VONG.length < 6) {
+    $("#chat").innerHTML = '<div class="hint">Unit này chưa đủ từ để luyện nói. Chọn Unit khác nhé.</div>';
+    return;
+  }
+  try {
+    GAME.batDau({ game: "noi-chuyen", sach: SACH, unit: UNIT, soCau: 6, nac: 6, khoaNac: true });
+    const c = document.querySelector(".gcore-nac"); if (c) c.value = "6";
+  } catch (e) {}
+  hoiTiep();
+}
+
+$("#gui").onclick = gui;
+$("#bo").onclick = () => {
+  if (DANG_CHO) return;
+  try { GAME.ghi({ tu: (VONG[I].tu && VONG[I].tu[0]) || "", ok: false }); } catch (e) {}
+  I++; hoiTiep();
+};
+$("#ta").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); gui(); }
+});
+
+(async () => {
+  await HS.nap();
+  BAR = HS.thanh($("#hsBar"), { onChange: (s, u) => { SACH = s; UNIT = u; batDau(); } });
+  SACH = BAR.sach(); UNIT = BAR.unit();
+  const c = HS.chonTruoc(); if (c.sach) { SACH = c.sach; UNIT = c.unit; }
+  batDau();
+})();
+</script>
+</body>
+</html>
