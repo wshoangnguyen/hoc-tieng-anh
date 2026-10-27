@@ -736,6 +736,7 @@ function load(){
   let raw=null; try{ raw=localStorage.getItem(KEY)||localStorage.getItem(KEY_CU); }catch(e){}
   try{ S=raw?JSON.parse(raw):null; }catch(e){ S=null; }
   if(!S||!S.lop) S=tuanTuBuoiBuoiGoc(DATA_GOC||{giao_vien:[{ten:"Harvey"}],ca:["18:00","19:00","20:00"],buoi:[]});
+  try{ gopGVTrung(); }catch(e){}
   if(!S.giao_vien) S.giao_vien=[];
   if(!S.ca||!S.ca.length) S.ca=["18:00","19:00","20:00"];
   if(!S.buoi) S.buoi={};
@@ -850,7 +851,19 @@ function dungSelVai(){
     dungQuyen(); veNav(); apDungTab(); render(); dungSelVai();
   };
 }
-function dsGV(){ return (vaiHienTai()==="giao_vien")?S.giao_vien.filter(g=>g.ten===tenHienTai()):S.giao_vien; }
+function gopGVTrung(){ if(!S||!Array.isArray(S.giao_vien)) return;
+  const norm=v=>String(v||"").trim().toLowerCase();
+  const seen=new Map();
+  S.giao_vien=S.giao_vien.filter(g=>{
+    const k=norm(g&&g.ten);
+    if(!seen.has(k)){ seen.set(k,g); return true; }
+    const a=seen.get(k); a.ranh=a.ranh||{}; const b=(g&&g.ranh)||{};
+    Object.keys(b).forEach(t=>{ a.ranh[t]=[...new Set([...(a.ranh[t]||[]),...(b[t]||[])])].sort((x,y)=>gioSapXep(x)-gioSapXep(y)); });
+    if(!a.don_gia && g&&g.don_gia) a.don_gia=g.don_gia;
+    return false;
+  });
+}
+function dsGV(){ gopGVTrung(); return (vaiHienTai()==="giao_vien")?S.giao_vien.filter(g=>g.ten===tenHienTai()):S.giao_vien; }
 function capNhatThanhTuan(){
   const tw=document.getElementById("thanhTuan"); if(!tw) return;
   const hien=(trangDangXem==="lichday" && (tabDangXem==="tuan"||tabDangXem==="gv"));
@@ -2497,6 +2510,7 @@ document.getElementById("btnCsvLuong").onclick=()=>{
 document.getElementById("selThang").onchange=e=>{ thangDangXem=e.target.value; veLuong(); };
 document.getElementById("btnThemGV").onclick=()=>{
   const v=document.getElementById("gvMoi").value.trim(); if(!v) return;
+  if((S.giao_vien||[]).some(g=>chuanTT(g.ten)===chuanTT(v))) return alert("Đã có giáo viên tên “"+v+"” trong sổ — không thêm trùng.");
   S.giao_vien.push({ten:v,don_gia:0,ranh:ranhDayDu(S.ca)}); document.getElementById("gvMoi").value=""; save(); render();
 };
 document.getElementById("btnThemLop").onclick=()=>{
