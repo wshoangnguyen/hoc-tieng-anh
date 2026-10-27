@@ -29,7 +29,8 @@
   .thanh>i{display:block;height:100%;background:var(--tim);width:0;transition:width .25s}
   .hang{display:flex;justify-content:space-between;font-size:13.5px;color:#6b5b3e;font-weight:700}
 
-  .chat{display:flex;flex-direction:column;gap:10px;margin:4px 0 12px}
+  .chat{display:flex;flex-direction:column;gap:10px;margin:4px 0 12px;max-height:min(58vh,560px);overflow-y:auto;overscroll-behavior:contain;padding-right:2px}
+  .vi{font-size:13px;color:#7a5a00;background:#fff8e6;border:1px dashed #f0d9a8;border-radius:9px;padding:6px 9px;margin-top:7px;line-height:1.4;font-weight:600}
   .bong{max-width:88%;padding:12px 14px;border-radius:16px;font-size:16.5px;line-height:1.45;white-space:pre-wrap}
   .ai{align-self:flex-start;background:var(--tim-nhat);border:1px solid #e6dcfb;border-bottom-left-radius:5px}
   .hs{align-self:flex-end;background:#2c2416;color:#fff;border-bottom-right-radius:5px}
@@ -84,6 +85,8 @@ const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":
 const API = "https://vm-4-15-ubuntu.tailcfa324.ts.net:8443/cham";
 
 let SACH = "SM1", UNIT = 1, BAR = null, VONG = [], I = 0, DUNG = 0, DA_THU = false, DANG_CHO = false;
+/* sách nhỏ (SM1–SM3): câu hỏi tiếng Anh có kèm một dòng gợi ý tiếng Việt */
+const coGoiYVi = () => /^SM[123]$/i.test(String(SACH || ""));
 
 /* ---------- kịch bản: 6 lượt, mỗi lượt gắn một phần của bài ---------- */
 function phanCuaBai(b, i) {
@@ -118,25 +121,35 @@ function taoKichBan(b) {
 
   const ds = [
     { hoi: `Hi! I'm Miu, your AI friend. What's your name?`,
+      vi: "Chào con! Cô là Miu — bạn AI của con. Con tên là gì?",
       tu: [], loai: "tra_loi",
       meo: "Với AI, trả lời đúng câu hỏi là đủ — ngắn cũng được, không cần câu dài." },
     { hoi: coDanhTu ? `Nice to meet you! This unit is “${ten}”. Do you have ${mangA(t(0))}?`
                      : `Nice to meet you! This unit is “${ten}”. Can you write one sentence with “${t(0)}”?`,
+      vi: coDanhTu ? `Rất vui gặp con! Bài này là “${ten}”. Con có “${t(0)}” không? Trả lời Yes, I do. hoặc No, I don't.`
+                   : `Rất vui gặp con! Bài này là “${ten}”. Viết một câu có từ “${t(0)}”.`,
       tu: [t(0)], loai: "tra_loi",
       meo: "Câu hỏi Yes/No thì trả lời “Yes, I do.” hoặc “No, I don't.” rồi thêm một chi tiết." },
     { hoi: khuon ? `Use the structure from your book: “${khuon}”. Write your own sentence.`
                  : `Can you write one sentence with “${t(1)}”?`,
+      vi: khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết một câu của con.`
+                : `Viết một câu có từ “${t(1)}”.`,
       tu: khuon ? [] : [t(1)], loai: "tra_loi",
       meo: "Bám đúng cấu trúc của bài, đổi từ bên trong là thành câu của con." },
     { hoi: coDanhTu ? `Tell me one thing you do with ${mangA(t(2))}. One sentence is enough.`
                     : `Write one sentence about your day, and include “${t(2)}”.`,
+      vi: coDanhTu ? `Kể một việc con làm với “${t(2)}” — một câu là đủ.`
+                   : `Viết một câu về ngày của con, trong câu có từ “${t(2)}”.`,
       tu: [t(2)], loai: "tra_loi",
       meo: "AI hiểu câu đơn giản tốt hơn câu dài mà rối. Viết đúng ý trước." },
     { hoi: coDanhTu ? `Do you like “${t(3)}”? Tell me why, and use “because”.`
                     : `What do you think about “${t(3)}”? Answer with “because”.`,
+      vi: coDanhTu ? `Con có thích “${t(3)}” không? Nói lý do và dùng “because”.`
+                   : `Con nghĩ gì về “${t(3)}”? Trả lời và dùng “because”.`,
       tu: [t(3), "because"], loai: "tra_loi",
       meo: "Nói lý do thì AI trả lời sát hơn. Dùng “because” để nêu lý do." },
     { hoi: `Last one: you ask me a question with “${t(4)}”. Don't forget the question mark.`,
+      vi: `Cuối cùng: con hỏi cô một câu có từ “${t(4)}”, nhớ dấu hỏi nhé.`,
       tu: [t(4)], loai: "cau_hoi",
       meo: "Muốn AI làm gì, hãy hỏi rõ ràng. Câu hỏi phải có dấu ?" },
   ];
@@ -144,20 +157,23 @@ function taoKichBan(b) {
 }
 
 /* ---------- chat ---------- */
-function themBong(vai, noiDung, phan) {
+function themBong(vai, noiDung, phan, vi) {
   const d = document.createElement("div");
   d.className = "bong " + vai;
   if (vai === "ai") {
     d.innerHTML = `<div class="nhan"><span class="av">🤖</span>Miu</div>`
       + (phan ? `<span class="phan">${esc(phan)}</span><br>` : "")
-      + esc(noiDung);
+      + esc(noiDung)
+      + (vi ? `<div class="vi">🇻🇳 ${esc(vi)}</div>` : "");
   } else {
     d.textContent = noiDung;
   }
-  $("#chat").appendChild(d);
-  d.scrollIntoView({ behavior: "smooth", block: "end" });
+  const hop = $("#chat");
+  hop.appendChild(d);
+  hop.scrollTop = hop.scrollHeight;
   return d;
 }
+function cuoiChat() { const hop = $("#chat"); if (hop) hop.scrollTop = hop.scrollHeight; }
 
 function capNhatDiem() {
   $("#dem").textContent = I >= VONG.length ? "Xong 6 lượt" : `Lượt ${I + 1}/6`;
@@ -170,15 +186,16 @@ function hoiTiep() {
   const v = VONG[I];
   DA_THU = false;
   capNhatDiem();
-  themBong("ai", v.hoi, v.phan);
+  themBong("ai", v.hoi, v.phan, coGoiYVi() ? v.vi : "");
   if (v.meo && I === 0) {
     const m = document.createElement("div");
     m.className = "meo";
     m.textContent = "Mẹo: " + v.meo;
     $("#chat").appendChild(m);
+    cuoiChat();
   }
   $("#ta").value = "";
-  $("#ta").focus();
+  $("#ta").focus({ preventScroll: true });
 }
 
 async function cham(v, cau) {
@@ -195,7 +212,7 @@ async function cham(v, cau) {
 async function gui() {
   if (DANG_CHO) return;
   const cau = $("#ta").value.trim();
-  if (!cau) { $("#ta").focus(); return; }
+  if (!cau) { $("#ta").focus({ preventScroll: true }); return; }
   const v = VONG[I];
   themBong("hs", cau);
   $("#ta").value = "";
@@ -205,6 +222,7 @@ async function gui() {
   cho.className = "bong ai";
   cho.innerHTML = '<span class="hint">Miu đang chấm…</span>';
   $("#chat").appendChild(cho);
+  cuoiChat();
 
   let kq = null, loi = "";
   try { kq = await cham(v, cau); } catch (e) { loi = String(e.message || e); }
@@ -214,7 +232,7 @@ async function gui() {
   if (!kq) {
     themBong("ai", "Mình chưa chấm được câu này (" + loi + "). Con thử gửi lại giúp mình nhé.");
     $("#ta").value = cau;
-    $("#ta").focus();
+    $("#ta").focus({ preventScroll: true });
     return;
   }
 
@@ -226,6 +244,7 @@ async function gui() {
   if (kq.sua) html += `<div class="sua">Cách nói tốt hơn: <b>${esc(kq.sua)}</b></div>`;
   fb.innerHTML = html;
   $("#chat").appendChild(fb);
+  cuoiChat();
 
   try { GAME.ghi({ tu: (v.tu && v.tu[0]) || "", ok: !!kq.dat }); } catch (e) {}
 
@@ -239,7 +258,7 @@ async function gui() {
   if (!DA_THU) {
     DA_THU = true;
     $("#goiY").textContent = "Sửa theo gợi ý rồi gửi lại — con còn một lượt cho câu này.";
-    $("#ta").focus();
+    $("#ta").focus({ preventScroll: true });
     capNhatDiem();
     return;
   }
