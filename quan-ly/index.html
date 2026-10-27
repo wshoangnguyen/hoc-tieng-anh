@@ -568,6 +568,11 @@ header{padding:6px 10px}
     <div id="ddBody"></div>
   </section>
 
+  <section id="tab-dethi" data-trang="lop" class="hide">
+    <div class="card"><h3 style="margin:0 0 4px">📝 Đề thi &amp; bài kiểm tra</h3>
+      <p class="hint" style="margin:0 0 8px">Đề làm trên web, đề in giấy, file nghe, đáp án và kho bài làm của học sinh.</p>
+      <div id="dtBody"><p class="hint">Đang mở danh mục…</p></div></div>
+  </section>
   <section id="tab-baiday" data-trang="lop" class="hide">
     <div class="card noprint">
       <div class="row">
@@ -805,16 +810,16 @@ function gvDoiRanhTuan(w){ const b=(S.ranh_tuan||{})[(w||tuan()).bat_dau]||{}; r
 /* v7.52: quản lý giáo viên ngang chủ về LỊCH (tuần, xếp GV, đăng ký); không xem công nợ/học phí, không sửa đơn giá, không xoá giáo viên, không thấy nút sao lưu. */
 let VAI="", TEN_GV="", XEM_NHU=null, TRANG_HIEN=[], TABCON_HIEN={}, XEM_THEO="lop";
 const TEN_TAB={tuan:"Lịch tổng",gv:"Lịch giáo viên",luong:"Giờ dạy & lương",dangky:"Đăng ký lịch dạy",
-  kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy"};
+  kho:"Danh sách lớp",hocvien:"Danh sách học viên",congno:"Công nợ",diemso:"Điểm số",diemdanh:"Điểm danh",baiday:"Bài dạy",dethi:"Đề thi & kiểm tra"};
 const TEN_TRANG={lichday:"📅 Lịch dạy",lop:"🧑‍🎓 Lớp & học viên"};
 function vaiHienTai(){ return XEM_NHU?XEM_NHU.vai:VAI; }
 function tenHienTai(){ return XEM_NHU?XEM_NHU.ten:TEN_GV; }
 function quyenTab(){
   const v=vaiHienTai();
   if(!v) return {lichday:["gv"],lop:[]};
-  if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday"]};
-  if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","luong","dangky"], lop:["kho","diemso","diemdanh","baiday"]};
-  return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday"]};
+  if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday","dethi"]};
+  if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","luong","dangky"], lop:["kho","diemso","diemdanh","baiday","dethi"]};
+  return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday","dethi"]};
 }
 function dungQuyen(){
   const q=quyenTab();
@@ -2370,6 +2375,7 @@ function render(){
   if(co("lop","diemso")) veDiemSo(); else xoa("dsBody");
   if(co("lop","diemdanh")) veDiemDanh(); else xoa("ddBody");
   if(co("lop","baiday")) veBaiDay(); else xoa("bdBody");
+  if(co("lop","dethi")) veDeThi();
   veDangKy(); capNhatThanhTuan(); capNhatNutThongBao();
 }
 
@@ -2421,10 +2427,41 @@ function moSua(k){
   };
 }
 
+const DT_GOC={"cap_nhat": "27/10/2026", "drive_root": "https://drive.google.com/drive/folders/1QOAFilHJlcTQlDxys4vICq1lraiRpNfg", "de_thi": [{"ma": "OWA2", "ten": "Thi hết sách · Open World A2", "muc": "Mô phỏng A2 Key (KET) · 55 câu tự chấm + 1 bài viết · 90 phút", "nhan": ["Nghe 5 file · 2–3 phút", "Đọc & Viết 6 part", "Viết 25 từ"], "lam_bai": "/de-thi/owa2/lam-bai.html", "nghe_web": "/de-thi/owa2/", "de_pdf": "/de-thi/owa2/De-thi-Open-World-A2-KET.pdf", "drive": {"folder": "https://drive.google.com/drive/folders/1gEipsXkAN_X3pSZ9Bc2D5C6Pk9wRhYbS", "de": "https://drive.google.com/file/d/1pv4LgFsAZe5zg3twqa_FKczVOPFJiEq4/view", "dapan": "https://drive.google.com/file/d/1n6eXkaJRVZg-FL0A3cmhwaRVCxHsQ3yI/view", "bai_lam": "https://drive.google.com/drive/folders/1zgR-efm-AtE7OLAmH2yGzIHpQGKXMQuc", "audio": ["https://drive.google.com/file/d/1dfdJF9OU3vCa1vOhFVKmNCsX5vBU8-wA/view", "https://drive.google.com/file/d/13Y2aOXoD3o4a4roYm-BvARdJh-ok0KOw/view", "https://drive.google.com/file/d/1z3YahD_pZn-zifSNblbCdCsvGFi67Fs6/view", "https://drive.google.com/file/d/1Oz02Sm5JcqUThcYlIFNQAepxwJC-uBSx/view", "https://drive.google.com/file/d/1kIlxMZXOC6SsmfOinqkvOMdsFgzp-4um/view"]}}], "sap_co": [{"ma": "SM", "ten": "Kiểm tra theo cấp độ Super Minds", "muc": "Kiểm tra hết mỗi level Super Minds 1–6 · 30–40 phút"}, {"ma": "B1", "ten": "Thi hết sách · Open World B1", "muc": "Mô phỏng B1 Preliminary (PET) · khoảng 2 giờ"}]}; /*nạp từ de-thi.json*/
+function veDeThi(){
+  const el=document.getElementById("dtBody"); if(!el) return;
+  const D=DT_GOC||{}, ds=D.de_thi||[];
+  let h="";
+  if(!ds.length) h+=`<p class="hint">Chưa có đề nào trong danh mục.</p>`;
+  h+=ds.map(d=>{
+    const dr=d.drive||{};
+    const cN="display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;font-weight:600;font-size:13.5px;color:inherit;margin:2px 0";
+    const cC=cN+";background:var(--accent);border-color:#e0a800;color:#3a2c07";
+    const nut=[
+      d.lam_bai?`<a style="${cC}" href="${esc(d.lam_bai)}" target="_blank" rel="noopener">▶ Vào làm bài</a>`:"",
+      d.de_pdf?`<a style="${cN}" href="${esc(d.de_pdf)}" target="_blank" rel="noopener">Đề PDF (in giấy)</a>`:"",
+      d.nghe_web?`<a style="${cN}" href="${esc(d.nghe_web)}" target="_blank" rel="noopener">Nghe trên web</a>`:"",
+      dr.dapan?`<a style="${cN}" href="${esc(dr.dapan)}" target="_blank" rel="noopener">Đáp án</a>`:"",
+      dr.bai_lam?`<a style="${cN}" href="${esc(dr.bai_lam)}" target="_blank" rel="noopener">Bài làm học sinh</a>`:""
+    ].filter(Boolean).join(" ");
+    const nhan=(d.nhan||[]).map(x=>`<span class="chip" style="font-size:12px">${esc(x)}</span>`).join(" ");
+    const audio=(dr.audio||[]).map((u,i)=>`<a style="text-decoration:underline" href="${esc(u)}" target="_blank" rel="noopener">Part ${i+1}</a>`).join(" · ");
+    return `<div class="card" style="margin:10px 0">
+      <div class="row" style="gap:8px"><b>${esc(d.ten||d.ma||"")}</b><span class="hint">${esc(d.muc||"")}</span></div>
+      <div class="row" style="gap:6px;margin:6px 0">${nhan}</div>
+      <div class="row" style="gap:6px">${nut}</div>
+      ${audio?`<div class="hint" style="margin-top:6px">File nghe trên Drive: ${audio}</div>`:""}
+    </div>`;}).join("");
+  const sc=D.sap_co||[];
+  if(sc.length) h+=`<p class="hint">Sắp có: ${sc.map(x=>esc(x.ten)).join(" · ")}</p>`;
+  h+=`<p class="hint">Toàn bộ kho đề trên Drive: ${D.drive_root?`<a href="${esc(D.drive_root)}" target="_blank" rel="noopener">mở kho đề</a>`:"—"}${D.cap_nhat?" · cập nhật "+esc(D.cap_nhat):""}</p>`;
+  el.innerHTML=h;
+}
+
 /* ---------- sự kiện chung ---------- */
 const TRANG=[["lichday","📅 Lịch dạy"],["lop","🧑🎓 Lớp & học viên"]];
 const TABCON={lichday:[["tuan","Lịch tổng"],["gv","Lịch giáo viên"],["luong","Giờ dạy & lương"],["dangky","Đăng ký lịch dạy"]],
-  lop:[["kho","Danh sách lớp"],["hocvien","Danh sách học viên"],["congno","Công nợ"],["diemso","Điểm số"],["diemdanh","Điểm danh"]]};
+  lop:[["kho","Danh sách lớp"],["hocvien","Danh sách học viên"],["congno","Công nợ"],["diemso","Điểm số"],["diemdanh","Điểm danh"],["dethi","Đề thi & kiểm tra"]]};
 let trangDangXem="lichday", tabDangXem="tuan";
 function veNav(){
   const n=document.getElementById("navTrang"), c=document.getElementById("tabCon"); if(!n||!c) return;
