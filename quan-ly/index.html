@@ -27,6 +27,10 @@ button.ghost{background:transparent}button.sm{padding:2px 7px;font-size:12.5px;b
 .trangs button{border-radius:999px;padding:7px 17px;background:#fff;font-weight:700}
 .trangs button.on{background:var(--accent2);color:#fff;border-color:var(--accent2)}
 .tabs{display:flex;gap:6px;margin:8px 0 0;flex-wrap:wrap}
+.trangs{align-items:center;row-gap:8px}
+.trangs .tabs{display:contents}
+.trangs .tabs button{font-size:13.5px;padding:5px 12px}
+.trangs .tabs button:first-child{margin-left:2px}
 .tabs button{border-radius:999px;padding:6px 14px;background:transparent}
 .tabs button.on{background:var(--accent);color:#3a2c07;font-weight:700;border-color:#e0a800}
 main{padding:12px;max-width:1620px;margin:0 auto}
@@ -2411,9 +2415,13 @@ const TABCON={lichday:[["tuan","Lịch tổng"],["gv","Lịch giáo viên"],["lu
 let trangDangXem="lichday", tabDangXem="tuan";
 function veNav(){
   const n=document.getElementById("navTrang"), c=document.getElementById("tabCon"); if(!n||!c) return;
+  /* khối nút con được gắn ngay sau nút trang đang mở, nên nút trang kia bị đẩy ra */
+  if(c.parentNode) c.parentNode.removeChild(c);
   n.innerHTML=TRANG_HIEN.map(([k,ten])=>`<button data-trang="${k}" class="${k===trangDangXem?"on":""}">${ten}</button>`).join("");
   c.innerHTML=(TABCON_HIEN[trangDangXem]||[]).map(([k,ten])=>`<button data-tab="${k}" class="${k===tabDangXem?"on":""}">${ten}</button>`).join("");
-  n.querySelectorAll("button").forEach(b=>b.onclick=()=>chonTrang(b.dataset.trang));
+  const nutDangMo=n.querySelector(`button[data-trang="${trangDangXem}"]`);
+  if(nutDangMo) nutDangMo.insertAdjacentElement("afterend", c); else n.appendChild(c);
+  n.querySelectorAll("button[data-trang]").forEach(b=>b.onclick=()=>chonTrang(b.dataset.trang));
   c.querySelectorAll("button").forEach(b=>b.onclick=()=>chonTab(b.dataset.tab));
   capNhatThanhTuan();
 }
