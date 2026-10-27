@@ -27,6 +27,7 @@ h1{font-size:23px;margin:6px 0 2px}
 label{display:block;font-size:12.5px;color:var(--nau2);margin-bottom:3px;font-weight:600}
 input[type=text]{width:100%;padding:10px 11px;border:1.5px solid var(--vien);border-radius:10px;font-size:15px;background:#fff;color:var(--nau)}
 input[type=text]:focus{outline:none;border-color:var(--tim)}
+select.chon-o{padding:10px 12px;border:1.5px solid var(--vien);border-radius:10px;font-size:17px;background:#fff;color:var(--nau);min-width:76px}
 .chon{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
 .tabbtn{border:1.5px solid var(--vien);background:#fff;color:var(--nau2);font-weight:700;font-size:14px;
         padding:9px 13px;border-radius:10px;cursor:pointer}
@@ -34,7 +35,7 @@ input[type=text]:focus{outline:none;border-color:var(--tim)}
 .phan{display:none}
 .phan.on{display:block}
 .audio{background:#faf6ec;border:1px solid var(--vien);border-radius:12px;padding:10px 12px;margin:0 0 12px}
-.audio b{font-size:12.5px;color:var(--nau2);text-transform:uppercase;letter-spacing:.3px}
+.audio b{display:block;font-size:12.5px;color:var(--nau2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
 .audio audio{width:100%;margin-top:6px;max-width:420px}
 .bai{background:#fff;border:1px solid var(--vien);border-radius:14px;padding:14px;margin:0 0 12px}
 .bai .dau{display:flex;gap:10px;align-items:baseline}
@@ -154,9 +155,12 @@ function ve(){
       k.innerHTML=h;
       (bai.cau||[]).forEach((c,j)=>{
         const d=document.createElement("div"); d.className="cau"; d.dataset.id=c.id;
+        const o = (bai.kieu==="chon")
+          ? '<select id="'+c.id+'" class="chon-o"><option value=""></option>'+
+            (bai.lua||[]).map(x=>'<option value="'+x+'">'+x+'</option>').join('')+'</select>'
+          : '<input type="text" id="'+c.id+'" autocomplete="off" autocapitalize="off" spellcheck="false">';
         d.innerHTML='<div class="socau">'+(j+1)+'</div><div class="than"><p class="hoi">'+c.hoi+
-          '</p><div class="o"><input type="text" id="'+c.id+'" autocomplete="off" autocapitalize="off" spellcheck="false">'+
-          '<span class="kq" id="kq-'+c.id+'"></span></div></div>';
+          '</p><div class="o">'+o+'<span class="kq" id="kq-'+c.id+'"></span></div></div>';
         k.appendChild(d);
       });
       hop.appendChild(k);
@@ -164,9 +168,10 @@ function ve(){
     than.appendChild(hop);
   });
   // đổ đáp án đã lưu
-  document.querySelectorAll("input[id]").forEach(i=>{
+  document.querySelectorAll("input[id],select[id]").forEach(i=>{
     if(dap[i.id]!==undefined) i.value=dap[i.id];
     if(i.id && i.id.indexOf("-")>0) i.addEventListener("input",()=>{dap[i.id]=i.value;luu();});
+    if(i.tagName==="SELECT") i.addEventListener("change",()=>{dap[i.id]=i.value;luu();});
   });
 }
 
@@ -201,7 +206,7 @@ function cham(){
 document.getElementById("btCham").onclick=cham;
 document.getElementById("btLai").onclick=()=>{
   if(!confirm("Xoá hết câu trả lời để làm lại từ đầu?")) return;
-  dap={}; document.querySelectorAll("input[id]").forEach(i=>{if(i.id.indexOf("-")>0) i.value="";});
+  dap={}; document.querySelectorAll("input[id],select[id]").forEach(i=>{if(i.id.indexOf("-")>0) i.value="";});
   document.querySelectorAll(".cau").forEach(c=>c.classList.remove("dung","sai"));
   document.querySelectorAll(".kq").forEach(k=>k.textContent="");
   document.getElementById("kqhop").classList.remove("on");
