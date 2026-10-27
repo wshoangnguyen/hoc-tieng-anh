@@ -2750,7 +2750,7 @@ function veBaiDay(){
   if(linkAudio) h+=`<div class="row" style="margin:0 0 6px;gap:6px">${linkAudio}<span class="hint">mở thư mục, chọn bài nghe theo số track</span></div>`;
   if(banGiao) h+=banGiao;
   { const _u0=dsMuc[0]||{};
-    h+=`<h3 style="margin:10px 0 4px">Unit ${BD.unit}${_u0.unit_ten?" — "+esc(_u0.unit_ten):""} <span class="hint" style="font-weight:400">${_u0.trang?esc(_u0.trang):""} · chọn phần cho buổi hôm nay</span></h3>`; }
+    h+=`<h3 style="margin:10px 0 4px">Unit ${BD.unit}${_u0.unit_ten?" — "+esc(_u0.unit_ten):""} <span class="hint" style="font-weight:400">${esc(_u0.trang||trangUnit(sach,BD.unit))} · chọn phần cho buổi hôm nay</span></h3>`; }
   h+=`<div class="bd-muc">`+dsMuc.map(i=>{
     const c=demTrangThai(BD.lopId,i.id), tong=Object.values(c).reduce((a,b)=>a+b,0);
     const tt=trangThaiChung(BD.lopId,i.id);
@@ -3085,7 +3085,11 @@ function trangUnit(sach,unit){
   if(!sach) return "";
   const c=String(sach.code||"");
   if(/^SM/.test(c)){ if(unit===0) return "tr. 4–9"; const a=10+12*(unit-1); return `tr. ${a}–${a+11}`; }
-  return "";
+  /* Open World A2/B1/B2: mỗi mục đã ghi sẵn khoảng trang của unit.
+     Bỏ qua "review" (trang của bài ôn thuộc unit trước) và "hw" (workbook, không có trang SGK). */
+  const ds=mucCuaSach(sach.id).filter(i=>i.unit===unit && i.part!=="review" && i.part!=="hw" && String(trangMuc(i)||"").trim());
+  if(!ds.length) return "";
+  return String(trangMuc(ds[0])).replace(/\s+/g," ").trim();
 }
 function trangMuc(it){ const o=(S.trang_muc||{})[it.id]; return o!=null?o:(it.trang||""); }
 function themLanNua(id){
