@@ -2685,15 +2685,16 @@ async function vaoApp(){
   const {data:gv}=await sb.from("giao_vien").select("ten,vai").eq("id",user.id).maybeSingle();
   if(!gv){ dnLoi("Tài khoản này chưa được cấp quyền vào hệ thống."); await sb.auth.signOut(); return; }
   VAI=gv.vai||"giao_vien"; TEN_GV=gv.ten||""; XEM_NHU=null;
+  try{ if((user&&user.email||"").toLowerCase()==="test@hoctienganhdelam.com") VAI="khach"; }catch(e){}
   const {data:kho,error}=await sb.from("kho_lop").select("du_lieu,phien_ban").eq("id","main").maybeSingle();
   if(error){ dnLoi("Không đọc được dữ liệu: "+error.message); return; }
   const coDuLieu=!!(kho&&kho.du_lieu&&Object.keys(kho.du_lieu).length);
   phienBan = kho ? Number(kho.phien_ban)||0 : 0;
-  if(coDuLieu){ try{ localStorage.setItem(KEY,JSON.stringify(kho.du_lieu)); }catch(e){} }
+  if(coDuLieu){ if(VAI==="khach" && typeof cheDuLieuKhach==="function"){ try{ const tam=JSON.parse(JSON.stringify(kho.du_lieu)); cheDuLieuKhach(tam); localStorage.setItem(KEY,JSON.stringify(tam)); }catch(e){} }
+    else { try{ localStorage.setItem(KEY,JSON.stringify(kho.du_lieu)); }catch(e){} } }
   document.getElementById("dn").hidden=true;
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
-  try{ const _em=(user&&user.email||"").toLowerCase(); if(_em==="test@hoctienganhdelam.com"){ VAI="khach"; } }catch(e){}
   if(VAI==="khach"){
     document.body.classList.add("khach");
     try{ const _rpc=sb.rpc.bind(sb);
