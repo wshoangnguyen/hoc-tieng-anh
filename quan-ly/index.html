@@ -650,7 +650,11 @@ header{padding:6px 10px}
       <p class="hint">Ô tick = giờ giáo viên đó <b>rảnh</b>. Xếp lớp vào giờ không tick sẽ bị cảnh báo.</p>
     </div>
     <div class="card" id="cardCa"><h3 style="margin-top:0">Các ca trong ngày</h3>
-      <div id="dsCa"></div><button id="btnLuuCa" class="ghost">Lưu ca</button></div>
+      <div id="dsCa"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+        <button id="btnThemCa" class="ghost">＋ Thêm ca</button>
+        <button id="btnLuuCa" class="ghost">Lưu ca</button>
+      </div></div>
     <div class="card" id="cardDuLieu"><h3 style="margin-top:0">Dữ liệu</h3><p class="hint" id="nguonInfo"></p>
       <button id="btnXoaHet" class="ghost" style="border-color:var(--del);color:var(--del)">Xoá toàn bộ dữ liệu trên máy này</button></div>
   </section>
@@ -1321,7 +1325,12 @@ function veCauHinh(){
     if(!confirm("Xoá giáo viên "+S.giao_vien[i].ten+"?")) return; const ten=S.giao_vien[i].ten;
     S.giao_vien.splice(i,1); S.lop.forEach(l=>{ if(l.gv===ten) l.gv=""; });
     Object.keys(S.buoi).forEach(k=>{ if(S.buoi[k].gv===ten) S.buoi[k].gv=""; }); save(); render(); }; });
-  document.getElementById("dsCa").innerHTML=cas.map((c,i)=>`<div class="field"><label>Ca ${i+1}</label><input value="${esc(c)}" data-ca-input="${i}"></div>`).join("");
+  const dsCaEl=document.getElementById("dsCa");
+  dsCaEl.innerHTML=cas.map((c,i)=>`<div class="field ca-dong" style="display:flex;gap:6px;align-items:flex-end">`
+    +`<label style="flex:1">Ca ${i+1}</label><input class="ca-gio" value="${esc(c)}" data-ca-input="${i}" placeholder="17:00" style="width:96px">`
+    +`<span class="hint" style="align-self:center">hh:mm</span>`
+    +`<button class="ghost sm" data-xoaca="${i}" title="Bỏ ca này" style="color:var(--del);border-color:var(--del)">×</button></div>`).join("");
+  dsCaEl.querySelectorAll("[data-xoaca]").forEach(b=>{ b.onclick=()=>{ b.closest(".ca-dong").remove(); danhSoLaiCa(); }; });
 }
 /* ---------- tab HỌC VIÊN (SỬA ĐƯỢC, lưu ngay trên máy) + tab CÔNG NỢ ---------- */
 const GIA_CHUAN=950000;                       // học phí chuẩn/tháng của trung tâm
@@ -2630,10 +2639,39 @@ document.getElementById("btnNhapKho").onclick=()=>{
   if(!kq.ket.length) return alert("Chưa đọc được lớp nào. Bấm “Xem trước” để kiểm tra.");
   nhapVaoKho(kq, document.getElementById("chkDeLen").checked);
 };
+function chuanGio(s){
+  s=String(s||"").trim().replace(/[hH:]?\s*([0-9]{1,2})\s*[hH:.]?\s*([0-9]{2})?.*/, (m,a,b)=>{
+    const h=String(+a).padStart(2,"0"), mm=String(b==null?"00":+b).padStart(2,"0"); return h+":"+mm; });
+  return s;
+}
+function danhSoLaiCa(){
+  const ds=document.getElementById("dsCa"); if(!ds) return;
+  ds.querySelectorAll(".ca-dong").forEach((d,i)=>{ const l=d.querySelector("label"); if(l) l.textContent="Ca "+(i+1); });
+}
+document.getElementById("btnThemCa").onclick=()=>{
+  const ds=document.getElementById("dsCa");
+  const n=ds.querySelectorAll(".ca-dong").length;
+  const d=document.createElement("div");
+  d.className="field ca-dong"; d.style.cssText="display:flex;gap:6px;align-items:flex-end";
+  d.innerHTML=`<label style="flex:1">Ca ${n+1}</label><input class="ca-gio" value="" placeholder="17:00" style="width:96px">`
+    +`<span class="hint" style="align-self:center">hh:mm</span>`
+    +`<button class="ghost sm" title="Bỏ ca này" style="color:var(--del);border-color:var(--del)">×</button>`;
+  ds.appendChild(d);
+  d.querySelector("button").onclick=()=>{ d.remove(); danhSoLaiCa(); };
+  d.querySelector("input").focus();
+};
 document.getElementById("btnLuuCa").onclick=()=>{
-  const cs=[...document.querySelectorAll("[data-ca-input]")].map(i=>i.value.trim()).filter(Boolean);
-  if(cs.length) S.ca=[...new Set(cs)];
-  save(); render(); alert("Đã lưu ca.");
+  const o=[...document.querySelectorAll("#dsCa .ca-gio")].map(i=>i.value.trim()).filter(Boolean);
+  const cs=[]; 
+  for(const v of o){
+    if(!/^\d{1,2}\s*[:hH.]\s*\d{0,2}$/.test(v)) return alert("Giờ “"+v+"” chưa đúng. Ghi theo dạng 17:00 nhé.");
+    const g=chuanGio(v);
+    if(cs.includes(g)) continue;
+    cs.push(g);
+  }
+  if(!cs.length) return alert("Cần ít nhất 1 ca.");
+  S.ca=cs.sort((a,b)=>gioSapXep(a)-gioSapXep(b));
+  save(); render(); alert("Đã lưu ca: "+S.ca.join(" · "));
 };
 document.getElementById("btnXoaHet").onclick=()=>{
   if(!confirm("Xoá toàn bộ dữ liệu lịch trên máy này?")) return;
