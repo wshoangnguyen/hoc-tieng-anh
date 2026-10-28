@@ -131,6 +131,7 @@ window.GAME = (function () {
   function ghi(cau) {
     if (!phien) batDau({});
     ghiSK(cau);
+    if (window.Buddy) { if (cau && cau.ok) Buddy.dung(); else Buddy.sai(); }
     phien.soCau = Math.max(phien.soCau, phien.dung + phien.sai + 1);
     if (cau && cau.ok) phien.dung++;
     else {
@@ -414,4 +415,15 @@ window.GAME = (function () {
   else khoi();
 
   return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+})();
+
+/* tự nạp buddy.js (bong bóng khen/khích lệ) — mọi trang có core.js đều có Buddy */
+(function () {
+  try {
+    var s = document.currentScript || document.querySelector('script[src$="core.js"]');
+    var b = document.createElement("script");
+    b.src = s && s.src ? s.src.replace(/core[.]js(\?.*)?$/, "buddy.js") : "buddy.js";
+    b.async = true;
+    document.head.appendChild(b);
+  } catch (e) {}
 })();
