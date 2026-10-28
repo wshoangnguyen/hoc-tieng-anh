@@ -77,8 +77,8 @@ h1{font-size:21px;margin:4px 0 2px}
 .butve .cu{font-family:inherit;font-size:12px;font-weight:700;background:#fff;color:var(--nau2);
            border:1.5px solid var(--vien);border-radius:7px;padding:4px 7px;cursor:pointer}
 .butve .cu.on{background:var(--tim);border-color:var(--tim);color:#fff}
-.khung-anh{position:relative;margin:0}
-.khung-anh{text-align:center}
+.cot-anh{text-align:center}
+.khung-anh{position:relative;display:inline-block;max-width:100%;line-height:0}
 .khung-anh img{display:block;margin:0 auto;width:auto;max-width:100%;max-height:72vh;height:auto;border:1px solid var(--vien);border-radius:8px;background:#fff}
 .khung-anh.to img{max-height:none;width:100%}
 .khung-anh .nut-anh{position:absolute;right:8px;top:8px;z-index:4;border:1px solid var(--vien);background:#fff;border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:700;color:#4a3f2a;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
@@ -308,7 +308,7 @@ function ve(){
         khung.querySelector(".nut-anh").onclick=function(){
           const to=khung.classList.toggle("to");
           this.textContent = to ? "⤡ Thu nhỏ" : "⤢ Xem lớn";
-          setTimeout(()=>window.dispatchEvent(new Event("resize")),60);
+          setTimeout(()=>{ if(khung.__ve) khung.__ve.veLai(); },150);
         };
         cotAnh.appendChild(khung);
         const zoom=document.createElement("a"); zoom.className="xemanh"; zoom.href=bai.anh;
@@ -338,7 +338,7 @@ function ve(){
       if(bai.ve){
         const khung=k.querySelector('.khung-anh[data-cho="'+id+'"]');
         const bar=k.querySelector(".butve");
-        const tep=khoiTaoVe(khung,id); veApi[id]=tep;
+        const tep=khoiTaoVe(khung,id); veApi[id]=tep; khung.__ve=tep;
         bar.addEventListener("click",ev=>{
           const nut=ev.target.closest("button"); if(!nut) return;
           if(nut.dataset.mau){
@@ -348,7 +348,14 @@ function ve(){
             bar.querySelector('[data-vai="but"]').classList.add("on"); return;
           }
           const vai=nut.dataset.vai;
-          if(vai==="but"){ tep.bat(!khung.classList.contains("ve")); nut.classList.toggle("on"); }
+          if(vai==="but"){
+            const on=!khung.classList.contains("ve");
+            tep.bat(on); nut.classList.toggle("on");
+            khung.classList.toggle("to", on);
+            const nb=khung.querySelector(".nut-anh");
+            if(nb) nb.textContent = on ? "⤡ Thu nhỏ" : "⤢ Xem lớn";
+            setTimeout(()=>{ if(khung.__ve) khung.__ve.veLai(); },150);
+          }
           if(vai==="day"){ const d=nut.dataset.day==="1"?3:9; nut.dataset.day=d===9?"1":"0"; tep.datDay(d);
                            nut.textContent=d===9?"Nét mảnh":"Nét dầy"; nut.classList.toggle("on",d===9); }
           if(vai==="tay"){ nut.classList.toggle("on", tep.tay()); }
