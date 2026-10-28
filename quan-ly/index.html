@@ -10,7 +10,8 @@
 <title>Quản lý lớp học — Học tiếng Anh dễ lắm</title>
 <style>#bannerKhach{position:sticky;top:0;z-index:90;background:#3c2f1a;color:#ffe9b8;font-size:13px;line-height:1.45;padding:8px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 #bannerKhach b{color:#ffd166}
-body.khach .noprint button.primary{opacity:.55}
+body.khach input[readonly],body.khach select:disabled,body.khach textarea[readonly]{background:#f4efe6!important;color:#6b6152!important;cursor:default}
+body.khach .nut-sua-khach{display:none}
 #ddSapHet{position:fixed;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 32px);z-index:70;margin:0}
 .sach-nhac{background:#fff;border:1px solid #e5d9b8;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.14);font-size:13px;overflow:hidden}
 .sach-dau{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:#fff6dd;border-bottom:1px solid #f0e2bb}
@@ -841,7 +842,7 @@ function quyenTab(){
   if(!v) return {lichday:["gv"],lop:[]};
   if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday","dethi"]};
   if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","luong","dangky"], lop:["kho","diemso","diemdanh","baiday","dethi"]};
-  if(v==="khach") return {lichday:["tuan","gv","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday","dethi"]};
+  if(v==="khach") return {lichday:["tuan","gv","dangky"], lop:["kho","hocvien","diemso","diemdanh","baiday","dethi"]};
   return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday","dethi"]};
 }
 function dungQuyen(){
@@ -2692,6 +2693,7 @@ async function vaoApp(){
   document.getElementById("dn").hidden=true;
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
+  try{ const _em=(user&&user.email||"").toLowerCase(); if(_em==="test@hoctienganhdelam.com"){ VAI="khach"; } }catch(e){}
   if(VAI==="khach"){
     document.body.classList.add("khach");
     try{ const _rpc=sb.rpc.bind(sb);
@@ -4661,8 +4663,12 @@ function khoaThaoTac(){
   if(VAI!=="khach") return;
   document.querySelectorAll("button").forEach(b=>{
     const t=(b.textContent||"").trim();
-    if(b.dataset.sua||b.dataset.xoa||b.dataset.thu||b.dataset.bd) { b.style.display="none"; return; }
-    if(/^(💾\s*)?(Lưu|Xoá|Thêm|＋ Thu|Sửa)/.test(t)) b.style.display="none";
+    if(b.dataset.sua||b.dataset.xoa||b.dataset.thu||b.dataset.bd){ b.style.display="none"; return; }
+    if(/Thu nhỏ|Xem trước|Đặt sách|In |Tải /.test(t)) return;
+    if(/Nhập vào|Xoá|Lưu|Sửa|thêm giờ|Thêm lớp|＋ lớp/.test(t)) b.style.display="none";
+  });
+  document.querySelectorAll("#vungDan").forEach(ta=>{
+    let c=ta.closest(".card")||ta.parentElement; if(c&&c.id!=="bannerKhach") c.style.display="none";
   });
   document.querySelectorAll("input,select,textarea").forEach(e=>{
     if(e.closest("#dn")) return;
