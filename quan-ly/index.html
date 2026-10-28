@@ -2290,12 +2290,11 @@ function veDiemDanh(){
         :can?`<span class="chip" style="border-color:var(--del);color:var(--del)">cần điểm danh</span>`
         :da?`<span class="chip" style="border-color:var(--ok);color:var(--ok)">đã điểm danh</span>`:""}
       ${laBu?`<span class="chip" style="border-color:#7b5cc7;color:#7b5cc7">buổi học bù</span>`:""}
-      ${daNghi?`<span class="chip nghivien" data-bonghi="${esc(l)}" title="Bấm để bỏ đánh dấu nghỉ">↩ bỏ nghỉ</span>`
-        :`<span class="chip nghivien" data-danhnghi="${esc(l)}" title="Đánh dấu lớp nghỉ buổi hôm nay">⚪ nghỉ buổi này</span>`}
     </button>`; };
   const dsHien=(DD_LOC==="hom"?lopHomNay:lopTatCa);
   const grid=document.getElementById("ddLopGrid");
-  const gioCua=l=>{ const s=buoiCuaLop(l,1); return s.length?(s[0].ca||""):""; };
+  const gioCua=l=>{ const s=buoiCuaLop(l,1); if(s.length) return s[0].ca||"";
+    const n=buoiNghiHomNay(l); return n.length?(n[0].ca||""):""; };
   if(grid){
     if(!dsHien.length){ grid.innerHTML=`<span class="hint">${DD_LOC==="hom"?"Hôm nay không có lớp nào theo lịch.":"Chưa có lớp nào."}</span>`; }
     else {
@@ -2351,12 +2350,14 @@ function roiLop(lop){
   const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
   const n=hs.length, co=n<=4?"to":n<=6?"vua":n<=9?"nho":"ratnho";
-  const hom=iso(new Date()), buoiHomNay=(b.gio||[]).filter(g=>g.thu===THU[thuCua(hom)]);
+  const hom=iso(new Date()), buoiHomNay=buoiCuaLop(lop,1), nghiHomNay=buoiNghiHomNay(lop), hbNghi=henBuCuaLop(lop);
   return `<div class="card">
     <div class="row"><button class="ghost sm" id="ddQuayLai">← Danh sách lớp</button>
-      <h3 style="margin:0">${esc(lop)} <span class="hint">${n} học viên${buoiHomNay.length?` · hôm nay ${buoiHomNay.map(g=>esc(g.ca)).join(", ")}`:""}</span></h3>
+      <h3 style="margin:0">${esc(lop)} <span class="hint">${n} học viên${buoiHomNay.length?` · hôm nay ${buoiHomNay.map(g=>esc(g.ca)).join(", ")}`:""}${nghiHomNay.length?` · <span style="color:#6b6b6b">đã nghỉ${hbNghi?" — hẹn bù "+esc(THU_DAI[hbNghi.thu])+" "+esc(hbNghi.ca):""}</span>`:""}</span></h3>
       <span style="flex:1"></span>
       <button class="primary" data-bd="${esc(lop)}">📖 Bài dạy</button>
+      ${nghiHomNay.length?`<button class="ghost" id="ddBoNghi">↩ Bỏ đánh dấu nghỉ</button>`
+        :`<button class="ghost" id="ddNghi">⚪ Nghỉ buổi này</button>`}
       ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Có mặt cả lớp (hôm nay)</button>`:""}
       <button class="ghost" id="btnInLop">🖨 In</button></div>
     <div class="roster ${co}" id="rosterAnh" data-treo="${daVaoGio(lop)?1:0}">${hs.map(h=>{
@@ -2385,6 +2386,9 @@ GAN("ddBody","click",e=>{
   const hs=e.target.closest("[data-hoso]"); if(hs){ moHoSoHV(hs.dataset.hoso); return; }
   const t=e.target.closest("button"); if(!t) return;
   if(t.id==="ddQuayLai"){ DD_LOP=null; veDiemDanh(); return; }
+  if(t.id==="ddNghi"){ if(!confirm(`Đánh dấu lớp ${DD_LOP} nghỉ buổi hôm nay? Học viên không bị tính vắng.`)) return;
+    datNghiBuoi(DD_LOP,true); return; }
+  if(t.id==="ddBoNghi"){ datNghiBuoi(DD_LOP,false); return; }
   if(t.id==="ddCa"){ const lop=DD_LOP;
     const bs=buoiCuaLop(lop,1).filter(b=>!b.chuaGio);
     if(!bs.length) return alert("Lớp này chưa xếp giờ cố định — hãy điểm danh từng em bằng nút ✅.");
@@ -4753,7 +4757,7 @@ function khoaThaoTac(){
   if(VAI!=="khach") return;
   document.querySelectorAll("button").forEach(b=>{
     const t=(b.textContent||"").trim();
-    if(b.dataset.sua||b.dataset.xoa||b.dataset.thu||b.dataset.bd){ b.style.display="none"; return; }
+    if(b.dataset.sua||b.dataset.xoa||b.dataset.thu||b.dataset.bd||b.id==="ddNghi"||b.id==="ddBoNghi"){ b.style.display="none"; return; }
     if(/Thu nhỏ|Xem trước|Đặt sách|In |Tải /.test(t)) return;
     if(/Nhập vào|Xoá|Lưu|Sửa|thêm giờ|Thêm lớp|＋ lớp/.test(t)) b.style.display="none";
   });
