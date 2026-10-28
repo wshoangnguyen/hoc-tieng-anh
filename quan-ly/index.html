@@ -8,8 +8,13 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quản lý lớp học — Học tiếng Anh dễ lắm</title>
-<style>#ddSapHet{margin-left:auto;max-width:660px}
-@media (max-width:760px){#ddSapHet{max-width:none}}
+<style>#ddSapHet{position:fixed;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 32px);z-index:70;margin:0}
+.sach-nhac{background:#fff;border:1px solid #e5d9b8;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.14);font-size:13px;overflow:hidden}
+.sach-dau{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:#fff6dd;border-bottom:1px solid #f0e2bb}
+.sach-dau button{border:0;background:none;font-size:17px;line-height:1;cursor:pointer;color:#7a6a3a}
+.sach-than{padding:9px 11px;line-height:1.45}
+.sach-than .nut{margin-top:7px}
+.sach-pill{border:1px solid #e5d9b8;background:#fff6dd;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 @media (min-width:701px){
   .card .row>.field{gap:4px!important;margin-right:22px!important}
   .card .row>.field>label{width:auto!important;white-space:nowrap;flex:0 0 auto}
@@ -4507,14 +4512,18 @@ function capNhatSapHet(){
   const het=lopToiUnitCuoi();
   if(!het.length){ el.style.display="none"; el.innerHTML=""; return; }
   el.style.display="";
-  el.innerHTML=`<div class="row" style="gap:8px;align-items:flex-start">
-    <div style="font-size:18px">📚</div>
-    <div style="flex:1">
-      <b>Chuẩn bị đặt sách:</b> ${het.map(x=>`lớp <b>${esc(x.ten)}</b> (${esc(x.sach.ten)}) đã học tới <b>Unit ${x.unit}/${x.maxU}</b> — Unit cuối`).join(" · ")}.
-      <div class="hint">Sau Unit cuối là <b>Ôn tập</b> rồi <b>Thi hết sách</b>. Đặt sách cho các em trước buổi ôn tập để kịp.</div>
-    </div>
-    <button class="primary sm" id="ddDatSach">📚 Đặt sách</button></div>`;
+  const thu=localStorage.getItem("sach_nhac_thu")==="1";
+  const ten=het.map(x=>esc(x.ten)).join(" · ");
+  el.innerHTML = thu
+    ? `<button class="sach-pill" id="sachMo">📚 ${het.length} lớp sắp xong</button>`
+    : `<div class="sach-nhac">
+        <div class="sach-dau"><b>📚 Sắp hết sách</b><button id="sachThu" title="Thu gọn thông báo">–</button></div>
+        <div class="sach-than">Lớp <b>${ten}</b> sắp xong — chuẩn bị thi lên level.
+          <div><button class="primary sm" id="ddDatSach">📚 Đặt sách</button></div></div>
+      </div>`;
   const b=el.querySelector("#ddDatSach"); if(b) b.onclick=()=>moDatSach(het[0].ten);
+  const t=el.querySelector("#sachThu"); if(t) t.onclick=()=>{ localStorage.setItem("sach_nhac_thu","1"); capNhatSapHet(); };
+  const m=el.querySelector("#sachMo"); if(m) m.onclick=()=>{ localStorage.setItem("sach_nhac_thu","0"); capNhatSapHet(); };
 }
 function veDiemDanhQua(){
   const grid=document.getElementById("ddLopGrid"); if(!grid) return;
