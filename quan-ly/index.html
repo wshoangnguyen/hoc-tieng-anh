@@ -8,7 +8,10 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quản lý lớp học — Học tiếng Anh dễ lắm</title>
-<style>#ddSapHet{position:fixed;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 32px);z-index:70;margin:0}
+<style>#bannerKhach{position:sticky;top:0;z-index:90;background:#3c2f1a;color:#ffe9b8;font-size:13px;line-height:1.45;padding:8px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+#bannerKhach b{color:#ffd166}
+body.khach .noprint button.primary{opacity:.55}
+#ddSapHet{position:fixed;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 32px);z-index:70;margin:0}
 .sach-nhac{background:#fff;border:1px solid #e5d9b8;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.14);font-size:13px;overflow:hidden}
 .sach-dau{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:#fff6dd;border-bottom:1px solid #f0e2bb}
 .sach-dau button{border:0;background:none;font-size:17px;line-height:1;cursor:pointer;color:#7a6a3a}
@@ -781,7 +784,7 @@ function load(){
   if(S.tuan_hien_tai==null||S.tuan_hien_tai>=S.tuan.length) S.tuan_hien_tai=0;
   tuanDangXem=S.tuan_hien_tai;
 }
-const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); try{ window.__chupNhanh&&__chupNhanh(); }catch(e){} henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
+const save=()=>{ if(VAI==="khach") return; try{ localStorage.setItem(KEY,JSON.stringify(S)); try{ window.__chupNhanh&&__chupNhanh(); }catch(e){} henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
   catch(e){ alert("Máy không lưu được nữa (bộ nhớ trình duyệt đầy — thường do ảnh học viên).\nHãy bấm ⬇ Xuất JSON để giữ dữ liệu, rồi bỏ bớt ảnh."); } };
 const tuan=()=>S.tuan[tuanDangXem];
 const lopTheoId=id=>(S.lop||[]).find(l=>l.id===id);
@@ -838,6 +841,7 @@ function quyenTab(){
   if(!v) return {lichday:["gv"],lop:[]};
   if(v==="giao_vien") return {lichday:["gv","luong","dangky"], lop:["diemso","diemdanh","baiday","dethi"]};
   if(v==="quan_ly_giao_vien") return {lichday:["tuan","gv","luong","dangky"], lop:["kho","diemso","diemdanh","baiday","dethi"]};
+  if(v==="khach") return {lichday:["tuan","gv","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday","dethi"]};
   return {lichday:["tuan","gv","luong","dangky"], lop:["kho","hocvien","congno","diemso","diemdanh","baiday","dethi"]};
 }
 function dungQuyen(){
@@ -2688,7 +2692,17 @@ async function vaoApp(){
   document.getElementById("dn").hidden=true;
   taoChip();
   const tenEl=document.getElementById("dn-ten"); if(tenEl) tenEl.textContent="· "+gv.ten;
-  load(); dungQuyen(); render(); veNav(); apDungTab(); dungSelVai();
+  if(VAI==="khach"){
+    document.body.classList.add("khach");
+    try{ const _rpc=sb.rpc.bind(sb);
+         sb.rpc=(...a)=>String(a[0])==="luu_kho"?Promise.resolve({data:null,error:{message:"Chế độ khách — chỉ xem"}}):_rpc(...a);
+    }catch(e){}
+  }
+  load();
+  if(VAI==="khach" && typeof cheDuLieuKhach==="function") cheDuLieuKhach(S);
+  dungQuyen(); render(); veNav(); apDungTab(); dungSelVai();
+  if(VAI==="khach" && typeof bannerKhach==="function") bannerKhach();
+  if(VAI==="khach" && typeof khoaThaoTac==="function"){ khoaThaoTac(); setTimeout(khoaThaoTac,600); }
   try{ if(window.__datBase) window.__datBase(); }catch(e){}
   try{ if(window.__dongBoAnh) window.__dongBoAnh(); }catch(e){}
   dnTT("đã kết nối");
@@ -4623,6 +4637,50 @@ function moDatSach(tenLopMacDinh){
   };
   if(tenLopMacDinh) napHs(); else ve();
 }
+</script>
+<script>
+/* ===== v7.14 — chế độ khách: che dữ liệu nhạy cảm, chỉ xem ===== */
+const KHACH_SO = new Set(["don_gia","luong","luong_thang","luong_ca","gia","tien","hoc_phi_thang","giam_gia",
+  "da_dong_den_thang","no_nay_tien","no_truoc_tien","no_tien","km_tri","no_chot_thang","thu_nhap","tien_ca"]);
+const KHACH_CHU = new Set(["phu_huynh","sdt_phu_huynh","tinh_thanh","dia_chi_nguyen_van","anh_chi_em_cung_nha","ghi_chu","sdt"]);
+function cheDuLieuKhach(o){
+  const DA=new Set();
+  (function di(x,d){
+    if(!x||typeof x!=="object"||d>7||DA.has(x)) return; DA.add(x);
+    for(const k of Object.keys(x)){
+      const v=x[k];
+      if(KHACH_SO.has(k)){ x[k]=null; continue; }
+      if(KHACH_CHU.has(k)){ if(typeof v==="string"&&v.trim()) x[k]="🔒 Bảo mật"; continue; }
+      if(Array.isArray(v)) v.forEach(y=>di(y,d+1));
+      else if(v&&typeof v==="object") di(v,d+1);
+    }
+  })(o,0);
+  try{ (o.giao_vien||[]).forEach(g=>{ g.don_gia=0; }); }catch(e){}
+}
+function khoaThaoTac(){
+  if(VAI!=="khach") return;
+  document.querySelectorAll("button").forEach(b=>{
+    const t=(b.textContent||"").trim();
+    if(b.dataset.sua||b.dataset.xoa||b.dataset.thu||b.dataset.bd) { b.style.display="none"; return; }
+    if(/^(💾\s*)?(Lưu|Xoá|Thêm|＋ Thu|Sửa)/.test(t)) b.style.display="none";
+  });
+  document.querySelectorAll("input,select,textarea").forEach(e=>{
+    if(e.closest("#dn")) return;
+    if(e.id==="hvTim"||e.id==="hvTrangThai"||e.id==="hvLoc"||e.id==="hvChiXn") return;
+    if(e.tagName==="SELECT") e.disabled=true; else e.readOnly=true;
+  });
+}
+function bannerKhach(){
+  if(VAI!=="khach" || document.getElementById("bannerKhach")) return;
+  const d=document.createElement("div"); d.id="bannerKhach";
+  d.innerHTML='<b>🔒 Chế độ khách — chỉ xem.</b> Không thao tác được. Lương giáo viên, học phí/công nợ và thông tin cá nhân (phụ huynh, SĐT, địa chỉ) đã được che.';
+  document.body.insertBefore(d, document.body.firstChild);
+}
+try{
+  if(typeof VAI!=="undefined" && VAI==="khach"){ bannerKhach(); }
+  new MutationObserver(()=>{ if(typeof VAI!=="undefined"&&VAI==="khach"){ bannerKhach(); khoaThaoTac(); } })
+    .observe(document.body,{childList:true,subtree:true});
+}catch(e){}
 </script>
 </body>
 </html>
