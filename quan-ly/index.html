@@ -4532,11 +4532,12 @@ function veDiemDanhQua(){
     const tt=hs.map(h=>({h, t:ddLay(ngay,l,h.ma_hv)}));
     const co=tt.filter(x=>x.t==="co"), vang=tt.filter(x=>x.t==="vang"), tre=tt.filter(x=>x.t==="tre"), chua=tt.filter(x=>!x.t);
     const dsTen=x=>x.map(y=>esc(y.h.ho_ten)).join(" · ");
-    return `<div class="card" style="margin:8px 0;padding:10px 12px;border-left:4px solid ${co.length?"var(--ok)":"var(--del)"}">
+    const conChua=chua.length>0;
+    return `<div class="card" style="margin:8px 0;padding:10px 12px;border-left:4px solid ${conChua?"var(--del)":(co.length?"var(--ok)":"var(--dim)")};${conChua?"background:#fff4f4;border-color:#f3cccc":""}">
       <div class="row" style="gap:8px;align-items:center"><b>${esc(l)}</b>
         <span class="chip" style="border-color:var(--ok);color:var(--ok)">${co.length}/${hs.length} có mặt</span>
         ${vang.length?`<span class="chip" style="border-color:var(--del);color:var(--del)">${vang.length} vắng</span>`:""}
-        ${chua.length?`<span class="chip">${chua.length} chưa điểm danh</span>`:""}</div>
+        ${chua.length?`<span class="chip" style="border-color:var(--del);color:var(--del);font-weight:700">⚠️ ${chua.length} chưa điểm danh</span>`:""}</div>
       ${co.length?`<div style="margin-top:4px"><span class="hint">Có mặt:</span> ${dsTen(co)}</div>`:""}
       ${vang.length?`<div><span class="hint">Vắng:</span> <span style="color:var(--del)">${dsTen(vang)}</span></div>`:""}
       ${tre.length?`<div><span class="hint">Trễ:</span> ${dsTen(tre)}</div>`:""}
