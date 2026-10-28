@@ -8,7 +8,9 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quản lý lớp học — Học tiếng Anh dễ lắm</title>
-<style>@media (min-width:701px){
+<style>#ddSapHet{margin-left:auto;max-width:660px}
+@media (max-width:760px){#ddSapHet{max-width:none}}
+@media (min-width:701px){
   .card .row>.field{gap:4px!important;margin-right:22px!important}
   .card .row>.field>label{width:auto!important;white-space:nowrap;flex:0 0 auto}
   .card .row>.field>input,.card .row>.field>select{flex:1 1 auto;min-width:110px}
@@ -3340,10 +3342,11 @@ function bdGanThanhHocVien(){
   const sec=document.getElementById("tab-hocvien"); if(!sec||document.getElementById("hvBarBaiDay")) return;
   const bar=document.createElement("div");
   bar.id="hvBarBaiDay"; bar.className="card noprint"; bar.style.padding="8px 10px";
-  bar.innerHTML=`<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
-    <span class="hint" style="margin-right:auto">bảng tên HS · phụ huynh · SĐT · địa chỉ — copy dán thẳng vào Excel hoặc Zalo</span>
+  bar.innerHTML=`<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">
+    <button class="primary" id="hvBarDatSach">📚 Đặt sách</button>
     <span class="hint" id="hvBarSachNote"></span>
-    <button class="primary" id="hvBarDatSach">📚 Đặt sách</button></div>`;
+    <span style="flex:1"></span>
+    <span class="hint">bảng tên HS · phụ huynh · SĐT · địa chỉ, copy dán thẳng vào Excel hoặc Zalo</span></div>`;
   sec.insertBefore(bar, sec.firstElementChild.nextSibling||null);
   bar.querySelector("#hvBarDatSach").onclick=()=>moDatSach();
   capNhatGhiChuSach();
