@@ -451,5 +451,158 @@ $("#ta").addEventListener("keydown", (e) => {
   batDau();
 })();
 </script>
+<!-- KICH-BAN-HAT-GIONG -->
+<script>
+/* Buddy = hạt giống vàng. Viết lại toàn bộ 6 câu hỏi mỗi bậc.
+   Luật: 1 câu đùa / lượt · đùa bằng thông tin vô lý nhưng ĐÚNG ngữ pháp · không đùa vào câu trả lời của trẻ. */
+taoKichBan = function (b) {
+  const tuAll = (b.tu || []).filter((w) => w && String(w).length > 1);
+  if (!tuAll.length) return [];
+  const tuDem = tuAll.filter(laTuDem);
+  const dung = tuDem.length >= 2 ? tuDem : tuAll;
+  const khuon0 = (b.khuon || [])[0] || "";
+  const khuon = (khuon0.split(/\s+/).length >= 4 && !/^(connectors?|vocabulary|grammar|pronunciation)$/i.test(khuon0.trim()))
+    ? khuon0.trim() : "";
+  const t = (i) => dung[i % dung.length];
+  const ten = (b.ten || "").trim();
+  const chu = (w) => String(w || "").toLowerCase();
+  const A = (w) => mangA(w);
+  const bac = bacCuaSach();
+  const sach = String(SACH || "").toUpperCase();
+  const vn = /^SM\s*-?\s*[123]/.test(sach) || (!/^SM|^A2|^B1|^OW/.test(sach));  // SM1–SM3 (và lớp chưa rõ sách): có tiếng Việt
+  let ds = [];
+
+  if (bac === 1) {
+    /* SM1–SM2 (6–8 tuổi): câu ngắn, tiếng Anh + tiếng Việt */
+    ds = [
+      { hoi: `Hi! I'm Buddy. I'm a seed. A golden seed. What's your name?`,
+        vi: "Chào con! Mình là Buddy, một hạt giống vàng. Con tên là gì? (My name is ...)",
+        tu: [], loai: "tra_loi",
+        meo: "Nghe “What's your name?” thì trả lời “My name is …”." },
+      { hoi: `Do you know the word “${t(0)}”? Yes or No. I know it. I'm small, but I know things.`,
+        vi: `Con có biết từ “${t(0)}” không? Yes hoặc No. Mình nhỏ, nhưng mình biết nhiều thứ.`,
+        tu: [t(0)], loai: "tra_loi",
+        meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
+      { hoi: `Which one do you like: “${t(1)}” or “${t(2)}”? I like both. I'm a seed. I like everything.`,
+        vi: `Con thích cái nào hơn: “${t(1)}” hay “${t(2)}”? Mình thích cả hai. Mình là hạt giống, mình thích mọi thứ.`,
+        tu: [t(1), t(2)], loai: "tra_loi",
+        meo: "Trả lời: I like … (một từ hoặc một câu ngắn)." },
+      { hoi: `Say a short sentence with “${t(2)}”. For example: I like ${chu(t(2))}. My sentence is: I am a seed.`,
+        vi: `Nói một câu ngắn có từ “${t(2)}”. Ví dụ: I like ${chu(t(2))}. Câu của mình là: I am a seed.`,
+        tu: [t(2)], loai: "tra_loi",
+        meo: "Câu ngắn cũng được: I like … / This is … / Look at …" },
+      { hoi: `Do you like this unit? Yes or No. Be honest. I'm only three millimetres tall.`,
+        vi: "Con có thích bài này không? Yes hoặc No. Cứ nói thật nhé — mình chỉ cao 3 mi-li-mét.",
+        tu: [t(3)], loai: "tra_loi",
+        meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
+      { hoi: `Now you ask me: “${t(4)}”? Ask slowly. I'm underground. The wifi is very bad down here.`,
+        vi: `Giờ con hỏi mình một câu có từ “${t(4)}”. Hỏi chậm thôi — mình đang ở dưới đất, wifi ở đây rất tệ.`,
+        tu: [t(4)], loai: "cau_hoi",
+        meo: "Câu hỏi phải có dấu ? ở cuối." },
+    ];
+  } else if (bac === 2) {
+    /* SM3–SM4: câu đơn hoàn chỉnh. SM3 còn tiếng Việt, SM4 chỉ tiếng Anh. */
+    ds = [
+      { hoi: `Hi! I'm Buddy. What's your name, and how are you today? I'm fine. I'm a little wet. I'm a seed.`,
+        vi: vn ? "Chào con! Con tên gì, hôm nay thế nào? Mình khoẻ, chỉ hơi ướt — mình là hạt giống." : undefined,
+        tu: [], loai: "tra_loi",
+        meo: vn ? "Trả lời hai ý: tên + “I'm fine, thank you.”" : "Answer two things: your name + “I'm fine, thank you.”" },
+      { hoi: `Where can you see “${t(0)}”? Answer with in, on or at. Not in my pot. I checked.`,
+        vi: vn ? `Con có thể thấy “${t(0)}” ở đâu? Trả lời dùng in / on / at.` : undefined,
+        tu: [t(0)], loai: "tra_loi",
+        meo: vn ? "in the classroom · on the table · at school." : "in the classroom · on the table · at school." },
+      { hoi: khuon ? `Use the structure from your book: “${khuon}”. Write your own sentence. Mine is: I ride a dog to school.`
+                  : `Write one sentence with “${t(1)}”. Mine is: I ride a dog to school.`,
+        vi: vn ? (khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết câu của con.` : `Viết một câu có từ “${t(1)}”.`)
+              : undefined,
+        tu: khuon ? [] : [t(1)], loai: "tra_loi",
+        meo: vn ? "Giữ nguyên cấu trúc, chỉ đổi từ bên trong." : "Keep the structure, change the words inside." },
+      { hoi: `Write one sentence with “${t(2)}”. It must have a subject and a verb. “Because I'm a seed” is not a sentence. I tried.`,
+        vi: vn ? `Viết một câu có từ “${t(2)}”. Phải có chủ ngữ và động từ. “Because I'm a seed” không phải là câu — mình thử rồi.` : undefined,
+        tu: [t(2)], loai: "tra_loi",
+        meo: vn ? "Đủ chủ ngữ + động từ mới là một câu: I go to school by bus." : "Subject + verb makes a sentence: I go to school by bus." },
+      { hoi: `Do you like this unit? Why? Use “because”. I like it because the sun is warm.`,
+        vi: vn ? "Con có thích bài này không? Vì sao? Dùng “because”." : undefined,
+        tu: [t(3), "because"], loai: "tra_loi",
+        meo: vn ? "I like it because it's fun / easy / interesting." : "I like it because it's fun / easy / interesting." },
+      { hoi: `Ask me a question with “${t(4)}”. Start with Do, Does, Is or Where. Ask where my roots are. I don't know either.`,
+        vi: vn ? `Con hỏi mình một câu có từ “${t(4)}”, mở đầu bằng Do / Does / Is / Where.` : undefined,
+        tu: [t(4)], loai: "cau_hoi",
+        meo: vn ? "Câu hỏi phải có trợ động từ ở đầu và dấu ? ở cuối." : "Start with a helping verb and finish with a question mark." },
+    ];
+  } else if (bac === 3) {
+    /* SM5–SM6: chỉ tiếng Anh */
+    ds = [
+      { hoi: `Tell me about “${ten}”. What did you learn, and what did you do yesterday? Two sentences. Yesterday I grew one millimetre. That was my whole day.`,
+        tu: [t(0)], loai: "tra_loi",
+        meo: "Sentence 1: what you learned. Sentence 2: past simple (I played / I went / I watched)." },
+      { hoi: `Have you ever learned about “${t(1)}”? Answer with “I have” or “I have never”. I have never left this pot.`,
+        tu: [t(1)], loai: "tra_loi",
+        meo: "Present perfect: have/has + V3 (used, seen, tried)." },
+      { hoi: khuon ? `Use “${khuon}” to write a sentence about yourself. I was a very small seed last year. I still am.`
+                  : `Write one sentence with “${t(2)}” in the past simple. I was a very small seed last year. I still am.`,
+        tu: khuon ? [] : [t(2)], loai: "tra_loi",
+        meo: "Past simple: subject + verb with -ed, or an irregular form." },
+      { hoi: `Which is better for you: “${t(2)}” or “${t(3)}”? Give one reason. I prefer water. My reason is simple: I am a plant.`,
+        tu: [t(2), t(3)], loai: "tra_loi",
+        meo: "Comparative + because: better than / more useful than … because …" },
+      { hoi: `What will you do next weekend? Use “going to”, and say why. I'm going to grow roots, because one day I want to be a tree.`,
+        tu: [t(3)], loai: "tra_loi",
+        meo: "I'm going to … because …" },
+      { hoi: `Ask me two questions using “${t(4)}” — one Yes/No question and one Wh-question. Ask me why I am so short. It is a sensitive topic.`,
+        tu: [t(4)], loai: "cau_hoi",
+        meo: "Yes/No questions start with Do/Is/Can; Wh-questions start with What/Where/Why." },
+    ];
+  } else if (bac === 4) {
+    /* A2 / KET: chỉ tiếng Anh */
+    ds = [
+      { hoi: `Let's talk about “${ten}”. Tell me about your week — three things you did. I planted myself on Monday. That was the highlight.`,
+        tu: [t(0)], loai: "tra_loi",
+        meo: "Past simple + linkers: first, then, after that." },
+      { hoi: `Have you ever had a problem with ${chu(t(1))}? What happened? I once grew into a shoe. The shoe was not happy.`,
+        tu: [t(1)], loai: "tra_loi",
+        meo: "Two sentences: what happened, then what you did next." },
+      { hoi: khuon ? `Use “${khuon}” in a sentence about your own life. I'm planning to become a tree, but first I'm planning to survive the bird.`
+                  : `Make a sentence about your plans with “${t(2)}”. I'm planning to become a tree, but first I'm planning to survive the bird.`,
+        tu: khuon ? [] : [t(2)], loai: "tra_loi",
+        meo: "Plans: I'm going to / I'm planning to / I'd like to." },
+      { hoi: `Do you agree that ${chu(t(2))} is important? Give two reasons. I agree. Without water I am a very dry seed. Without roots, a very lost one.`,
+        tu: [t(2)], loai: "tra_loi",
+        meo: "I agree / I don't agree … because … Also, …" },
+      { hoi: `${chu(t(3))} or ${chu(t(4))} — which would you choose, and why? I'd choose the sunny spot. I'm a seed, not a philosopher.`,
+        tu: [t(3), t(4)], loai: "tra_loi",
+        meo: "I'd choose … because … (cheaper, easier, more interesting)." },
+      { hoi: `Now ask me a question about “${ten}” that I have to answer with more than one sentence. Careful: I only know two things — water and waiting.`,
+        tu: [t(4)], loai: "cau_hoi",
+        meo: "Use What / Why / How + auxiliary; avoid Yes/No questions." },
+    ];
+  } else {
+    /* B1 / PET: chỉ tiếng Anh */
+    ds = [
+      { hoi: `What's your opinion on “${ten}”? Give your view and one example. In my opinion, patience is underrated. For example: I have been underground for three weeks.`,
+        tu: [t(0)], loai: "tra_loi",
+        meo: "In my opinion … For example …" },
+      { hoi: `Some people say ${chu(t(1))} is not useful. Do you agree? Explain in two or three sentences. Some people also say a seed is not a tree. They are technically right and completely missing the point.`,
+        tu: [t(1)], loai: "tra_loi",
+        meo: "I partly agree … However … On the other hand …" },
+      { hoi: khuon ? `Use “${khuon}” to describe how things have changed for you. I have grown two roots and one opinion.`
+                  : `How has ${chu(t(2))} changed in your life? Use the present perfect. I have grown two roots and one opinion.`,
+        tu: khuon ? [] : [t(2)], loai: "tra_loi",
+        meo: "Present perfect + contrast: used to …, but now …" },
+      { hoi: `Imagine you had to solve a problem with ${chu(t(3))}. What would you do? If I had hands, I would write a letter. If I had legs, I would leave this pot.`,
+        tu: [t(3)], loai: "tra_loi",
+        meo: "Second conditional: If I had …, I would …" },
+      { hoi: `Compare ${chu(t(3))} and ${chu(t(4))}: which matters more today, and why? Branches get the photos. Roots get the water.`,
+        tu: [t(3), t(4)], loai: "tra_loi",
+        meo: "Whereas / while / although + comparative." },
+      { hoi: `Ask me a challenging question about “${ten}” — something you really want to know. Ask me what I will be. I don't know yet. That is the whole point.`,
+        tu: [t(4)], loai: "cau_hoi",
+        meo: "Strong questions: What do you think about …? / How would you …?" },
+    ];
+  }
+  return ds.map((x, i) => Object.assign({}, x, { phan: phanCuaBai(b, i) }));
+};
+</script>
+<!-- /KICH-BAN-HAT-GIONG -->
 </body>
 </html>
