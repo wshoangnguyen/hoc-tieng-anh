@@ -16,6 +16,7 @@ window.GAME = (function () {
 
   let cfg = { game: "?", sach: null, unit: null, nac: 1, soCau: 0 };
   let phien = null, daKetThuc = false;
+  let sk = null; // HKG: sự kiện từng câu của phiên này
   let nacXong = [], nacHoanHao = [], diemHomNay = 0, dangTai = false;
 
   const el = (t, c, s) => { const d = document.createElement(t); if (c) d.className = c; if (s != null) d.textContent = s; return d; };
@@ -116,6 +117,7 @@ window.GAME = (function () {
     if (c && c.nac) cfg.nac = Number(c.nac);
     if (c && c.khoaNac) cfg.khoaNac = true;
     phien = { batDau: Date.now(), soCau: cfg.soCau || 0, dung: 0, sai: 0, loi: [] };
+    sk = taoSK();
     daKetThuc = false;
     dungThanh();
     taiTrangThai();
@@ -128,6 +130,7 @@ window.GAME = (function () {
 
   function ghi(cau) {
     if (!phien) batDau({});
+    ghiSK(cau);
     phien.soCau = Math.max(phien.soCau, phien.dung + phien.sai + 1);
     if (cau && cau.ok) phien.dung++;
     else {
@@ -165,6 +168,7 @@ window.GAME = (function () {
   }
 
   function gui(kq) {
+    guiSK(kq);
     return rpc("game_ghi", {
       p_ma: maHV(), p_game: kq.game, p_sach: kq.sach, p_unit: kq.unit, p_nac: kq.nac,
       p_so_cau: kq.so_cau, p_so_dung: kq.so_dung, p_giay: kq.giay, p_loi: kq.loi || [],
@@ -180,6 +184,56 @@ window.GAME = (function () {
     }).catch(() => null);
   }
 
+  /* ---------- HKG-BAT-DAU: hạt giống kiến thức ---------- */
+  function uuid() {
+    try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (ch) => {
+      const r = (Math.random() * 16) | 0, v = ch === "x" ? r : (r & 3) | 8;
+      return v.toString(16);
+    });
+  }
+  function taoSK() {
+    const t = Date.now();
+    return { phien: uuid(), items: [], lan: {}, bat: t, t: t };
+  }
+  /* một câu = một sự kiện; lan = đây là lần thử thứ mấy của cùng một từ */
+  function ghiSK(cau) {
+    if (!sk) sk = taoSK();
+    const item = String((cau && (cau.item || cau.tu)) || "").trim();
+    if (!item) return;
+    const k = item.toLowerCase();
+    sk.lan[k] = (sk.lan[k] || 0) + 1;
+    const t = Date.now();
+    sk.items.push({
+      loai: "cau", item: item, ok: !!(cau && cau.ok), lan: sk.lan[k],
+      tu_noi: Math.max(0, Number((cau && cau.tu_noi) || 0)),
+      giay: Math.max(0, Math.round((t - (sk.t || t)) / 1000)),
+    });
+    sk.t = t;
+    if (sk.items.length > 300) sk.items.length = 300;
+  }
+  /* gửi 1 lần / phiên — mạng yếu vẫn chạy; lỗi thì im lặng, không ảnh hưởng điểm */
+  function guiSK(kq) {
+    const ma = maHV();
+    if (!ma || !sk || !sk.items.length) return;
+    const giay = Math.round((Date.now() - sk.bat) / 1000);
+    const than = {
+      p_ma: ma, p_phien: sk.phien,
+      p_game: (kq && kq.game) || cfg.game,
+      p_sach: (kq && kq.sach) || cfg.sach,
+      p_unit: (kq && kq.unit) || cfg.unit,
+      p_nac: (kq && kq.nac) || cfg.nac || 1,
+      p_giay: giay, p_items: sk.items,
+    };
+    rpc("game_su_kien_ghi", than)
+      .then((d) => { if (d && d.ok) luu("hkg_lan_cuoi", { re_cm: d.re_cm, khen: d.khen, luc: Date.now() }); })
+      .catch(() => {});
+  }
+  /* tiến trình cho cửa sổ "Hạt giống kiến thức" */
+  function tienDo(ma) {
+    return rpc("tien_do_hoc_sinh", { p_ma: ma || maHV(), p_ngay: 30 });
+  }
+  /* ---------- HKG-KET-THUC ---------- */
   /* ---------- hộp kết quả ---------- */
   let hopCho;
   function hienCho() {
@@ -359,5 +413,5 @@ window.GAME = (function () {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", khoi);
   else khoi();
 
-  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
 })();
