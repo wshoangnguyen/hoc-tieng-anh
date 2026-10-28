@@ -8,7 +8,12 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quản lý lớp học — Học tiếng Anh dễ lắm</title>
-<style>
+<style>@media (min-width:701px){
+  .card .row>.field{gap:4px!important;margin-right:22px!important}
+  .card .row>.field>label{width:auto!important;white-space:nowrap;flex:0 0 auto}
+  .card .row>.field>input,.card .row>.field>select{flex:1 1 auto;min-width:110px}
+}
+
 :root{--bg:#f5f2e9;--card:#fffdf7;--card2:#fdf4e1;--line:#e8e1d0;--ink:#333333;--dim:#756d5c;
 --accent:#f6bd4a;--accent2:#7b7fe8;--ok:#3f8f5f;--warn:#c98a04;--del:#c0392b;
 --gv1:#e08a00;--gv2:#7b7fe8;--gv3:#2f8f5f;--gv4:#c2537a;--gv5:#0e8f9f;--gv6:#b0602a;
@@ -4060,11 +4065,6 @@ window.addEventListener("load", function () { setTimeout(taiDiemGame, 1800); });
 .chat-gopy button:hover{border-color:#c8b98d;color:#3b3a35}
 .chat-gopy button.on{background:#fff4d6;border-color:#e0b64a;color:#7a5a00}
 .chat-gopy span{font-size:11.5px;color:#8a93a3}
-@media (min-width:701px){
-  .field label{width:auto!important;white-space:nowrap;flex:0 0 auto}
-  .field{gap:6px}
-  .field>input,.field>select,.field>textarea{flex:1 1 auto;min-width:110px}
-}
 </style>
 </head><body>
 <h1>Bảng lương tháng ${m}/${y}</h1>
