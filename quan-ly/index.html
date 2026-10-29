@@ -3164,8 +3164,9 @@ function bdBanTin(){
   const dongEn=muc.map(it=>{ const lk=(it.video&&it.video[0])||""; const lap=(it.part==="review"||it.part==="hw");
     const en=PART_EN[it.part]||String(it.ten).replace(/\s*\(lần \d+\)$/,"");
     return `• ${en}${lk?" ("+lk+")":""}`; }).join("\n");
-  const audioVi=(thieuAudio&&audioChung)?`\n🔊 Nghe audio bài học: ${audioChung}`:"";
-  const audioEn=(thieuAudio&&audioChung)?`\n🔊 Audio: ${audioChung}`:"";
+  const audioVi="", audioEn="";
+  const dongAudio=[ tmB.sb?`audio student book: ${tmB.sb}`:"",
+                    tmB.wb?`audio workbook: ${tmB.wb}`:"" ].filter(Boolean).join("\n");
   const coOnTap=muc.some(it=>it.part==="review"||it.part==="hw");
   const dsU=[...new Set(muc.map(it=>it.unit).filter(u=>u!==undefined&&u!==null))].sort((a,b)=>a-b);
   const nhanU=dsU.map(u=>{ const tr=trangUnit(sach,u); return `Unit ${u}${tr?" ("+tr+")":""}`; }).join(", ");
@@ -3173,7 +3174,7 @@ function bdBanTin(){
   const en=`📚Today, ${ngay}\nOur class completed${nhanU?" "+nhanU.replace(/tr\./g,"pp."):""}:\n${dongEn||"• (no items selected)"}${audioEn}\nPlease do the Workbook at home.`;
   moModal(`<h3>📨 Báo bài — ${esc(lop?lop.ten:"")} · Unit ${b.unit!=null?b.unit:"?"}</h3>
     <p class="hint">Chỉ gồm các phần của buổi ${ngay} (${muc.length} phần). Sửa trực tiếp trong ô rồi copy.</p>
-    <textarea id="btAll" rows="14" style="width:100%;font-size:13px">${esc(vi+"\n\n"+en)}</textarea>
+    <textarea id="btAll" rows="14" style="width:100%;font-size:13px">${esc(vi+"\n\n"+en+(dongAudio?"\n\n"+dongAudio:""))}</textarea>
     <button class="sm" data-copy="btAll">Copy cả hai bản</button>
     <div style="margin-top:8px"><button class="ghost sm" id="btQuay">← Quay lại bài dạy</button></div>`);
   document.querySelectorAll("[data-copy]").forEach(btn=>btn.onclick=()=>{ const ta=document.getElementById(btn.dataset.copy);
