@@ -566,7 +566,7 @@ async function loadData() {
     
     async function init() {
         await initVoices();
-        if (window.napBaiGame) { try { await napBaiGame(); } catch(e){} }
+        if (window.GAME && GAME.sanSang) { try { window.__BAI = await GAME.sanSang(); } catch(e){} }
         await loadData();
         const b = window.__BAI;
         if (b) {
