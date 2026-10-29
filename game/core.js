@@ -273,6 +273,10 @@ window.GAME = (function () {
       dong("Tổng lượt này", "+" + (d.diem_luot_tong || 0));
       dong("Hôm nay", (d.diem_hom_nay || 0) + "/16 điểm");
       hop.appendChild(bang);
+      if (d.khong_tinh_diem) {
+        hop.appendChild(el("p", "gcore-nhac", "Lượt này không tính điểm vì khác bài đang học" +
+          (d.bai_dang_hoc ? " (" + d.bai_dang_hoc + ")" : "") + ". Chơi đúng bài đang học mới cộng điểm nhé."));
+      }
       if ((d.con_lai_hom_nay || 0) === 0) {
         hop.appendChild(el("p", "gcore-nhac", "Hôm nay con đã đạt 16 điểm — chơi thêm vẫn vui nhưng không cộng điểm nữa. Mai chơi tiếp nhé!"));
       } else {
