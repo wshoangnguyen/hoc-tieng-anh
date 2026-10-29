@@ -490,7 +490,14 @@
         if (!currentSentencesData.length) return;
         sentencesState = currentSentencesData.map(sentence => Array(sentence.length).fill(false));
         renderGame();
-        try { GAME.batDau({game:"reading", sach:"reading", unit: lessonIndex+1, soCau: currentSentencesData.length}); } catch(e){}
+        try {
+            const ma = (currentLesson && currentLesson.id) || "";
+            const mm = ma.match(/^([A-Za-z0-9]+)_Unit(\d+)$/);
+            GAME.batDau({ game:"reading",
+              sach: mm ? mm[1] : (window.__BAI ? window.__BAI.sach : "SM1"),
+              unit: mm ? Number(mm[2]) : (window.__BAI ? window.__BAI.unit : lessonIndex),
+              nac: 1, soCau: currentSentencesData.length });
+        } catch(e){}
         statusSpan.innerHTML = "🔄 Đã làm lại! Hãy nhấn từng ô để mở chữ và tập đọc.";
         window.speechSynthesis.cancel();
     }
@@ -559,7 +566,13 @@ async function loadData() {
     
     async function init() {
         await initVoices();
+        if (window.napBaiGame) { try { await napBaiGame(); } catch(e){} }
         await loadData();
+        const b = window.__BAI;
+        if (b) {
+            const i = lessonsData.findIndex(function(x){ return x.id === b.sach + "_Unit" + b.unit; });
+            if (i >= 0) loadLesson(i);
+        }
         
         resetGameBtn.addEventListener('click', resetCurrentLesson);
         speakAllBtn.addEventListener('click', readFullLesson);
