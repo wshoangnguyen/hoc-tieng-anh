@@ -180,6 +180,8 @@
             text-align: center;
         }
 
+        .selection-row, #vocabStatus { display: none !important; }
+
         .selection-row {
             display: flex;
             gap: 15px;
@@ -1054,22 +1056,11 @@
                 <h1 id="mainTitle"> Word Find Puzzle </h1>
             </div>
             <div id="vocabStatus" class="vocab-status" style="display: none;"></div>
-            <h2>📚 Chọn Chế Độ Chơi</h2>
-            <div class="mode-selector">
-                <button class="mode-btn practice selected" onclick="selectMode('practice')">
-                    📝 Trả Bài
-                </button>
-                <button class="mode-btn highscore" onclick="selectMode('highscore')">
-                    🏆 Thi Đua Điểm Cao
-                </button>
-            </div>
-            <div id="modeInfo" class="mode-info">
-                <strong>TRẢ BÀI:</strong> Hoàn thành tất cả từ vựng trong Level và Unit đã chọn 📖
-            </div>
+            
         </div>
 
         <div id="setupSection" class="setup-section">
-            <h2>⚙️ Cài Đặt Game</h2>
+            
             
             <div class="selection-row">
                 <div class="select-group">
@@ -1162,10 +1153,7 @@
                     <h3>Danh Sách Từ Vựng Bài Học</h3>
                     <div class="word-list-items" id="wordListItems"></div>
                 </div>
-                <div id="leaderboardSection" class="leaderboard" style="display: none;">
-                    <h3>🏆 Bảng Xếp Hạng Top 5</h3>
-                    <div id="leaderboardList"></div>
-                </div>
+                
                 <div class="btn-container">
                     <button class="btn btn-primary" onclick="playAgain()">🔄 Chơi Lại</button>
                 </div>
@@ -1314,10 +1302,11 @@
                             const so = String(b.sach).replace(/\D/g, "") || "1";
                             levelSelect.value = so;
                             onLevelChange();
-                            const us = Object.keys(vocabularyData[so] || {});
-                            if (us.length) { unitSelect.value = us[0]; onUnitChange(); }
+                            const us = Object.keys(vocabData[so] || {});
+                            const uChon = us.indexOf(String(b.unit)) >= 0 ? String(b.unit) : us[0];
+                            if (us.length) { unitSelect.value = uChon; onUnitChange(); }
                             const nut = document.getElementById('startBtn');
-                            if (nut) { nut.disabled = false; startGame(); }
+                            if (nut) { nut.disabled = false; }
                         }
                     } catch(e) {}
                 })
@@ -2230,6 +2219,7 @@
         }
 
         function showLeaderboard() {
+            if (!document.getElementById('leaderboardSection')) return;
             const leaderboard = JSON.parse(localStorage.getItem('letterGridLeaderboard') || '[]');
             const leaderboardSection = document.getElementById('leaderboardSection');
             const leaderboardList = document.getElementById('leaderboardList');
@@ -2319,5 +2309,12 @@
             }
         }
     </script>
+<script>
+/* Chỉ còn một cách chơi: Trả Bài — mở thẳng phần cài đặt */
+(function () {
+  function mo() { try { var e = document.getElementById("setupSection"); if (e) e.style.display = "block"; } catch (err) {} }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mo); else mo();
+})();
+</script>
 </body>
 </html>
