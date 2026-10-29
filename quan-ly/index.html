@@ -487,10 +487,6 @@ header{padding:6px 10px}
     <img id="logoFloat" src="logo-lop.png" loading="lazy" decoding="async" alt="Học tiếng Anh dễ lắm" title="Học tiếng Anh dễ lắm">
     <span class="row" id="congCu" style="gap:6px;margin:0">
       <select id="selVai" title="Xem giao diện với tư cách người khác" style="display:none"></select>
-      <button id="btnThuGon" class="ghost sm" title="Thu gọn đầu trang">⌃</button>
-      <button id="btnXuat" class="ghost sm" title="Xuất toàn bộ dữ liệu ra tệp JSON">⬇</button>
-      <button id="btnNhap" class="ghost sm" title="Nhập dữ liệu từ tệp JSON">⬆</button>
-      <button id="btnIn" class="ghost sm" title="In trang đang xem">🖨</button>
     </span>
   </div>
   <div id="thanhTuan">
@@ -2694,12 +2690,12 @@ document.getElementById("btnXoaTuan").onclick=()=>{
   if(S.buoi_them) delete S.buoi_them[bd];
   S.tuan.splice(tuanDangXem,1); tuanDangXem=Math.max(0,tuanDangXem-1); S.tuan_hien_tai=tuanDangXem; save(); render();
 };
-document.getElementById("btnXuat").onclick=()=>{
+const _bXuat=document.getElementById("btnXuat"); if(_bXuat) _bXuat.onclick=()=>{
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:"application/json"}));
   a.download="lich-day-"+iso(new Date())+".json"; a.click();
 };
-document.getElementById("btnNhap").onclick=()=>document.getElementById("fileNhap").click();
+const _bNhap=document.getElementById("btnNhap"); if(_bNhap) _bNhap.onclick=()=>document.getElementById("fileNhap").click();
 document.getElementById("fileNhap").onchange=e=>{
   const f=e.target.files[0]; if(!f) return; const r=new FileReader();
   r.onload=()=>{ try{ const o=JSON.parse(r.result); if(!o.lop||!o.tuan) throw 0;
@@ -2707,7 +2703,7 @@ document.getElementById("fileNhap").onchange=e=>{
     }catch(err){ alert("Tệp không hợp lệ."); } };
   r.readAsText(f); e.target.value="";
 };
-document.getElementById("btnIn").onclick=()=>window.print();
+const _bIn=document.getElementById("btnIn"); if(_bIn) _bIn.onclick=()=>window.print();
 const _btnInGV=document.getElementById("btnInGV"); if(_btnInGV) _btnInGV.onclick=()=>window.print();
 async function copyLich(ten){
   const t=textLichGV(ten);
