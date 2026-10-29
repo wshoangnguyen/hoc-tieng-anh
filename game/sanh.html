@@ -300,19 +300,20 @@ document.getElementById("sanh").innerHTML = html;
   function veLevel(lv){
     const hop = document.getElementById("hsLvChu");
     if (!hop) return;
-    if (!lv || !lv.ok){ hop.textContent = "Level đã xong: chưa đọc được (thử tải lại trang)."; return; }
-    const ds = (lv.ds || []).filter(function(x){ return (x.level || []).length; });
-    if (!ds.length){
-      hop.innerHTML = "Bài đang học: <b>" + lv.sach + " · Unit " + lv.unit + "</b>. Chưa xong level nào — chơi đúng bài này để bắt đầu tích điểm.";
+    if (!lv || !lv.ok){ hop.textContent = "Hãy chơi một game để bắt đầu tích điểm hôm nay nhé."; return; }
+    const da = (lv.levels || []).map(Number).sort(function(a,b){return a-b;});
+    const thieu = [1,2,3,4,5,6].filter(function(n){ return da.indexOf(n) < 0; });
+    if (!da.length){
+      hop.innerHTML = "Hôm nay bạn chưa hoàn thành level nào. Hãy chơi 1 game ở mỗi level 1, 2, 3, 4, 5, 6 để nhận <b>+5 điểm</b> nhiệm vụ hàng ngày nhé.";
       return;
     }
-    const dong = ds.slice(0, 3).map(function(x){
-      const ten = TEN_TRO[x.game] || x.game;
-      const con = [1,2,3,4,5,6].filter(function(n){ return (x.level || []).indexOf(n) < 0; });
-      return "<b>" + ten + "</b>: xong level " + x.level.join(", ") +
-        (con.length ? " · còn " + con.join(", ") + " để đủ 6 (+5 điểm)" : " · đủ 6 level rồi 🎉");
-    }).join("<br>");
-    hop.innerHTML = "<span style='font-size:11.5px;color:#8b7f63'>" + lv.sach + " · Unit " + lv.unit + "</span><br>" + dong;
+    if (!thieu.length){
+      hop.innerHTML = "Hôm nay bạn đã hoàn thành cả 6 level 🎉 Nhiệm vụ hàng ngày đã xong, mai chơi tiếp nhé.";
+      return;
+    }
+    hop.innerHTML = "Hôm nay bạn đã hoàn thành Level " + da.join(", ") +
+      ", hãy chơi thêm 1 game ở mỗi level " + thieu.join(", ") +
+      " để được <b>+5 điểm</b> nhiệm vụ hàng ngày nhé.";
   }
 
   function veDiem(d, ten, diemWeb){

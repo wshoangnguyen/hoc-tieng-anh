@@ -2,6 +2,7 @@
 
 // Lấy dữ liệu từ vựng từ localStorage
 function getVocabularyData() {
+    if (window.VOCAB_UNIT && window.VOCAB_UNIT.length) return window.VOCAB_UNIT;
     const stored = localStorage.getItem('flashcard_vocabulary');
     if (stored) {
         return JSON.parse(stored);
@@ -83,6 +84,19 @@ function speakWord(word, lang = 'en-US') {
 
 
 // Lấy từ vựng theo danh mục
+// Nạp từ vựng theo đúng Sách + Unit đang chọn (dùng cho mọi game)
+function napBaiGame() {
+    if (!window.GAME || !GAME.sanSang) return Promise.resolve(null);
+    return GAME.sanSang().then(function (b) {
+        if (!b) return null;
+        window.__BAI = b;
+        window.VOCAB_UNIT = (b.tu || []).map(function (x) {
+            return { word: x[0], meaning: x[1] || "", category: "unit" };
+        });
+        return b;
+    }).catch(function () { return null; });
+}
+
 function getVocabularyByCategory(category) {
     const vocab = getVocabularyData();
     if (!vocab) return [];
@@ -139,6 +153,8 @@ function showMessage(message, isSuccess = true) {
 
 // Kiểm tra dữ liệu đã tải chưa
 function checkDataAndRedirect() {
+    // Có bộ chọn Sách/Unit thì không chuyển trang nữa — game tự nạp từ theo unit
+    if (window.GAME && GAME.sanSang) return true;
     const vocab = getVocabularyData();
     if (!vocab || vocab.length === 0) {
         showMessage('⚠️ Chưa có dữ liệu từ vựng! Vui lòng mở file flashcard.html trước.', false);

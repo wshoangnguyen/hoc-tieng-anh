@@ -530,6 +530,9 @@
         
         // Tạo câu hỏi
         function initGame() {
+            currentCategory = "unit";
+            const hopCat = document.querySelector('.category-selector');
+            if (hopCat) hopCat.style.display = 'none';
             const vocab = getVocabularyByCategory(currentCategory);
             if (!vocab || vocab.length === 0) {
                 feedbackArea.innerHTML = 'Không có từ vựng!';
@@ -561,7 +564,8 @@
             answered = false;
             updateScoreDisplay();
             loadQuestion();
-            try { GAME.batDau({game:"quiz", sach:"theo-chu-de", unit:null, nac:1, soCau:questions.length}); } catch(e){}
+            const b = window.__BAI || {};
+            try { GAME.batDau({ game:"quiz", sach: b.sach, unit: b.unit, nac: 1, soCau: questions.length }); } catch(e){}
         }
         
         function getRandomDistractors(correctWord, vocab, count) {
@@ -768,7 +772,7 @@
         // Kiểm tra và khởi tạo game
         if (checkDataAndRedirect()) {
             loadCategories();
-            initGame();
+            if (window.napBaiGame) napBaiGame().then(function(){ initGame(); }); else initGame();
         }
         
         // Đảm bảo khi reset game hoặc thay đổi danh mục, dừng hết interval

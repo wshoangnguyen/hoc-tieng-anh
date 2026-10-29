@@ -362,6 +362,9 @@
         }
         
         function initGame() {
+            currentCategory = "unit";
+            const hopCat = document.querySelector('.category-selector');
+            if (hopCat) hopCat.style.display = 'none';
             const vocab = getVocabularyByCategory(currentCategory);
             if (!vocab || vocab.length === 0) {
                 feedbackDiv.textContent = 'Không có từ vựng!';
@@ -382,7 +385,7 @@
             waitingForNext = false;
             updateScoreDisplay();
             loadQuestion();
-            try { GAME.batDau({game:"spelling", sach:"theo-chu-de", unit:null, soCau:questions.length}); } catch(e){}
+            try { { const b = window.__BAI || {}; GAME.batDau({ game:"spelling", sach: b.sach, unit: b.unit, nac: 1, soCau: questions.length }); } } catch(e){}
         }
         
         function loadQuestion() {
@@ -530,10 +533,11 @@
         });
         
         // Khởi tạo
-        if (checkDataAndRedirect()) {
-            loadCategories();
-            initGame();
-        }
+        if (window.napBaiGame) {
+            napBaiGame().then(function(){
+                if (checkDataAndRedirect()) { loadCategories(); initGame(); }
+            });
+        } else if (checkDataAndRedirect()) { loadCategories(); initGame(); }
     </script>
 </body>
 </html>

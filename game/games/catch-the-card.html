@@ -417,17 +417,18 @@
     
     // Lấy dữ liệu từ vựng
     function loadVocabularyData() {
+        if (window.VOCAB_UNIT && window.VOCAB_UNIT.length) { vocabulary = window.VOCAB_UNIT; return true; }
         const stored = localStorage.getItem('flashcard_vocabulary');
-        if (stored) {
-            vocabulary = JSON.parse(stored);
-            return true;
-        }
+        if (stored) { vocabulary = JSON.parse(stored); return true; }
         return false;
     }
     
     // Tạo danh mục filter
     function buildCategoryFilter() {
         if (!vocabulary.length) return;
+        const hopCat = document.getElementById('categorySelector');
+        if (hopCat) hopCat.style.display = 'none';
+        return;
         const categories = new Set();
         vocabulary.forEach(item => categories.add(item.category));
         const containerCat = document.getElementById('categorySelector');
@@ -474,7 +475,12 @@
         const imagePath = getImageBasePath() + wordObj.word;
         const img = document.createElement('img');
         img.src = `${imagePath}.png`;
-        img.onerror = function() { this.src = `${imagePath}.jpg`; };
+        img.onerror = function() {
+            if (/\.png$/i.test(this.src)) { this.src = `${imagePath}.jpg`; return; }
+            this.style.display = 'none';
+            div.classList.add('khong-anh');
+            wordSpan.style.fontSize = '20px';
+        };
         const wordSpan = document.createElement('div');
         wordSpan.className = 'card-word';
         wordSpan.textContent = wordObj.word;
@@ -943,16 +949,20 @@ function showWinSummary() {
     });
     
     function startGame() {
-        if (!loadVocabularyData()) {
-            targetWordDisplay.innerHTML = '⚠️ Chưa có dữ liệu! Mở flashcard.html trước.';
-            feedbackDiv.innerHTML = '❌ Không tìm thấy từ vựng, hãy vào flashcard.html trước.';
-            return;
-        }
-        buildCategoryFilter();
-        updateGameDimensions();
-        initGame(false);
-        try { GAME.batDau({game:"catch", sach:"theo-chu-de", unit:null, soCau:0}); } catch(e){}
-        animationFrame = requestAnimationFrame(animate);
+        const chay = function () {
+            if (!loadVocabularyData()) {
+                targetWordDisplay.innerHTML = '⚠️ Unit này chưa có từ vựng.';
+                feedbackDiv.innerHTML = '❌ Chọn Unit khác ở thanh trên nhé.';
+                return;
+            }
+            buildCategoryFilter();
+            updateGameDimensions();
+            initGame(false);
+            const b = window.__BAI || {};
+            try { GAME.batDau({ game: "catch", sach: b.sach, unit: b.unit, soCau: vocabulary.length, nac: 1 }); } catch(e){}
+            animationFrame = requestAnimationFrame(animate);
+        };
+        if (window.napBaiGame) napBaiGame().then(chay); else chay();
     }
     
     document.getElementById('resetGameBtn').addEventListener('click', () => resetGame());

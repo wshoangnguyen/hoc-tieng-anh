@@ -394,6 +394,9 @@
         }
         
         function initGame() {
+            currentCategory = "unit";
+            const hopCat = document.getElementById('categorySelector') || document.querySelector('.category-selector');
+            if (hopCat) hopCat.style.display = 'none';
             const vocab = getVocabularyByCategory(currentCategory);
             if (!vocab || vocab.length === 0) {
                 gameBoard.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:white;">Không có từ vựng trong danh mục này</div>';
@@ -450,7 +453,7 @@ if (vocab.length <= maxPairs) {
             updateStats();
             messageArea.textContent = '';
             renderBoard();
-            try { GAME.batDau({game:"matching", sach:"theo-chu-de", unit:null, soCau:0}); } catch(e){}
+            try { { const b = window.__BAI || {}; GAME.batDau({ game:"matching", sach: b.sach, unit: b.unit, nac: 1, soCau: cards.length/2 }); } } catch(e){}
         }
         
         function shuffleCards() {
@@ -622,10 +625,11 @@ if (vocab.length <= maxPairs) {
         });
         
         // Khởi tạo
-        if (checkDataAndRedirect()) {
-            loadCategories();
-            initGame();
-        }
+        if (window.napBaiGame) {
+            napBaiGame().then(function(){
+                if (checkDataAndRedirect()) { loadCategories(); initGame(); }
+            });
+        } else if (checkDataAndRedirect()) { loadCategories(); initGame(); }
     </script>
 </body>
 </html>
