@@ -53,13 +53,8 @@ window.Buddy = (function () {
     the.setAttribute("role", "status");
     the.setAttribute("aria-live", "polite");
     the.innerHTML =
-      '<svg viewBox="0 0 40 40" aria-hidden="true">' +
-      '<ellipse cx="20" cy="24" rx="13" ry="15" fill="#f6c445"/>' +
-      '<ellipse cx="15.5" cy="20" rx="3.4" ry="4.4" fill="#ffe9a3" opacity=".85"/>' +
-      '<circle cx="15.5" cy="25" r="1.9" fill="#5a4207"/><circle cx="24.5" cy="25" r="1.9" fill="#5a4207"/>' +
-      '<path d="M17.5 30q2.5 2 5 0" stroke="#5a4207" stroke-width="1.6" fill="none" stroke-linecap="round"/>' +
-      '<path d="M20 9c0-3 2-4 3.6-4.6" stroke="#6aa84f" stroke-width="2" fill="none" stroke-linecap="round"/>' +
-      '<ellipse cx="24.6" cy="4.6" rx="3" ry="1.8" fill="#7ec24f" transform="rotate(20 24.6 4.6)"/></svg>' +
+      '<img src="/game/assets/buddy-logo-128.png" alt="" aria-hidden="true" ' +
+      'onerror="this.style.display=\'none\'">' +
       '<span class="bn-chu"></span>';
     document.body.appendChild(the);
     chu = the.querySelector(".bn-chu");
@@ -71,7 +66,7 @@ window.Buddy = (function () {
       "font-size:13.5px;line-height:1.4;color:#3c3728;opacity:0;transform:translateY(6px);" +
       "transition:opacity .22s,transform .22s;pointer-events:none}" +
       "#buddyNoi.hien{opacity:1;transform:none}" +
-      "#buddyNoi svg{width:30px;height:30px;flex:none}" +
+      "#buddyNoi img{width:32px;height:32px;flex:none;border-radius:50%}" +
       "@media (prefers-reduced-motion: reduce){#buddyNoi{transition:none}}";
     document.head.appendChild(st);
     return the;

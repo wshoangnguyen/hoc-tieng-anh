@@ -132,7 +132,7 @@
   #buddyThe.gon p, #buddyThe.gon .bd-day, #buddyThe.gon .bd-dap,
   #buddyThe.gon .bd-ten, #buddyThe.gon .bd-dong{display:none}
   #buddyThe.gon .bd-dau{margin:0}
-  #buddyThe.gon svg{width:38px; height:38px}
+  #buddyThe.gon svg, #buddyThe.gon img{width:38px; height:38px}
   @media (max-width:430px){
     #buddyThe{left:10px; right:10px; bottom:10px; width:auto; padding:11px 12px 9px}
     #buddyThe.gon{left:auto; right:10px; width:58px; padding:0}
@@ -398,15 +398,7 @@ document.getElementById("sanh").innerHTML = html;
 <div id="buddyThe" role="status" aria-live="polite" hidden>
   <button class="bd-dong" type="button" aria-label="Đóng lời Buddy">×</button>
   <div class="bd-dau">
-    <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
-      <ellipse cx="20" cy="24" rx="13" ry="15" fill="#f6c445"/>
-      <ellipse cx="15.5" cy="20" rx="3.4" ry="4.4" fill="#ffe9a3" opacity=".85"/>
-      <circle cx="15.5" cy="25" r="1.9" fill="#5a4207"/>
-      <circle cx="24.5" cy="25" r="1.9" fill="#5a4207"/>
-      <path d="M17.5 30q2.5 2 5 0" stroke="#5a4207" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <path d="M20 9c0-3 2-4 3.6-4.6" stroke="#6aa84f" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <ellipse cx="24.6" cy="4.6" rx="3" ry="1.8" fill="#7ec24f" transform="rotate(20 24.6 4.6)"/>
-    </svg>
+    <img src="/game/assets/buddy-logo-128.png" width="34" height="34" alt="Buddy" style="flex:none;border-radius:50%">
     <div class="bd-ten">Buddy<small>hạt giống vàng</small></div>
   </div>
   <p id="bdChu"></p>
