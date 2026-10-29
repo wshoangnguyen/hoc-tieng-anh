@@ -60,7 +60,13 @@ window.GAME = (function () {
   }
 
   /* ---------- thanh nhỏ ---------- */
-  let thanh, nutMa, chonNac, nhanDiem, chonSach, chonUnit;
+  let thanh, nutMa, chonNac, nhanDiem, chonSach, chonUnit, nutChe;
+  function veChe(){
+    if (!nutChe) return;
+    nutChe.textContent = cheDoDau ? "👥 Thi đấu" : "👤 1 người";
+    nutChe.classList.toggle("dau", !!cheDoDau);
+    nutChe.title = cheDoDau ? "Đang ở chế độ thi đấu trên lớp — không cộng điểm" : "Chế độ một người — có tích điểm";
+  }
   function dungThanh() {
     if (thanh || !document.body) return;
     thanh = el("div", "gcore-thanh");
@@ -70,9 +76,17 @@ window.GAME = (function () {
     chonSach.onchange = () => { datBai(chonSach.value, null); };
     chonUnit.onchange = () => { datBai(chonSach.value, Number(chonUnit.value)); };
     chonNac = el("span", "gcore-nac"); chonNac.title = "Level của lượt chơi này (do trò chơi quy định)";
+    nutChe = el("button", "gcore-che", "👤 1 người");
+    nutChe.onclick = function(){
+      cheDoDau = !cheDoDau;
+      try { localStorage.setItem("game_thidau", cheDoDau ? "1" : "0"); } catch(e){}
+      veChe();
+    };
     nhanDiem = el("span", "gcore-diem", "");
     thanh.appendChild(nutMa); thanh.appendChild(chonSach); thanh.appendChild(chonUnit);
-    thanh.appendChild(chonNac); thanh.appendChild(nhanDiem);
+    thanh.appendChild(nutChe); thanh.appendChild(chonNac); thanh.appendChild(nhanDiem);
+    try { cheDoDau = localStorage.getItem("game_thidau") === "1"; } catch(e){}
+    veChe();
     document.body.appendChild(thanh);
     capNhatThanh(); veChonBai();
   }
