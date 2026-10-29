@@ -395,37 +395,39 @@
     // DOM helpers
     function showToast(msg, bg) { let t=document.createElement('div'); t.textContent=msg; t.style.cssText=`position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:${bg}; color:white; padding:10px 20px; border-radius:30px; z-index:3000; font-weight:bold; animation:fadeInOut 2s ease;`; document.body.appendChild(t); setTimeout(()=>t.remove(),2500); }
     
-    // Tải file text.txt
+    // Nạp bài theo đúng Sách + Unit đang chọn (thanh trên), dựng nội dung đúng định dạng file text.txt cũ
     async function loadVocabularyFile() {
         const statusDiv = document.getElementById('vocabStatus');
-        const levelSelect = document.getElementById('levelSelect');
+        // ẩn ô chọn Level/Story riêng + nút LOAD: bài lấy theo thanh Sách/Unit ở trên
+        ['levelSelect', 'unitSelect', 'loadBtn'].forEach(function (id) {
+            const o = document.getElementById(id);
+            if (o) o.style.display = 'none';
+        });
         try {
-            const response = await fetch('text.txt');
-            if(!response.ok) throw new Error(`HTTP ${response.status}`);
-            const content = await response.text();
-            parseVocabularyStructure(content);
+            statusDiv.className = 'vocab-status status-loading';
+            statusDiv.textContent = '⏳ Đang nạp từ của bài đang chọn…';
+            const bai = (window.GAME && GAME.sanSang) ? await GAME.sanSang() : null;
+            window.__BAI = bai;
+            if (!bai) throw new Error('chưa nạp được bài, kiểm tra Sách/Unit ở thanh trên');
+            const tu = (bai.tu || []).filter(function (x) { return x && x[0] && x[1]; });
+            if (!tu.length) throw new Error('unit này chưa có từ vựng');
+            const tenSach = 'Super Minds ' + String(bai.sach || '').replace(/\D/g, '');
+            const tenUnit = 'Unit ' + bai.unit;
+            const lamSach = function (s) { return String(s).replace(/\|/g, ' ').replace(/\s+/g, ' ').trim(); };
+            const dong = ['=== ' + tenSach + ' ===', '[' + tenUnit + ']'];
+            dong.push('[VN] ' + tu.map(function (x) { return lamSach(x[1]); }).join('| '));
+            dong.push('[EN] ' + tu.map(function (x) { return lamSach(x[0]); }).join('| '));
+            parseVocabularyStructure(dong.join('\n'));
+            const kho = vocabularyStructure[tenSach] && vocabularyStructure[tenSach][tenUnit];
+            if (!kho || !kho.vi.length) throw new Error('không dựng được danh sách từ của bài');
             statusDiv.className = 'vocab-status status-success';
-            statusDiv.textContent = '✅ Đã tải từ điển!';
-            levelSelect.disabled = false;
-            levelSelect.innerHTML = '<option value="">-- Chọn Level --</option>';
-            for(let level in vocabularyStructure) {
-                let opt = document.createElement('option'); opt.value=level; opt.textContent=level;
-                levelSelect.appendChild(opt);
-            }
-            levelSelect.onchange = function() {
-                if(this.value) {
-                    selectedLevel = this.value;
-                    const unitSel = document.getElementById('unitSelect');
-                    unitSel.disabled = false;
-                    unitSel.innerHTML = '<option value="">-- Chọn Story --</option>';
-                    Object.keys(vocabularyStructure[this.value]).forEach(unit => {
-                        let opt = document.createElement('option'); opt.value=unit; opt.textContent=unit;
-                        unitSel.appendChild(opt);
-                    });
-                } else { document.getElementById('unitSelect').disabled=true; document.getElementById('loadBtn').disabled=true; document.getElementById('startBtn').disabled=true; }
-            };
-            document.getElementById('unitSelect').onchange = function() { if(selectedLevel && this.value) document.getElementById('loadBtn').disabled=false; else document.getElementById('loadBtn').disabled=true; };
-        } catch(e) { statusDiv.className='vocab-status status-error'; statusDiv.textContent='❌ Lỗi tải text.txt'; console.error(e); }
+            statusDiv.textContent = '✅ ' + tenSach + ' · ' + tenUnit + ' (' + kho.vi.length + ' từ)';
+            loadStory(tenSach, tenUnit);
+        } catch(e) {
+            statusDiv.className = 'vocab-status status-error';
+            statusDiv.textContent = '❌ Lỗi nạp bài: ' + (e && e.message ? e.message : e);
+            console.error(e);
+        }
     }
     
 function parseVocabularyStructure(fileContent) {
@@ -522,8 +524,8 @@ function parseVocabularyStructure(fileContent) {
         document.getElementById('modeInfo').innerHTML = mode==='vi-en' ? '<strong>VIỆT → ANH:</strong> Dịch từ Việt sang Anh' : '<strong>ANH → VIỆT:</strong> Dịch từ Anh sang Việt';
     }
     
-    function loadStory() {
-        const level = document.getElementById('levelSelect').value, unit = document.getElementById('unitSelect').value;
+    function loadStory(levelArg, unitArg) {
+        const level = levelArg || document.getElementById('levelSelect').value, unit = unitArg || document.getElementById('unitSelect').value;
         if(!level||!unit) return alert('Chọn Level và Story');
         selectedLevel=level; selectedUnit=unit;
         currentStory = vocabularyStructure[level][unit];
@@ -545,7 +547,8 @@ function parseVocabularyStructure(fileContent) {
     }
     
     function startGame() {
-        try { GAME.batDau({game:"words-fall", sach:(typeof selectedLevel != "undefined" ? selectedLevel : ""), unit:(typeof unit != "undefined" ? unit : null), soCau:0}); } catch(e){}
+        const bDau = window.__BAI || null;
+        try { GAME.batDau({ game: "words-fall", sach: bDau ? bDau.sach : "SM1", unit: bDau ? bDau.unit : 0, soCau: (currentStory && currentStory.vi ? currentStory.vi.length : 0) }); } catch(e){}
         if(!currentStory) return alert('Hãy load story trước!');
         score=0; combo=0; hintCount=3; timeElapsed=0; isPaused=false; isGameActive=true; selectedEnglishTile=null;
         easyMode = document.getElementById('easyModeSwitch').checked;

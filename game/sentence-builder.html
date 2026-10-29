@@ -1564,90 +1564,169 @@
             });
         }
 
-        // ========== LOAD VOCABULARY FILE ==========
+        // ========== NẠP CÂU THEO ĐÚNG BÀI ĐANG CHỌN ==========
+        let baiHienTai = null;
+
+        function tenSach(sach) {
+            return "Super Minds " + String(sach || "").replace(/\D/g, "");
+        }
+        function boNgoac(s) {
+            return String(s || "").replace(/[()]/g, "").replace(/\s+/g, " ").trim();
+        }
+        function dongTuBai(bai) {
+            const m = {};
+            ((bai && bai.tu) || []).forEach(function (x) {
+                const k = String((x && x[0]) || "").toLowerCase().replace(/[^a-z0-9' ]/g, "").trim();
+                if (k && x[1]) m[k] = x[1];
+            });
+            return m;
+        }
+        function nghiaCau(cau, tuMap) {
+            const words = String(cau || "").split(" ").filter(Boolean);
+            if (!words.length) return "";
+            let khop = 0;
+            const ra = words.map(function (w) {
+                const k = w.toLowerCase().replace(/[^a-z0-9' ]/g, "").trim();
+                if (tuMap[k]) { khop++; return tuMap[k]; }
+                return w;
+            });
+            return khop / words.length >= 0.5 ? ra.join(" ") : "";
+        }
+        function themCau(ds, daCo, obj) {
+            const cau = String(obj.correctSentence || "").replace(/\s+/g, " ").trim();
+            if (!cau) return;
+            if (cau.split(" ").filter(Boolean).length < 2) return;
+            const key = cau.toLowerCase();
+            if (daCo[key]) return;
+            daCo[key] = true;
+            obj.words = cau;
+            obj.correctSentence = cau;
+            ds.push(obj);
+        }
+
+        // câu của đúng bài trong game/reading.json (id dạng SM1_Unit7)
+        async function cauTuReading(bai) {
+            try {
+                const r = await fetch('reading.json');
+                if (!r.ok) return [];
+                const ds = await r.json();
+                const id = String(bai.sach) + "_Unit" + bai.unit;
+                const baiDoc = (ds || []).find(function (x) { return x && x.id === id; });
+                if (!baiDoc || !baiDoc.sentences) return [];
+                return baiDoc.sentences.map(function (w) { return w.join(" "); });
+            } catch (e) { return []; }
+        }
+
+        // câu của đúng Sách + Unit trong sentences.txt (dự phòng khi bài chưa có trong reading.json)
+        async function cauTuSentencesTxt(bai) {
+            try {
+                const r = await fetch('sentences.txt');
+                if (!r.ok) return [];
+                const noiDung = await r.text();
+                const ra = [];
+                const soSach = String(bai.sach || "").replace(/\D/g, "");
+                let sachNay = false, unitNay = false;
+                for (let dong of noiDung.split("\n")) {
+                    dong = dong.trim();
+                    if (!dong) continue;
+                    if (dong.startsWith("===") && dong.endsWith("===")) {
+                        const so = (dong.replace(/=/g, "").match(/(\d+)/) || [])[1] || "";
+                        sachNay = so === soSach;
+                        unitNay = false;
+                        continue;
+                    }
+                    if (dong.startsWith("[") && dong.endsWith("]")) {
+                        const mUnit = dong.slice(1, -1).match(/^U(\d+)/i);
+                        unitNay = !!mUnit && Number(mUnit[1]) === Number(bai.unit);
+                        continue;
+                    }
+                    if (!sachNay || !unitNay || dong.indexOf("|") < 0) continue;
+                    const phan = dong.split("|").map(function (s) { return s.trim(); });
+                    if (phan.length >= 2 && phan[0] && phan[1]) {
+                        ra.push({ words: phan[0], correctSentence: phan[1], formula: phan[2] || "S + V + O", example: phan[3] || "" });
+                    }
+                }
+                return ra;
+            } catch (e) { return []; }
+        }
+
+        // Ghép danh sách câu: khuôn của Unit → reading.json → sentences.txt (đủ tối thiểu 5 câu)
+        async function dungCauTuBai(bai) {
+            const ds = [], daCo = {};
+            const tuMap = dongTuBai(bai);
+            const ten = tenSach(bai.sach);
+            const nhanBai = bai.ten ? ("Bài: " + bai.ten) : (ten + " · Unit " + bai.unit);
+
+            // 1) câu mẫu (khuôn) của đúng Unit
+            ((bai && bai.khuon) || []).forEach(function (k) {
+                if (!k) return;
+                if (k.indexOf("/") >= 0 || k.indexOf("...") >= 0) return; // bỏ khuôn có phương án chọn / chỗ trống
+                themCau(ds, daCo, {
+                    formula: String(k).trim(),
+                    example: nghiaCau(boNgoac(k), tuMap) || nhanBai,
+                    correctSentence: boNgoac(k)
+                });
+            });
+
+            // 2) bổ sung câu đọc của đúng bài trong reading.json
+            if (ds.length < 5) {
+                const cauDoc = await cauTuReading(bai);
+                cauDoc.forEach(function (c) {
+                    const nghia = nghiaCau(c, tuMap);
+                    themCau(ds, daCo, { formula: "Câu trong bài đọc", example: nghia || nhanBai, correctSentence: c });
+                });
+            }
+
+            // 3) còn thiếu thì lấy câu của đúng Unit trong sentences.txt
+            if (ds.length < 5) {
+                const cauFile = await cauTuSentencesTxt(bai);
+                cauFile.forEach(function (o) { themCau(ds, daCo, o); });
+            }
+
+            return ds.slice(0, 10);
+        }
+
         async function loadVocabularyFile() {
             const statusDiv = document.getElementById('vocabStatus');
-            const levelSelect = document.getElementById('levelSelect');
-            const unitSelect = document.getElementById('unitSelect');
-            const loadBtn = document.getElementById('loadBtn');
             const startBtn = document.getElementById('startBtn');
-            
+            // ẩn ô chọn Level/Unit riêng + nút LOAD: bài lấy theo thanh Sách/Unit ở trên
+            const khung = document.querySelector('.vocab-controls');
+            if (khung) khung.style.display = 'none';
+            const loadBtnCu = document.getElementById('loadBtn');
+            if (loadBtnCu) loadBtnCu.style.display = 'none';
+
             try {
                 statusDiv.className = 'vocab-status status-loading';
-                statusDiv.textContent = '⏳ Loading sentences from file...';
-                
-                // Try to load sentences.txt first, then vocabulary.txt as fallback
-                let response = await fetch('sentences.txt');
-                if (!response.ok) {
-                    response = await fetch('vocabulary.txt');
-                }
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const fileContent = await response.text();
-                
-                if (!fileContent.trim()) {
-                    throw new Error('File is empty');
-                }
-                
-                vocabularyData = fileContent;
+                statusDiv.textContent = '⏳ Đang nạp câu của bài đang chọn…';
+
+                const bai = (window.GAME && GAME.sanSang) ? await GAME.sanSang() : null;
+                window.__BAI = bai;
+                baiHienTai = bai;
+                if (!bai) throw new Error('chưa nạp được bài, kiểm tra Sách/Unit ở thanh trên');
+
+                sentences = await dungCauTuBai(bai);
+                if (!sentences.length) throw new Error('bài này chưa có câu mẫu để ghép');
+
+                selectedLevel = tenSach(bai.sach);
+                selectedUnit = 'Unit ' + bai.unit;
                 vocabularyLoaded = true;
-                
-                // Parse vocabulary structure
-                parseVocabularyStructure();
-                
-                // Update status
-                statusDiv.className = 'vocab-status status-success';
-                statusDiv.textContent = '✅ File loaded!';
-                
-                // Enable controls
-                levelSelect.disabled = false;
-                levelSelect.innerHTML = '<option value="">-- Select Level --</option>';
-                
-                // Add levels to dropdown
-                for (const level in vocabularyStructure) {
-                    const option = document.createElement('option');
-                    option.value = level;
-                    option.textContent = level;
-                    levelSelect.appendChild(option);
-                }
-                
-                // Event listener for level select
-                levelSelect.addEventListener('change', function() {
-                    if (this.value) {
-                        // Update unit select
-                        unitSelect.disabled = false;
-                        loadBtn.disabled = false;
-                        
-                        // Clear and add units
-                        unitSelect.innerHTML = '<option value="">-- Select Unit --</option>';
-                        const units = Object.keys(vocabularyStructure[this.value]);
-                        units.forEach(unit => {
-                            const option = document.createElement('option');
-                            option.value = unit;
-                            option.textContent = unit;
-                            unitSelect.appendChild(option);
-                        });
-                    } else {
-                        unitSelect.disabled = true;
-                        loadBtn.disabled = true;
-                        startBtn.disabled = true;
-                    }
+                gameResults = [];
+
+                const previews = document.querySelectorAll('#sentencePreview');
+                previews.forEach(function (p, i) {
+                    if (i < previews.length - 1) { p.style.display = 'none'; return; }
+                    p.style.display = 'block';
+                    p.textContent = '✅ ' + sentences.length + ' câu của bài — bấm START BUILDING!';
                 });
-                
+
+                statusDiv.className = 'vocab-status status-success';
+                statusDiv.textContent = '✅ Đang dùng ' + selectedLevel + ' · Unit ' + bai.unit + ' (' + sentences.length + ' câu)';
+                startBtn.disabled = false;
             } catch (error) {
-                console.error('Error loading sentences file:', error);
+                console.error('Lỗi nạp câu:', error);
                 vocabularyLoaded = false;
-                
                 statusDiv.className = 'vocab-status status-error';
-                statusDiv.textContent = '❌ Error loading sentences. ';
-                
-                // Disable all controls
-                levelSelect.disabled = true;
-                unitSelect.disabled = true;
-                loadBtn.disabled = true;
+                statusDiv.textContent = '❌ Chưa nạp được câu: ' + (error && error.message ? error.message : error);
                 startBtn.disabled = true;
             }
         }
@@ -1798,7 +1877,8 @@
 
         // ========== START GAME ==========
         function startGame() {
-            try { GAME.batDau({game:"sentence-builder", sach:(typeof currentLevel != "undefined" ? currentLevel : ""), unit:(typeof currentUnit != "undefined" ? currentUnit : null), soCau:0}); } catch(e){}
+            const bDau = baiHienTai || window.__BAI || null;
+            try { GAME.batDau({ game: "sentence-builder", sach: bDau ? bDau.sach : "SM1", unit: bDau ? bDau.unit : 0, soCau: (sentences || []).length }); } catch(e){}
             // Check if sentences are loaded
             if (!sentences || sentences.length === 0) {
                 alert('No sentences loaded! Please select Level and Unit, then click LOAD SENTENCES.');
