@@ -183,6 +183,12 @@
     doc.classList.add("mo"); doc.scrollTop = 0;
   }
 
+  var nutVi = document.getElementById("nutVi");
+  if (nutVi) nutVi.addEventListener("click", function(){
+    document.body.classList.toggle("xem-vi");
+    nutVi.textContent = document.body.classList.contains("xem-vi") ? "🇻🇳 Ẩn tiếng Việt" : "🇻🇳 Hiện tiếng Việt";
+  });
+
   document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); var a=document.getElementById("docAm"); if(a){ try{a.pause();}catch(e){} } });
   doc.addEventListener("click", function(e){ if (e.target === doc){ doc.classList.remove("mo"); var a=document.getElementById("docAm"); if(a){ try{a.pause();}catch(e2){} } } });
 
