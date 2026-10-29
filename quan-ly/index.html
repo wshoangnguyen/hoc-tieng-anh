@@ -3610,6 +3610,77 @@ function veBaiDayModal(){
   m.querySelectorAll("[data-hoso2]").forEach(a=>a.onclick=(e)=>{e.preventDefault(); moHoSoHV(a.dataset.hoso2);});
 }
 
+
+/* ===== kỳ (lớp cũ) của một học viên ===== */
+function kyCuaHV(ma){
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return [];
+  const out=[];
+  (h.lich_su_lop||[]).forEach(x=>{
+    if(!x||!x.lop||x.lop===h.lop) return;
+    if(out.some(o=>o.ten===x.lop)) return;
+    out.push({ten:x.lop, tu:x.tu_ngay||"", den:x.den_ngay||"", cur:false});
+  });
+  const lop=(S.lop||[]).find(l=>l.ten===h.lop)||null;
+  let tu="", sach="";
+  if(lop && Array.isArray(lop.ky) && lop.ky.length){
+    const k=lop.ky[lop.ky.length-1]; tu=k.tu_ngay||""; sach=k.sach||"";
+  }
+  out.push({ten:h.lop, tu:tu||h.lop_tu||"", den:"", cur:true, sach:sach});
+  return out;
+}
+function kyChipsHTML(ma){
+  const ds=kyCuaHV(ma);
+  if(ds.length<2) return "";
+  const nut=ds.map(k=>`<button class="chip ky-chip${k.cur?" on":""}" data-ma="${esc(ma)}" data-ky="${esc(k.ten)}"
+      data-cur="${k.cur?1:0}" title="${k.cur?"Lớp đang học":"Lớp cũ — bấm để xem kỳ "+esc(k.ten)}"
+      style="cursor:${k.cur?"default":"pointer"};${k.cur?"background:#fbf1d8;border-color:#e6cf96;font-weight:700":""}">${esc(k.ten)}</button>`).join("");
+  return `<div class="ky-row" data-kyrow="${esc(ma)}" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0 2px">
+    <span class="hint" style="margin-right:2px">Lớp đã học:</span>${nut}</div>`;
+}
+function moKyCu(ma, ten){
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
+  const cu=(h.lich_su_lop||[]).find(x=>x.lop===ten)||{};
+  const lop=(S.lop||[]).find(l=>l.ten===ten)||null;
+  let sachCode="", sach=null;
+  if(lop && Array.isArray(lop.ky)){ const k=lop.ky.find(x=>x.ten===ten); if(k) sachCode=k.sach||""; }
+  if(!sachCode){ const m=/^(SM\s*\d|A2|B1|B2)/i.exec(ten); if(m){ const c=m[1].replace(/\s+/g,"").toUpperCase(); sachCode=c.startsWith("SM")?c:("OW"+c); } }
+  sach=THU_VIEN.books.find(b=>b.code===sachCode)||null;
+  const d=(S.diem_ky&&S.diem_ky[ma]&&S.diem_ky[ma][ten])||null;
+  /* đi học: đếm buổi của lớp trong khoảng thời gian của kỳ */
+  const tu=cu.tu_ngay||"", den=cu.den_ngay||"9999-12-31";
+  let co=0, tong=0;
+  Object.keys(S.diem_danh||{}).forEach(k=>{
+    const p=k.split("|"); if(p.length<3||p[2]!==ma||p[1]!==ten) return;
+    if(p[0]<tu||p[0]>den) return;
+    tong++; if(S.diem_danh[k]==="co"||S.diem_danh[k]==="tre") co++;
+  });
+  const KY=[["doc","Đọc"],["noi","Nói"],["nghe","Nghe"],["viet","Viết"]];
+  const coDiem=d && KY.some(([k])=>d[k]!==null&&d[k]!==undefined&&d[k]!=="");
+  let htm=`<div class="modal" style="max-width:560px"><div class="row"><h3 style="margin:0">📁 ${esc(ten)}</h3>
+    <span class="hint">${sach?esc(sach.ten):"kỳ cũ"}</span><span style="flex:1"></span>
+    <button class="ghost sm" onclick="this.closest('.modal').parentElement.style.display='none'">✕</button></div>`;
+  htm+=`<p class="hint" style="margin:4px 0 8px">${tu?ngayVN(tu):"?"} → ${cu.den_ngay?ngayVN(cu.den_ngay):"?"}</p>`;
+  if(coDiem){
+    htm+=`<div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:8px">`+
+      KY.map(([k,t])=>{ const v=d[k]; return `<span class="chip" style="font-size:12px">${t} <b>${(v===null||v===undefined||v==="")?"—":v}</b></span>`; }).join("")+
+      `</div>`;
+    if(d.ho_tro) htm+=`<p class="hint" style="margin:2px 0"><b>Hỗ trợ:</b> ${esc(d.ho_tro)}</p>`;
+    if(d.tuong_tac) htm+=`<p class="hint" style="margin:2px 0"><b>Tương tác:</b> ${esc(d.tuong_tac)}</p>`;
+    if(d.nhan_xet) htm+=`<p style="margin:6px 0;font-size:13px"><b>Nhận xét của GV:</b> ${esc(d.nhan_xet)}</p>`;
+  } else {
+    htm+=`<p class="hint">Kỳ này chưa có điểm 4 kỹ năng được lưu.</p>`;
+  }
+  htm+=`<p class="hint" style="margin:6px 0">Đi học: <b>${co}</b>/${tong||0} buổi có ghi điểm danh.</p>`;
+  htm+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" onclick="this.closest('.modal').parentElement.style.display='none'">Đóng</button></div></div>`;
+  moModal(htm);
+}
+document.addEventListener("click", function(e){
+  const b=e.target.closest && e.target.closest(".ky-chip");
+  if(!b) return;
+  if(b.dataset.cur==="1") return;
+  moKyCu(b.dataset.ma, b.dataset.ky);
+});
+
 /* ---- hồ sơ chi tiết từng học viên ---- */
 function moHoSoHV(ma){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
@@ -3625,7 +3696,7 @@ function moHoSoHV(ma){
     <button class="ghost sm" id="hsX">✕</button></div>`;
   if(!sach){ htm+=`<p class="hint">Chưa rõ lớp/sách của em này.</p></div>`; moModal(htm); return; }
   htm+=`<p class="hint" style="margin:6px 0">Đã học <b>${dem.da+dem.dat+dem.vuot+dem.khong}</b>/${tong} mục · Đạt <b>${dem.dat}</b> · Vượt <b>${dem.vuot}</b> · Chưa đạt <b>${dem.khong}</b></p>`;
-  htm+=`<div id="hsGame"></div>`;
+  htm+=kyChipsHTML(ma);
   htm+=`<div class="bd-luoi">`+sach.units.map(u=>{const ms=mucCuaSach(sach.id).filter(i=>i.unit===u);
       return `<div class="bd-hang"><span class="bd-u">U${u}</span>`+ms.map(i=>{const t=(td[i.id]||{}).t||"chua";
         return `<span class="bd-c" title="${esc(i.ten)} — ${TT_TEN[t]}" style="background:${TT_MAU[t]}"></span>`;}).join("")+`</div>`;}).join("")+`</div>`;
@@ -3636,7 +3707,7 @@ function moHoSoHV(ma){
   if(notes.length) htm+=`<h4 style="margin:12px 0 4px">Ghi chú</h4>`+notes.map(n=>`<div class="hint">• ${ngayVN(n.ngay)}: ${esc(n.noi_dung)}</div>`).join("");
   htm+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" id="hsX2">Đóng</button></div></div>`;
   moModal(htm);
-  try{ veGameHV(ma); }catch(e){}
+
   const d1=document.getElementById("hsX"), d2=document.getElementById("hsX2");
   const dong=()=>{const m=document.getElementById("bdModal"); if(m){m.style.display="none"; m.dataset.bd="";}};
   if(d1) d1.onclick=dong; if(d2) d2.onclick=dong;
@@ -3765,6 +3836,7 @@ function moTienTrinhHV(ma, giu){
   const htm=`<div class="modal" style="max-width:1000px;width:94vw"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
     <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span>${oThongKe(ma)}
     <button class="ghost sm" id="ttX">✕</button></div>
+    ${kyChipsHTML(ma)}
     <div class="row" style="margin:6px 0 2px;gap:6px;flex-wrap:wrap">
       <select id="ttSach" style="max-width:250px">${optBook}</select>
       <select id="ttUnit">${optUnit}</select>
