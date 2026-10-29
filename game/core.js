@@ -215,6 +215,16 @@ window.GAME = (function () {
   function ketThuc(extra) {
     if (!phien || daKetThuc) return Promise.resolve(null);
     daKetThuc = true;
+    // Nhiệm vụ ngày: lượt này nhận level kế tiếp còn thiếu (trừ trò đã cố định level)
+    if (!cfg.khoaNac && maHV() && !cheDoDau) {
+      return rpc("game_level_tiep", { p_ma: maHV() })
+        .then((n) => { if (n != null && !isNaN(Number(n))) cfg.nac = Number(n); return chayKetThuc(extra); })
+        .catch(() => chayKetThuc(extra));
+    }
+    return Promise.resolve(chayKetThuc(extra));
+  }
+
+  function chayKetThuc(extra) {
     const giay = Math.round((Date.now() - phien.batDau) / 1000);
     const soCau = extra && extra.soCau != null ? Number(extra.soCau) : phien.soCau;
     const soDung = extra && extra.soDung != null ? Number(extra.soDung) : phien.dung;
@@ -316,7 +326,7 @@ window.GAME = (function () {
 
     if (loi) {
       hop.appendChild(el("h3", null, "Chưa lưu được điểm"));
-      hop.appendChild(el("p", null, "Mã này chưa có trong danh sách lớp. Con hỏi cô giáo mã đúng nhé — vẫn chơi được nhưng chưa cộng điểm."));
+      hop.appendChild(el("p", null, "Mã này chưa có trong danh sách lớp. Bạn hỏi cô giáo mã đúng nhé — vẫn chơi được nhưng chưa cộng điểm."));
     } else if (!maHV()) {
       hop.appendChild(el("h3", null, "Chơi giỏi lắm!"));
       hop.appendChild(el("p", null, "Chưa nhập mã học viên nên lần này chưa cộng điểm."));
@@ -344,11 +354,11 @@ window.GAME = (function () {
           (d.bai_dang_hoc ? " (" + d.bai_dang_hoc + ")" : "") + ". Chơi đúng bài đang học mới cộng điểm nhé."));
       }
       if ((d.con_lai_hom_nay || 0) === 0) {
-        hop.appendChild(el("p", "gcore-nhac", "Hôm nay con đã đạt 16 điểm — chơi thêm vẫn vui nhưng không cộng điểm nữa. Mai chơi tiếp nhé!"));
+        hop.appendChild(el("p", "gcore-nhac", "Hôm nay bạn đã đạt 16 điểm — chơi thêm vẫn vui nhưng không cộng điểm nữa. Mai chơi tiếp nhé!"));
       } else {
         hop.appendChild(el("p", "gcore-goiy", "Còn " + d.con_lai_hom_nay + " điểm cho hôm nay."));
       }
-      if ((d.nac_da_xong || 0) >= 6) hop.appendChild(el("p", "gcore-goiy", "Con đã xong cả 6 level của phần này 🎉"));
+      if ((d.nac_da_xong || 0) >= 6) hop.appendChild(el("p", "gcore-goiy", "Bạn đã xong cả 6 level của phần này 🎉"));
     } else if (maHV()) {
       hop.appendChild(el("p", "gcore-goiy", "Ước tính +" + (kq.ht ? 1 : 0) + " điểm — sẽ cộng khi có mạng."));
     }
@@ -362,7 +372,7 @@ window.GAME = (function () {
       hop.appendChild(ds);
     }
 
-    if (d && d.thidau) hop.appendChild(el("p", "gcore-goiy", "Chế độ thi đấu trên lớp — lượt này không cộng điểm. Muốn tích điểm, con chơi lại ở chế độ một người nhé."));
+    if (d && d.thidau) hop.appendChild(el("p", "gcore-goiy", "Chế độ thi đấu trên lớp — lượt này không cộng điểm. Muốn tích điểm, bạn chơi lại ở chế độ một người nhé."));
 
     hop.appendChild(el("p", "gcore-luat", "🎯 " + QUY_TAC));
 

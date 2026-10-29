@@ -150,14 +150,14 @@
 
 <section class="hoso">
   <div class="hs-card">
-    <h2>👋 Con nhập mã học viên một lần</h2>
-    <p class="mo">Nhập ở đây rồi vào trò nào cũng được — điểm tự cộng vào phiếu của con, không phải nhập lại.</p>
+    <h2>👋 Bạn nhập mã học viên một lần</h2>
+    <p class="mo">Nhập ở đây rồi vào trò nào cũng được — điểm tự cộng vào phiếu của bạn, không phải nhập lại.</p>
     <div class="hs-nhap">
       <input id="maHV" placeholder="VD: HV0014" autocomplete="off" spellcheck="false" aria-label="Mã học viên">
       <button id="luuMa" type="button">Lưu mã</button>
     </div>
     <div class="hs-ten" id="hsTen">
-      <label for="tenHS">Con tên gì?</label>
+      <label for="tenHS">Bạn tên gì?</label>
       <input id="tenHS" placeholder="VD: Minh An" autocomplete="off">
     </div>
     <p class="hs-kq" id="hsKq">Chưa nhập mã thì vẫn chơi được, nhưng điểm sẽ không về phiếu.</p>
@@ -328,7 +328,7 @@ document.getElementById("sanh").innerHTML = html;
       `<div class="hs-lv" id="hsLv" style="flex:3.4;padding:8px 6px;text-align:left"><span id="hsLvChu" style="font-size:13px;line-height:1.45;color:#5c4d2c">Đang xem level đã xong…</span></div>`;
     kq.className = "hs-kq ok";
     kq.innerHTML = (ten ? `Xin chào <b>${ten}</b>! ` : "") +
-      `Điểm của con đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
+      `Điểm của bạn đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
     if (!ten) { hopTen.classList.add("on"); oTen.value = ""; oTen.placeholder = "VD: Minh An"; }
     else hopTen.classList.remove("on");
   }
@@ -343,7 +343,7 @@ document.getElementById("sanh").innerHTML = html;
     ]);
     if (!x || x.ma == null) {
       kq.className = "hs-kq";
-      kq.innerHTML = "Chưa tìm thấy mã này. Con kiểm tra lại mã rồi bấm Lưu mã nhé (vẫn chơi được, nhưng chưa cộng điểm).";
+      kq.innerHTML = "Chưa tìm thấy mã này. Bạn kiểm tra lại mã rồi bấm Lưu mã nhé (vẫn chơi được, nhưng chưa cộng điểm).";
       hopDiem.innerHTML = "";
       return;
     }
@@ -364,7 +364,7 @@ document.getElementById("sanh").innerHTML = html;
     const ma = chuanMa(oMa.value);
     if (ma.length < 3) {
       kq.className = "hs-kq";
-      kq.textContent = "Mã học viên có dạng HV0014 — con nhập lại giúp cô nhé.";
+      kq.textContent = "Mã học viên có dạng HV0014 — bạn nhập lại giúp cô nhé.";
       return;
     }
     localStorage.setItem("game_ma_hv", ma);

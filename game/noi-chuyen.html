@@ -60,7 +60,7 @@
 <div class="wrap">
   <div class="top"><a href="sanh.html">← Sảnh trò chơi</a></div>
   <h1>💬 Level 6 · Nói chuyện với AI</h1>
-  <p class="sub">Con nói chuyện với bạn AI bằng tiếng Anh, 6 lượt cho mỗi Unit. Mỗi câu trả lời được chấm ngay: đúng thì đi tiếp, chưa đúng thì AI chỉ đúng chỗ cần sửa.</p>
+  <p class="sub">Bạn nói chuyện với bạn AI bằng tiếng Anh, 6 lượt cho mỗi Unit. Mỗi câu trả lời được chấm ngay: đúng thì đi tiếp, chưa đúng thì AI chỉ đúng chỗ cần sửa.</p>
 
   <div class="card" style="margin-bottom:12px"><div id="hsBar"></div></div>
 
@@ -138,15 +138,15 @@ function taoKichBan(b) {
     /* SM1–SM2: câu ngắn, trả lời 1 từ hoặc Yes/No, có gợi ý tiếng Việt */
     ds = [
       { hoi: `Hi! I'm Buddy. What's your name?`,
-        vi: "Chào con! Mình là Buddy. Con tên là gì? (My name is ...)",
+        vi: "Chào bạn! Mình là Buddy. Bạn tên là gì? (My name is ...)",
         tu: [], loai: "tra_loi",
         meo: "Nghe câu hỏi “What's your name?” thì trả lời “My name is …”." },
       { hoi: `Do you know the word “${t(0)}”? Yes or No.`,
-        vi: `Con có biết từ “${t(0)}” không? Trả lời Yes hoặc No.`,
+        vi: `Bạn có biết từ “${t(0)}” không? Trả lời Yes hoặc No.`,
         tu: [t(0)], loai: "tra_loi",
         meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
       { hoi: `Which one do you like: “${t(1)}” or “${t(2)}”?`,
-        vi: `Con thích cái nào hơn: “${t(1)}” hay “${t(2)}”?`,
+        vi: `Bạn thích cái nào hơn: “${t(1)}” hay “${t(2)}”?`,
         tu: [t(1), t(2)], loai: "tra_loi",
         meo: "Trả lời: I like … (chỉ cần một từ hoặc một câu ngắn)." },
       { hoi: `Say a short sentence with “${t(2)}”. For example: I like ${chu(t(2))}.`,
@@ -154,11 +154,11 @@ function taoKichBan(b) {
         tu: [t(2)], loai: "tra_loi",
         meo: "Câu ngắn cũng được: I like … / This is … / Look at …" },
       { hoi: `Do you like this unit? Yes or No.`,
-        vi: "Con có thích bài này không? Yes hoặc No.",
+        vi: "Bạn có thích bài này không? Yes hoặc No.",
         tu: [t(3)], loai: "tra_loi",
         meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
       { hoi: `Now you ask me: “${t(4)}”?`,
-        vi: `Giờ con hỏi lại mình một câu có từ “${t(4)}”, nhớ dấu hỏi.`,
+        vi: `Giờ bạn hỏi lại mình một câu có từ “${t(4)}”, nhớ dấu hỏi.`,
         tu: [t(4)], loai: "cau_hoi",
         meo: "Hỏi thì phải có dấu ? ở cuối câu." },
     ];
@@ -166,16 +166,16 @@ function taoKichBan(b) {
     /* SM3–SM4: câu đơn hoàn chỉnh, giới từ, thì hiện tại */
     ds = [
       { hoi: `Hi! I'm Buddy. What's your name, and how are you today?`,
-        vi: "Chào con! Con tên gì, hôm nay con thế nào? (I'm fine, thank you.)",
+        vi: "Chào bạn! Bạn tên gì, hôm nay bạn thế nào? (I'm fine, thank you.)",
         tu: [], loai: "tra_loi",
         meo: "Trả lời hai ý: tên + “I'm fine, thank you.”" },
       { hoi: `Where can you see “${t(0)}”? Answer with in, on or at.`,
-        vi: `Con có thể thấy “${t(0)}” ở đâu? Trả lời dùng in / on / at.`,
+        vi: `Bạn có thể thấy “${t(0)}” ở đâu? Trả lời dùng in / on / at.`,
         tu: [t(0)], loai: "tra_loi",
         meo: "in the classroom · on the table · at school." },
       { hoi: khuon ? `Use the structure from your book: “${khuon}”. Write your own sentence.`
                   : `Write one sentence with “${t(1)}”.`,
-        vi: khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết câu của con.`
+        vi: khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết câu của bạn.`
                   : `Viết một câu có từ “${t(1)}”.`,
         tu: khuon ? [] : [t(1)], loai: "tra_loi",
         meo: "Giữ nguyên cấu trúc, chỉ đổi từ bên trong." },
@@ -184,11 +184,11 @@ function taoKichBan(b) {
         tu: [t(2)], loai: "tra_loi",
         meo: "Đủ chủ ngữ + động từ mới là một câu: I go to school by bus." },
       { hoi: `Do you like this unit? Why? Use “because”.`,
-        vi: "Con có thích bài này không? Vì sao? Dùng “because”.",
+        vi: "Bạn có thích bài này không? Vì sao? Dùng “because”.",
         tu: [t(3), "because"], loai: "tra_loi",
         meo: "I like it because it's fun / easy / interesting." },
       { hoi: `Ask me a question with “${t(4)}”. Start with Do, Does, Is or Where.`,
-        vi: `Con hỏi mình một câu có từ “${t(4)}”, mở đầu bằng Do / Does / Is / Where.`,
+        vi: `Bạn hỏi mình một câu có từ “${t(4)}”, mở đầu bằng Do / Does / Is / Where.`,
         tu: [t(4)], loai: "cau_hoi",
         meo: "Câu hỏi phải có trợ động từ ở đầu và dấu ? ở cuối." },
     ];
@@ -196,23 +196,23 @@ function taoKichBan(b) {
     /* SM5–SM6: quá khứ, hiện tại hoàn thành, so sánh, nêu lý do */
     ds = [
       { hoi: `Tell me about “${ten}”. What did you learn, and what did you do yesterday? Two sentences.`,
-        vi: "Kể về bài này và việc con làm hôm qua — hai câu.",
+        vi: "Kể về bài này và việc bạn làm hôm qua — hai câu.",
         tu: [t(0)], loai: "tra_loi",
         meo: "Câu 1 nói bài học, câu 2 dùng quá khứ: I played / I went / I watched." },
       { hoi: `Have you ever learned about “${t(1)}”? Answer with “I have” or “I have never”.`,
-        vi: `Con đã từng học về “${t(1)}” chưa? Trả lời bằng “I have…” hoặc “I have never…”.`,
+        vi: `Bạn đã từng học về “${t(1)}” chưa? Trả lời bằng “I have…” hoặc “I have never…”.`,
         tu: [t(1)], loai: "tra_loi",
         meo: "Hiện tại hoàn thành: have/has + V3 (used, seen, tried)." },
       { hoi: khuon ? `Use “${khuon}” to write a sentence about yourself.` : `Write one sentence with “${t(2)}” in the past simple.`,
-        vi: khuon ? `Dùng cấu trúc “${khuon}” viết một câu về con.` : `Viết một câu ở thì quá khứ với “${t(2)}”.`,
+        vi: khuon ? `Dùng cấu trúc “${khuon}” viết một câu về bạn.` : `Viết một câu ở thì quá khứ với “${t(2)}”.`,
         tu: khuon ? [] : [t(2)], loai: "tra_loi",
         meo: "Quá khứ đơn: chủ ngữ + động từ thêm -ed hoặc bất quy tắc." },
       { hoi: `Which is better for you: ${chu(t(2))} or ${chu(t(3))}? Give one reason.`,
-        vi: `Với con cái nào tốt hơn: ${t(2)} hay ${t(3)}? Nêu một lý do.`,
+        vi: `Với bạn cái nào tốt hơn: ${t(2)} hay ${t(3)}? Nêu một lý do.`,
         tu: [t(2), t(3)], loai: "tra_loi",
         meo: "So sánh hơn: better than / more useful than + because." },
       { hoi: `What will you do next weekend? Use “going to”, and say why.`,
-        vi: "Cuối tuần sau con sẽ làm gì? Dùng “going to” và nói lý do.",
+        vi: "Cuối tuần sau bạn sẽ làm gì? Dùng “going to” và nói lý do.",
         tu: [t(3)], loai: "tra_loi",
         meo: "I'm going to … because …" },
       { hoi: `Ask me two questions using “${t(4)}” — one Yes/No question and one Wh-question.`,
@@ -224,27 +224,27 @@ function taoKichBan(b) {
     /* A2 / KET: trả lời 2 câu, có lý do, kể trải nghiệm, nói kế hoạch */
     ds = [
       { hoi: `Let's talk about “${ten}”. Tell me about your week — three things you did.`,
-        vi: "Kể về tuần của con — ba việc con đã làm.",
+        vi: "Kể về tuần của bạn — ba việc bạn đã làm.",
         tu: [t(0)], loai: "tra_loi",
         meo: "Dùng quá khứ đơn và từ nối: first, then, after that." },
       { hoi: `Have you ever had a problem with ${chu(t(1))}? What happened?`,
-        vi: `Con đã từng gặp rắc rối với ${t(1)} chưa? Chuyện gì đã xảy ra?`,
+        vi: `Bạn đã từng gặp rắc rối với ${t(1)} chưa? Chuyện gì đã xảy ra?`,
         tu: [t(1)], loai: "tra_loi",
-        meo: "Kể 2 câu: chuyện gì + con làm gì tiếp theo." },
+        meo: "Kể 2 câu: chuyện gì + bạn làm gì tiếp theo." },
       { hoi: khuon ? `Use “${khuon}” in a sentence about your own life.` : `Make a sentence about your plans with “${t(2)}”.`,
-        vi: khuon ? `Dùng “${khuon}” đặt câu về chính con.` : `Đặt câu nói về kế hoạch của con với “${t(2)}”.`,
+        vi: khuon ? `Dùng “${khuon}” đặt câu về chính bạn.` : `Đặt câu nói về kế hoạch của bạn với “${t(2)}”.`,
         tu: khuon ? [] : [t(2)], loai: "tra_loi",
         meo: "Kế hoạch: I'm going to / I'm planning to / I'd like to." },
       { hoi: `Do you agree that ${chu(t(2))} is important? Give two reasons.`,
-        vi: `Con có đồng ý ${t(2)} quan trọng không? Nêu hai lý do.`,
+        vi: `Bạn có đồng ý ${t(2)} quan trọng không? Nêu hai lý do.`,
         tu: [t(2)], loai: "tra_loi",
         meo: "I agree / I don't agree … because … Also, …" },
       { hoi: `${chu(t(3))} or ${chu(t(4))} — which would you choose, and why?`,
-        vi: `${t(3)} hay ${t(4)} — con chọn cái nào, vì sao?`,
+        vi: `${t(3)} hay ${t(4)} — bạn chọn cái nào, vì sao?`,
         tu: [t(3), t(4)], loai: "tra_loi",
         meo: "I'd choose … because … (so sánh: cheaper, easier, more interesting)." },
       { hoi: `Now ask me a question about “${ten}” that I have to answer with more than one sentence.`,
-        vi: `Con hỏi mình một câu về bài “${ten}” mà mình phải trả lời dài hơn một câu.`,
+        vi: `Bạn hỏi mình một câu về bài “${ten}” mà mình phải trả lời dài hơn một câu.`,
         tu: [t(4)], loai: "cau_hoi",
         meo: "Dùng What / Why / How + trợ động từ, tránh câu Yes/No." },
     ];
@@ -252,19 +252,19 @@ function taoKichBan(b) {
     /* B1 / PET: ý kiến + lý do, so sánh, giả định, phản biện */
     ds = [
       { hoi: `What's your opinion on “${ten}”? Give your view and one example.`,
-        vi: "Con nghĩ gì về bài này? Nêu ý kiến và một ví dụ.",
+        vi: "Bạn nghĩ gì về bài này? Nêu ý kiến và một ví dụ.",
         tu: [t(0)], loai: "tra_loi",
         meo: "In my opinion … For example …" },
       { hoi: `Some people say ${chu(t(1))} is not useful. Do you agree? Explain in two or three sentences.`,
-        vi: `Có người nói ${t(1)} không hữu ích. Con đồng ý không? Giải thích 2–3 câu.`,
+        vi: `Có người nói ${t(1)} không hữu ích. Bạn đồng ý không? Giải thích 2–3 câu.`,
         tu: [t(1)], loai: "tra_loi",
         meo: "I partly agree … However … On the other hand …" },
       { hoi: khuon ? `Use “${khuon}” to describe how things have changed for you.` : `How has ${chu(t(2))} changed in your life? Use the present perfect.`,
-        vi: khuon ? `Dùng “${khuon}” nói về điều đã thay đổi với con.` : `${t(2)} đã thay đổi thế nào trong đời con? Dùng hiện tại hoàn thành.`,
+        vi: khuon ? `Dùng “${khuon}” nói về điều đã thay đổi với bạn.` : `${t(2)} đã thay đổi thế nào trong đời bạn? Dùng hiện tại hoàn thành.`,
         tu: khuon ? [] : [t(2)], loai: "tra_loi",
         meo: "Hiện tại hoàn thành + so sánh với quá khứ: used to …, but now …" },
       { hoi: `Imagine you had to solve a problem with ${chu(t(3))}. What would you do?`,
-        vi: `Giả sử con phải giải quyết một vấn đề với ${t(3)}. Con sẽ làm gì?`,
+        vi: `Giả sử bạn phải giải quyết một vấn đề với ${t(3)}. Bạn sẽ làm gì?`,
         tu: [t(3)], loai: "tra_loi",
         meo: "Câu điều kiện loại 2: If I had …, I would …" },
       { hoi: `Compare ${chu(t(3))} and ${chu(t(4))}: which matters more today, and why?`,
@@ -272,7 +272,7 @@ function taoKichBan(b) {
         tu: [t(3), t(4)], loai: "tra_loi",
         meo: "Whereas / while / although + so sánh hơn hoặc so sánh bằng." },
       { hoi: `Ask me a challenging question about “${ten}” — something you really want to know.`,
-        vi: `Hỏi mình một câu khó về bài “${ten}” — điều con thật sự muốn biết.`,
+        vi: `Hỏi mình một câu khó về bài “${ten}” — điều bạn thật sự muốn biết.`,
         tu: [t(4)], loai: "cau_hoi",
         meo: "Câu hỏi hay thường có What do you think about…? / How would you…?" },
     ];
@@ -354,7 +354,7 @@ async function gui() {
   DANG_CHO = false; $("#gui").disabled = false;
 
   if (!kq) {
-    themBong("ai", "Mình chưa chấm được câu này (" + loi + "). Con thử gửi lại giúp mình nhé.");
+    themBong("ai", "Mình chưa chấm được câu này (" + loi + "). Bạn thử gửi lại giúp mình nhé.");
     $("#ta").value = cau;
     $("#ta").focus({ preventScroll: true });
     return;
@@ -381,7 +381,7 @@ async function gui() {
 
   if (!DA_THU) {
     DA_THU = true;
-    $("#goiY").textContent = "Sửa theo gợi ý rồi gửi lại — con còn một lượt cho câu này.";
+    $("#goiY").textContent = "Sửa theo gợi ý rồi gửi lại — bạn còn một lượt cho câu này.";
     $("#ta").focus({ preventScroll: true });
     capNhatDiem();
     return;
@@ -398,8 +398,8 @@ async function ketThuc() {
   const dat = DUNG >= 4;
   const khop = HS.khopBai();
   const nhac = khop === false
-    ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit rồi chơi lại nhé."
-    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+    ? "Bạn đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit rồi chơi lại nhé."
+    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit bạn đã chọn." : "Đúng bài đang học — điểm đã cộng.");
   $("#ketThuc").innerHTML = `
     <div class="ketqua">Trả lời đạt ${DUNG}/6 lượt</div>
     <div class="hint" style="margin-bottom:12px">${dat ? nhac : "Cần đạt ít nhất 4/6 lượt. Đọc lại từ và cấu trúc của bài rồi chơi lại nhé."}</div>
@@ -476,15 +476,15 @@ taoKichBan = function (b) {
     /* SM1–SM2 (6–8 tuổi): câu ngắn, tiếng Anh + tiếng Việt */
     ds = [
       { hoi: `Hi! I'm Buddy. I'm a seed. A golden seed. What's your name?`,
-        vi: "Chào con! Mình là Buddy, một hạt giống vàng. Con tên là gì? (My name is ...)",
+        vi: "Chào bạn! Mình là Buddy, một hạt giống vàng. Bạn tên là gì? (My name is ...)",
         tu: [], loai: "tra_loi",
         meo: "Nghe “What's your name?” thì trả lời “My name is …”." },
       { hoi: `Do you know the word “${t(0)}”? Yes or No. I know it. I'm small, but I know things.`,
-        vi: `Con có biết từ “${t(0)}” không? Yes hoặc No. Mình nhỏ, nhưng mình biết nhiều thứ.`,
+        vi: `Bạn có biết từ “${t(0)}” không? Yes hoặc No. Mình nhỏ, nhưng mình biết nhiều thứ.`,
         tu: [t(0)], loai: "tra_loi",
         meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
       { hoi: `Which one do you like: “${t(1)}” or “${t(2)}”? I like both. I'm a seed. I like everything.`,
-        vi: `Con thích cái nào hơn: “${t(1)}” hay “${t(2)}”? Mình thích cả hai. Mình là hạt giống, mình thích mọi thứ.`,
+        vi: `Bạn thích cái nào hơn: “${t(1)}” hay “${t(2)}”? Mình thích cả hai. Mình là hạt giống, mình thích mọi thứ.`,
         tu: [t(1), t(2)], loai: "tra_loi",
         meo: "Trả lời: I like … (một từ hoặc một câu ngắn)." },
       { hoi: `Say a short sentence with “${t(2)}”. For example: I like ${chu(t(2))}. My sentence is: I am a seed.`,
@@ -492,11 +492,11 @@ taoKichBan = function (b) {
         tu: [t(2)], loai: "tra_loi",
         meo: "Câu ngắn cũng được: I like … / This is … / Look at …" },
       { hoi: `Do you like this unit? Yes or No. Be honest. I'm only three millimetres tall.`,
-        vi: "Con có thích bài này không? Yes hoặc No. Cứ nói thật nhé — mình chỉ cao 3 mi-li-mét.",
+        vi: "Bạn có thích bài này không? Yes hoặc No. Cứ nói thật nhé — mình chỉ cao 3 mi-li-mét.",
         tu: [t(3)], loai: "tra_loi",
         meo: "Trả lời ngắn: Yes, I do. / No, I don't." },
       { hoi: `Now you ask me: “${t(4)}”? Ask slowly. I'm underground. The wifi is very bad down here.`,
-        vi: `Giờ con hỏi mình một câu có từ “${t(4)}”. Hỏi chậm thôi — mình đang ở dưới đất, wifi ở đây rất tệ.`,
+        vi: `Giờ bạn hỏi mình một câu có từ “${t(4)}”. Hỏi chậm thôi — mình đang ở dưới đất, wifi ở đây rất tệ.`,
         tu: [t(4)], loai: "cau_hoi",
         meo: "Câu hỏi phải có dấu ? ở cuối." },
     ];
@@ -504,16 +504,16 @@ taoKichBan = function (b) {
     /* SM3–SM4: câu đơn hoàn chỉnh. SM3 còn tiếng Việt, SM4 chỉ tiếng Anh. */
     ds = [
       { hoi: `Hi! I'm Buddy. What's your name, and how are you today? I'm fine. I'm a little wet. I'm a seed.`,
-        vi: vn ? "Chào con! Con tên gì, hôm nay thế nào? Mình khoẻ, chỉ hơi ướt — mình là hạt giống." : undefined,
+        vi: vn ? "Chào bạn! Bạn tên gì, hôm nay thế nào? Mình khoẻ, chỉ hơi ướt — mình là hạt giống." : undefined,
         tu: [], loai: "tra_loi",
         meo: vn ? "Trả lời hai ý: tên + “I'm fine, thank you.”" : "Answer two things: your name + “I'm fine, thank you.”" },
       { hoi: `Where can you see “${t(0)}”? Answer with in, on or at. Not in my pot. I checked.`,
-        vi: vn ? `Con có thể thấy “${t(0)}” ở đâu? Trả lời dùng in / on / at.` : undefined,
+        vi: vn ? `Bạn có thể thấy “${t(0)}” ở đâu? Trả lời dùng in / on / at.` : undefined,
         tu: [t(0)], loai: "tra_loi",
         meo: vn ? "in the classroom · on the table · at school." : "in the classroom · on the table · at school." },
       { hoi: khuon ? `Use the structure from your book: “${khuon}”. Write your own sentence. Mine is: I ride a dog to school.`
                   : `Write one sentence with “${t(1)}”. Mine is: I ride a dog to school.`,
-        vi: vn ? (khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết câu của con.` : `Viết một câu có từ “${t(1)}”.`)
+        vi: vn ? (khuon ? `Dùng cấu trúc trong sách: “${khuon}”. Viết câu của bạn.` : `Viết một câu có từ “${t(1)}”.`)
               : undefined,
         tu: khuon ? [] : [t(1)], loai: "tra_loi",
         meo: vn ? "Giữ nguyên cấu trúc, chỉ đổi từ bên trong." : "Keep the structure, change the words inside." },
@@ -522,11 +522,11 @@ taoKichBan = function (b) {
         tu: [t(2)], loai: "tra_loi",
         meo: vn ? "Đủ chủ ngữ + động từ mới là một câu: I go to school by bus." : "Subject + verb makes a sentence: I go to school by bus." },
       { hoi: `Do you like this unit? Why? Use “because”. I like it because the sun is warm.`,
-        vi: vn ? "Con có thích bài này không? Vì sao? Dùng “because”." : undefined,
+        vi: vn ? "Bạn có thích bài này không? Vì sao? Dùng “because”." : undefined,
         tu: [t(3), "because"], loai: "tra_loi",
         meo: vn ? "I like it because it's fun / easy / interesting." : "I like it because it's fun / easy / interesting." },
       { hoi: `Ask me a question with “${t(4)}”. Start with Do, Does, Is or Where. Ask where my roots are. I don't know either.`,
-        vi: vn ? `Con hỏi mình một câu có từ “${t(4)}”, mở đầu bằng Do / Does / Is / Where.` : undefined,
+        vi: vn ? `Bạn hỏi mình một câu có từ “${t(4)}”, mở đầu bằng Do / Does / Is / Where.` : undefined,
         tu: [t(4)], loai: "cau_hoi",
         meo: vn ? "Câu hỏi phải có trợ động từ ở đầu và dấu ? ở cuối." : "Start with a helping verb and finish with a question mark." },
     ];

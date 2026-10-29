@@ -44,7 +44,7 @@
 <body>
 <div class="wrap">
   <h1>✨ Level 6 · Sáng tạo</h1>
-  <p class="sub">Con tự viết câu tiếng Anh bằng từ của bài. Làm đủ 6 câu là tính điểm nấc 6.</p>
+  <p class="sub">Bạn tự viết câu tiếng Anh bằng từ của bài. Làm đủ 6 câu là tính điểm nấc 6.</p>
 
   <div class="card" style="margin-bottom:12px"><div id="hsBar"></div></div>
   <div class="card" id="the">
@@ -76,8 +76,8 @@ function taoVong() {
   const vong = [];
   const de = [
     "Viết một câu kể có từ bên dưới.",
-    "Viết một câu nói về bản thân con, có từ bên dưới.",
-    "Viết một câu về lớp học của con, có từ bên dưới.",
+    "Viết một câu nói về bản thân bạn, có từ bên dưới.",
+    "Viết một câu về lớp học của bạn, có từ bên dưới.",
     "Viết một câu có “and” nối hai ý, có từ bên dưới.",
     "Viết một câu hỏi có từ bên dưới.",
     "Viết một câu hỏi và một câu trả lời, có từ bên dưới.",
@@ -106,7 +106,7 @@ function coTu(cau, tu) {
 
 function kiem(cau, v) {
   const loi = [];
-  if (!cau.trim()) loi.push("Con chưa viết câu nào.");
+  if (!cau.trim()) loi.push("Bạn chưa viết câu nào.");
   v.tu.forEach((t) => { if (!coTu(cau, t)) loi.push(`Thiếu từ “${t}”.`); });
   const soTu = chuan(cau).split(" ").filter(Boolean).length;
   if (soTu < v.toiThieu) loi.push(`Câu cần ít nhất ${v.toiThieu} từ (hiện ${soTu}).`);
@@ -126,7 +126,7 @@ function ve() {
     <div class="de">${esc(v.de)}</div>
     <div style="margin-bottom:6px">${v.tu.map((t) => `<span class="tu">${esc(t)}</span>`).join("")}</div>
     ${v.khuon ? `<div class="goi">Cấu trúc của bài: ${esc(v.khuon)}</div>` : ""}
-    <textarea id="ta" placeholder="Viết câu tiếng Anh của con ở đây…" autocomplete="off" spellcheck="false"></textarea>
+    <textarea id="ta" placeholder="Viết câu tiếng Anh của bạn ở đây…" autocomplete="off" spellcheck="false"></textarea>
     <div class="row">
       <button class="nut" id="kt">Kiểm tra</button>
       <button class="ghost" id="mau">Xem câu mẫu</button>
@@ -139,7 +139,7 @@ function ve() {
     const cau = ta.value;
     const loi = kiem(cau, v);
     if (!loi.length) {
-      $("#fb").innerHTML = `<span class="ok">✅ Đúng rồi!</span> Câu của con: “${esc(cau.trim())}”`;
+      $("#fb").innerHTML = `<span class="ok">✅ Đúng rồi!</span> Câu của bạn: “${esc(cau.trim())}”`;
       DUNG++;
       try { GAME.ghi({ tu: v.tu[0], ok: true }); } catch (e) {}
       setTimeout(() => { I++; ve(); }, 1400);
@@ -157,7 +157,7 @@ function ve() {
   };
   $("#mau").onclick = () => {
     if (v.mau) $("#fb").innerHTML = `<div class="mau">Câu mẫu của bài: <b>${esc(v.mau)}</b></div>`;
-    else $("#fb").innerHTML = `<span class="hint">Bài này chưa có câu mẫu — con tự viết theo cấu trúc nhé.</span>`;
+    else $("#fb").innerHTML = `<span class="hint">Bài này chưa có câu mẫu — bạn tự viết theo cấu trúc nhé.</span>`;
   };
   $("#bo").onclick = () => { try { GAME.ghi({ tu: v.tu[0], ok: false }); } catch (e) {} I++; ve(); };
   ta.addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) $("#kt").click(); });
@@ -172,8 +172,8 @@ async function ketThuc() {
   const dat = DUNG >= 4;
   const khop = HS.khopBai();
   const loiNhac = khop === false
-    ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
-    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+    ? "Bạn đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
+    : (khop === null ? "Chưa xác định được bài đang học — điểm tính theo Unit bạn đã chọn." : "Đúng bài đang học — điểm đã cộng.");
   $("#noiDung").innerHTML = `
     <div style="font-size:18px;font-weight:700;margin-bottom:6px">Level 6: viết đạt ${DUNG}/6 câu</div>
     <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Cần đạt ít nhất 4/6 câu. Đọc lại từ và cấu trúc của bài rồi làm lại nhé."}</div>

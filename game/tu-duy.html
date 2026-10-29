@@ -40,7 +40,7 @@
 <body>
 <div class="wrap">
   <h1>🧠 Level 5 · Tư duy</h1>
-  <p class="sub">Chọn sách và Unit con vừa học. Làm 8 câu: loại từ khác nhóm và chọn từ đúng điền vào câu.</p>
+  <p class="sub">Chọn sách và Unit bạn vừa học. Làm 8 câu: loại từ khác nhóm và chọn từ đúng điền vào câu.</p>
 
   <div class="card" style="margin-bottom:12px">
     <div id="hsBar"></div>
@@ -172,8 +172,8 @@ async function ketThuc() {
   const dat = DUNG >= Math.ceil(CAU.length * 0.6);
   const khop = HS.khopBai();
   const loiNhac = khop === false
-    ? "Con đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
-    : (khop === null ? "Chưa xác định được bài đang học — điểm được tính theo Unit con đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+    ? "Bạn đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
+    : (khop === null ? "Chưa xác định được bài đang học — điểm được tính theo Unit bạn đã chọn." : "Đúng bài đang học — điểm đã cộng.");
   $("#noiDung").innerHTML = `
     <div style="font-size:18px;font-weight:700;margin-bottom:6px">Level 5 hoàn tất: đúng ${DUNG}/${CAU.length}</div>
     <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Chưa đạt 60% — làm lại để lấy điểm nấc này nhé."}</div>
