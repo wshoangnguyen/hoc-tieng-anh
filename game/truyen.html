@@ -82,6 +82,7 @@
     <div class="than">
       <button class="nut-vi" id="nutVi" type="button">🇻🇳 Hiện tiếng Việt</button>
       <h2 id="docTen"></h2>
+      <div id="docAmHop" style="display:none;margin:0 0 12px"><audio id="docAm" controls preload="none" style="width:100%"></audio></div>
       <p class="tom" id="docTom"></p>
       <div id="docThan"></div>
       <button class="dong" id="docDong">Đóng</button>
@@ -89,12 +90,14 @@
   </div>
 </div>
 
-<div id="tip"></div>
 <script src="truyen/vi.js"></script>
 <script>
 (function(){
   var API = "https://xtfusgawjlrcreiphwur.supabase.co";
   var KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+  var AM = { "truyen:00": "truyen/audio/c0.mp3", "truyen:01": "truyen/audio/c1.mp3", "truyen:02": "truyen/audio/c2.mp3",
+    "truyen:03": "truyen/audio/c3.mp3", "truyen:04": "truyen/audio/c4.mp3", "truyen:05": "truyen/audio/c5.mp3",
+    "truyen:06": "truyen/audio/c6.mp3" };
   var ANH = {
     "truyen:00": "truyen/img/c0-1.jpg", "truyen:01": "truyen/img/c1-1.jpg", "truyen:02": "truyen/img/c2-1.jpg",
     "truyen:03": "truyen/img/c3-1.jpg", "truyen:04": "truyen/img/c3-2.jpg",
@@ -136,6 +139,11 @@
     document.getElementById("docTen").textContent = x.tieu_de;
     document.getElementById("docTom").textContent = x.tom_tat || "";
     var anh = ANH[x.ma];
+    var am = document.getElementById("docAm"), hopAm = document.getElementById("docAmHop");
+    if (am && hopAm) {
+      if (AM[x.ma]) { am.src = AM[x.ma]; hopAm.style.display = "block"; }
+      else { am.removeAttribute("src"); am.load(); hopAm.style.display = "none"; }
+    }
     var hopAnh = document.getElementById("docAnh");
     hopAnh.style.setProperty("--anh", anh ? "url(" + anh + ")" : "none");
     document.getElementById("docAnhImg").src = anh || "";
@@ -175,44 +183,8 @@
     doc.classList.add("mo"); doc.scrollTop = 0;
   }
 
-  document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); var t=document.getElementById("tip"); if(t) t.classList.remove("hien"); });
-  doc.addEventListener("click", function(e){ if (e.target === doc) doc.classList.remove("mo"); });
-
-  /* ---- rê chuột / chạm vào đoạn: hiện bản dịch tiếng Việt ---- */
-  var tip = document.getElementById("tip"), henTip = null, thanEl = document.getElementById("docThan");
-  function datTip(el, x, y){
-    tip.textContent = el.getAttribute("data-vi");
-    tip.style.maxWidth = Math.min(330, window.innerWidth - 24) + "px";
-    tip.classList.add("hien");
-    var r = tip.getBoundingClientRect();
-    var left = Math.max(12, Math.min(window.innerWidth - r.width - 12, x + 14));
-    var top = y + 18;
-    if (top + r.height > window.innerHeight - 10) top = Math.max(10, y - r.height - 14);
-    tip.style.left = left + "px"; tip.style.top = top + "px";
-  }
-  thanEl.addEventListener("mouseover", function(e){
-    var p = e.target.closest("p.p"); if (p) datTip(p, e.clientX, e.clientY);
-  });
-  thanEl.addEventListener("mousemove", function(e){
-    var p = e.target.closest("p.p"); if (p) datTip(p, e.clientX, e.clientY);
-  });
-  thanEl.addEventListener("mouseout", function(e){
-    if (e.target.closest("p.p")) tip.classList.remove("hien");
-  });
-  thanEl.addEventListener("click", function(e){
-    var p = e.target.closest("p.p"); if (!p) return;
-    if (tip.classList.contains("hien") && tip.dataset.cho === p.getAttribute("data-vi")) {
-      tip.classList.remove("hien"); return;
-    }
-    tip.dataset.cho = p.getAttribute("data-vi");
-    datTip(p, e.clientX || window.innerWidth / 2, e.clientY || 220);
-    clearTimeout(henTip);
-    henTip = setTimeout(function(){ tip.classList.remove("hien"); }, 5000);
-  });
-  document.getElementById("nutVi").addEventListener("click", function(){
-    document.body.classList.toggle("xem-vi");
-    this.textContent = document.body.classList.contains("xem-vi") ? "🇻🇳 Ẩn tiếng Việt" : "🇻🇳 Hiện tiếng Việt";
-  });
+  document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); var a=document.getElementById("docAm"); if(a){ try{a.pause();}catch(e){} } });
+  doc.addEventListener("click", function(e){ if (e.target === doc){ doc.classList.remove("mo"); var a=document.getElementById("docAm"); if(a){ try{a.pause();}catch(e2){} } } });
 
   rpc("buddy_ds", { p_ma: ma || null }).then(function(d){
     if (!d || !d.ok) throw new Error("loi");

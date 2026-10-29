@@ -373,6 +373,8 @@
         }
     </style>
     <script src="am-thanh.js"></script>
+  <link rel="stylesheet" href="core.css">
+  <script src="core.js"></script>
 </head>
 <body>
 
@@ -446,244 +448,116 @@
 </div>
 
 <script>
-    // Lưu dữ liệu từ vựng vào localStorage để các game có thể truy cập
-    function saveVocabularyToLocalStorage(vocab) {
-        localStorage.setItem('flashcard_vocabulary', JSON.stringify(vocab));
-        localStorage.setItem('flashcard_base_path', 'pic/');
-    }
+(function(){
+  const IMAGE_BASE_PATH = "pic/";
+  let vocabulary = [];
+  let daLat = new Set();
+  let daCongDiem = false;
 
-    const IMAGE_BASE_PATH = "pic/";
-    const DATA_FILE = "vocabulary.json";
-    
-    let vocabulary = [];
-    let currentFilter = "all";
-    
-    const statusBar = document.getElementById('statusBar');
-    const cardsGrid = document.getElementById('cardsGrid');
-    const filterBar = document.getElementById('filterBar');
-    
-    // Game menu dropdown
-    const gameMenu = document.getElementById('gameMenu');
-    const gameMenuBtn = document.getElementById('gameMenuBtn');
-    
-    gameMenuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        gameMenu.classList.toggle('active');
+  const statusBar = document.getElementById('statusBar');
+  const cardsGrid = document.getElementById('cardsGrid');
+  const filterBar = document.getElementById('filterBar');
+  if (filterBar) filterBar.style.display = "none";
+
+  function escapeHtml(str){
+    return String(str || "").replace(/[&<>]/g, function(m){
+      return m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;';
     });
-    
-    // Đóng dropdown khi click ra ngoài
-    document.addEventListener('click', (e) => {
-        if (!gameMenu.contains(e.target)) {
-            gameMenu.classList.remove('active');
-        }
+  }
+
+  function noiTu(w){
+    if (window.NOI && NOI.tu) return NOI.tu(w);
+    if (window.GAME && GAME.noi) return GAME.noi(w);
+  }
+
+  function capNhatDem(){
+    const n = vocabulary.length, d = daLat.size;
+    statusBar.className = "status-bar";
+    statusBar.textContent = `🃏 ${d}/${n} thẻ đã lật · lật hết cả unit để nhận điểm`;
+    if (d >= n && n) statusBar.classList.add("success");
+  }
+
+  function chamDiem(){
+    if (daCongDiem || !window.GAME) return;
+    daCongDiem = true;
+    const b = GAME.bai ? GAME.bai() : null;
+    try {
+      GAME.batDau({ game: "flashcard", sach: b ? b.sach : null, unit: b ? b.unit : null,
+                    soCau: vocabulary.length, nac: 1 });
+      GAME.ketThuc({ soCau: vocabulary.length, soDung: vocabulary.length });
+    } catch(e){}
+  }
+
+  function createFlashcard(item){
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.setAttribute('data-word', item.word.toLowerCase());
+    const anh = IMAGE_BASE_PATH + encodeURIComponent(item.word.toLowerCase());
+    card.innerHTML = `
+      <div class="inner">
+        <div class="front">
+          <img class="flash-img" src="${anh}.jpg" alt="${escapeHtml(item.word)}"
+               onerror="this.onerror=null;this.style.display='none';this.parentNode.querySelector('.chu-lon').style.display='block';"
+               style="max-width:85%;max-height:70%;object-fit:contain;border-radius:20px;">
+          <div class="chu-lon" style="display:none;font-size:34px;font-weight:800;color:#3a2a00;text-align:center;padding:0 10px">${escapeHtml(item.word)}</div>
+          <div class="click-hint">🎵 nhấn để nghe + lật thẻ</div>
+        </div>
+        <div class="back">
+          <div class="word">${escapeHtml(item.word)}</div>
+          <div class="meaning">${escapeHtml(item.meaning)}</div>
+          <div class="sound-icon">🔊 nghe lại</div>
+        </div>
+      </div>`;
+    card.addEventListener('click', function(e){
+      e.stopPropagation();
+      card.classList.toggle('flipped');
+      noiTu(item.word);
+      if (!daLat.has(item.word)) { daLat.add(item.word); capNhatDem(); }
+      if (daLat.size >= vocabulary.length) chamDiem();
     });
-    
-    async function loadVocabulary() {
-        try {
-            statusBar.textContent = "📂 Đang đọc file vocabulary.json...";
-            
-            const response = await fetch(DATA_FILE);
-            if (!response.ok) {
-                throw new Error(`Không tìm thấy file ${DATA_FILE}`);
-            }
-            
-            const data = await response.json();
-            
-            if (!Array.isArray(data)) {
-                throw new Error("File JSON phải là một mảng các từ vựng");
-            }
-            
-            vocabulary = data.map((item, index) => ({
-                word: item.word || "unknown",
-                pronunciation: item.pronunciation || `/${item.word}/`,
-                meaning: item.meaning || "chưa có nghĩa",
-                category: item.category || "other",
-                originalIndex: index
-            }));
-            
-            // Lưu vào localStorage để game khác dùng chung
-            saveVocabularyToLocalStorage(vocabulary);
-            
-            const categories = {};
-            vocabulary.forEach(item => {
-                categories[item.category] = (categories[item.category] || 0) + 1;
-            });
-            
-            const categoryText = Object.entries(categories).map(([cat, count]) => `${cat}: ${count}`).join(", ");
-            
-            statusBar.textContent = `✅ Thành công! Đã tải ${vocabulary.length} từ vựng (${categoryText})`;
-            statusBar.className = "status-bar success";
-            
-            updateFilterButtons();
-            filterBar.style.display = "flex";
-            renderCards("all");
-            
-        } catch (error) {
-            console.error("Lỗi:", error);
-            statusBar.textContent = `❌ Lỗi: ${error.message}. Hãy tạo file vocabulary.json với cấu trúc đúng!`;
-            statusBar.className = "status-bar error";
-            cardsGrid.innerHTML = `
-                <div class="empty-state" style="background:#a1422f;">
-                    ⚠️ Không thể tải dữ liệu<br><br>
-                    <strong>Cách khắc phục:</strong><br>
-                    1. Tạo file <strong>vocabulary.json</strong> cùng thư mục<br>
-                    2. Cấu trúc mẫu:<br>
-                    <code style="display:block; margin-top:10px; font-size:11px; text-align:left;">
-                    [<br>
-                    &nbsp;&nbsp;{"word": "puppy", "pronunciation": "/ˈpʌpi/", "meaning": "chó con", "category": "animal"},<br>
-                    &nbsp;&nbsp;{"word": "kitten", "pronunciation": "/ˈkɪtn/", "meaning": "mèo con", "category": "animal"}<br>
-                    ]
-                    </code>
-                </div>
-            `;
-        }
+    return card;
+  }
+
+  function renderCards(){
+    cardsGrid.innerHTML = '';
+    if (!vocabulary.length){
+      cardsGrid.innerHTML = '<div class="empty-state">Unit này chưa có từ vựng.</div>';
+      return;
     }
-    
-    function updateFilterButtons() {
-        const categories = new Set();
-        vocabulary.forEach(item => {
-            if (item.category) categories.add(item.category);
-        });
-        
-        const filterContainer = document.getElementById('filterBar');
-        if (!filterContainer) return;
-        
-        const allBtn = filterContainer.querySelector('[data-filter="all"]');
-        filterContainer.innerHTML = '';
-        filterContainer.appendChild(allBtn);
-        
-        const categoryOrder = { animal: "🐾 Động vật", nature: "🌿 Thiên nhiên", other: "⭐ Khác" };
-        const sortedCategories = Array.from(categories).sort();
-        
-        sortedCategories.forEach(cat => {
-            if (cat === "all") return;
-            let displayName = categoryOrder[cat] || cat;
-            if (!categoryOrder[cat]) {
-                displayName = cat.charAt(0).toUpperCase() + cat.slice(1);
-            }
-            const btn = document.createElement('button');
-            btn.className = 'filter-btn';
-            btn.setAttribute('data-filter', cat);
-            btn.textContent = displayName;
-            filterContainer.appendChild(btn);
-        });
-        
-        setupFilters();
+    const frag = document.createDocumentFragment();
+    vocabulary.forEach(function(it){ frag.appendChild(createFlashcard(it)); });
+    cardsGrid.appendChild(frag);
+  }
+
+  function dungSai(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.remove(); });
+    statusBar.className = "status-bar error";
+    statusBar.textContent = "🃏 Trò thẻ từ chỉ dùng cho SM1 và SM2. Con chọn lại sách ở thanh trên nhé.";
+    cardsGrid.innerHTML = '<div class="empty-state">Chọn SM1 hoặc SM2 ở góc trên để học thẻ từ.</div>';
+  }
+
+  function chay(){
+    if (!window.GAME || !GAME.sanSang){
+      statusBar.textContent = "Chưa nạp được bộ khung trò chơi (core.js).";
+      return;
     }
-    
-    function createFlashcard(item) {
-        const card = document.createElement('div');
-        card.className = 'flashcard';
-        card.setAttribute('data-word', item.word.toLowerCase());
-        card.setAttribute('data-category', item.category);
-        
-        const imagePath = IMAGE_BASE_PATH + item.word;
-        
-        card.innerHTML = `
-            <div class="inner">
-                <div class="front">
-                    <img class="flash-img" src="${imagePath}.png" alt="${item.word}" 
-     onerror="this.onerror=null; this.src='${imagePath}.jpg';"
-     style="max-width:85%; max-height:70%; object-fit:contain; border-radius:20px;">
-                    <div class="click-hint">🎵 nhấn để nghe + lật thẻ</div>
-                </div>
-                <div class="back">
-                    <div class="word">${escapeHtml(item.word)}</div>
-                    <div class="pronounce">${escapeHtml(item.pronunciation)}</div>
-                    <div class="meaning"> ${escapeHtml(item.meaning)}</div>
-                    <div class="sound-icon">🔊 nghe phát âm</div>
-                </div>
-            </div>
-        `;
-        
-        card.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.toggle('flipped');
-            speakWord(item.word);
-        });
-        
-        return card;
-    }
-    
-    // Phát âm thanh bằng Web Speech API
-    function speakWord(word) {
-        /* ưu tiên bộ phát âm dùng chung: mp3 người thật, hỏng thì giọng máy */
-        if (window.NOI && NOI.tu) { NOI.tu(word); return; }
-        if (window.GAME && GAME.noi) { GAME.noi(word); return; }
-        if (!window.speechSynthesis) {
-            console.warn("Trình duyệt không hỗ trợ phát âm");
-            return;
-        }
-        
-        // Hủy phát âm đang chạy để tránh chồng chéo
-        window.speechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.85;
-        utterance.pitch = 1.0;
-        
-        // Thử chọn giọng nam/nữ nếu có
-        if (window.speechSynthesis.getVoices) {
-            const voices = window.speechSynthesis.getVoices();
-            const englishVoice = voices.find(voice => voice.lang === 'en-US' && voice.name.includes('Google'));
-            if (englishVoice) utterance.voice = englishVoice;
-        }
-        
-        window.speechSynthesis.speak(utterance);
-    }
-    
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
-    }
-    
-    function renderCards(filter) {
-        if (!vocabulary.length) return;
-        
-        let filteredList = vocabulary;
-        if (filter !== "all") {
-            filteredList = vocabulary.filter(item => item.category === filter);
-        }
-        
-        cardsGrid.innerHTML = '';
-        
-        if (filteredList.length === 0) {
-            cardsGrid.innerHTML = `<div class="empty-state">✨ Không có từ vựng nào trong danh mục này ✨</div>`;
-            return;
-        }
-        
-        const fragment = document.createDocumentFragment();
-        filteredList.forEach(item => {
-            fragment.appendChild(createFlashcard(item));
-        });
-        cardsGrid.appendChild(fragment);
-    }
-    
-    function setupFilters() {
-        const buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => {
-            btn.removeEventListener('click', handleFilterClick);
-            btn.addEventListener('click', handleFilterClick);
-        });
-    }
-    
-    function handleFilterClick(e) {
-        const btn = e.currentTarget;
-        const filterValue = btn.getAttribute('data-filter');
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = filterValue;
-        renderCards(currentFilter);
-    }
-    
-    loadVocabulary();
-    
+    GAME.sanSang().then(function(b){
+      if (!b){ statusBar.textContent = "Chưa tải được dữ liệu từ vựng."; return; }
+      if (b.sach !== "SM1" && b.sach !== "SM2"){ dungSai(); return; }
+      vocabulary = (b.tu || []).map(function(x){
+        return { word: x[0], meaning: x[1] || "", category: "unit" };
+      });
+      statusBar.className = "status-bar success";
+      statusBar.textContent = `📚 ${b.sach} · Unit ${b.unit}${b.ten ? " — " + b.ten : ""} · ${vocabulary.length} từ`;
+      capNhatDem();
+      renderCards();
+    }).catch(function(){
+      statusBar.textContent = "Có lỗi khi tải dữ liệu.";
+    });
+  }
+
+  chay();
+})();
 </script>
 
 </body>

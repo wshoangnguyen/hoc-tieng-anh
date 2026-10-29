@@ -12,12 +12,13 @@ window.GAME = (function () {
   const API = "https://xtfusgawjlrcreiphwur.supabase.co";
   const KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3"; // khoá công khai, như web quản lý
   const LS_MA = "game_ma_hv", LS_CHO = "game_cho_gui", LS_DIEM = "game_diem_hom_nay";
-  const QUY_TAC = "Mỗi nấc xong +1 điểm · đủ 6 nấc +5 điểm · cả 6 nấc hoàn hảo +5 điểm · tối đa 16 điểm/ngày";
+  const QUY_TAC = "Mỗi level xong +1 điểm · đủ 6 level +5 điểm · cả 6 level hoàn hảo +5 điểm · tối đa 16 điểm/ngày";
 
   let cfg = { game: "?", sach: null, unit: null, nac: 1, soCau: 0 };
   let phien = null, daKetThuc = false;
   let sk = null; // HKG: sự kiện từng câu của phiên này
   let nacXong = [], nacHoanHao = [], diemHomNay = 0, dangTai = false;
+  let TV = null, cheDoDau = false;
 
   const el = (t, c, s) => { const d = document.createElement(t); if (c) d.className = c; if (s != null) d.textContent = s; return d; };
   const doc = (k) => { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } };
@@ -59,18 +60,21 @@ window.GAME = (function () {
   }
 
   /* ---------- thanh nhỏ ---------- */
-  let thanh, nutMa, chonNac, nhanDiem;
+  let thanh, nutMa, chonNac, nhanDiem, chonSach, chonUnit;
   function dungThanh() {
     if (thanh || !document.body) return;
     thanh = el("div", "gcore-thanh");
     nutMa = el("button", "gcore-ma"); nutMa.onclick = hoiMa;
-    chonNac = el("select", "gcore-nac");
-    for (let n = 1; n <= 6; n++) { const o = el("option", null, "Nấc " + n); o.value = n; chonNac.appendChild(o); }
-    chonNac.onchange = () => { cfg.nac = Number(chonNac.value); };
+    chonSach = el("select", "gcore-chon"); chonSach.title = "Chọn sách";
+    chonUnit = el("select", "gcore-chon"); chonUnit.title = "Chọn Unit";
+    chonSach.onchange = () => { datBai(chonSach.value, null); };
+    chonUnit.onchange = () => { datBai(chonSach.value, Number(chonUnit.value)); };
+    chonNac = el("span", "gcore-nac"); chonNac.title = "Level của lượt chơi này (do trò chơi quy định)";
     nhanDiem = el("span", "gcore-diem", "");
-    thanh.appendChild(nutMa); thanh.appendChild(chonNac); thanh.appendChild(nhanDiem);
+    thanh.appendChild(nutMa); thanh.appendChild(chonSach); thanh.appendChild(chonUnit);
+    thanh.appendChild(chonNac); thanh.appendChild(nhanDiem);
     document.body.appendChild(thanh);
-    capNhatThanh();
+    capNhatThanh(); veChonBai();
   }
 
   function capNhatThanh() {
@@ -78,13 +82,55 @@ window.GAME = (function () {
     const m = maHV();
     nutMa.textContent = m ? "👤 " + m : "👤 Nhập mã học viên";
     nutMa.classList.toggle("thieu", !m);
-    chonNac.value = String(cfg.nac || 1);
-    [...chonNac.options].forEach((o) => {
-      const n = Number(o.value);
-      o.textContent = "Nấc " + n + (nacXong.indexOf(n) >= 0 ? " ✓" : "");
-    });
+    chonNac.textContent = "Level " + (Number(cfg.nac) || 1) + "/6";
     const d = doc(LS_DIEM);
     nhanDiem.textContent = m ? "⭐ " + (diemHomNay || d || 0) + "/16 hôm nay" : "";
+  }
+
+  /* ---------- chọn Sách / Unit dùng chung cho mọi game ---------- */
+  function napTV() {
+    if (TV) return Promise.resolve(TV);
+    const p = location.pathname.indexOf("/games/") >= 0 ? "../data/tu-vung.json" : "data/tu-vung.json";
+    return fetch(p).then((r) => (r.ok ? r.json() : null)).then((d) => { TV = d; return d; }).catch(() => null);
+  }
+  function baiDaLuu() { try { return JSON.parse(localStorage.getItem("game_bai") || "null"); } catch (e) { return null; } }
+  function baiHienTai() {
+    let b = baiDaLuu();
+    if (!b || !b.sach) b = { sach: cfg.sach || "SM1", unit: cfg.unit == null ? 0 : cfg.unit };
+    if (!TV || !TV.sach) return b;
+    const s = TV.sach[b.sach] ? b.sach : Object.keys(TV.sach)[0];
+    const us = (TV.sach[s] || {}).units || [];
+    const u = us.some((x) => Number(x.u) === Number(b.unit)) ? Number(b.unit) : (us[0] ? Number(us[0].u) : 0);
+    return { sach: s, unit: u };
+  }
+  function datBai(sach, unit) {
+    const b = baiHienTai();
+    const s = sach || b.sach;
+    let u = unit;
+    if (u == null) {
+      const us = (TV && TV.sach && TV.sach[s] && TV.sach[s].units) || [];
+      u = us.length ? Number(us[0].u) : 0;
+    }
+    try { localStorage.setItem("game_bai", JSON.stringify({ sach: s, unit: Number(u) || 0 })); } catch (e) {}
+    location.reload();
+  }
+  function bai() {
+    const b = baiHienTai();
+    if (!TV || !TV.sach) return null;
+    const s = TV.sach[b.sach] || {};
+    const u = (s.units || []).find((x) => Number(x.u) === Number(b.unit)) || null;
+    return { sach: b.sach, unit: b.unit, ten: u ? u.ten : "", tu: (u && u.tu) || [], khuon: (u && u.khuon) || [] };
+  }
+  function veChonBai() {
+    napTV().then(() => {
+      if (!TV || !chonSach) return;
+      const b = baiHienTai();
+      chonSach.innerHTML = Object.keys(TV.sach).map((k) => `<option value="${k}">${k}</option>`).join("");
+      chonSach.value = b.sach;
+      const us = (TV.sach[b.sach] || {}).units || [];
+      chonUnit.innerHTML = us.map((x) => `<option value="${x.u}">U${x.u}${x.ten ? " · " + String(x.ten).slice(0, 16) : ""}</option>`).join("");
+      chonUnit.value = String(b.unit);
+    });
   }
 
   /* ---------- hộp nhập mã ---------- */
@@ -163,6 +209,7 @@ window.GAME = (function () {
       ti_le: soCau ? Math.round(100 * soDung / soCau) : 0,
       ht, hh, loi: phien.loi,
     };
+    if (cheDoDau) { hienKetQua(kq, { thidau: true }); return Promise.resolve(kq); }
     if (!maHV()) { hienKetQua(kq, null); return Promise.resolve(kq); }
     hienCho();
     return gui(kq).then((d) => { hienKetQua(kq, d); return kq; });
@@ -256,20 +303,22 @@ window.GAME = (function () {
     } else if (!maHV()) {
       hop.appendChild(el("h3", null, "Chơi giỏi lắm!"));
       hop.appendChild(el("p", null, "Chưa nhập mã học viên nên lần này chưa cộng điểm."));
+    } else if (d && Number(d.diem_luot_tong) > 0) {
+      hop.appendChild(el("h3", null, "🎉 Chúc mừng! +" + d.diem_luot_tong + " điểm"));
     } else if (kq.ht) {
-      hop.appendChild(el("h3", null, "✅ Hoàn thành nấc " + kq.nac + "!"));
+      hop.appendChild(el("h3", null, "✅ Hoàn thành level " + kq.nac + "!"));
     } else {
       hop.appendChild(el("h3", null, "Cố thêm chút nữa!"));
     }
 
-    hop.appendChild(el("p", "gcore-so", "Đúng " + kq.so_dung + "/" + kq.so_cau + " câu (" + kq.ti_le + "%) · " + kq.giay + " giây · nấc " + kq.nac + "/6"));
+    hop.appendChild(el("p", "gcore-so", "Đúng " + kq.so_dung + "/" + kq.so_cau + " câu (" + kq.ti_le + "%) · " + kq.giay + " giây · Level " + kq.nac + "/6"));
 
     if (d && !loi) {
       const bang = el("div", "gcore-bang");
       const dong = (nhan, gt) => { const r = el("div"); r.appendChild(el("span", null, nhan)); r.appendChild(el("b", null, gt)); bang.appendChild(r); };
-      dong("Điểm nấc này", "+" + (d.diem_luot || 0));
-      if (d.thuong_du_nac) dong("Thưởng đủ 6 nấc", "+" + d.thuong_du_nac);
-      if (d.thuong_hoan_hao) dong("Thưởng hoàn hảo cả 6 nấc", "+" + d.thuong_hoan_hao);
+      dong("Điểm level này", "+" + (d.diem_luot || 0));
+      if (d.thuong_du_nac) dong("Thưởng đủ 6 level", "+" + d.thuong_du_nac);
+      if (d.thuong_hoan_hao) dong("Thưởng hoàn hảo cả 6 level", "+" + d.thuong_hoan_hao);
       dong("Tổng lượt này", "+" + (d.diem_luot_tong || 0));
       dong("Hôm nay", (d.diem_hom_nay || 0) + "/16 điểm");
       hop.appendChild(bang);
@@ -282,7 +331,7 @@ window.GAME = (function () {
       } else {
         hop.appendChild(el("p", "gcore-goiy", "Còn " + d.con_lai_hom_nay + " điểm cho hôm nay."));
       }
-      if ((d.nac_da_xong || 0) >= 6) hop.appendChild(el("p", "gcore-goiy", "Con đã xong cả 6 nấc của phần này 🎉"));
+      if ((d.nac_da_xong || 0) >= 6) hop.appendChild(el("p", "gcore-goiy", "Con đã xong cả 6 level của phần này 🎉"));
     } else if (maHV()) {
       hop.appendChild(el("p", "gcore-goiy", "Ước tính +" + (kq.ht ? 1 : 0) + " điểm — sẽ cộng khi có mạng."));
     }
@@ -296,10 +345,18 @@ window.GAME = (function () {
       hop.appendChild(ds);
     }
 
+    if (d && d.thidau) hop.appendChild(el("p", "gcore-goiy", "Chế độ thi đấu trên lớp — lượt này không cộng điểm. Muốn tích điểm, con chơi lại ở chế độ một người nhé."));
+
     hop.appendChild(el("p", "gcore-luat", "🎯 " + QUY_TAC));
 
     const hang = el("div", "gcore-hang");
-    const nut = el("button", "gcore-nut", "Chơi tiếp");
+    if (d && Number(d.diem_luot_tong) > 0) {
+      const ve = el("button", "gcore-nut ve", "🏠 Về sảnh game");
+      ve.onclick = () => { location.href = location.pathname.indexOf("/games/") >= 0 ? "../sanh.html" : "sanh.html"; };
+      hang.appendChild(ve);
+      try { voTay(); } catch (e) {}
+    }
+    const nut = el("button", "gcore-nut" + (d && Number(d.diem_luot_tong) > 0 ? " phu" : ""), "Chơi tiếp");
     nut.onclick = () => nen.remove();
     hang.appendChild(nut); hop.appendChild(hang);
     nen.appendChild(hop); document.body.appendChild(nen);
@@ -370,6 +427,27 @@ window.GAME = (function () {
     });
   }
 
+  /* ---------- vỗ tay: tiếng ồn ngắn lặp lại, không cần file âm thanh ---------- */
+  function voTay() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    const ac = new AC();
+    const dai = 1.6, sr = ac.sampleRate, n = Math.floor(sr * dai);
+    const buf = ac.createBuffer(1, n, sr), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) {
+      const t = i / sr;
+      let v = (Math.random() * 2 - 1) * Math.exp(-((t % 0.11) * 26));
+      v *= 0.55 + 0.45 * Math.sin(t * 34);
+      d[i] = v * 0.5;
+    }
+    const src = ac.createBufferSource(); src.buffer = buf;
+    const loc = ac.createBiquadFilter(); loc.type = "bandpass"; loc.frequency.value = 1800; loc.Q.value = 0.8;
+    const gain = ac.createGain(); gain.gain.value = 0.35;
+    src.connect(loc); loc.connect(gain); gain.connect(ac.destination);
+    src.start();
+    src.onended = () => { try { ac.close(); } catch (e) {} };
+  }
+
   /* ---------- pháo hoa (tự vẽ, không phụ thuộc mạng) ---------- */
   function phaoHoa(soQua) {
     const n = Math.max(1, Number(soQua) || 5);
@@ -418,7 +496,9 @@ window.GAME = (function () {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", khoi);
   else khoi();
 
-  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+  function doiKhang(v) { cheDoDau = !!v; }
+  function sanSang() { return napTV().then(() => bai()); }
+  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, bai, sanSang, datBai, doiKhang, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
 })();
 
 /* tự nạp buddy.js (bong bóng khen/khích lệ) — mọi trang có core.js đều có Buddy */

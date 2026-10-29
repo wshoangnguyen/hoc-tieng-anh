@@ -228,7 +228,8 @@ const NHOM = [
     tro:[
       {ten:"Thẻ từ", phu:"Lật thẻ học từ", href:"flashcard.html", img:"flashcard.png"},
       {ten:"Ghép cặp", phu:"Từ ↔ nghĩa", href:"games/matching-game.html", img:"matching.png"},
-      {ten:"Bắt thẻ", phu:"Bắt đúng hình đang bay", href:"games/catch-the-card.html", img:"catch-the-card.png"}
+      {ten:"Bắt thẻ", phu:"Bắt đúng hình đang bay", href:"games/catch-the-card.html", img:"catch-the-card.png"},
+      {ten:"Tập đọc", phu:"Đọc bài, nghe phát âm", href:"Reading.html", img:"tap-doc.png"}
     ]},
   { so:2, ten:"Lặp lại", mo:"Nhớ mặt chữ và viết lại cho đúng", mau:"#f0a24b",
     tro:[
@@ -243,7 +244,6 @@ const NHOM = [
     ]},
   { so:4, ten:"Dùng tự do", mo:"Đọc và hiểu cả đoạn", mau:"#a78bfa",
     tro:[
-      {ten:"Tập đọc", phu:"Đọc bài, nghe phát âm", href:"Reading.html", img:"tap-doc.png"},
       {ten:"Dịch truyện", phu:"Từ rơi — chọn nghĩa đúng", href:"words-fall.html", img:"words-fall.png"}
     ]},
   { so:5, ten:"Tư duy", mo:"Suy luận, tự phát hiện lỗi", mau:"#e0679b",
@@ -292,6 +292,29 @@ document.getElementById("sanh").innerHTML = html;
 
   function tenDaLuu(ma){ return (localStorage.getItem("game_ten_" + ma) || "").trim(); }
 
+  const TEN_TRO = { quiz:"Trắc nghiệm", "tu-duy":"Tư duy", flashcard:"Thẻ từ", matching:"Ghép cặp",
+    "catch-the-card":"Bắt thẻ", spelling:"Đánh vần", "scrambled-word":"Xếp chữ", "word-find":"Tìm từ",
+    "sentence-builder":"Xếp câu", "words-fall":"Dịch truyện", "on-tap":"Ôn từ", reading:"Tập đọc",
+    "noi-chuyen":"Nói với AI", "sang-tao":"Sáng tạo" };
+
+  function veLevel(lv){
+    const hop = document.getElementById("hsLvChu");
+    if (!hop) return;
+    if (!lv || !lv.ok){ hop.textContent = "Level đã xong: chưa đọc được (thử tải lại trang)."; return; }
+    const ds = (lv.ds || []).filter(function(x){ return (x.level || []).length; });
+    if (!ds.length){
+      hop.innerHTML = "Bài đang học: <b>" + lv.sach + " · Unit " + lv.unit + "</b>. Chưa xong level nào — chơi đúng bài này để bắt đầu tích điểm.";
+      return;
+    }
+    const dong = ds.slice(0, 3).map(function(x){
+      const ten = TEN_TRO[x.game] || x.game;
+      const con = [1,2,3,4,5,6].filter(function(n){ return (x.level || []).indexOf(n) < 0; });
+      return "<b>" + ten + "</b>: xong level " + x.level.join(", ") +
+        (con.length ? " · còn " + con.join(", ") + " để đủ 6 (+5 điểm)" : " · đủ 6 level rồi 🎉");
+    }).join("<br>");
+    hop.innerHTML = "<span style='font-size:11.5px;color:#8b7f63'>" + lv.sach + " · Unit " + lv.unit + "</span><br>" + dong;
+  }
+
   function veDiem(d, ten, diemWeb){
     const diem = (diemWeb != null ? (Number(diemWeb) + Number(d ? (d.diem_game || 0) : 0)) : (d ? (d.diem_tong || 0) : 0));
     const homNay = d ? (d.diem_hom_nay || 0) : 0;
@@ -299,7 +322,7 @@ document.getElementById("sanh").innerHTML = html;
     hopDiem.innerHTML =
       `<div class="hs-so"><b>${diem}</b><span>điểm tích luỹ</span></div>` +
       `<div class="hs-so"><b>${homNay}<small style="font-size:13px;color:#a08c5e">/16</small></b><span>điểm hôm nay</span></div>` +
-      `<div class="hs-so"><b>${luot}</b><span>lượt chơi</span></div>`;
+      `<div class="hs-lv" id="hsLv" style="flex:2.4;background:#fffaf0;border:1px solid #f0e2c2;border-radius:12px;padding:8px 10px;text-align:left"><span id="hsLvChu" style="font-size:12.5px;color:#7a6a45">Đang xem level đã xong…</span></div>`;
     kq.className = "hs-kq ok";
     kq.innerHTML = (ten ? `Xin chào <b>${ten}</b>! ` : "") +
       `Điểm của con đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
@@ -309,10 +332,11 @@ document.getElementById("sanh").innerHTML = html;
 
   async function nap(ma){
     oMa.value = ma;
-    const [x, h, s] = await Promise.all([
+    const [x, h, s, lv] = await Promise.all([
       rpc("game_xem", { p_ma: ma }),
       rpc("game_ho_so", { p_ma: ma }),
-      rpc("hs_ho_so", { p_ma: ma })
+      rpc("hs_ho_so", { p_ma: ma }),
+      rpc("game_levels", { p_ma: ma })
     ]);
     if (!x || x.ma == null) {
       kq.className = "hs-kq";
@@ -324,6 +348,7 @@ document.getElementById("sanh").innerHTML = html;
       ? s.ho_ten
       : ((h && h.ten) ? h.ten : tenDaLuu(ma));
     veDiem(x, ten, (s && s.ok && s.diem_tich_luy != null) ? s.diem_tich_luy : null);
+    veLevel(lv);
   }
 
   function chuanMa(v){
