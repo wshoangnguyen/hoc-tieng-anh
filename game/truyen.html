@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Chuyện của Buddy · Học tiếng Anh dễ lắm</title>
+<link rel="icon" href="../favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--nen:#F7F3E7;--the:#fff;--chu:#2b2a26;--nhat:#7a7365;--vien:#e7e0cf;--vang:#f0b429;--nau:#8a6410}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 500px at 50% -10%,#fff9e8 0,transparent 60%),var(--nen);color:var(--chu);
+    font-family:"Quicksand",system-ui,sans-serif}
+  header{padding:22px 18px 6px;text-align:center}
+  header h1{font-family:"Baloo Bhaina 2",cursive;font-size:30px;margin:0 0 6px;color:#5c4a12}
+  header p{margin:0 0 4px;color:var(--nhat);font-size:14px}
+  header a.ve{display:inline-block;margin-top:10px;color:var(--nau);font-weight:700;text-decoration:none;font-size:14px}
+  main{max-width:1000px;margin:0 auto;padding:18px 16px 60px}
+  .re{display:flex;align-items:center;gap:10px;justify-content:center;margin:8px 0 20px;color:#6b5a2a;font-weight:700;font-size:14px}
+  .re .thanh{width:150px;height:9px;border-radius:99px;background:#eee3c6;overflow:hidden}
+  .re .thanh i{display:block;height:100%;background:linear-gradient(90deg,#f6c445,#e0952a)}
+  .luoi{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+  .the{background:var(--the);border:1px solid var(--vien);border-radius:18px;overflow:hidden;cursor:pointer;
+    box-shadow:0 6px 18px rgba(120,95,30,.07);transition:transform .15s,box-shadow .15s}
+  .the:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(120,95,30,.12)}
+  .the .anh{height:132px;background:linear-gradient(160deg,#ffe9a9,#f6c445);background-size:cover;background-position:center}
+  .the .than{display:block;padding:12px 14px 14px}
+  .the b{display:block;font-size:15.5px;color:#4a3d12;margin-bottom:4px}
+  .the span{font-size:12.5px;color:#8b7f63;line-height:1.45}
+  .the.khoa{opacity:.62;cursor:default}
+  .the.khoa .anh{filter:grayscale(.55)}
+  .the .khoa-nhan{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:800;color:#8a6410;background:#fff4d4;
+    border:1px solid #f0dfae;border-radius:99px;padding:3px 9px}
+  /* đọc truyện */
+  #doc{position:fixed;inset:0;background:rgba(40,33,14,.55);display:none;z-index:90;overflow:auto;padding:16px}
+  #doc.mo{display:block}
+  .khung{max-width:720px;margin:10px auto;background:#fffdf6;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  .khung .anh{height:230px;background-size:cover;background-position:center;background-color:#f6c445}
+  .khung .than{padding:20px 22px 26px}
+  .khung h2{font-family:"Baloo Bhaina 2",cursive;font-size:26px;margin:0 0 4px;color:#4a3d12}
+  .khung .tom{color:#8b7f63;font-size:13px;margin:0 0 14px}
+  .khung p{font-size:16.5px;line-height:1.75;margin:0 0 13px;color:#3a3427}
+  .tu{margin:16px 0 6px;display:flex;gap:8px;flex-wrap:wrap}
+  .tu span{background:#fff4d4;border:1px solid #f0dfae;color:#7a5a10;font-weight:700;font-size:13px;border-radius:99px;padding:5px 11px}
+  .hoi{margin-top:18px;border-top:1px dashed var(--vien);padding-top:14px}
+  .hoi details{margin-bottom:8px;background:#faf6e9;border:1px solid #efe6cc;border-radius:12px;padding:9px 12px}
+  .hoi summary{cursor:pointer;font-weight:700;font-size:14.5px;color:#5b4a16}
+  .hoi details p{margin:8px 0 0;font-size:14px;color:#6b6250}
+  .dong{display:block;margin:18px auto 0;border:0;background:#f0b429;color:#3a2c00;font-weight:800;font-family:inherit;
+    font-size:15px;padding:11px 22px;border-radius:99px;cursor:pointer}
+  .dang{text-align:center;color:#8b7f63;padding:40px 0}
+  @media(max-width:520px){header h1{font-size:24px}.khung .anh{height:170px}.khung .than{padding:16px 16px 22px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📖 Chuyện của Buddy</h1>
+  <p>Buddy kể chuyện mình — bằng tiếng Anh dễ đọc, có hình.</p>
+  <a class="ve" href="sanh.html">← Về sảnh trò chơi</a>
+</header>
+
+<main>
+  <div class="re" id="re"></div>
+  <div id="ds" class="luoi"><div class="dang">Đang tải chuyện…</div></div>
+</main>
+
+<div id="doc" role="dialog" aria-modal="true">
+  <div class="khung">
+    <div class="anh" id="docAnh"></div>
+    <div class="than">
+      <h2 id="docTen"></h2>
+      <p class="tom" id="docTom"></p>
+      <div id="docThan"></div>
+      <button class="dong" id="docDong">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var API = "https://xtfusgawjlrcreiphwur.supabase.co";
+  var KEY = "sb_publishable_3MiuAFrEEH_ZBEAg7fqTvw_CLC0OxK3";
+  var ANH = { "truyen:00": "img/c0-1.jpg", "truyen:01": "img/c1-1.jpg", "truyen:02": "img/c2-1.jpg" };
+  var dsEl = document.getElementById("ds"), reEl = document.getElementById("re");
+  var doc = document.getElementById("doc");
+  var ma = (localStorage.getItem("game_ma_hv") || "").trim().toUpperCase();
+
+  function rpc(ten, body){
+    return fetch(API + "/rest/v1/rpc/" + ten, {
+      method: "POST",
+      headers: { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" },
+      body: JSON.stringify(body || {})
+    }).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); });
+  }
+
+  function veRe(cm){
+    var moc = 45;
+    var pt = Math.max(3, Math.min(100, Math.round(cm / moc * 100)));
+    reEl.innerHTML = '<span>🌱 Rễ của bạn: <b>' + (cm || 0) + ' cm</b></span>' +
+      '<span class="thanh"><i style="width:' + pt + '%"></i></span>' +
+      '<span>' + (ma ? (cm >= 45 ? "đủ rồi — cây to đang chờ" : "còn " + Math.max(0, (45 - cm)).toFixed(1) + " cm nữa") : "nhập mã học viên ở sảnh để mở thêm") + '</span>';
+  }
+
+  function the(x){
+    var d = document.createElement("div");
+    d.className = "the" + (x.da_mo ? "" : " khoa");
+    var anh = ANH[x.ma] || "";
+    d.innerHTML = '<div class="anh" style="' + (anh ? "background-image:url('" + anh + "')" : "") + '"></div>' +
+      '<div class="than"><b>' + x.tieu_de + '</b><span>' + (x.tom_tat || "") + '</span>' +
+      (x.da_mo ? "" : '<span class="khoa-nhan">🔒 mở ở rễ ' + ((x.mo_khoa && x.mo_khoa.re_cm) || 0) + ' cm</span>') +
+      '</div>';
+    if (x.da_mo) d.addEventListener("click", function(){ moDoc(x); });
+    return d;
+  }
+
+  function moDoc(x){
+    document.getElementById("docTen").textContent = x.tieu_de;
+    document.getElementById("docTom").textContent = x.tom_tat || "";
+    var anh = ANH[x.ma];
+    document.getElementById("docAnh").style.backgroundImage = anh ? "url(" + anh + ")" : "";
+    var than = document.getElementById("docThan");
+    than.innerHTML = "";
+    (x.noi_dung || "").split(/\n{2,}/).forEach(function(p){
+      var e = document.createElement("p"); e.textContent = p; than.appendChild(e);
+    });
+    if (x.tu_moi && x.tu_moi.length){
+      var tu = document.createElement("div"); tu.className = "tu";
+      x.tu_moi.forEach(function(t){
+        var s = document.createElement("span"); s.textContent = t.en + " · " + t.vi; tu.appendChild(s);
+      });
+      than.appendChild(tu);
+    }
+    if (x.cau_hoi && x.cau_hoi.length){
+      var h = document.createElement("div"); h.className = "hoi";
+      x.cau_hoi.forEach(function(q){
+        var d = document.createElement("details");
+        d.innerHTML = "<summary>" + q.hoi + "</summary><p>" + q.dap + "</p>";
+        h.appendChild(d);
+      });
+      than.appendChild(h);
+    }
+    doc.classList.add("mo"); doc.scrollTop = 0;
+  }
+
+  document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); });
+  doc.addEventListener("click", function(e){ if (e.target === doc) doc.classList.remove("mo"); });
+
+  rpc("buddy_ds", { p_ma: ma || null }).then(function(d){
+    if (!d || !d.ok) throw new Error("loi");
+    veRe(d.re_cm || 0);
+    dsEl.innerHTML = "";
+    (d.ds || []).forEach(function(x){ dsEl.appendChild(the(x)); });
+  }).catch(function(){
+    dsEl.innerHTML = '<div class="dang">Chưa tải được chuyện. Con thử lại sau nhé.</div>';
+  });
+})();
+</script>
+</body>
+</html>

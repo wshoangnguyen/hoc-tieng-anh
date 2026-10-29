@@ -167,6 +167,17 @@
 
 <main id="sanh"></main>
 
+<section style="max-width:1000px;margin:26px auto 10px;padding:0 16px">
+  <a href="truyen.html" style="display:flex;gap:16px;align-items:center;text-decoration:none;background:#fff;border:1px solid #efe6cc;border-radius:20px;padding:14px;box-shadow:0 8px 22px rgba(120,95,30,.08)">
+    <span style="flex:0 0 96px;height:96px;border-radius:14px;background:#f6c445 url('truyen/img/bia.jpg') center/cover no-repeat"></span>
+    <span style="flex:1;min-width:0">
+      <b style="display:block;font-family:'Baloo Bhaina 2',cursive;font-size:20px;color:#4a3d12">📖 Chuyện của Buddy</b>
+      <span style="display:block;font-size:13.5px;color:#8b7f63;line-height:1.5;margin-top:3px">7 chương Buddy kể về chính mình. Hai chuyện đầu mở sẵn — chơi game mọc rễ thêm thì mở tiếp.</span>
+      <span style="display:inline-block;margin-top:8px;background:#fff4d4;border:1px solid #f0dfae;color:#7a5a10;font-weight:800;font-size:12.5px;border-radius:99px;padding:4px 12px">Đọc truyện →</span>
+    </span>
+  </a>
+</section>
+
 <script>
 const NHOM = [
   { so:1, ten:"Nhận diện", mo:"Nhìn hình / nghe từ rồi hiểu nghĩa", mau:"#4ecdc4",
@@ -237,8 +248,8 @@ document.getElementById("sanh").innerHTML = html;
 
   function tenDaLuu(ma){ return (localStorage.getItem("game_ten_" + ma) || "").trim(); }
 
-  function veDiem(d, ten){
-    const diem = d ? (d.diem_tong || 0) : 0;
+  function veDiem(d, ten, diemWeb){
+    const diem = (diemWeb != null ? diemWeb : (d ? (d.diem_tong || 0) : 0));
     const homNay = d ? (d.diem_hom_nay || 0) : 0;
     const luot = d ? (d.so_luot || 0) : 0;
     hopDiem.innerHTML =
@@ -249,18 +260,26 @@ document.getElementById("sanh").innerHTML = html;
     kq.innerHTML = (ten ? `Xin chào <b>${ten}</b>! ` : "") +
       `Điểm của con đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
     if (!ten) { hopTen.classList.add("on"); oTen.value = ""; oTen.placeholder = "VD: Minh An"; }
+    else hopTen.classList.remove("on");
   }
 
   async function nap(ma){
     oMa.value = ma;
-    const [x, h] = await Promise.all([rpc("game_xem", { p_ma: ma }), rpc("game_ho_so", { p_ma: ma })]);
+    const [x, h, s] = await Promise.all([
+      rpc("game_xem", { p_ma: ma }),
+      rpc("game_ho_so", { p_ma: ma }),
+      rpc("hs_ho_so", { p_ma: ma })
+    ]);
     if (!x || x.ma == null) {
       kq.className = "hs-kq";
       kq.innerHTML = "Chưa tìm thấy mã này. Con kiểm tra lại mã rồi bấm Lưu mã nhé (vẫn chơi được, nhưng chưa cộng điểm).";
       hopDiem.innerHTML = "";
       return;
     }
-    veDiem(x, (h && h.ten) ? h.ten : tenDaLuu(ma));
+    const ten = (s && s.ok && s.ho_ten)
+      ? s.ho_ten
+      : ((h && h.ten) ? h.ten : tenDaLuu(ma));
+    veDiem(x, ten, (s && s.ok && s.diem_tich_luy != null) ? s.diem_tich_luy : null);
   }
 
   async function luu(){
