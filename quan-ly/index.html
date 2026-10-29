@@ -4661,26 +4661,6 @@ document.addEventListener("click", function(e){
   setInterval(dongBoNutSaoLuu, 1500);
   setTimeout(dongBoNutSaoLuu, 800);
 
-  /* --- 2. chỗ đứng: né nút thông báo ở góc trái dưới --- */
-  function canhNutSaoLuu(){
-    var nut = document.getElementById("nutSaoLuu");
-    if(!nut) return;
-    var hop = document.getElementById("hopSaoLuu");
-    var tb = document.querySelector(".tb-wrap");
-    var coTB = !!(tb && tb.offsetParent !== null && getComputedStyle(tb).display !== "none");
-    var day = 14;
-    if(coTB){
-      /* nút (và bảng thông báo khi mở) đều nằm góc trái dưới → đặt nút sao lưu lên trên toàn bộ khối đó */
-      var r = tb.getBoundingClientRect();
-      day = Math.max(14, Math.round(window.innerHeight - r.top + 8));
-      day = Math.min(day, Math.round(window.innerHeight * 0.72));
-    }
-    nut.style.bottom = day + "px";
-    if(hop) hop.style.bottom = (day + 52) + "px";
-  }
-  setInterval(canhNutSaoLuu, 800);
-  setTimeout(canhNutSaoLuu, 600);
-
   /* --- 2. xoá ảnh cũ khi thay ảnh mới --- */
   if(typeof window.__donAnhCu !== "function"){
     window.__donAnhCu = async function(ma, giuLai){
@@ -4930,6 +4910,42 @@ try{
   new MutationObserver(()=>{ if(typeof VAI!=="undefined"&&VAI==="khach"){ bannerKhach(); khoaThaoTac(); } })
     .observe(document.body,{childList:true,subtree:true});
 }catch(e){}
+</script>
+<script>
+/* nút sao lưu gọn trên thanh đầu trang */
+(function(){
+  var daGan = false;
+  function dua(){
+    var nut = document.getElementById("nutSaoLuu");
+    var thanh = document.getElementById("congCu");
+    if(!nut || !thanh) return false;
+    if(nut.parentElement !== thanh){
+      var neo = document.getElementById("selVai");
+      if(neo && neo.parentElement === thanh) thanh.insertBefore(nut, neo);
+      else thanh.appendChild(nut);
+    }
+    if(!nut.__gon){
+      nut.__gon = 1;
+      nut.style.cssText = "position:static;width:auto;height:auto;padding:3px 9px;border-radius:8px;border:1px solid #e2d9c3;background:#fff;box-shadow:none;font-size:13px;line-height:1.6;cursor:pointer;color:inherit";
+      nut.textContent = "💾";
+      nut.title = "Sao lưu dữ liệu";
+      nut.addEventListener("click", function(){ setTimeout(datHop, 0); });
+    }
+    return true;
+  }
+  function datHop(){
+    var nut = document.getElementById("nutSaoLuu");
+    var hop = document.getElementById("hopSaoLuu");
+    if(!nut || !hop) return;
+    var r = nut.getBoundingClientRect();
+    hop.style.position = "fixed";
+    hop.style.bottom = "auto";
+    hop.style.top = Math.round(r.bottom + 6) + "px";
+    hop.style.left = Math.round(Math.max(8, Math.min(r.right - 250, window.innerWidth - 258))) + "px";
+  }
+  setInterval(dua, 800);
+  window.addEventListener("resize", datHop);
+})();
 </script>
 </body>
 </html>
