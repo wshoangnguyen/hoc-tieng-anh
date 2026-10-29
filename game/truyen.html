@@ -171,10 +171,11 @@
       });
       than.appendChild(h);
     }
+    var t0=document.getElementById("tip"); if(t0) t0.classList.remove("hien");
     doc.classList.add("mo"); doc.scrollTop = 0;
   }
 
-  document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); });
+  document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); var t=document.getElementById("tip"); if(t) t.classList.remove("hien"); });
   doc.addEventListener("click", function(e){ if (e.target === doc) doc.classList.remove("mo"); });
 
   /* ---- rê chuột / chạm vào đoạn: hiện bản dịch tiếng Việt ---- */
