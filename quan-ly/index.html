@@ -2961,6 +2961,111 @@ function mucCuaSach(bookId){
   return base.concat(them);
 }
 function lopCuaSach(book){ if(!book) return []; return S.lop.filter(l=>sachCuaLop(l.id)&&sachCuaLop(l.id).id===book.id); }
+
+/* ================= LÊN LỚP ================= */
+function ngayTruocNgay(s){ const d=new Date(s+"T00:00:00"); d.setDate(d.getDate()-1); return iso(d); }
+function sachTheoTenLop(ten){
+  const s=String(ten||"").trim().toUpperCase();
+  let m=/^SM\s*-?\s*(\d)/.exec(s);
+  if(m) return THU_VIEN.books.find(b=>b.code==="SM"+m[1])||null;
+  m=/^(A2|B1|B2)/.exec(s);
+  if(m) return THU_VIEN.books.find(b=>b.code==="OW"+m[1]||b.code===m[1])||null;
+  return null;
+}
+function goiYLopMoi(lopId){
+  const s=sachCuaLop(lopId), c=s?String(s.code):"";
+  const m=/^SM(\d)$/.exec(c);
+  if(m) return "SM"+(Number(m[1])+1);
+  if(c==="OWA2"||c==="A2") return "B1";
+  if(c==="OWB1"||c==="B1") return "B2";
+  return "";
+}
+/* Đổi lớp tại chỗ: giữ mã lớp, mở kỳ mới, chụp điểm, đổi tên điểm danh, ghi lịch sử từng em */
+function lenLop(lopId, tenMoi, ngayHieuLuc){
+  const lop=lopTheoId(lopId);
+  if(!lop) return {ok:false, loi:"Không tìm thấy lớp."};
+  const tenCu=lop.ten, moi=String(tenMoi||"").trim();
+  if(!moi) return {ok:false, loi:"Chưa nhập tên lớp mới."};
+  if(moi===tenCu) return {ok:false, loi:"Tên mới trùng tên cũ."};
+  if((S.lop||[]).some(l=>l.id!==lopId && String(l.ten).toLowerCase()===moi.toLowerCase()))
+    return {ok:false, loi:"Đã có lớp tên “"+moi+"”. Chọn tên khác (ví dụ "+moi+"a)."};
+  const sachMoi=sachTheoTenLop(moi);
+  if(!sachMoi) return {ok:false, loi:"Tên lớp phải bắt đầu bằng SM1–SM6, A2, B1 hoặc B2 để nhận đúng sách."};
+  const ngay=ngayHieuLuc||iso(new Date());
+  const truoc=ngayTruocNgay(ngay);
+
+  S.lop_sach=S.lop_sach||{};
+  S.diem_ky=S.diem_ky||{};
+  if(!Array.isArray(lop.ky)||!lop.ky.length){
+    const s0=sachCuaLop(lopId);
+    lop.ky=[{ten:tenCu, sach:s0?s0.code:"", tu_ngay:lop.ky_tu||""}];
+  }
+  const kyCu=lop.ky[lop.ky.length-1];
+  if(kyCu && !kyCu.den_ngay) kyCu.den_ngay=truoc;
+  if(kyCu && !kyCu.tu_ngay) kyCu.tu_ngay=lop.ky_tu||"";
+
+  const hs=(S.hoc_vien||[]).filter(h=>h.lop===tenCu);
+  let daChup=0;
+  hs.forEach(h=>{
+    h.lich_su_lop=Array.isArray(h.lich_su_lop)?h.lich_su_lop:[];
+    const cuoi=h.lich_su_lop[h.lich_su_lop.length-1];
+    if(!cuoi || cuoi.lop!==tenCu) h.lich_su_lop.push({lop:tenCu, tu_ngay:h.lop_tu||"", den_ngay:truoc});
+    else cuoi.den_ngay=cuoi.den_ngay||truoc;
+    h.lop=moi; h.lop_tu=ngay;
+    const d=S.diem&&S.diem[h.ma_hv];
+    if(d){
+      S.diem_ky[h.ma_hv]=S.diem_ky[h.ma_hv]||{};
+      S.diem_ky[h.ma_hv][tenCu]=JSON.parse(JSON.stringify(d));
+      daChup++;
+      d.doc=null; d.noi=null; d.nghe=null; d.viet=null;
+      d.ho_tro=""; d.nhan_xet=""; d.tuong_tac="";
+    }
+  });
+
+  /* điểm danh: đổi khoá ngày|tên lớp cũ|mã → tên mới */
+  const dd={};
+  Object.keys(S.diem_danh||{}).forEach(k=>{
+    const p=k.split("|");
+    if(p.length>=3 && p[1]===tenCu){ p[1]=moi; dd[p.join("|")]=S.diem_danh[k]; }
+    else dd[k]=S.diem_danh[k];
+  });
+  S.diem_danh=dd;
+
+  lop.ky.push({ten:moi, sach:sachMoi.code, tu_ngay:ngay});
+  lop.ten=moi;
+  S.lop_sach[lopId]=sachMoi.id;
+
+  save();
+  return {ok:true, tenCu, moi, ngay, soHV:hs.length, daChup, sach:sachMoi.ten};
+}
+
+function bdLenLop(){
+  const lop=lopTheoId(BD.lopId); if(!lop) return;
+  const tenCu=lop.ten;
+  const hs=(S.hoc_vien||[]).filter(h=>h.lop===tenCu);
+  if(!hs.length && !confirm("Lớp “"+tenCu+"” chưa có học viên nào. Vẫn lên lớp?")) return;
+  const goiY=goiYLopMoi(BD.lopId);
+  const ten=prompt("LÊN LỚP — "+tenCu+"\n\nTên lớp mới (tên quyết định sách: SM1–SM6, A2, B1, B2):", goiY||"");
+  if(!ten) return;
+  const ngay=prompt("Ngày bắt đầu lớp mới (YYYY-MM-DD):", iso(new Date()));
+  if(!ngay) return;
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(ngay)) return alert("Ngày không hợp lệ.");
+  const sachMoi=sachTheoTenLop(ten);
+  const loiNhac=[];
+  if(sachMoi && BD.unit!==sachMoi.units[sachMoi.units.length-1])
+    loiNhac.push("Lớp đang ở Unit "+BD.unit+", chưa hết sách hiện tại.");
+  if(hs.length>5) loiNhac.push("Lớp có "+hs.length+" bạn (chuẩn tối đa 5).");
+  if(!confirm("Xác nhận lên lớp:\n\n"+tenCu+"  →  "+ten.trim()+"\nTừ ngày: "+ngay+
+      "\nSách: "+(sachMoi?sachMoi.ten:"?")+"\nSố học viên: "+hs.length+
+      (loiNhac.length?"\n\nLưu ý:\n- "+loiNhac.join("\n- "):"")+
+      "\n\nLớp giữ nguyên lịch dạy; điểm kỳ cũ được giữ lại, kỳ mới bắt đầu trống.")) return;
+  const r=lenLop(lop.id, ten, ngay);
+  if(!r.ok) return alert("Không lên lớp được: "+r.loi);
+  try{ if(window.vuiMung) window.vuiMung(); }catch(e){}
+  alert("Đã lên lớp!\n"+r.tenCu+" → "+r.moi+" từ "+r.ngay+"\n"+r.soHV+" học viên · đã giữ điểm kỳ cũ cho "+r.daChup+" em.\nSách mới: "+r.sach);
+  BD.unit=null; bdKhoiTao(); bdVe(); if(typeof render==="function") render();
+}
+
 function hocVienCuaLop(lopId){ const l=lopTheoId(lopId); if(!l) return []; return hvTatCa().filter(h=>h.lop===l.ten); }
 
 /* --- trạng thái của mục trong lớp --- */
@@ -3408,6 +3513,7 @@ function veBaiDayModal(){
       <span style="flex:1"></span>
       ${tmS.sb?`<a class="ghost sm" style="text-decoration:none" href="${tmS.sb}" target="_blank" rel="noopener">🔊 Audio</a>`:""}
       ${tmS.wb?`<a class="ghost sm" style="text-decoration:none" href="${tmS.wb}" target="_blank" rel="noopener">📝 WB</a>`:""}
+      <button class="ghost sm" id="bdLenLop" title="Kết thúc sách này, đưa cả lớp lên lớp mới">🎓 Lên lớp</button>
       <button class="ghost sm" id="bdX">✕</button></div>`;
   if(!sach){ h+=`<p class="hint">Chưa rõ sách của lớp.</p></div>`; m.innerHTML=h; document.getElementById("bdX").onclick=bdDong; return; }
   const units=sach.units; if(BD.unit==null||!units.includes(BD.unit)) BD.unit=units[0];
@@ -3459,6 +3565,7 @@ function veBaiDayModal(){
   h+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" id="bdX2">Đóng</button></div></div>`;
   m.innerHTML=h;
   const X=()=>{const b=document.getElementById("bdX");if(b)b.onclick=bdDong; const b2=document.getElementById("bdX2"); if(b2) b2.onclick=bdDong;};
+  const _ll=document.getElementById("bdLenLop"); if(_ll) _ll.onclick=()=>bdLenLop();
   X();
   m.querySelectorAll("[data-mu]").forEach(b=>b.onclick=()=>{BD.unit=+b.dataset.mu;BD.chon.clear();veBaiDayModal();});
   m.querySelectorAll("[data-mi]").forEach(c=>c.onchange=()=>{const id=+c.dataset.mi; if(c.checked)BD.chon.add(id); else BD.chon.delete(id);
