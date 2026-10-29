@@ -1157,14 +1157,21 @@
                 statusDiv.className = 'vocab-status status-loading';
                 statusDiv.textContent = '⏳ Loading vocabulary from file...';
                 
-                // Tải file vocabulary.txt
-                const response = await fetch('vocabulary.txt');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                const bai = (window.GAME && GAME.sanSang) ? await GAME.sanSang() : null;
+                window.__BAI = bai;
+                let fileContent;
+                if (bai) {
+                    const so = "Super Minds " + String(bai.sach).replace(/\D/g, "");
+                    const dong = ["=== " + so + " ===", "[Unit " + bai.unit + "]"];
+                    (bai.tu || []).forEach(function (x) { dong.push(x[0] + " | " + (x[1] || "")); });
+                    fileContent = dong.join("\n");
+                } else {
+                    const response = await fetch('vocabulary.txt');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    fileContent = await response.text();
                 }
-                
-                const fileContent = await response.text();
                 
                 if (!fileContent.trim()) {
                     throw new Error('File is empty');
@@ -1175,6 +1182,17 @@
                 
                 // Parse cấu trúc từ điển
                 parseVocabularyStructure();
+
+                if (bai) {
+                    const so = "Super Minds " + String(bai.sach).replace(/\D/g, "");
+                    const ls = document.getElementById('levelSelect'), us = document.getElementById('unitSelect');
+                    ls.disabled = false; us.disabled = false;
+                    ls.value = so; ls.dispatchEvent(new Event('change'));
+                    us.value = "Unit " + bai.unit; us.dispatchEvent(new Event('change'));
+                    const sb = document.getElementById('startGameBtn');
+                    if (sb) sb.disabled = false;
+                    setTimeout(function(){ try { startGame(); } catch(e){} }, 300);
+                }
                 
                 // Cập nhật status
                 statusDiv.className = 'vocab-status status-success';
@@ -1366,7 +1384,7 @@
         }
 
         function startGame() {
-            try { GAME.batDau({game:"scrambled", sach:(typeof currentLevel != "undefined" ? currentLevel : ""), unit:(typeof currentUnit != "undefined" ? currentUnit : null), soCau:0}); } catch(e){}
+            try { GAME.batDau({game:"scrambled", sach:(window.__BAI?window.__BAI.sach:"SM1"), unit:(window.__BAI?window.__BAI.unit:null), soCau:0}); } catch(e){}
             console.log('DEBUG: Starting game with', words.length, 'words');
             console.log('DEBUG: Game state - currentIndex:', currentIndex, 'currentWord:', currentWord);
             

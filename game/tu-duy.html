@@ -40,7 +40,7 @@
 <body>
 <div class="wrap">
   <h1>🧠 Level 5 · Tư duy</h1>
-  <p class="sub">Chọn sách và Unit bạn vừa học. Làm 8 câu: loại từ khác nhóm và chọn từ đúng điền vào câu.</p>
+  <p class="sub">Chọn sách và Unit bạn vừa học. Làm 9 câu: 5 câu ngữ pháp theo level + 4 câu đố từ vựng của đúng Unit. Buddy cũng hay quên, nên đừng ngại.</p>
 
   <div class="card" style="margin-bottom:12px">
     <div id="hsBar"></div>
@@ -56,6 +56,7 @@
   </div>
 </div>
 
+<script src="tu-duy-cau.js"></script>
 <script>
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -64,81 +65,45 @@ const chon1 = (a) => a[Math.floor(Math.random() * a.length)];
 
 let SACH = "SM3", UNIT = 1, CAU = [], I = 0, DUNG = 0, BAR = null;
 
-function tuCua(sach, unit) {
-  const b = HS.bank(sach, unit);
-  return b ? b.tu.filter((w) => /^[A-Za-z][A-Za-z' -]*$/.test(w)) : [];
-}
-function tuNoiKhac(sach, unit) {
-  const ds = [];
-  HS.sachCo().forEach((s) => HS.units(s).forEach((u) => {
-    if (s === sach && Number(u) === Number(unit)) return;
-    tuCua(s, u).forEach((w) => ds.push(w));
-  }));
-  return ds;
+/* Từ của đúng Unit, kèm nghĩa tiếng Việt */
+function capTuVung() {
+  const b = window.__BAI;
+  if (b && b.tu && b.tu.length) return b.tu.filter((x) => x && x[0]);
+  return [];
 }
 
-/* 1. Từ nào không thuộc Unit này */
-function cauKhacNhom() {
-  const tu = tuCua(SACH, UNIT);
-  if (tu.length < 3) return null;
-  const ba = xao(tu.slice()).slice(0, 3);
-  const ngoai = xao(tuNoiKhac(SACH, UNIT)).find((w) => !tu.some((x) => x.toLowerCase() === w.toLowerCase()));
-  if (!ngoai) return null;
-  return {
-    kieu: "Từ khác nhóm",
-    hoi: `<b>Unit ${UNIT}</b> — từ nào <b>không thuộc</b> bài này?`,
-    chon: xao([...ba, ngoai]),
-    dapAn: ngoai,
-    viSao: `“${ngoai}” không có trong Unit ${UNIT}${HS.bank(SACH, UNIT) && HS.bank(SACH, UNIT).ten ? " (" + HS.bank(SACH, UNIT).ten + ")" : ""}.`,
-  };
+/* 1. Ngữ pháp theo level (kho câu viết sẵn, hài nhưng đúng) */
+function cauNguPhap(n) {
+  const kho = (window.TU_DUY_NGUPHAP || {})[SACH] || [];
+  return xao(kho.slice()).slice(0, n).map((c) => Object.assign({}, c, { kieu: "Ngữ pháp · " + SACH }));
 }
 
-/* 2. Điền từ vào câu mẫu của unit */
-function cauDienTu() {
-  const b = HS.bank(SACH, UNIT);
-  if (!b) return null;
-  const cauDS = (b.cau || []).filter((c) => c.length < 110);
-  const tu = tuCua(SACH, UNIT).filter((w) => w.indexOf(" ") < 0);
-  if (!cauDS.length || tu.length < 3) return null;
-  for (let lan = 0; lan < 30; lan++) {
-    const cau = chon1(cauDS);
-    const tuTrongCau = cau.split(/\s+/);
-    const vitri = [];
-    tuTrongCau.forEach((t, i) => {
-      const s = t.replace(/[^A-Za-z']/g, "").toLowerCase();
-      if (s && tu.some((w) => w.toLowerCase() === s)) vitri.push(i);
-    });
-    if (!vitri.length) continue;
-    const i = chon1(vitri);
-    const dung = tuTrongCau[i].replace(/[^A-Za-z']/g, "");
-    let nhieu = tu.filter((w) => w.toLowerCase() !== dung.toLowerCase());
+/* 2. Đố từ vựng của Unit */
+function cauTuVung(n) {
+  const ds = capTuVung();
+  if (ds.length < 4) return [];
+  const ra = [], daDung = new Set();
+  const mauDS = window.TU_DUY_MAU || [];
+  for (const cap of xao(ds.slice())) {
+    if (ra.length >= n) break;
+    const en = cap[0], vi = cap[1];
+    if (!en || !vi || daDung.has(en)) continue;
+    const q = chon1(mauDS)(en, vi);
+    const dap = q.huong === "en" ? en : vi;
+    const tatCa = q.huong === "en" ? ds.map((x) => x[0]) : ds.map((x) => x[1]).filter(Boolean);
+    let nhieu = tatCa.filter((x) => String(x).toLowerCase() !== String(dap).toLowerCase());
     if (nhieu.length < 3) continue;
     nhieu = xao(nhieu).slice(0, 3);
-    const hien = tuTrongCau.slice();
-    hien[i] = "<u>____</u>";
-    return {
-      kieu: "Điền từ vào câu",
-      hoi: hien.join(" "),
-      chon: xao([dung, ...nhieu]),
-      dapAn: dung,
-      viSao: `Câu đầy đủ: “${cau}”`,
-    };
+    ra.push({ kieu: "Từ vựng · Unit " + UNIT, hoi: q.hoi, chon: xao([dap].concat(nhieu)), dapAn: dap, viSao: "“" + en + "” = " + vi + "." });
+    daDung.add(en);
   }
-  return null;
+  return ra;
 }
 
 function taoBoCau() {
-  const ds = [], daCo = new Set();
-  const them = (c) => {
-    if (!c) return;
-    const k = c.hoi + "|" + c.dapAn;
-    if (daCo.has(k)) return;
-    daCo.add(k); ds.push(c);
-  };
-  for (let lan = 0; lan < 60 && ds.length < 8; lan++) {
-    them(lan % 2 === 0 ? cauKhacNhom() : cauDienTu());
-  }
-  return xao(ds).slice(0, 8);
+  let ds = cauNguPhap(5).concat(cauTuVung(4));
+  if (ds.length < 6) ds = ds.concat(cauNguPhap(6 - ds.length));
+  return xao(ds).slice(0, 9);
 }
 
 function veCau() {
@@ -168,15 +133,12 @@ async function ketThuc() {
   $("#tiLe").style.width = "100%";
   $("#dem").textContent = `Xong ${CAU.length} câu`;
   $("#noiDung").innerHTML = `<div class="hint">Đang ghi kết quả…</div>`;
-  if (HS.khopBai() !== false) { try { await GAME.ketThuc(); } catch (e) {} }
+  try { await GAME.ketThuc(); } catch (e) {}
   const dat = DUNG >= Math.ceil(CAU.length * 0.6);
-  const khop = HS.khopBai();
-  const loiNhac = khop === false
-    ? "Bạn đang chơi khác Unit đang học nên lần này <b>không cộng điểm</b>. Chọn đúng Unit ở trên rồi làm lại nhé."
-    : (khop === null ? "Chưa xác định được bài đang học — điểm được tính theo Unit bạn đã chọn." : "Đúng bài đang học — điểm đã cộng.");
+  const loiNhac = "Đúng bài đang học thì điểm đã cộng; khác bài thì lần này không tính điểm.";
   $("#noiDung").innerHTML = `
     <div style="font-size:18px;font-weight:700;margin-bottom:6px">Level 5 hoàn tất: đúng ${DUNG}/${CAU.length}</div>
-    <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Chưa đạt 60% — làm lại để lấy điểm nấc này nhé."}</div>
+    <div class="hint" style="margin-bottom:12px">${dat ? loiNhac : "Chưa đạt 60% — làm lại để lấy điểm level này nhé."}</div>
     <div class="row">
       <button class="ghost" id="lai">Làm bộ khác</button>
       <button class="ghost" id="doi">Đổi Unit</button>
@@ -197,16 +159,15 @@ function batDauLai() {
   }
   try {
     GAME.batDau({ game: "tu-duy", sach: SACH, unit: UNIT, soCau: CAU.length, nac: 5, khoaNac: true });
-    const c = document.querySelector(".gcore-nac"); if (c) c.value = "5";
   } catch (e) {}
   veCau();
 }
 
 (async () => {
-  await HS.nap();
-  BAR = HS.thanh($("#hsBar"), { onChange: (s, u) => { SACH = s; UNIT = u; batDauLai(); } });
-  SACH = BAR.sach(); UNIT = BAR.unit();
-  const c = HS.chonTruoc(); if (c.sach) { SACH = c.sach; UNIT = c.unit; }
+  if (window.GAME && GAME.sanSang) { try { window.__BAI = await GAME.sanSang(); } catch (e) {} }
+  if (window.__BAI) { SACH = window.__BAI.sach; UNIT = window.__BAI.unit; }
+  const hop = document.getElementById("hsBar");
+  if (hop) { const c = hop.closest(".card"); if (c) c.style.display = "none"; else hop.style.display = "none"; }
   batDauLai();
 })();
 </script>

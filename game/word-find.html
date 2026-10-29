@@ -1297,14 +1297,29 @@
         }
 
         window.onload = function() {
-            fetch('vocab.txt')
-                .then(response => {
-                    if (!response.ok) throw new Error('File not found');
-                    return response.text();
-                })
+            const napBai = (window.GAME && GAME.sanSang) ? GAME.sanSang() : Promise.resolve(null);
+            napBai.then(function (b) {
+                window.__BAI = b;
+                if (!b) throw new Error('no unit');
+                const so = String(b.sach).replace(/\D/g, "") || "1";
+                const dong = ["=== Super Minds " + so + " ===", "[Unit " + b.unit + "]"];
+                (b.tu || []).forEach(function (x) { dong.push(x[0]); });
+                return dong.join("\n");
+            }).catch(function(){ return fetch('vocab.txt').then(function(r){ return r.text(); }); })
                 .then(text => {
                     loadVocabFile(text);
-                    console.log('Vocabulary file loaded successfully!');
+                    try {
+                        const b = window.__BAI;
+                        if (b) {
+                            const so = String(b.sach).replace(/\D/g, "") || "1";
+                            levelSelect.value = so;
+                            onLevelChange();
+                            const us = Object.keys(vocabularyData[so] || {});
+                            if (us.length) { unitSelect.value = us[0]; onUnitChange(); }
+                            const nut = document.getElementById('startBtn');
+                            if (nut) { nut.disabled = false; startGame(); }
+                        }
+                    } catch(e) {}
                 })
                 .catch(err => {
                     console.error('Failed to load vocab.txt:', err);
@@ -1633,7 +1648,7 @@
         }
 
         function startGame() {
-            try { GAME.batDau({game:"word-find", sach:(typeof selectedLevel != "undefined" ? selectedLevel : ""), unit:(typeof selectedUnit != "undefined" ? selectedUnit : null), soCau:0}); } catch(e){}
+            try { GAME.batDau({game:"word-find", sach:(window.__BAI?window.__BAI.sach:"SM1"), unit:(window.__BAI?window.__BAI.unit:null), soCau:0}); } catch(e){}
             if (!vocabLoaded) {
                 alert('⚠️ Chưa tải được file vocab.txt!');
                 return;

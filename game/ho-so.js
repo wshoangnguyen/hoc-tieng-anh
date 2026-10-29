@@ -107,7 +107,7 @@ window.HS = (function () {
       nhac.className = "hs-nhac " + (dung ? "dung" : "sai");
       nhac.innerHTML = dung
         ? `✅ Đúng bài đang học: <b>${TEN_SACH[hs.sach] || hs.sach} · Unit ${hs.unit}</b> — hoàn thành là có điểm.`
-        : `⚠️ Con đang học <b>${TEN_SACH[hs.sach] || hs.sach} · Unit ${hs.unit}</b>. Chơi unit khác vẫn vui nhưng <b>không cộng điểm</b>.`;
+        : `⚠️ Bạn đang học <b>${TEN_SACH[hs.sach] || hs.sach} · Unit ${hs.unit}</b>. Chơi unit khác vẫn vui nhưng <b>không cộng điểm</b>.`;
     }
 
     function doiSach() {
