@@ -4067,22 +4067,7 @@ function taiDiemGame() {
     });
   })).then(function () {
     GAME_DANG_TAI = false;
-    /* Điểm số + Điểm danh đã vẽ trước khi có điểm game → vẽ lại */
-    try { veDiemSo(); } catch (e) {}
-    try { if (typeof veDiemDanh === "function") veDiemDanh(); } catch (e) {}
-    document.querySelectorAll("[data-congdiem]").forEach(function (b) {
-      var m = b.getAttribute("data-congdiem");
-      b.textContent = "⭐ " + tichLuyTong(m);
-    });
-    document.querySelectorAll("[data-gdiem]").forEach(function (el) {
-      var m = el.getAttribute("data-gdiem");
-      el.textContent = "🎮 " + (Number(GAME_DIEM[m]) || 0);
-    });
-    document.querySelectorAll(".tk-tong").forEach(function (t) {
-      var hop = t.closest("[data-ma]") || t.closest(".modal");
-      var ma = hop && (hop.getAttribute("data-ma") || hop.getAttribute("data-hv"));
-      if (ma) t.textContent = tichLuyTong(ma);
-    });
+    veLaiDiemSauKhiCoGame();
   }).catch(function () { GAME_DANG_TAI = false; });
 }
 function veGameHV(ma) {
@@ -4104,7 +4089,35 @@ function veGameHV(ma) {
     hop.innerHTML = html;
   });
 }
-window.addEventListener("load", function () { setTimeout(taiDiemGame, 1800); });
+function veLaiDiemSauKhiCoGame() {
+  /* Điểm số + Điểm danh đã vẽ trước khi có điểm game → vẽ lại */
+  try { veDiemSo(); } catch (e) {}
+  try { if (typeof veDiemDanh === "function") veDiemDanh(); } catch (e) {}
+  document.querySelectorAll("[data-congdiem]").forEach(function (b) {
+    var m = b.getAttribute("data-congdiem");
+    b.textContent = "⭐ " + tichLuyTong(m);
+  });
+  document.querySelectorAll("[data-gdiem]").forEach(function (el) {
+    var m = el.getAttribute("data-gdiem");
+    el.textContent = "🎮 " + (Number(GAME_DIEM[m]) || 0);
+  });
+  document.querySelectorAll(".tk-tong").forEach(function (t) {
+    var hop = t.closest("[data-ma]") || t.closest(".modal");
+    var ma = hop && (hop.getAttribute("data-ma") || hop.getAttribute("data-hv"));
+    if (ma) t.textContent = tichLuyTong(ma);
+  });
+}
+/* Chờ có danh sách học viên rồi mới hỏi sổ game (trước đây hỏi lúc trang vừa load nên hay rỗng) */
+function batDauTaiDiemGame() {
+  var lan = 0;
+  (function thu() {
+    lan++;
+    var ds = (typeof hvTatCa === "function") ? hvTatCa() : [];
+    if (ds && ds.length) { taiDiemGame(); return; }
+    if (lan < 60) setTimeout(thu, 500);
+  })();
+}
+window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400); });
 </script>
 
 
