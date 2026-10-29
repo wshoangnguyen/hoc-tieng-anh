@@ -4625,6 +4625,26 @@ document.addEventListener("click", function(e){
   setInterval(dongBoNutSaoLuu, 1500);
   setTimeout(dongBoNutSaoLuu, 800);
 
+  /* --- 2. chỗ đứng: né nút thông báo ở góc trái dưới --- */
+  function canhNutSaoLuu(){
+    var nut = document.getElementById("nutSaoLuu");
+    if(!nut) return;
+    var hop = document.getElementById("hopSaoLuu");
+    var tb = document.querySelector(".tb-wrap");
+    var coTB = !!(tb && tb.offsetParent !== null && getComputedStyle(tb).display !== "none");
+    var day = 14;
+    if(coTB){
+      /* nút (và bảng thông báo khi mở) đều nằm góc trái dưới → đặt nút sao lưu lên trên toàn bộ khối đó */
+      var r = tb.getBoundingClientRect();
+      day = Math.max(14, Math.round(window.innerHeight - r.top + 8));
+      day = Math.min(day, Math.round(window.innerHeight * 0.72));
+    }
+    nut.style.bottom = day + "px";
+    if(hop) hop.style.bottom = (day + 52) + "px";
+  }
+  setInterval(canhNutSaoLuu, 800);
+  setTimeout(canhNutSaoLuu, 600);
+
   /* --- 2. xoá ảnh cũ khi thay ảnh mới --- */
   if(typeof window.__donAnhCu !== "function"){
     window.__donAnhCu = async function(ma, giuLai){
