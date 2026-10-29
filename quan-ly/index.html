@@ -4052,21 +4052,37 @@ function gameXem(ma) {
     body: JSON.stringify({ p_ma: ma })
   }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
 }
+function gameXem1(ma) {
+  return gameXem(ma).then(function (d) {
+    if (d && !d.loi) return d;
+    return gameThemMa(ma).then(function (ok) { return ok ? gameXem(ma) : null; });
+  }).then(function (d) { return (d && !d.loi) ? d : null; })
+    .catch(function () { return null; });
+}
 function taiDiemGame() {
   if (GAME_DANG_TAI) return Promise.resolve();
   GAME_DANG_TAI = true;
-  var ds = (hvTatCa() || []).map(function (h) { return h.ma_hv; }).filter(Boolean).slice(0, 150);
-  return Promise.all(ds.map(function (ma) {
-    return gameXem(ma).then(function (d) {
-      if (d && d.loi) {
-        return gameThemMa(ma).then(function () { return gameXem(ma); }).then(function (d2) {
-          if (d2 && !d2.loi) { GAME_DIEM[ma] = Number(d2.diem_game) || 0; GAME_CHI[ma] = d2; }
-        });
-      }
-      if (d) { GAME_DIEM[ma] = Number(d.diem_game) || 0; GAME_CHI[ma] = d; }
-    });
-  })).then(function () {
+  var ds = (hvTatCa() || []).map(function (h) { return h.ma_hv; }).filter(Boolean).slice(0, 200);
+  function chay(dsCon) {
+    var i = 0;
+    function mot() {
+      if (i >= dsCon.length) return Promise.resolve();
+      var ma = dsCon[i++];
+      return gameXem1(ma).then(function (d) {
+        if (d) { GAME_DIEM[ma] = Number(d.diem_game) || 0; GAME_CHI[ma] = d; }
+      }).then(mot);
+    }
+    var n = Math.min(6, dsCon.length), viec = [];
+    for (var k = 0; k < n; k++) viec.push(mot());
+    return Promise.all(viec);
+  }
+  return chay(ds).then(function () {
+    var thieu = ds.filter(function (m) { return !(m in GAME_DIEM); });
+    if (!thieu.length) return;
+    return new Promise(function (ok) { setTimeout(ok, 1200); }).then(function () { return chay(thieu); });
+  }).then(function () {
     GAME_DANG_TAI = false;
+    if (typeof console !== "undefined") console.log("[điểm game] đã tải " + Object.keys(GAME_DIEM).length + "/" + ds.length + " em");
     veLaiDiemSauKhiCoGame();
   }).catch(function () { GAME_DANG_TAI = false; });
 }
@@ -4090,21 +4106,26 @@ function veGameHV(ma) {
   });
 }
 function veLaiDiemSauKhiCoGame() {
-  /* Điểm số + Điểm danh đã vẽ trước khi có điểm game → vẽ lại */
   try { veDiemSo(); } catch (e) {}
   try { if (typeof veDiemDanh === "function") veDiemDanh(); } catch (e) {}
   document.querySelectorAll("[data-congdiem]").forEach(function (b) {
-    var m = b.getAttribute("data-congdiem");
-    b.textContent = "⭐ " + tichLuyTong(m);
+    try {
+      var m = b.getAttribute("data-congdiem");
+      b.textContent = "⭐ " + tichLuyTong(m);
+    } catch (e) {}
   });
   document.querySelectorAll("[data-gdiem]").forEach(function (el) {
-    var m = el.getAttribute("data-gdiem");
-    el.textContent = "🎮 " + (Number(GAME_DIEM[m]) || 0);
+    try {
+      var m = el.getAttribute("data-gdiem");
+      el.textContent = "🎮 " + (Number(GAME_DIEM[m]) || 0);
+    } catch (e) {}
   });
   document.querySelectorAll(".tk-tong").forEach(function (t) {
-    var hop = t.closest("[data-ma]") || t.closest(".modal");
-    var ma = hop && (hop.getAttribute("data-ma") || hop.getAttribute("data-hv"));
-    if (ma) t.textContent = tichLuyTong(ma);
+    try {
+      var hop = t.closest("[data-ma]") || t.closest(".modal");
+      var ma = hop && (hop.getAttribute("data-ma") || hop.getAttribute("data-hv"));
+      if (ma) t.textContent = tichLuyTong(ma);
+    } catch (e) {}
   });
 }
 /* Chờ có danh sách học viên rồi mới hỏi sổ game (trước đây hỏi lúc trang vừa load nên hay rỗng) */
@@ -4112,9 +4133,10 @@ function batDauTaiDiemGame() {
   var lan = 0;
   (function thu() {
     lan++;
-    var ds = (typeof hvTatCa === "function") ? hvTatCa() : [];
+    var ds = [];
+    try { ds = (typeof hvTatCa === "function") ? hvTatCa() : []; } catch (e) { ds = []; }
     if (ds && ds.length) { taiDiemGame(); return; }
-    if (lan < 60) setTimeout(thu, 500);
+    if (lan < 80) setTimeout(thu, 500);
   })();
 }
 window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400); });
