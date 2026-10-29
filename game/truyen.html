@@ -35,11 +35,23 @@
   #doc{position:fixed;inset:0;background:rgba(40,33,14,.55);display:none;z-index:90;overflow:auto;padding:16px}
   #doc.mo{display:block}
   .khung{max-width:720px;margin:10px auto;background:#fffdf6;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-  .khung .anh{height:300px;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#fdf3d0}
+  .khung .anh{position:relative;height:320px;overflow:hidden;background:#fdf3d0;display:flex;align-items:center;justify-content:center}
+  .khung .anh::before{content:"";position:absolute;inset:-12px;background-image:var(--anh);background-size:cover;background-position:center;filter:blur(12px) saturate(1.05);opacity:.7;transform:scale(1.06)}
+  .khung .anh img{position:relative;z-index:1;max-height:100%;max-width:100%;object-fit:contain}
   .khung .than{padding:20px 22px 26px}
   .khung h2{font-family:"Baloo Bhaina 2",cursive;font-size:26px;margin:0 0 4px;color:#4a3d12}
   .khung .tom{color:#8b7f63;font-size:13px;margin:0 0 14px}
   .khung p{font-size:16.5px;line-height:1.75;margin:0 0 13px;color:#3a3427}
+  .khung p.p{cursor:help;border-bottom:1px dashed transparent;transition:border-color .12s}
+  .khung p.p:hover{border-bottom-color:#e3d3a4}
+  .vi-inline{display:none;font-size:14px;line-height:1.55;color:#8b7f63;font-style:italic;margin:-7px 0 14px}
+  body.xem-vi .vi-inline{display:block}
+  #tip{position:fixed;z-index:120;max-width:330px;background:#332a17;color:#fff8e2;font-size:13.8px;line-height:1.5;
+    padding:9px 12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.28);pointer-events:none;opacity:0;
+    transition:opacity .12s;left:0;top:0}
+  #tip.hien{opacity:1}
+  .nut-vi{position:sticky;top:0;float:right;border:1px solid #e6d9ae;background:#fff4d4;color:#7a5a10;font:800 12.5px "Quicksand",sans-serif;
+    padding:6px 12px;border-radius:99px;cursor:pointer;margin:0 0 8px 10px}
   .tu{margin:16px 0 6px;display:flex;gap:8px;flex-wrap:wrap}
   .tu span{background:#fff4d4;border:1px solid #f0dfae;color:#7a5a10;font-weight:700;font-size:13px;border-radius:99px;padding:5px 11px}
   .hoi{margin-top:18px;border-top:1px dashed var(--vien);padding-top:14px}
@@ -49,7 +61,7 @@
   .dong{display:block;margin:18px auto 0;border:0;background:#f0b429;color:#3a2c00;font-weight:800;font-family:inherit;
     font-size:15px;padding:11px 22px;border-radius:99px;cursor:pointer}
   .dang{text-align:center;color:#8b7f63;padding:40px 0}
-  @media(max-width:520px){header h1{font-size:24px}.khung .anh{height:170px}.khung .than{padding:16px 16px 22px}}
+  @media(max-width:520px){header h1{font-size:24px}.khung .anh{height:210px}.khung .than{padding:16px 16px 22px}}
 </style>
 </head>
 <body>
@@ -66,8 +78,9 @@
 
 <div id="doc" role="dialog" aria-modal="true">
   <div class="khung">
-    <div class="anh" id="docAnh"></div>
+    <div class="anh" id="docAnh"><img id="docAnhImg" alt=""></div>
     <div class="than">
+      <button class="nut-vi" id="nutVi" type="button">🇻🇳 Hiện tiếng Việt</button>
       <h2 id="docTen"></h2>
       <p class="tom" id="docTom"></p>
       <div id="docThan"></div>
@@ -76,6 +89,8 @@
   </div>
 </div>
 
+<div id="tip"></div>
+<script src="truyen/vi.js"></script>
 <script>
 (function(){
   var API = "https://xtfusgawjlrcreiphwur.supabase.co";
@@ -117,11 +132,24 @@
     document.getElementById("docTen").textContent = x.tieu_de;
     document.getElementById("docTom").textContent = x.tom_tat || "";
     var anh = ANH[x.ma];
-    document.getElementById("docAnh").style.backgroundImage = anh ? "url(" + anh + ")" : "";
+    var hopAnh = document.getElementById("docAnh");
+    hopAnh.style.setProperty("--anh", anh ? "url(" + anh + ")" : "none");
+    document.getElementById("docAnhImg").src = anh || "";
     var than = document.getElementById("docThan");
+    var vi = (window.TRUYEN_VI || {})[x.ma] || [];
     than.innerHTML = "";
-    (x.noi_dung || "").split(/\n{2,}/).forEach(function(p){
-      var e = document.createElement("p"); e.textContent = p; than.appendChild(e);
+    (x.noi_dung || "").split(/\n{2,}/).forEach(function(p, i){
+      if (!p.trim()) return;
+      var e = document.createElement("p"); e.textContent = p;
+      if (vi[i]) {
+        e.className = "p";
+        e.setAttribute("data-vi", vi[i]);
+        var d = document.createElement("div");
+        d.className = "vi-inline"; d.textContent = vi[i];
+        than.appendChild(e); than.appendChild(d);
+      } else {
+        than.appendChild(e);
+      }
     });
     if (x.tu_moi && x.tu_moi.length){
       var tu = document.createElement("div"); tu.className = "tu";
@@ -144,6 +172,42 @@
 
   document.getElementById("docDong").addEventListener("click", function(){ doc.classList.remove("mo"); });
   doc.addEventListener("click", function(e){ if (e.target === doc) doc.classList.remove("mo"); });
+
+  /* ---- rê chuột / chạm vào đoạn: hiện bản dịch tiếng Việt ---- */
+  var tip = document.getElementById("tip"), henTip = null, thanEl = document.getElementById("docThan");
+  function datTip(el, x, y){
+    tip.textContent = el.getAttribute("data-vi");
+    tip.style.maxWidth = Math.min(330, window.innerWidth - 24) + "px";
+    tip.classList.add("hien");
+    var r = tip.getBoundingClientRect();
+    var left = Math.max(12, Math.min(window.innerWidth - r.width - 12, x + 14));
+    var top = y + 18;
+    if (top + r.height > window.innerHeight - 10) top = Math.max(10, y - r.height - 14);
+    tip.style.left = left + "px"; tip.style.top = top + "px";
+  }
+  thanEl.addEventListener("mouseover", function(e){
+    var p = e.target.closest("p.p"); if (p) datTip(p, e.clientX, e.clientY);
+  });
+  thanEl.addEventListener("mousemove", function(e){
+    var p = e.target.closest("p.p"); if (p) datTip(p, e.clientX, e.clientY);
+  });
+  thanEl.addEventListener("mouseout", function(e){
+    if (e.target.closest("p.p")) tip.classList.remove("hien");
+  });
+  thanEl.addEventListener("click", function(e){
+    var p = e.target.closest("p.p"); if (!p) return;
+    if (tip.classList.contains("hien") && tip.dataset.cho === p.getAttribute("data-vi")) {
+      tip.classList.remove("hien"); return;
+    }
+    tip.dataset.cho = p.getAttribute("data-vi");
+    datTip(p, e.clientX || window.innerWidth / 2, e.clientY || 220);
+    clearTimeout(henTip);
+    henTip = setTimeout(function(){ tip.classList.remove("hien"); }, 5000);
+  });
+  document.getElementById("nutVi").addEventListener("click", function(){
+    document.body.classList.toggle("xem-vi");
+    this.textContent = document.body.classList.contains("xem-vi") ? "🇻🇳 Ẩn tiếng Việt" : "🇻🇳 Hiện tiếng Việt";
+  });
 
   rpc("buddy_ds", { p_ma: ma || null }).then(function(d){
     if (!d || !d.ok) throw new Error("loi");

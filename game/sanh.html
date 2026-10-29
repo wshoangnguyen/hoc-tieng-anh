@@ -153,7 +153,7 @@
     <h2>👋 Con nhập mã học viên một lần</h2>
     <p class="mo">Nhập ở đây rồi vào trò nào cũng được — điểm tự cộng vào phiếu của con, không phải nhập lại.</p>
     <div class="hs-nhap">
-      <input id="maHV" placeholder="VD: HV11" autocomplete="off" spellcheck="false" aria-label="Mã học viên">
+      <input id="maHV" placeholder="VD: HV0014" autocomplete="off" spellcheck="false" aria-label="Mã học viên">
       <button id="luuMa" type="button">Lưu mã</button>
     </div>
     <div class="hs-ten" id="hsTen">
@@ -167,16 +167,60 @@
 
 <main id="sanh"></main>
 
-<section style="max-width:1000px;margin:26px auto 10px;padding:0 16px">
-  <a href="truyen.html" style="display:flex;gap:16px;align-items:center;text-decoration:none;background:#fff;border:1px solid #efe6cc;border-radius:20px;padding:14px;box-shadow:0 8px 22px rgba(120,95,30,.08)">
-    <span style="flex:0 0 96px;height:96px;border-radius:14px;background:#f6c445 url('truyen/img/bia.jpg') center/cover no-repeat"></span>
-    <span style="flex:1;min-width:0">
-      <b style="display:block;font-family:'Baloo Bhaina 2',cursive;font-size:20px;color:#4a3d12">📖 Chuyện của Buddy</b>
-      <span style="display:block;font-size:13.5px;color:#8b7f63;line-height:1.5;margin-top:3px">7 chương Buddy kể về chính mình. Hai chuyện đầu mở sẵn — chơi game mọc rễ thêm thì mở tiếp.</span>
-      <span style="display:inline-block;margin-top:8px;background:#fff4d4;border:1px solid #f0dfae;color:#7a5a10;font-weight:800;font-size:12.5px;border-radius:99px;padding:4px 12px">Đọc truyện →</span>
+<!-- Truyện Buddy: sticker nổi ở đáy màn hình -->
+<section id="truyenStick" aria-label="Chuyện của Buddy">
+  <button class="ts-gon" id="tsGon" type="button" aria-label="Thu gọn chuyện Buddy">×</button>
+  <a class="ts-than" href="truyen.html">
+    <span class="ts-anh" aria-hidden="true"></span>
+    <span class="ts-chu">
+      <b>📖 Chuyện của Buddy</b>
+      <i>7 chương có hình · có tiếng Việt</i>
     </span>
   </a>
+  <a class="ts-nut" href="truyen.html">Đọc →</a>
 </section>
+<style>
+  #truyenStick{position:fixed;left:18px;bottom:18px;z-index:70;display:flex;align-items:center;gap:10px;
+    background:#fffdf6;border:1px solid #efe1bd;border-radius:18px;padding:9px 10px;max-width:390px;
+    box-shadow:0 14px 34px rgba(120,90,20,.22);transition:transform .22s,opacity .22s,width .2s,border-radius .2s}
+  #truyenStick .ts-anh{flex:0 0 54px;height:54px;border-radius:12px;background:#f6c445 url('truyen/img/bia.jpg') center/cover no-repeat}
+  #truyenStick .ts-chu{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+  #truyenStick .ts-chu b{font-family:'Baloo Bhaina 2',cursive;font-size:16.5px;color:#4a3d12}
+  #truyenStick .ts-chu i{font-style:normal;font-size:11.5px;color:#8b7f63;margin-top:2px}
+  #truyenStick .ts-than{display:flex;align-items:center;gap:9px;text-decoration:none;min-width:0}
+  #truyenStick .ts-nut{flex:0 0 auto;background:#f0b429;color:#3a2c00;font-weight:800;font-size:13px;text-decoration:none;
+    padding:9px 14px;border-radius:99px}
+  #truyenStick .ts-gon{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:1px solid #e6d9ae;
+    background:#fff;color:#8a7a4e;font-size:14px;line-height:1;cursor:pointer}
+  #truyenStick::after{content:"";position:absolute;inset:-3px;border-radius:20px;border:2px solid rgba(240,180,41,.35);
+    animation:tsNhip 2.6s ease-out infinite;pointer-events:none}
+  @keyframes tsNhip{0%{transform:scale(.99);opacity:.9}70%{transform:scale(1.03);opacity:0}100%{opacity:0}}
+  #truyenStick.gon{left:18px;width:58px;height:58px;padding:0;border-radius:50%;justify-content:center;overflow:visible}
+  #truyenStick.gon .ts-than,#truyenStick.gon .ts-nut,#truyenStick.gon .ts-gon{display:none}
+  #truyenStick.gon::before{content:"📖";font-size:26px;line-height:1}
+  #truyenStick.gon::after{border-radius:50%;inset:-4px}
+  @media(max-width:560px){
+    #truyenStick{left:12px;right:12px;bottom:12px;max-width:none}
+    #truyenStick .ts-chu i{font-size:10.5px}
+    #truyenStick.gon{left:12px;width:56px}
+  }
+</style>
+<script>
+(function(){
+  var s = document.getElementById("truyenStick"), n = document.getElementById("tsGon");
+  try { if (localStorage.getItem("buddy_truyen_gon") === "1") s.classList.add("gon"); } catch(e){}
+  n.addEventListener("click", function(e){
+    e.preventDefault(); e.stopPropagation();
+    s.classList.add("gon");
+    try { localStorage.setItem("buddy_truyen_gon", "1"); } catch(e2){}
+  });
+  s.addEventListener("click", function(){
+    if (!s.classList.contains("gon")) return;
+    s.classList.remove("gon");
+    try { localStorage.setItem("buddy_truyen_gon", "0"); } catch(e){}
+  });
+})();
+</script>
 
 <script>
 const NHOM = [
@@ -282,11 +326,17 @@ document.getElementById("sanh").innerHTML = html;
     veDiem(x, ten, (s && s.ok && s.diem_tich_luy != null) ? s.diem_tich_luy : null);
   }
 
+  function chuanMa(v){
+    const s = (v || "").trim().toUpperCase().replace(/\s+/g, "");
+    const m = s.match(/^HV(\d{1,4})$/);
+    return m ? ("HV" + m[1].padStart(4, "0")) : s;
+  }
+
   async function luu(){
-    const ma = (oMa.value || "").trim().toUpperCase();
+    const ma = chuanMa(oMa.value);
     if (ma.length < 3) {
       kq.className = "hs-kq";
-      kq.textContent = "Mã học viên có dạng HV11 — con nhập lại giúp cô nhé.";
+      kq.textContent = "Mã học viên có dạng HV0014 — con nhập lại giúp cô nhé.";
       return;
     }
     localStorage.setItem("game_ma_hv", ma);
