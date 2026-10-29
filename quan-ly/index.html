@@ -3132,11 +3132,27 @@ function bdThemMuc(){
   S.muc_them[`${key}|${n+1}`]={id:sach.id*100000+BD.unit*100+90+n,unit:BD.unit,ten};
   save(); veBaiDay(); if(inp) inp.value="";
 }
-function buoiHomNay(){
-  const l=lopTheoId(BD.lopId); const d=iso(new Date());
-  const b=buoiTuanNay().find(x=>x.lop.id===BD.lopId&&x.ngay===d);
-  const lich=(S.lop.find(x=>x.id===BD.lopId)||{});
+/* buổi của lớp vào đúng một ngày (dùng tuần chứa ngày đó, không phụ thuộc tuần đang xem) */
+function buoiTheoNgay(lopId, d){
+  const b=buoiTuan({bat_dau:t2CuaNgay(d)}).find(x=>x.lop.id===lopId&&x.ngay===d&&x.tt!=="huy");
+  const lich=(S.lop.find(x=>x.id===lopId)||{});
   return {ngay:d, gv:(b&&b.gv)||lich.gv||""};
+}
+/* ngày buổi gần nhất của lớp: hôm nay nếu có, không thì buổi tới (tối đa 3 tuần) */
+function ngayBuoiGanNhat(lopId, tu){
+  const d=tu||iso(new Date());
+  const ds=[];
+  for(let i=0;i<3;i++){
+    buoiTuan({bat_dau:cong(t2CuaNgay(d), i*7)}).forEach(b=>{
+      if(b.lop.id===lopId && b.tt!=="huy" && b.ngay>=d) ds.push(b);
+    });
+  }
+  ds.sort((a,b)=>a.ngay.localeCompare(b.ngay));
+  return ds.length?ds[0].ngay:d;
+}
+function buoiHomNay(){
+  /* ngày của buổi sắp dạy — dùng khi LƯU bài soạn */
+  return buoiTheoNgay(BD.lopId, ngayBuoiGanNhat(BD.lopId));
 }
 function bdLuuBuoi(){
   if(!BD.chon.size) return alert("Chưa chọn phần nào.");
@@ -3153,14 +3169,14 @@ function bdHoanThanh(){
   if(!items.length) return alert("Chưa chọn phần nào.");
   const d=iso(new Date());
   let moi=0;
-  const lopHT=lopTheoId(BD.lopId), ngayHT=buoiHomNay().ngay; let vang=0;
+  const lopHT=lopTheoId(BD.lopId), ngayHT=iso(new Date()); let vang=0;
   hocVienCuaLop(BD.lopId).forEach(hv=>{
     const tt=ddLay(ngayHT,lopHT.ten,hv.ma_hv);
     if(tt!=="co"&&tt!=="tre"){ vang++; return; }   // vắng / chưa điểm danh: không tính
     S.tien_do[hv.ma_hv]=S.tien_do[hv.ma_hv]||{};
     items.forEach(id=>{ if(!S.tien_do[hv.ma_hv][id]){ S.tien_do[hv.ma_hv][id]={t:"da",n:"mac_dinh",d}; moi++; } });
   });
-  const homNay=buoiHomNay();
+  const homNay=buoiTheoNgay(BD.lopId, iso(new Date()));
   let b=S.buoi_day.find(x=>x.lopId===BD.lopId&&x.ngay===homNay.ngay&&x.trang_thai!=="xong");
   if(!b){ const sach=sachCuaLop(BD.lopId);
     b={id:"b"+Date.now(),lopId:BD.lopId,ngay:homNay.ngay,gv:homNay.gv,sach:sach.id,unit:BD.unit,items,ghi_chu:"",noi_bo:"",trang_thai:"xong",luc:Date.now()};
