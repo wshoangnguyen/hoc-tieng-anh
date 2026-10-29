@@ -83,6 +83,9 @@ window.GAME = (function () {
       veChe();
     };
     nhanDiem = el("span", "gcore-diem", "");
+    const nutSang = el("button", "gcore-sang", "🏠 Sảnh");
+    nutSang.onclick = () => { location.href = location.pathname.indexOf("/games/") >= 0 ? "../sanh.html" : "sanh.html"; };
+    thanh.appendChild(nutSang);
     thanh.appendChild(nutMa); thanh.appendChild(chonSach); thanh.appendChild(chonUnit);
     thanh.appendChild(nutChe); thanh.appendChild(chonNac); thanh.appendChild(nhanDiem);
     try { cheDoDau = localStorage.getItem("game_thidau") === "1"; } catch(e){}
@@ -364,12 +367,10 @@ window.GAME = (function () {
     hop.appendChild(el("p", "gcore-luat", "🎯 " + QUY_TAC));
 
     const hang = el("div", "gcore-hang");
-    if (d && Number(d.diem_luot_tong) > 0) {
-      const ve = el("button", "gcore-nut ve", "🏠 Về sảnh game");
-      ve.onclick = () => { location.href = location.pathname.indexOf("/games/") >= 0 ? "../sanh.html" : "sanh.html"; };
-      hang.appendChild(ve);
-      try { voTay(); } catch (e) {}
-    }
+    const ve = el("button", "gcore-nut" + (d && Number(d.diem_luot_tong) > 0 ? " ve" : " ve2"), "🏠 Về sảnh game");
+    ve.onclick = () => { location.href = location.pathname.indexOf("/games/") >= 0 ? "../sanh.html" : "sanh.html"; };
+    hang.appendChild(ve);
+    if (d && Number(d.diem_luot_tong) > 0) { try { voTay(); } catch (e) {} }
     const nut = el("button", "gcore-nut" + (d && Number(d.diem_luot_tong) > 0 ? " phu" : ""), "Chơi tiếp");
     nut.onclick = () => nen.remove();
     hang.appendChild(nut); hop.appendChild(hang);
