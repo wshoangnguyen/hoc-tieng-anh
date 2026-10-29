@@ -1753,6 +1753,38 @@ function dgLay(ma,ngay){ const m=ngayCua(ma); return m[ngay]||null; }
 function dgDat(ma,ngay,o){ const m=ngayCua(ma); if(o) m[ngay]=o; else delete m[ngay]; save(); }
 function tichLuy(ma){ const m=ngayCua(ma); let s=0; Object.keys(m).forEach(k=>{ s+=Number(m[k].diem)||0; }); return Math.round(s*10)/10; }
 function tichLuyTong(ma){ const d=diemCua(ma); return Math.round((tichLuy(ma)+(Number(d.diem_thuong)||0)+(Number(d.dieu_chinh)||0))*10)/10; }
+/* --- thống kê tuần: điểm trên lớp + điểm chơi game --- */
+function dauTuan(){ const d=new Date(); d.setHours(0,0,0,0); const t=(d.getDay()+6)%7; d.setDate(d.getDate()-t); return d; }
+function diemTuanLop(ma){ const m=ngayCua(ma), d0=dauTuan(); let s=0;
+  Object.keys(m).forEach(k=>{ const ng=new Date(k+"T00:00:00"); if(ng>=d0) s+=Number(m[k].diem)||0; });
+  return Math.round(s*10)/10; }
+function oThongKe(ma){
+  const lopTuan=diemTuanLop(ma);
+  return `<span class="tk" data-tk="${esc(ma)}" style="display:inline-flex;flex-direction:column;gap:1px;`
+    + `background:#fffaf0;border:1px solid #f0e2c2;border-radius:10px;padding:4px 9px;font-size:12px;line-height:1.35">`
+    + `<span><b>Tổng điểm tích luỹ: <span class="tk-tong">${tichLuyTong(ma)}</span></b></span>`
+    + `<span class="hint" style="font-size:11.5px">Tuần này: <b class="tk-tuan">${lopTuan}</b> `
+    + `(Điểm trên lớp: <b class="tk-lop">${lopTuan}</b> · Điểm chơi game: <b class="tk-game">…</b>)</span></span>`;
+}
+function napThongKe(ma){
+  const hop=document.querySelector(`.tk[data-tk="${ma}"]`); if(!hop) return;
+  const lopTuan=diemTuanLop(ma);
+  const ve=(gTuan)=>{
+    const t=hop.querySelector(".tk-tong"), a=hop.querySelector(".tk-tuan"),
+          b=hop.querySelector(".tk-lop"), c=hop.querySelector(".tk-game");
+    if(t) t.textContent=tichLuyTong(ma);
+    if(a) a.textContent=Math.round((lopTuan+gTuan)*10)/10;
+    if(b) b.textContent=lopTuan;
+    if(c) c.textContent=gTuan;
+  };
+  ve(0);
+  fetch(SB_URL + "/rest/v1/rpc/game_thong_ke", { method:"POST",
+      headers:{ apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, "Content-Type":"application/json" },
+      body: JSON.stringify({ p_ma: ma }) })
+    .then(r=>r.ok?r.json():null)
+    .then(d=>{ if(d && d.ok){ ve(Number(d.tuan_game)||0); const t=hop.querySelector(".tk-tong"); if(t) t.textContent=tichLuyTong(ma); } })
+    .catch(()=>{});
+}
 function stickerHomNay(ma){ const hom=iso(new Date()); return stickerCua(ma).ds.map((x,i)=>({loai:x.loai,ngay:x.ngay,i})).filter(x=>x.ngay===hom); }
 function trongBaThang(ngay){ const t=new Date(ngay+"T00:00:00"), n=new Date(); n.setHours(0,0,0,0); const d=(n-t)/86400000; return d>=-1 && d<=92; }
 function veDiemSo(){
@@ -3158,6 +3190,7 @@ function moModal(html){
   const _f=_coDong?"":_ft;
   m.innerHTML = _m ? `<div class="modal"${_m[1]}>${_m[2]}${_f}</div>` : `<div class="modal">${html}${_f}</div>`;
   m.style.display="flex";
+  document.querySelectorAll("#bdModal [data-tk]").forEach(function(el){ napThongKe(el.getAttribute("data-tk")); });
   const d=document.getElementById("bdDong"); if(d) d.onclick=()=>{m.style.display="none";};
 }
 
@@ -3422,7 +3455,7 @@ function moHoSoHV(ma){
   if(sach) mucCuaSach(sach.id).forEach(i=>{const t=(td[i.id]||{}).t||"chua"; dem[t]++; tong++;});
   let htm=`<div class="modal" style="max-width:900px"><div class="row"><h3 style="margin:0">👤 ${esc(h.ho_ten)}</h3>
     <span class="hint">${esc(h.lop)}${sach?" · "+esc(sach.ten):""}</span><span style="flex:1"></span>
-    <span class="chip" title="điểm hoạt động + cô cộng + game">⭐ ${tichLuyTong(ma)}</span><span class="chip" data-gdiem="${ma}">🎮 ${(typeof GAME_DIEM!=="undefined"&&GAME_DIEM[ma])||0}</span><span class="chip">🎁 ${(stickerCua(ma).ds||[]).length}</span>
+    ${oThongKe(ma)}<span class="chip" data-gdiem="${ma}">🎮 ${(typeof GAME_DIEM!=="undefined"&&GAME_DIEM[ma])||0}</span><span class="chip">🎁 ${(stickerCua(ma).ds||[]).length}</span>
     <button class="ghost sm" id="hsX">✕</button></div>`;
   if(!sach){ htm+=`<p class="hint">Chưa rõ lớp/sách của em này.</p></div>`; moModal(htm); return; }
   htm+=`<p class="hint" style="margin:6px 0">Đã học <b>${dem.da+dem.dat+dem.vuot+dem.khong}</b>/${tong} mục · Đạt <b>${dem.dat}</b> · Vượt <b>${dem.vuot}</b> · Chưa đạt <b>${dem.khong}</b></p>`;
@@ -3489,7 +3522,7 @@ function moTienTrinhHV(ma){
   if(!html) html='<p class="hint">Chưa có bài nào được ghi nhận.</p>';
   const htm=`<div class="modal" style="max-width:940px"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
     <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span>
-    <span class="chip" title="điểm hoạt động + cô cộng + game">⭐ ${tichLuyTong(ma)}</span><button class="ghost sm" id="ttX">✕</button></div>
+    ${oThongKe(ma)}<button class="ghost sm" id="ttX">✕</button></div>
     <p class="hint" style="margin:6px 0">Đã học <b>${tong.da+tong.khong+tong.dat+tong.vuot}</b> mục · Đạt <b>${tong.dat}</b> · Vượt <b>${tong.vuot}</b> · Chưa đạt <b>${tong.khong}</b>.
       Bấm vào ô để đổi mức: Chưa học → Đã học → Đạt → Vượt → Chưa đạt.</p>
     <div style="max-height:64vh;overflow:auto">${html}</div>
@@ -3564,7 +3597,7 @@ function moTienTrinhHV(ma, giu){
   const optBook=books.map(x=>`<option value="${x.id}"${x.id===b.id?" selected":""}>${esc(x.ten)}${x.id===(sachNay&&sachNay.id)?" (đang học)":""}</option>`).join("");
   const optUnit=b.units.map(u=>`<option value="${u}"${u===TT_UNIT?" selected":""}>Unit ${u}</option>`).join("");
   const htm=`<div class="modal" style="max-width:1000px;width:94vw"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
-    <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span><span class="chip" title="điểm hoạt động + cô cộng + game">⭐ ${tichLuyTong(ma)}</span>
+    <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span>${oThongKe(ma)}
     <button class="ghost sm" id="ttX">✕</button></div>
     <div class="row" style="margin:6px 0 2px;gap:6px;flex-wrap:wrap">
       <select id="ttSach" style="max-width:250px">${optBook}</select>

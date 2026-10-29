@@ -293,7 +293,7 @@ document.getElementById("sanh").innerHTML = html;
   function tenDaLuu(ma){ return (localStorage.getItem("game_ten_" + ma) || "").trim(); }
 
   function veDiem(d, ten, diemWeb){
-    const diem = (diemWeb != null ? diemWeb : (d ? (d.diem_tong || 0) : 0));
+    const diem = (diemWeb != null ? (Number(diemWeb) + Number(d ? (d.diem_game || 0) : 0)) : (d ? (d.diem_tong || 0) : 0));
     const homNay = d ? (d.diem_hom_nay || 0) : 0;
     const luot = d ? (d.so_luot || 0) : 0;
     hopDiem.innerHTML =
