@@ -4720,11 +4720,18 @@ function veDiemDanhQua(){
   const all=hvTatCa().filter(h=>!laBaoLuu(h));
   const lops=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
   const buoiNgay=buoiTuan({bat_dau:t2CuaNgay(ngay)}).filter(b=>b.ngay===ngay);
-  const coBuoi=ten=>buoiNgay.some(b=>b.lop.ten===ten&&b.tt!=="huy");
   const nghiBuoi=ten=>buoiNgay.filter(b=>b.lop.ten===ten&&b.tt==="huy");
-  const coBuoiDay=l=>{ const o=(S.lop||[]).find(x=>x.ten===l)||{}; return (S.buoi_day||[]).some(b=>b.lopId===o.id&&b.ngay===ngay); };
-  const ds=lops.filter(l=>coBuoi(l)||coBuoiDay(l));
-  const dsNghi=lops.filter(l=>!coBuoi(l)&&!coBuoiDay(l)&&nghiBuoi(l).length);
+  const lopObj=t=>(S.lop||[]).find(x=>x.ten===t)||{};
+  const buoiThemNgay=((S.buoi_them||{})[t2CuaNgay(ngay)])||[];
+  const coLich=t=>{
+    const o=lopObj(t);
+    if((o.gio||[]).some(g=>g.thu===thu)) return true;
+    return buoiThemNgay.some(b=>b.lopId===o.id&&(!b.thu||b.thu===thu));
+  };
+  const daDiemDanh=t=>all.filter(h=>h.lop===t).some(h=>!!ddLay(ngay,t,h.ma_hv));
+  const coBuoi=t=>(coLich(t)&&!nghiBuoi(t).length)||daDiemDanh(t);
+  const ds=lops.filter(coBuoi);
+  const dsNghi=lops.filter(l=>!coBuoi(l)&&nghiBuoi(l).length);
   if(!ds.length){ grid.innerHTML=`<span class="hint">Hôm qua (${D}/${M}) không có lớp nào theo lịch.</span>`; return; }
   grid.innerHTML=ds.map(l=>{
     const hs=all.filter(h=>h.lop===l);
