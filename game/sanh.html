@@ -301,7 +301,9 @@ document.getElementById("sanh").innerHTML = html;
     const hop = document.getElementById("hsLvChu");
     if (!hop) return;
     if (!lv || !lv.ok){ hop.textContent = "Hãy chơi một game để bắt đầu tích điểm hôm nay nhé."; return; }
-    const da = (lv.levels || []).map(Number).sort(function(a,b){return a-b;});
+    let ds = lv.levels;
+    if (!ds && lv.ds) { const g = {}; lv.ds.forEach(function(x){ (x.level||[]).forEach(function(n){ g[n]=1; }); }); ds = Object.keys(g); }
+    const da = (ds || []).map(Number).sort(function(a,b){return a-b;});
     const thieu = [1,2,3,4,5,6].filter(function(n){ return da.indexOf(n) < 0; });
     if (!da.length){
       hop.innerHTML = "Hôm nay bạn chưa hoàn thành level nào. Hãy chơi 1 game ở mỗi level 1, 2, 3, 4, 5, 6 để nhận <b>+5 điểm</b> nhiệm vụ hàng ngày nhé.";
@@ -323,7 +325,7 @@ document.getElementById("sanh").innerHTML = html;
     hopDiem.innerHTML =
       `<div class="hs-so"><b>${diem}</b><span>điểm tích luỹ</span></div>` +
       `<div class="hs-so"><b>${homNay}<small style="font-size:13px;color:#a08c5e">/16</small></b><span>điểm hôm nay</span></div>` +
-      `<div class="hs-lv" id="hsLv" style="flex:2.4;background:#fffaf0;border:1px solid #f0e2c2;border-radius:12px;padding:8px 10px;text-align:left"><span id="hsLvChu" style="font-size:12.5px;color:#7a6a45">Đang xem level đã xong…</span></div>`;
+      `<div class="hs-lv" id="hsLv" style="flex:3.4;padding:8px 6px;text-align:left"><span id="hsLvChu" style="font-size:13px;line-height:1.45;color:#5c4d2c">Đang xem level đã xong…</span></div>`;
     kq.className = "hs-kq ok";
     kq.innerHTML = (ten ? `Xin chào <b>${ten}</b>! ` : "") +
       `Điểm của con đã được ghi vào mã <b>${oMa.value.trim().toUpperCase()}</b>. Chọn trò bên dưới để chơi.`;
