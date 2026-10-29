@@ -79,6 +79,7 @@ main{padding:12px;max-width:1620px;margin:0 auto}
 .b.huy{opacity:.45}.b.huy .cls{text-decoration:line-through}
 .b.khong-ranh{border-left-color:var(--warn);background:var(--nen-canhbao);box-shadow:0 0 0 1px var(--vien-canhbao) inset}
 .b.khong-ranh .gv{color:#8a5a00;font-weight:600}
+.gv-ranh{margin-top:4px;padding:3px 6px;border-radius:8px;background:#e8f6ee;color:#14663c;font-size:11px;line-height:1.35;border:1px dashed #9fd3b6;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .b .badge{display:inline-block;background:#e0a800;color:#3a2c07;border-radius:5px;padding:0 4px;font-size:10.5px;font-weight:700}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden}
 th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}
@@ -1048,7 +1049,7 @@ function veLuoi(){
       const o=ds.filter(b=>b.thu===t&&b.ca===ca).sort((a,b)=> theoGV
         ? String(a.gv||"~").localeCompare(String(b.gv||"~"),"vi")||soSanhLop(a.lop.ten,b.lop.ten)
         : soSanhLop(a.lop.ten,b.lop.ten)||gioSapXep(a.ca)-gioSapXep(b.ca));
-      const items=o.map(b=>{ const chuaGV=!b.gv;
+      let items=o.map(b=>{ const chuaGV=!b.gv;
         const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!gvRanh(b.gv,t,ca,w);
         const nhan=b.them?'<span class="nhan-bu">học bù</span>':"";
         return `<div class="b ${b.tt==='huy'?'huy':''} ${chuaGV?'chua-gv':''} ${khongRanh?'khong-ranh':''} ${b.them?'hoc-bu':''}" data-k="${esc(b.k)}"
@@ -1060,6 +1061,11 @@ function veLuoi(){
             ${b.lop.gv&&b.lop.gv!==b.gv?`<div class="gv-cn">CN: ${esc(b.lop.gv)}</div>`:(b.lop.gv?"":'<div class="gv-cn" style="color:var(--del)">chưa có chủ nhiệm</div>')}`}
           ${khongRanh?`<div class="badge">GV báo nghỉ · cần dạy bù</div>`:""}
           ${b.ghi?`<small>${esc(b.ghi)}</small>`:""}</div>`; }).join("");
+      if(theoGV){
+        const dangDay=new Set(o.filter(b=>b.tt!=="huy"&&b.gv).map(b=>b.gv));
+        const ranh=(S.giao_vien||[]).filter(g=>gvRanh(g.ten,t,ca,w)&&!dangDay.has(g.ten));
+        if(ranh.length) items+=`<div class="gv-ranh" title="Còn rảnh khung giờ này — có thể nhận lớp">🟢 ${ranh.map(g=>esc(g.ten)).join(" · ")}</div>`;
+      }
       const ngayO=cong(w.bat_dau,THU.indexOf(t));
       h+=`<div class="cell ${ngayO===homNay?"homnay":""}" data-thu="${t}" data-ca="${ca}" data-ngay="${ngayO}">${items}</div>`;
     }
