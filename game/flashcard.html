@@ -233,6 +233,12 @@
             gap: 15px;
         }
 
+        @media (max-width: 620px) {
+            .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+            .flashcard { aspect-ratio: 1 / 1; }
+            .flashcard .front, .flashcard .back { font-size: 13px; padding: 6px; }
+        }
+
         .flashcard {
             background: transparent;
             width: 100%;
@@ -389,43 +395,7 @@
             <div class="sub">✨ Nhấn vào thẻ → lật mặt + nghe phát âm ✨</div>
         </div>
         
-        <!-- Game Menu Dropdown -->
-        <div class="game-menu" id="gameMenu">
-            <button class="game-btn" id="gameMenuBtn">
-                🎮 Trò chơi luyện tập ▼
-            </button>
-            <div class="dropdown-content">
-                <a href="games/matching-game.html" target="_blank">
-                    <span class="game-icon">🎯</span>
-                    <div class="game-info">
-                        <div class="game-name">Ghép đôi thẻ bài</div>
-                        <div class="game-desc">Nhớ vị trí và ghép từ với hình</div>
-                    </div>
-                </a>
-                <a href="games/catch-the-card.html" target="_blank">
-                    <span class="game-icon">🎴</span>
-                    <div class="game-info">
-                        <div class="game-name">Bắt thẻ từ</div>
-                        <div class="game-desc">Thẻ từ chạy lung tung, bắt nó!</div>
-                    </div>
-                </a>
-                <a href="games/quiz-game.html" target="_blank">
-                    <span class="game-icon">❓</span>
-                    <div class="game-info">
-                        <div class="game-name">Trắc nghiệm nhanh</div>
-                        <div class="game-desc">Chọn đáp án đúng cho câu hỏi</div>
-                    </div>
-                </a>                
-                <a href="games/spelling-game.html" target="_blank">
-                    <span class="game-icon">✏️</span>
-                    <div class="game-info">
-                        <div class="game-name">Đánh vần từ vựng</div>
-                        <div class="game-desc">Nghe và viết đúng từ tiếng Anh</div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
+        
     </div>
 
     <div class="status-bar" id="statusBar">

@@ -66,6 +66,8 @@ window.HS = (function () {
   }
 
   function chonTruoc() {
+    try { const b = JSON.parse(localStorage.getItem("game_bai") || "null");
+      if (b && b.sach) return { sach: b.sach, unit: Number(b.unit) || 0 }; } catch (e) {}
     const s = localStorage.getItem("game_sach") || "";
     const u = localStorage.getItem("game_unit") || "";
     return { sach: s, unit: u === "" ? null : Number(u) };
@@ -143,6 +145,13 @@ window.HS = (function () {
     luuChon(sach, unit);
     if (maHV()) layHoSo(maHV()).then(veNhac);
     veNhac();
+    /* Đã có thanh chọn Sách/Unit/Mã chung của game (core.js) → ẩn thanh này cho khỏi trùng */
+    if (window.GAME) {
+      try {
+        const card = hop.closest(".card");
+        (card && card.querySelector("#hsBar") === hop ? card : hop).style.display = "none";
+      } catch (e) { hop.style.display = "none"; }
+    }
     return { sach: () => sach, unit: () => unit, hoSo: () => hoSo, veLai: () => { veNhac(); } };
   }
 

@@ -912,6 +912,11 @@
             }
         }
     </style>
+    <style>
+      /* Đã có thanh chọn Sách/Unit chung → ẩn khu chọn từ vựng cũ */
+      #setupSection .vocabulary-section{display:none !important}
+      #setupSection button[onclick="goBackToModeSelection()"]{display:none !important}
+    </style>
     <link rel="stylesheet" href="core.css">
     <script src="core.js"></script>
 </head>
@@ -2118,5 +2123,25 @@
             location.reload();
         }
     </script>
+<script>
+/* Bỏ màn chọn SOLO / 2 TEAMS — chế độ đã có trên thanh chung của game */
+(function () {
+  function vao() {
+    try {
+      if (!document.getElementById("modeSection")) return;
+      gameMode = (window.GAME && GAME.cheDo && GAME.cheDo()) ? "team" : "solo";
+      document.getElementById("modeSection").style.display = "none";
+      var thu = 0;
+      var t = setInterval(function () {
+        thu++;
+        if (typeof vocabularyLoaded !== "undefined" && vocabularyLoaded) { clearInterval(t); proceedToSetup(); }
+        else if (thu > 20) { clearInterval(t); proceedToSetup(); }
+      }, 250);
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(vao, 300); });
+  else setTimeout(vao, 300);
+})();
+</script>
 </body>
 </html>

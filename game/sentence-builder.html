@@ -1178,7 +1178,7 @@
             </div>
 
             <!-- Mode Selection -->
-            <div class="mode-section">
+            <div class="mode-section" id="modeCu" style="display:none">
                 <div class="mode-selector">
                     <button class="mode-btn solo" onclick="selectMode('solo')">
                         🎯 SOLO PLAYER
@@ -2603,5 +2603,13 @@ function prepareSentenceSlots() {
             location.reload();
         }
     </script>
+<script>
+(function () {
+  function setMode() {
+    try { gameMode = (window.GAME && GAME.cheDo && GAME.cheDo()) ? "team" : "solo"; } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", setMode); else setMode();
+})();
+</script>
 </body>
 </html>

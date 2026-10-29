@@ -523,7 +523,7 @@ window.GAME = (function () {
 
   function doiKhang(v) { cheDoDau = !!v; }
   function sanSang() { return napTV().then(() => bai()); }
-  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, bai, sanSang, datBai, doiKhang, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
+  return { batDau, ghi, loiTu, ketThuc, maHV, datMaHV, hoiMa, anh, noi, phaoHoa, tienDo, bai, sanSang, datBai, doiKhang, cheDo: () => cheDoDau, suKien: () => sk, cfg: () => cfg, phien: () => phien, quyTac: QUY_TAC };
 })();
 
 /* tự nạp buddy.js (bong bóng khen/khích lệ) — mọi trang có core.js đều có Buddy */
