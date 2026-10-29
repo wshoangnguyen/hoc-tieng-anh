@@ -2151,11 +2151,7 @@
             
             finalScore.innerHTML = `<strong>Tổng Điểm:</strong> ${currentScore} 💰`;
             
-            if (gameMode === 'practice') {
-                modeDisplay.innerHTML = `<strong>Chế Độ:</strong> Trả Bài<br><strong>Level:</strong> Super Minds ${selectedLevel} | <strong>Unit:</strong> ${selectedUnit}`;
-            } else {
-                modeDisplay.innerHTML = `<strong>Chế Độ:</strong> Thi Đua Điểm Cao<br><strong>Level Đã Học:</strong> Super Minds ${selectedLevel}`;
-            }
+            modeDisplay.innerHTML = `<strong>Chế Độ:</strong> Trả Bài<br><strong>Level:</strong> Super Minds ${selectedLevel} | <strong>Unit:</strong> ${selectedUnit}`;
             
             completionStats.innerHTML = `<strong>Hoàn Thành:</strong> ${completedWords.length} / ${targetWords.length} từ (${Math.round((completedWords.length / targetWords.length) * 100)}%)`;
             
