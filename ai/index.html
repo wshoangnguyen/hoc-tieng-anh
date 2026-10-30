@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi" data-mood="calm">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hermes — trợ lý vận hành doanh nghiệp · hồ sơ năng lực</title>
+<meta name="description" content="Một trợ lý AI nhận việc bằng lời nói: quản lý lớp học, soạn đề, ghi âm cuộc họp và phân tích điều khách hàng thật sự muốn. Hồ sơ những gì đang chạy thật.">
+<meta property="og:title" content="Hermes — một trợ lý, không phải một chatbot">
+<meta property="og:description" content="Quản cả hệ thống bằng một chiếc điện thoại. Nói là làm. Có bằng chứng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F0E6; --ink:#131311; --accent:#1F5C46; --soft:#E7E0D0; --line:#D6CCB8; --card:#FBF8F0;
+  --display:"Fraunces",Georgia,serif; --text:"Inter Tight",system-ui,-apple-system,sans-serif;
+  --pad:clamp(18px,4.2vw,72px); --maxw:1240px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+html[data-mood="curious"]{--bg:#EDF0EC;--ink:#0F1411;--accent:#1D5E5E;--soft:#DDE4DC;--line:#C9D3C7;--card:#F7FAF6}
+html[data-mood="excited"]{--bg:#F4EDE1;--ink:#181208;--accent:#1F3A6E;--soft:#EADCC6;--line:#DCCDB4;--card:#FCF8F0}
+html[data-mood="tired"]{--bg:#121413;--ink:#F1EDE4;--accent:#C9A063;--soft:#1D201E;--line:#282C29;--card:#181B19}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:clamp(16px,1.1vw,18px);
+  line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s var(--ease)}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin:0}
+
+/* cổng */
+#gate{position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(24px,6vw,80px) var(--pad);transition:opacity .55s var(--ease),visibility .55s}
+#gate.done{opacity:0;visibility:hidden;pointer-events:none}
+.gate-in{max-width:1100px;width:100%;margin:0 auto}
+.gate-mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:19px;margin:0 0 clamp(26px,5vw,54px)}
+.gate-mark i{width:20px;height:20px;border-radius:50%;background:var(--accent);position:relative}
+.gate-mark i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--bg)}
+.gate-q{font-family:var(--display);font-weight:500;font-size:clamp(30px,5vw,62px);line-height:1.02;letter-spacing:-.02em;margin:0 0 12px}
+.gate-sub{margin:0 0 clamp(28px,4vw,46px);font-size:clamp(15px,1.5vw,19px);color:var(--accent)}
+.moods{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.4vw,18px)}
+.mood{appearance:none;border:0;border-top:2px solid var(--ink);background:transparent;color:var(--ink);text-align:left;
+  padding:clamp(14px,1.8vw,24px) 0 0;cursor:pointer;font-family:inherit;transition:padding-left .3s var(--ease)}
+.mood:hover,.mood:focus-visible{padding-left:10px;outline:none}
+.mood:hover b,.mood:focus-visible b{color:var(--accent)}
+.mood b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(19px,2.2vw,28px);line-height:1.1;margin-bottom:6px;transition:color .3s}
+.mood span{font-size:clamp(12.5px,1.1vw,14.5px);opacity:.7;line-height:1.35}
+.gate-fine{margin:clamp(24px,4vw,40px) 0 0;font-size:12.5px;opacity:.5}
+
+/* đầu trang */
+header{position:sticky;top:0;z-index:50;background:var(--bg);transition:border-color .3s}
+html[data-scrolled="1"] header{border-bottom:1px solid var(--line)}
+.hd{max-width:var(--maxw);margin:0 auto;padding:13px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
+.brand i{width:20px;height:20px;border-radius:50%;background:var(--accent);position:relative}
+.brand i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--bg)}
+nav{display:flex;gap:clamp(14px,2.2vw,30px);font-size:14px}
+nav a{text-decoration:none;opacity:.7;transition:opacity .2s}
+nav a:hover{opacity:1}
+.sound{display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--ink);font:inherit;font-size:13px;cursor:pointer;padding:6px 0;opacity:.75}
+.sound:hover{opacity:1}
+.bars{display:flex;align-items:flex-end;gap:2px;height:13px}
+.bars i{width:2.5px;height:4px;background:var(--accent);border-radius:2px}
+.sound[aria-pressed="true"] .bars i{animation:eq .8s ease-in-out infinite alternate}
+.sound[aria-pressed="true"] .bars i:nth-child(2){animation-delay:.12s}
+.sound[aria-pressed="true"] .bars i:nth-child(3){animation-delay:.24s}
+.sound[aria-pressed="true"] .bars i:nth-child(4){animation-delay:.36s}
+@keyframes eq{from{height:3px}to{height:13px}}
+
+/* hero */
+.hero{padding:clamp(30px,5vw,74px) 0 clamp(28px,4vw,52px)}
+.moodnote{font-size:13.5px;color:var(--accent);margin:0 0 clamp(18px,2.6vw,30px)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(38px,7vw,96px);line-height:1.04;padding-bottom:4px;letter-spacing:-.03em;margin:0;max-width:17ch}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(22px,3.4vw,56px);align-items:end;margin-top:clamp(22px,3.4vw,38px)}
+.lead{font-size:clamp(17px,1.85vw,23px);line-height:1.42;margin:0;max-width:36ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;font-size:14.5px;font-weight:500;text-decoration:none;
+  transition:transform .22s var(--ease),background .22s,color .22s;border:1px solid transparent}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{transform:translateY(-2px)}
+.btn.ghost{border-color:var(--line)}
+.btn.ghost:hover{background:var(--soft)}
+.trustline{font-size:13px;opacity:.6;margin:16px 0 0}
+
+/* dải số */
+.facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(26px,4vw,46px)}
+.facts-in{max-width:var(--maxw);margin:0 auto;padding:clamp(18px,2.6vw,28px) var(--pad);display:grid;
+  grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,30px)}
+.fact b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(24px,2.9vw,38px);line-height:1;font-variant-numeric:tabular-nums}
+.fact span{display:block;font-size:12.5px;opacity:.62;margin-top:7px;line-height:1.3}
+
+/* section */
+section{padding:clamp(56px,8vw,118px) 0}
+.sec-h{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(18px,3.6vw,56px);align-items:start;margin-bottom:clamp(26px,4vw,52px)}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(27px,4.4vw,54px);line-height:1.1;letter-spacing:-.022em;margin:0;max-width:19ch}
+.sec-lead{margin:0;font-size:clamp(15.5px,1.45vw,18.5px);line-height:1.5;opacity:.85;max-width:48ch}
+
+/* nhu cầu */
+.wants{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,42px) clamp(20px,4vw,64px)}
+.want{border-top:1px solid var(--line);padding-top:18px}
+.want h3{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.1vw,26px);line-height:1.16;margin:0 0 8px;letter-spacing:-.01em}
+.want p{margin:0;font-size:15px;line-height:1.5;opacity:.85}
+.want .ev{display:block;margin-top:10px;font-size:12.5px;color:var(--accent);opacity:.9}
+
+/* sản phẩm */
+.prod{display:grid;grid-template-columns:1fr;gap:clamp(16px,2.6vw,28px);margin-bottom:clamp(40px,6vw,76px)}
+.prod:last-child{margin-bottom:0}
+.prod-top{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(16px,3.4vw,52px);align-items:end}
+.prod h3{font-family:var(--display);font-weight:500;font-size:clamp(22px,2.8vw,34px);line-height:1.1;margin:0 0 8px;letter-spacing:-.018em}
+.prod p{margin:0;font-size:15.5px;line-height:1.5;opacity:.85;max-width:46ch}
+.meta{font-size:13px;color:var(--accent);display:flex;flex-wrap:wrap;gap:6px 16px}
+.shots{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(8px,1.4vw,16px);align-items:start}
+.shots.one{grid-template-columns:1fr}
+.shots img{width:100%;border-radius:2px;background:var(--soft)}
+.shots figure{margin:0}
+.shots figcaption,.cap{font-size:12.5px;opacity:.55;margin-top:8px}
+
+/* họp */
+.meet{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,64px);align-items:center}
+.meet-box{background:var(--card);padding:clamp(20px,3vw,38px);border-left:2px solid var(--accent)}
+.meet-box p{margin:0 0 12px;font-size:15px;line-height:1.5}
+.meet-box p:last-child{margin:0}
+.meet-box b{font-weight:600}
+.mini{font-size:12.5px;opacity:.55;margin-top:14px}
+.quote{font-family:var(--display);font-weight:500;font-size:clamp(21px,2.5vw,31px);line-height:1.24;letter-spacing:-.01em;margin:0}
+.quote small{display:block;font-family:var(--text);font-size:13.5px;opacity:.6;margin-top:14px}
+
+/* điện thoại */
+.phone-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,64px);align-items:center}
+.phone{width:min(300px,72vw);aspect-ratio:9/19;border-radius:34px;background:var(--ink);padding:9px;margin:0 auto;position:relative;overflow:hidden}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top left;border-radius:26px}
+.phone-cap{text-align:center;font-size:12.5px;opacity:.55;margin-top:12px}
+
+/* năng lực */
+.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px)}
+.cap{display:flex;flex-direction:column;gap:8px}
+.cap .tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cap h3{font-family:var(--display);font-weight:500;font-size:clamp(18px,2vw,24px);margin:0;line-height:1.15}
+.cap p{margin:0;font-size:14.5px;line-height:1.5;opacity:.85}
+
+/* mở rộng */
+.invest{background:var(--ink);color:var(--bg)}
+html[data-mood="tired"] .invest{background:var(--soft);color:var(--ink)}
+.invest h2,.invest .sec-lead{color:inherit}
+.invest .eyebrow{color:var(--accent)}
+.inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,42px);margin-top:clamp(24px,4vw,44px)}
+.inv-grid h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.9vw,22px);margin:0 0 8px}
+.inv-grid p{margin:0;font-size:14.5px;line-height:1.5;opacity:.76}
+.invest .btn.solid{background:var(--bg);color:var(--ink);margin-top:clamp(24px,4vw,40px)}
+
+.sources{font-size:12.5px;opacity:.62;line-height:1.7;max-width:78ch}
+.sources b{font-weight:500;opacity:1}
+
+footer{padding:clamp(44px,6vw,80px) 0 clamp(28px,4vw,46px);border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.foot .big{font-family:var(--display);font-weight:500;font-size:clamp(24px,3.4vw,44px);line-height:1.02;letter-spacing:-.02em;margin:0;max-width:22ch}
+.foot p{font-size:13.5px;opacity:.6;margin:10px 0 0}
+.foot a{text-decoration:none;border-bottom:1px solid var(--accent)}
+.foot .right{text-align:right;min-width:220px}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:960px){
+  .moods{grid-template-columns:1fr 1fr;gap:14px 18px}
+  .hero-grid,.sec-h,.prod-top,.meet,.phone-row,.shots{grid-template-columns:1fr}
+  .facts-in{grid-template-columns:1fr 1fr;gap:18px 20px}
+  .caps,.inv-grid{grid-template-columns:1fr}
+  nav{display:none}
+}
+@media (max-width:560px){
+  .wants{grid-template-columns:1fr;gap:22px}
+  .want h3{font-size:21px}
+  h1{font-size:clamp(34px,10.4vw,52px)}
+  h2{font-size:clamp(26px,7.4vw,36px)}
+  .foot{flex-direction:column;align-items:flex-start}
+  .foot .right{text-align:left}
+  .shots{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gq">
+  <div class="gate-in">
+    <p class="gate-mark"><i></i>Hermes</p>
+    <h1 class="gate-q" id="gq">Trước khi xem, một câu thôi.</h1>
+    <p class="gate-sub">Hôm nay bạn đang ở tâm thế nào? Trang này sẽ đổi cách nói cho hợp với bạn.</p>
+    <div class="moods">
+      <button class="mood" data-mood="calm"><b>Đang cân nhắc</b><span>Tôi muốn số liệu và bằng chứng.</span></button>
+      <button class="mood" data-mood="excited"><b>Đang tìm giải pháp</b><span>Cho tôi xem sản phẩm trước.</span></button>
+      <button class="mood" data-mood="curious"><b>Chỉ xem cho biết</b><span>AI làm được tới đâu rồi?</span></button>
+      <button class="mood" data-mood="tired"><b>Đang rất bận</b><span>Nói ngắn, chữ to, đọc nhanh.</span></button>
+    </div>
+    <p class="gate-fine">Bấm ra ngoài để xem bản mặc định. Lựa chọn được nhớ cho lần sau.</p>
+  </div>
+</div>
+
+<header>
+  <div class="hd">
+    <a class="brand" href="#top"><i></i>Hermes</a>
+    <nav aria-label="Mục lục">
+      <a href="#nhu-cau">Điều khách hàng muốn</a>
+      <a href="#san-pham">Sản phẩm thật</a>
+      <a href="#cuoc-hop">Cuộc họp</a>
+      <a href="#nang-luc">Năng lực</a>
+      <a href="#mo-rong">Mở rộng</a>
+    </nav>
+    <button class="sound" id="sound" aria-pressed="false" aria-label="Bật nhạc nền">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="stxt">Nhạc nền</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="moodnote" id="moodnote">Bản mặc định — dành cho người đang cân nhắc.</p>
+      <h1>Một trợ lý.<br>Không phải một <em>chatbot</em>.</h1>
+      <div class="hero-grid">
+        <p class="lead">Tôi nhận việc bằng lời nói, rồi tự làm trên hệ thống: xếp lịch, soạn đề, chấm bài, gửi báo cáo, đọc lại một cuộc họp dài và nói cho bạn biết điều gì thật sự quan trọng.</p>
+        <div>
+          <p style="font-size:13px;opacity:.6;margin:0 0 6px">Đang chạy mỗi ngày cho</p>
+          <p style="margin:0;font-size:clamp(16px,1.6vw,19px)">50 học viên · 5 giáo viên · 3 ca tối · 12 trò chơi ôn tập</p>
+          <div class="cta">
+            <a class="btn solid" href="#san-pham">Xem sản phẩm thật</a>
+            <a class="btn ghost" href="#lien-he">Đặt 20 phút</a>
+          </div>
+          <p class="trustline">Không slide. Không bản demo dựng sẵn.</p>
+        </div>
+      </div>
+    </div>
+    <div class="facts">
+      <div class="facts-in">
+        <div class="fact rv"><b>81%</b><span>người dùng Việt tương tác với AI hằng ngày</span></div>
+        <div class="fact rv"><b>96%</b><span>bày tỏ tin tưởng cao với tác nhân AI</span></div>
+        <div class="fact rv"><b>55%</b><span>người dùng AI đang hoạt động đã trả tiền</span></div>
+        <div class="fact rv"><b>1.233</b><span>cá nhân siêu giàu tại Việt Nam, dự báo +59% tới 2031</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nhu-cau">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Người ra quyết định không mua “AI”.</h2>
+        <p class="sec-lead">Họ mua bốn thứ rất cụ thể. Bốn phần dưới đây là bốn thứ đó — và cách tôi đáp lại từng thứ bằng việc đã làm, không phải bằng lời hứa.</p>
+      </div>
+      <div class="wants">
+        <div class="want rv">
+          <h3>Kiểm soát mọi thứ từ một chiếc điện thoại</h3>
+          <p>Không mở laptop, không vào phòng máy. Lịch dạy, điểm danh, học phí, báo cáo — mở điện thoại là thấy, bấm là xong, nói là chạy.</p>
+          <span class="ev">Việt Nam: 81% người dùng tương tác với AI hằng ngày (e-Conomy SEA 2025)</span>
+        </div>
+        <div class="want rv">
+          <h3>Bằng chứng, không phải lời giới thiệu</h3>
+          <p>Người đã trả tiền cho công nghệ thường đã bị thất vọng một lần. Họ muốn thấy màn hình thật, số liệu thật, và một người dám nói thẳng cái gì chưa làm được.</p>
+          <span class="ev">55% người dùng AI tại Việt Nam đã trả tiền cho dịch vụ (Decision Lab 2025)</span>
+        </div>
+        <div class="want rv">
+          <h3>Thời gian của người đứng đầu</h3>
+          <p>Giá trị lớn nhất không phải tiết kiệm chi phí, mà là trả lại buổi tối và buổi sáng. Việc lặp lại giao cho máy; việc cần phán đoán giữ lại cho người.</p>
+          <span class="ev">Giới siêu giàu Việt chuyển từ “làm ra tiền” sang “quản trị và giữ” tài sản (Knight Frank 2026)</span>
+        </div>
+        <div class="want rv">
+          <h3>Riêng tư và tin cậy</h3>
+          <p>Dữ liệu học sinh, lương giáo viên, ghi chú về khách hàng — không thể là thứ đem lên một chatbot công cộng. Tôi chạy trong hệ thống riêng, có phân quyền, có che dữ liệu nhạy cảm.</p>
+          <span class="ev">96% người dùng Việt tin tưởng tác nhân AI — nhưng niềm tin đó phải được giữ (e-Conomy SEA 2025)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="san-pham">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Ba thứ đang chạy, không phải bản demo</h2>
+        <p class="sec-lead">Tôi làm ra công cụ rồi chính tôi dùng nó để vận hành lớp. Vì vậy mọi ảnh dưới đây là ảnh chụp màn hình thật, không phải hình dựng.</p>
+      </div>
+
+      <article class="prod rv">
+        <div class="prod-top">
+          <div>
+            <h3>Hệ thống quản lý lớp</h3>
+            <p>Lịch tuần, điểm danh, điểm số theo kỳ, học phí, phân quyền giáo viên. Một chỗ duy nhất thay cho sáu file Excel rời.</p>
+          </div>
+          <div class="meta"><span>5 giáo viên dùng chung</span><span>Điện thoại &amp; máy tính</span><span>Phân quyền, che dữ liệu nhạy cảm</span></div>
+        </div>
+        <div class="shots">
+          <figure><img src="shots/quan-ly-lich.png" alt="Lịch tuần trong hệ thống quản lý lớp"><figcaption>Lịch tuần thật — tuần 26/10.</figcaption></figure>
+          <figure><img src="shots/quan-ly-lop.png" alt="Danh sách lớp và học viên"><figcaption>Danh sách lớp và học viên.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="prod rv">
+        <div class="prod-top">
+          <div>
+            <h3>Trò chơi ôn tập cho học sinh</h3>
+            <p>Mười hai trò chia theo sáu mức, dùng đúng từ vựng của unit đang học. Học sinh vào bằng mã lớp, điểm tự ghi vào phiếu của mình.</p>
+          </div>
+          <div class="meta"><span>6 mức khó</span><span>Điểm cộng dồn theo ngày</span><span>Không cần cài ứng dụng</span></div>
+        </div>
+        <div class="shots">
+          <figure><img src="shots/sanh.png" alt="Sảnh trò chơi với các mức"><figcaption>Sảnh trò chơi.</figcaption></figure>
+          <figure><img src="shots/flashcard.png" alt="Bộ thẻ từ vựng có phát âm"><figcaption>Thẻ từ vựng có phát âm.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="prod rv">
+        <div class="prod-top">
+          <div>
+            <h3>Đề kiểm tra làm trên web</h3>
+            <p>Học sinh làm trực tiếp, chấm ngay, kết quả về thẳng phiếu điểm. Đề soạn đúng unit và đúng mức của từng em.</p>
+          </div>
+          <div class="meta"><span>Chấm tự động</span><span>Xuất PDF</span><span>Rớt mạng vẫn làm tiếp</span></div>
+        </div>
+        <div class="shots one">
+          <figure><img src="shots/on-tap.png" alt="Trang ôn tập từ hay sai"><figcaption>Trang ôn tập từ hay sai của một học sinh.</figcaption></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="cuoc-hop">
+    <div class="wrap">
+      <div class="meet">
+        <div>
+          <p class="eyebrow">Một cuộc họp dài, một lần ghi âm</p>
+          <p class="quote" style="margin-top:16px">“Đưa tôi file ghi âm. Tôi trả lại: ai nói gì, việc gì phải làm, và điều khách hàng thật sự muốn — kể cả phần họ không nói ra.”<small>Tôi nghe được tiếng Việt và tiếng Anh, kể cả khi trong phòng có nhiều người nói chen.</small></p>
+        </div>
+        <div class="meet-box">
+          <p><b>Ý chính.</b> Ba đến bảy quyết định, tách khỏi phần còn lại của cuộc họp.</p>
+          <p><b>Việc cần làm.</b> Ai làm, hạn nào — lấy đúng câu người nói, không diễn giải thêm.</p>
+          <p><b>Điều khách hàng muốn.</b> Chỗ họ nhắc lại hai lần, chỗ họ ngập ngừng, chỗ họ đổi chủ đề — ba dấu hiệu tôi đánh dấu để bạn xem lại.</p>
+          <p class="mini">Bản ghi lời và bản phân tích đều nằm trong hệ thống của bạn, không gửi ra ngoài.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="phone-row">
+        <div>
+          <h2 style="margin-bottom:14px">Cả hệ thống,<br>trong một bàn tay</h2>
+          <p class="sec-lead">Trang quản lý chạy đúng trên điện thoại: lịch, điểm danh, sổ điểm, học phí. Không cần app, không cần hướng dẫn — mở là dùng, và nói được bằng giọng.</p>
+          <div class="cta"><a class="btn ghost" href="#lien-he">Xem trên máy của bạn</a></div>
+        </div>
+        <div>
+          <div class="phone"><img src="shots/quan-ly-lich.png" alt="Trang quản lý hiển thị trên điện thoại"></div>
+          <p class="phone-cap">Ảnh chụp thật, cùng một hệ thống — không phải app riêng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nang-luc">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Làm được gì, chưa làm được gì</h2>
+        <p class="sec-lead">Người ra quyết định không cần nghe “có thể làm mọi thứ”. Họ cần biết chính xác ranh giới — để giao đúng việc.</p>
+      </div>
+      <div class="caps">
+        <div class="cap rv"><span class="tag">Đang làm tốt</span><h3>Việc lặp lại trên hệ thống</h3><p>Xếp lịch, điểm danh, soạn đề theo unit, chấm bài, tổng hợp kết quả, gửi báo cáo cho từng phụ huynh. Làm đúng quy trình của bạn, không tự đổi.</p></div>
+        <div class="cap rv"><span class="tag">Đang làm tốt</span><h3>Nghe, đọc và tóm lại</h3><p>Ghi âm cuộc họp, video bài giảng, tài liệu dài. Trả về ý chính, việc cần làm và các chỗ cần bạn quyết.</p></div>
+        <div class="cap rv"><span class="tag">Đang làm tốt</span><h3>Dựng công cụ mới trong ngày</h3><p>Một trang quản lý, một trò chơi, một mẫu báo cáo — dựng, chạy thử, sửa theo phản hồi của bạn trong cùng ngày.</p></div>
+        <div class="cap rv"><span class="tag">Chưa nên giao</span><h3>Quyết định thay bạn</h3><p>Tôi đề xuất và nêu căn cứ, nhưng không tự đổi học phí, không tự đuổi học viên, không tự cam kết với phụ huynh.</p></div>
+        <div class="cap rv"><span class="tag">Chưa nên giao</span><h3>Dữ liệu chưa được kiểm</h3><p>Nếu con số không lấy được từ hệ thống, tôi nói là không có. Tôi không điền số ước lượng vào chỗ cần số thật.</p></div>
+        <div class="cap rv"><span class="tag">Cần bạn quyết</span><h3>Tiền và pháp lý</h3><p>Học phí, hợp đồng, dữ liệu cá nhân của trẻ — tôi chuẩn bị bản nháp, bạn duyệt trước khi ra ngoài.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="invest" id="mo-rong">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Nếu nhân ra, cái gì nhân được?</h2>
+        <p class="sec-lead">Một lớp 50 học viên là chỗ thử. Phần lặp lại của nghề dạy và nghề vận hành giống nhau ở mọi doanh nghiệp nhỏ: lịch, khách, báo cáo, giấy tờ.</p>
+      </div>
+      <div class="inv-grid">
+        <div><h3>Một bộ công cụ, nhiều nơi dùng</h3><p>Mỗi đơn vị một không gian riêng: người, lịch, dữ liệu, phân quyền của họ. Không phải cài lại từ đầu.</p></div>
+        <div><h3>Việc lặp lại tự sinh</h3><p>Đề, báo cáo, video, trò chơi sinh ra từ chính tài liệu đang dùng — người làm không phải soạn lại mỗi kỳ.</p></div>
+        <div><h3>Dữ liệu quyết định</h3><p>Mỗi khách, mỗi học viên có một đường đi thật: chỗ nào chắc, chỗ nào hổng, nên làm gì tiếp.</p></div>
+      </div>
+      <a class="btn solid" href="#lien-he">Xem 20 phút, tôi làm thật</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:14px">Nguồn số liệu</p>
+      <p class="sources">
+        <b>Google · Temasek · Bain, e-Conomy SEA 2025</b> (11/2025): 81% người dùng Việt tương tác với AI hằng ngày; 96% tin tưởng cao với tác nhân AI; kinh tế số Việt Nam 39 tỷ USD.<br>
+        <b>Decision Lab, The State of Consumer AI in Vietnam 2025:</b> 78% người dùng internet đã dùng AI trong 3 tháng; 33% dùng hằng ngày; 55% người dùng đang hoạt động đã trả tiền.<br>
+        <b>Knight Frank, The Wealth Report 2026 — Vietnam Supplement:</b> khoảng 1.233 cá nhân siêu giàu (≥30 triệu USD), dự báo khoảng 1.960 vào 2031 (+59%).<br>
+        <b>PwC, Khảo sát Người tiêu dùng 2025 tại Việt Nam:</b> minh bạch, nhất quán và đáng tin cậy là yếu tố then chốt xây dựng niềm tin.
+      </p>
+      <p class="cap" style="margin-top:14px">Số liệu về lớp học (50 học viên, 5 giáo viên, 12 trò chơi) lấy từ hệ thống quản lý của lớp, tháng 10/2026.</p>
+    </div>
+  </section>
+</main>
+
+<footer id="lien-he">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <p class="big">Muốn thấy nó chạy,<br>đừng nghe tôi kể.</p>
+        <p>20 phút: tôi mở hệ thống, soạn một đề, đọc thử một đoạn ghi âm — ngay trong lúc nói chuyện.</p>
+      </div>
+      <div class="right">
+        <p style="margin:0 0 6px"><a href="mailto:ws.hoangnguyen@gmail.com?subject=H%E1%BA%B9n%20xem%2020%20ph%C3%BAt">ws.hoangnguyen@gmail.com</a></p>
+        <p class="cap" style="margin:0">Hermes · trợ lý vận hành · 2026</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<audio id="music" src="nhac-nen.mp3" loop preload="none"></audio>
+
+<script>
+(function(){
+  var root=document.documentElement, body=document.body;
+  var gate=document.getElementById('gate'), note=document.getElementById('moodnote');
+  var say={calm:'Bản mặc định — dành cho người đang cân nhắc.',
+           excited:'Bạn đang tìm giải pháp — sản phẩm thật ở ngay dưới.',
+           curious:'Bạn chỉ xem cho biết — phần “làm được tới đâu” ở cuối trang.',
+           tired:'Bạn đang rất bận — tôi để chữ to, câu ngắn, bỏ phần trang trí.'};
+
+  function apply(m){
+    root.setAttribute('data-mood', m);
+    note.textContent = say[m] || say.calm;
+    try{ localStorage.setItem('hermes-mood', m); }catch(e){}
+  }
+  function close(m){
+    apply(m || 'calm');
+    gate.classList.add('done');
+    body.style.overflow='';
+    setTimeout(revealAll, 400);
+  }
+  document.querySelectorAll('.mood').forEach(function(b){
+    b.addEventListener('click', function(){ close(b.getAttribute('data-mood')); });
+  });
+  gate.addEventListener('click', function(e){ if(e.target===gate) close('calm'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !gate.classList.contains('done')) close('calm'); });
+
+  var saved=null; try{ saved=localStorage.getItem('hermes-mood'); }catch(e){}
+  if(saved && say[saved]){ apply(saved); gate.classList.add('done'); }
+  else body.style.overflow='hidden';
+
+  var au=document.getElementById('music'), sb=document.getElementById('sound'), st=document.getElementById('stxt');
+  sb.addEventListener('click', function(){
+    if(sb.getAttribute('aria-pressed')==='true'){ au.pause(); sb.setAttribute('aria-pressed','false'); st.textContent='Nhạc nền'; return; }
+    au.volume=.32;
+    au.play().then(function(){ sb.setAttribute('aria-pressed','true'); st.textContent='Đang phát'; })
+             .catch(function(){ st.textContent='Máy chặn phát'; });
+  });
+
+  var items=[].slice.call(document.querySelectorAll('.rv'));
+  function revealAll(){ items.forEach(function(el){ el.classList.add('in'); }); }
+  items.forEach(function(el,i){ el.style.setProperty('--d', Math.min(i%5,4)*70+'ms'); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    items.forEach(function(el){ io.observe(el); });
+    setTimeout(revealAll, 4000);
+  } else { revealAll(); }
+
+  function onScroll(){ root.setAttribute('data-scrolled', window.scrollY>8?'1':'0'); }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
