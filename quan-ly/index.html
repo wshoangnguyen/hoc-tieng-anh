@@ -288,6 +288,15 @@ header{padding:6px 10px}
 }
 @media print{.tb-wrap,.banner-vai{display:none!important}}
 
+/* in phiếu bàn giao: chỉ in đúng khối phiếu */
+#phieuIn{display:none}
+@media print{
+  @page{size:A4;margin:12mm}
+  body.in-phieu > *{display:none!important}
+  body.in-phieu > #phieuIn{display:block!important;position:static;margin:0;padding:0;background:#fff}
+}
+
+
 /* ===== hộp tuần gọn + xem theo lớp/GV (bản 23/10 đợt 2) ===== */
 #thanhTuan{display:inline-flex;width:fit-content;max-width:100%;align-items:center;gap:6px;
   border:1px solid var(--line);background:var(--card);border-radius:12px;padding:5px 7px;margin-top:6px}
@@ -3003,6 +3012,8 @@ function lenLop(lopId, tenMoi, ngayHieuLuc){
   const kyCu=lop.ky[lop.ky.length-1];
   if(kyCu && !kyCu.den_ngay) kyCu.den_ngay=truoc;
   if(kyCu && !kyCu.tu_ngay) kyCu.tu_ngay=lop.ky_tu||"";
+  const sachCu=(kyCu&&kyCu.sach)?(THU_VIEN.books.find(b=>b.code===String(kyCu.sach).toUpperCase())||null):(sachCuaLop(lopId)||null);
+  let soPhieu=0;
 
   const hs=(S.hoc_vien||[]).filter(h=>h.lop===tenCu);
   let daChup=0;
@@ -3020,6 +3031,8 @@ function lenLop(lopId, tenMoi, ngayHieuLuc){
       d.doc=null; d.noi=null; d.nghe=null; d.viet=null;
       d.ho_tro=""; d.nhan_xet=""; d.tuong_tac="";
     }
+    if(typeof taoPhieuBanGiao==="function" &&
+       taoPhieuBanGiao(h,{lopId:lopId, tenCu:tenCu, sachCu:sachCu, kyCu:kyCu, denNgay:truoc, ngayChuyen:ngay})) soPhieu++;
   });
 
   /* điểm danh: đổi khoá ngày|tên lớp cũ|mã → tên mới */
@@ -3036,7 +3049,7 @@ function lenLop(lopId, tenMoi, ngayHieuLuc){
   S.lop_sach[lopId]=sachMoi.id;
 
   save();
-  return {ok:true, tenCu, moi, ngay, soHV:hs.length, daChup, sach:sachMoi.ten};
+  return {ok:true, tenCu, moi, ngay, soHV:hs.length, daChup, soPhieu:soPhieu, sach:sachMoi.ten};
 }
 
 function bdLenLop(){
@@ -3062,7 +3075,7 @@ function bdLenLop(){
   const r=lenLop(lop.id, ten, ngay);
   if(!r.ok) return alert("Không lên lớp được: "+r.loi);
   try{ if(window.vuiMung) window.vuiMung(); }catch(e){}
-  alert("Đã lên lớp!\n"+r.tenCu+" → "+r.moi+" từ "+r.ngay+"\n"+r.soHV+" học viên · đã giữ điểm kỳ cũ cho "+r.daChup+" em.\nSách mới: "+r.sach);
+  alert("Đã lên lớp!\n"+r.tenCu+" → "+r.moi+" từ "+r.ngay+"\n"+r.soHV+" học viên · đã giữ điểm kỳ cũ cho "+r.daChup+" em.\nSách mới: "+r.sach+(r.soPhieu?" · đã tạo "+r.soPhieu+" phiếu bàn giao":""));
   BD.unit=null; bdKhoiTao(); bdVe(); if(typeof render==="function") render();
 }
 
@@ -3681,6 +3694,145 @@ document.addEventListener("click", function(e){
   moKyCu(b.dataset.ma, b.dataset.ky);
 });
 
+
+/* ================= PHIẾU BÀN GIAO (sinh khi lên lớp) ================= */
+function bgSo(v){ return (v===null||v===undefined||v==="")?null:v; }
+function bgNgay(s){ return s?ngayVN(s):"?"; }
+function mucCuaSachGoc(bookId){ return THU_VIEN.items.filter(i=>i.book===bookId); }
+function bgTenMuc(i){ return "U"+i.unit+" · "+String(i.ten||"").replace(/^Unit \d+ · /,""); }
+function bgDaHocDen(td, bookId){
+  let m=-1;
+  mucCuaSachGoc(bookId).forEach(i=>{ const t=(td[i.id]||{}).t; if(t&&t!=="chua"&&i.unit>m) m=i.unit; });
+  return m<0?null:m;
+}
+function bgCanLuyen(td, bookId, n){
+  const ds=mucCuaSachGoc(bookId).filter(i=>((td[i.id]||{}).t==="khong"));
+  ds.sort((a,b)=>a.unit-b.unit||String(a.ten).localeCompare(String(b.ten),"vi"));
+  return ds.slice(0,n||3).map(bgTenMuc);
+}
+/* Ghi 1 phiếu cho 1 em. Chỉ dùng dữ liệu có thật: điểm kỳ cũ, điểm danh, bài dạy, tiến độ mục. */
+function taoPhieuBanGiao(h, o){
+  if(!h||!h.ma_hv||!o) return null;
+  if(!S.ban_giao||typeof S.ban_giao!=="object"||Array.isArray(S.ban_giao)) S.ban_giao={};
+  const ma=h.ma_hv, tenCu=o.tenCu||"";
+  const d=(S.diem_ky&&S.diem_ky[ma]&&S.diem_ky[ma][tenCu])||{};
+  const tu=(o.kyCu&&o.kyCu.tu_ngay)||"";
+  const den=o.denNgay||"";
+  let co=0, dong=0;
+  Object.keys(S.diem_danh||{}).forEach(k=>{
+    const p=k.split("|"); if(p.length<3||p[2]!==ma||p[1]!==tenCu) return;
+    if(tu&&p[0]<tu) return;
+    if(den&&p[0]>den) return;
+    dong++; if(S.diem_danh[k]==="co"||S.diem_danh[k]==="tre") co++;
+  });
+  let buoiDay=0;
+  (S.buoi_day||[]).forEach(b=>{
+    if(!b||b.lopId!==o.lopId) return;
+    if(tu&&String(b.ngay||"")<tu) return;
+    if(den&&String(b.ngay||"")>den) return;
+    buoiDay++;
+  });
+  const tong=Math.max(buoiDay,dong);
+  const td=(S.tien_do&&S.tien_do[ma])||{};
+  const sach=o.sachCu||null;
+  const rec={
+    id:"bg"+Date.now()+"-"+ma,
+    ma_hv:ma, ho_ten:h.ho_ten||"",
+    lop_cu:tenCu, lop_moi:h.lop||"",
+    sach_cu:sach?sach.code:"", sach_cu_ten:sach?sach.ten:"",
+    tu_ngay:tu, den_ngay:den, ngay_chuyen:o.ngayChuyen||iso(new Date()),
+    diem:{doc:bgSo(d.doc),noi:bgSo(d.noi),nghe:bgSo(d.nghe),viet:bgSo(d.viet)},
+    nhan_xet:String(d.nhan_xet||"").trim(),
+    ho_tro:String(d.ho_tro||"").trim(),
+    tuong_tac:String(d.tuong_tac||"").trim(),
+    so_buoi:tong, so_co_mat:co, ty_le:tong?Math.round(co*100/tong):null,
+    da_hoc_den:sach?bgDaHocDen(td,sach.id):null,
+    can_luyen:sach?bgCanLuyen(td,sach.id,3):[],
+    tao_luc:Date.now()
+  };
+  const arr=Array.isArray(S.ban_giao[ma])?S.ban_giao[ma]:[];
+  const i=arr.findIndex(x=>x&&x.lop_cu===rec.lop_cu&&x.ngay_chuyen===rec.ngay_chuyen);
+  if(i>=0) arr[i]=rec; else arr.push(rec);
+  S.ban_giao[ma]=arr;
+  return rec;
+}
+function phieuBGHtml(rec){
+  const KY=[["doc","Đọc"],["noi","Nói"],["nghe","Nghe"],["viet","Viết"]];
+  const v=x=>(x===null||x===undefined||x==="")?"—":esc(String(x));
+  const dong=(nhan,gt)=>`<tr><td style="width:118px;color:#555;vertical-align:top;padding:2px 0">${nhan}</td><td style="vertical-align:top;padding:2px 0">${gt}</td></tr>`;
+  const oDiem=KY.map(([k,t])=>`<td style="text-align:center;border:1px solid #d8d2c4;padding:4px 2px;width:25%">
+      <div style="font-size:10.5px;color:#666;letter-spacing:.3px">${t.toUpperCase()}</div>
+      <div style="font-size:19px;font-weight:700;line-height:1.15">${v(rec.diem&&rec.diem[k])}</div></td>`).join("");
+  const cl=(rec.can_luyen||[]).filter(Boolean);
+  const canLuyen = cl.length
+    ? `<ol style="margin:2px 0 0 18px;padding:0">`+cl.map(x=>`<li style="margin:2px 0">${esc(x)}</li>`).join("")+`</ol>`
+    : `<span style="color:#a33">chưa đủ dữ liệu (chưa có mục nào được đánh “chưa đạt”)</span>`;
+  return `<div style="max-width:700px;color:#111;background:#fff;padding:14px 16px;font:13px/1.45 system-ui,Segoe UI,Arial,sans-serif">
+    <div style="border-bottom:2px solid #111;padding-bottom:6px;margin-bottom:10px">
+      <div style="font-size:15px;font-weight:700;letter-spacing:.5px">PHIẾU BÀN GIAO HỌC VIÊN</div>
+      <div style="font-size:11px;color:#666">Lớp tiếng Anh · hoctienganhdelam.com · phiếu tự sinh khi lên lớp</div>
+    </div>
+    <div style="font-size:16px;font-weight:700">${esc(rec.ho_ten||"")}</div>
+    <div style="font-size:11.5px;color:#666;margin:1px 0 8px">Mã học viên: ${esc(rec.ma_hv||"")}</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:10px">
+      ${dong("Lớp cũ", esc(rec.lop_cu||"?")+(rec.sach_cu_ten?" · sách "+esc(rec.sach_cu_ten):""))}
+      ${dong("Thời gian học", bgNgay(rec.tu_ngay)+" → "+(rec.den_ngay?bgNgay(rec.den_ngay):"nay"))}
+      ${dong("Chuyển lớp ngày", bgNgay(rec.ngay_chuyen)+(rec.lop_moi?" → lớp "+esc(rec.lop_moi):""))}
+      ${dong("Đi học", `<b>${rec.so_co_mat||0}/${rec.so_buoi||0}</b> buổi`+((rec.ty_le===null||rec.ty_le===undefined)?"":" ("+rec.ty_le+"%)"))}
+      ${dong("Đã học đến", rec.da_hoc_den?("<b>Unit "+rec.da_hoc_den+"</b>"+(rec.sach_cu_ten?" · "+esc(rec.sach_cu_ten):"")):"chưa đủ dữ liệu")}
+    </table>
+    <div style="font-size:11.5px;color:#555;margin-bottom:3px;font-weight:700">ĐIỂM CUỐI KỲ (4 KỸ NĂNG)</div>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:10px"><tr>${oDiem}</tr></table>
+    <div style="font-size:11.5px;color:#555;margin-bottom:2px;font-weight:700">NHẬN XÉT CỦA GIÁO VIÊN</div>
+    <div style="border:1px solid #d8d2c4;padding:6px 8px;min-height:34px;margin-bottom:8px">${rec.nhan_xet?esc(rec.nhan_xet):'<span style="color:#999">— chưa ghi</span>'}</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:8px">
+      ${dong("Hỗ trợ", rec.ho_tro?esc(rec.ho_tro):'<span style="color:#999">— chưa ghi</span>')}
+      ${dong("Tương tác", rec.tuong_tac?esc(rec.tuong_tac):'<span style="color:#999">— chưa ghi</span>')}
+    </table>
+    <div style="font-size:11.5px;color:#555;margin-bottom:2px;font-weight:700">NÊN LUYỆN TIẾP${cl.length?" ("+cl.length+" mục chưa đạt)":""}</div>
+    <div style="margin-bottom:10px">${canLuyen}</div>
+    <div style="border-top:1px dashed #bbb;padding-top:6px;font-size:11px;color:#777">
+      Số liệu lấy từ điểm danh, điểm 4 kỹ năng và tiến độ từng mục của em này — không suy diễn thêm.</div>
+  </div>`;
+}
+function nutPhieuBanGiao(ma){
+  const arr=(S.ban_giao&&S.ban_giao[ma])||[];
+  if(!arr.length) return "";
+  return `<div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px">`+arr.map((r,i)=>
+    `<button class="ghost sm" data-phieu="${esc(ma)}" data-i="${i}" style="font-size:12px"
+      title="Phiếu bàn giao khi chuyển khỏi lớp ${esc(r.lop_cu||"")}">📋 Phiếu bàn giao${arr.length>1?" · "+esc(r.lop_cu||""):""}</button>`).join("")+`</div>`;
+}
+function moPhieuBanGiao(ma, i){
+  const arr=(S.ban_giao&&S.ban_giao[ma])||[]; if(!arr.length) return;
+  const k=Math.max(0,Math.min(arr.length-1, Number(i)||0));
+  const rec=arr[k]; if(!rec) return;
+  const htm=`<div class="modal" style="max-width:780px;width:94vw"><div class="row noprint"><h3 style="margin:0">📋 Phiếu bàn giao</h3>
+      <span class="hint">${esc(rec.ho_ten||"")} · ${esc(rec.lop_cu||"")} → ${esc(rec.lop_moi||"")}</span><span style="flex:1"></span>
+      <button class="ghost sm" data-inphieu="${esc(ma)}" data-i="${k}">🖨 In phiếu</button>
+      <button class="ghost sm" onclick="this.closest('.modal').parentElement.style.display='none'">✕</button></div>
+    <div style="max-height:74vh;overflow:auto;background:#fff;border:1px solid #e3ddcf;border-radius:8px">${phieuBGHtml(rec)}</div></div>`;
+  moModal(htm);
+}
+function inPhieuBanGiao(ma, i){
+  const arr=(S.ban_giao&&S.ban_giao[ma])||[]; const rec=arr[Number(i)||0]; if(!rec) return;
+  let box=document.getElementById("phieuIn");
+  if(!box){ box=document.createElement("div"); box.id="phieuIn"; document.body.appendChild(box); }
+  box.innerHTML=phieuBGHtml(rec);
+  document.body.classList.add("in-phieu");
+  const xong=()=>{ document.body.classList.remove("in-phieu"); window.removeEventListener("afterprint",xong); };
+  window.addEventListener("afterprint",xong);
+  try{ window.print(); }catch(e){}
+  setTimeout(xong, 1200);
+}
+document.addEventListener("click", function(e){
+  const t=e.target;
+  const bIn=t.closest && t.closest("[data-inphieu]");
+  if(bIn){ inPhieuBanGiao(bIn.getAttribute("data-inphieu"), bIn.getAttribute("data-i")); return; }
+  const b=t.closest && t.closest("[data-phieu]");
+  if(!b) return;
+  moPhieuBanGiao(b.getAttribute("data-phieu"), b.getAttribute("data-i"));
+});
+
 /* ---- hồ sơ chi tiết từng học viên ---- */
 function moHoSoHV(ma){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
@@ -3696,7 +3848,7 @@ function moHoSoHV(ma){
     <button class="ghost sm" id="hsX">✕</button></div>`;
   if(!sach){ htm+=`<p class="hint">Chưa rõ lớp/sách của em này.</p></div>`; moModal(htm); return; }
   htm+=`<p class="hint" style="margin:6px 0">Đã học <b>${dem.da+dem.dat+dem.vuot+dem.khong}</b>/${tong} mục · Đạt <b>${dem.dat}</b> · Vượt <b>${dem.vuot}</b> · Chưa đạt <b>${dem.khong}</b></p>`;
-  htm+=kyChipsHTML(ma);
+  htm+=kyChipsHTML(ma)+nutPhieuBanGiao(ma);
   htm+=`<div class="bd-luoi">`+sach.units.map(u=>{const ms=mucCuaSach(sach.id).filter(i=>i.unit===u);
       return `<div class="bd-hang"><span class="bd-u">U${u}</span>`+ms.map(i=>{const t=(td[i.id]||{}).t||"chua";
         return `<span class="bd-c" title="${esc(i.ten)} — ${TT_TEN[t]}" style="background:${TT_MAU[t]}"></span>`;}).join("")+`</div>`;}).join("")+`</div>`;
@@ -3836,7 +3988,7 @@ function moTienTrinhHV(ma, giu){
   const htm=`<div class="modal" style="max-width:1000px;width:94vw"><div class="row"><h3 style="margin:0">📈 Tiến trình — ${esc(h.ho_ten)}</h3>
     <span class="hint">${esc(h.lop)}</span><span style="flex:1"></span>${oThongKe(ma)}
     <button class="ghost sm" id="ttX">✕</button></div>
-    ${kyChipsHTML(ma)}
+    ${kyChipsHTML(ma)}${nutPhieuBanGiao(ma)}
     <div class="row" style="margin:6px 0 2px;gap:6px;flex-wrap:wrap">
       <select id="ttSach" style="max-width:250px">${optBook}</select>
       <select id="ttUnit">${optUnit}</select>
