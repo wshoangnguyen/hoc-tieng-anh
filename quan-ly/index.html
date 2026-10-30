@@ -5116,7 +5116,19 @@ function veDiemDanhQua(){
   const ds=lops.filter(coBuoi);
   const dsNghi=lops.filter(l=>!coBuoi(l)&&nghiBuoi(l).length);
   if(!ds.length){ grid.innerHTML=`<span class="hint">Hôm qua (${D}/${M}) không có lớp nào theo lịch.</span>`; return; }
-  grid.innerHTML=ds.map(l=>{
+  const thieuCua = l => all.filter(h=>h.lop===l && !ddLay(ngay,l,h.ma_hv)).length;
+  const tongThieu = ds.reduce((n,l)=>n+thieuCua(l),0);
+  const soLopThieu = ds.filter(l=>thieuCua(l)>0).length;
+  const dai = tongThieu
+    ? `<div class="card" style="margin:8px 0;padding:10px 12px;border-left:4px solid var(--del);background:#fff4f4">
+         <b style="color:var(--del)">⚠️ ${soLopThieu} lớp còn ${tongThieu} em chưa điểm danh</b>
+         <div class="hint" style="margin-top:4px">Buổi ${D}/${M}. Giáo viên còn tới hết hôm nay để bổ sung — sau đó những em này được tính là vắng khi đối soát.</div>
+       </div>`
+    : `<div class="card" style="margin:8px 0;padding:10px 12px;border-left:4px solid var(--ok)">
+         <b style="color:var(--ok)">✅ Đã điểm danh đủ</b>
+         <div class="hint" style="margin-top:4px">Buổi ${D}/${M} không còn em nào chưa ghi.</div>
+       </div>`;
+  grid.innerHTML=dai+ds.map(l=>{
     const hs=all.filter(h=>h.lop===l);
     const tt=hs.map(h=>({h, t:ddLay(ngay,l,h.ma_hv)}));
     const co=tt.filter(x=>x.t==="co"), vang=tt.filter(x=>x.t==="vang"), tre=tt.filter(x=>x.t==="tre"), chua=tt.filter(x=>!x.t);
@@ -5130,11 +5142,8 @@ function veDiemDanhQua(){
       ${co.length?`<div style="margin-top:4px"><span class="hint">Có mặt:</span> ${dsTen(co)}</div>`:""}
       ${vang.length?`<div><span class="hint">Vắng:</span> <span style="color:var(--del)">${dsTen(vang)}</span></div>`:""}
       ${tre.length?`<div><span class="hint">Trễ:</span> ${dsTen(tre)}</div>`:""}
-      ${chua.length?`<div><span class="hint">Chưa ghi:</span> ${dsTen(chua)}</div>
-        <div class="row" style="margin-top:8px">
-          <button class="btn" data-chot="${esc(l)}" onclick="ddChotVang('${ngay}', this.dataset.chot)">🔒 Chốt buổi · đánh vắng ${chua.length} em chưa ghi</button>
-          <span class="hint">Bấm để chốt — sau đó sửa lại từng em vẫn được.</span>
-        </div>`:""}
+      ${chua.length?`<div><span class="hint">Chưa điểm danh:</span> <b style="color:var(--del)">${dsTen(chua)}</b></div>
+        <div class="hint" style="margin-top:4px">Giáo viên còn tới hết hôm nay để bổ sung.</div>`:""}
     </div>`;
   }).join("")+dsNghi.map(l=>{
     const nb=nghiBuoi(l), ca=nb.map(x=>x.ca).filter(Boolean).join(" · ");
@@ -5143,25 +5152,6 @@ function veDiemDanhQua(){
         <span class="chip" style="border-color:#9a9a9a;color:#6b6b6b">⚪ lớp đã nghỉ${ca?" ("+esc(ca)+")":""}</span></div>
       <div class="hint" style="margin-top:4px">Buổi này đã đánh dấu nghỉ nên không đòi điểm danh, không tính vắng.</div></div>`;
   }).join("");
-}
-function ddChotVang(ngay, tenLop){
-  const hs = hvTatCa().filter(h => h.lop === tenLop && !laBaoLuu(h));
-  const chua = hs.filter(h => !ddLay(ngay, tenLop, h.ma_hv));
-  if (!chua.length) { alert("Lớp này không còn ai chưa điểm danh."); return; }
-  const dsTen = chua.map(h => "• " + h.ho_ten).join("\n");
-  if (!confirm("Chốt buổi " + ngay + " · lớp " + tenLop + "\n\n" + chua.length +
-               " em chưa ghi sẽ bị đánh VẮNG:\n" + dsTen + "\n\nVẫn chốt?")) return;
-  chua.forEach(h => { S.diem_danh[DD_KEY(ngay, tenLop, h.ma_hv)] = "vang"; });
-  const lopObj = (S.lop || []).find(x => x.ten === tenLop) || {};
-  (S.ghi_chu = S.ghi_chu || []).push({
-    id: "g" + Date.now(), luc: Date.now(), hvId: null, ngay: ngay, lopId: lopObj.id || "",
-    buoiId: "", nguon: "chot_buoi", xu_ly: true, noi_bo: true,
-    noi_dung: "🔒 Chốt buổi " + ngay + ": đánh vắng " + chua.length + " em chưa điểm danh (" +
-              chua.map(h => h.ho_ten).join(", ") + ")"
-  });
-  save();
-  veDiemDanh();
-  alert("Đã chốt: " + chua.length + " em ghi vắng. Sửa lại từng em nếu cần.");
 }
 function dsSachCuaLop(tenLop, maHV){
   let ds=hvTatCa().filter(h=>h.lop===tenLop && (h.trang_thai||"đang học")!=="nghỉ");
