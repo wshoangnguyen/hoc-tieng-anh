@@ -520,6 +520,18 @@
         sentencesState = currentSentencesData.map(sentence => Array(sentence.length).fill(false));
         
         currentLessonTitleSpan.textContent = currentLesson.title;
+        try {
+            const ma = currentLesson.id || "";
+            const mm = ma.match(/^([A-Za-z0-9]+)_Unit(\d+)$/);
+            if (window.GAME && GAME.batDau) {
+                GAME.batDau({
+                    game: "reading",
+                    sach: mm ? mm[1] : (window.__BAI ? window.__BAI.sach : "SM1"),
+                    unit: mm ? Number(mm[2]) : lessonIndex,
+                    nac: 1, soCau: currentSentencesData.length
+                });
+            }
+        } catch (e) {}
         renderGame();
         statusSpan.innerHTML = `📖 Bài: "${currentLesson.title}". Nhấn vào ô vuông để mở từ và nghe đọc!`;
         window.speechSynthesis.cancel();
