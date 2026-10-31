@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="Máy xếp câu">
+  <defs>
+    <linearGradient id="nen" x1="0.2" y1="0" x2="0.75" y2="1">
+      <stop offset="0%" stop-color="#fffdf8"/>
+      <stop offset="46%" stop-color="#fff3d9"/>
+      <stop offset="100%" stop-color="#ffdca6"/>
+    </linearGradient>
+    <linearGradient id="toi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7b6850"/>
+      <stop offset="38%" stop-color="#584a39"/>
+      <stop offset="100%" stop-color="#312a21"/>
+    </linearGradient>
+    <linearGradient id="xam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b3a58c"/>
+      <stop offset="40%" stop-color="#8d7f68"/>
+      <stop offset="100%" stop-color="#6a5e4c"/>
+    </linearGradient>
+    <linearGradient id="cam" x1="0" y1="0" x2="0.1" y2="1">
+      <stop offset="0%" stop-color="#ffe0ac"/>
+      <stop offset="22%" stop-color="#ffbd57"/>
+      <stop offset="55%" stop-color="#f39a1c"/>
+      <stop offset="100%" stop-color="#bd6a05"/>
+    </linearGradient>
+    <radialGradient id="sang" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="doMem" x="-40%" y="-40%" width="180%" height="190%">
+      <feDropShadow dx="0" dy="1.6" stdDeviation="1.4" flood-color="#7a4a0c" flood-opacity=".42"/>
+    </filter>
+    <filter id="bongTo" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="0.7" stdDeviation="0.55" flood-color="#1d1712" flood-opacity=".38"/>
+    </filter>
+    <filter id="mem" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <clipPath id="catThe"><rect x="3" y="3" width="90" height="90" rx="23"/></clipPath>
+  </defs>
+
+  <rect x="3" y="3" width="90" height="90" rx="23" fill="url(#nen)" stroke="#e9c88b" stroke-width="1.4"/>
+  <g clip-path="url(#catThe)">
+    <ellipse cx="32" cy="12" rx="36" ry="18" fill="url(#sang)" filter="url(#mem)"/>
+    <ellipse cx="64" cy="94" rx="36" ry="14" fill="#c4832c" opacity=".18" filter="url(#mem)"/>
+  </g>
+  <rect x="4.4" y="4.4" width="87.2" height="87.2" rx="21.8" fill="none" stroke="#ffffff" stroke-width="1" opacity=".55"/>
+
+  <!-- hàng trên: ba khối từ -->
+  <g filter="url(#bongTo)">
+    <rect x="18" y="26" width="15" height="12" rx="4.6" fill="url(#toi)"/>
+    <rect x="39" y="26" width="12" height="12" rx="4.4" fill="url(#toi)" opacity=".88"/>
+    <rect x="57" y="26" width="17" height="12" rx="4.6" fill="url(#toi)" opacity=".74"/>
+  </g>
+  <g fill="#ffffff">
+    <rect x="19.6" y="27.4" width="11.8" height="3.4" rx="1.7" opacity=".3"/>
+    <rect x="40.6" y="27.4" width="8.8" height="3.2" rx="1.6" opacity=".24"/>
+    <rect x="58.6" y="27.4" width="13.8" height="3.4" rx="1.7" opacity=".2"/>
+  </g>
+  <g fill="#ffffff" opacity=".22">
+    <rect x="19.6" y="33.4" width="6" height="1.6" rx=".8"/>
+    <rect x="40.6" y="33.4" width="4.4" height="1.5" rx=".75"/>
+  </g>
+
+  <!-- hàng giữa: khối đã ghép -->
+  <g filter="url(#bongTo)">
+    <rect x="18" y="45" width="34" height="12" rx="5" fill="url(#xam)"/>
+  </g>
+  <rect x="19.6" y="46.4" width="30.8" height="3.4" rx="1.7" fill="#ffffff" opacity=".28"/>
+  <rect x="19.6" y="52.4" width="8" height="1.6" rx=".8" fill="#ffffff" opacity=".18"/>
+
+  <!-- khối cam: đang được xếp vào -->
+  <g transform="rotate(-2.5 40 67)" filter="url(#doMem)">
+    <rect x="18" y="61" width="44" height="12" rx="5" fill="url(#cam)" stroke="#a85f04" stroke-width=".8"/>
+    <rect x="19.8" y="62.4" width="40.4" height="4" rx="2" fill="#fff6e2" opacity=".62"/>
+    <ellipse cx="26" cy="64.6" rx="4.4" ry="1.8" fill="#ffffff" opacity=".55"/>
+    <rect x="19.8" y="69.6" width="40.4" height="2.2" rx="1.1" fill="#8a4c02" opacity=".28"/>
+    <rect x="19.8" y="71.2" width="40.4" height="1" rx=".5" fill="#ffd79b" opacity=".45"/>
+  </g>
+
+  <!-- tia lấp lánh -->
+  <g fill="#f6a72f">
+    <path d="M73 52.5l1.8 4.1 4.1 1.8-4.1 1.8-1.8 4.1-1.8-4.1-4.1-1.8 4.1-1.8z" opacity=".95"/>
+    <path d="M80.5 44.5l1 2.3 2.3 1-2.3 1-1 2.3-1-2.3-2.3-1 2.3-1z" opacity=".7"/>
+  </g>
+</svg>
