@@ -18,7 +18,9 @@
   .thanh{max-width:1100px;margin:0 auto;padding:9px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .ten{font-weight:800;font-size:19px;letter-spacing:.2px}
   .ten small{display:block;font-weight:600;font-size:11.5px;color:var(--mo);letter-spacing:0}
-  .che{margin-left:auto;display:flex;gap:6px;background:#fff;border:1px solid var(--vien);border-radius:99px;padding:3px}
+  .chonbo{margin-left:auto;font:inherit;font-size:12.5px;font-weight:700;color:var(--chu);
+    background:#fff;border:1px solid var(--vien);border-radius:10px;padding:6px 8px;max-width:230px}
+  .che{margin-left:8px;display:flex;gap:6px;background:#fff;border:1px solid var(--vien);border-radius:99px;padding:3px}
   .che button{border:0;background:transparent;padding:6px 13px;border-radius:99px;font:inherit;font-size:13.5px;
               font-weight:700;color:var(--mo);cursor:pointer}
   .che button.on{background:var(--cam);color:#fff}
@@ -62,6 +64,20 @@
   .bao.hong{background:#fdecea;border:1px solid #f3c4bf;color:#a3352c}
   .bao b{font-weight:800}
   .bao .luat{display:block;margin-top:5px;font-weight:600;font-size:13.5px;color:#6b5a4a}
+
+  /* --- đếm giờ --- */
+  .tg{margin:0 0 10px}
+  .tg-hang{display:flex;align-items:center;gap:8px}
+  .tg-nen{flex:1;height:8px;border-radius:99px;background:#efe5d1;overflow:hidden}
+  .tg-vach{height:100%;width:100%;border-radius:99px;background:linear-gradient(90deg,#2f7d5d,#5bc48e);
+           transition:width .25s linear,background .3s}
+  .tg-so{font-weight:800;font-size:13px;color:var(--mo);min-width:44px;text-align:right;font-variant-numeric:tabular-nums}
+  .tg.gap .tg-vach{background:linear-gradient(90deg,#ef9f2e,#ffc65c)}
+  .tg.gap .tg-so{color:var(--cam-dam)}
+  .tg.het .tg-vach{background:linear-gradient(90deg,#c2453a,#e57368)}
+  .tg.het .tg-so{color:var(--do)}
+  .tg.rung .tg-nen{animation:rung .35s linear infinite}
+  @keyframes rung{0%,100%{transform:translateX(0)}25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}
   /* --- chế độ lớp --- */
   .bang{display:none;gap:10px;margin-bottom:12px}
   .bang.hien{display:grid;grid-template-columns:1fr 1fr;max-width:720px;margin:0 auto 12px}
@@ -129,6 +145,7 @@
 <header>
   <div class="thanh">
     <div class="ten">🧩 Máy xếp câu<small>Chọn 1 ô mỗi cột để ghép câu đúng</small></div>
+    <select id="chonBo" class="chonbo" title="Chọn bộ câu"></select>
     <div class="che" id="doiChe">
       <button data-mode="nha" class="on">🏠 Ở nhà</button>
       <button data-mode="lop">👥 Trên lớp</button>
@@ -146,6 +163,12 @@
     <div class="dau">
       <div class="tien" id="tien">Câu 1/6 <span class="cham" id="cham"></span></div>
       <div class="diem" id="diem">🎯 0 đúng · 0 sai</div>
+    </div>
+    <div class="tg" id="tg">
+      <div class="tg-hang">
+        <div class="tg-nen"><div class="tg-vach" id="tgVach"></div></div>
+        <span class="tg-so" id="tgSo">30s</span>
+      </div>
     </div>
     <p class="luotday" id="luotday" style="display:none">Lượt của đội XANH</p>
     <p class="nghia" id="nghia">Đang tải…</p>
@@ -192,7 +215,7 @@
     mode: "nha", data: null, bo: null, cau: null,
     i: 0, chon: [], dung: 0, sai: 0,
     diemDoi: [0, 0], luot: 0, cuop: false, daTraLoi: false,
-    batDau: false, xong: false
+    batDau: false, xong: false, con: 30, timer: null, lastTick: 0
   };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -201,6 +224,148 @@
       return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
     });
   };
+
+  /* ---------- âm thanh (tổng hợp, không cần tệp) ---------- */
+  var AU = (function () {
+    var ctx = null, mauNhieu = null;
+    function c() {
+      try {
+        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === "suspended") ctx.resume();
+      } catch (e) { return null; }
+      return ctx;
+    }
+    function nhieu(giay) {
+      var c0 = c(); if (!c0) return null;
+      if (mauNhieu) return mauNhieu;
+      var n = Math.max(1, Math.floor(c0.sampleRate * giay));
+      var b = c0.createBuffer(1, n, c0.sampleRate), d = b.getChannelData(0);
+      for (var i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+      mauNhieu = b; return b;
+    }
+    function tieng(f, bat, dur, vol, type) {
+      var c0 = c(); if (!c0) return;
+      var o = c0.createOscillator(), g = c0.createGain();
+      o.type = type || "triangle";
+      o.frequency.setValueAtTime(f, bat);
+      g.gain.setValueAtTime(0.0001, bat);
+      g.gain.exponentialRampToValueAtTime(vol, bat + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, bat + dur);
+      o.connect(g); g.connect(c0.destination);
+      o.start(bat); o.stop(bat + dur + 0.03);
+    }
+    return {
+      mo: function () { c(); },
+      /* tiếng tích tắc, càng gần hết càng cao và to */
+      tick: function (conLai) {
+        var c0 = c(); if (!c0) return;
+        var t = c0.currentTime;
+        var caoTri = Math.max(0, 10 - conLai);
+        var f = 780 + caoTri * 55;
+        tieng(f, t, 0.07, 0.05 + Math.min(0.09, caoTri * 0.012), "square");
+        if (conLai <= 3) tieng(f * 1.5, t + 0.09, 0.06, 0.045, "square");
+      },
+      hetGio: function () {
+        var c0 = c(); if (!c0) return;
+        var t = c0.currentTime;
+        tieng(520, t, 0.16, 0.10, "sawtooth");
+        tieng(400, t + 0.16, 0.18, 0.09, "sawtooth");
+        tieng(280, t + 0.34, 0.34, 0.09, "sawtooth");
+      },
+      /* vỗ tay: rất nhiều tiếng "bốp" ngẫu nhiên + lớp ồn nền */
+      voTay: function () {
+        var c0 = c(); if (!c0) return;
+        var t = c0.currentTime, b = nhieu(0.09);
+        if (!b) return;
+        for (var i = 0; i < 95; i++) {
+          var t0 = t + Math.pow(Math.random(), 0.65) * 1.55;
+          var s = c0.createBufferSource(); s.buffer = b;
+          s.playbackRate.value = 0.85 + Math.random() * 0.6;
+          var bp = c0.createBiquadFilter(); bp.type = "bandpass";
+          bp.frequency.value = 1100 + Math.random() * 1900; bp.Q.value = 0.9;
+          var g = c0.createGain();
+          var v = 0.05 + Math.random() * 0.11;
+          g.gain.setValueAtTime(0.0001, t0);
+          g.gain.exponentialRampToValueAtTime(v, t0 + 0.005);
+          g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.05 + Math.random() * 0.06);
+          s.connect(bp); bp.connect(g);
+          if (c0.createStereoPanner) {
+            var pa = c0.createStereoPanner(); pa.pan.value = Math.random() * 1.6 - 0.8;
+            g.connect(pa); pa.connect(c0.destination);
+          } else { g.connect(c0.destination); }
+          s.start(t0); s.stop(t0 + 0.14);
+        }
+        /* hơi "ù" của đám đông */
+        var ns = c0.createBufferSource(); ns.buffer = nhieu(0.09);
+        var lp = c0.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 900;
+        var ng = c0.createGain();
+        ng.gain.setValueAtTime(0.0001, t);
+        ng.gain.linearRampToValueAtTime(0.05, t + 0.15);
+        ng.gain.exponentialRampToValueAtTime(0.0001, t + 1.5);
+        ns.connect(lp); lp.connect(ng); ng.connect(c0.destination);
+        ns.start(t); ns.stop(t + 1.55);
+      }
+    };
+  })();
+
+  /* ---------- đếm giờ ---------- */
+  var TG = (function () {
+    var q = new URLSearchParams(location.search).get("tg");
+    var n = q ? parseInt(q, 10) : 30;
+    return (isFinite(n) && n >= 5 && n <= 120) ? n : 30;
+  })();
+  function dungDongHo() {
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+  }
+  function veDongHo() {
+    var con = Math.max(0, state.con);
+    var pt = Math.max(0, Math.min(100, (con / TG) * 100));
+    $("tgVach").style.width = pt + "%";
+    $("tgSo").textContent = Math.ceil(con) + "s";
+    var tg = $("tg");
+    tg.classList.toggle("gap", con <= 10 && con > 5);
+    tg.classList.toggle("het", con <= 5);
+    tg.classList.toggle("rung", con <= 5 && con > 0 && !state.daTraLoi);
+  }
+  function batDongHo() {
+    dungDongHo();
+    state.con = TG; state.lastTick = Math.ceil(TG);
+    $("tg").style.display = "";
+    veDongHo();
+    state.timer = setInterval(function () {
+      if (state.daTraLoi || state.xong) { dungDongHo(); return; }
+      state.con -= 0.25;
+      var conNguyen = Math.ceil(Math.max(0, state.con));
+      if (conNguyen !== state.lastTick) {
+        state.lastTick = conNguyen;
+        if (conNguyen <= 10 && conNguyen > 0) AU.tick(conNguyen);
+      }
+      if (state.con <= 0) { state.con = 0; veDongHo(); dungDongHo(); hetGioChoi(); return; }
+      veDongHo();
+    }, 250);
+  }
+  function hetGioChoi() {
+    if (state.daTraLoi) return;
+    state.daTraLoi = true;
+    AU.hetGio();
+    var c = state.cau;
+    c._dung = false;
+    if (state.mode === "nha") state.sai++;
+    /* hiện đáp án đúng */
+    Array.prototype.forEach.call($("luoi").querySelectorAll(".chip"), function (b) {
+      var ci = +b.dataset.cot, oi = +b.dataset.o;
+      if (c.cot[ci].o[oi].ok) b.classList.add("dung");
+    });
+    $("btnKiem").style.display = "none";
+    $("bao").className = "bao hien hong";
+    $("bao").innerHTML = "<b>⏰ Hết giờ!</b><span class='luat'>Đáp án đúng: " +
+      esc(cauDung(c)) + " — chọn đáp án đúng để nghe lại nhé.</span>";
+    $("btnNghe").style.display = "";
+    $("btnTiep").style.display = "";
+    $("btnTiep").textContent = (state.i + 1 >= state.bo.cau.length) ? "Xem kết quả →" : "Câu tiếp →";
+    try { if (state.mode === "nha" && window.GAME) GAME.ghi({ ok: false, tu: c.id, item: c.id }); } catch (e) {}
+    veDau();
+  }
 
   /* ---------- tải dữ liệu ---------- */
   function taiDuLieu() {
@@ -252,7 +417,8 @@
     state.chon = c.cot.map(function () { return null; });
     state.daTraLoi = false;
     $("nghia").innerHTML = esc(c.nghia) + '<span>Ghép câu tiếng Anh đúng nghĩa trên</span>';
-    $("chu").textContent = c.chu;
+    $("chu").textContent = c.chu || "";
+    $("chu").style.display = c.chu ? "" : "none";
     $("luoi").innerHTML = c.cot.map(function (cot, ci) {
       return '<div class="cot" data-cot="' + ci + '"><b>' + esc(cot.ten) + "</b>" +
         cot.o.map(function (o, oi) {
@@ -268,6 +434,7 @@
     $("btnNghe").style.display = "none";
     $("btnChoiLai").style.display = "none";
     veDau();
+    batDongHo();
   }
 
   function capNhatGhep() {
@@ -278,7 +445,7 @@
       $("btnKiem").disabled = true;
       return;
     }
-    var phan = [esc(c.chu)].concat(state.chon.map(function (o, k) {
+    var phan = (c.chu ? [esc(c.chu)] : []).concat(state.chon.map(function (o, k) {
       return "<b>" + esc(c.cot[k].o[o].t) + "</b>";
     }));
     $("ghep").innerHTML = phan.join(" ");
@@ -297,13 +464,14 @@
 
   /* ---------- chấm ---------- */
   function cauDung(c) {
-    return [c.chu].concat(c.cot.map(function (cot) {
+    return (c.chu ? [c.chu] : []).concat(c.cot.map(function (cot) {
       var ok = cot.o.filter(function (o) { return o.ok; })[0];
       return ok ? ok.t : "";
-    })).join(" ");
+    })).join(" ").replace(/\s+/g, " ").trim();
   }
 
   function kiemTra() {
+    dungDongHo();
     var c = state.cau, saiCot = [];
     for (var k = 0; k < c.cot.length; k++) {
       var o = c.cot[k].o[state.chon[k]];
@@ -316,13 +484,15 @@
       /* đúng hết */
       c._dung = true;
       Array.prototype.forEach.call($("luoi").querySelectorAll(".chip.chon"), function (b) { b.classList.add("dung"); });
-      $("ghep").innerHTML = [esc(c.chu)].concat(c.cot.map(function (cot, k) {
+      $("ghep").innerHTML = (c.chu ? [esc(c.chu)] : []).concat(c.cot.map(function (cot, k) {
         return "<b>" + esc(cot.o[state.chon[k]].t) + "</b>";
       })).join(" ");
       $("bao").className = "bao hien dat";
       var diem = state.mode === "lop" ? (state.cuop ? "Cướp điểm thành công! +1 cho đội " + (state.luot === 0 ? "XANH" : "ĐỎ") : "+1 điểm cho đội " + (state.luot === 0 ? "XANH" : "ĐỎ")) : "Chính xác!";
       $("bao").innerHTML = "<b>✅ " + diem + "</b><span class='luat'>" + esc(cauDung(c)) + "</span>";
       if (state.mode === "nha") state.dung++; else state.diemDoi[state.luot]++;
+      AU.voTay();
+      try { if (window.GAME && GAME.phaoHoa) GAME.phaoHoa(4); } catch (e) {}
       noiCau(cauDung(c));
       $("btnNghe").style.display = "";
       $("btnTiep").style.display = "";
@@ -379,6 +549,7 @@
       $("btnTiep").style.display = "none";
       $("btnNghe").style.display = "none";
       veDau();
+      batDongHo();
       return;
     }
     state.cuop = false;
@@ -391,6 +562,8 @@
 
   function ketThuc() {
     state.xong = true;
+    dungDongHo();
+    $("tg").style.display = "none";
     var tong = state.bo.cau.length;
     if (state.mode === "nha") {
       var tiLe = tong ? state.dung / tong : 0;
@@ -422,8 +595,10 @@
   }
 
   function choiLai() {
+    dungDongHo();
     $("lopPhu").classList.remove("hien");
     $("ketNha").classList.remove("hien");
+    $("tg").style.display = "";
     $("luoi").style.display = "";
     $("ghep").style.display = "";
     $("btnKiem").style.display = "";
@@ -480,12 +655,42 @@
   });
 
   /* ---------- khởi động ---------- */
-  taiDuLieu().then(function (d) {
-    if (!d || !d.bo || !d.bo.length) return;
+  function doBo() {
+    var sel = $("chonBo");
+    sel.innerHTML = (state.data.bo || []).map(function (b, k) {
+      return '<option value="' + k + '">' + esc(b.ten) + "</option>";
+    }).join("");
+  }
+
+  function datBo(k) {
+    var b = (state.data.bo || [])[k];
+    if (!b) return;
+    state.bo = b;
+    $("chonBo").value = k;
+    state.i = 0; state.dung = 0; state.sai = 0;
+    state.diemDoi = [0, 0]; state.luot = 0; state.cuop = false; state.xong = false;
+    (b.cau || []).forEach(function (c) { c._dung = null; });
     tronDapAn();
-    state.cau = state.bo.cau[0];
+    state.cau = b.cau[0];
     veCau();
     batDauGhi();
+  }
+
+  $("chonBo").addEventListener("change", function () { datBo(+this.value); });
+
+  taiDuLieu().then(function (d) {
+    if (!d || !d.bo || !d.bo.length) return;
+    doBo();
+    var k = 0;
+    try {
+      var bai = (window.GAME && GAME.bai) ? GAME.bai() : null;
+      if (bai && bai.sach) {
+        (d.bo || []).forEach(function (b, i2) {
+          if (b.sach === bai.sach && b.unit === null) k = i2;
+        });
+      }
+    } catch (e) {}
+    datBo(k);
   });
 })();
 </script>

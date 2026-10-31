@@ -34,6 +34,21 @@ Trang: `game/xep-cau.html` · Dữ liệu: `game/data/xep-cau.json`
 4. `nghia` là tiếng Việt, hiện ngay trên câu — nhờ nó mà ô sai nghĩa mới chấm được công bằng.
 5. Đáp án được **xáo trộn mỗi lượt**, không cần tự đổi vị trí.
 
+## Bộ dữ liệu đang có
+
+| Bộ | Số câu | Nguồn |
+|---|---|---|
+| Mẫu 1 · Hiện tại đơn + giờ + thứ | 6 | viết tay theo hoạt động trong sách |
+| SM1…SM6 · kho câu cũ | 10 · 8 · 9 · 6 · 8 · 3 | chuyển từ `sentences.txt` của game Xếp thành câu |
+| Open world A2 · kho câu cũ | 11 | như trên |
+
+Chuyển tự động: tách câu thành **chủ ngữ | động từ | phần cuối** (chỉ lấy câu có cụm `at/on/in/after/before/every`), rồi lấy 2 cụm từ **câu khác cùng sách** làm phương án nhiễu — nhờ câu tiếng Việt hiện trên đầu nên phương án nhiễu luôn sai nghĩa.
+
+## Đếm giờ
+
+Mặc định 30 giây/câu. Đổi bằng `?tg=45` trên đường dẫn (5–120 giây), ví dụ `xep-cau.html?tg=45`.
+10 giây cuối: thanh chuyển vàng, có tiếng tích tắc dồn dập; 5 giây cuối đỏ + rung.
+
 ## Thêm một bộ bài
 
 Thêm vào mảng `"bo"`:
