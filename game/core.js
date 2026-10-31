@@ -26,7 +26,9 @@ window.GAME = (function () {
   const maHV = () => (localStorage.getItem(LS_MA) || "").trim().toUpperCase();
   function datMaHV(m) {
     if (m) localStorage.setItem(LS_MA, m.trim().toUpperCase()); else localStorage.removeItem(LS_MA);
+    try { localStorage.removeItem("game_dong_bo_ma"); } catch (e) {}
     capNhatThanh(); taiTrangThai();
+    dongBoBaiTheoMa(true).then((doi) => { if (doi) location.reload(); });
   }
 
   /* ---------- gọi máy chủ ---------- */
@@ -92,6 +94,7 @@ window.GAME = (function () {
     veChe();
     document.body.appendChild(thanh);
     capNhatThanh(); veChonBai();
+    dongBoBaiTheoMa(false).then((doi) => { if (doi) location.reload(); });
   }
 
   function capNhatThanh() {
@@ -130,6 +133,23 @@ window.GAME = (function () {
     }
     try { localStorage.setItem("game_bai", JSON.stringify({ sach: s, unit: Number(u) || 0 })); } catch (e) {}
     location.reload();
+  }
+  /* Đồng bộ Sách/Unit theo mục tiêu của mã học viên (game_ho_so do web quản lý đẩy sang).
+     Chỉ chạy 1 lần cho mỗi mã; nếu người dùng tự đổi Sách/Unit thì lựa chọn đó được giữ. */
+  function dongBoBaiTheoMa(force) {
+    const ma = maHV();
+    if (!ma) return Promise.resolve(false);
+    let da = "";
+    try { da = localStorage.getItem("game_dong_bo_ma") || ""; } catch (e) {}
+    if (!force && da === ma) return Promise.resolve(false);
+    return rpc("game_ho_so", { p_ma: ma }).then((d) => {
+      try { localStorage.setItem("game_dong_bo_ma", ma); } catch (e) {}
+      if (!d || !d.ok || !d.sach || d.unit == null) return false;
+      const cur = baiHienTai();
+      if (String(cur.sach) === String(d.sach) && Number(cur.unit) === Number(d.unit)) return false;
+      try { localStorage.setItem("game_bai", JSON.stringify({ sach: d.sach, unit: Number(d.unit) })); } catch (e) {}
+      return true;
+    }).catch(() => false);
   }
   function bai() {
     const b = baiHienTai();

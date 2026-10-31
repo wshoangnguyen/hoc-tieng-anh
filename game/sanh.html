@@ -352,6 +352,14 @@ document.getElementById("sanh").innerHTML = html;
       : ((h && h.ten) ? h.ten : tenDaLuu(ma));
     veDiem(x, ten, (s && s.ok && s.diem_tich_luy != null) ? s.diem_tich_luy : null);
     veLevel(lv);
+    if (h && h.ok && h.sach && h.unit != null) {
+      try {
+        localStorage.setItem("game_bai", JSON.stringify({ sach: h.sach, unit: Number(h.unit) }));
+        localStorage.setItem("game_dong_bo_ma", ma);
+      } catch (e) {}
+      kq.innerHTML += '<div class="hs-bai" style="margin-top:8px;font-size:13.5px;color:#5c4d2c">' +
+        '📚 Bài đang học: <b>' + h.sach + ' · Unit ' + h.unit + '</b> — vào trò nào cũng tự chọn đúng bài này.</div>';
+    }
   }
 
   function chuanMa(v){
