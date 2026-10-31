@@ -165,7 +165,7 @@ const KHOA = "eo_sm" + DU.level;
 const KHOA_VE = "eo_sm" + DU.level + "_ve";
 const KHOA_BAT = "eo_sm" + DU.level + "_bat";
 const KHOA_CHO = "eo_sm" + DU.level + "_cho";
-const API = "https://vm-4-15-ubuntu.tailcfa324.ts.net:8443";
+const API = "https://vm-4-13-ubuntu.tailcfa324.ts.net:8443";
 const PHUT = DU.phut || 40;
 let dap = {}, net = {}, daCham = false, daNop = false, hetLuc = 0, batDauLuc = 0;
 
@@ -476,7 +476,7 @@ function nopBai(){
   .then(d=>{
     if(d && d.ok){
       o.className="luu ok";
-      o.innerHTML="✅ Saved to your teacher's Drive · file: <b>"+(d.file||"")+"</b>"+
+      o.innerHTML="✅ "+(d&&d.cho_drive?"Saved to your teacher's folder (Drive sync pending)":"Saved to your teacher's Drive")+" · file: <b>"+(d.file||"")+"</b>"+
         (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở tệp</a>':"");
     }else{
       o.className="luu loi"; o.textContent="Couldn't save to Drive ("+(d&&d.loi||"network error")+"). Press “Check & submit” again to retry, or send it to your teacher on Zalo.";
