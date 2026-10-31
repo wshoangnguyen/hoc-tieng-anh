@@ -4657,7 +4657,7 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
         mini += `<td>${trongThang && cuaNgay.length ? cuaNgay.length : ""}</td>`;
       });
       hangTuan += `<tr class="tuan"><td class="goc">Tuần ${iw + 1}<br><i>${ngayVN(ngays[0])}–${ngayVN(ngays[6])}</i></td>${o}<td class="tong">${tongTuan || ""}</td></tr>`;
-      hangDem += `<tr class="demrow"><td class="goc">buổi</td>${oDem}<td class="tong">${tongTuan || ""}</td></tr>`;
+      hangDem += `<tr class="demrow"><td class="goc">buổi</td>${oDem}<td class="tong"></td></tr>`;
       miniRows += `<tr><td class="goc">${ngayVN(ngays[0])}</td>${mini}<td class="tong">${tongTuan || ""}</td></tr>`;
     });
 
@@ -4672,15 +4672,20 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
     const tongBuoi = ds.length;
     const thanhTien = tongBuoi * gia;
     const khac = Number(g.khac || 0);
+    const stkText = (() => {
+      const stk = String(g.stk || "").trim(), bank = String(g.ngan_hang || "").trim();
+      if (!stk) return bank || "—";
+      return bank && !new RegExp(bank.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").test(stk) ? bank + " · " + stk : stk;
+    })();
     const dongInfo = [
-      ["Name", ten],
-      g.email ? ["Email", g.email] : null,
-      g.stk ? ["Bank account", (g.ngan_hang ? g.ngan_hang + " · " : "") + g.stk] : null,
+      ["Name", ten || "—"],
+      ["Email", g.email || "—"],
+      ["Bank account", stkText],
       ["Tutoring hour", tongBuoi + " giờ"],
       ["Rating", tien(gia) + " / giờ"],
       ["Tutoring payment", tien(thanhTien)],
       ["Other", tien(khac)]
-    ].filter(Boolean).map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("");
+    ].map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("");
 
     const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Giờ dạy &amp; lương ${ten} — ${m}/${y}</title>
 <style>
@@ -4694,21 +4699,23 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
  .phai{flex:0 0 250px}
  table{border-collapse:collapse;width:100%}
  th,td{border:1px solid #c9c9c9;padding:2px 3px;vertical-align:top}
+ table.cal{table-layout:fixed}
  table.cal th{background:#f3f3f3;text-align:center;font-size:10.5px;font-weight:700;padding:3px 2px}
+ table.cal th.tongh{width:44px;font-size:9.5px;white-space:nowrap}
  table.cal th b{display:block}
  table.cal th i{font-style:normal;font-weight:400;color:#666;font-size:9.5px}
- table.cal td.ngay{height:46px;width:12.6%;padding:2px}
+ table.cal td.ngay{height:46px;padding:2px;overflow:hidden}
  table.cal td.ngay.ngoai{background:#f7f7f7;color:#bbb}
- table.cal td.goc{width:62px;background:#fafafa;text-align:center;font-size:9.5px;line-height:1.3;font-weight:700}
+ table.cal td.goc, table.cal th.goc{width:66px;background:#fafafa;text-align:center;font-size:9.5px;line-height:1.3;font-weight:700}
  table.cal td.goc i{font-style:normal;font-weight:400;color:#777}
  table.cal .dau{font-size:9px;color:#888;margin-bottom:1px}
  table.cal tr.demrow td{height:13px;font-size:9px;color:#666;background:#fbfbfb;text-align:center;padding:0}
  table.cal tr.demrow td.goc{text-align:right;padding-right:4px;font-weight:400;background:#fbfbfb}
  .chip{border-left:3px solid #8a8172;background:#fdf1e3;border-radius:2px;padding:1px 3px;margin-bottom:1px;
-       font-size:9.5px;line-height:1.25;display:flex;justify-content:space-between;gap:4px}
- .chip b{font-weight:700}
- .chip span{color:#5a5a5a;white-space:nowrap}
- td.tong{background:#fff7e0;font-weight:700;text-align:center;width:34px;font-size:10px}
+       font-size:9.5px;line-height:1.25;display:flex;justify-content:space-between;gap:3px;overflow:hidden}
+ .chip b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .chip span{color:#5a5a5a;white-space:nowrap;font-size:8.5px}
+ td.tong{background:#fff7e0;font-weight:700;text-align:center;font-size:10px}
  table.info th{width:96px;background:#f3f3f3;text-align:left;font-weight:600;font-size:10px;padding:3px 5px}
  table.info td{font-size:10.5px;padding:3px 5px}
  table.info tr.tong th,table.info tr.tong td{background:#ffe9a8;font-weight:800;font-size:11.5px}
@@ -4731,7 +4738,7 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
 <div class="wrap">
   <div class="trai">
     <table class="cal">
-      <thead><tr><th class="goc">Tuần</th>${THU7.map((t) => `<th><b>${t}</b></th>`).join("")}<th class="goc">Tổng</th></tr></thead>
+      <thead><tr><th class="goc">Tuần</th>${THU7.map((t) => `<th><b>${t}</b></th>`).join("")}<th class="tongh">Tổng</th></tr></thead>
       <tbody>${hangTuan}${hangDem}</tbody>
     </table>
     <p class="ghi">Ô vàng nhạt ở cột cuối là số buổi của tuần. Ô xám là ngày thuộc tháng khác (không tính vào tháng ${m}/${y}).</p>
@@ -4740,7 +4747,7 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
     <table class="info"><tbody>${dongInfo}
       <tr class="tong"><th>Total Payment</th><td>${tien(thanhTien + khac)}</td></tr></tbody></table>
     <table class="mini">
-      <thead><tr><th>Tuần</th>${THU7.map((t) => `<th>${t}</th>`).join("")}<th>T</th></tr></thead>
+      <thead><tr><th>Tuần</th>${THU7.map((t) => `<th>${t}</th>`).join("")}<th>Tổng</th></tr></thead>
       <tbody>${miniRows}</tbody>
     </table>
   </aside>
