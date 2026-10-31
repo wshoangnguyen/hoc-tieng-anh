@@ -377,6 +377,29 @@
                 left: 0;
             }
         }
+    
+        /* --- mobile: chữ vừa trong thẻ, không tràn (31/10/2026) --- */
+        @media (max-width: 620px) {
+            .cards-grid { gap: 10px; }
+            .inner, .front, .back { border-radius: 16px !important; }
+            .front, .back { overflow: hidden; }
+            .front img { max-width: 92%; max-height: 64%; padding: 4px; border-radius: 10px; }
+            .click-hint { font-size: 10px; margin-top: 6px; padding: 3px 8px; line-height: 1.2; text-align: center; }
+            .back { padding: 8px 6px !important; gap: 6px !important; }
+            .back .word { font-size: clamp(11px, 4.4vw, 20px) !important; padding: 3px 9px !important;
+                border-radius: 10px !important; letter-spacing: 0 !important; line-height: 1.15;
+                max-width: 96%; text-align: center; overflow-wrap: anywhere; white-space: normal; }
+            .back .meaning { font-size: clamp(10px, 3.6vw, 16px) !important; padding: 3px 8px !important;
+                border-radius: 10px !important; margin-top: 2px !important; line-height: 1.2;
+                max-width: 96%; text-align: center; overflow-wrap: anywhere; white-space: normal; }
+            .back .pronounce { font-size: clamp(9px, 2.9vw, 13px) !important; padding: 2px 7px !important;
+                max-width: 96%; overflow-wrap: anywhere; }
+            .back .sound-icon { font-size: 9px !important; margin-top: 2px !important; }
+            .chu-lon { font-size: clamp(12px, 5vw, 32px) !important; line-height: 1.15; }
+        }
+        @media (max-width: 430px) {
+            .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        }
     </style>
     <script src="am-thanh.js"></script>
   <link rel="stylesheet" href="core.css">
