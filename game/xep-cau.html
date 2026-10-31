@@ -658,9 +658,14 @@
 
   /* ---------- khởi động ---------- */
   function doBo() {
-    var sel = $("chonBo");
-    sel.innerHTML = (state.data.bo || []).map(function (b, k) {
-      return '<option value="' + k + '">' + esc(b.ten) + "</option>";
+    var sel = $("chonBo"), nhom = {}, thu = [];
+    (state.data.bo || []).forEach(function (b, k) {
+      var g = b.sach || "Khác";
+      if (!nhom[g]) { nhom[g] = []; thu.push(g); }
+      nhom[g].push('<option value="' + k + '">' + esc(b.ten) + "</option>");
+    });
+    sel.innerHTML = thu.map(function (g) {
+      return '<optgroup label="' + esc(g) + '">' + nhom[g].join("") + "</optgroup>";
     }).join("");
   }
 
@@ -683,13 +688,16 @@
   taiDuLieu().then(function (d) {
     if (!d || !d.bo || !d.bo.length) return;
     doBo();
-    var k = 0;
+    var k = 0, kSach = -1;
     try {
       var bai = (window.GAME && GAME.bai) ? GAME.bai() : null;
       if (bai && bai.sach) {
         (d.bo || []).forEach(function (b, i2) {
-          if (b.sach === bai.sach && b.unit === null) k = i2;
+          if (b.sach !== bai.sach) return;
+          if (kSach < 0 && b.unit === null) kSach = i2;
+          if (bai.unit != null && b.unit === Number(bai.unit)) k = i2;
         });
+        if (k === 0 && kSach >= 0) k = kSach;
       }
     } catch (e) {}
     datBo(k);
