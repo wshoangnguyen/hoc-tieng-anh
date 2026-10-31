@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Máy xếp câu — luyện vị trí từ trong câu</title>
+<style>
+  :root{
+    --nen:#fdf6e9; --the:#fffdf7; --vien:#eee0c4; --chu:#3a3226; --mo:#8a7d66;
+    --cam:#ef9f2e; --cam-dam:#d9860f; --xanh:#2f7d5d; --do:#c2453a; --xanhduong:#2f6fdb;
+    --bong:0 10px 26px rgba(120,90,20,.13);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--nen);color:var(--chu);
+       font-family:"Baloo Bhaina 2","Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+  header{position:sticky;top:0;z-index:20;background:rgba(253,246,233,.94);backdrop-filter:blur(6px);
+         border-bottom:1px solid var(--vien)}
+  .thanh{max-width:1100px;margin:0 auto;padding:9px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ten{font-weight:800;font-size:19px;letter-spacing:.2px}
+  .ten small{display:block;font-weight:600;font-size:11.5px;color:var(--mo);letter-spacing:0}
+  .che{margin-left:auto;display:flex;gap:6px;background:#fff;border:1px solid var(--vien);border-radius:99px;padding:3px}
+  .che button{border:0;background:transparent;padding:6px 13px;border-radius:99px;font:inherit;font-size:13.5px;
+              font-weight:700;color:var(--mo);cursor:pointer}
+  .che button.on{background:var(--cam);color:#fff}
+  main{max-width:1100px;margin:0 auto;padding:14px 14px 106px}
+  .the{background:var(--the);border:1px solid var(--vien);border-radius:18px;padding:14px 16px;box-shadow:var(--bong)}
+  .dau{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .tien{font-weight:800;font-size:14px;color:var(--cam-dam)}
+  .tien .cham{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle}
+  .tien .cham i{width:9px;height:9px;border-radius:50%;background:#e7dcc4;display:block}
+  .tien .cham i.dat{background:var(--xanh)} .tien .cham i.hong{background:var(--do)}
+  .diem{margin-left:auto;font-weight:700;font-size:13.5px;color:var(--mo)}
+  .nghia{font-size:17px;font-weight:700;line-height:1.45;margin:0 0 4px}
+  .nghia span{font-weight:600;color:var(--mo);font-size:12.5px;display:block;margin-top:2px}
+  .cau{margin-top:12px}
+  .chu{display:inline-block;background:#fff3d8;border:1px solid #f0d79b;color:#8a5b00;font-weight:800;
+       padding:7px 13px;border-radius:12px;margin-bottom:8px;font-size:17px}
+  .luoi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .cot{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .cot>b{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--mo);font-weight:700;
+         text-align:center;margin-bottom:-2px}
+  .chip{border:1.5px solid var(--vien);background:#fff;border-radius:12px;padding:9px 10px;font:inherit;
+        font-size:14.5px;font-weight:700;color:var(--chu);cursor:pointer;text-align:center;line-height:1.25;
+        min-height:46px;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere;
+        transition:transform .08s,border-color .15s,background .15s}
+  .chip:active{transform:scale(.97)}
+  .chip.chon{border-color:var(--cam);background:#fff3d8;box-shadow:0 0 0 2px rgba(239,159,46,.22)}
+  .chip.dung{border-color:var(--xanh);background:#e9f7ef;color:#1f6b4c}
+  .chip.sai{border-color:var(--do);background:#fdecea;color:#a3352c}
+  .ghep{margin-top:12px;padding:10px 12px;border:1.5px dashed var(--vien);border-radius:12px;
+        font-size:16px;font-weight:700;min-height:46px;color:var(--mo)}
+  .ghep b{color:var(--chu)}
+  .nut{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .nut button{font:inherit;font-size:15px;font-weight:800;border-radius:12px;padding:11px 18px;border:1px solid var(--vien);
+              background:#fff;color:var(--chu);cursor:pointer}
+  .nut button.chinh{background:var(--cam);border-color:var(--cam);color:#fff}
+  .nut button.chinh:disabled{opacity:.45;cursor:not-allowed}
+  .nut button.phu{color:var(--mo)}
+  .bao{margin-top:12px;border-radius:12px;padding:11px 13px;font-size:14.5px;line-height:1.45;display:none}
+  .bao.hien{display:block}
+  .bao.dat{background:#e9f7ef;border:1px solid #bfe3ce;color:#1f6b4c}
+  .bao.hong{background:#fdecea;border:1px solid #f3c4bf;color:#a3352c}
+  .bao b{font-weight:800}
+  .bao .luat{display:block;margin-top:5px;font-weight:600;font-size:13.5px;color:#6b5a4a}
+  /* --- chế độ lớp --- */
+  .bang{display:none;gap:10px;margin-bottom:12px}
+  .bang.hien{display:grid;grid-template-columns:1fr 1fr;max-width:720px;margin:0 auto 12px}
+  .doi{background:#fff;border:2px solid var(--vien);border-radius:16px;padding:10px 12px;text-align:center}
+  .doi b{display:block;font-size:14px;letter-spacing:.3px}
+  .doi .so{font-size:30px;font-weight:800;line-height:1.1}
+  .doi.xanh b,.doi.xanh .so{color:var(--xanhduong)}
+  .doi.do b,.doi.do .so{color:var(--do)}
+  .doi.luot{border-color:var(--cam);box-shadow:0 0 0 3px rgba(239,159,46,.2);background:#fffaf0}
+  .luotday{text-align:center;font-weight:800;font-size:14.5px;color:var(--cam-dam);margin:0 0 10px}
+  /* --- kết quả --- */
+  .lop-phu{position:fixed;inset:0;background:rgba(48,38,22,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:60}
+  .lop-phu.hien{display:flex}
+  .hop{background:var(--the);border-radius:20px;padding:22px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  .hop h2{margin:0 0 4px;font-size:22px}
+  .hop .sao{font-size:34px;letter-spacing:4px;margin:6px 0}
+  .hop p{margin:4px 0;color:var(--mo);font-weight:600}
+  .hop .to{font-size:26px;font-weight:800;color:var(--cam-dam);margin:8px 0}
+
+  /* --- thanh dưới & hộp thoại dùng chung của core.js --- */
+  .gcore-thanh{position:fixed;left:0;right:0;bottom:0;display:flex;gap:6px;align-items:center;justify-content:center;
+    padding:7px 10px;background:rgba(255,253,247,.97);border-top:1px solid var(--vien);z-index:30;flex-wrap:wrap}
+  .gcore-thanh button,.gcore-thanh select{font:inherit;font-size:12.5px;font-weight:700;padding:5px 10px;
+    border-radius:9px;border:1px solid var(--vien);background:#fff;color:var(--chu);cursor:pointer}
+  .gcore-thanh .gcore-chon{display:none}
+  .gcore-thanh .gcore-che{display:none}
+  .gcore-ma{color:var(--cam-dam)}
+  .gcore-diem{font-weight:800;color:var(--cam-dam)}
+  .gcore-nen{position:fixed;inset:0;background:rgba(48,38,22,.5);display:flex;align-items:center;justify-content:center;
+    z-index:90;padding:16px}
+  .gcore-hop{background:var(--the);border-radius:18px;padding:18px 20px;max-width:430px;width:100%;
+    box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .gcore-hop h3{margin:0 0 6px;font-size:18px}
+  .gcore-hop p{margin:4px 0;font-size:13.5px;color:var(--mo);line-height:1.45}
+  .gcore-o{width:100%;padding:9px 11px;border:1px solid var(--vien);border-radius:10px;font:inherit;margin:6px 0}
+  .gcore-hang{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .gcore-nut{font:inherit;font-weight:800;padding:9px 15px;border-radius:10px;border:1px solid var(--vien);
+    background:#fff;color:var(--chu);cursor:pointer}
+  .gcore-nut.ve,.gcore-nut.ve2{background:var(--cam);border-color:var(--cam);color:#fff}
+  .gcore-bang div{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+  .gcore-loi{background:#fdecea;border-radius:8px;padding:6px 8px;font-size:12.5px;margin:6px 0}
+  .gcore-luat{font-size:11.5px !important}
+  /* --- thẻ kết quả trong trang (chế độ ở nhà) --- */
+  .ketnha{display:none;text-align:center;padding:8px 4px 4px}
+  .ketnha.hien{display:block}
+  .ketnha .sao{font-size:32px;letter-spacing:3px}
+  .ketnha .to{font-size:26px;font-weight:800;color:var(--cam-dam);margin:6px 0}
+  .ketnha p{color:var(--mo);font-weight:600;margin:4px 0 10px}
+  @media (max-width:620px){
+    main{padding:10px 10px 80px}
+    .the{padding:12px;border-radius:14px}
+    .nghia{font-size:15px}
+    .luoi{gap:6px}
+    .chip{font-size:13px;padding:8px 6px;min-height:44px}
+    .ghep{font-size:14px}
+    .nut button{font-size:14px;padding:10px 14px}
+    .ten{font-size:17px}
+  }
+  @media (max-width:380px){
+    .chip{font-size:12px;padding:7px 4px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="thanh">
+    <div class="ten">🧩 Máy xếp câu<small>Chọn 1 ô mỗi cột để ghép câu đúng</small></div>
+    <div class="che" id="doiChe">
+      <button data-mode="nha" class="on">🏠 Ở nhà</button>
+      <button data-mode="lop">👥 Trên lớp</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="bang" id="bangDiem">
+    <div class="doi xanh" id="doi0"><b>ĐỘI XANH</b><span class="so">0</span></div>
+    <div class="doi do" id="doi1"><b>ĐỘI ĐỎ</b><span class="so">0</span></div>
+  </div>
+
+  <div class="the">
+    <div class="dau">
+      <div class="tien" id="tien">Câu 1/6 <span class="cham" id="cham"></span></div>
+      <div class="diem" id="diem">🎯 0 đúng · 0 sai</div>
+    </div>
+    <p class="luotday" id="luotday" style="display:none">Lượt của đội XANH</p>
+    <p class="nghia" id="nghia">Đang tải…</p>
+    <div class="cau">
+      <span class="chu" id="chu">—</span>
+      <div class="luoi" id="luoi"></div>
+      <div class="ghep" id="ghep">Chọn 1 ô ở mỗi cột…</div>
+    </div>
+    <div class="bao" id="bao"></div>
+    <div class="ketnha" id="ketNha">
+      <div class="sao" id="knSao">⭐⭐⭐</div>
+      <div class="to" id="knDiem">0/6</div>
+      <p id="knChu">Cố lên nhé!</p>
+      <div class="nut" style="justify-content:center"><button class="chinh" id="knLai">↺ Chơi lại</button></div>
+    </div>
+    <div class="nut">
+      <button class="chinh" id="btnKiem" disabled>Kiểm tra</button>
+      <button class="phu" id="btnNghe" style="display:none">🔊 Nghe câu</button>
+      <button class="phu" id="btnTiep" style="display:none">Câu tiếp →</button>
+      <button class="phu" id="btnChoiLai" style="display:none">↺ Chơi lại</button>
+    </div>
+  </div>
+</main>
+
+<div class="lop-phu" id="lopPhu">
+  <div class="hop">
+    <h2 id="kqTen">Xong rồi!</h2>
+    <div class="sao" id="kqSao">⭐⭐⭐</div>
+    <div class="to" id="kqDiem">0/0</div>
+    <p id="kqChu">Cố lên nhé!</p>
+    <div class="nut" style="justify-content:center">
+      <button class="chinh" id="btnLaiNua">Chơi lại</button>
+    </div>
+  </div>
+</div>
+
+<script src="am-thanh.js?v=20261031c"></script>
+<script src="core.js?v=20261031b"></script>
+<script>
+(function () {
+  "use strict";
+
+  var state = {
+    mode: "nha", data: null, bo: null, cau: null,
+    i: 0, chon: [], dung: 0, sai: 0,
+    diemDoi: [0, 0], luot: 0, cuop: false, daTraLoi: false,
+    batDau: false, xong: false
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+    });
+  };
+
+  /* ---------- tải dữ liệu ---------- */
+  function taiDuLieu() {
+    return fetch("data/xep-cau.json?v=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        state.data = d;
+        state.bo = (d.bo && d.bo[0]) || null;
+        return d;
+      })
+      .catch(function (e) {
+        $("nghia").textContent = "Không tải được dữ liệu câu. Kiểm tra mạng rồi tải lại trang.";
+        console.error(e);
+        return null;
+      });
+  }
+
+  /* ---------- vẽ ---------- */
+  function veDau() {
+    var tong = state.bo ? state.bo.cau.length : 0;
+    $("tien").innerHTML = "Câu " + Math.min(state.i + 1, tong) + "/" + tong +
+      ' <span class="cham" id="cham"></span>';
+    var cham = $("cham");
+    cham.innerHTML = (state.bo ? state.bo.cau : []).map(function (c, k) {
+      var lop = k < state.i ? (c._dung ? "dat" : "hong") : "";
+      return '<i class="' + lop + '"></i>';
+    }).join("");
+    if (state.mode === "nha") {
+      $("diem").style.display = "";
+      $("diem").textContent = "🎯 " + state.dung + " đúng · " + state.sai + " sai";
+      $("luotday").style.display = "none";
+      $("bangDiem").classList.remove("hien");
+    } else {
+      $("diem").style.display = "none";
+      $("bangDiem").classList.add("hien");
+      $("doi0").querySelector(".so").textContent = state.diemDoi[0];
+      $("doi1").querySelector(".so").textContent = state.diemDoi[1];
+      $("doi0").classList.toggle("luot", state.luot === 0 && !state.xong);
+      $("doi1").classList.toggle("luot", state.luot === 1 && !state.xong);
+      var ten = state.luot === 0 ? "XANH" : "ĐỎ";
+      $("luotday").style.display = "";
+      $("luotday").textContent = state.cuop ? ("Cướp điểm — lượt đội " + ten) : ("Lượt của đội " + ten);
+    }
+  }
+
+  function veCau() {
+    var c = state.cau;
+    if (!c) return;
+    state.chon = c.cot.map(function () { return null; });
+    state.daTraLoi = false;
+    $("nghia").innerHTML = esc(c.nghia) + '<span>Ghép câu tiếng Anh đúng nghĩa trên</span>';
+    $("chu").textContent = c.chu;
+    $("luoi").innerHTML = c.cot.map(function (cot, ci) {
+      return '<div class="cot" data-cot="' + ci + '"><b>' + esc(cot.ten) + "</b>" +
+        cot.o.map(function (o, oi) {
+          return '<button class="chip" data-cot="' + ci + '" data-o="' + oi + '">' + esc(o.t) + "</button>";
+        }).join("") + "</div>";
+    }).join("");
+    $("ghep").innerHTML = '<span style="color:var(--mo)">Chọn 1 ô ở mỗi cột…</span>';
+    $("bao").className = "bao";
+    $("bao").innerHTML = "";
+    $("btnKiem").disabled = true;
+    $("btnKiem").style.display = "";
+    $("btnTiep").style.display = "none";
+    $("btnNghe").style.display = "none";
+    $("btnChoiLai").style.display = "none";
+    veDau();
+  }
+
+  function capNhatGhep() {
+    var c = state.cau;
+    if (!c) return;
+    if (state.chon.some(function (x) { return x === null; })) {
+      $("ghep").innerHTML = '<span style="color:var(--mo)">Chọn 1 ô ở mỗi cột…</span>';
+      $("btnKiem").disabled = true;
+      return;
+    }
+    var phan = [esc(c.chu)].concat(state.chon.map(function (o, k) {
+      return "<b>" + esc(c.cot[k].o[o].t) + "</b>";
+    }));
+    $("ghep").innerHTML = phan.join(" ");
+    $("btnKiem").disabled = false;
+  }
+
+  function chonChip(nut) {
+    if (state.daTraLoi) return;
+    var ci = +nut.dataset.cot, oi = +nut.dataset.o;
+    state.chon[ci] = state.chon[ci] === oi ? null : oi;
+    Array.prototype.forEach.call($("luoi").querySelectorAll('.chip[data-cot="' + ci + '"]'), function (b) {
+      b.classList.toggle("chon", +b.dataset.o === state.chon[ci]);
+    });
+    capNhatGhep();
+  }
+
+  /* ---------- chấm ---------- */
+  function cauDung(c) {
+    return [c.chu].concat(c.cot.map(function (cot) {
+      var ok = cot.o.filter(function (o) { return o.ok; })[0];
+      return ok ? ok.t : "";
+    })).join(" ");
+  }
+
+  function kiemTra() {
+    var c = state.cau, saiCot = [];
+    for (var k = 0; k < c.cot.length; k++) {
+      var o = c.cot[k].o[state.chon[k]];
+      if (!o || !o.ok) saiCot.push(k);
+    }
+    state.daTraLoi = true;
+    $("btnKiem").style.display = "none";
+
+    if (!saiCot.length) {
+      /* đúng hết */
+      c._dung = true;
+      Array.prototype.forEach.call($("luoi").querySelectorAll(".chip.chon"), function (b) { b.classList.add("dung"); });
+      $("ghep").innerHTML = [esc(c.chu)].concat(c.cot.map(function (cot, k) {
+        return "<b>" + esc(cot.o[state.chon[k]].t) + "</b>";
+      })).join(" ");
+      $("bao").className = "bao hien dat";
+      var diem = state.mode === "lop" ? (state.cuop ? "Cướp điểm thành công! +1 cho đội " + (state.luot === 0 ? "XANH" : "ĐỎ") : "+1 điểm cho đội " + (state.luot === 0 ? "XANH" : "ĐỎ")) : "Chính xác!";
+      $("bao").innerHTML = "<b>✅ " + diem + "</b><span class='luat'>" + esc(cauDung(c)) + "</span>";
+      if (state.mode === "nha") state.dung++; else state.diemDoi[state.luot]++;
+      noiCau(cauDung(c));
+      $("btnNghe").style.display = "";
+      $("btnTiep").style.display = "";
+      $("btnTiep").textContent = (state.i + 1 >= state.bo.cau.length) ? "Xem kết quả →" : "Câu tiếp →";
+      try { if (state.mode === "nha" && window.GAME) GAME.ghi({ ok: true, tu: c.id, item: c.id }); } catch (e) {}
+    } else {
+      /* sai */
+      c._dung = false;
+      if (state.mode === "nha") state.sai++;
+      Array.prototype.forEach.call($("luoi").querySelectorAll(".chip"), function (b) {
+        var ci = +b.dataset.cot, oi = +b.dataset.o, o = c.cot[ci].o[oi];
+        if (b.classList.contains("chon")) b.classList.add(o.ok ? "dung" : "sai");
+      });
+      var dau = saiCot[0];
+      var oSai = c.cot[dau].o[state.chon[dau]];
+      var loi = (oSai && oSai.sai) ? oSai.sai : ("Cột “" + c.cot[dau].ten + "” chưa đúng.");
+      $("bao").className = "bao hien hong";
+      $("bao").innerHTML = "<b>❌ Chưa đúng ở cột “" + esc(c.cot[dau].ten) + "”.</b>" +
+        "<span class='luat'>" + esc(loi) + "</span>";
+      try { if (state.mode === "nha" && window.GAME) GAME.ghi({ ok: false, tu: c.id, item: c.id }); } catch (e) {}
+
+      if (state.mode === "lop" && !state.cuop) {
+        /* đội kia được cướp điểm */
+        $("btnTiep").style.display = "";
+        $("btnTiep").textContent = "Đội kia thử →";
+      } else {
+        $("btnNghe").style.display = "";
+        $("btnTiep").style.display = "";
+        $("btnTiep").textContent = (state.i + 1 >= state.bo.cau.length) ? "Xem kết quả →" : "Câu tiếp →";
+      }
+    }
+    veDau();
+  }
+
+  function noiCau(t) {
+    try { if (window.NOI && NOI.cau) NOI.cau(t); } catch (e) {}
+  }
+
+  /* ---------- điều khiển ---------- */
+  function tiep() {
+    if (state.mode === "lop" && !state.cuop && state.cau && state.cau._dung === false) {
+      /* chuyển sang đội kia cướp điểm, giữ nguyên câu */
+      state.cuop = true;
+      state.luot = 1 - state.luot;
+      state.daTraLoi = false;
+      state.chon = state.cau.cot.map(function () { return null; });
+      Array.prototype.forEach.call($("luoi").querySelectorAll(".chip"), function (b) {
+        b.classList.remove("chon", "dung", "sai");
+      });
+      $("bao").className = "bao";
+      $("ghep").innerHTML = '<span style="color:var(--mo)">Chọn 1 ô ở mỗi cột…</span>';
+      $("btnKiem").style.display = "";
+      $("btnKiem").disabled = true;
+      $("btnTiep").style.display = "none";
+      $("btnNghe").style.display = "none";
+      veDau();
+      return;
+    }
+    state.cuop = false;
+    state.i++;
+    if (state.i >= state.bo.cau.length) { ketThuc(); return; }
+    if (state.mode === "lop") state.luot = 1 - state.luot;
+    state.cau = state.bo.cau[state.i];
+    veCau();
+  }
+
+  function ketThuc() {
+    state.xong = true;
+    var tong = state.bo.cau.length;
+    if (state.mode === "nha") {
+      var tiLe = tong ? state.dung / tong : 0;
+      var sao = tiLe >= 0.9 ? "⭐⭐⭐" : tiLe >= 0.6 ? "⭐⭐" : "⭐";
+      $("luoi").style.display = "none";
+      $("ghep").style.display = "none";
+      $("btnKiem").style.display = "none";
+      $("btnTiep").style.display = "none";
+      $("btnNghe").style.display = "none";
+      $("ketNha").classList.add("hien");
+      $("knSao").textContent = sao;
+      $("knDiem").textContent = state.dung + "/" + tong + " câu đúng";
+      $("knChu").textContent = tiLe >= 0.9 ? "Tuyệt vời, em ghép câu rất chắc!" :
+        tiLe >= 0.6 ? "Khá tốt! Xem lại các câu sai rồi chơi lại nhé." : "Đừng lo — chơi lại sẽ quen nhanh thôi!";
+      try {
+        if (window.GAME && GAME.ketThuc) GAME.ketThuc({ soCau: tong, soDung: state.dung });
+      } catch (e) {}
+      veDau();
+      return;
+    } else {
+      var a = state.diemDoi[0], b = state.diemDoi[1];
+      $("kqTen").textContent = a === b ? "Hòa!" : (a > b ? "Đội XANH thắng!" : "Đội ĐỎ thắng!");
+      $("kqSao").textContent = a === b ? "🤝" : "🏆";
+      $("kqDiem").textContent = a + " – " + b;
+      $("kqChu").textContent = a === b ? "Hai đội ngang tài ngang sức." : "Chúc mừng đội thắng! Chơi lại để phục thù nhé.";
+    }
+    $("lopPhu").classList.add("hien");
+    veDau();
+  }
+
+  function choiLai() {
+    $("lopPhu").classList.remove("hien");
+    $("ketNha").classList.remove("hien");
+    $("luoi").style.display = "";
+    $("ghep").style.display = "";
+    $("btnKiem").style.display = "";
+    state.i = 0; state.dung = 0; state.sai = 0; state.diemDoi = [0, 0];
+    state.luot = 0; state.cuop = false; state.xong = false; state.daTraLoi = false;
+    (state.bo.cau || []).forEach(function (c) { c._dung = null; });
+    tronDapAn();
+    state.cau = state.bo.cau[0];
+    veCau();
+    batDauGhi();
+  }
+
+  function tronDapAn() {
+    (state.bo && state.bo.cau ? state.bo.cau : []).forEach(function (c) {
+      c.cot.forEach(function (cot) {
+        for (var i = cot.o.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = cot.o[i]; cot.o[i] = cot.o[j]; cot.o[j] = t;
+        }
+      });
+    });
+  }
+
+  function batDauGhi() {
+    try {
+      if (state.mode === "nha" && window.GAME && GAME.batDau) {
+        GAME.batDau({ game: "xep-cau", sach: (state.bo && state.bo.sach) || "SM4", unit: (state.bo && state.bo.unit) || null, soCau: 0 });
+      }
+    } catch (e) {}
+  }
+
+  function doiMode(m) {
+    state.mode = m;
+    Array.prototype.forEach.call($("doiChe").children, function (b) {
+      b.classList.toggle("on", b.dataset.mode === m);
+    });
+    choiLai();
+  }
+
+  /* ---------- gắn sự kiện ---------- */
+  $("luoi").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip");
+    if (b) chonChip(b);
+  });
+  $("btnKiem").addEventListener("click", kiemTra);
+  $("btnTiep").addEventListener("click", tiep);
+  $("btnNghe").addEventListener("click", function () { if (state.cau) noiCau(cauDung(state.cau)); });
+  $("btnChoiLai").addEventListener("click", choiLai);
+  $("btnLaiNua").addEventListener("click", choiLai);
+  $("knLai").addEventListener("click", choiLai);
+  $("doiChe").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (b) doiMode(b.dataset.mode);
+  });
+
+  /* ---------- khởi động ---------- */
+  taiDuLieu().then(function (d) {
+    if (!d || !d.bo || !d.bo.length) return;
+    tronDapAn();
+    state.cau = state.bo.cau[0];
+    veCau();
+    batDauGhi();
+  });
+})();
+</script>
+</body>
+</html>

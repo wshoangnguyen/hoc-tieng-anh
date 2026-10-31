@@ -1,0 +1,145 @@
+{
+  "ban": "1.0",
+  "ngay": "31/10/2026",
+  "luat": "Mỗi câu có 3 cột. Chọn đúng 1 ô mỗi cột để ghép thành câu đúng. Trong mỗi cột chỉ có 1 ô đúng; ô sai được ghi rõ vì sao sai.",
+  "bo": [
+    {
+      "id": "mau-1",
+      "ten": "Mẫu 1 · Hiện tại đơn + giờ + thứ",
+      "sach": "SM4",
+      "unit": null,
+      "cau": [
+        {
+          "id": "r1",
+          "nghia": "Cô ấy ăn sáng lúc 6 giờ kém 15.",
+          "chu": "She",
+          "cot": [
+            { "ten": "Động từ", "o": [
+              { "t": "has breakfast", "ok": true },
+              { "t": "have breakfast", "sai": "She đi với has, không phải have." },
+              { "t": "play tennis", "sai": "Nghĩa không khớp: câu nói về ăn sáng." }
+            ]},
+            { "ten": "Giới từ", "o": [
+              { "t": "at", "ok": true },
+              { "t": "in", "sai": "in dùng cho buổi/tháng/năm, không dùng cho giờ." },
+              { "t": "on", "sai": "on dùng cho thứ/ngày, không dùng cho giờ." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "quarter to six", "ok": true },
+              { "t": "quarter past six", "sai": "6 giờ kém 15 là quarter to six, không phải quarter past six." },
+              { "t": "Monday", "sai": "Câu này nói về giờ, không phải thứ." }
+            ]}
+          ]
+        },
+        {
+          "id": "r2",
+          "nghia": "Cô ấy mặc quần áo lúc 7 giờ 15.",
+          "chu": "She",
+          "cot": [
+            { "ten": "Động từ", "o": [
+              { "t": "gets dressed", "ok": true },
+              { "t": "get dressed", "sai": "She đi với gets, không phải get." },
+              { "t": "goes to school", "sai": "Nghĩa không khớp: câu nói về mặc quần áo." }
+            ]},
+            { "ten": "Giới từ", "o": [
+              { "t": "at", "ok": true },
+              { "t": "on", "sai": "on dùng cho thứ/ngày, không dùng cho giờ." },
+              { "t": "by", "sai": "by không dùng để nói mốc giờ như vậy." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "quarter past seven", "ok": true },
+              { "t": "quarter to seven", "sai": "7 giờ 15 là quarter past seven." },
+              { "t": "half past seven", "sai": "7 giờ 15 chưa tới half past (7 giờ 30)." }
+            ]}
+          ]
+        },
+        {
+          "id": "r3",
+          "nghia": "Cô ấy đi học lúc 8 giờ 30.",
+          "chu": "She",
+          "cot": [
+            { "ten": "Động từ", "o": [
+              { "t": "goes to school", "ok": true },
+              { "t": "go to school", "sai": "She đi với goes, không phải go." },
+              { "t": "has breakfast", "sai": "Nghĩa không khớp: câu nói về đi học." }
+            ]},
+            { "ten": "Giới từ", "o": [
+              { "t": "at", "ok": true },
+              { "t": "in", "sai": "in dùng cho buổi/tháng, không dùng cho giờ." },
+              { "t": "on", "sai": "on dùng cho thứ/ngày, không dùng cho giờ." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "half past eight", "ok": true },
+              { "t": "half past nine", "sai": "8 giờ 30 là half past eight." },
+              { "t": "quarter to eight", "sai": "8 giờ 30 không phải 7 giờ 45." }
+            ]}
+          ]
+        },
+        {
+          "id": "r4",
+          "nghia": "Bạn luôn chơi quần vợt sau giờ học.",
+          "chu": "You",
+          "cot": [
+            { "ten": "Trạng từ", "o": [
+              { "t": "always", "ok": true },
+              { "t": "never", "sai": "Nghĩa sai: câu nói “luôn”, không phải “không bao giờ”." }
+            ]},
+            { "ten": "Động từ", "o": [
+              { "t": "play tennis", "ok": true },
+              { "t": "play football", "sai": "Nghĩa sai: câu nói về quần vợt." },
+              { "t": "always play", "sai": "Đã có trạng từ ở cột trước — không lặp lại trong cụm động từ." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "after school", "ok": true },
+              { "t": "before school", "sai": "Nghĩa sai: câu nói “sau giờ học”." },
+              { "t": "at school", "sai": "at school là “ở trường”, không phải “sau giờ học”." }
+            ]}
+          ]
+        },
+        {
+          "id": "r5",
+          "nghia": "Cậu ấy không bao giờ làm bài tập vào thứ Hai.",
+          "chu": "He",
+          "cot": [
+            { "ten": "Trạng từ", "o": [
+              { "t": "never", "ok": true },
+              { "t": "always", "sai": "Nghĩa sai: câu nói “không bao giờ”." }
+            ]},
+            { "ten": "Động từ", "o": [
+              { "t": "does homework", "ok": true },
+              { "t": "do homework", "sai": "He đi với does, không phải do." },
+              { "t": "never does", "sai": "Đã có trạng từ ở cột trước — không lặp lại." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "on Mondays", "ok": true },
+              { "t": "at Mondays", "sai": "Thứ phải đi với on: on Mondays." },
+              { "t": "in Mondays", "sai": "Thứ phải đi với on, không dùng in." }
+            ]}
+          ]
+        },
+        {
+          "id": "r6",
+          "nghia": "Cô ấy uống sữa vào buổi sáng.",
+          "chu": "She",
+          "cot": [
+            { "ten": "Động từ", "o": [
+              { "t": "drinks milk", "ok": true },
+              { "t": "drink milk", "sai": "She đi với drinks, không phải drink." },
+              { "t": "eats milk", "sai": "Milk phải đi với drinks, không phải eats." }
+            ]},
+            { "ten": "Giới từ", "o": [
+              { "t": "in", "ok": true },
+              { "t": "on", "sai": "Buổi phải đi với in: in the morning." },
+              { "t": "at", "sai": "Cụm này cần in the morning, không phải at morning." }
+            ]},
+            { "ten": "Thời gian", "o": [
+              { "t": "the morning", "ok": true },
+              { "t": "Monday", "sai": "Câu này nói về buổi trong ngày, không phải thứ." },
+              { "t": "six o'clock", "sai": "Nghĩa sai: câu nói “vào buổi sáng”." }
+            ]}
+          ]
+        }
+      ]
+    }
+  ]
+}
