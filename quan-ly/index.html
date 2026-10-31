@@ -555,20 +555,15 @@ header{padding:6px 10px}
 
   <section id="tab-congno" data-trang="lop" class="hide">
     <div id="cnBody">
-    <div class="tomtat">
-      <div class="tt thieu"><h3>💸 Nợ tháng này: <span id="cnNay">0 đ</span></h3><div id="cnNayInfo"></div></div>
-      <div class="tt thieu"><h3>📌 Nợ các tháng trước: <span id="cnTruoc">0 đ</span></h3><div id="cnTruocInfo"></div></div>
-      <div class="tt du"><h3>🧾 Tổng công nợ: <span id="cnTong">0 đ</span></h3><div id="cnTongInfo"></div></div>
-    </div>
-    <div class="card noprint">
-      <div class="row">
-        <button id="btnCnCsv" class="ghost">⬇ CSV công nợ</button>
-        <button id="btnCnIn" class="ghost">🖨 In</button>
+    <div class="card">
+      <div class="row" style="align-items:center;margin:0 0 8px">
+        <h3 style="margin:0">Công nợ theo từng tháng</h3>
         <span style="flex:1"></span>
-        <span class="hint">Thu tiền xong bấm <b>＋ Thu 1 tháng</b> (hoặc <b>Thu hết</b>) — web ghi nhận số tiền và số tháng đã thu.</span>
+        <button id="btnCnCsv" class="ghost sm" title="Tải CSV công nợ">⬇ CSV</button>
+        <button id="btnCnIn" class="ghost sm" title="In bảng công nợ">🖨 In</button>
       </div>
+      <div class="cuon" id="cnTheoThang"></div>
     </div>
-    <div class="card"><h3 style="margin:0 0 8px">Công nợ theo từng tháng</h3><div class="cuon" id="cnTheoThang"></div></div>
     <div class="card"><h3 style="margin:0 0 8px">Chi tiết từng học viên còn nợ</h3><div class="cuon" id="cnTungEm"></div>
       <p class="hint" style="margin-top:8px">Cách tính (anh đã xác nhận): cột “đã hoàn thành” = <b>tháng dương lịch đã đóng đến</b>. <b>Nợ tháng này</b> = 1 tháng học phí nếu em chưa đóng tới tháng hiện tại; <b>nợ các tháng trước</b> = các tháng còn thiếu từ đầu năm tới tháng trước. Nửa tháng là <b>khuyến mãi</b>. Số hiện trên đây là <b>nợ theo giấy tờ</b>; phần “đã ghi thu” chỉ tính những lần anh bấm thu <b>trong web này</b>.</p></div>
     </div>
@@ -1638,12 +1633,15 @@ function veCongNo(){
   const tienNay=nay.reduce((s,h)=>s+h.no_nay_tien,0), tienTruoc=truoc.reduce((s,h)=>s+h.no_truoc_tien,0);
   const thuThang=hvTatCa().reduce((s,h)=>s+h.lich_su_thu.filter(x=>x.thang===thangNam()).reduce((a,x)=>a+(x.tien||0),0),0);
   const de_nghi=nghi.reduce((s,h)=>s+h.no_tien,0);
-  document.getElementById("cnNay").textContent=tienNay.toLocaleString("vi-VN")+" đ";
-  document.getElementById("cnNayInfo").innerHTML=`${nay.length} em chưa đóng tháng ${T}/${new Date().getFullYear()}`;
-  document.getElementById("cnTruoc").textContent=tienTruoc.toLocaleString("vi-VN")+" đ";
-  document.getElementById("cnTruocInfo").innerHTML=`${truoc.length} em còn nợ các tháng trước`;
-  document.getElementById("cnTong").textContent=(tienNay+tienTruoc).toLocaleString("vi-VN")+" đ";
-  document.getElementById("cnTongInfo").innerHTML=`${hoc.length} em đang học · tháng ${thangNam()} · đã ghi thu trong tháng: <b>${thuThang.toLocaleString("vi-VN")} đ</b>${de_nghi?` · <span style="color:var(--warn)">${nghi.length} em đã nghỉ còn nợ ${de_nghi.toLocaleString("vi-VN")} đ (không tính vào tổng)</span>`:""}`;
+  /* ba ô tổng hợp đã bỏ khỏi giao diện (chủ yêu cầu gọn) — chỉ vẽ nếu còn phần tử */
+  const dat=(id,val)=>{ const e=document.getElementById(id); if(e) e.textContent=val; };
+  const datHtml=(id,val)=>{ const e=document.getElementById(id); if(e) e.innerHTML=val; };
+  dat("cnNay", tienNay.toLocaleString("vi-VN")+" đ");
+  datHtml("cnNayInfo", `${nay.length} em chưa đóng tháng ${T}/${new Date().getFullYear()}`);
+  dat("cnTruoc", tienTruoc.toLocaleString("vi-VN")+" đ");
+  datHtml("cnTruocInfo", `${truoc.length} em còn nợ các tháng trước`);
+  dat("cnTong", (tienNay+tienTruoc).toLocaleString("vi-VN")+" đ");
+  datHtml("cnTongInfo", `${hoc.length} em đang học · tháng ${thangNam()} · đã ghi thu trong tháng: <b>${thuThang.toLocaleString("vi-VN")} đ</b>${de_nghi?` · <span style="color:var(--warn)">${nghi.length} em đã nghỉ còn nợ ${de_nghi.toLocaleString("vi-VN")} đ (không tính vào tổng)</span>`:""}`);
   const td='padding:6px;border-bottom:1px solid var(--line)';
   /* bảng theo tháng */
   const thang=[];
@@ -1652,11 +1650,12 @@ function veCongNo(){
     thang.push({m,t,ds}); }
   document.getElementById("cnTheoThang").innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
     <thead><tr>${["Tháng","Số em còn nợ","Số tiền còn nợ","Ghi chú"].map(x=>`<th style="text-align:left;padding:6px;border-bottom:2px solid var(--line)">${x}</th>`).join("")}</tr></thead>
-    <tbody>${thang.map(x=>`<tr${x.m===T?' style="background:var(--nen-homnay)"':''}>
+    <tbody>${thang.filter(x=>x.t>0).map(x=>`<tr${x.m===T?' style="background:var(--nen-homnay)"':''}>
       <td style="${td}">Tháng ${x.m}${x.m===T?" (tháng này)":""}</td>
       <td style="${td}">${x.ds.length} em</td>
       <td style="${td};color:${x.t?"var(--nhan)":""}"><b>${x.t.toLocaleString("vi-VN")} đ</b></td>
-      <td style="${td}" class="hint">${x.m===T?"phải thu trong tháng này":"nợ tồn từ tháng "+x.m}</td></tr>`).join("")}
+      <td style="${td}" class="hint">${x.m===T?"phải thu trong tháng này":"nợ tồn từ tháng "+x.m}</td></tr>`).join("")
+      || `<tr><td style="${td}" colspan="4" class="hint">Không tháng nào còn nợ 🎉</td></tr>`}
     <tr><td style="${td}"><b>TỔNG</b></td><td style="${td}">—</td><td style="${td}"><b>${(tienNay+tienTruoc).toLocaleString("vi-VN")} đ</b></td><td style="${td}" class="hint">nợ tháng này ${tienNay.toLocaleString("vi-VN")} đ + nợ cũ ${tienTruoc.toLocaleString("vi-VN")} đ</td></tr></tbody></table>`;
   /* chi tiết từng em */
   const rows=[...hoc].filter(h=>h.no_tien>0).sort((a,b)=>b.no_tien-a.no_tien);
