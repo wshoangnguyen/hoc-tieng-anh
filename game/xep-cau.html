@@ -334,6 +334,8 @@
     veDongHo();
     state.timer = setInterval(function () {
       if (state.daTraLoi || state.xong) { dungDongHo(); return; }
+      /* đang mở hộp thoại (nhập mã HV, xem điểm) thì tạm dừng */
+      if (document.querySelector(".gcore-nen")) return;
       state.con -= 0.25;
       var conNguyen = Math.ceil(Math.max(0, state.con));
       if (conNguyen !== state.lastTick) {
