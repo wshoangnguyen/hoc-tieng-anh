@@ -93,8 +93,16 @@ window.NOI = (function () {
     var s = window.speechSynthesis;
     if (!s) return (CO_GIONG = false);
     var ds = s.getVoices ? s.getVoices() : [];
-    CO_GIONG = ds.some(function (v) { return /^en/i.test(v.lang || ""); });
-    return CO_GIONG;
+    if (ds.length) {
+      CO_GIONG = ds.some(function (v) { return /^en/i.test(v.lang || ""); });
+      return CO_GIONG;
+    }
+    /* Chrome/Edge nạp danh sách giọng bất đồng bộ: lần đầu rỗng.
+       Đừng chốt "không có giọng" — cứ thử nói và nghe lại khi có sự kiện. */
+    try {
+      s.addEventListener("voiceschanged", function () { CO_GIONG = null; });
+    } catch (e) {}
+    return true;
   }
 
   function giongMay(text) {
@@ -106,7 +114,7 @@ window.NOI = (function () {
       u.lang = "en-US";
       u.rate = 0.9;
       var ds = (s.getVoices ? s.getVoices() : []).filter(function (v) { return /^en/i.test(v.lang || ""); });
-      if (ds.length) u.voice = ds[0];
+      if (ds.length) u.voice = ds.find(function (v) { return /google|natural|samantha|aria|jenny/i.test(v.name); }) || ds[0];
       s.cancel();
       s.speak(u);
       return Promise.resolve(true);
@@ -133,8 +141,9 @@ window.NOI = (function () {
 
     return napManifest().then(function (man) {
       var buoc = (man && man[sl]) ? phat(goc() + "audio/" + man[sl], 2500) : Promise.resolve(null);
+      var laCum = /\s/.test(text.trim());   // từ điển chỉ có từ đơn, cụm từ khỏi thử cho nhanh
       return buoc
-        .then(function (a) { return a || gstatic(text); })
+        .then(function (a) { return a || (laCum ? Promise.resolve(null) : gstatic(text)); })
         .then(function (a) { return a || gtx(text); })
         .then(function (a) { return a ? true : giongMay(text); });
     });
