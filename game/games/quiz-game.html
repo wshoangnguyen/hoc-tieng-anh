@@ -256,7 +256,12 @@
         .option-prefix {
             font-weight: bold;
             font-size: 1.2rem;
-            width: 10px;
+            flex: 0 0 auto;
+            min-width: 1.15em;
+            white-space: nowrap;
+        }
+        @media (max-width: 620px) {
+            .option-prefix { font-size: 1rem; }
         }
         
         .feedback-area {
