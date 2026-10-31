@@ -1533,6 +1533,18 @@
                 <span class="difficulty-badge badge-${difficulty}">${difficulty.toUpperCase()}</span>
             `;
             document.getElementById('hintText').textContent = wordData.hint;
+            // Ảnh gợi ý lấy từ kho flashcard (nếu có)
+            let hintAnh = document.getElementById('hintAnh');
+            if (!hintAnh) {
+                hintAnh = document.createElement('img');
+                hintAnh.id = 'hintAnh';
+                hintAnh.style.cssText = 'display:block;margin:10px auto 0;max-height:150px;max-width:62%;object-fit:contain;border-radius:16px;background:#fff';
+                document.getElementById('hintText').parentNode.appendChild(hintAnh);
+            }
+            const _src = (window.GAME && GAME.anh) ? GAME.anh(currentWord) : ('pic/' + encodeURIComponent(currentWord.toLowerCase()) + '.jpg');
+            hintAnh.style.display = 'block';
+            hintAnh.onerror = function () { this.style.display = 'none'; };
+            hintAnh.src = _src;
             updateAnswerDisplay();
             document.getElementById('feedback').textContent = '';
             document.getElementById('feedback').className = 'feedback';
