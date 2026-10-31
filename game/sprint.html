@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sprint — nhân vật chạy cho game</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:#4a3a26;
+    background:linear-gradient(180deg,#fffaf0 0%,#ffeed2 55%,#ffe3b8 100%);
+    overflow:hidden;
+  }
+  .mat-dat{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(180deg,#f3dcb6,#e8c795)}
+  .mat-dat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:#dcb987}
+
+  .may{position:absolute;border-radius:50%;background:#fff;opacity:.75;filter:blur(1px)}
+  .may.a{width:120px;height:44px;top:16%;left:12%}
+  .may.b{width:86px;height:32px;top:10%;left:58%}
+  .may.c{width:150px;height:52px;top:22%;left:76%}
+
+  .duong-chay{position:absolute;left:0;right:0;bottom:22%;height:58%}
+
+  .chay{position:absolute;left:0;bottom:-1.8%;width:clamp(170px,26vw,300px);
+        animation:lao 3.6s linear infinite;will-change:transform}
+  .chay img{display:block;width:100%;height:auto;
+            filter:drop-shadow(0 10px 8px rgba(120,70,20,.16));
+            animation:nhun .3s ease-in-out infinite alternate;transform-origin:55% 85%}
+  @keyframes lao{from{transform:translateX(-34vw)}to{transform:translateX(112vw)}}
+  @keyframes nhun{from{transform:translateY(0) rotate(-1.1deg)}to{transform:translateY(-2.4%) rotate(1.3deg)}}
+
+  .gio{position:absolute;left:-16%;top:34%;width:38%;height:52%}
+  .gio i{position:absolute;display:block;height:7px;border-radius:4px;background:#d8b184;opacity:.55}
+  .gio i:nth-child(1){top:8%;width:70%}
+  .gio i:nth-child(2){top:34%;width:46%;left:-6%}
+  .gio i:nth-child(3){top:62%;width:58%;left:4%}
+  @keyframes tan{0%{opacity:0;transform:translateX(10px)}35%{opacity:.55}100%{opacity:0;transform:translateX(-26px)}}
+  .gio i{animation:tan .62s linear infinite}
+  .gio i:nth-child(2){animation-delay:.16s}
+  .gio i:nth-child(3){animation-delay:.32s}
+
+  .bui{position:absolute;left:0;bottom:-2%;width:34%;height:60%}
+  .bui span{position:absolute;bottom:0;border-radius:50%;background:#e6c79a;opacity:0}
+  .bui span:nth-child(1){left:8%;width:14px;height:14px;animation:bui .8s ease-out infinite}
+  .bui span:nth-child(2){left:20%;width:20px;height:20px;animation:bui .8s ease-out .22s infinite}
+  .bui span:nth-child(3){left:2%;width:10px;height:10px;animation:bui .8s ease-out .44s infinite}
+  @keyframes bui{0%{opacity:.5;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-40px,-14px) scale(1.6)}}
+
+  .tieu-de{position:absolute;top:24px;left:0;right:0;text-align:center;pointer-events:none}
+  .tieu-de b{font-size:clamp(20px,3.2vw,28px);letter-spacing:.4px}
+  .tieu-de p{margin:5px 0 0;font-size:clamp(12px,1.6vw,14px);color:#8a7355}
+
+  .dieu-khien{position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:5}
+  button{font:inherit;font-size:14px;padding:9px 14px;border-radius:11px;border:1px solid #e2c69b;
+         background:#fffdf7;color:#5b4628;cursor:pointer;box-shadow:0 2px 0 #e6cfae}
+  button:active{transform:translateY(1px);box-shadow:none}
+
+  .ghi-chu{position:absolute;bottom:7px;left:0;right:0;text-align:center;font-size:11px;color:#a48d6d}
+  @media (max-width:560px){
+    .dieu-khien{top:auto;bottom:10px;right:10px}
+    .ghi-chu{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="may a"></div><div class="may b"></div><div class="may c"></div>
+  <div class="mat-dat"></div>
+
+  <div class="tieu-de"><b>Sprint</b><p>Chó dữ lao tới, ngoạm khúc xương</p></div>
+  <div class="dieu-khien">
+    <button id="btnChay">Chạy lại</button>
+    <button id="btnNhanh">Tốc độ ×1</button>
+  </div>
+
+  <div class="duong-chay">
+    <div class="chay" id="chay">
+      <div class="gio"><i></i><i></i><i></i></div>
+      <img src="sprint.svg" alt="Sprint đang lao tới, ngoạm khúc xương">
+      <div class="bui"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <div class="ghi-chu">Một khung hình SVG 36 KB · nhịp chạy dựng bằng CSS · phóng to không vỡ</div>
+
+<script>
+  const chay = document.getElementById('chay');
+  const img = chay.querySelector('img');
+  let hs = 1;
+  function apDung(){
+    chay.style.animationDuration = (3.6/hs) + 's';
+    img.style.animationDuration = (0.3/hs) + 's';
+  }
+  document.getElementById('btnChay').onclick = () => {
+    chay.style.animation = 'none'; void chay.offsetWidth;
+    chay.style.animation = `lao ${3.6/hs}s linear infinite`;
+  };
+  document.getElementById('btnNhanh').onclick = (e) => {
+    hs = hs >= 2.5 ? 1 : hs + .5;
+    e.target.textContent = 'Tốc độ ×' + hs;
+    apDung();
+  };
+</script>
+</body>
+</html>
