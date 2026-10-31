@@ -25,8 +25,8 @@
   .chay{position:absolute;left:0;bottom:-1.8%;width:clamp(170px,26vw,300px);
         animation:lao 3.6s linear infinite;will-change:transform}
   .chay img{display:block;width:100%;height:auto;
-            filter:drop-shadow(0 10px 8px rgba(120,70,20,.16));
-            animation:nhun .3s ease-in-out infinite alternate;transform-origin:55% 85%}
+            filter:drop-shadow(0 10px 8px rgba(120,70,20,.16))}
+  .dung *{animation-play-state:paused !important}
   @keyframes lao{from{transform:translateX(-34vw)}to{transform:translateX(112vw)}}
   @keyframes nhun{from{transform:translateY(0) rotate(-1.1deg)}to{transform:translateY(-2.4%) rotate(1.3deg)}}
 
@@ -67,21 +67,22 @@
   <div class="may a"></div><div class="may b"></div><div class="may c"></div>
   <div class="mat-dat"></div>
 
-  <div class="tieu-de"><b>Sprint</b><p>Chó dữ lao tới, ngoạm khúc xương</p></div>
+  <div class="tieu-de"><b>Sprint</b><p>Chó dữ vừa chạy vừa sủa</p></div>
   <div class="dieu-khien">
     <button id="btnChay">Chạy lại</button>
     <button id="btnNhanh">Tốc độ ×1</button>
+    <button id="btnDung">Dừng</button>
   </div>
 
   <div class="duong-chay">
     <div class="chay" id="chay">
       <div class="gio"><i></i><i></i><i></i></div>
-      <img src="sprint.svg" alt="Sprint đang lao tới, ngoạm khúc xương">
+      <img src="sprint-chay.svg" alt="Sprint đang chạy và sủa">
       <div class="bui"><span></span><span></span><span></span></div>
     </div>
   </div>
 
-  <div class="ghi-chu">Một khung hình SVG 36 KB · nhịp chạy dựng bằng CSS · phóng to không vỡ</div>
+  <div class="ghi-chu">6 khung hình trong 1 tệp SVG · chân chạy, miệng sủa · phóng to không vỡ</div>
 
 <script>
   const chay = document.getElementById('chay');
@@ -89,11 +90,14 @@
   let hs = 1;
   function apDung(){
     chay.style.animationDuration = (3.6/hs) + 's';
-    img.style.animationDuration = (0.3/hs) + 's';
   }
   document.getElementById('btnChay').onclick = () => {
     chay.style.animation = 'none'; void chay.offsetWidth;
     chay.style.animation = `lao ${3.6/hs}s linear infinite`;
+  };
+  document.getElementById('btnDung').onclick = (e) => {
+    chay.classList.toggle('dung');
+    e.target.textContent = chay.classList.contains('dung') ? 'Chạy' : 'Dừng';
   };
   document.getElementById('btnNhanh').onclick = (e) => {
     hs = hs >= 2.5 ? 1 : hs + .5;
