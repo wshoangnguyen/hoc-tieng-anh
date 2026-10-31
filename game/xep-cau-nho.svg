@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Máy xếp câu">
+  <defs>
+    <linearGradient id="n" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#fffdf8"/>
+      <stop offset="100%" stop-color="#ffe6bd"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffc063"/>
+      <stop offset="100%" stop-color="#e08713"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#n)" stroke="#eed7a4" stroke-width="1"/>
+  <rect x="6" y="7" width="9" height="6" rx="2.5" fill="#3a3226"/>
+  <rect x="17" y="7" width="7" height="6" rx="2.5" fill="#6b5f4e"/>
+  <rect x="6" y="16" width="12" height="5" rx="2.5" fill="#8b7f6c"/>
+  <rect x="6" y="23" width="19" height="6" rx="3" fill="url(#c)"/>
+</svg>

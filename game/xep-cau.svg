@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="Máy xếp câu">
+  <defs>
+    <linearGradient id="nen" x1="0.15" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#fffdf8"/>
+      <stop offset="52%" stop-color="#fff5e0"/>
+      <stop offset="100%" stop-color="#ffe6bd"/>
+    </linearGradient>
+    <linearGradient id="thanh" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5d4f3f"/>
+      <stop offset="100%" stop-color="#2c261f"/>
+    </linearGradient>
+    <linearGradient id="cam" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#ffcb74"/>
+      <stop offset="42%" stop-color="#f6a12c"/>
+      <stop offset="100%" stop-color="#cf7609"/>
+    </linearGradient>
+    <radialGradient id="sang" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="do" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="1.8" stdDeviation="1.6" flood-color="#8a5410" flood-opacity=".38"/>
+    </filter>
+    <filter id="mem" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+    <clipPath id="catThe"><rect x="3" y="3" width="90" height="90" rx="23"/></clipPath>
+  </defs>
+
+  <rect x="3" y="3" width="90" height="90" rx="23" fill="url(#nen)" stroke="#eed7a4" stroke-width="1.4"/>
+
+  <g clip-path="url(#catThe)">
+    <ellipse cx="34" cy="16" rx="34" ry="18" fill="url(#sang)" filter="url(#mem)"/>
+    <ellipse cx="62" cy="92" rx="36" ry="14" fill="#d99b3f" opacity=".13" filter="url(#mem)"/>
+  </g>
+
+  <!-- hàng trên: ba khối từ rời -->
+  <g>
+    <rect x="18" y="26" width="15" height="12" rx="5" fill="url(#thanh)"/>
+    <rect x="39" y="26" width="12" height="12" rx="5" fill="url(#thanh)" opacity=".74"/>
+    <rect x="57" y="26" width="17" height="12" rx="5" fill="url(#thanh)" opacity=".52"/>
+    <rect x="20" y="27.5" width="11" height="2.6" rx="1.3" fill="#ffffff" opacity=".22"/>
+  </g>
+
+  <!-- hàng giữa: khối đã ghép -->
+  <g>
+    <rect x="18" y="45" width="34" height="12" rx="5.5" fill="url(#thanh)" opacity=".46"/>
+    <rect x="20" y="46.5" width="30" height="2.4" rx="1.2" fill="#ffffff" opacity=".24"/>
+  </g>
+
+  <!-- khối cam đang được xếp vào -->
+  <g transform="rotate(-2.5 40 67)" filter="url(#do)">
+    <rect x="18" y="61" width="44" height="12" rx="5.5" fill="url(#cam)"/>
+    <rect x="20" y="62.5" width="40" height="3" rx="1.5" fill="#fff4dc" opacity=".6"/>
+    <rect x="18" y="70" width="44" height="3" rx="1.5" fill="#b4670a" opacity=".16"/>
+  </g>
+
+  <!-- tia lấp lánh -->
+  <g fill="#f2a52f">
+    <path d="M73 52.5l1.8 4.1 4.1 1.8-4.1 1.8-1.8 4.1-1.8-4.1-4.1-1.8 4.1-1.8z" opacity=".9"/>
+  </g>
+</svg>
