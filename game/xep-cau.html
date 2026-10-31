@@ -38,6 +38,9 @@
   .chu{display:inline-block;background:#fff3d8;border:1px solid #f0d79b;color:#8a5b00;font-weight:800;
        padding:7px 13px;border-radius:12px;margin-bottom:8px;font-size:17px}
   .luoi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .luoi[data-n="4"]{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .luoi[data-n="5"]{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .vuot{display:none;margin:6px 0 0;font-size:12px;font-weight:700;color:var(--mo);text-align:center}
   .cot{display:flex;flex-direction:column;gap:8px;min-width:0}
   .cot>b{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--mo);font-weight:700;
          text-align:center;margin-bottom:-2px}
@@ -49,6 +52,7 @@
   .chip.chon{border-color:var(--cam);background:#fff3d8;box-shadow:0 0 0 2px rgba(239,159,46,.22)}
   .chip.dung{border-color:var(--xanh);background:#e9f7ef;color:#1f6b4c}
   .chip.sai{border-color:var(--do);background:#fdecea;color:#a3352c}
+  .chip.trong{visibility:hidden;pointer-events:none}
   .ghep{margin-top:12px;padding:10px 12px;border:1.5px dashed var(--vien);border-radius:12px;
         font-size:16px;font-weight:700;min-height:46px;color:var(--mo)}
   .ghep b{color:var(--chu)}
@@ -128,9 +132,14 @@
   .ketnha p{color:var(--mo);font-weight:600;margin:4px 0 10px}
   @media (max-width:620px){
     main{padding:10px 10px 80px}
+    .chonbo{max-width:47vw;font-size:12px}
     .the{padding:12px;border-radius:14px}
     .nghia{font-size:15px}
     .luoi{gap:6px}
+    .luoi[data-n="4"],.luoi[data-n="5"]{display:flex;overflow-x:auto;gap:7px;padding-bottom:8px;
+      scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+    .luoi[data-n="4"] .cot,.luoi[data-n="5"] .cot{flex:0 0 118px;scroll-snap-align:start}
+    .vuot.hien{display:block}
     .chip{font-size:13px;padding:8px 6px;min-height:44px}
     .ghep{font-size:14px}
     .nut button{font-size:14px;padding:10px 14px}
@@ -175,6 +184,7 @@
     <div class="cau">
       <span class="chu" id="chu">—</span>
       <div class="luoi" id="luoi"></div>
+      <p class="vuot" id="vuot">↔ Vuốt ngang để xem đủ cột</p>
       <div class="ghep" id="ghep">Chọn 1 ô ở mỗi cột…</div>
     </div>
     <div class="bao" id="bao"></div>
@@ -421,12 +431,16 @@
     $("nghia").innerHTML = esc(c.nghia) + '<span>Ghép câu tiếng Anh đúng nghĩa trên</span>';
     $("chu").textContent = c.chu || "";
     $("chu").style.display = c.chu ? "" : "none";
+    var soO = Math.max.apply(null, c.cot.map(function (x) { return x.o.length; }));
     $("luoi").innerHTML = c.cot.map(function (cot, ci) {
-      return '<div class="cot" data-cot="' + ci + '"><b>' + esc(cot.ten) + "</b>" +
-        cot.o.map(function (o, oi) {
-          return '<button class="chip" data-cot="' + ci + '" data-o="' + oi + '">' + esc(o.t) + "</button>";
-        }).join("") + "</div>";
+      var nut = cot.o.map(function (o, oi) {
+        return '<button class="chip" data-cot="' + ci + '" data-o="' + oi + '">' + esc(o.t) + "</button>";
+      }).join("");
+      for (var k = cot.o.length; k < soO; k++) nut += '<span class="chip trong"></span>';
+      return '<div class="cot" data-cot="' + ci + '"><b>' + esc(cot.ten) + "</b>" + nut + "</div>";
     }).join("");
+    $("luoi").dataset.n = c.cot.length;
+    $("vuot").classList.toggle("hien", c.cot.length >= 4);
     $("ghep").innerHTML = '<span style="color:var(--mo)">Chọn 1 ô ở mỗi cột…</span>';
     $("bao").className = "bao";
     $("bao").innerHTML = "";

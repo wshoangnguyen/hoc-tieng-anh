@@ -44,6 +44,18 @@ Trang: `game/xep-cau.html` · Dữ liệu: `game/data/xep-cau.json`
 
 Chuyển tự động: tách câu thành **chủ ngữ | động từ | phần cuối** (chỉ lấy câu có cụm `at/on/in/after/before/every`), rồi lấy 2 cụm từ **câu khác cùng sách** làm phương án nhiễu — nhờ câu tiếng Việt hiện trên đầu nên phương án nhiễu luôn sai nghĩa.
 
+## Số cột theo level
+
+| Level | Số cột | Các cột |
+|---|---|---|
+| SM1 · SM2 | 3 | Chủ ngữ · Động từ · Cuối câu |
+| SM3 · SM4 | 4 | Chủ ngữ · Động từ · Giới từ · Thời gian – nơi chốn |
+| SM5 · SM6 · A2/B1 | 5 | Chủ ngữ · Động từ · Tân ngữ (hoặc Trạng từ) · Giới từ · Thời gian – nơi chốn |
+
+Câu nào không tách được 5 cột (động từ dính `to/up/off…` hoặc dạng `-ing`) thì tự lùi về 4 cột. Trên điện thoại, bộ 4–5 cột **vuốt ngang** để xem đủ; desktop chia đều.
+
+Muốn thêm cột **Trạng từ sau tân ngữ** (6 cột): đặt `cot` thứ 4 với `"ten": "Trạng từ"` — game tự hiện, không cần sửa code.
+
 ## Đếm giờ
 
 Mặc định 30 giây/câu. Đổi bằng `?tg=45` trên đường dẫn (5–120 giây), ví dụ `xep-cau.html?tg=45`.
