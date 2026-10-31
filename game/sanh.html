@@ -451,8 +451,10 @@ document.getElementById("sanh").innerHTML = html;
   }
   function mo(){ the.hidden = false; requestAnimationFrame(function(){ the.classList.add("hien"); }); }
 
-  document.querySelector("#buddyThe .bd-dong").addEventListener("click", function(){
-    /* Đóng = thu về vòng tròn Buddy, không xoá hẳn — bấm vào vòng tròn để mở lại */
+  document.querySelector("#buddyThe .bd-dong").addEventListener("click", function(ev){
+    /* Đóng = thu về vòng tròn Buddy, không xoá hẳn — bấm vào vòng tròn để mở lại.
+       Phải chặn nổi bọt, không thì chính thẻ bắt sự kiện click và mở lại ngay. */
+    ev.stopPropagation(); ev.preventDefault();
     the.classList.add("gon");
     the.setAttribute("aria-label", "Mở thẻ sự thật của Buddy");
     if (henGon) clearTimeout(henGon);
