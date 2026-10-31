@@ -476,6 +476,7 @@ function nopBai(){
   .then(d=>{
     if(d && d.ok){
       o.className="luu ok";
+      if(d&&d.nhan){o.className="luu ok";o.textContent="✅ Your work has been sent. Your teacher will receive it in a few minutes.";return;}
       o.innerHTML="✅ "+(d&&d.cho_drive?"Saved to your teacher's folder (Drive sync pending)":"Saved to your teacher's Drive")+" · file: <b>"+(d.file||"")+"</b>"+
         (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở tệp</a>':"");
     }else{
