@@ -475,5 +475,34 @@ document.getElementById("sanh").innerHTML = html;
 })();
 </script>
 <!-- /BUDDY-SANH -->
+
+<script>
+/* Xếp chồng hai thẻ nổi ở đáy trên điện thoại: "Chuyện của Buddy" và thẻ sự thật của Buddy
+   (trước đây cả hai cùng neo bottom nên đè lên nhau). */
+(function () {
+  var stick = document.getElementById('truyenStick'), the = document.getElementById('buddyThe');
+  if (!stick || !the) return;
+  function xep() {
+    if (window.innerWidth > 560) { the.style.bottom = ''; the.style.left = ''; the.style.right = ''; return; }
+    if (the.hidden) return;
+    var r = stick.getBoundingClientRect();
+    if (!r.height) return;
+    the.style.left = '10px';
+    the.style.right = '10px';
+    the.style.bottom = Math.round(window.innerHeight - r.top + 10) + 'px';
+  }
+  window.addEventListener('resize', xep);
+  var g = document.getElementById('tsGon');
+  if (g) g.addEventListener('click', function () { setTimeout(xep, 60); });
+  var dong = document.querySelector('#buddyThe .bd-dong');
+  if (dong) dong.addEventListener('click', function () { setTimeout(xep, 60); });
+  try {
+    new MutationObserver(xep).observe(the, { attributes: true, attributeFilter: ['hidden', 'class'] });
+    new MutationObserver(xep).observe(stick, { attributes: true, attributeFilter: ['class', 'style'] });
+  } catch (e) {}
+  setTimeout(xep, 300);
+  setTimeout(xep, 1200);
+})();
+</script>
 </body>
 </html>
