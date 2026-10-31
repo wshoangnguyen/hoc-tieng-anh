@@ -3194,6 +3194,7 @@ function veBaiDay(){
   if(buoi){
     h+=`<div class="card"><div class="row"><b>Buổi ${ngayVN(buoi.ngay)} · ${esc(buoi.gv||"")}</b>
       <span class="hint">${buoi.trang_thai==="xong"?"đã hoàn thành":"đang mở"}</span><span style="flex:1"></span>
+      <button class="ghost sm" id="bdBoNd" title="Bỏ toàn bộ phần đã lưu của buổi này">🗑 Bỏ nội dung</button>
       <button class="sm" id="bdTin">📨 Báo bài</button></div>`;
     const noteBuoi=(S.ghi_chu||[]).filter(g=>g.buoiId===buoi.id&&!g.hvId).slice(-1)[0];
     h+=`<div class="row" style="gap:6px;margin:6px 0">
@@ -3229,6 +3230,7 @@ function veBaiDay(){
   const luu=document.getElementById("bdLuu"); if(luu) luu.onclick=()=>bdLuuBuoi();
   const xong=document.getElementById("bdXong"); if(xong) xong.onclick=()=>bdHoanThanh();
   const tin=document.getElementById("bdTin"); if(tin) tin.onclick=()=>bdBanTin();
+  const boNd=document.getElementById("bdBoNd"); if(boNd) boNd.onclick=()=>bdBoNoiDungBuoi();
   const luuGhi=document.getElementById("bdLuuGhi"); if(luuGhi) luuGhi.onclick=()=>{
     const nd=(document.getElementById("bdGhi").value||"").trim();
     const nb=document.getElementById("bdNoiBo").checked;
@@ -3310,6 +3312,47 @@ function bdLuuBuoi(){
   if(co){ co.items=[...new Set(co.items.concat(items))]; co.sach=sach.id; co.gv=gv||co.gv; }
   else S.buoi_day.push({id:"b"+Date.now(),lopId:BD.lopId,ngay,gv,sach:sach.id,unit:BD.unit,items,ghi_chu:"",noi_bo:"",trang_thai:"mo",luc:Date.now()});
   save(); bdKhoiTao(); bdVe(); alert("Đã lưu buổi dạy.");
+}
+/* Bỏ nội dung của một buổi đã lưu (lỡ lưu sai unit/tiết) */
+function _buoiDangChon(id){
+  const ds=S.buoi_day.filter(b=>b.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc);
+  return id ? ds.find(x=>x.id===id) : ds[0];
+}
+function _goDauTuDong(b, ids){
+  let go=0;
+  hocVienCuaLop(BD.lopId).forEach(hv=>{
+    const td=S.tien_do[hv.ma_hv]||{};
+    ids.forEach(i=>{ const r=td[i];
+      if(r && r.n==="mac_dinh" && (!r.d || r.d===b.ngay)){ delete td[i]; go++; } });
+  });
+  return go;
+}
+function _veLaiSauKhiBo(){
+  try{ if(typeof veBaiDayModal==="function") veBaiDayModal(); }catch(e){}
+  try{ if(typeof bdVe==="function") bdVe(); }catch(e){}
+}
+function bdBoPhanBuoi(buoiId, itemId){
+  const b=_buoiDangChon(buoiId); if(!b||!b.items) return;
+  const ten=tenNgan(itemId);
+  if(!confirm(`Bỏ phần "${ten}" khỏi buổi ${ngayVN(b.ngay)}?`)) return;
+  b.items=b.items.filter(i=>i!==itemId);
+  const go=_goDauTuDong(b,[itemId]);
+  b.luc=Date.now(); BD.chon.delete(itemId); save(); _veLaiSauKhiBo();
+  alert(`Đã bỏ "${ten}"${go?` · gỡ ${go} dấu "Đã học" tự động`:""}.`);
+}
+function bdBoNoiDungBuoi(buoiId){
+  const b=_buoiDangChon(buoiId);
+  if(!b||!b.items||!b.items.length) return alert("Buổi này chưa có phần nào để bỏ.");
+  const dsTen=b.items.map(i=>tenNgan(i)).join(" · ");
+  const loi=(b.trang_thai==="xong")
+    ? 'Buổi đã "hoàn thành" → các dấu "Đã học" do máy tự đánh cho ngày này cũng được gỡ. Mức thầy/cô đã sửa tay (Đạt/Vượt/Chưa đạt) giữ nguyên.'
+    : "Chỉ bỏ các phần của buổi; điểm đã chấm tay không bị đụng.";
+  if(!confirm(`Bỏ toàn bộ ${b.items.length} phần của buổi ${ngayVN(b.ngay)}?\n\n${dsTen}\n\n${loi}`)) return;
+  const ids=[...b.items];
+  const go=_goDauTuDong(b, ids);
+  b.items=[]; if(b.trang_thai==="xong") b.trang_thai="mo"; b.luc=Date.now();
+  BD.chon.clear(); save(); _veLaiSauKhiBo();
+  alert(`Đã bỏ nội dung buổi ${ngayVN(b.ngay)}${go?` · gỡ ${go} dấu "Đã học" tự động`:""}.`);
 }
 function bdHoanThanh(){
   const buoi=S.buoi_day.filter(b=>b.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc)[0];
@@ -3598,14 +3641,14 @@ function veBaiDayModal(){
       <div class="row" style="margin-top:4px"><button class="ghost sm" id="bdLuuGhiMoi">💾 Lưu ghi chú</button><span class="hint" id="bdGhiMsg"></span></div></div>`;
   const buoi=S.buoi_day.filter(b=>b.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc)[0];
   if(buoi&&buoi.items&&buoi.items.length){
-    h+=`<h4 style="margin:12px 0 4px">Buổi ${ngayVN(buoi.ngay)} — bấm ô để đổi mức</h4><div class="bd-luoi-em"><table class="bd-bang"><thead><tr><th>Học viên</th>${buoi.items.map(id=>`<th>${esc(tenNgan(id))}</th>`).join("")}<th>⭐</th></tr></thead><tbody>`;
+    h+=`<h4 style="margin:12px 0 4px">Buổi ${ngayVN(buoi.ngay)} — bấm ô để đổi mức</h4><div class="bd-luoi-em"><table class="bd-bang"><thead><tr><th>Học viên</th>${buoi.items.map(id=>`<th>${esc(tenNgan(id))} <button class="ghost sm" data-bopart="${id}" data-bopart-buoi="${esc(buoi.id)}" title="Bỏ phần này khỏi buổi" style="padding:0 4px;line-height:1.2">✕</button></th>`).join("")}<th>⭐</th></tr></thead><tbody>`;
     hvs.forEach(hv=>{ const r0=(S.tien_do[hv.ma_hv]||{});
       h+=`<tr><td><a href="#" data-hoso2="${esc(hv.ma_hv)}">${esc(hv.ho_ten)}</a></td>`+buoi.items.map(id=>{const r=r0[id];const t=r?r.t:"chua";
         return `<td><button class="bd-o" data-mhv="${esc(hv.ma_hv)}" data-mit="${id}" style="background:${TT_MAU[t]}22;color:${TT_MAU[t]};border-color:${TT_MAU[t]}">${TT_TEN[t]}</button></td>`;}).join("")+
         `<td class="hint">${tichLuy(hv.ma_hv)}</td></tr>`;});
     h+=`</tbody></table></div>`;
   }
-  h+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" id="bdX2">Đóng</button></div></div>`;
+  h+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" id="bdBoNd2" style="color:#b3261e;border-color:#e3b3ae">🗑 Bỏ nội dung buổi</button> <button class="ghost sm" id="bdX2">Đóng</button></div></div>`;
   m.innerHTML=h;
   const X=()=>{const b=document.getElementById("bdX");if(b)b.onclick=bdDong; const b2=document.getElementById("bdX2"); if(b2) b2.onclick=bdDong;};
   const _ll=document.getElementById("bdLenLop"); if(_ll) _ll.onclick=()=>bdLenLop();
@@ -3619,6 +3662,9 @@ function veBaiDayModal(){
   const luu=document.getElementById("bdLuu2"); if(luu) luu.onclick=()=>bdLuuBuoi();
   const xong=document.getElementById("bdXong2"); if(xong) xong.onclick=()=>bdHoanThanh();
   const tin2=document.getElementById("bdTin2"); if(tin2) tin2.onclick=()=>bdBanTin();
+  const boNd2=document.getElementById("bdBoNd2"); if(boNd2) boNd2.onclick=()=>bdBoNoiDungBuoi();
+  m.querySelectorAll("[data-bopart]").forEach(b=>{ b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    bdBoPhanBuoi(b.dataset.bopartBuoi, +b.dataset.bopart); }; });
   const lg2=document.getElementById("bdLuuGhiMoi");
   if(lg2) lg2.onclick=()=>{ const v=(document.getElementById("bdGhiMoi").value||"").trim();
     if(!v) return; const b0=S.buoi_day.filter(b=>b.lopId===BD.lopId).sort((a,b)=>b.luc-a.luc)[0];
