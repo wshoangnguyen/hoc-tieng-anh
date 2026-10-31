@@ -452,7 +452,9 @@ document.getElementById("sanh").innerHTML = html;
   function mo(){ the.hidden = false; requestAnimationFrame(function(){ the.classList.add("hien"); }); }
 
   document.querySelector("#buddyThe .bd-dong").addEventListener("click", function(){
-    the.classList.remove("hien"); the.hidden = true;
+    /* Đóng = thu về vòng tròn Buddy, không xoá hẳn — bấm vào vòng tròn để mở lại */
+    the.classList.add("gon");
+    the.setAttribute("aria-label", "Mở thẻ sự thật của Buddy");
     if (henGon) clearTimeout(henGon);
     try { sessionStorage.setItem(SS, "1"); } catch(e){}
   });
@@ -469,7 +471,7 @@ document.getElementById("sanh").innerHTML = html;
   function moRong(){ the.classList.remove("gon"); if (henGon) clearTimeout(henGon); henGon = setTimeout(gonLai, 15000); }
   the.addEventListener("click", function(e){
     if (!the.classList.contains("gon")) return;
-    e.stopPropagation(); moRong();
+    e.stopPropagation(); the.removeAttribute("aria-label"); moRong();
   });
   if (!daDong) setTimeout(function(){ ve(chon()); mo(); moRong(); }, 1400);
 })();
