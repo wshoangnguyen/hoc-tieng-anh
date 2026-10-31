@@ -4618,9 +4618,11 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
     const gia = g.don_gia || 0;
     const [y, m] = thang.split("-");
     const cuoiThang = new Date(+y, +m, 0).getDate();
-    const THU_DAI = (typeof THUDAI !== "undefined" ? THUDAI : (typeof THU_DAI_G === "function" ? null : null));
+    const tien = (n) => (typeof fmtTien === "function" ? fmtTien(n) : (n || 0).toLocaleString("vi-VN") + " đ");
+    const ngayVN = (s) => { const [yy, mm, dd] = String(s).split("-"); return dd + "/" + mm; };
+    const THU7 = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 
-    /* 1. mọi buổi dạy có ngày thật trong tháng */
+    /* mọi buổi dạy có ngày thật trong tháng */
     const ds = [];
     (S.tuan || []).forEach((w) => {
       (typeof buoiTuan === "function" ? buoiTuan(w) : []).forEach((b) => {
@@ -4630,104 +4632,130 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
       });
     });
     ds.sort((a, b) => (a.ngay < b.ngay ? -1 : a.ngay > b.ngay ? 1 : gioSapXep(a.ca) - gioSapXep(b.ca)));
-    const ngayVN = (s) => { const [yy, mm, dd] = String(s).split("-"); return dd + "/" + mm; };
-    const thuCua = (s) => { const d = new Date(s + "T00:00:00"); const ten2 = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]; return ten2[d.getDay()]; };
 
+    /* lịch tháng: mỗi tuần một hàng, ô là buổi dạy */
+    const tuanCuaThang = (S.tuan || []).filter((w) => THU.some((t2, k) => String(cong(w.bat_dau, k)).slice(0, 7) === thang));
+    let hangTuan = "", hangDem = "", miniRows = "";
+    let soNgayCo = 0;
+    tuanCuaThang.forEach((w, iw) => {
+      const ngays = THU.map((t2, k) => cong(w.bat_dau, k));
+      let o = "", oDem = "", mini = "";
+      let tongTuan = 0;
+      ngays.forEach((ng, k) => {
+        const trongThang = String(ng).slice(0, 7) === thang;
+        const cuaNgay = ds.filter((b) => b.ngay === ng);
+        if (trongThang && cuaNgay.length) soNgayCo++;
+        const chip = cuaNgay.map((b) => {
+          const mau = (typeof mauLop === "function" ? mauLop(b.lop) : "#8a8172");
+          return `<div class="chip" style="border-left-color:${mau};background:${typeof hexRgba === "function" ? hexRgba(mau, 0.14) : "#fdf1e3"}">
+            <b>${b.lop}</b><span>${b.ca}</span></div>`;
+        }).join("");
+        tongTuan += cuaNgay.length;
+        o += `<td class="ngay ${trongThang ? "" : "ngoai"}">
+          <div class="dau">${THU7[k]}<i>${ngayVN(ng)}</i></div>${chip}</td>`;
+        oDem += `<td class="dem">${trongThang && cuaNgay.length ? cuaNgay.length : ""}</td>`;
+        mini += `<td>${trongThang && cuaNgay.length ? cuaNgay.length : ""}</td>`;
+      });
+      hangTuan += `<tr class="tuan"><td class="goc">Tuần ${iw + 1}<br><i>${ngayVN(ngays[0])}–${ngayVN(ngays[6])}</i></td>${o}<td class="tong">${tongTuan || ""}</td></tr>`;
+      hangDem += `<tr class="demrow"><td class="goc">buổi</td>${oDem}<td class="tong">${tongTuan || ""}</td></tr>`;
+      miniRows += `<tr><td class="goc">${ngayVN(ngays[0])}</td>${mini}<td class="tong">${tongTuan || ""}</td></tr>`;
+    });
+
+    /* chi tiết từng buổi (trang 2) */
     let dong = "", stt = 0;
     ds.forEach((b) => {
       stt++;
-      dong += `<tr><td style="text-align:center">${stt}</td><td style="text-align:center">${ngayVN(b.ngay)}</td>
-        <td style="text-align:center">${thuCua(b.ngay)}</td><td style="text-align:center">${b.ca}</td>
-        <td>${b.lop}</td><td>${b.ghi}</td></tr>`;
+      dong += `<tr><td class="c">${stt}</td><td class="c">${ngayVN(b.ngay)}</td><td class="c">${b.thu || ""}</td>
+        <td class="c">${b.ca}</td><td>${b.lop}</td><td>${b.ghi}</td></tr>`;
     });
 
-    /* 2. lịch các tuần có chứa ngày của tháng này */
-    const tuanCuaThang = (S.tuan || []).filter((w) => THU.some((t2, k) => String(cong(w.bat_dau, k)).slice(0, 7) === thang));
-    let lich = "";
-    tuanCuaThang.forEach((w) => {
-      const ngayTrongTuan = THU.map((t2, k) => cong(w.bat_dau, k));
-      const caDung = [...new Set((typeof buoiTuan === "function" ? buoiTuan(w) : []).filter((b) => b.gv === ten && b.tt !== "huy").map((b) => b.ca))];
-      const cas = caDung.length ? caDung.sort(gioSapXep) : (S.ca || []);
-      let d = `<table class="lich"><thead><tr><th class="goc">Tuần ${ngayVN(ngayTrongTuan[0])} – ${ngayVN(ngayTrongTuan[6])}</th>`;
-      ngayTrongTuan.forEach((ng, k) => {
-        const ngoai = String(ng).slice(0, 7) !== thang;
-        d += `<th class="${ngoai ? "ngoai" : ""}">${["T2", "T3", "T4", "T5", "T6", "T7", "CN"][k]}<br><span>${ngayVN(ng)}</span></th>`;
-      });
-      d += `</tr></thead><tbody>`;
-      cas.forEach((ca) => {
-        d += `<tr><td class="goc">${ca}</td>`;
-        ngayTrongTuan.forEach((ng, k) => {
-          const ngoai = String(ng).slice(0, 7) !== thang;
-          const b = (typeof buoiTuan === "function" ? buoiTuan(w) : []).find((x) => x.gv === ten && x.tt !== "huy" && x.thu === THU[k] && x.ca === ca);
-          d += `<td class="${ngoai ? "ngoai" : ""}">${b ? (b.lop && b.lop.ten ? b.lop.ten : "Học bù") : ""}</td>`;
-        });
-        d += `</tr>`;
-      });
-      d += `</tbody></table>`;
-      lich += d;
-    });
+    const tongBuoi = ds.length;
+    const thanhTien = tongBuoi * gia;
+    const khac = Number(g.khac || 0);
+    const dongInfo = [
+      ["Name", ten],
+      g.email ? ["Email", g.email] : null,
+      g.stk ? ["Bank account", (g.ngan_hang ? g.ngan_hang + " · " : "") + g.stk] : null,
+      ["Tutoring hour", tongBuoi + " giờ"],
+      ["Rating", tien(gia) + " / giờ"],
+      ["Tutoring payment", tien(thanhTien)],
+      ["Other", tien(khac)]
+    ].filter(Boolean).map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("");
 
-    /* 3. tổng hợp theo tuần (để đối chiếu với lịch) */
-    const kq = window.luongChiTiet(thang, ten);
-    let tongHop = "";
-    kq.tuan.forEach((t2) => {
-      const lech = t2.caTuan !== t2.trongThang;
-      tongHop += `<tr><td>${ngayVN(t2.bat_dau)} – ${ngayVN(t2.het)}</td><td style="text-align:center">${t2.trongThang}</td>
-        <td style="text-align:center">${t2.caTuan}</td><td style="text-align:right">${tien(t2.trongThang * gia)}</td>
-        <td>${lech ? "tuần vắt qua hai tháng — phần còn lại thuộc tháng bên kia" : ""}</td></tr>`;
-    });
-    if (!tongHop) tongHop = `<tr><td colspan="5" style="text-align:center">Không có buổi dạy nào trong tháng</td></tr>`;
-
-    const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Bảng lương ${ten} — ${m}/${y}</title>
+    const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Giờ dạy &amp; lương ${ten} — ${m}/${y}</title>
 <style>
- @page{size:A4;margin:12mm}
- body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#111;font-size:12.5px}
- h1{font-size:18px;margin:0 0 2px;text-align:center;text-transform:uppercase}
- .sub{text-align:center;color:#555;margin:0 0 12px;font-size:12px}
- h2{font-size:13.5px;margin:16px 0 6px;padding:5px 8px;background:#eef2f7;border-left:4px solid #1f6feb}
- .info{display:flex;justify-content:space-between;margin:0 0 8px}
- table{width:100%;border-collapse:collapse;margin-bottom:4px}
- th,td{border:1px solid #999;padding:4px 6px;vertical-align:top}
- th{background:#eef2f7;font-size:11.8px}
- table.lich th,table.lich td{text-align:center;padding:3px 2px;font-size:11px;height:20px}
- table.lich th span{font-weight:400;color:#555;font-size:10px}
- table.lich th.goc,table.lich td.goc{background:#f7f9fc;font-weight:600;text-align:right;width:52px}
- table.lich td.ngoai,table.lich th.ngoai{background:#f1f1f1;color:#aaa}
- tfoot td{font-weight:700;background:#f7f9fc}
- .ghi{margin-top:10px;font-size:11.5px;color:#444;line-height:1.5}
- .ky{display:flex;justify-content:space-between;margin-top:30px;text-align:center;font-size:12px}
- .ky div{width:45%}.ky b{display:block;margin-bottom:46px}
- @media print{h2{break-after:avoid} table{break-inside:auto} tr{break-inside:avoid}}
-</style><style>
-.chat-gopy{display:flex;gap:6px;align-items:center;margin:-4px 0 10px 2px}
-.chat-gopy button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:3px 10px;
-  font-size:12px;cursor:pointer;color:#5c6470}
-.chat-gopy button:hover{border-color:#c8b98d;color:#3b3a35}
-.chat-gopy button.on{background:#fff4d6;border-color:#e0b64a;color:#7a5a00}
-.chat-gopy span{font-size:11.5px;color:#8a93a3}
-</style>
-</head><body>
-<h1>Bảng lương tháng ${m}/${y}</h1>
-<p class="sub">Lịch dạy chi tiết, lịch các tuần và thành tiền</p>
-<div class="info"><div><b>Giáo viên:</b> ${ten}</div><div><b>Đơn giá:</b> ${tien(gia)} / giờ</div><div><b>Tổng buổi:</b> ${ds.length}</div></div>
+ @page{size:A4 landscape;margin:9mm}
+ *{box-sizing:border-box}
+ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1a1a1a;font-size:11px;margin:0}
+ h1{font-size:16px;margin:0;text-align:center;letter-spacing:.4px;text-transform:uppercase}
+ .sub{text-align:center;color:#555;margin:1px 0 8px;font-size:11px}
+ .wrap{display:flex;gap:8px;align-items:flex-start}
+ .trai{flex:1 1 auto;min-width:0}
+ .phai{flex:0 0 250px}
+ table{border-collapse:collapse;width:100%}
+ th,td{border:1px solid #c9c9c9;padding:2px 3px;vertical-align:top}
+ table.cal th{background:#f3f3f3;text-align:center;font-size:10.5px;font-weight:700;padding:3px 2px}
+ table.cal th b{display:block}
+ table.cal th i{font-style:normal;font-weight:400;color:#666;font-size:9.5px}
+ table.cal td.ngay{height:46px;width:12.6%;padding:2px}
+ table.cal td.ngay.ngoai{background:#f7f7f7;color:#bbb}
+ table.cal td.goc{width:62px;background:#fafafa;text-align:center;font-size:9.5px;line-height:1.3;font-weight:700}
+ table.cal td.goc i{font-style:normal;font-weight:400;color:#777}
+ table.cal .dau{font-size:9px;color:#888;margin-bottom:1px}
+ table.cal tr.demrow td{height:13px;font-size:9px;color:#666;background:#fbfbfb;text-align:center;padding:0}
+ table.cal tr.demrow td.goc{text-align:right;padding-right:4px;font-weight:400;background:#fbfbfb}
+ .chip{border-left:3px solid #8a8172;background:#fdf1e3;border-radius:2px;padding:1px 3px;margin-bottom:1px;
+       font-size:9.5px;line-height:1.25;display:flex;justify-content:space-between;gap:4px}
+ .chip b{font-weight:700}
+ .chip span{color:#5a5a5a;white-space:nowrap}
+ td.tong{background:#fff7e0;font-weight:700;text-align:center;width:34px;font-size:10px}
+ table.info th{width:96px;background:#f3f3f3;text-align:left;font-weight:600;font-size:10px;padding:3px 5px}
+ table.info td{font-size:10.5px;padding:3px 5px}
+ table.info tr.tong th,table.info tr.tong td{background:#ffe9a8;font-weight:800;font-size:11.5px}
+ table.mini{margin-top:8px}
+ table.mini th,table.mini td{text-align:center;font-size:10px;padding:2px 1px}
+ table.mini th{background:#f3f3f3}
+ table.mini td.goc{background:#fafafa;font-size:9.5px}
+ h2{font-size:11.5px;margin:12px 0 4px;padding:3px 6px;background:#eef2f7;border-left:3px solid #1f6feb}
+ table.ds th{background:#eef2f7;font-size:10px}
+ table.ds td{font-size:10px;padding:2px 4px}
+ td.c{text-align:center}
+ .ghi{margin-top:6px;font-size:9.5px;color:#444;line-height:1.5}
+ .ky{display:flex;justify-content:space-between;margin-top:22px;text-align:center;font-size:10.5px}
+ .ky div{width:44%}.ky b{display:block;margin-bottom:34px}
+ .sang{break-before:page;page-break-before:always}
+ @media print{tr{break-inside:avoid}}
+</style></head><body>
+<h1>Bảng giờ dạy &amp; lương</h1>
+<p class="sub">Tháng ${m}/${y} · ${ten} · ${tongBuoi} buổi · ${soNgayCo} ngày có lớp</p>
+<div class="wrap">
+  <div class="trai">
+    <table class="cal">
+      <thead><tr><th class="goc">Tuần</th>${THU7.map((t) => `<th><b>${t}</b></th>`).join("")}<th class="goc">Tổng</th></tr></thead>
+      <tbody>${hangTuan}${hangDem}</tbody>
+    </table>
+    <p class="ghi">Ô vàng nhạt ở cột cuối là số buổi của tuần. Ô xám là ngày thuộc tháng khác (không tính vào tháng ${m}/${y}).</p>
+  </div>
+  <aside class="phai">
+    <table class="info"><tbody>${dongInfo}
+      <tr class="tong"><th>Total Payment</th><td>${tien(thanhTien + khac)}</td></tr></tbody></table>
+    <table class="mini">
+      <thead><tr><th>Tuần</th>${THU7.map((t) => `<th>${t}</th>`).join("")}<th>T</th></tr></thead>
+      <tbody>${miniRows}</tbody>
+    </table>
+  </aside>
+</div>
 
-<h2>1. Các buổi dạy trong tháng (ngày ${"01/" + m} – ${cuoiThang}/${m})</h2>
-<table><thead><tr><th style="width:32px">STT</th><th style="width:56px">Ngày</th><th style="width:40px">Thứ</th><th style="width:56px">Giờ</th><th>Lớp</th><th>Ghi chú</th></tr></thead>
-<tbody>${dong || `<tr><td colspan="6" style="text-align:center;padding:10px">Không có buổi dạy nào</td></tr>`}</tbody>
-<tfoot><tr><td colspan="4">TỔNG</td><td colspan="2">${ds.length} buổi × ${tien(gia)} = <b>${tien(ds.length * gia)}</b></td></tr></tfoot></table>
-
-<h2>2. Lịch các tuần có ngày trong tháng ${m}/${y}</h2>
-${lich || "<p>Chưa có tuần nào.</p>"}
-
-<h2>3. Tổng hợp theo tuần (đối chiếu với lịch)</h2>
-<table><thead><tr><th>Tuần</th><th style="width:90px">Số buổi trong tháng</th><th style="width:90px">Cả tuần</th><th style="width:110px">Thành tiền</th><th>Ghi chú</th></tr></thead>
-<tbody>${tongHop}</tbody>
-<tfoot><tr><td>TỔNG CỘNG</td><td style="text-align:center">${kq.tongThang}</td><td style="text-align:center">${kq.tongCaTuan}</td>
-<td style="text-align:right">${tien(kq.tongThang * gia)}</td><td></td></tr></tfoot></table>
-
-<p class="ghi">Ghi chú: mỗi buổi tính 1 giờ; buổi “đã huỷ” không tính. Ô xám trong lịch là ngày thuộc tháng khác (không tính vào tháng ${m}/${y}).
-${kq.tongCaTuan !== kq.tongThang ? "Cột “Cả tuần” là số buổi của tuần vắt qua hai tháng — phần chênh thuộc tháng bên kia, không mất buổi nào." : ""}</p>
+<div class="sang">
+<h2>Chi tiết các buổi dạy trong tháng (${ngayVN("01-" + m + "-" + y)} – ${cuoiThang}/${m}/${y})</h2>
+<table class="ds"><thead><tr><th style="width:32px">STT</th><th style="width:52px">Ngày</th><th style="width:36px">Thứ</th>
+<th style="width:46px">Giờ</th><th>Lớp</th><th style="width:30%">Ghi chú</th></tr></thead>
+<tbody>${dong || `<tr><td colspan="6" class="c">Không có buổi dạy nào</td></tr>`}</tbody>
+<tfoot><tr><td colspan="4" style="font-weight:700">TỔNG</td><td colspan="2"><b>${tongBuoi} buổi × ${tien(gia)} = ${tien(thanhTien)}</b>${khac ? " · cộng khác " + tien(khac) + " ⇒ " + tien(thanhTien + khac) : ""}</td></tr></tfoot>
+</table>
+<p class="ghi">Mỗi buổi tính 1 giờ; buổi “đã huỷ” không tính. Số giờ và thành tiền do máy tính từ lịch dạy đã lưu, không nhập tay.</p>
 <div class="ky"><div><b>Người lập</b>(ký, ghi rõ họ tên)</div><div><b>Giáo viên</b>(ký, ghi rõ họ tên)</div></div>
+</div>
 </body></html>`;
     const w = window.open("", "_blank");
     if (!w) { alert("Trình duyệt đang chặn cửa sổ in. Cho phép pop-up rồi bấm lại."); return; }
