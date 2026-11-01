@@ -363,6 +363,10 @@
         cx-=dx/d*48; cy-=dy/d*28;
         sua1();
         z.biBat=true;                                   // bạn bị bắt đứng lại
+        // bước ra phía trước một bước để không bị cây/ghế che mất
+        z.y=Math.min(dayToiDa(), z.y+55);
+        var thu=0;
+        while(biChan(z.x,zTuY(z.y)) && thu<12){ z.y=Math.max(toaDoY(ZMIN)+10, z.y-10); thu++; }
         z.el.classList.add('bi-bat');
         hienKhung(z,0);
         document.getElementById('bTen').textContent=ten[z.i]||TEN_MAC_DINH[z.i];
