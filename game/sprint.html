@@ -62,18 +62,19 @@
     .dieu-khien{top:auto;bottom:10px;left:8px;right:8px;max-width:none;justify-content:center;gap:6px}
     button{font-size:13px;padding:11px 11px;border-radius:10px}
     .tieu-de{top:14px}
+    #chay{width:clamp(200px,46vw,300px)}
     .ghi-chu{display:none}
   }
 </style>
 </head>
-<body class="dang-chay">
+<body>
   <div class="may a"></div><div class="may b"></div><div class="may c"></div>
   <div class="mat-dat"></div>
 
   <div class="tieu-de"><b>Sprint</b><p>Bấm nút để điều khiển chú chó</p></div>
 
   <div class="dieu-khien">
-    <button id="btnDi" class="chinh">Dừng</button>
+    <button id="btnDi" class="chinh">Đi</button>
     <button id="btnChieu">Đổi chiều</button>
     <button id="btnNhanh">Tốc độ ×1</button>
     <button id="btnSua">Sủa</button>
@@ -88,24 +89,35 @@
     </div>
   </div>
 
-  <div class="ghi-chu">6 khung hình SVG · chuyển động do JS điều khiển</div>
+  <div class="ghi-chu">8 khung SVG (6 chạy + 2 đứng) · JS điều khiển · tiếng sủa 0,5 giây</div>
 
+<audio id="tiengSua" src="audio/sua.mp3" preload="auto"></audio>
 <script>
 (function(){
   var sprite = document.getElementById('sprite');
   var chay   = document.getElementById('chay');
+  var tieng  = document.getElementById('tiengSua');
   var KHUNG  = 6, NHIP = 130;
 
-  var x = -260, huong = 1, tocDo = 260, dangChay = true;
+  var x = 0, huong = 1, tocDo = 260, dangChay = false;
   var khung = 0, dem = 0, sua = 0, lanCuoi = 0, rongAnh = 300;
   var dsKhung = [];
 
-  function datKhung(i){
+  function hien(i){
     for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.display = (k===i) ? '' : 'none';
   }
-
+  function hienTheoTen(ten){
+    for(var k=0;k<dsKhung.length;k++){
+      dsKhung[k].style.display = dsKhung[k].classList.contains(ten) ? '' : 'none';
+    }
+  }
   function ve(){
     chay.style.transform = 'translateX(' + x.toFixed(1) + 'px) scaleX(' + huong + ')';
+  }
+  function datNut(){
+    var b = document.getElementById('btnDi');
+    b.textContent = dangChay ? 'Dừng' : 'Đi';
+    document.body.classList.toggle('dang-chay', dangChay);
   }
 
   function buoc(ts){
@@ -118,17 +130,16 @@
       var rongMan = window.innerWidth;
       if(huong === 1 && x > rongMan + 20) x = -rongAnh - 20;
       if(huong === -1 && x < -rongAnh - 20) x = rongMan + 20;
-
       dem += dt * 1000 * (tocDo / 260);
       if(dem >= NHIP){ dem = 0; khung = (khung + 1) % KHUNG; }
     }
 
     if(sua > 0){
       sua -= dt * 1000;
-      var nhip = Math.floor((600 - sua) / 90) % 3;
-      datKhung([0,2,4][nhip]);
+      if(dangChay){ hien(khung); }
+      else { hienTheoTen((Math.floor((600 - sua) / 110) % 2) ? 'k8' : 'k7'); }
     } else if(dsKhung.length){
-      datKhung(khung);
+      if(dangChay) hien(khung); else hienTheoTen('k7');
     }
     ve();
     requestAnimationFrame(buoc);
@@ -141,16 +152,18 @@
     svg.removeAttribute('width'); svg.removeAttribute('height');
     sprite.appendChild(document.importNode(svg, true));
     dsKhung = sprite.querySelectorAll('g.khung');
+    for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.animation = 'none';
     rongAnh = Math.max(200, chay.getBoundingClientRect().width);
-    x = Math.round(window.innerWidth * 0.08); datKhung(0); ve();
+    x = Math.round(window.innerWidth * 0.08);
+    hienTheoTen('k7'); ve();
   }).catch(function(){
     sprite.innerHTML = '<img src="sprint-chay.svg" alt="Sprint">';
   });
 
   document.getElementById('btnDi').onclick = function(){
     dangChay = !dangChay;
-    this.textContent = dangChay ? 'Dừng' : 'Đi';
-    document.body.classList.toggle('dang-chay', dangChay);
+    if(dangChay){ dem = 0; } else { hienTheoTen('k7'); }
+    datNut();
   };
 
   document.getElementById('btnChieu').onclick = function(){ huong = -huong; ve(); };
@@ -161,7 +174,10 @@
     tocDo = bac[i]; this.textContent = 'Tốc độ ' + ten[i];
   };
 
-  document.getElementById('btnSua').onclick = function(){ sua = 600; };
+  document.getElementById('btnSua').onclick = function(){
+    sua = 600;
+    try{ tieng.currentTime = 0; tieng.play(); }catch(e){}
+  };
 
   document.getElementById('btnGiua').onclick = function(){
     x = Math.max(0, (window.innerWidth - rongAnh) / 2); ve();
