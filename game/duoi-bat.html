@@ -168,17 +168,18 @@
   var TEN_MAC_DINH=['Bạn 1','Bạn 2','Bạn 3','Bạn 4','Bạn 5','Bạn 6'];
   var SRC_NAM=['vat-the/tre1.svg','vat-the/tre2.svg','vat-the/tre3.svg'];
   var SRC_NU=['vat-the/nu1.svg','vat-the/nu2.svg','vat-the/nu3.svg'];
-  var SRC_THAY='vat-the/thay.svg';
+  var SRC_THAY_NAM='vat-the/thay.svg', SRC_THAY_NU='vat-the/co-giao.svg';
   var TOI_DA=6, TOI_THIEU=2, tuLop=false;
   var thamSo=new URLSearchParams(location.search);
-  var dsBe=[], coThay=false, tenThay='Thầy';
+  var dsBe=[], coThay=true, thayNu=true, tenThay='Teacher';
 
   (function napDuLieu(){
     var cu=null;
     try{ cu=JSON.parse(localStorage.getItem('ds-be')||'null'); }catch(e){}
     if(cu && cu.ds && cu.ds.length){
       dsBe=cu.ds.slice(0,TOI_DA).map(function(x){return {ten:String(x.ten||'Bạn'), nu:!!x.nu};});
-      coThay=!!cu.thay; tenThay=cu.tenThay||'Thầy';
+      coThay=(typeof cu.thay==='boolean')?cu.thay:true;
+      thayNu=(typeof cu.thayNu==='boolean')?cu.thayNu:true;
     } else {
       var t0=null, n0=6;
       try{ t0=JSON.parse(localStorage.getItem('ten-be')||'null'); }catch(e){}
@@ -193,7 +194,11 @@
         tuLop=true;
       }
     }
-    if(thamSo.get('thay')){ coThay=true; tenThay=(thamSo.get('thay')||'').trim()||'Thầy'; }
+    if(thamSo.has('thay')){
+      var gt=(thamSo.get('thay')||'').toLowerCase();
+      coThay = gt!=='0';
+      thayNu = gt!=='thay';                 // 'thay' = thầy nam, còn lại là cô giáo
+    }
     if(dsBe.length<TOI_THIEU){ dsBe=[]; for(var j=0;j<TOI_THIEU;j++) dsBe.push({ten:TEN_MAC_DINH[j], nu:j===1}); }
   })();
 
@@ -321,7 +326,7 @@
       else { o.cho=0; o.vx*=0.3; o.vy*=0.3; }
       if(o.vx>38) o.huong=1; else if(o.vx<-38) o.huong=-1;
       o.dem+=dt*1000*Math.min(1.6, sp/110);
-      if(o.dem>112){ o.dem=0; hienKhung(o,(o.khung+1)%4); }
+      if(o.dem>112){ o.dem=0; hienKhung(o,(o.khung+1)%(o.frames.length||4)); }
     }
     veBe(o);
   }
@@ -438,7 +443,7 @@
       var src=b.nu ? SRC_NU[(nuD++)%3] : SRC_NAM[(namD++)%3];
       taoBe(i, src, b.ten, false);
     }
-    if(coThay) taoBe(dsBe.length, SRC_THAY, tenThay, true);
+    if(coThay) taoBe(dsBe.length, thayNu?SRC_THAY_NU:SRC_THAY_NAM, tenThay, true);
     for(var i=0;i<BE.length;i++){
       var o=BE[i], p=viTri[i%viTri.length];
       o.x=W()*p[0]; o.y=toaDoY(p[1]); o.tx=o.x; o.ty=o.y; o.cho=performance.now()+800;
@@ -467,9 +472,8 @@
       var el=document.getElementById('t'+j);
       if(el) dsBe[j].ten=el.value.trim()||TEN_MAC_DINH[j];
     }
-    var ct=document.getElementById('coThay'), tt=document.getElementById('tenThay');
+    var ct=document.getElementById('coThay');
     if(ct) coThay=ct.checked;
-    if(tt) tenThay=tt.value.trim()||'Thầy';
   }
 
   function veBangTen(){
@@ -500,17 +504,19 @@
       dsBe.push({ten:TEN_MAC_DINH[dsBe.length]||('Bạn '+(dsBe.length+1)), nu:nuMoi}); veBangTen(); } };
     luoi.appendChild(them);
 
-    // hàng thầy/cô giáo
+    // hàng giáo viên: bật/tắt + chọn cô hay thầy
     var hangThay=document.createElement('div'); hangThay.className='dong thay-dong';
     var nhan=document.createElement('label'); nhan.className='chon';
     var cb=document.createElement('input'); cb.type='checkbox'; cb.id='coThay'; cb.checked=coThay;
-    cb.onchange=function(){ var tt=document.getElementById('tenThay'); if(tt) tt.disabled=!cb.checked; };
-    nhan.appendChild(cb); nhan.appendChild(document.createTextNode(' Thầy/cô giáo chạy cùng'));
+    nhan.appendChild(cb); nhan.appendChild(document.createTextNode(' Teacher chạy cùng'));
     var hang2=document.createElement('div'); hang2.className='hang';
-    var inpThay=document.createElement('input');
-    inpThay.id='tenThay'; inpThay.maxLength=18; inpThay.placeholder='Tên thầy/cô'; inpThay.value=tenThay||'Thầy';
-    inpThay.disabled=!coThay;
-    hang2.appendChild(inpThay);
+    var gvGioi=document.createElement('button');
+    gvGioi.className='gioi'; gvGioi.type='button';
+    gvGioi.textContent=thayNu?'👩':'👨';
+    gvGioi.title=thayNu?'Đang là cô giáo — bấm để đổi thành thầy giáo':'Đang là thầy giáo — bấm để đổi thành cô giáo';
+    gvGioi.disabled=!coThay;
+    gvGioi.onclick=function(){ docTen(); thayNu=!thayNu; veBangTen(); };
+    hang2.appendChild(gvGioi);
     hangThay.appendChild(nhan); hangThay.appendChild(hang2); luoi.appendChild(hangThay);
 
     var ghi=document.createElement('div'); ghi.className='ghi';
@@ -523,7 +529,7 @@
   document.getElementById('btnLuu').onclick=function(){
     docTen();
     if(dsBe.length<TOI_THIEU){ dsBe.push({ten:TEN_MAC_DINH[1], nu:true}); }
-    if(!tuLop) localStorage.setItem('ds-be', JSON.stringify({ds:dsBe, thay:coThay, tenThay:tenThay}));
+    if(!tuLop) localStorage.setItem('ds-be', JSON.stringify({ds:dsBe, thay:coThay, thayNu:thayNu}));
     trangThai='nghi'; dich=null; demPha=0; demSan=0;
     document.getElementById('btnDuoi').textContent='Bắt đầu đuổi';
     document.getElementById('banner').classList.remove('hien');

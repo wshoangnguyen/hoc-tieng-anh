@@ -259,7 +259,8 @@ const NHOM = [
 ];
 
 const KHAC = { ten:"Dùng trong lớp", mo:"Công cụ cho giáo viên", mau:"#8a8577",
-  tro:[ {ten:"Chọn ngẫu nhiên", phu:"Gọi tên / chọn nhóm", href:"random.html", img:"../random.png", icon:"🎲"} ]};
+  tro:[ {ten:"Chó đuổi gọi tên", phu:"Chó đuổi — ai bị bắt thì đứng lên trả lời", href:"duoi-bat.html", img:"logo-duoi-bat.svg"},
+        {ten:"Chọn ngẫu nhiên", phu:"Gọi tên / chọn nhóm", href:"random.html", img:"../random.png", icon:"🎲"} ]};
 
 const html = NHOM.concat([KHAC]).map(n=>`
   <section class="${n.so?"":"khac"}">
