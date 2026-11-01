@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hướng dẫn dùng web quản lý lớp — dành cho giáo viên</title>
+<style>
+:root{
+  --ink:#241a0e; --dim:#7a6446; --line:#e4d9c3; --card:#fffdf8;
+  --accent:#f0b429; --accent2:#7a5c15; --ok:#2e7d4f; --bg:#f6f1e6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 60px}
+header.top{background:linear-gradient(135deg,#2f4a2b,#3f6b3a);color:#fff;border-radius:18px;padding:22px 24px;margin-bottom:22px}
+header.top h1{margin:0 0 6px;font-size:23px;letter-spacing:.2px}
+header.top p{margin:0;opacity:.9;font-size:13.5px}
+header.top img{height:38px;width:auto;background:#fff;border-radius:8px;padding:3px 6px;margin-bottom:12px;display:block}
+section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:0 0 16px;
+  box-shadow:0 2px 10px rgba(70,50,15,.05)}
+h2{font-size:17.5px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+h2 .so{background:var(--accent);color:#3a2a00;border-radius:9px;width:26px;height:26px;display:grid;place-items:center;
+  font-size:14px;font-weight:800;flex:0 0 auto}
+.mo{color:var(--dim);font-size:13.5px;margin:0 0 12px}
+ol,ul{margin:0;padding-left:22px}
+li{margin:5px 0}
+b.btn{background:#fff4d6;border:1px solid #e8cf94;border-radius:7px;padding:1px 6px;font-size:13.5px;white-space:nowrap}
+code{background:#f0e8d6;border-radius:5px;padding:1px 5px;font-size:13px}
+.luu{background:#fdf6e3;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:9px 12px;margin:12px 0 0;font-size:13.5px}
+.luu b{color:var(--accent2)}
+table{width:100%;border-collapse:collapse;margin:10px 0 0;font-size:13.8px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f5edda;font-size:13px;color:var(--dim);text-transform:none}
+td k:first-child{white-space:nowrap}
+.ic{font-size:15px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:16px 12px 40px}header.top{padding:18px}}
+footer{color:var(--dim);font-size:12.5px;text-align:center;margin-top:22px}
+@media print{
+  body{background:#fff;font-size:13.4px;line-height:1.55}
+  section{box-shadow:none;border-color:#d8d8d8;break-inside:avoid;page-break-inside:avoid;
+          padding:14px 16px;margin-bottom:10px}
+  h2{font-size:16px}
+  .mo{font-size:12.8px;margin-bottom:9px}
+  .luu{font-size:12.8px;padding:8px 11px;margin-top:9px}
+  table{font-size:12.8px}
+  th,td{padding:6px 9px}
+  header.top{padding:16px 18px;margin-bottom:14px}
+  header.top h1{font-size:20px}
+  li{margin:3px 0}
+  header.top{background:#2f4a2b !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:none;padding:0}
+  @page{size:A4;margin:14mm}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <img src="../logo.png" alt="Học Tiếng Anh Dễ Làm">
+  <h1>Hướng dẫn dùng web quản lý lớp</h1>
+  <p>Dành cho giáo viên · bản 01/11/2026</p>
+</header>
+
+<section>
+  <h2><span class="so">1</span> Đăng nhập</h2>
+  <p class="mo">Mở bằng điện thoại hay máy tính đều được, không cần cài thêm gì.</p>
+  <ol>
+    <li>Mở <code>hoctienganhdelam.com/quan-ly</code></li>
+    <li>Nhập <b>email</b> và <b>mật khẩu</b> được cấp, bấm <b class="btn">Đăng nhập</b>.</li>
+    <li>Web nhớ đăng nhập, lần sau chỉ cần mở là vào. Máy khác thì phải đăng nhập lại.</li>
+  </ol>
+  <div class="luu"><b>Không đăng nhập được?</b> Kiểm tra đúng email (thường là email trường/trung tâm cấp). Quên mật khẩu thì nhắn quản trị đặt lại, giáo viên không tự đổi được.</div>
+</section>
+
+<section>
+  <h2><span class="so">2</span> Màn hình có gì</h2>
+  <p class="mo">Phía trên có 2 trang lớn, mỗi trang gồm vài thẻ nhỏ. Giáo viên chỉ thấy những thẻ mình được dùng.</p>
+  <table>
+    <tr><th>Trang</th><th>Thẻ giáo viên nhìn thấy</th><th>Dùng để</th></tr>
+    <tr><td><b>📅 Lịch dạy</b></td><td>Lịch giáo viên · Giờ dạy &amp; lương · Đăng ký lịch dạy</td><td>Xem ca mình dạy, đăng ký giờ rảnh, xem giờ công</td></tr>
+    <tr><td><b>🧑‍🎓 Lớp &amp; học viên</b></td><td>Điểm danh · Bài dạy · Điểm số · Đề thi &amp; kiểm tra</td><td>Làm việc với lớp trong buổi học</td></tr>
+  </table>
+  <div class="luu">Không thấy thẻ nào đó là do <b>phân quyền</b>, không phải lỗi. Cần thêm quyền thì báo quản trị.</div>
+</section>
+
+<section>
+  <h2><span class="so">3</span> Điểm danh lớp — việc đầu tiên mỗi buổi</h2>
+  <ol>
+    <li>Vào <b>🧑‍🎓 Lớp &amp; học viên</b> → thẻ <b class="btn">Điểm danh</b>.</li>
+    <li>Chọn <b class="btn">Lớp hôm nay</b> (có thể xem <b class="btn">Lớp hôm qua</b> hoặc <b class="btn">Tất cả các lớp</b>).</li>
+    <li>Bấm vào <b>thẻ lớp</b> đang dạy — thẻ có viền đậm, ghi giờ là lớp có buổi hôm nay.</li>
+    <li>Đánh dấu học viên: bấm <b>vào ảnh</b> của bạn đó, mỗi lần bấm đổi một nấc:
+      <br>chưa đánh dấu → <b>có mặt</b> → <b>vắng</b> → chưa đánh dấu.</li>
+    <li>Lớp đi đủ thì bấm <b class="btn">✅ Có mặt cả lớp (hôm nay)</b> một lần cho nhanh, rồi chỉ sửa lại bạn vắng.</li>
+  </ol>
+  <p class="mo" style="margin-top:12px">Bốn nút nhỏ dưới mỗi học viên:</p>
+  <table>
+    <tr><td><span class="ic">⭐</span></td><td><b>Điểm tích luỹ</b> — bấm để cộng điểm cho bạn đó (điểm buổi học + cô cộng + điều chỉnh).</td></tr>
+    <tr><td><span class="ic">📝</span></td><td><b>Đánh giá hôm nay</b> — ghi nhận xét buổi học cho bạn đó.</td></tr>
+    <tr><td><span class="ic">🎁</span></td><td><b>Thưởng sticker</b> — con số nhỏ là số sticker đã thưởng hôm nay; bấm vào sticker để xoá nếu lỡ tay.</td></tr>
+    <tr><td><span class="ic">✅</span></td><td><b>Điểm danh 2 tuần</b> — bấm để xem lịch sử đi học của bạn đó trong 2 tuần; nút sáng lên khi cần chú ý chuyên cần.</td></tr>
+  </table>
+  <div class="luu"><b>Lớp nghỉ buổi này:</b> bấm <b class="btn">⚪ Nghỉ buổi này</b> — học viên <b>không bị tính vắng</b>. Lỡ bấm thì <b class="btn">↩ Bỏ đánh dấu nghỉ</b>.<br>
+  <b>Bấm nhầm điểm danh:</b> bấm lại vào ảnh để xoay vòng, không cần xoá gì.</div>
+</section>
+
+<section>
+  <h2><span class="so">4</span> Gọi tên ngẫu nhiên (trò chơi chó đuổi)</h2>
+  <p class="mo">Dùng trong phần khởi động hoặc kiểm tra bài cũ — cả lớp nhìn màn hình, không cần chuẩn bị gì.</p>
+  <ol>
+    <li>Trong danh sách lớp của tab <b>Điểm danh</b>, bấm <b class="btn">🎲 Gọi tên ngẫu nhiên</b>.</li>
+    <li>Cửa sổ trò chơi hiện ra <b>ngay trên web quản lý</b>, tên học viên của lớp đã được nạp sẵn. Chó còn đứng yên.</li>
+    <li>Nói với cả lớp “cùng xem chó bắt được ai” rồi bấm <b class="btn">Bắt đầu đuổi</b>.</li>
+    <li>Chó đuổi và bắt một bạn — tên bạn đó hiện to giữa màn hình: mời bạn đứng lên trả lời.</li>
+    <li>Bấm <b class="btn">Đổi tên</b> để thêm/bớt bạn (2–6 bạn), đổi nam 👦 / nữ 👧, bật/tắt giáo viên chạy cùng.</li>
+    <li>Xong thì bấm nút <b>✕</b> ở góc trên bên phải để đóng, quay lại đúng tab Điểm danh.</li>
+  </ol>
+  <div class="luu">Giáo viên là người bấm <b>Bắt đầu đuổi</b> — trò chơi không tự chạy, để còn kịp ổn định lớp trước.</div>
+</section>
+
+<section>
+  <h2><span class="so">5</span> Bài dạy của buổi</h2>
+  <ol>
+    <li>Trong danh sách lớp, bấm <b class="btn">📖 Bài dạy</b>.</li>
+    <li>Chọn lớp ở ô <b>Lớp</b>, chọn sách/unit đang dạy.</li>
+    <li>Bấm vào <b>từng phần</b> đã dạy để đánh dấu.</li>
+    <li>Cuối buổi bấm <b class="btn">✔ Hoàn thành</b> để lưu buổi học.</li>
+  </ol>
+  <div class="luu">Chỉ cần đánh dấu phần đã dạy — không phải viết lại giáo án. Lần sau mở lại sẽ thấy tiến độ của buổi trước.</div>
+</section>
+
+<section>
+  <h2><span class="so">6</span> Điểm số &amp; nhận xét học viên</h2>
+  <ol>
+    <li>Thẻ <b class="btn">Điểm số</b> → gõ tên hoặc mã HV vào ô <b>Tìm</b>, hoặc chọn <b>Lớp</b> để lọc.</li>
+    <li>Bấm <b class="btn">💡 Gợi ý nhận xét</b> để lấy câu nhận xét theo thang năng lực, rồi sửa lại theo ý mình.</li>
+    <li><b class="btn">🖨 Phiếu học viên</b> in thông tin các bạn đang hiện; <b class="btn">⬇ CSV điểm</b> tải bảng điểm về máy.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="so">7</span> Xem lịch dạy của mình</h2>
+  <ol>
+    <li>Vào <b>📅 Lịch dạy</b> → thẻ <b class="btn">Lịch giáo viên</b>.</li>
+    <li>Lịch chỉ hiện <b>những ca mình có lớp dạy</b>, không lẫn ca của người khác.</li>
+    <li>Dùng <b class="btn">Thu nhỏ</b> / <b class="btn">Phóng to ×1,5</b> cho dễ nhìn khi chiếu lên màn hình.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="so">8</span> Đăng ký giờ rảnh</h2>
+  <ol>
+    <li>Thẻ <b class="btn">Đăng ký lịch dạy</b> → chọn <b>Tuần đang xem</b>.</li>
+    <li>Ô <b>tick = giờ mình rảnh</b>. Tick xong là lưu ngay, không có nút Lưu riêng.</li>
+    <li>Muốn làm lại từ đầu thì bấm <b class="btn">↺ Trả tuần này về mặc định</b>.</li>
+  </ol>
+  <div class="luu">Lớp xếp vào giờ <b>không tick</b> sẽ bị cảnh báo trùng lịch — nên đăng ký rảnh trước khi quản trị xếp lớp cho tuần mới.</div>
+</section>
+
+<section>
+  <h2><span class="so">9</span> Giờ dạy &amp; lương</h2>
+  <ol>
+    <li>Thẻ <b class="btn">Giờ dạy &amp; lương</b> → chọn <b>Tháng</b>.</li>
+    <li>Số liệu đếm theo <b>ngày thật</b>: buổi nào rơi vào tháng đang chọn thì tính, <b>mỗi buổi = 1 giờ</b>.</li>
+    <li>Bấm <b class="btn">⬇ CSV lương (chi tiết)</b> nếu cần bảng chi tiết từng buổi.</li>
+  </ol>
+  <div class="luu">Thấy thiếu buổi thì đối chiếu với lịch tuần đã xếp, rồi báo quản trị — giáo viên không tự sửa được giờ công.</div>
+</section>
+
+<section>
+  <h2><span class="so">10</span> Đề thi &amp; kiểm tra</h2>
+  <ol>
+    <li>Thẻ <b class="btn">Đề thi &amp; kiểm tra</b> — nơi có đề làm trên web, đề in giấy, file nghe và đáp án.</li>
+    <li>Bấm vào đề để mở; gửi link cho học viên làm trên điện thoại/máy tính.</li>
+    <li>Bài học viên nộp được lưu lại để chấm và xem nhận xét.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="so">11</span> Khi có sự cố</h2>
+  <table>
+    <tr><th>Tình huống</th><th>Cách xử lý</th></tr>
+    <tr><td>Trang trắng, không tải được</td><td>Bấm <b class="btn">🔄 Làm mới</b> trên thanh trên; nếu vẫn vậy thì tải lại trang (kéo xuống hoặc F5).</td></tr>
+    <tr><td>Không thấy lớp của mình</td><td>Kiểm tra đang ở <b class="btn">Lớp hôm nay</b> hay <b class="btn">Tất cả các lớp</b>; lớp chỉ hiện khi đã được xếp trong tuần.</td></tr>
+    <tr><td>Điểm danh nhầm</td><td>Bấm lại vào ảnh học viên để xoay trạng thái.</td></tr>
+    <tr><td>Sticker thưởng nhầm</td><td>Bấm vào sticker đã thưởng để xoá.</td></tr>
+    <tr><td>Mất mạng giữa buổi</td><td>Đợi có mạng lại rồi bấm <b class="btn">🔄 Làm mới</b> để lấy dữ liệu mới nhất; tránh mở cùng một lớp trên hai máy.</td></tr>
+    <tr><td>Không thấy thẻ cần dùng</td><td>Do phân quyền — báo quản trị, giáo viên không tự mở được.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="so">12</span> Nguyên tắc chung</h2>
+  <ul>
+    <li><b>Điểm danh trước, dạy sau</b> — lớp đã vào giờ mà chưa điểm danh sẽ hiện dấu nhắc.</li>
+    <li><b>Chỉ ghi cái khác thường</b>: bình thường thì bấm “Có mặt cả lớp”, chỉ đánh dấu bạn vắng/đi trễ.</li>
+    <li><b>Không dùng chung tài khoản</b> — mỗi giáo viên một email, để giờ dạy và lương tính đúng người.</li>
+    <li><b>Không sửa dữ liệu lớp khác</b>; cần sửa ngoài phạm vi thì nhắn quản trị.</li>
+  </ul>
+</section>
+
+<footer>Học Tiếng Anh Dễ Làm · hoctienganhdelam.com · Hướng dẫn giáo viên bản 01/11/2026</footer>
+</div>
+</body>
+</html>
