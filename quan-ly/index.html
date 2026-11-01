@@ -2414,7 +2414,9 @@ function moGoiTen(lop){
   if(ten.length>6){ thua=ten.length-6;
     for(let i=ten.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [ten[i],ten[j]]=[ten[j],ten[i]]; }
     ten=ten.slice(0,6); }
-  const url="../game/duoi-bat.html?ten="+encodeURIComponent(ten.join("|"))+"&tu=1";
+  let gv=""; try{ gv=String(gvCuaLopHomNay(lop)||"").trim(); }catch(e){}
+  const url="../game/duoi-bat.html?ten="+encodeURIComponent(ten.join("|"))+"&tu=1"
+            +(gv?"&thay="+encodeURIComponent(gv):"");
   const hop=document.getElementById("goiTenHop"), ifr=document.getElementById("goiTenIfr");
   if(hop && ifr){ ifr.src=url; hop.style.display="flex"; }
   else { window.open(url,"_blank","noopener"); }

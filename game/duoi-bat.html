@@ -69,11 +69,17 @@
   #hopTen .hang input{flex:1}
   #hopTen .xoa{flex:0 0 auto;width:34px;padding:7px 0;font-size:13px;line-height:1;
                background:#fde8e4;color:#b4452f;border:1px solid #f3c3b8;border-radius:9px}
+  #hopTen .gioi{flex:0 0 auto;width:36px;padding:6px 0;font-size:15px;line-height:1;
+                background:#eef6ff;border:1px solid #c8ddf3;border-radius:9px;cursor:pointer}
+  #hopTen .thay-dong{grid-column:1/-1;margin:8px 0 0;padding-top:12px;border-top:1px dashed #e6d5b6}
+  #hopTen .thay-dong .chon{display:flex;align-items:center;gap:7px;font-size:13.5px;color:#5c4a30;
+                font-weight:600;margin-bottom:6px;cursor:pointer}
+  #hopTen .thay-dong input[type=checkbox]{width:17px;height:17px;accent-color:#c98a2b}
   #hopTen .xoa:disabled{opacity:.35}
-  #hopTen .them{width:100%;margin-top:2px;border:1px dashed #d9bd8e;background:#fffaf0;
-                color:#8a6a3c;font-weight:600}
+  #hopTen .them{grid-column:1/-1;width:100%;margin:6px 0 0;padding:9px 0;border:1px dashed #d9bd8e;
+                background:#fffaf0;color:#8a6a3c;font-weight:600}
   #hopTen .them:disabled{opacity:.4}
-  #hopTen .ghi{font-size:11px;color:#96794f;margin-top:6px;text-align:center}
+  #hopTen .ghi{grid-column:1/-1;font-size:11px;color:#96794f;margin-top:8px;text-align:center}
   #hopTen .nut{display:flex;gap:8px;margin-top:12px}
   #hopTen .nut button{flex:1}
 
@@ -160,27 +166,47 @@
 
   // ---------- 6 bạn nhỏ (3 trai + 3 gái) ----------
   var TEN_MAC_DINH=['Bạn 1','Bạn 2','Bạn 3','Bạn 4','Bạn 5','Bạn 6'];
-  var SRC=['vat-the/tre1.svg','vat-the/tre2.svg','vat-the/tre3.svg',
-           'vat-the/nu1.svg','vat-the/nu2.svg','vat-the/nu3.svg'];
+  var SRC_NAM=['vat-the/tre1.svg','vat-the/tre2.svg','vat-the/tre3.svg'];
+  var SRC_NU=['vat-the/nu1.svg','vat-the/nu2.svg','vat-the/nu3.svg'];
+  var SRC_THAY='vat-the/thay.svg';
   var TOI_DA=6, TOI_THIEU=2, tuLop=false;
   var thamSo=new URLSearchParams(location.search);
-  var ten=JSON.parse(localStorage.getItem('ten-be')||'null')||[];
-  var SO_BE=parseInt(localStorage.getItem('so-be')||'6',10);
-  if(!(SO_BE>=TOI_THIEU && SO_BE<=TOI_DA)) SO_BE=6;
-  if(thamSo.get('ten')){
-    var t1=thamSo.get('ten').split('|').map(function(x){return x.trim();}).filter(Boolean).slice(0,TOI_DA);
-    if(t1.length>=1){ ten=t1.slice(); SO_BE=Math.max(TOI_THIEU, Math.min(TOI_DA,t1.length)); tuLop=true; }
-  }
-  while(ten.length<SO_BE) ten.push(TEN_MAC_DINH[ten.length]||('Bạn '+(ten.length+1)));
+  var dsBe=[], coThay=false, tenThay='Thầy';
+
+  (function napDuLieu(){
+    var cu=null;
+    try{ cu=JSON.parse(localStorage.getItem('ds-be')||'null'); }catch(e){}
+    if(cu && cu.ds && cu.ds.length){
+      dsBe=cu.ds.slice(0,TOI_DA).map(function(x){return {ten:String(x.ten||'Bạn'), nu:!!x.nu};});
+      coThay=!!cu.thay; tenThay=cu.tenThay||'Thầy';
+    } else {
+      var t0=null, n0=6;
+      try{ t0=JSON.parse(localStorage.getItem('ten-be')||'null'); }catch(e){}
+      n0=parseInt(localStorage.getItem('so-be')||'6',10); if(!(n0>=TOI_THIEU&&n0<=TOI_DA)) n0=6;
+      for(var i=0;i<n0;i++) dsBe.push({ten:(t0&&t0[i])||TEN_MAC_DINH[i], nu:(i%2===1)});
+    }
+    if(thamSo.get('ten')){
+      var t1=thamSo.get('ten').split('|').map(function(x){return x.trim();}).filter(Boolean).slice(0,TOI_DA);
+      if(t1.length>=1){
+        dsBe=t1.map(function(v,i){return {ten:v, nu:(i%2===1)};});
+        if(dsBe.length<TOI_THIEU) dsBe.push({ten:TEN_MAC_DINH[1], nu:true});
+        tuLop=true;
+      }
+    }
+    if(thamSo.get('thay')){ coThay=true; tenThay=(thamSo.get('thay')||'').trim()||'Thầy'; }
+    if(dsBe.length<TOI_THIEU){ dsBe=[]; for(var j=0;j<TOI_THIEU;j++) dsBe.push({ten:TEN_MAC_DINH[j], nu:j===1}); }
+  })();
+
   var BE=[], CAO_BE=128;
 
-  function taoBe(i,src){
-    var d=document.createElement('div'); d.className='nguoi';
+  function taoBe(i,src,tenBe,laThay){
+    var d=document.createElement('div'); d.className='nguoi'+(laThay?' la-thay':'');
     d.innerHTML='<div class="bong"></div><span class="ten"></span><div class="sp"></div>';
     khuVat.appendChild(d);
-    var o={i:i, el:d, sp:d.querySelector('.sp'), nhan:d.querySelector('.ten'), src:src,
+    var o={i:i, el:d, sp:d.querySelector('.sp'), nhan:d.querySelector('.ten'),
+           ten:tenBe, laThay:!!laThay, src:src,
            frames:[], khung:0, dem:0, x:0,y:0,tx:0,ty:0,huong:1,cho:0,biBat:false,vx:0,vy:0,quay:0,hetQuay:0,chan:0};
-    o.nhan.textContent=ten[i]||TEN_MAC_DINH[i];
+    o.nhan.textContent=tenBe;
     BE.push(o);
     return fetch(src).then(function(r){return r.text();}).then(function(txt){
       var doc=new DOMParser().parseFromString(txt,'image/svg+xml');
@@ -204,7 +230,7 @@
   }
   function veBe(o){
     var z=zTuY(o.y), s=doXa(z)*o.huong;
-    o.el.style.height=(CAO_BE*K()*doXa(z)*Math.min(1,Math.max(0.62,W()/880))).toFixed(1)+'px';
+    o.el.style.height=(CAO_BE*(o.laThay?1.28:1)*K()*doXa(z)*Math.min(1,Math.max(0.62,W()/880))).toFixed(1)+'px';
     o.el.style.left=o.x.toFixed(1)+'px';
     o.el.style.top=o.y.toFixed(1)+'px';
     o.el.style.transform='translate(-50%,-100%) scale('+s.toFixed(3)+',1)';
@@ -369,7 +395,7 @@
         while(biChan(z.x,zTuY(z.y)) && thu<12){ z.y=Math.max(toaDoY(ZMIN)+10, z.y-10); thu++; }
         z.el.classList.add('bi-bat');
         hienKhung(z,0);
-        document.getElementById('bTen').textContent=ten[z.i]||TEN_MAC_DINH[z.i];
+        document.getElementById('bTen').textContent=z.ten;
         var b2=document.getElementById('banner'); b2.classList.add('hien');
         setTimeout(function(){ b2.classList.remove('hien'); }, 6000);
         document.getElementById('btnDuoi').textContent='Đuổi tiếp';
@@ -402,11 +428,17 @@
     cx=W()*0.5; cy=toaDoY(0.80); hienDog('k7'); datChay();
   }).catch(function(){});
 
-  var viTri=[[0.16,0.72],[0.36,0.90],[0.56,0.66],[0.78,0.86],[0.30,0.60],[0.70,0.58]];
+  var viTri=[[0.16,0.72],[0.36,0.90],[0.56,0.66],[0.78,0.86],[0.30,0.60],[0.70,0.58],[0.90,0.72]];
   function dungBe(){
     for(var i=0;i<BE.length;i++) if(BE[i].el.parentNode) BE[i].el.parentNode.removeChild(BE[i].el);
     BE=[];
-    for(var i=0;i<SO_BE;i++) taoBe(i,SRC[i%SRC.length]);
+    var namD=0, nuD=0;
+    for(var i=0;i<dsBe.length;i++){
+      var b=dsBe[i];
+      var src=b.nu ? SRC_NU[(nuD++)%3] : SRC_NAM[(namD++)%3];
+      taoBe(i, src, b.ten, false);
+    }
+    if(coThay) taoBe(dsBe.length, SRC_THAY, tenThay, true);
     for(var i=0;i<BE.length;i++){
       var o=BE[i], p=viTri[i%viTri.length];
       o.x=W()*p[0]; o.y=toaDoY(p[1]); o.tx=o.x; o.ty=o.y; o.cho=performance.now()+800;
@@ -426,46 +458,72 @@
     this.textContent='Dừng';
   };
 
-  // bảng nhập tên + thêm/bớt bạn
+  // bảng nhập tên + thêm/bớt bạn + đổi nam/nữ + thầy chạy cùng
   var luoi=document.getElementById('luoiTen');
   var hop=document.getElementById('hopTen');
+
   function docTen(){
-    for(var j=0;j<ten.length;j++){
+    for(var j=0;j<dsBe.length;j++){
       var el=document.getElementById('t'+j);
-      if(el) ten[j]=el.value.trim()||TEN_MAC_DINH[j];
+      if(el) dsBe[j].ten=el.value.trim()||TEN_MAC_DINH[j];
     }
+    var ct=document.getElementById('coThay'), tt=document.getElementById('tenThay');
+    if(ct) coThay=ct.checked;
+    if(tt) tenThay=tt.value.trim()||'Thầy';
   }
+
   function veBangTen(){
     luoi.innerHTML='';
-    for(var j=0;j<ten.length;j++){
+    for(var j=0;j<dsBe.length;j++){
       var w=document.createElement('div'); w.className='dong';
       var lb=document.createElement('label'); lb.textContent='Bạn '+(j+1);
       var hang=document.createElement('div'); hang.className='hang';
       var inp=document.createElement('input');
-      inp.id='t'+j; inp.maxLength=18; inp.placeholder='Nhập tên'; inp.value=ten[j]||'';
+      inp.id='t'+j; inp.maxLength=18; inp.placeholder='Nhập tên'; inp.value=dsBe[j].ten||'';
+      var gioi=document.createElement('button');
+      gioi.className='gioi'; gioi.type='button';
+      gioi.textContent=dsBe[j].nu?'👧':'👦';
+      gioi.title=dsBe[j].nu?'Đang là bạn gái — bấm để đổi thành bạn trai':'Đang là bạn trai — bấm để đổi thành bạn gái';
+      gioi.onclick=function(idx){ return function(){ docTen(); dsBe[idx].nu=!dsBe[idx].nu; veBangTen(); }; }(j);
       var xoa=document.createElement('button');
-      xoa.className='xoa'; xoa.textContent='✕'; xoa.title='Bớt bạn này';
-      xoa.disabled=(ten.length<=TOI_THIEU);
-      xoa.onclick=function(idx){ return function(){ docTen(); if(ten.length>TOI_THIEU){ ten.splice(idx,1); veBangTen(); } }; }(j);
-      hang.appendChild(inp); hang.appendChild(xoa);
+      xoa.className='xoa'; xoa.type='button'; xoa.textContent='✕'; xoa.title='Bớt bạn này';
+      xoa.disabled=(dsBe.length<=TOI_THIEU);
+      xoa.onclick=function(idx){ return function(){ docTen(); if(dsBe.length>TOI_THIEU){ dsBe.splice(idx,1); veBangTen(); } }; }(j);
+      hang.appendChild(inp); hang.appendChild(gioi); hang.appendChild(xoa);
       w.appendChild(lb); w.appendChild(hang); luoi.appendChild(w);
     }
     var them=document.createElement('button');
-    them.className='them'; them.textContent='+ Thêm bạn';
-    them.disabled=(ten.length>=TOI_DA);
-    them.onclick=function(){ docTen(); if(ten.length<TOI_DA){ ten.push(TEN_MAC_DINH[ten.length]||('Bạn '+(ten.length+1))); veBangTen(); } };
+    them.className='them'; them.type='button'; them.textContent='+ Thêm bạn';
+    them.disabled=(dsBe.length>=TOI_DA);
+    them.onclick=function(){ docTen(); if(dsBe.length<TOI_DA){
+      var nuMoi=dsBe.length%2===1;
+      dsBe.push({ten:TEN_MAC_DINH[dsBe.length]||('Bạn '+(dsBe.length+1)), nu:nuMoi}); veBangTen(); } };
     luoi.appendChild(them);
+
+    // hàng thầy/cô giáo
+    var hangThay=document.createElement('div'); hangThay.className='dong thay-dong';
+    var nhan=document.createElement('label'); nhan.className='chon';
+    var cb=document.createElement('input'); cb.type='checkbox'; cb.id='coThay'; cb.checked=coThay;
+    cb.onchange=function(){ var tt=document.getElementById('tenThay'); if(tt) tt.disabled=!cb.checked; };
+    nhan.appendChild(cb); nhan.appendChild(document.createTextNode(' Thầy/cô giáo chạy cùng'));
+    var hang2=document.createElement('div'); hang2.className='hang';
+    var inpThay=document.createElement('input');
+    inpThay.id='tenThay'; inpThay.maxLength=18; inpThay.placeholder='Tên thầy/cô'; inpThay.value=tenThay||'Thầy';
+    inpThay.disabled=!coThay;
+    hang2.appendChild(inpThay);
+    hangThay.appendChild(nhan); hangThay.appendChild(hang2); luoi.appendChild(hangThay);
+
     var ghi=document.createElement('div'); ghi.className='ghi';
-    ghi.textContent='Từ '+TOI_THIEU+' đến '+TOI_DA+' bạn.';
+    ghi.textContent='Từ '+TOI_THIEU+' đến '+TOI_DA+' bạn · bấm 👦/👧 để đổi nam nữ';
     luoi.appendChild(ghi);
   }
+
   document.getElementById('btnTen').onclick=function(){ veBangTen(); hop.classList.add('mo'); };
   document.getElementById('btnHuy').onclick=function(){ hop.classList.remove('mo'); };
   document.getElementById('btnLuu').onclick=function(){
     docTen();
-    SO_BE=ten.length;
-    if(!tuLop){ localStorage.setItem('ten-be', JSON.stringify(ten)); localStorage.setItem('so-be', String(SO_BE)); }
-    for(var i=0;i<BE.length;i++) BE[i].biBat=false;
+    if(dsBe.length<TOI_THIEU){ dsBe.push({ten:TEN_MAC_DINH[1], nu:true}); }
+    if(!tuLop) localStorage.setItem('ds-be', JSON.stringify({ds:dsBe, thay:coThay, tenThay:tenThay}));
     trangThai='nghi'; dich=null; demPha=0; demSan=0;
     document.getElementById('btnDuoi').textContent='Bắt đầu đuổi';
     document.getElementById('banner').classList.remove('hien');
