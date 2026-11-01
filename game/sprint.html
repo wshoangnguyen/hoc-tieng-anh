@@ -127,6 +127,7 @@
   var x = 0, y = 0, tx = 0, ty = 0;
   var huong = 1, tocDo = 1, dangDi = false, tuDong = false, biKet = 0;
   var khung = 0, dem = 0, sua = 0, lanCuoi = 0;
+  var tiLeHien = 0.8;                 // 0.8 khi đứng · 0.65 khi chạy
   var dsKhung = [];
 
   function hien(i){
@@ -143,7 +144,6 @@
   // vẽ vật thể: một lần, và mỗi khi đổi cỡ màn hình
   function datVat(){
     var k = K();
-    chay.style.width = (300 * k).toFixed(1) + 'px';
     for(var i=0;i<VAT.length;i++){
       var p = VAT[i];
       if(!p.el){
@@ -174,6 +174,7 @@
 
   function ve(){
     var s = doXa(zTuY(y));
+    chay.style.width = (300 * K() * tiLeHien).toFixed(1) + 'px';
     chay.style.left = x.toFixed(1) + 'px';
     chay.style.top  = y.toFixed(1) + 'px';
     chay.style.transform = 'translate(-50%,-100%) scale(' + (s*huong).toFixed(3) + ',' + s.toFixed(3) + ')';
@@ -208,7 +209,15 @@
       if(!biChan(nx, zTuY(ny))){ x = nx; y = ny; biKet = 0; }
       else if(!biChan(nx, zTuY(y))){ x = nx; biKet = 0; }
       else if(!biChan(x, zTuY(ny))){ y = ny; biKet = 0; }
-      else { biKet += dt; }
+      else {
+        if(biKet === 0){                 // vừa đụng: bật ngược lại một chút rồi dừng
+          var lui = 18;
+          x = Math.min(W()*WXMAX, Math.max(W()*WXMIN, x - dx/d*lui));
+          y = Math.min(dayToiDa(), Math.max(toaDoY(ZMIN), y - dy/d*lui*0.8));
+          tx = x; ty = y;
+        }
+        biKet += dt;
+      }
 
       dangDi = (biKet < 0.25);
       if(Math.abs(dx) > 2) huong = dx > 0 ? 1 : -1;
@@ -223,6 +232,9 @@
       dangDi = false; biKet = 0;
       if(tuDong) datDiem(huong > 0 ? W()*WXMAX : W()*WXMIN, y);
     }
+
+    var tiLeDich = dangDi ? 0.65 : 0.80;
+    tiLeHien += (tiLeDich - tiLeHien) * Math.min(1, dt * 9);
 
     document.body.classList.toggle('dang-chay', dangDi);
 
@@ -283,6 +295,7 @@
   document.getElementById('btnDi').onclick = function(){
     tuDong = !tuDong;
     if(tuDong) datDiem((x < W()*0.5) ? W()*WXMAX : W()*WXMIN, y);
+    else { tx = x; ty = y; }            // bấm Dừng là đứng lại ngay
     datNut();
   };
 
