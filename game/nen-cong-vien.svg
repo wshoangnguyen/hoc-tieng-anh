@@ -24,10 +24,10 @@
       <stop offset="0" stop-color="#FFF8D2" stop-opacity=".85"/><stop offset="100%" stop-color="#FFF8D2" stop-opacity="0"/>
     </radialGradient>
     <style>
-      .m1{animation:troi 130s linear infinite}
-      .m2{animation:troi 92s linear infinite;animation-delay:-34s}
-      .m3{animation:troi 70s linear infinite;animation-delay:-52s}
-      .m4{animation:troi 165s linear infinite;animation-delay:-96s}
+      .m1{animation:troi 210s linear infinite}
+      .m2{animation:troi 150s linear infinite;animation-delay:-34s}
+      .m3{animation:troi 115s linear infinite;animation-delay:-52s}
+      .m4{animation:troi 280s linear infinite;animation-delay:-96s}
       .dieu{animation:luon 5.5s ease-in-out infinite;transform-origin:390px 120px}
       @keyframes troi{from{transform:translateX(-470px)}to{transform:translateX(2070px)}}
       @keyframes luon{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(7px,-11px) rotate(3deg)}}
