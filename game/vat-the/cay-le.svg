@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1108 272 456 460" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Cây lê có quả">
+  <defs>
+    <linearGradient id="than" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7A4E2E"/><stop offset="40%" stop-color="#94603B"/><stop offset="100%" stop-color="#5F3A22"/>
+    </linearGradient>
+  </defs>
+
+<!-- ===== cây lê (phải) ===== -->
+  <ellipse cx="1310" cy="716" rx="118" ry="16" fill="#5E9C3D" opacity=".35"/>
+  <g>
+    <path d="M1286 716 C 1272 650 1276 594 1288 524 L1334 524 C 1342 594 1346 654 1340 716 Z" fill="url(#than)"/>
+    <path d="M1298 600 C 1262 582 1238 560 1218 532" fill="none" stroke="#7A4E2E" stroke-width="15" stroke-linecap="round"/>
+    <path d="M1326 612 C 1362 594 1386 570 1402 542" fill="none" stroke="#7A4E2E" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="1212" cy="440" r="104" fill="#3C8B36"/>
+    <circle cx="1340" cy="392" r="120" fill="#4A9B3E"/>
+    <circle cx="1462" cy="452" r="102" fill="#3C8B36"/>
+    <circle cx="1292" cy="480" r="102" fill="#58AB46"/>
+    <circle cx="1392" cy="500" r="82" fill="#4A9B3E"/>
+    <circle cx="1242" cy="512" r="70" fill="#67B94C"/>
+    <circle cx="1344" cy="438" r="76" fill="#6FC153" opacity=".65"/>
+    <circle cx="1268" cy="396" r="54" fill="#78C95A" opacity=".5"/>
+    <g fill="#DED64E" stroke="#B7AC30" stroke-width="3">
+      <ellipse cx="1246" cy="474" rx="15" ry="19"/><ellipse cx="1384" cy="458" rx="14" ry="18"/>
+      <ellipse cx="1320" cy="536" rx="15" ry="19"/><ellipse cx="1432" cy="508" rx="13" ry="17"/>
+      <ellipse cx="1208" cy="406" rx="13" ry="17"/>
+    </g>
+  </g>
+</svg>

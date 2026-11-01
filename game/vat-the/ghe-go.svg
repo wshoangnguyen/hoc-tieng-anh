@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="360 606 210 97" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Ghế gỗ trong công viên">
+<!-- ===== ghế gỗ ===== -->
+  <ellipse cx="466" cy="690" rx="104" ry="13" fill="#5E9C3D" opacity=".3"/>
+  <g transform="translate(372,606)">
+    <g fill="#3C7249">
+      <rect x="2" y="8" width="13" height="74" rx="6"/><rect x="158" y="8" width="13" height="74" rx="6"/>
+    </g>
+    <g fill="#4E8F5B" stroke="#2F5C3B" stroke-width="2.5">
+      <rect x="-6" y="0" width="184" height="12" rx="6"/>
+      <rect x="-6" y="19" width="184" height="12" rx="6"/>
+      <rect x="-10" y="40" width="192" height="14" rx="7"/>
+    </g>
+    <g fill="#356741">
+      <rect x="6" y="54" width="11" height="40" rx="5"/><rect x="156" y="54" width="11" height="40" rx="5"/>
+      <rect x="8" y="70" width="157" height="7" rx="3" fill="#2B5535"/>
+    </g>
+  </g>
+</svg>

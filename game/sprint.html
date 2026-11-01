@@ -10,11 +10,16 @@
   body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:#4a3a26;
        background:#a9dcf0;user-select:none;-webkit-tap-highlight-color:transparent}
 
+  /* nền: trời, đồi, đường — luôn ở dưới */
   #nen{position:absolute;inset:0;overflow:hidden;cursor:crosshair;z-index:0}
   #nen svg{position:absolute;left:0;top:0;width:100%;height:100%}
 
+  /* vật thể có độ xa: xếp lớp bằng z-index */
+  .vat{position:absolute;left:0;top:0;transform-origin:50% 100%;pointer-events:none;will-change:transform,width}
+  .vat img{display:block;width:100%;height:auto}
+
   #chay{position:absolute;left:0;top:0;width:300px;transform-origin:50% 100%;
-        will-change:transform,left,top;pointer-events:none;z-index:3}
+        will-change:transform,left,top;pointer-events:none}
   #sprite svg,#sprite img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 4px rgba(60,40,10,.14))}
   #bong{position:absolute;left:50%;bottom:0;width:78%;height:15px;transform:translateX(-50%);
         background:radial-gradient(ellipse at center,rgba(56,38,12,.30),rgba(56,38,12,0) 72%);
@@ -41,19 +46,19 @@
   body.dang-chay .bui span:nth-child(3){animation-delay:.44s}
   @keyframes bui{0%{opacity:.45;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-34px,-12px) scale(1.5)}}
 
-  .tieu-de{position:absolute;top:14px;left:18px;z-index:6;pointer-events:none;
+  .tieu-de{position:absolute;top:14px;left:18px;z-index:900;pointer-events:none;
             background:rgba(255,253,247,.82);border-radius:14px;padding:8px 14px;box-shadow:0 2px 10px rgba(80,60,20,.12)}
   .tieu-de b{font-size:18px;letter-spacing:.3px}
   .tieu-de p{margin:2px 0 0;font-size:12.5px;color:#7a6446}
 
-  .dieu-khien{position:absolute;top:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:64vw;z-index:6}
+  .dieu-khien{position:absolute;top:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:64vw;z-index:901}
   button{font:inherit;font-size:14px;padding:9px 13px;border-radius:11px;border:1px solid #e2c69b;
          background:rgba(255,253,247,.94);color:#5b4628;cursor:pointer;box-shadow:0 2px 0 #e6cfae}
   button:active{transform:translateY(1px);box-shadow:none}
   button.chinh{background:#fff1cf;border-color:#e0b46a}
 
   .ghi-chu{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:11.5px;color:#3f5c28;
-            z-index:6;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+            z-index:902;text-shadow:0 1px 0 rgba(255,255,255,.55)}
 
   @media (max-width:760px){
     .dieu-khien{top:auto;bottom:24px;left:8px;right:8px;max-width:none;justify-content:center;gap:6px}
@@ -68,6 +73,7 @@
 </head>
 <body>
   <div id="nen"></div>
+  <div id="vat-the"></div>
 
   <div class="tieu-de"><b>Sprint</b><p>Chạm vào công viên để chó đi tới</p></div>
 
@@ -86,27 +92,43 @@
     <div class="bui"><span></span><span></span><span></span></div>
   </div>
 
-  <div class="ghi-chu">Đi lên = xa (chó nhỏ lại) · đi xuống = lại gần · phím mũi tên cũng đi được</div>
+  <div class="ghi-chu">Đi lên = xa (nhỏ lại, bị cây và ghế che) · đi xuống = lại gần · phím mũi tên cũng đi được</div>
 
   <audio id="tiengSua" src="audio/sua.mp3" preload="auto"></audio>
 
 <script>
 (function(){
   var nen    = document.getElementById('nen');
+  var khuVat = document.getElementById('vat-the');
   var sprite = document.getElementById('sprite');
   var chay   = document.getElementById('chay');
   var tieng  = document.getElementById('tiengSua');
   var KHUNG  = 6, NHIP = 130;
 
-  var XMIN = 0.06, XMAX = 0.94, YXA = 0.62, YGAN = 0.94;
-
-  var x = 0, y = 0, tx = 0, ty = 0;
-  var huong = 1, tocDo = 1, dangDi = false, tuDong = false;
-  var khung = 0, dem = 0, sua = 0, lanCuoi = 0;
-  var dsKhung = [];
+  // ---- hệ toạ độ 2,5 chiều ------------------------------------------------
+  // wx: 0..1 theo bề ngang · wz: 0 = xa (chân trời), 1 = sát người xem
+  var WXMIN = 0.04, WXMAX = 0.96, ZMIN = 0.02, ZMAX = 1.0;
+  var Y0 = 0.60, Y1 = 0.94;
 
   function W(){ return window.innerWidth; }
   function H(){ return window.innerHeight; }
+  function K(){ return Math.min(1.35, Math.max(0.45, W() / 1280)); }
+  function doXa(z){ return 0.50 + 0.80 * z; }
+  function toaDoY(z){ return H() * (Y0 + (Y1 - Y0) * z); }
+  function zTuY(y){ return (y / H() - Y0) / (Y1 - Y0); }
+
+  // ---- vật thể có độ xa ---------------------------------------------------
+  var VAT = [
+    {src:'vat-the/cay-le.svg',  wx:0.835, wz:0.574, base:391, rx:0.044, rz:0.038},
+    {src:'vat-the/ghe-go.svg',  wx:0.290, wz:0.530, base:192, rx:0.090, rz:0.030},
+    {src:'vat-the/bui-cay.svg', wx:0.559, wz:0.053, base:136, rx:0.050, rz:0.030}
+  ];
+
+  var x = 0, y = 0, tx = 0, ty = 0;
+  var huong = 1, tocDo = 1, dangDi = false, tuDong = false, biKet = 0;
+  var khung = 0, dem = 0, sua = 0, lanCuoi = 0;
+  var dsKhung = [];
+
   function hien(i){
     for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.display = (k===i) ? '' : 'none';
   }
@@ -114,22 +136,52 @@
     for(var k=0;k<dsKhung.length;k++)
       dsKhung[k].style.display = dsKhung[k].classList.contains(ten) ? '' : 'none';
   }
-  function tyLe(yy){
-    var t = (yy - H()*YXA) / Math.max(1, H()*(YGAN - YXA));
-    return 0.55 + 0.58 * Math.min(1, Math.max(0, t));
-  }
   function datNut(){
     document.getElementById('btnDi').textContent = tuDong ? 'Dừng' : 'Đi';
   }
+
+  // vẽ vật thể: một lần, và mỗi khi đổi cỡ màn hình
+  function datVat(){
+    var k = K();
+    for(var i=0;i<VAT.length;i++){
+      var p = VAT[i];
+      if(!p.el){
+        p.el = document.createElement('div');
+        p.el.className = 'vat';
+        p.el.style.zIndex = Math.round(p.wz * 1000);
+        var im = document.createElement('img');
+        im.src = p.src; im.alt = '';
+        p.el.appendChild(im);
+        khuVat.appendChild(p.el);
+      }
+      p.el.style.width = (p.base * k * doXa(p.wz)).toFixed(1) + 'px';
+      p.el.style.left  = (p.wx * W()).toFixed(1) + 'px';
+      p.el.style.top   = toaDoY(p.wz).toFixed(1) + 'px';
+      p.el.style.transform = 'translate(-50%,-100%)';
+    }
+  }
+
+  // va chạm: ellipse trên mặt đất, chỉ tính khi cùng độ xa
+  function biChan(px, pz){
+    for(var i=0;i<VAT.length;i++){
+      var p = VAT[i];
+      var dx = (px / W() - p.wx) / p.rx, dz = (pz - p.wz) / p.rz;
+      if(dx*dx + dz*dz < 1) return true;
+    }
+    return false;
+  }
+
   function ve(){
-    var s = tyLe(y);
+    var s = doXa(zTuY(y));
     chay.style.left = x.toFixed(1) + 'px';
     chay.style.top  = y.toFixed(1) + 'px';
     chay.style.transform = 'translate(-50%,-100%) scale(' + (s*huong).toFixed(3) + ',' + s.toFixed(3) + ')';
+    chay.style.zIndex = Math.round(zTuY(y) * 1000);
   }
+
   function datDiem(px, py){
-    tx = Math.min(W()*XMAX, Math.max(W()*XMIN, px));
-    ty = Math.min(H()*YGAN, Math.max(H()*YXA, py));
+    tx = Math.min(W()*WXMAX, Math.max(W()*WXMIN, px));
+    ty = Math.min(toaDoY(ZMAX), Math.max(toaDoY(ZMIN), py));
   }
 
   function buoc(ts){
@@ -138,20 +190,29 @@
     lanCuoi = ts;
 
     var dx = tx - x, dy = ty - y, d = Math.sqrt(dx*dx + dy*dy);
-    var s = tyLe(y);
-    var vanToc = (150 + 240*s) * tocDo;
+    var s = doXa(zTuY(y));
+    var vanToc = (170 + 240*s) * tocDo;
 
     if(d > 3){
-      dangDi = true;
       var buocDi = Math.min(d, vanToc * dt);
-      x += dx / d * buocDi;
-      y += dy / d * buocDi;
+      var nx = x + dx/d*buocDi, ny = y + dy/d*buocDi;
+      if(!biChan(nx, zTuY(ny))){ x = nx; y = ny; biKet = 0; }
+      else if(!biChan(nx, zTuY(y))){ x = nx; biKet = 0; }
+      else if(!biChan(x, zTuY(ny))){ y = ny; biKet = 0; }
+      else { biKet += dt; }
+
+      dangDi = (biKet < 0.25);
       if(Math.abs(dx) > 2) huong = dx > 0 ? 1 : -1;
       dem += dt * 1000 * tocDo;
       if(dem >= NHIP){ dem = 0; khung = (khung + 1) % KHUNG; }
+
+      if(biKet > 0.25 && tuDong){
+        huong = -huong; biKet = 0;
+        datDiem(huong > 0 ? W()*WXMAX : W()*WXMIN, y);
+      }
     } else {
-      dangDi = false;
-      if(tuDong) datDiem(huong > 0 ? W()*XMAX : W()*XMIN, y);
+      dangDi = false; biKet = 0;
+      if(tuDong) datDiem(huong > 0 ? W()*WXMAX : W()*WXMIN, y);
     }
 
     document.body.classList.toggle('dang-chay', dangDi);
@@ -186,7 +247,7 @@
     dsKhung = sprite.querySelectorAll('g.khung');
     for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.animation = 'none';
 
-    x = W()*0.30; y = H()*0.86;
+    x = W()*0.30; y = toaDoY(0.78);
     datDiem(x, y);
     hienTen('k7'); ve();
   }).catch(function(){
@@ -212,7 +273,7 @@
 
   document.getElementById('btnDi').onclick = function(){
     tuDong = !tuDong;
-    if(tuDong) datDiem((x < W()*0.5) ? W()*XMAX : W()*XMIN, y);
+    if(tuDong) datDiem((x < W()*0.5) ? W()*WXMAX : W()*WXMIN, y);
     datNut();
   };
 
@@ -234,14 +295,16 @@
 
   document.getElementById('btnGiua').onclick = function(){
     tuDong = false; datNut();
-    datDiem(W()*0.5, H()*0.80);
+    datDiem(W()*0.5, toaDoY(0.72));
   };
 
   window.addEventListener('resize', function(){
-    x = Math.min(x, W()*XMAX); y = Math.min(Math.max(y, H()*YXA), H()*YGAN);
-    datDiem(x, y); ve();
+    y = Math.min(toaDoY(ZMAX), Math.max(toaDoY(ZMIN), y));
+    x = Math.min(W()*WXMAX, Math.max(W()*WXMIN, x));
+    datDiem(x, y); datVat(); ve();
   });
 
+  datVat();
   requestAnimationFrame(buoc);
 })();
 </script>
