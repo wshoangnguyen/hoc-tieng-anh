@@ -64,6 +64,16 @@
   #hopTen label{display:block;font-size:12px;color:#7a6446;margin:0 0 2px}
   #hopTen input{width:100%;font:inherit;font-size:14.5px;padding:7px 9px;border:1px solid #e2c69b;
                 border-radius:9px;background:#fffdf8;color:#4a3a26}
+  #hopTen .dong{margin:0 0 8px}
+  #hopTen .hang{display:flex;gap:6px;align-items:center}
+  #hopTen .hang input{flex:1}
+  #hopTen .xoa{flex:0 0 auto;width:34px;padding:7px 0;font-size:13px;line-height:1;
+               background:#fde8e4;color:#b4452f;border:1px solid #f3c3b8;border-radius:9px}
+  #hopTen .xoa:disabled{opacity:.35}
+  #hopTen .them{width:100%;margin-top:2px;border:1px dashed #d9bd8e;background:#fffaf0;
+                color:#8a6a3c;font-weight:600}
+  #hopTen .them:disabled{opacity:.4}
+  #hopTen .ghi{font-size:11px;color:#96794f;margin-top:6px;text-align:center}
   #hopTen .nut{display:flex;gap:8px;margin-top:12px}
   #hopTen .nut button{flex:1}
 
@@ -152,8 +162,16 @@
   var TEN_MAC_DINH=['Bạn 1','Bạn 2','Bạn 3','Bạn 4','Bạn 5','Bạn 6'];
   var SRC=['vat-the/tre1.svg','vat-the/tre2.svg','vat-the/tre3.svg',
            'vat-the/nu1.svg','vat-the/nu2.svg','vat-the/nu3.svg'];
-  var ten=JSON.parse(localStorage.getItem('ten-be')||'null')||TEN_MAC_DINH.slice();
-  if(!ten || ten.length<6){ var t0=ten||[]; ten=TEN_MAC_DINH.map(function(v,i){return t0[i]||v;}); }
+  var TOI_DA=6, TOI_THIEU=2, tuLop=false;
+  var thamSo=new URLSearchParams(location.search);
+  var ten=JSON.parse(localStorage.getItem('ten-be')||'null')||[];
+  var SO_BE=parseInt(localStorage.getItem('so-be')||'6',10);
+  if(!(SO_BE>=TOI_THIEU && SO_BE<=TOI_DA)) SO_BE=6;
+  if(thamSo.get('ten')){
+    var t1=thamSo.get('ten').split('|').map(function(x){return x.trim();}).filter(Boolean).slice(0,TOI_DA);
+    if(t1.length>=1){ ten=t1.slice(); SO_BE=Math.max(TOI_THIEU, Math.min(TOI_DA,t1.length)); tuLop=true; }
+  }
+  while(ten.length<SO_BE) ten.push(TEN_MAC_DINH[ten.length]||('Bạn '+(ten.length+1)));
   var BE=[], CAO_BE=128;
 
   function taoBe(i,src){
@@ -250,7 +268,7 @@
 
     var dx=o.tx-o.x, dy=o.ty-o.y, d=Math.sqrt(dx*dx+dy*dy)||1;
     var s0=doXa(zTuY(o.y));
-    var vt=(95+58*s0)*(o.quay?0.9:1.0);
+    var vt=(90+52*s0)*(o.quay?0.9:1.0);
     // giữ khoảng cách: bạn nào sát quá thì chạy chậm lại (không đổi hướng -> không lắc)
     var chen=0;
     for(var q=0;q<BE.length;q++){
@@ -285,7 +303,7 @@
   // ---------- con chó ----------
   var dsKhung=[];
   var cx=0, cy=0, cHuong=1, cKhung=0, cDem=0;
-  var trangThai='nghi', demPha=0, dich=null, demSua=0, daSua=false;
+  var trangThai='nghi', demPha=0, dich=null, demSua=0, daSua=false, demSan=0;
 
   function datChay(){
     var z=zTuY(cy), s=doXa(z);
@@ -319,13 +337,13 @@
         if(demPha<1.0){ dangChay=true; }
         else if(demPha<1.6){ if(!daSua){ daSua=true; sua1(); } }
         else if(demPha<3.0){ dangChay=true; }
-        else { dich=BE[Math.floor(Math.random()*BE.length)]; trangThai='tangtoc'; demPha=0; dangChay=true; }
-      } else { dangChay=true; }
+        else { dich=BE[Math.floor(Math.random()*BE.length)]; trangThai='tangtoc'; demPha=0; demSan=0; dangChay=true; }
+      } else { dangChay=true; demSan+=dt; }
 
       var z=dich?dich:BE[0];
       var dx=z.x-cx, dy=z.y-cy, d=Math.sqrt(dx*dx+dy*dy);
       var s=doXa(zTuY(cy));
-      var vanToc=(trangThai==='duoi' ? 80+50*s : 245+185*s);
+      var vanToc=118+66*s;   // một tốc độ duy nhất: chốt xong vẫn chạy y như lúc đầu
       if(trangThai==='duoi' && d<115) vanToc=0;
       if(dangChay && vanToc>0 && d>2){
         var b=Math.min(d, vanToc*dt), nx=cx+dx/d*b, ny=cy+dy/d*b;
@@ -340,7 +358,7 @@
       if(!dangChay && demSua<=0) hienDog('k7');
 
       var that=Math.sqrt((z.x-cx)*(z.x-cx)+(z.y-cy)*(z.y-cy));
-      if(trangThai==='tangtoc' && that<54){
+      if(trangThai==='tangtoc' && (that<54 || demSan>12)){
         trangThai='bat'; demSua=700;
         cx-=dx/d*48; cy-=dy/d*28;
         sua1();
@@ -381,14 +399,17 @@
   }).catch(function(){});
 
   var viTri=[[0.16,0.72],[0.36,0.90],[0.56,0.66],[0.78,0.86],[0.30,0.60],[0.70,0.58]];
-  for(var i=0;i<SRC.length;i++) taoBe(i,SRC[i]);
-  setTimeout(function(){
+  function dungBe(){
+    for(var i=0;i<BE.length;i++) if(BE[i].el.parentNode) BE[i].el.parentNode.removeChild(BE[i].el);
+    BE=[];
+    for(var i=0;i<SO_BE;i++) taoBe(i,SRC[i%SRC.length]);
     for(var i=0;i<BE.length;i++){
       var o=BE[i], p=viTri[i%viTri.length];
       o.x=W()*p[0]; o.y=toaDoY(p[1]); o.tx=o.x; o.ty=o.y; o.cho=performance.now()+800;
       veBe(o);
     }
-  },80);
+  }
+  dungBe();
 
   document.getElementById('btnDuoi').onclick=function(){
     if(trangThai==='duoi' || trangThai==='tangtoc'){
@@ -401,27 +422,50 @@
     this.textContent='Dừng';
   };
 
-  // bảng nhập tên
+  // bảng nhập tên + thêm/bớt bạn
   var luoi=document.getElementById('luoiTen');
-  for(var j=0;j<6;j++){
-    var w=document.createElement('div');
-    w.innerHTML='<label>Bạn '+(j+1)+(j<3?' (trai)':' (gái)')+'</label>'+
-                '<input id="t'+j+'" maxlength="18" placeholder="Nhập tên">';
-    luoi.appendChild(w);
-  }
   var hop=document.getElementById('hopTen');
-  document.getElementById('btnTen').onclick=function(){
-    for(var i=0;i<6;i++) document.getElementById('t'+i).value=ten[i]||'';
-    hop.classList.add('mo');
-  };
+  function docTen(){
+    for(var j=0;j<ten.length;j++){
+      var el=document.getElementById('t'+j);
+      if(el) ten[j]=el.value.trim()||TEN_MAC_DINH[j];
+    }
+  }
+  function veBangTen(){
+    luoi.innerHTML='';
+    for(var j=0;j<ten.length;j++){
+      var w=document.createElement('div'); w.className='dong';
+      var lb=document.createElement('label'); lb.textContent='Bạn '+(j+1);
+      var hang=document.createElement('div'); hang.className='hang';
+      var inp=document.createElement('input');
+      inp.id='t'+j; inp.maxLength=18; inp.placeholder='Nhập tên'; inp.value=ten[j]||'';
+      var xoa=document.createElement('button');
+      xoa.className='xoa'; xoa.textContent='✕'; xoa.title='Bớt bạn này';
+      xoa.disabled=(ten.length<=TOI_THIEU);
+      xoa.onclick=function(idx){ return function(){ docTen(); if(ten.length>TOI_THIEU){ ten.splice(idx,1); veBangTen(); } }; }(j);
+      hang.appendChild(inp); hang.appendChild(xoa);
+      w.appendChild(lb); w.appendChild(hang); luoi.appendChild(w);
+    }
+    var them=document.createElement('button');
+    them.className='them'; them.textContent='+ Thêm bạn';
+    them.disabled=(ten.length>=TOI_DA);
+    them.onclick=function(){ docTen(); if(ten.length<TOI_DA){ ten.push(TEN_MAC_DINH[ten.length]||('Bạn '+(ten.length+1))); veBangTen(); } };
+    luoi.appendChild(them);
+    var ghi=document.createElement('div'); ghi.className='ghi';
+    ghi.textContent='Từ '+TOI_THIEU+' đến '+TOI_DA+' bạn.';
+    luoi.appendChild(ghi);
+  }
+  document.getElementById('btnTen').onclick=function(){ veBangTen(); hop.classList.add('mo'); };
   document.getElementById('btnHuy').onclick=function(){ hop.classList.remove('mo'); };
   document.getElementById('btnLuu').onclick=function(){
-    for(var i=0;i<6;i++){
-      var v=document.getElementById('t'+i).value.trim();
-      ten[i]=v||TEN_MAC_DINH[i];
-      if(BE[i]) BE[i].nhan.textContent=ten[i];
-    }
-    localStorage.setItem('ten-be', JSON.stringify(ten));
+    docTen();
+    SO_BE=ten.length;
+    if(!tuLop){ localStorage.setItem('ten-be', JSON.stringify(ten)); localStorage.setItem('so-be', String(SO_BE)); }
+    for(var i=0;i<BE.length;i++) BE[i].biBat=false;
+    trangThai='nghi'; dich=null; demPha=0; demSan=0;
+    document.getElementById('btnDuoi').textContent='Bắt đầu đuổi';
+    document.getElementById('banner').classList.remove('hien');
+    dungBe();
     hop.classList.remove('mo');
   };
 
@@ -438,6 +482,9 @@
 
   datVat();
   requestAnimationFrame(buoc);
+  if(thamSo.get('tu')==='1'){
+    setTimeout(function(){ var b=document.getElementById('btnDuoi'); if(b) b.click(); }, 1400);
+  }
 })();
 </script>
 </body>

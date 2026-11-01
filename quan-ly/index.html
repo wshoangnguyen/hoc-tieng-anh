@@ -2404,6 +2404,22 @@ function capNhatTreo(){
     el.classList.toggle("treo", !!vao && !dd);
   });
 }
+/* Mở trò chơi "chó đuổi" với tên học viên của lớp (tối đa 6 bạn) */
+function moGoiTen(lop){
+  if(!lop) return;
+  const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h));
+  let ten=hs.map(h=>String(h.ten_goi_trong_lop||h.ho_ten||"").trim()).filter(Boolean);
+  if(!ten.length){ alert("Lớp này chưa có học viên để gọi tên."); return; }
+  let thua=0;
+  if(ten.length>6){ thua=ten.length-6;
+    for(let i=ten.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [ten[i],ten[j]]=[ten[j],ten[i]]; }
+    ten=ten.slice(0,6); }
+  const url="../game/duoi-bat.html?ten="+encodeURIComponent(ten.join("|"))+"&tu=1";
+  const w=window.open(url,"_blank","noopener");
+  if(!w) window.location.href=url;
+  if(thua) setTimeout(()=>alert(`Lớp có ${ten.length+thua} em — mỗi lượt chơi 6 bạn. Bấm lại để đổi nhóm.`),300);
+}
+
 function roiLop(lop){
   const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
@@ -2414,6 +2430,7 @@ function roiLop(lop){
       <h3 style="margin:0">${esc(lop)} <span class="hint">${n} học viên${buoiHomNay.length?` · hôm nay ${buoiHomNay.map(g=>esc(g.ca)).join(", ")}`:""}${nghiHomNay.length?` · <span style="color:#6b6b6b">đã nghỉ${hbNghi?" — hẹn bù "+esc(THU_DAI[hbNghi.thu])+" "+esc(hbNghi.ca):""}</span>`:""}</span></h3>
       <span style="flex:1"></span>
       <button class="primary" data-bd="${esc(lop)}">📖 Bài dạy</button>
+      <button class="ghost" id="ddGoiTen" title="Mở trò chơi chó đuổi, tự nạp tên học viên của lớp">🎲 Gọi tên ngẫu nhiên</button>
       ${nghiHomNay.length?`<button class="ghost" id="ddBoNghi">↩ Bỏ đánh dấu nghỉ</button>`
         :`<button class="ghost" id="ddNghi">⚪ Nghỉ buổi này</button>`}
       ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Có mặt cả lớp (hôm nay)</button>`:""}
@@ -2443,6 +2460,7 @@ GAN("tab-diemdanh","click",e=>{
 GAN("ddBody","click",e=>{
   const hs=e.target.closest("[data-hoso]"); if(hs){ moHoSoHV(hs.dataset.hoso); return; }
   const t=e.target.closest("button"); if(!t) return;
+  if(t.id==="ddGoiTen"){ moGoiTen(DD_LOP); return; }
   if(t.id==="ddQuayLai"){ DD_LOP=null; veDiemDanh(); return; }
   if(t.id==="ddNghi"){ if(!confirm(`Đánh dấu lớp ${DD_LOP} nghỉ buổi hôm nay? Học viên không bị tính vắng.`)) return;
     datNghiBuoi(DD_LOP,true); return; }
