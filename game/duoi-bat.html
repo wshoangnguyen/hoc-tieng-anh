@@ -73,7 +73,9 @@
     .tieu-de{top:8px;left:8px;padding:6px 11px}
     .tieu-de b{font-size:13.5px} .tieu-de p{font-size:10.5px}
     .ten{font-size:11px;padding:2px 6px}
-    #banner .to{font-size:25px}
+    #banner{padding:10px 14px;max-width:86vw}
+    #banner .to{font-size:22px} #banner .nhan{font-size:10px} #banner .nho{font-size:11px}
+    #banner .to span{font-size:26px}
     #hopTen .luoi{grid-template-columns:1fr}
   }
 </style>
@@ -159,7 +161,7 @@
     d.innerHTML='<div class="bong"></div><span class="ten"></span><div class="sp"></div>';
     khuVat.appendChild(d);
     var o={i:i, el:d, sp:d.querySelector('.sp'), nhan:d.querySelector('.ten'), src:src,
-           frames:[], khung:0, dem:0, x:0,y:0,tx:0,ty:0,huong:1,cho:0,biBat:false};
+           frames:[], khung:0, dem:0, x:0,y:0,tx:0,ty:0,huong:1,cho:0,biBat:false,vx:0,vy:0,quay:0,hetQuay:0,chan:0};
     o.nhan.textContent=ten[i]||TEN_MAC_DINH[i];
     BE.push(o);
     return fetch(src).then(function(r){return r.text();}).then(function(txt){
@@ -184,7 +186,7 @@
   }
   function veBe(o){
     var z=zTuY(o.y), s=doXa(z)*o.huong;
-    o.el.style.height=(CAO_BE*K()*doXa(z)).toFixed(1)+'px';
+    o.el.style.height=(CAO_BE*K()*doXa(z)*Math.min(1,Math.max(0.62,W()/880))).toFixed(1)+'px';
     o.el.style.left=o.x.toFixed(1)+'px';
     o.el.style.top=o.y.toFixed(1)+'px';
     o.el.style.transform='translate(-50%,-100%) scale('+s.toFixed(3)+',1)';
@@ -192,31 +194,79 @@
     o.nhan.style.transform='translateX(-50%) scaleX('+(o.huong<0?-1:1)+')';
   }
 
-  // trốn chó + né các bạn khác
-  function buocBe(o,dt,ts){
-    if(o.biBat){ veBe(o); return; }          // bị bắt thì đứng yên
-    var fx=0, fy=0;
-    var dx=o.x-cx, dy=o.y-cy, d=Math.sqrt(dx*dx+dy*dy)||1;
-    if(d<300){ var w=(300-d)/300; fx+=dx/d*w*2.6; fy+=dy/d*w*1.2; }
-    for(var i=0;i<BE.length;i++){
-      var k=BE[i]; if(k===o) continue;
-      var ex=o.x-k.x, ey=o.y-k.y, e=Math.sqrt(ex*ex+ey*ey)||1;
-      if(e<118){ var w2=(118-e)/118; fx+=ex/e*w2*2.4; fy+=ey/e*w2*1.1; }
+  // mỗi bạn chọn MỘT điểm đến rồi đi tới đó (không cộng lực từng khung -> không lắc)
+  function diemTrongBien(x,y){
+    return [Math.min(W()*WXMAX, Math.max(W()*WXMIN, x)),
+            Math.min(dayToiDa()-6, Math.max(toaDoY(ZMIN)+10, y))];
+  }
+  function chonDiem(o,ts){
+    var dDog=Math.sqrt((o.x-cx)*(o.x-cx)+(o.y-cy)*(o.y-cy))||1;
+    var dangDuoi=(trangThai==='duoi'||trangThai==='tangtoc');
+    var tot=null, diem=-1e9;
+    for(var thu=0;thu<10;thu++){
+      var x,y;
+      if(o.quay){                                  // quay lại phía chó một đoạn ngắn
+        var lx=Math.min(115,W()*0.10), ly=Math.min(75,H()*0.09);
+        x=o.x+(cx-o.x)/dDog*lx; y=o.y+(cy-o.y)/dDog*ly;
+      } else if(dangDuoi && dDog<340){             // chạy ngược hướng chó
+        var ux=(o.x-cx)/dDog, uy=(o.y-cy)/dDog;
+        var lech=(o.i-2.5)*0.42+(Math.random()-0.5)*0.5;
+        var ca=Math.cos(lech), sa=Math.sin(lech);
+        var bx=Math.min(235,W()*0.22), by=Math.min(140,H()*0.20);
+        x=o.x+(ux*ca-uy*sa)*bx; y=o.y+(ux*sa+uy*ca)*by;
+      } else {                                     // lang thang
+        x=W()*(WXMIN+0.05+Math.random()*(WXMAX-WXMIN-0.10));
+        y=toaDoY(ZMIN+0.10+Math.random()*(ZMAX-ZMIN-0.20));
+      }
+      var q=diemTrongBien(x,y);
+      if(Math.sqrt((q[0]-o.x)*(q[0]-o.x)+(q[1]-o.y)*(q[1]-o.y))<70) continue;   // quá gần chỗ đang đứng
+      var xaCho=Math.sqrt((q[0]-cx)*(q[0]-cx)+(q[1]-cy)*(q[1]-cy));
+      if(dangDuoi && !o.quay && xaCho<dDog+30) continue;   // không chọn điểm gần chó hơn
+      var ganBan=false;
+      for(var i=0;i<BE.length;i++){
+        var k=BE[i]; if(k===o) continue;
+        if(Math.sqrt((q[0]-k.x)*(q[0]-k.x)+(q[1]-k.y)*(q[1]-k.y))<Math.min(150,W()*0.15)){ ganBan=true; break; }
+      }
+      var diemNay=xaCho-(ganBan?180:0);
+      if(diemNay>diem){ diem=diemNay; tot=q; }
     }
-    // gần mép thì chạy dọc theo mép chứ không dồn vào góc
-    if(o.x<W()*0.12){ fx+=1.7; fy+=(o.y>cy?1.5:-1.5); }
-    if(o.x>W()*0.88){ fx-=1.7; fy+=(o.y>cy?1.5:-1.5); }
-    if(o.y<toaDoY(ZMIN)+40){ fy+=1.3; fx+=(o.x>cx?1.4:-1.4); }
-    if(o.y>dayToiDa()-30){ fy-=1.3; fx+=(o.x>cx?1.4:-1.4); }
-    if(ts>o.cho) mucTieuMoi(o);
-    var gx=o.tx-o.x, gy=o.ty-o.y, g=Math.sqrt(gx*gx+gy*gy)||1;
-    fx+=gx/g*0.30; fy+=gy/g*0.30;
+    if(!tot){
+      tot=diemTrongBien(W()*(0.25+0.5*Math.random()), toaDoY(0.45+0.35*Math.random()));
+    }
+    o.tx=tot[0]; o.ty=tot[1];
+    o.cho=ts+(dDog<210?420:760)+Math.random()*480;
+  }
 
-    var v=Math.sqrt(fx*fx+fy*fy);
-    if(v>0.12){
-      var ux=fx/v, uy=fy/v;
-      var s0=doXa(zTuY(o.y)), vanToc=(92+58*s0)*(1+Math.min(0.55,v*0.24));
-      var b=vanToc*dt, nx=o.x+ux*b, ny=o.y+uy*b;
+  function buocBe(o,dt,ts){
+    if(o.biBat){ veBe(o); return; }
+    var dDog=Math.sqrt((o.x-cx)*(o.x-cx)+(o.y-cy)*(o.y-cy))||1;
+    var dangDuoi=(trangThai==='duoi'||trangThai==='tangtoc');
+
+    if(dangDuoi && !o.quay && dDog>430 && ts>(o.hetQuay||0)){ o.quay=ts+1200; o.cho=0; }
+    if(o.quay && (ts>o.quay || dDog<150)){ o.quay=0; o.hetQuay=ts+1900; o.cho=0; }
+
+    var conLai=Math.sqrt((o.tx-o.x)*(o.tx-o.x)+(o.ty-o.y)*(o.ty-o.y));
+    if(ts>o.cho || conLai<16) chonDiem(o,ts);
+
+    var dx=o.tx-o.x, dy=o.ty-o.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+    var s0=doXa(zTuY(o.y));
+    var vt=(95+58*s0)*(o.quay?0.9:1.0);
+    // giữ khoảng cách: bạn nào sát quá thì chạy chậm lại (không đổi hướng -> không lắc)
+    var chen=0;
+    for(var q=0;q<BE.length;q++){
+      var b2=BE[q]; if(b2===o||b2.biBat) continue;
+      var dd2=Math.sqrt((o.x-b2.x)*(o.x-b2.x)+(o.y-b2.y)*(o.y-b2.y));
+      var r0=Math.min(80,W()*0.09);
+      if(dd2<r0) chen+=(r0-dd2)/r0;
+    }
+    vt*=Math.max(0.40, 1-0.6*chen);
+    var k1=Math.min(1, dt*5);
+    o.vx+=(dx/d*vt-o.vx)*k1;
+    o.vy+=(dy/d*vt-o.vy)*k1;
+
+    var sp=Math.sqrt(o.vx*o.vx+o.vy*o.vy);
+    if(sp>8){
+      var nx=o.x+o.vx*dt, ny=o.y+o.vy*dt;
       if(nx<W()*WXMIN) nx=W()*WXMIN;
       if(nx>W()*WXMAX) nx=W()*WXMAX;
       if(ny>dayToiDa()) ny=dayToiDa();
@@ -224,9 +274,9 @@
       if(!biChan(nx,zTuY(ny))){ o.x=nx; o.y=ny; }
       else if(!biChan(nx,zTuY(o.y))){ o.x=nx; }
       else if(!biChan(o.x,zTuY(ny))){ o.y=ny; }
-      else { mucTieuMoi(o); }
-      if(Math.abs(ux)>0.08) o.huong = ux>0?1:-1;
-      o.dem+=dt*1000;
+      else { o.cho=0; o.vx*=0.3; o.vy*=0.3; }
+      if(o.vx>38) o.huong=1; else if(o.vx<-38) o.huong=-1;
+      o.dem+=dt*1000*Math.min(1.6, sp/110);
       if(o.dem>112){ o.dem=0; hienKhung(o,(o.khung+1)%4); }
     }
     veBe(o);
