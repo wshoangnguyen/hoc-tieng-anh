@@ -197,16 +197,17 @@
     if(o.biBat){ veBe(o); return; }          // bị bắt thì đứng yên
     var fx=0, fy=0;
     var dx=o.x-cx, dy=o.y-cy, d=Math.sqrt(dx*dx+dy*dy)||1;
-    if(d<340){ var w=(340-d)/340; fx+=dx/d*w*2.6; fy+=dy/d*w*1.2; }
+    if(d<300){ var w=(300-d)/300; fx+=dx/d*w*2.6; fy+=dy/d*w*1.2; }
     for(var i=0;i<BE.length;i++){
       var k=BE[i]; if(k===o) continue;
       var ex=o.x-k.x, ey=o.y-k.y, e=Math.sqrt(ex*ex+ey*ey)||1;
       if(e<118){ var w2=(118-e)/118; fx+=ex/e*w2*2.4; fy+=ey/e*w2*1.1; }
     }
-    if(o.x<W()*0.10) fx+=1.4;
-    if(o.x>W()*0.90) fx-=1.4;
-    if(o.y<toaDoY(ZMIN)+36) fy+=1.1;
-    if(o.y>dayToiDa()-26) fy-=1.1;
+    // gần mép thì chạy dọc theo mép chứ không dồn vào góc
+    if(o.x<W()*0.12){ fx+=1.7; fy+=(o.y>cy?1.5:-1.5); }
+    if(o.x>W()*0.88){ fx-=1.7; fy+=(o.y>cy?1.5:-1.5); }
+    if(o.y<toaDoY(ZMIN)+40){ fy+=1.3; fx+=(o.x>cx?1.4:-1.4); }
+    if(o.y>dayToiDa()-30){ fy-=1.3; fx+=(o.x>cx?1.4:-1.4); }
     if(ts>o.cho) mucTieuMoi(o);
     var gx=o.tx-o.x, gy=o.ty-o.y, g=Math.sqrt(gx*gx+gy*gy)||1;
     fx+=gx/g*0.30; fy+=gy/g*0.30;
