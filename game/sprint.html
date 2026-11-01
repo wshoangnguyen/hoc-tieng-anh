@@ -3,75 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sprint — điều khiển chú chó</title>
+<title>Sprint trong công viên</title>
 <style>
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
-  body{
-    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:#4a3a26;
-    background:linear-gradient(180deg,#fffaf0 0%,#ffeed2 55%,#ffe3b8 100%);
-    overflow:hidden;
-  }
-  .mat-dat{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(180deg,#f3dcb6,#e8c795)}
-  .mat-dat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:#dcb987}
+  html,body{margin:0;height:100%;overflow:hidden}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:#4a3a26;
+       background:#a9dcf0;user-select:none;-webkit-tap-highlight-color:transparent}
 
-  .may{position:absolute;border-radius:50%;background:#fff;opacity:.72;filter:blur(1px)}
-  .may.a{width:120px;height:44px;top:16%;left:12%}
-  .may.b{width:86px;height:32px;top:10%;left:58%}
-  .may.c{width:150px;height:52px;top:22%;left:76%}
+  #nen{position:absolute;inset:0;overflow:hidden;cursor:crosshair;z-index:0}
+  #nen svg{position:absolute;left:0;top:0;width:100%;height:100%}
 
-  .duong-chay{position:absolute;left:0;right:0;bottom:22%;height:58%}
+  #chay{position:absolute;left:0;top:0;width:300px;transform-origin:50% 100%;
+        will-change:transform,left,top;pointer-events:none;z-index:3}
+  #sprite svg,#sprite img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 4px rgba(60,40,10,.14))}
+  #bong{position:absolute;left:50%;bottom:0;width:78%;height:15px;transform:translateX(-50%);
+        background:radial-gradient(ellipse at center,rgba(56,38,12,.30),rgba(56,38,12,0) 72%);
+        border-radius:50%;z-index:-1}
 
-  #chay{position:absolute;left:0;bottom:-1.8%;width:clamp(170px,26vw,300px);will-change:transform;transform-origin:50% 80%}
-  #sprite{position:relative;z-index:2}
-  #sprite svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 8px rgba(120,70,20,.16))}
-  #sprite img{display:block;width:100%}
-
-  .gio{position:absolute;left:-16%;top:34%;width:38%;height:52%;z-index:1}
-  .gio i{position:absolute;display:block;height:7px;border-radius:4px;background:#d8b184;opacity:0}
+  .gio{position:absolute;left:-14%;top:36%;width:36%;height:50%;z-index:1;opacity:0}
+  .gio i{position:absolute;display:block;height:6px;border-radius:3px;background:#c9a877;opacity:0}
   .gio i:nth-child(1){top:8%;width:70%}
   .gio i:nth-child(2){top:34%;width:46%;left:-6%}
   .gio i:nth-child(3){top:62%;width:58%;left:4%}
+  body.dang-chay .gio{opacity:1}
   body.dang-chay .gio i{animation:tan .62s linear infinite}
   body.dang-chay .gio i:nth-child(2){animation-delay:.16s}
   body.dang-chay .gio i:nth-child(3){animation-delay:.32s}
-  @keyframes tan{0%{opacity:0;transform:translateX(10px)}35%{opacity:.55}100%{opacity:0;transform:translateX(-26px)}}
+  @keyframes tan{0%{opacity:0;transform:translateX(8px)}35%{opacity:.5}100%{opacity:0;transform:translateX(-22px)}}
 
-  .bui{position:absolute;left:0;bottom:-2%;width:34%;height:60%;z-index:0}
-  .bui span{position:absolute;bottom:0;border-radius:50%;background:#e6c79a;opacity:0}
-  .bui span:nth-child(1){left:8%;width:14px;height:14px}
-  .bui span:nth-child(2){left:20%;width:20px;height:20px}
-  .bui span:nth-child(3){left:2%;width:10px;height:10px}
+  .bui{position:absolute;left:2%;bottom:-1%;width:32%;height:50%;z-index:0}
+  .bui span{position:absolute;bottom:0;border-radius:50%;background:#dcc79f;opacity:0}
+  .bui span:nth-child(1){left:8%;width:13px;height:13px}
+  .bui span:nth-child(2){left:20%;width:18px;height:18px}
+  .bui span:nth-child(3){left:2%;width:9px;height:9px}
   body.dang-chay .bui span{animation:bui .8s ease-out infinite}
   body.dang-chay .bui span:nth-child(2){animation-delay:.22s}
   body.dang-chay .bui span:nth-child(3){animation-delay:.44s}
-  @keyframes bui{0%{opacity:.5;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-40px,-14px) scale(1.6)}}
+  @keyframes bui{0%{opacity:.45;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-34px,-12px) scale(1.5)}}
 
-  .tieu-de{position:absolute;top:22px;left:0;right:0;text-align:center;pointer-events:none}
-  .tieu-de b{font-size:clamp(20px,3.2vw,28px);letter-spacing:.4px}
-  .tieu-de p{margin:5px 0 0;font-size:clamp(12px,1.6vw,14px);color:#8a7355}
+  .tieu-de{position:absolute;top:14px;left:18px;z-index:6;pointer-events:none;
+            background:rgba(255,253,247,.82);border-radius:14px;padding:8px 14px;box-shadow:0 2px 10px rgba(80,60,20,.12)}
+  .tieu-de b{font-size:18px;letter-spacing:.3px}
+  .tieu-de p{margin:2px 0 0;font-size:12.5px;color:#7a6446}
 
-  .dieu-khien{position:absolute;top:16px;right:16px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:62vw;z-index:5}
-  button{font:inherit;font-size:14px;padding:9px 14px;border-radius:11px;border:1px solid #e2c69b;
-         background:#fffdf7;color:#5b4628;cursor:pointer;box-shadow:0 2px 0 #e6cfae}
+  .dieu-khien{position:absolute;top:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:64vw;z-index:6}
+  button{font:inherit;font-size:14px;padding:9px 13px;border-radius:11px;border:1px solid #e2c69b;
+         background:rgba(255,253,247,.94);color:#5b4628;cursor:pointer;box-shadow:0 2px 0 #e6cfae}
   button:active{transform:translateY(1px);box-shadow:none}
   button.chinh{background:#fff1cf;border-color:#e0b46a}
 
-  .ghi-chu{position:absolute;bottom:7px;left:0;right:0;text-align:center;font-size:11px;color:#a48d6d}
-  @media (max-width:700px){
-    .dieu-khien{top:auto;bottom:10px;left:8px;right:8px;max-width:none;justify-content:center;gap:6px}
-    button{font-size:13px;padding:11px 11px;border-radius:10px}
-    .tieu-de{top:14px}
-    #chay{width:clamp(200px,46vw,300px)}
-    .ghi-chu{display:none}
+  .ghi-chu{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:11.5px;color:#3f5c28;
+            z-index:6;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+
+  @media (max-width:760px){
+    .dieu-khien{top:auto;bottom:24px;left:8px;right:8px;max-width:none;justify-content:center;gap:6px}
+    button{font-size:12.5px;padding:10px 9px;border-radius:10px}
+    .tieu-de{top:10px;left:10px;padding:6px 11px}
+    .tieu-de b{font-size:15px}
+    .tieu-de p{font-size:11px}
+    .ghi-chu{bottom:5px;font-size:10.5px}
+    #chay{width:210px}
   }
 </style>
 </head>
 <body>
-  <div class="may a"></div><div class="may b"></div><div class="may c"></div>
-  <div class="mat-dat"></div>
+  <div id="nen"></div>
 
-  <div class="tieu-de"><b>Sprint</b><p>Bấm nút để điều khiển chú chó</p></div>
+  <div class="tieu-de"><b>Sprint</b><p>Chạm vào công viên để chó đi tới</p></div>
 
   <div class="dieu-khien">
     <button id="btnDi" class="chinh">Đi</button>
@@ -81,43 +79,57 @@
     <button id="btnGiua">Ra giữa</button>
   </div>
 
-  <div class="duong-chay">
-    <div id="chay">
-      <div class="gio"><i></i><i></i><i></i></div>
-      <div id="sprite"></div>
-      <div class="bui"><span></span><span></span><span></span></div>
-    </div>
+  <div id="chay">
+    <div class="gio"><i></i><i></i><i></i></div>
+    <div id="bong"></div>
+    <div id="sprite"></div>
+    <div class="bui"><span></span><span></span><span></span></div>
   </div>
 
-  <div class="ghi-chu">8 khung SVG (6 chạy + 2 đứng) · JS điều khiển · tiếng sủa 0,5 giây</div>
+  <div class="ghi-chu">Đi lên = xa (chó nhỏ lại) · đi xuống = lại gần · phím mũi tên cũng đi được</div>
 
-<audio id="tiengSua" src="audio/sua.mp3" preload="auto"></audio>
+  <audio id="tiengSua" src="audio/sua.mp3" preload="auto"></audio>
+
 <script>
 (function(){
+  var nen    = document.getElementById('nen');
   var sprite = document.getElementById('sprite');
   var chay   = document.getElementById('chay');
   var tieng  = document.getElementById('tiengSua');
   var KHUNG  = 6, NHIP = 130;
 
-  var x = 0, huong = 1, tocDo = 260, dangChay = false;
-  var khung = 0, dem = 0, sua = 0, lanCuoi = 0, rongAnh = 300;
+  var XMIN = 0.06, XMAX = 0.94, YXA = 0.62, YGAN = 0.94;
+
+  var x = 0, y = 0, tx = 0, ty = 0;
+  var huong = 1, tocDo = 1, dangDi = false, tuDong = false;
+  var khung = 0, dem = 0, sua = 0, lanCuoi = 0;
   var dsKhung = [];
 
+  function W(){ return window.innerWidth; }
+  function H(){ return window.innerHeight; }
   function hien(i){
     for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.display = (k===i) ? '' : 'none';
   }
-  function hienTheoTen(ten){
-    for(var k=0;k<dsKhung.length;k++){
+  function hienTen(ten){
+    for(var k=0;k<dsKhung.length;k++)
       dsKhung[k].style.display = dsKhung[k].classList.contains(ten) ? '' : 'none';
-    }
   }
-  function ve(){
-    chay.style.transform = 'translateX(' + x.toFixed(1) + 'px) scaleX(' + huong + ')';
+  function tyLe(yy){
+    var t = (yy - H()*YXA) / Math.max(1, H()*(YGAN - YXA));
+    return 0.55 + 0.58 * Math.min(1, Math.max(0, t));
   }
   function datNut(){
-    var b = document.getElementById('btnDi');
-    b.textContent = dangChay ? 'Dừng' : 'Đi';
-    document.body.classList.toggle('dang-chay', dangChay);
+    document.getElementById('btnDi').textContent = tuDong ? 'Dừng' : 'Đi';
+  }
+  function ve(){
+    var s = tyLe(y);
+    chay.style.left = x.toFixed(1) + 'px';
+    chay.style.top  = y.toFixed(1) + 'px';
+    chay.style.transform = 'translate(-50%,-100%) scale(' + (s*huong).toFixed(3) + ',' + s.toFixed(3) + ')';
+  }
+  function datDiem(px, py){
+    tx = Math.min(W()*XMAX, Math.max(W()*XMIN, px));
+    ty = Math.min(H()*YGAN, Math.max(H()*YXA, py));
   }
 
   function buoc(ts){
@@ -125,25 +137,45 @@
     var dt = Math.min(60, ts - lanCuoi) / 1000;
     lanCuoi = ts;
 
-    if(dangChay){
-      x += huong * tocDo * dt;
-      var rongMan = window.innerWidth;
-      if(huong === 1 && x > rongMan + 20) x = -rongAnh - 20;
-      if(huong === -1 && x < -rongAnh - 20) x = rongMan + 20;
-      dem += dt * 1000 * (tocDo / 260);
+    var dx = tx - x, dy = ty - y, d = Math.sqrt(dx*dx + dy*dy);
+    var s = tyLe(y);
+    var vanToc = (150 + 240*s) * tocDo;
+
+    if(d > 3){
+      dangDi = true;
+      var buocDi = Math.min(d, vanToc * dt);
+      x += dx / d * buocDi;
+      y += dy / d * buocDi;
+      if(Math.abs(dx) > 2) huong = dx > 0 ? 1 : -1;
+      dem += dt * 1000 * tocDo;
       if(dem >= NHIP){ dem = 0; khung = (khung + 1) % KHUNG; }
+    } else {
+      dangDi = false;
+      if(tuDong) datDiem(huong > 0 ? W()*XMAX : W()*XMIN, y);
     }
+
+    document.body.classList.toggle('dang-chay', dangDi);
 
     if(sua > 0){
       sua -= dt * 1000;
-      if(dangChay){ hien(khung); }
-      else { hienTheoTen((Math.floor((600 - sua) / 110) % 2) ? 'k8' : 'k7'); }
+      if(dangDi) hien(khung);
+      else hienTen((Math.floor((600 - sua) / 110) % 2) ? 'k8' : 'k7');
     } else if(dsKhung.length){
-      if(dangChay) hien(khung); else hienTheoTen('k7');
+      if(dangDi) hien(khung); else hienTen('k7');
     }
     ve();
     requestAnimationFrame(buoc);
   }
+
+  fetch('nen-cong-vien.svg').then(function(r){ return r.text(); }).then(function(txt){
+    nen.innerHTML = txt;
+    var svg = nen.querySelector('svg');
+    if(svg){
+      // innerHTML làm mất thuộc tính phân biệt hoa-thường → đặt lại để nền phủ kín màn hình
+      svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+      svg.removeAttribute('width'); svg.removeAttribute('height');
+    }
+  }).catch(function(){});
 
   fetch('sprint-chay.svg').then(function(r){ return r.text(); }).then(function(txt){
     var doc = new DOMParser().parseFromString(txt, 'image/svg+xml');
@@ -153,38 +185,61 @@
     sprite.appendChild(document.importNode(svg, true));
     dsKhung = sprite.querySelectorAll('g.khung');
     for(var k=0;k<dsKhung.length;k++) dsKhung[k].style.animation = 'none';
-    rongAnh = Math.max(200, chay.getBoundingClientRect().width);
-    x = Math.round(window.innerWidth * 0.08);
-    hienTheoTen('k7'); ve();
+
+    x = W()*0.30; y = H()*0.86;
+    datDiem(x, y);
+    hienTen('k7'); ve();
   }).catch(function(){
     sprite.innerHTML = '<img src="sprint-chay.svg" alt="Sprint">';
   });
 
+  function bam(e){
+    var p = e.touches ? e.touches[0] : e;
+    datDiem(p.clientX, p.clientY);
+    tuDong = false; datNut();
+  }
+  nen.addEventListener('click', bam);
+  nen.addEventListener('touchstart', function(e){ bam(e); }, {passive:true});
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key, b = 0.07;
+    if(k === 'ArrowUp' || k === 'w'){ datDiem(x, y - H()*b); tuDong = false; datNut(); e.preventDefault(); }
+    if(k === 'ArrowDown' || k === 's'){ datDiem(x, y + H()*b); tuDong = false; datNut(); e.preventDefault(); }
+    if(k === 'ArrowLeft' || k === 'a'){ datDiem(x - W()*b, y); tuDong = false; datNut(); e.preventDefault(); }
+    if(k === 'ArrowRight' || k === 'd'){ datDiem(x + W()*b, y); tuDong = false; datNut(); e.preventDefault(); }
+    if(k === ' '){ document.getElementById('btnSua').click(); e.preventDefault(); }
+  });
+
   document.getElementById('btnDi').onclick = function(){
-    dangChay = !dangChay;
-    if(dangChay){ dem = 0; } else { hienTheoTen('k7'); }
+    tuDong = !tuDong;
+    if(tuDong) datDiem((x < W()*0.5) ? W()*XMAX : W()*XMIN, y);
     datNut();
   };
 
-  document.getElementById('btnChieu').onclick = function(){ huong = -huong; ve(); };
+  document.getElementById('btnChieu').onclick = function(){
+    huong = -huong;
+    datDiem(x + huong * W()*0.12, y);
+  };
 
   document.getElementById('btnNhanh').onclick = function(){
-    var bac = [260, 420, 620], ten = ['×1','×1.6','×2.4'];
+    var bac = [1, 1.8, 2.6], ten = ['×1','×1.8','×2.6'];
     var i = bac.indexOf(tocDo); i = (i + 1) % bac.length;
     tocDo = bac[i]; this.textContent = 'Tốc độ ' + ten[i];
   };
 
   document.getElementById('btnSua').onclick = function(){
     sua = 600;
-    try{ tieng.currentTime = 0; tieng.play(); }catch(e){}
+    try{ tieng.currentTime = 0; tieng.play(); }catch(err){}
   };
 
   document.getElementById('btnGiua').onclick = function(){
-    x = Math.max(0, (window.innerWidth - rongAnh) / 2); ve();
+    tuDong = false; datNut();
+    datDiem(W()*0.5, H()*0.80);
   };
 
   window.addEventListener('resize', function(){
-    rongAnh = Math.max(200, chay.getBoundingClientRect().width);
+    x = Math.min(x, W()*XMAX); y = Math.min(Math.max(y, H()*YXA), H()*YGAN);
+    datDiem(x, y); ve();
   });
 
   requestAnimationFrame(buoc);
