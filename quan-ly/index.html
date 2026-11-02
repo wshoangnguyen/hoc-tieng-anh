@@ -2435,8 +2435,8 @@ function roiLop(lop){
       <button class="ghost" id="ddGoiTen" title="Mở trò chơi chó đuổi, tự nạp tên học viên của lớp">🎲 Gọi tên ngẫu nhiên</button>
       ${nghiHomNay.length?`<button class="ghost" id="ddBoNghi">↩ Bỏ đánh dấu nghỉ</button>`
         :`<button class="ghost" id="ddNghi">⚪ Nghỉ buổi này</button>`}
-      ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Có mặt cả lớp (hôm nay)</button>`:""}
-      <button class="ghost" id="btnInLop">🖨 In</button></div>
+      ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Lớp đủ</button>`:""}
+      <button class="ghost" id="ddQuiz" title="Mở phòng quiz game cho lớp này">🎮 Quiz game</button></div>
     <div class="roster ${co}" id="rosterAnh" data-treo="${daVaoGio(lop)?1:0}">${hs.map(h=>{
       const d=diemCua(h.ma_hv), st=stickerCua(h.ma_hv), stHom=stickerHomNay(h.ma_hv), sn=laSinhNhat(h), cc=chuyenCan(h);
       const anhm=(typeof anhSrc==="function")?anhSrc(h.ma_hv):S.anh[h.ma_hv];
@@ -2463,6 +2463,7 @@ GAN("ddBody","click",e=>{
   const hs=e.target.closest("[data-hoso]"); if(hs){ moHoSoHV(hs.dataset.hoso); return; }
   const t=e.target.closest("button"); if(!t) return;
   if(t.id==="ddGoiTen"){ moGoiTen(DD_LOP); return; }
+  if(t.id==="ddQuiz"){ moQuizGame(DD_LOP); return; }
   if(t.id==="ddQuayLai"){ DD_LOP=null; veDiemDanh(); return; }
   if(t.id==="ddNghi"){ if(!confirm(`Đánh dấu lớp ${DD_LOP} nghỉ buổi hôm nay? Học viên không bị tính vắng.`)) return;
     datNghiBuoi(DD_LOP,true); return; }
@@ -2507,7 +2508,6 @@ GAN("fileAnh","change",e=>{
     }; im.src=rd.result; };
   rd.readAsDataURL(f); e.target.value="";
 });
-GAN("btnInLop","click",()=>window.print());
 
 function moLopDiemDanh(ten){
   if(!ten) return;
@@ -5436,6 +5436,65 @@ try{
   if(nut) nut.addEventListener("click", tat);
   hop.addEventListener("click", function(e){ if(e.target===hop) tat(); });
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && hop.style.display==="flex") tat(); });
+})();
+</script>
+
+<div id="quizHop" style="position:fixed;inset:0;background:rgba(18,14,8,.74);display:none;align-items:center;justify-content:center;padding:20px;z-index:9998">
+  <div style="width:min(620px,96vw);background:#fffdf7;border:1px solid #e2d9c3;border-radius:18px;padding:22px 22px 18px;box-shadow:0 26px 70px rgba(0,0,0,.45);position:relative">
+    <button id="quizDong" style="position:absolute;top:12px;right:14px;background:#fff;color:#4a3a26;border:1px solid #e2d9c3;border-radius:10px;padding:6px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer">✕</button>
+    <h3 style="margin:0 0 4px;font-size:20px">🎮 Quiz game — Chó đuổi 2</h3>
+    <p id="quizLop" style="margin:0 0 16px;color:#8a7561;font-size:13px"></p>
+
+    <div style="border:1px solid #e2d9c3;border-radius:14px;padding:14px;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:700;color:#8a7561;margin-bottom:6px">DÀNH CHO GIÁO VIÊN</div>
+      <a id="quizLinkGv" href="#" target="_blank" rel="noopener" style="display:block;color:#2f7fd6;font-size:14px;word-break:break-all;margin-bottom:10px"></a>
+      <button class="ghost" id="quizCopyGv" style="font-size:13px">📋 Copy link giáo viên</button>
+    </div>
+
+    <div style="border:1px solid #e2d9c3;border-radius:14px;padding:14px">
+      <div style="font-size:13px;font-weight:700;color:#8a7561;margin-bottom:6px">DÀNH CHO HỌC SINH (gửi vào nhóm lớp)</div>
+      <a id="quizLinkHs" href="#" target="_blank" rel="noopener" style="display:block;color:#2f7fd6;font-size:14px;word-break:break-all;margin-bottom:10px"></a>
+      <button class="ghost" id="quizCopyHs" style="font-size:13px">📋 Copy link học sinh</button>
+    </div>
+
+    <p style="margin:14px 0 0;font-size:12.5px;color:#8a7561;line-height:1.5">
+      Giáo viên mở link trên → nhập/giữ mã điều khiển → chọn bộ câu hỏi → <b>Mở phòng</b>.
+      Màn chiếu hiện mã phòng; học sinh nhập tên + mã đó là vào chơi.
+    </p>
+  </div>
+</div>
+<script>
+(function(){
+  var GOC = "https://vm-4-13-ubuntu.tailcfa324.ts.net:10000";
+  var hop = document.getElementById("quizHop");
+  if(!hop) return;
+  function dong(){ hop.style.display = "none"; }
+  document.getElementById("quizDong").addEventListener("click", dong);
+  hop.addEventListener("click", function(e){ if(e.target === hop) dong(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") dong(); });
+
+  function copy(txt, nut){
+    var cu = nut.textContent;
+    function xong(){ nut.textContent = "✅ Đã copy"; setTimeout(function(){ nut.textContent = cu; }, 1400); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(xong, function(){ window.prompt("Copy link:", txt); });
+    } else { window.prompt("Copy link:", txt); }
+  }
+  document.getElementById("quizCopyGv").addEventListener("click", function(){
+    copy(GOC + "/giao-vien.html", this);
+  });
+  document.getElementById("quizCopyHs").addEventListener("click", function(){
+    copy(GOC + "/hoc-sinh.html", this);
+  });
+
+  window.moQuizGame = function(lop){
+    var gv = GOC + "/giao-vien.html", hs = GOC + "/hoc-sinh.html";
+    var a = document.getElementById("quizLinkGv"), b = document.getElementById("quizLinkHs");
+    a.href = gv; a.textContent = gv;
+    b.href = hs; b.textContent = hs;
+    document.getElementById("quizLop").textContent = lop ? "Lớp " + lop + " — mở phòng rồi chiếu lên màn hình." : "";
+    hop.style.display = "flex";
+  };
 })();
 </script>
 </body>
