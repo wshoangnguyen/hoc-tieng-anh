@@ -111,6 +111,7 @@
   <div class="dieu-khien">
     <button id="btnDuoi" class="chinh">Bắt đầu đuổi</button>
     <button id="btnTen">Đổi tên</button>
+    <button id="btnTieng" title="Tắt / bật âm thanh">🔊</button>
   </div>
 
   <div id="banner"><div class="nho">CHÓ ĐÃ BẮT ĐƯỢC</div><div class="to" id="bTen">—</div>
@@ -125,12 +126,27 @@
   <div id="dog"><div id="bong2"></div><div id="sprite"></div></div>
 
   <audio id="tiengSua" src="audio/sua.mp3" preload="auto"></audio>
+  <audio id="nhacNen" src="audio/nhac-nen.mp3" preload="auto" loop></audio>
+  <audio id="tiengTre" src="audio/tieng-tre.mp3" preload="auto"></audio>
 
 <script>
 (function(){
   var nen=document.getElementById('nen'), khuVat=document.getElementById('vat-the');
   var dog=document.getElementById('dog'), sprite=document.getElementById('sprite');
   var tieng=document.getElementById('tiengSua');
+  var nhac=document.getElementById('nhacNen'), tiengTre=document.getElementById('tiengTre');
+  var tiengBat=true;
+  nhac.volume=0.18; tiengTre.volume=0.42;   // nhỏ để không át giọng cô và học sinh
+  function batNhac(){ if(!tiengBat) return; if(nhac.paused){ var p=nhac.play(); if(p&&p.catch) p.catch(function(){}); } }
+  function tatNhac(){ try{ nhac.pause(); }catch(e){} }
+  function treVui(){
+    if(!tiengBat) return;
+    try{
+      var d=tiengTre.duration||0, dai=Math.min(4.5, d*0.5);
+      tiengTre.currentTime = d>dai ? Math.random()*(d-dai) : 0;
+      var p=tiengTre.play(); if(p&&p.catch) p.catch(function(){});
+    }catch(e){}
+  }
 
   var WXMIN=0.05, WXMAX=0.95, ZMIN=0.30, ZMAX=0.97, Y0=0.60, Y1=0.94;
   function W(){ return document.documentElement.clientWidth; }
@@ -410,6 +426,7 @@
         var b2=document.getElementById('banner'); b2.classList.add('hien');
         setTimeout(function(){ b2.classList.remove('hien'); }, 6000);
         document.getElementById('btnDuoi').textContent='Đuổi tiếp';
+        treVui();
       }
     } else {
       if(demSua<=0) hienDog('k7');
@@ -461,11 +478,13 @@
   document.getElementById('btnDuoi').onclick=function(){
     if(trangThai==='duoi' || trangThai==='tangtoc'){
       trangThai='nghi'; dich=null; demPha=0; daSua=false;
+      tatNhac();
       this.textContent='Bắt đầu đuổi'; return;
     }
     for(var i=0;i<BE.length;i++){ BE[i].biBat=false; BE[i].el.classList.remove('bi-bat'); }
     dich=BE[Math.floor(Math.random()*BE.length)];
     trangThai='duoi'; demPha=0; daSua=false;
+    batNhac();
     this.textContent='Dừng';
   };
 
@@ -531,6 +550,19 @@
   }
 
   document.getElementById('btnTen').onclick=function(){ veBangTen(); hop.classList.add('mo'); };
+
+  // nút tắt/bật âm thanh
+  var nutTieng=document.getElementById('btnTieng');
+  nutTieng.onclick=function(){
+    tiengBat=!tiengBat;
+    if(!tiengBat){
+      tatNhac(); try{ tiengTre.pause(); }catch(e){}
+      this.textContent='🔇'; this.title='Đang tắt tiếng — bấm để bật';
+    } else {
+      this.textContent='🔊'; this.title='Đang bật tiếng — bấm để tắt';
+      if(trangThai==='duoi' || trangThai==='tangtoc') batNhac();
+    }
+  };
   document.getElementById('btnHuy').onclick=function(){ hop.classList.remove('mo'); };
   document.getElementById('btnLuu').onclick=function(){
     docTen();
