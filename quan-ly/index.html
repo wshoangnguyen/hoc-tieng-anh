@@ -4485,7 +4485,7 @@ const lichSu=[];   /* giữ ngữ cảnh để AI trả lời theo một luồng
 let sachDangHoi="";   /* nhớ sách của lượt trước để không trả lời lạc sách */
 let unitDangHoi=null;   /* nhớ unit đang bàn */
 const nut=document.createElement("button");
-nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="none";
+nut.id="chatNut"; nut.textContent="💬 Hỏi sách"; nut.style.display="block";  /* luôn hiện, không ẩn theo phiên đăng nhập */
 const hop=document.createElement("div"); hop.id="chatHop";
 hop.innerHTML='<div class="chat-dau">💬 AI hỗ trợ giáo viên<button id="chatDong" title="Đóng">✕</button></div>'
  +'<div class="chat-ngcanh" id="chatNgCanh"></div>'
@@ -4565,8 +4565,13 @@ function hopGopY(ma){
 }
 
 async function xemDangNhap(){
-  try{ const {data}=await sb.auth.getSession(); nut.style.display=data&&data.session?"block":"none"; }
-  catch(e){ nut.style.display="none"; }
+  /* nút luôn hiện; chỉ ẩn khi chắc chắn chưa đăng nhập và đang thấy màn đăng nhập */
+  try{
+    const {data}=await sb.auth.getSession();
+    const dn=document.getElementById("dn");
+    const dangHoiDangNhap=!!(dn && !dn.hidden);
+    nut.style.display=(data&&data.session)||!dangHoiDangNhap?"block":"none";
+  }catch(e){ nut.style.display="block"; }
 }
 xemDangNhap(); setInterval(xemDangNhap, 8000);
 })();
