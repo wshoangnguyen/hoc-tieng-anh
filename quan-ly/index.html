@@ -5365,13 +5365,8 @@ function capNhatSapHet(){
           dong.push(`<div style="margin-top:4px">✅ <b>${esc(l)}</b> thi xong${t.ngay?" (ngày thi "+ngayVN(t.ngay)+")":""} — chuẩn bị lên lớp
             <button class="ghost sm" data-thi-bo="${esc(l)}" title="Bỏ xác nhận thi xong">↺</button></div>`);
         } else if(t.ngay){
-          const [yy,mm,dd]=String(t.ngay).split("-").map(Number);
-          const hn=new Date(), moc=Date.UTC(yy,mm-1,dd), nay=Date.UTC(hn.getFullYear(),hn.getMonth(),hn.getDate());
-          const conLai=Math.round((moc-nay)/86400000);
-          const moTa = conLai>0 ? `còn ${conLai} ngày` : (conLai===0 ? "hôm nay thi" : `đã qua ${-conLai} ngày`);
-          const hetNgay = conLai<=0;
-          dong.push(`<div style="margin-top:4px">📅 <b>${esc(l)}</b> thi ngày <b>${ngayVN(t.ngay)}</b> <span class="hint">· ${moTa}</span>
-            <div style="margin-top:4px"><button class="${hetNgay?"primary":"ghost"} sm" data-thi-xong="${esc(l)}">☑ Xác nhận đã thi</button>
+          dong.push(`<div style="margin-top:4px">📅 <b>${esc(l)}</b> thi ngày <b>${ngayVN(t.ngay)}</b>
+            <div style="margin-top:4px"><button class="primary sm" data-thi-xong="${esc(l)}">✅ Đã thi xong</button>
             <button class="ghost sm" data-thi-ngay="${esc(l)}">đổi ngày</button></div></div>`);
         } else {
           dong.push(`<div style="margin-top:4px">📝 <b>${esc(l)}</b> sắp thi — chưa có ngày thi
