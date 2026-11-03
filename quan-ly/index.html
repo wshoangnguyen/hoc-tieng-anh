@@ -317,6 +317,9 @@ header{padding:6px 10px}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
 .seg button{border:0;border-radius:0;padding:4px 10px;font-size:12.5px;background:transparent;white-space:nowrap}
 .seg button.on{background:var(--accent);color:#3a2c07;font-weight:700}
+.subtab{display:flex;gap:6px;margin:10px 0 4px;flex-wrap:wrap}
+.subtab button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font:600 14px/1 inherit;color:var(--dim);cursor:pointer}
+.subtab button.on{background:var(--accent);color:#3a2c07;border-color:var(--accent)}
 .b .gv-ten{font-size:13.5px;font-weight:800;line-height:1.2}
 .b .cls-nho{font-size:11px;color:var(--dim);line-height:1.25}
 @media(max-width:760px){
@@ -535,6 +538,12 @@ header{padding:6px 10px}
       <div class="tt du"><h3>👦 Học viên: <span id="hvTong">0</span> em</h3><div id="hvTongInfo"></div></div>
       <div class="tt thieu"><h3>🔎 Dòng còn thiếu thông tin: <span id="hvCanXn">0</span></h3><div id="hvCanXnInfo"></div></div>
     </div>
+    <div class="subtab noprint" id="hvSubTab" style="display:flex;gap:6px;margin:10px 0 4px">
+      <button data-sub="hoc" class="on">👦 Danh sách</button>
+      <button data-sub="no">💰 Công nợ</button>
+      <button data-sub="nghi" id="hvSubNghiNut">📦 Nghỉ / bảo lưu</button>
+    </div>
+    <div id="hvSubHoc">
     <div class="card noprint">
       <div class="row" style="gap:10px;align-items:flex-end;flex-wrap:wrap">
         <div class="field" style="min-width:240px"><label>Tìm học viên</label><input id="hvTim" placeholder="nhập tên, tên gọi, SĐT hoặc mã HV…"></div>
@@ -552,13 +561,13 @@ header{padding:6px 10px}
       <div id="hvSiSo" class="cmp" style="margin-top:6px"></div>
     </div>
     <div class="cuon"><div id="hvBody"></div></div>
-    <div id="hvLuuTru"></div>
+    </div>
+    <div id="hvSubNghi" class="hide"></div>
     <div id="hvCongNo" class="hide">
       <div class="row" style="gap:10px;align-items:center;margin:12px 0 6px">
         <h3 style="margin:0">💰 Công nợ</h3>
-        <span class="hint">theo từng tháng và chi tiết từng em — mở/đóng bằng nút 💰 Công nợ ở trên</span>
+        <span class="hint">theo từng tháng và chi tiết từng em</span>
         <span style="flex:1"></span>
-        <button class="ghost sm" id="hvCnDong">↑ Thu gọn</button>
       </div>
         <div id="cnBody">
         <div class="card">
@@ -1469,7 +1478,7 @@ function veHocVien(){
   const tien=hoc.reduce((s,h)=>s+h.hoc_phi_thang,0);
   document.getElementById("hvTong").textContent=ds.length;
   const hb=hoc.reduce((s,h)=>s+h.giam_gia,0), thu=ds.reduce((s,h)=>s+h.lich_su_thu.reduce((a,x)=>a+(x.tien||0),0),0);
-  document.getElementById("hvTongInfo").innerHTML=`${new Set(ds.map(h=>h.lop)).size} lớp · học phí/tháng <b>${tien.toLocaleString("vi-VN")} đ</b> · học bổng/giảm <b>${hb.toLocaleString("vi-VN")} đ</b>/tháng<br>Đã ghi thu trên web: <b>${thu.toLocaleString("vi-VN")} đ</b> · ${dsNghi.length} em đã nghỉ · ${dsBaoLuu.length} em bảo lưu <span class="hint">(xem mục 📦 Lưu trữ bên dưới)</span> · <span class="hint">sửa trực tiếp ở cột <b>Thao tác</b></span>`;
+  document.getElementById("hvTongInfo").innerHTML=`${new Set(ds.map(h=>h.lop)).size} lớp · học phí/tháng <b>${tien.toLocaleString("vi-VN")} đ</b> · học bổng/giảm <b>${hb.toLocaleString("vi-VN")} đ</b>/tháng<br>Đã ghi thu trên web: <b>${thu.toLocaleString("vi-VN")} đ</b> · ${dsNghi.length} em đã nghỉ · ${dsBaoLuu.length} em bảo lưu <span class="hint">(tab 📦 Nghỉ / bảo lưu)</span> · <span class="hint">sửa trực tiếp ở cột <b>Thao tác</b></span>`;
   const xn=ds.filter(h=>h.canh_bao||h.can_xac_nhan);
   document.getElementById("hvCanXn").textContent=xn.length;
   document.getElementById("hvCanXnInfo").innerHTML=xn.length? xn.map(h=>`${esc(h.ho_ten)} <span class="hint">(${esc(h.lop)}${h.canh_bao?" — "+esc(h.canh_bao):""})</span>`).join("<br>") : "không thiếu thông tin nào";
@@ -1486,7 +1495,7 @@ function veHocVien(){
     : (thieu.length? `⚠️ Có <b>${thieu.length} lớp có học viên nhưng chưa có trong Danh sách lớp</b>: ${thieu.map(esc).join(" · ")} — thêm ở tab Danh sách lớp để lớp vào lịch tuần.`
     : "✅ Mọi lớp có học viên đều đã có trong Danh sách lớp.");
   const rows=hvDangLoc().sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
-  if(!rows.length && (HV_HIEN.trang_thai==="nghỉ"||HV_HIEN.trang_thai==="bảo lưu")){ body.innerHTML=`<p class="hint" style="padding:10px">Các em <b>${HV_HIEN.trang_thai}</b> đã được chuyển sang mục <b>📦 Lưu trữ</b> bên dưới (đang mở sẵn).</p>`; veLuuTru(); return; }
+  if(!rows.length && (HV_HIEN.trang_thai==="nghỉ"||HV_HIEN.trang_thai==="bảo lưu")){ body.innerHTML=`<p class="hint" style="padding:10px">Các em <b>${HV_HIEN.trang_thai}</b> đã được chuyển sang tab <b>📦 Nghỉ / bảo lưu</b> ở trên.</p>`; hvChonSub("nghi"); return; }
   const td='padding:6px;border-bottom:1px solid var(--line)';
   const COT=["Mã","Họ tên","Gọi trong lớp","Lớp","Khuyến mãi","Học phí/tháng","Học bổng/giảm","Đã đóng đến tháng","Nợ tháng này","Tổng nợ","Phụ huynh","SĐT phụ huynh","Tỉnh/Thành","Anh/chị em","Trạng thái","Thao tác"];
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -1510,7 +1519,7 @@ function veHocVien(){
       <td style="${td};white-space:nowrap"><button class="ghost" ${btnNho} data-sua="${esc(h.ma_hv)}">✏️ Sửa</button>
         ${h.no_tien?`<button class="primary" ${btnNho} data-thu="${esc(h.ma_hv)}">＋ Thu</button>`:""}</td></tr>`).join("")}</tbody></table>
     <p class="hint" style="margin-top:8px">Đang hiện <b>${rows.length}/${ds.length}</b> học viên. <b>Dữ liệu giờ sửa trực tiếp trong web</b> — bấm <b>✏️ Sửa</b> ở cột Thao tác. Mọi thay đổi lưu ngay trên máy này; muốn mang sang máy khác thì bấm <b>⬇ Xuất JSON</b> ở trên.</p>`;
-  veLuuTru();
+  veLuuTru(); hvChonSub(typeof HV_SUB==="string"?HV_SUB:"hoc");
 }
 const GAN=(id,ev,fn)=>{ const el=document.getElementById(id); if(el) el.addEventListener(ev,fn); };
 GAN("hvTim","input",e=>{ HV_HIEN.tim=e.target.value; veHocVien(); });
@@ -1542,14 +1551,16 @@ function hvKhoiPhuc(ma){
   tinhHV(h); save(); veHocVien(); veCongNo(); veDiemDanh();
 }
 function veLuuTru(){
-  const box=document.getElementById("hvLuuTru"); if(!box) return;
+  const box=document.getElementById("hvSubNghi"); if(!box) return;
   const nghi=hvTatCa().filter(laNghi), bl=hvTatCa().filter(laBaoLuu);
-  const ds=[...bl,...nghi]; if(!ds.length){ box.innerHTML=""; return; }
+  const ds=[...bl,...nghi];
+  const nut=document.getElementById("hvSubNghiNut");
+  if(nut) nut.textContent="📦 Nghỉ / bảo lưu"+(ds.length?" ("+ds.length+")":"");
+  if(!ds.length){ box.innerHTML='<div class="card"><p class="hint" style="margin:0">Chưa có học sinh nào nghỉ hay bảo lưu.</p></div>'; return; }
   const td='padding:6px;border-bottom:1px solid var(--line)';
-  const mo=(HV_HIEN.trang_thai==="nghỉ"||HV_HIEN.trang_thai==="bảo lưu")?" open":"";
-  box.innerHTML=`<details${mo} style="margin-top:12px">
-    <summary style="cursor:pointer;font-weight:600;padding:8px 2px">📦 Lưu trữ — ${bl.length} bảo lưu · ${nghi.length} đã nghỉ <span class="hint">(không tính vào danh sách đang học và điểm danh)</span></summary>
-    <div class="cuon" style="margin-top:6px"><table style="width:100%;border-collapse:collapse;font-size:14px">
+  box.innerHTML=`<div class="card"><div class="row" style="margin:0 0 8px">
+      <h3 style="margin:0">📦 Nghỉ / bảo lưu <span class="hint">${bl.length} bảo lưu · ${nghi.length} đã nghỉ</span></h3></div>
+    <div class="cuon"><table style="width:100%;border-collapse:collapse;font-size:14px">
       <thead><tr>${["Mã","Học viên","Lớp","Trạng thái","Đã đóng đến","Nợ còn lại","Ghi chú","Thao tác"].map(x=>`<th style="text-align:left;padding:6px;border-bottom:2px solid var(--line);white-space:nowrap">${x}</th>`).join("")}</tr></thead>
       <tbody>${ds.map(h=>`<tr>
         <td style="${td};white-space:nowrap">${esc(h.ma_hv)}</td>
@@ -1560,10 +1571,23 @@ function veLuuTru(){
         <td style="${td};text-align:right;color:${h.no_tien?"var(--nhan)":""}">${h.no_tien?h.no_tien.toLocaleString("vi-VN")+" đ":""}</td>
         <td style="${td}" class="hint">${esc(h.ghi_chu||"")}</td>
         <td style="${td};white-space:nowrap"><button class="ghost" ${btnNho} onclick="hvKhoiPhuc('${esc(h.ma_hv)}')">↩ Đưa lại lớp</button>
-          <button class="ghost" ${btnNho} onclick="moSuaHV('${esc(h.ma_hv)}',false)">✏️ Sửa</button></td></tr>`).join("")}</tbody></table>
-      <p class="hint" style="margin-top:6px">Học sinh ở đây <b>không hiện trong Điểm danh và không tính vào tổng số học sinh</b>. Bấm <b>↩ Đưa lại lớp</b> khi em quay lại học.</p>
-    </div></details>`;
+          <button class="ghost" ${btnNho} onclick="moSuaHV('${esc(h.ma_hv)}',false)">✏️ Sửa</button></td></tr>`).join("")}</tbody></table></div>
+    <p class="hint" style="margin-top:8px">Học sinh ở đây <b>không hiện trong Điểm danh và không tính vào tổng số học viên</b>. Bấm <b>↩ Đưa lại lớp</b> khi em quay lại học.</p></div>`;
 }
+let HV_SUB="hoc";
+function hvChonSub(sub){
+  HV_SUB=sub||"hoc";
+  const bar=document.getElementById("hvSubTab");
+  if(bar) bar.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.sub===HV_SUB));
+  const hoc=document.getElementById("hvSubHoc"), no=document.getElementById("hvCongNo"), nghi=document.getElementById("hvSubNghi");
+  if(hoc) hoc.classList.toggle("hide",HV_SUB!=="hoc");
+  if(no) no.classList.toggle("hide",HV_SUB!=="no");
+  if(nghi) nghi.classList.toggle("hide",HV_SUB!=="nghi");
+  if(HV_SUB==="no"){ try{ veCongNo(); }catch(e){} }
+  if(HV_SUB==="nghi"){ try{ veLuuTru(); }catch(e){} }
+  try{ localStorage.setItem("hv_sub",HV_SUB); }catch(e){}
+}
+GAN("hvSubTab","click",e=>{ const b=e.target.closest("button[data-sub]"); if(b) hvChonSub(b.dataset.sub); });
 /* ---------- thu học phí: ghi nhận tiền thật ---------- */
 function thuHocPhi(ma,soThang){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
@@ -3996,14 +4020,13 @@ function bdGanThanhHocVien(){
   bar.id="hvBarBaiDay"; bar.className="card noprint"; bar.style.padding="8px 10px";
   const coCN=(quyenTab().lop||[]).includes("congno");
   bar.innerHTML=`<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">
-    ${coCN?`<button class="primary" id="hvBarCongNo">💰 Công nợ</button>`:""}
     <button class="primary" id="hvBarDatSach">📚 Đặt sách</button>
     <span class="hint" id="hvBarSachNote"></span>
     <span style="flex:1"></span>
     <span class="hint">bảng tên HS · phụ huynh · SĐT · địa chỉ, copy dán thẳng vào Excel hoặc Zalo</span></div>`;
-  sec.insertBefore(bar, sec.firstElementChild.nextSibling||null);
+  const neo=document.getElementById("hvSubTab");
+  sec.insertBefore(bar, neo?neo.nextSibling:(sec.firstElementChild.nextSibling||null));
   bar.querySelector("#hvBarDatSach").onclick=()=>moDatSach();
-  const bn=bar.querySelector("#hvBarCongNo"); if(bn) bn.onclick=()=>moCongNo();
   const dong=document.getElementById("hvCnDong");
   if(dong&&!dong.dataset.gan){ dong.dataset.gan="1";
     dong.onclick=()=>{ const b=document.getElementById("hvCongNo"); if(b) b.classList.add("hide"); }; }
@@ -4011,11 +4034,10 @@ function bdGanThanhHocVien(){
 }
 /* mở/đóng khối Công nợ nằm ngay dưới bảng học viên */
 function moCongNo(){
-  const box=document.getElementById("hvCongNo"); if(!box) return;
-  const mo=box.classList.contains("hide");
-  box.classList.toggle("hide",!mo);
-  if(mo){ try{ veCongNo(); }catch(e){}
-    setTimeout(()=>{ try{ box.scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){} },50); }
+  try{ if(tabDangXem!=="hocvien"){ trangDangXem="lop"; tabDangXem="hocvien"; veNav(); apDungTab(); } }catch(e){}
+  hvChonSub("no");
+  const box=document.getElementById("hvCongNo");
+  if(box) setTimeout(()=>{ try{ box.scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){} },50);
 }
 
 
