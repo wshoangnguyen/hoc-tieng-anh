@@ -552,6 +552,7 @@ header{padding:6px 10px}
       <div id="hvSiSo" class="cmp" style="margin-top:6px"></div>
     </div>
     <div class="cuon"><div id="hvBody"></div></div>
+    <div id="hvLuuTru"></div>
   </section>
 
   <section id="tab-congno" data-trang="lop" class="hide">
@@ -1439,7 +1440,7 @@ const maMoi=()=>{ let n=0; hvTatCa().forEach(h=>{ const m=String(h.ma_hv||"").ma
 const HV_HIEN={tim:"",lop:"",chiXn:false,trang_thai:""};
 function hvDangLoc(){
   const t=HV_HIEN.tim.trim().toLowerCase();
-  return hvTatCa().filter(h=>{
+  return hvDangHoc().filter(h=>{
     if(HV_HIEN.lop && h.lop!==HV_HIEN.lop) return false;
     if(HV_HIEN.trang_thai && (h.trang_thai||"đang học")!==HV_HIEN.trang_thai) return false;
     if(HV_HIEN.chiXn && !(h.canh_bao||h.can_xac_nhan)) return false;
@@ -1450,15 +1451,16 @@ function hvDangLoc(){
 const btnNho='style="padding:2px 8px;font-size:12.5px"';
 
 function veHocVien(){
-  const ds=hvTatCa(), body=document.getElementById("hvBody"); if(!body) return;
+  const tatCa=hvTatCa(), ds=hvDangHoc(), body=document.getElementById("hvBody"); if(!body) return;
+  const dsNghi=tatCa.filter(laNghi), dsBaoLuu=tatCa.filter(laBaoLuu);
   tinhHet();
-  if(!ds.length){ body.innerHTML='<p class="hint">Chưa có danh sách học viên. Bấm <b>➕ Thêm học viên</b> để nhập, hoặc <b>↺ Lấy lại danh sách gốc</b> nếu trong tệp web còn bản gốc.</p>';
+  if(!tatCa.length){ body.innerHTML='<p class="hint">Chưa có danh sách học viên. Bấm <b>➕ Thêm học viên</b> để nhập, hoặc <b>↺ Lấy lại danh sách gốc</b> nếu trong tệp web còn bản gốc.</p>';
     document.getElementById("hvTong").textContent="0"; document.getElementById("hvCanXn").textContent="0"; return; }
-  const hoc=ds.filter(h=>h.trang_thai!=="nghỉ");
+  const hoc=ds;
   const tien=hoc.reduce((s,h)=>s+h.hoc_phi_thang,0);
   document.getElementById("hvTong").textContent=ds.length;
   const hb=hoc.reduce((s,h)=>s+h.giam_gia,0), thu=ds.reduce((s,h)=>s+h.lich_su_thu.reduce((a,x)=>a+(x.tien||0),0),0);
-  document.getElementById("hvTongInfo").innerHTML=`${new Set(ds.map(h=>h.lop)).size} lớp · học phí/tháng <b>${tien.toLocaleString("vi-VN")} đ</b> · học bổng/giảm <b>${hb.toLocaleString("vi-VN")} đ</b>/tháng<br>Đã ghi thu trên web: <b>${thu.toLocaleString("vi-VN")} đ</b> · ${ds.filter(h=>h.trang_thai==="nghỉ").length} em đã nghỉ · <span class="hint">sửa trực tiếp ở cột <b>Thao tác</b></span>`;
+  document.getElementById("hvTongInfo").innerHTML=`${new Set(ds.map(h=>h.lop)).size} lớp · học phí/tháng <b>${tien.toLocaleString("vi-VN")} đ</b> · học bổng/giảm <b>${hb.toLocaleString("vi-VN")} đ</b>/tháng<br>Đã ghi thu trên web: <b>${thu.toLocaleString("vi-VN")} đ</b> · ${dsNghi.length} em đã nghỉ · ${dsBaoLuu.length} em bảo lưu <span class="hint">(xem mục 📦 Lưu trữ bên dưới)</span> · <span class="hint">sửa trực tiếp ở cột <b>Thao tác</b></span>`;
   const xn=ds.filter(h=>h.canh_bao||h.can_xac_nhan);
   document.getElementById("hvCanXn").textContent=xn.length;
   document.getElementById("hvCanXnInfo").innerHTML=xn.length? xn.map(h=>`${esc(h.ho_ten)} <span class="hint">(${esc(h.lop)}${h.canh_bao?" — "+esc(h.canh_bao):""})</span>`).join("<br>") : "không thiếu thông tin nào";
@@ -1475,6 +1477,7 @@ function veHocVien(){
     : (thieu.length? `⚠️ Có <b>${thieu.length} lớp có học viên nhưng chưa có trong Danh sách lớp</b>: ${thieu.map(esc).join(" · ")} — thêm ở tab Danh sách lớp để lớp vào lịch tuần.`
     : "✅ Mọi lớp có học viên đều đã có trong Danh sách lớp.");
   const rows=hvDangLoc().sort((a,b)=>soSanhLop(a.lop,b.lop)||String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
+  if(!rows.length && (HV_HIEN.trang_thai==="nghỉ"||HV_HIEN.trang_thai==="bảo lưu")){ body.innerHTML=`<p class="hint" style="padding:10px">Các em <b>${HV_HIEN.trang_thai}</b> đã được chuyển sang mục <b>📦 Lưu trữ</b> bên dưới (đang mở sẵn).</p>`; veLuuTru(); return; }
   const td='padding:6px;border-bottom:1px solid var(--line)';
   const COT=["Mã","Họ tên","Gọi trong lớp","Lớp","Khuyến mãi","Học phí/tháng","Học bổng/giảm","Đã đóng đến tháng","Nợ tháng này","Tổng nợ","Phụ huynh","SĐT phụ huynh","Tỉnh/Thành","Anh/chị em","Trạng thái","Thao tác"];
   body.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -1498,6 +1501,7 @@ function veHocVien(){
       <td style="${td};white-space:nowrap"><button class="ghost" ${btnNho} data-sua="${esc(h.ma_hv)}">✏️ Sửa</button>
         ${h.no_tien?`<button class="primary" ${btnNho} data-thu="${esc(h.ma_hv)}">＋ Thu</button>`:""}</td></tr>`).join("")}</tbody></table>
     <p class="hint" style="margin-top:8px">Đang hiện <b>${rows.length}/${ds.length}</b> học viên. <b>Dữ liệu giờ sửa trực tiếp trong web</b> — bấm <b>✏️ Sửa</b> ở cột Thao tác. Mọi thay đổi lưu ngay trên máy này; muốn mang sang máy khác thì bấm <b>⬇ Xuất JSON</b> ở trên.</p>`;
+  veLuuTru();
 }
 const GAN=(id,ev,fn)=>{ const el=document.getElementById(id); if(el) el.addEventListener(ev,fn); };
 GAN("hvTim","input",e=>{ HV_HIEN.tim=e.target.value; veHocVien(); });
@@ -1521,6 +1525,36 @@ GAN("hvBody","click",e=>{
   if(s) moSuaHV(s.dataset.sua,false);
   if(t) thuHocPhi(t.dataset.thu,1);
 });
+/* ---------- 📦 Lưu trữ: học sinh đã nghỉ / bảo lưu ---------- */
+function hvKhoiPhuc(ma){
+  const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
+  if(!confirm(`Đưa ${h.ho_ten} (${h.lop}) trở lại danh sách đang học?`)) return;
+  h.trang_thai="đang học"; h.ngay_khoi_phuc=iso(new Date());
+  tinhHV(h); save(); veHocVien(); veCongNo(); veDiemDanh();
+}
+function veLuuTru(){
+  const box=document.getElementById("hvLuuTru"); if(!box) return;
+  const nghi=hvTatCa().filter(laNghi), bl=hvTatCa().filter(laBaoLuu);
+  const ds=[...bl,...nghi]; if(!ds.length){ box.innerHTML=""; return; }
+  const td='padding:6px;border-bottom:1px solid var(--line)';
+  const mo=(HV_HIEN.trang_thai==="nghỉ"||HV_HIEN.trang_thai==="bảo lưu")?" open":"";
+  box.innerHTML=`<details${mo} style="margin-top:12px">
+    <summary style="cursor:pointer;font-weight:600;padding:8px 2px">📦 Lưu trữ — ${bl.length} bảo lưu · ${nghi.length} đã nghỉ <span class="hint">(không tính vào danh sách đang học và điểm danh)</span></summary>
+    <div class="cuon" style="margin-top:6px"><table style="width:100%;border-collapse:collapse;font-size:14px">
+      <thead><tr>${["Mã","Học viên","Lớp","Trạng thái","Đã đóng đến","Nợ còn lại","Ghi chú","Thao tác"].map(x=>`<th style="text-align:left;padding:6px;border-bottom:2px solid var(--line);white-space:nowrap">${x}</th>`).join("")}</tr></thead>
+      <tbody>${ds.map(h=>`<tr>
+        <td style="${td};white-space:nowrap">${esc(h.ma_hv)}</td>
+        <td style="${td}"><b>${esc(h.ho_ten)}</b></td>
+        <td style="${td}">${esc(h.lop)}</td>
+        <td style="${td};white-space:nowrap">${laNghi(h)?'<span class="chip" style="border-color:#9a9a9a;color:#6b6b6b">đã nghỉ</span>':'<span class="chip" style="border-color:#c58b00;color:#a26b00">bảo lưu</span>'}</td>
+        <td style="${td};text-align:right">${h.da_dong_den_thang!=null?h.da_dong_den_thang:"—"}</td>
+        <td style="${td};text-align:right;color:${h.no_tien?"var(--nhan)":""}">${h.no_tien?h.no_tien.toLocaleString("vi-VN")+" đ":""}</td>
+        <td style="${td}" class="hint">${esc(h.ghi_chu||"")}</td>
+        <td style="${td};white-space:nowrap"><button class="ghost" ${btnNho} onclick="hvKhoiPhuc('${esc(h.ma_hv)}')">↩ Đưa lại lớp</button>
+          <button class="ghost" ${btnNho} onclick="moSuaHV('${esc(h.ma_hv)}',false)">✏️ Sửa</button></td></tr>`).join("")}</tbody></table>
+      <p class="hint" style="margin-top:6px">Học sinh ở đây <b>không hiện trong Điểm danh và không tính vào tổng số học sinh</b>. Bấm <b>↩ Đưa lại lớp</b> khi em quay lại học.</p>
+    </div></details>`;
+}
 /* ---------- thu học phí: ghi nhận tiền thật ---------- */
 function thuHocPhi(ma,soThang){
   const h=hvTatCa().find(x=>x.ma_hv===ma); if(!h) return;
@@ -2325,7 +2359,7 @@ function veDiemDanh(){
     document.querySelectorAll("#segLop button").forEach(b=>b.classList.toggle("on",b.dataset.lopx===DD_LOC));
     veDiemDanhQua(); return;
   }
-  const all=hvTatCa().filter(h=>!laBaoLuu(h));
+  const all=hvDangHoc();
   const lopTatCa=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
   const lopHomNay=lopTatCa.filter(l=>{ const o=(S.lop||[]).find(x=>x.ten===l)||{}; if(!(o.gio||[]).length) return false;
     return buoiCuaLop(l,1).length || buoiNghiHomNay(l).length; });
@@ -5216,7 +5250,7 @@ function veDiemDanhQua(){
   const ngay=cong(iso(new Date()),-1), thu=THU[thuCua(ngay)];
   const [Y,M,D]=ngay.split("-");
   document.getElementById("ddDem").textContent=`Hôm qua · ${thu} ${D}/${M}`;
-  const all=hvTatCa().filter(h=>!laBaoLuu(h));
+  const all=hvDangHoc();
   const lops=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
   const buoiNgay=buoiTuan({bat_dau:t2CuaNgay(ngay)}).filter(b=>b.ngay===ngay);
   const nghiBuoi=ten=>buoiNgay.filter(b=>b.lop.ten===ten&&b.tt==="huy");
@@ -5269,7 +5303,7 @@ function veDiemDanhQua(){
   }).join("");
 }
 function dsSachCuaLop(tenLop, maHV){
-  let ds=hvTatCa().filter(h=>h.lop===tenLop && (h.trang_thai||"đang học")!=="nghỉ");
+  let ds=hvDangHoc().filter(h=>h.lop===tenLop);
   if(maHV) ds=ds.filter(h=>h.ma_hv===maHV);
   return ds.sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
 }
