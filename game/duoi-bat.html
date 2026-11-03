@@ -19,6 +19,7 @@
   .nguoi{position:absolute;left:0;top:0;transform-origin:50% 100%;pointer-events:none;will-change:transform}
   .nguoi .sp{height:100%;width:auto}
   .nguoi .sp svg{display:block;height:100%;width:auto;filter:drop-shadow(0 4px 3px rgba(60,40,10,.16))}
+  .nguoi .sp img{display:block;height:100%;width:auto;filter:drop-shadow(0 4px 3px rgba(60,40,10,.16))}
   .nguoi .bong{position:absolute;left:50%;bottom:-2px;width:64%;height:9px;transform:translateX(-50%);
         background:radial-gradient(ellipse at center,rgba(56,38,12,.26),rgba(56,38,12,0) 72%);border-radius:50%;z-index:-1}
   .ten{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:1px;
@@ -235,6 +236,21 @@
            frames:[], khung:0, dem:0, x:0,y:0,tx:0,ty:0,huong:1,cho:0,biBat:false,vx:0,vy:0,quay:0,hetQuay:0,chan:0};
     o.nhan.textContent=tenBe;
     BE.push(o);
+    var m = /(?:^|\/)(tre|nu)(\d)\.svg$/.exec(src);
+    if (m && !laThay) {                    // học sinh: 4 khung chạy có động tác thật
+      var khoa = m[1] + m[2], dsAnh = [];
+      for (var f = 1; f <= 4; f++) {
+        var im = document.createElement('img');
+        im.src = 'vat-the/khung/' + khoa + '-' + f + '.png';
+        im.alt = '';
+        im.draggable = false;
+        if (f > 1) im.style.display = 'none';
+        o.sp.appendChild(im);
+        dsAnh.push(im);
+      }
+      o.frames = dsAnh;
+      return Promise.resolve(true);
+    }
     return fetch(src).then(function(r){return r.text();}).then(function(txt){
       var doc=new DOMParser().parseFromString(txt,'image/svg+xml');
       var svg=doc.documentElement;
@@ -257,9 +273,11 @@
   }
   function veBe(o){
     var z=zTuY(o.y), s=doXa(z)*o.huong;
+    // thầy/cô: nhịp bước nhẹ để không "trượt" đi như tượng
+    var nhunThay = o.laThay ? Math.abs(Math.sin(performance.now()/205)) * 4.5 : 0;
     o.el.style.height=(CAO_BE*(o.laThay?1.28:1)*K()*doXa(z)*Math.min(1,Math.max(0.62,W()/880))).toFixed(1)+'px';
     o.el.style.left=o.x.toFixed(1)+'px';
-    o.el.style.top=o.y.toFixed(1)+'px';
+    o.el.style.top=(o.y-nhunThay).toFixed(1)+'px';
     o.el.style.transform='translate(-50%,-100%) scale('+s.toFixed(3)+',1)';
     o.el.style.zIndex=Math.round(z*1000);
     o.nhan.style.transform='translateX(-50%) scaleX('+(o.huong<0?-1:1)+')';
@@ -550,6 +568,7 @@
   }
 
   document.getElementById('btnTen').onclick=function(){ veBangTen(); hop.classList.add('mo'); };
+  document.getElementById('btnHuy').onclick=function(){ hop.classList.remove('mo'); };
 
   // nút tắt/bật âm thanh
   var nutTieng=document.getElementById('btnTieng');
@@ -563,7 +582,7 @@
       if(trangThai==='duoi' || trangThai==='tangtoc') batNhac();
     }
   };
-  document.getElementById('btnHuy').onclick=function(){ hop.classList.remove('mo'); };
+
   document.getElementById('btnLuu').onclick=function(){
     docTen();
     if(dsBe.length<TOI_THIEU){ dsBe.push({ten:TEN_MAC_DINH[1], nu:true}); }
