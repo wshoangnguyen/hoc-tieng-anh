@@ -2451,7 +2451,7 @@ function capNhatTreo(){
 /* Mở trò chơi "chó đuổi" với tên học viên của lớp (tối đa 6 bạn) */
 function moGoiTen(lop){
   if(!lop) return;
-  const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h));
+  const hs=hvDangHoc().filter(h=>h.lop===lop);
   let ten=hs.map(h=>String(h.ten_goi_trong_lop||h.ho_ten||"").trim()).filter(Boolean);
   if(!ten.length){ alert("Lớp này chưa có học viên để gọi tên."); return; }
   let thua=0;
@@ -2466,7 +2466,7 @@ function moGoiTen(lop){
 }
 
 function roiLop(lop){
-  const hs=hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
+  const hs=hvDangHoc().filter(h=>h.lop===lop).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
   const n=hs.length, co=n<=4?"to":n<=6?"vua":n<=9?"nho":"ratnho";
   const hom=iso(new Date()), buoiHomNay=buoiCuaLop(lop,1), nghiHomNay=buoiNghiHomNay(lop), hbNghi=henBuCuaLop(lop);
@@ -2514,7 +2514,7 @@ GAN("ddBody","click",e=>{
   if(t.id==="ddCa"){ const lop=DD_LOP;
     const bs=buoiCuaLop(lop,1).filter(b=>!b.chuaGio);
     if(!bs.length) return alert("Lớp này chưa xếp giờ cố định — hãy điểm danh từng em bằng nút ✅.");
-    hvTatCa().filter(h=>h.lop===lop&&!laBaoLuu(h)).forEach(h=>bs.forEach(b=>ddDat(b.ngay,lop,h.ma_hv,"co")));
+    hvDangHoc().filter(h=>h.lop===lop).forEach(h=>bs.forEach(b=>ddDat(b.ngay,lop,h.ma_hv,"co")));
     render(); return; }
   if(t.dataset.anh!==undefined && t.classList.contains("anh")) return;
   if(t.dataset.the) return moTheHV(t.dataset.the);
@@ -3157,7 +3157,7 @@ function bdLenLop(){
   BD.unit=null; bdKhoiTao(); bdVe(); if(typeof render==="function") render();
 }
 
-function hocVienCuaLop(lopId){ const l=lopTheoId(lopId); if(!l) return []; return hvTatCa().filter(h=>h.lop===l.ten); }
+function hocVienCuaLop(lopId){ const l=lopTheoId(lopId); if(!l) return []; return hvDangHoc().filter(h=>h.lop===l.ten); }
 
 /* --- trạng thái của mục trong lớp --- */
 function demTrangThai(lopId,itemId){
