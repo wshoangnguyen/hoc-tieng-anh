@@ -2400,6 +2400,7 @@ function veDiemDanh(){
     veDiemDanhQua();
     const bd=document.getElementById("ddBody");
     if(bd) bd.innerHTML = DD_LOP ? roiLop(DD_LOP, true) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để xem danh sách học viên của buổi hôm qua.</p>';
+    datViTriBodyDD();
     return;
   }
   const all=hvDangHoc();
@@ -2457,9 +2458,13 @@ function veDiemDanh(){
     datNghiBuoi(b.dataset.bonghi,false); }; });
   document.querySelectorAll("#segLop button").forEach(b=>b.classList.toggle("on",b.dataset.lopx===DD_LOC));
   el.innerHTML=DD_LOP? roiLop(DD_LOP) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để mở danh sách học viên.</p>';
-  { const card=document.getElementById("ddCardLop"), body=document.getElementById("ddBody");
-    if(card&&body){ if(DD_LOP){ if(card.previousElementSibling!==body) card.parentNode.insertBefore(body,card); }
-      else { if(body.previousElementSibling!==card) body.parentNode.insertBefore(card,body); } } }
+  datViTriBodyDD();
+}
+function datViTriBodyDD(){
+  const card=document.getElementById("ddCardLop"), body=document.getElementById("ddBody");
+  if(!card||!body) return;
+  if(DD_LOP){ if(card.previousElementSibling!==body) card.parentNode.insertBefore(body,card); }
+  else { if(body.previousElementSibling!==card) body.parentNode.insertBefore(card,body); }
 }
 function gioBatDauPhut(ca){
   const m=String(ca||"").match(/(\d{1,2})\s*[:h]\s*(\d{2})/);
@@ -2536,7 +2541,11 @@ GAN("segLop","click",e=>{ const b=e.target.closest("[data-lopx]"); if(!b) return
 GAN("tab-diemdanh","click",e=>{
   const bd=e.target.closest("[data-bd]"); if(bd){ e.stopPropagation(); moBaiDayModal(bd.dataset.bd); return; }
   const b=e.target.closest("[data-lop]");
-  if(b && !e.target.closest("#ddBody")){ DD_LOP=b.dataset.lop; veDiemDanh(); return; }
+  if(b && !e.target.closest("#ddBody")){ DD_LOP=b.dataset.lop; veDiemDanh();
+    const body=document.getElementById("ddBody");
+    if(body){ const y=body.getBoundingClientRect().top+window.scrollY-88;
+      try{ window.scrollTo({top:Math.max(0,y),behavior:"smooth"}); }catch(_){ window.scrollTo(0,Math.max(0,y)); } }
+    return; }
 });
 GAN("ddBody","click",e=>{
   const hs=e.target.closest("[data-hoso]"); if(hs){ moHoSoHV(hs.dataset.hoso); return; }
