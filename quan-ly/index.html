@@ -4842,7 +4842,9 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
     const ds = [];
     (S.tuan || []).forEach((w) => {
       const d = demTuan(ten, w, thang);
-      if (d.caTuan) ds.push({ bat_dau: w.bat_dau, het: cong(w.bat_dau, 6), caTuan: d.caTuan, trongThang: d.trongThang });
+      /* chỉ xét tuần có ít nhất 1 buổi rơi vào tháng đang xem —
+         tuần của tháng trước không được cộng vào "nếu đếm cả tuần" */
+      if (d.caTuan && d.trongThang) ds.push({ bat_dau: w.bat_dau, het: cong(w.bat_dau, 6), caTuan: d.caTuan, trongThang: d.trongThang });
     });
     ds.sort((a, b) => (a.bat_dau < b.bat_dau ? -1 : 1));
     const tongThang = ds.reduce((s, x) => s + x.trongThang, 0);

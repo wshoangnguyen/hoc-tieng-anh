@@ -149,6 +149,20 @@ function chayHet() {
     let json = "";
     try { json = JSON.stringify(T.getS()); } catch (e) { json = ""; }
     ok("8.1 dữ liệu lưu được thành JSON", json.length > 100, json.length + " ký tự");
+
+    /* ───── 9. LƯƠNG THÁNG: chỉ xét tuần thuộc tháng đang xem ───── */
+    const S9 = T.getS();
+    S9.lop = [{ id: "L1", ten: "SM3 Juny", gv: "Harvey", gio: [{ thu: "T6", ca: "18:00" }, { thu: "CN", ca: "09:00" }], ghi: "" }];
+    S9.giao_vien = [{ ten: "Harvey", don_gia: 100000 }];
+    S9.buoi = {};
+    S9.tuan = ["2026-10-05", "2026-10-12", "2026-10-19", "2026-10-26", "2026-11-02", "2026-11-09", "2026-11-16", "2026-11-23", "2026-11-30"]
+      .map(b => ({ bat_dau: b }));
+    const luong = w.luongChiTiet("2026-11", "Harvey");
+    ok("9.1 không còn tuần của tháng 10", luong.tuan.every(t => t.bat_dau.slice(0, 7) !== "2026-10" || t.bat_dau === "2026-10-26"), luong.tuan.map(t => t.bat_dau).join(" "));
+    ok("9.2 mọi tuần đều có buổi trong tháng", luong.tuan.every(t => t.trongThang > 0), JSON.stringify(luong.tuan.map(t => t.trongThang)));
+    bang("9.3 số buổi trong tháng 11", luong.tongThang, 9);
+    bang("9.4 nếu đếm cả tuần (chỉ tuần vắt qua tháng)", luong.tongCaTuan, 10);
+    bang("9.5 chênh lệch", luong.tongCaTuan - luong.tongThang, 1);
   } catch (e) {
     kq.push("LỖI " + (e && e.message ? e.message : e));
   }
