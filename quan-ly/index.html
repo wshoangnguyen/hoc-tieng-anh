@@ -14,6 +14,7 @@ body.khach input[readonly],body.khach select:disabled,body.khach textarea[readon
 body.khach .nut-sua-khach{display:none}
 #ddSapHet{position:fixed;right:18px;bottom:64px;width:340px;max-width:calc(100vw - 32px);z-index:70;margin:0;pointer-events:none;text-align:right}
 #ddSapHet>*{pointer-events:auto;text-align:left}
+#ddSapHet.gon{width:auto;background:none;border:0;box-shadow:none;padding:0}
 .sach-nhac{background:#fff;border:1px solid #e5d9b8;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.14);font-size:13px;overflow:hidden}
 .sach-dau{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:#fff6dd;border-bottom:1px solid #f0e2bb}
 .sach-dau button{border:0;background:none;font-size:17px;line-height:1;cursor:pointer;color:#7a6a3a}
@@ -5369,13 +5370,15 @@ function capNhatSapHet(){
   const daDat=tatCa.filter(x=>ddsLopXong(x.ten));
   const thi=dsLopSapThi();
   const conThi=thi.filter(l=>!(thiCua(l)&&thiCua(l).xong));
-  if(!tatCa.length && !thi.length){ el.style.display="none"; el.innerHTML=""; return; }
+  if(!tatCa.length && !thi.length){ el.style.display="none"; el.innerHTML=""; el.classList.remove("gon"); return; }
   el.style.display="";
   const thu=localStorage.getItem("sach_nhac_thu")==="1";
   if(thu){
     const so=chuaDat.length+conThi.length;
+    el.classList.add("gon");
     el.innerHTML=`<button class="sach-pill" id="sachMo" title="Bấm để xem chi tiết sách &amp; thi">📚 ${so} việc</button>`;
   } else {
+    el.classList.remove("gon");
     const dong=[];
     if(chuaDat.length){
       dong.push(`<div style="margin-bottom:6px">Lớp <b>${chuaDat.map(x=>esc(x.ten)).join(" · ")}</b> sắp xong — chuẩn bị thi lên level.
