@@ -237,6 +237,21 @@
     o.nhan.textContent=tenBe;
     BE.push(o);
     var m = /(?:^|\/)(tre|nu)(\d)\.svg$/.exec(src);
+    if (laThay) {                          // thầy/cô: 3 khung chạy (không có khung đứng)
+      var boThay = /thay/i.test(src)
+        ? ['thay-chay1.svg', 'thay-chay2.svg', 'thay-chay3.svg']
+        : ['co-chay1.svg', 'co-chay2.svg', 'co-chay3.svg'];
+      var dsT = [];
+      for (var t = 0; t < boThay.length; t++) {
+        var imt = document.createElement('img');
+        imt.src = 'vat-the/khung/' + boThay[t];
+        imt.alt = ''; imt.draggable = false;
+        if (t > 0) imt.style.display = 'none';
+        o.sp.appendChild(imt); dsT.push(imt);
+      }
+      o.frames = dsT; o.baKhung = true;
+      return Promise.resolve(true);
+    }
     if (m && !laThay) {                    // học sinh: 3 khung (đứng + 2 chạy)
       var khoa = m[1] + m[2], dsAnh = [];
       var laMoi = (khoa === 'tre3');        // bạn tóc cam áo xanh: bộ SVG mới
@@ -372,7 +387,8 @@
       if(o.vx>38) o.huong=1; else if(o.vx<-38) o.huong=-1;
       o.dem+=dt*1000*Math.min(1.6, sp/110);
       if(o.dem>104){ o.dem=0;
-        if(o.moiChay) hienKhung(o, o.khung === 1 ? 2 : 1);       // chỉ chạy giữa 2 khung chạy
+        if(o.baKhung) hienKhung(o,(o.khung+1)%(o.frames.length||3));   // thầy/cô: 3 khung chạy
+        else if(o.moiChay) hienKhung(o, o.khung === 1 ? 2 : 1);        // chỉ chạy giữa 2 khung chạy
         else hienKhung(o,(o.khung+1)%(o.frames.length||3));
       }
     } else if(o.moiChay && o.khung !== 0){ hienKhung(o,0); }     // đứng yên → khung đứng
