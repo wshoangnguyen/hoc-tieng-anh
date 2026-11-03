@@ -2397,7 +2397,10 @@ function veDiemDanh(){
   capNhatSapHet();
   if(DD_LOC==="qua"){
     document.querySelectorAll("#segLop button").forEach(b=>b.classList.toggle("on",b.dataset.lopx===DD_LOC));
-    veDiemDanhQua(); return;
+    veDiemDanhQua();
+    const bd=document.getElementById("ddBody");
+    if(bd) bd.innerHTML = DD_LOP ? roiLop(DD_LOP, true) : '<p class="hint" style="margin:10px 2px">Chọn một lớp ở trên để xem danh sách học viên của buổi hôm qua.</p>';
+    return;
   }
   const all=hvDangHoc();
   const lopTatCa=[...new Set(all.map(h=>h.lop))].sort(soSanhLop);
@@ -2496,25 +2499,27 @@ function moGoiTen(lop){
   if(thua) setTimeout(()=>alert(`Lớp có ${ten.length+thua} em — mỗi lượt chơi 6 bạn. Bấm lại để đổi nhóm.`),300);
 }
 
-function roiLop(lop){
+function roiLop(lop, laQua){
   const hs=hvDangHoc().filter(h=>h.lop===lop).sort((a,b)=>String(a.ho_ten).localeCompare(String(b.ho_ten),"vi"));
   const b=(S.lop||[]).find(x=>x.ten===lop)||{gio:[]};
   const n=hs.length, co=n<=4?"to":n<=6?"vua":n<=9?"nho":"ratnho";
-  const hom=iso(new Date()), buoiHomNay=buoiCuaLop(lop,1), nghiHomNay=buoiNghiHomNay(lop), hbNghi=henBuCuaLop(lop);
+  const hom=laQua?cong(iso(new Date()),-1):iso(new Date());
+  const buoiHomNay=laQua?[]:buoiCuaLop(lop,1), nghiHomNay=laQua?[]:buoiNghiHomNay(lop), hbNghi=laQua?null:henBuCuaLop(lop);
   return `<div class="card">
     <div class="row"><button class="ghost sm" id="ddQuayLai">← Danh sách lớp</button>
       <h3 style="margin:0">${esc(lop)} <span class="hint">${n} học viên${buoiHomNay.length?` · hôm nay ${buoiHomNay.map(g=>esc(g.ca)).join(", ")}`:""}${nghiHomNay.length?` · <span style="color:#6b6b6b">đã nghỉ${hbNghi?" — hẹn bù "+esc(THU_DAI[hbNghi.thu])+" "+esc(hbNghi.ca):""}</span>`:""}</span></h3>
+      ${laQua?`<span class="chip" style="border-color:#9a9a9a;color:#6b6b6b">🕘 buổi ${hom.slice(8,10)}/${hom.slice(5,7)} — hôm qua</span>`:""}
       <span style="flex:1"></span>
       <button class="primary" data-bd="${esc(lop)}">📖 Bài dạy</button>
       <button class="ghost" id="ddGoiTen" title="Mở trò chơi chó đuổi, tự nạp tên học viên của lớp">🎲 Gọi tên ngẫu nhiên</button>
-      ${nghiHomNay.length?`<button class="ghost" id="ddBoNghi">↩ Bỏ đánh dấu nghỉ</button>`
-        :`<button class="ghost" id="ddNghi">⚪ Nghỉ buổi này</button>`}
+      ${laQua?"":(nghiHomNay.length?`<button class="ghost" id="ddBoNghi">↩ Bỏ đánh dấu nghỉ</button>`
+        :`<button class="ghost" id="ddNghi">⚪ Nghỉ buổi này</button>`)}
       ${buoiHomNay.length?`<button class="primary" id="ddCa">✅ Lớp đủ</button>`:""}
       <button class="ghost" id="ddQuiz" title="Mở phòng quiz game cho lớp này">🎮 Quiz game</button></div>
     <div class="roster ${co}" id="rosterAnh" data-treo="${daVaoGio(lop)?1:0}">${hs.map(h=>{
       const d=diemCua(h.ma_hv), st=stickerCua(h.ma_hv), stHom=stickerHomNay(h.ma_hv), sn=laSinhNhat(h), cc=chuyenCan(h);
       const anhm=(typeof anhSrc==="function")?anhSrc(h.ma_hv):S.anh[h.ma_hv];
-      const treo=daVaoGio(lop) && !ddLay(iso(new Date()),lop,h.ma_hv);
+      const treo=!laQua && daVaoGio(lop) && !ddLay(iso(new Date()),lop,h.ma_hv);
       return `<div class="hsc${sn?" sn":""}${treo?" treo":""}">
         <div class="ten"><span class="ma">${esc(h.ma_hv)}</span><span class="nm" data-hoso="${esc(h.ma_hv)}" title="Bấm để xem hồ sơ" style="cursor:pointer">${sn?"🎂 ":""}${esc(h.ten_goi_trong_lop||h.ho_ten)} </span>
           <button class="ghost sm" data-the="${esc(h.ma_hv)}" title="Sửa thông tin">✏️</button></div>
@@ -5458,7 +5463,7 @@ function veDiemDanhQua(){
       vang.length ? `<div class="qrow"><span class="qdot" style="background:#c43c3c"></span><span class="qtag">Vắng</span><span>${dsTen(vang)}</span></div>` : "",
       tre.length ? `<div class="qrow"><span class="qdot" style="background:#8a5a00"></span><span class="qtag">Trễ</span><span>${dsTen(tre)}</span></div>` : ""
     ].join("");
-    return `<div class="qcard ${thieu ? "thieu" : "du"}">
+    return `<div class="qcard ${thieu ? "thieu" : "du"}" data-lop="${esc(l)}" role="button" tabindex="0" title="Bấm để mở lớp ${esc(l)}" style="cursor:pointer">
       <div class="qhead">
         <div><div class="qten"><b>${esc(l)}</b></div><div class="qgio">${thu} · ${hs.length} học viên</div></div>
         <span class="qchip ${thieu ? "lo" : "ok"}">${thieu ? `⚠️ còn ${chua.length} em` : "✅ đủ"}</span>
