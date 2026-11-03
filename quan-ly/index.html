@@ -553,23 +553,29 @@ header{padding:6px 10px}
     </div>
     <div class="cuon"><div id="hvBody"></div></div>
     <div id="hvLuuTru"></div>
+    <div id="hvCongNo" class="hide">
+      <div class="row" style="gap:10px;align-items:center;margin:12px 0 6px">
+        <h3 style="margin:0">💰 Công nợ</h3>
+        <span class="hint">theo từng tháng và chi tiết từng em — mở/đóng bằng nút 💰 Công nợ ở trên</span>
+        <span style="flex:1"></span>
+        <button class="ghost sm" id="hvCnDong">↑ Thu gọn</button>
+      </div>
+        <div id="cnBody">
+        <div class="card">
+          <div class="row" style="align-items:center;margin:0 0 8px">
+            <h3 style="margin:0">Công nợ theo từng tháng</h3>
+            <span style="flex:1"></span>
+            <button id="btnCnCsv" class="ghost sm" title="Tải CSV công nợ">⬇ CSV</button>
+            <button id="btnCnIn" class="ghost sm" title="In bảng công nợ">🖨 In</button>
+          </div>
+          <div class="cuon" id="cnTheoThang"></div>
+        </div>
+        <div class="card"><h3 style="margin:0 0 8px">Chi tiết từng học viên còn nợ</h3><div class="cuon" id="cnTungEm"></div>
+          <p class="hint" style="margin-top:8px">Cách tính (anh đã xác nhận): cột “đã hoàn thành” = <b>tháng dương lịch đã đóng đến</b>. <b>Nợ tháng này</b> = 1 tháng học phí nếu em chưa đóng tới tháng hiện tại; <b>nợ các tháng trước</b> = các tháng còn thiếu từ đầu năm tới tháng trước. Nửa tháng là <b>khuyến mãi</b>. Số hiện trên đây là <b>nợ theo giấy tờ</b>; phần “đã ghi thu” chỉ tính những lần anh bấm thu <b>trong web này</b>.</p></div>
+        </div>
+    </div>
   </section>
 
-  <section id="tab-congno" data-trang="lop" class="hide">
-    <div id="cnBody">
-    <div class="card">
-      <div class="row" style="align-items:center;margin:0 0 8px">
-        <h3 style="margin:0">Công nợ theo từng tháng</h3>
-        <span style="flex:1"></span>
-        <button id="btnCnCsv" class="ghost sm" title="Tải CSV công nợ">⬇ CSV</button>
-        <button id="btnCnIn" class="ghost sm" title="In bảng công nợ">🖨 In</button>
-      </div>
-      <div class="cuon" id="cnTheoThang"></div>
-    </div>
-    <div class="card"><h3 style="margin:0 0 8px">Chi tiết từng học viên còn nợ</h3><div class="cuon" id="cnTungEm"></div>
-      <p class="hint" style="margin-top:8px">Cách tính (anh đã xác nhận): cột “đã hoàn thành” = <b>tháng dương lịch đã đóng đến</b>. <b>Nợ tháng này</b> = 1 tháng học phí nếu em chưa đóng tới tháng hiện tại; <b>nợ các tháng trước</b> = các tháng còn thiếu từ đầu năm tới tháng trước. Nửa tháng là <b>khuyến mãi</b>. Số hiện trên đây là <b>nợ theo giấy tờ</b>; phần “đã ghi thu” chỉ tính những lần anh bấm thu <b>trong web này</b>.</p></div>
-    </div>
-  </section>
 
 
   <section id="tab-diemso" class="hide" data-trang="lop">
@@ -823,6 +829,8 @@ function load(){
   if(!S.anh||typeof S.anh!=="object") S.anh={};
   if(!S.sticker||typeof S.sticker!=="object") S.sticker={};
   if(!S.diem_ngay||typeof S.diem_ngay!=="object") S.diem_ngay={};
+  if(!S.dat_sach||typeof S.dat_sach!=="object") S.dat_sach={};   /* {lop:{lop:{ngay},hv:{ma:{ngay}}}} */
+  if(!S.lich_thi||typeof S.lich_thi!=="object") S.lich_thi={};   /* {lop:{ngay,xong,ngay_xong}} */
   if(!S.tuan||!S.tuan.length) S.tuan=[{id:"w1",bat_dau:t2CuaNgay(iso(new Date()))}];
   S.tuan.forEach(w=>{ if(!w.bat_dau) w.bat_dau=t2CuaNgay(iso(new Date())); });
   S.lop.forEach(l=>{ if(!l.gio) l.gio=[]; if(l.gv==null) l.gv=""; });
@@ -895,7 +903,8 @@ function quyenTab(){
 function dungQuyen(){
   const q=quyenTab();
   TRANG_HIEN=Object.keys(q).filter(k=>(q[k]||[]).length).map(k=>[k,TEN_TRANG[k]]);
-  TABCON_HIEN={}; Object.keys(q).forEach(k=>{ TABCON_HIEN[k]=(q[k]||[]).map(t=>[t,TEN_TAB[t]]); });
+  /* Công nợ đã chuyển vào trang Danh sách học viên (nút 💰 Công nợ) — không còn là tab con */
+  TABCON_HIEN={}; Object.keys(q).forEach(k=>{ TABCON_HIEN[k]=(q[k]||[]).filter(t=>t!=="congno").map(t=>[t,TEN_TAB[t]]); });
   if(!TRANG_HIEN.some(([k])=>k===trangDangXem)) trangDangXem=(TRANG_HIEN[0]||["lichday"])[0];
   if(!((TABCON_HIEN[trangDangXem]||[]).some(([k])=>k===tabDangXem))) tabDangXem=((TABCON_HIEN[trangDangXem]||[["tuan"]])[0][0]);
   const laAdmin=(vaiHienTai()==="quan_ly");
@@ -3985,14 +3994,28 @@ function bdGanThanhHocVien(){
   const sec=document.getElementById("tab-hocvien"); if(!sec||document.getElementById("hvBarBaiDay")) return;
   const bar=document.createElement("div");
   bar.id="hvBarBaiDay"; bar.className="card noprint"; bar.style.padding="8px 10px";
+  const coCN=(quyenTab().lop||[]).includes("congno");
   bar.innerHTML=`<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">
+    ${coCN?`<button class="primary" id="hvBarCongNo">💰 Công nợ</button>`:""}
     <button class="primary" id="hvBarDatSach">📚 Đặt sách</button>
     <span class="hint" id="hvBarSachNote"></span>
     <span style="flex:1"></span>
     <span class="hint">bảng tên HS · phụ huynh · SĐT · địa chỉ, copy dán thẳng vào Excel hoặc Zalo</span></div>`;
   sec.insertBefore(bar, sec.firstElementChild.nextSibling||null);
   bar.querySelector("#hvBarDatSach").onclick=()=>moDatSach();
+  const bn=bar.querySelector("#hvBarCongNo"); if(bn) bn.onclick=()=>moCongNo();
+  const dong=document.getElementById("hvCnDong");
+  if(dong&&!dong.dataset.gan){ dong.dataset.gan="1";
+    dong.onclick=()=>{ const b=document.getElementById("hvCongNo"); if(b) b.classList.add("hide"); }; }
   capNhatGhiChuSach();
+}
+/* mở/đóng khối Công nợ nằm ngay dưới bảng học viên */
+function moCongNo(){
+  const box=document.getElementById("hvCongNo"); if(!box) return;
+  const mo=box.classList.contains("hide");
+  box.classList.toggle("hide",!mo);
+  if(mo){ try{ veCongNo(); }catch(e){}
+    setTimeout(()=>{ try{ box.scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){} },50); }
 }
 
 
@@ -5219,31 +5242,149 @@ function lopToiUnitCuoi(){
   (S.lop||[]).forEach(l=>{ const s=sachVaUnitCuaLop(l.id); if(s&&s.cuoi) out.push(Object.assign({ten:l.ten,id:l.id},s)); });
   return out;
 }
+/* ===== v7.53 — đặt sách: ghi nhận "đã đặt" + lịch thi hết sách ===== */
+/* S.dat_sach[lop] = { lop:{ngay}, hv:{ma_hv:{ngay}} }  ·  S.lich_thi[lop] = { ngay, xong, ngay_xong } */
+function ddsCua(lop){ const d=(S.dat_sach||{})[lop]; return (d&&typeof d==="object")?d:null; }
+function ddsLopNgay(lop){ const d=ddsCua(lop); return (d&&d.lop&&d.lop.ngay)||""; }
+function ddsHVNgay(lop,ma){ const d=ddsCua(lop); if(!d) return "";
+  if(d.lop&&d.lop.ngay) return d.lop.ngay;
+  const x=(d.hv||{})[ma]; return (x&&x.ngay)||""; }
+function ddsNgayCua(lop){ const d=ddsCua(lop); if(!d) return "";
+  if(d.lop&&d.lop.ngay) return d.lop.ngay;
+  const ds=Object.keys(d.hv||{}).map(k=>(d.hv[k]||{}).ngay).filter(Boolean).sort();
+  return ds.length?ds[ds.length-1]:""; }
+function ddsLopXong(lop){ const d=ddsCua(lop); if(!d) return false;
+  if(d.lop&&d.lop.ngay) return true;
+  const hs=hvDangHoc().filter(h=>h.lop===lop);
+  return hs.length>0 && hs.every(h=>!!((d.hv||{})[h.ma_hv]||{}).ngay); }
+function ddsGhiNhan(lop,ma){
+  if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return ""; }
+  S.dat_sach=S.dat_sach||{}; const d=S.dat_sach[lop]=S.dat_sach[lop]||{};
+  const ngay=iso(new Date());
+  if(ma){ d.hv=d.hv||{}; d.hv[ma]={ngay}; } else { d.lop={ngay}; }
+  save(); return ngay;
+}
+function ddsBoGhiNhan(lop,ma){
+  if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return; }
+  const d=ddsCua(lop); if(!d) return;
+  if(ma){ if(d.hv) delete d.hv[ma]; } else { delete d.lop; }
+  if(!d.lop && (!d.hv||!Object.keys(d.hv).length)) delete S.dat_sach[lop];
+  save();
+}
+/* --- lịch thi hết sách --- */
+function thiCua(lop){ const t=(S.lich_thi||{})[lop]; return (t&&typeof t==="object")?t:null; }
+function dsLopSapThi(){
+  const het=lopToiUnitCuoi().map(x=>x.ten);
+  const lt=S.lich_thi||{};
+  const ds=[...new Set([...het,...Object.keys(lt).filter(l=>!(lt[l]&&lt[l].xong))])];
+  return ds.filter(l=>het.includes(l)||(lt[l]&&!lt[l].xong)).sort(soSanhLop);
+}
+function moNgayThi(lop){
+  const t=thiCua(lop)||{};
+  const nutXoa=t.ngay?`<button class="ghost" id="ntXoa">Xoá ngày thi</button>`:"";
+  moModal(`<div class="modal"><h3>📅 Ngày thi hết sách — ${esc(lop)}</h3>
+    <p class="hint" style="margin:0 0 8px">Điền ngày thi của lớp. Thi xong thì bấm xác nhận để web ghi “thi xong, chuẩn bị lên lớp”.</p>
+    <div class="field"><label>Ngày thi</label><input type="date" id="ntNgay" value="${t.ngay||""}"></div>
+    <div class="row" style="margin-top:12px"><button class="primary" id="ntLuu">Lưu ngày thi</button>
+      ${nutXoa}<span style="flex:1"></span><button class="ghost" id="ntHuy">Đóng</button></div></div>`);
+  const dong=()=>{ const m=document.getElementById("bdModal"); if(m) m.style.display="none"; };
+  const luu=document.getElementById("ntLuu");
+  if(luu) luu.onclick=()=>{
+    if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return; }
+    const v=document.getElementById("ntNgay").value;
+    if(!v){ alert("Chọn ngày thi trước đã."); return; }
+    S.lich_thi=S.lich_thi||{};
+    S.lich_thi[lop]=Object.assign({},S.lich_thi[lop]||{},{ngay:v,xong:false});
+    save(); dong(); capNhatSapHet();
+  };
+  const xx=document.getElementById("ntXoa");
+  if(xx) xx.onclick=()=>{
+    if(!confirm("Xoá ngày thi của lớp "+lop+"?")) return;
+    S.lich_thi=S.lich_thi||{}; const c=Object.assign({},S.lich_thi[lop]||{}); delete c.ngay;
+    S.lich_thi[lop]=c; save(); dong(); capNhatSapHet();
+  };
+  const huy=document.getElementById("ntHuy"); if(huy) huy.onclick=dong;
+}
+function thiXong(lop){
+  if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return; }
+  if(!confirm(`Xác nhận lớp ${lop} đã thi xong?`)) return;
+  S.lich_thi=S.lich_thi||{};
+  S.lich_thi[lop]=Object.assign({},S.lich_thi[lop]||{},{xong:true,ngay_xong:iso(new Date())});
+  save(); capNhatSapHet(); capNhatGhiChuSach();
+}
+function thiBo(lop){
+  if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return; }
+  if(!confirm(`Bỏ xác nhận “đã thi xong” của lớp ${lop}?`)) return;
+  const t=Object.assign({},thiCua(lop)||{}); t.xong=false; delete t.ngay_xong;
+  S.lich_thi=S.lich_thi||{}; S.lich_thi[lop]=t; save(); capNhatSapHet();
+}
 function capNhatGhiChuSach(){
   const el=document.getElementById("hvBarSachNote"); if(!el) return;
-  const het=lopToiUnitCuoi();
-  el.innerHTML = het.length
-    ? `⚠️ <b>${het.map(x=>esc(x.ten)).join(" · ")}</b> đã tới <b>Unit ${het[0].unit} (Unit cuối)</b> — chuẩn bị đặt sách`
-    : "chưa có lớp nào tới Unit cuối";
-  el.style.color = het.length ? "var(--nhan)" : "";
+  const tatCa=lopToiUnitCuoi();
+  const het=tatCa.filter(x=>!ddsLopXong(x.ten));
+  const daDat=tatCa.filter(x=>ddsLopXong(x.ten));
+  if(het.length){
+    el.innerHTML=`⚠️ <b>${het.map(x=>esc(x.ten)).join(" · ")}</b> đã tới <b>Unit ${het[0].unit} (Unit cuối)</b> — chuẩn bị đặt sách`;
+    el.style.color="var(--nhan)";
+  } else if(daDat.length){
+    el.innerHTML="✅ "+daDat.map(x=>{
+      const n=ddsNgayCua(x.ten); return `<b>${esc(x.ten)}</b> đã đặt sách${n?" "+ngayVN(n):""}`;
+    }).join(" · ");
+    el.style.color="var(--ok)";
+  } else { el.innerHTML="chưa có lớp nào tới Unit cuối"; el.style.color=""; }
 }
 function capNhatSapHet(){
   const el=document.getElementById("ddSapHet"); if(!el) return;
-  const het=lopToiUnitCuoi();
-  if(!het.length){ el.style.display="none"; el.innerHTML=""; return; }
+  const tatCa=lopToiUnitCuoi();
+  const chuaDat=tatCa.filter(x=>!ddsLopXong(x.ten));
+  const daDat=tatCa.filter(x=>ddsLopXong(x.ten));
+  const thi=dsLopSapThi();
+  const conThi=thi.filter(l=>!(thiCua(l)&&thiCua(l).xong));
+  if(!tatCa.length && !thi.length){ el.style.display="none"; el.innerHTML=""; return; }
   el.style.display="";
   const thu=localStorage.getItem("sach_nhac_thu")==="1";
-  const ten=het.map(x=>esc(x.ten)).join(" · ");
-  el.innerHTML = thu
-    ? `<button class="sach-pill" id="sachMo">📚 ${het.length} lớp sắp xong</button>`
-    : `<div class="sach-nhac">
-        <div class="sach-dau"><b>📚 Sắp hết sách</b><button id="sachThu" title="Thu gọn thông báo">–</button></div>
-        <div class="sach-than">Lớp <b>${ten}</b> sắp xong — chuẩn bị thi lên level.
-          <div><button class="primary sm" id="ddDatSach">📚 Đặt sách</button></div></div>
+  if(thu){
+    const so=chuaDat.length+conThi.length;
+    el.innerHTML=`<button class="sach-pill" id="sachMo">📚 ${so} việc cần xử lý</button>`;
+  } else {
+    const dong=[];
+    if(chuaDat.length){
+      dong.push(`<div style="margin-bottom:6px">Lớp <b>${chuaDat.map(x=>esc(x.ten)).join(" · ")}</b> sắp xong — chuẩn bị thi lên level.
+        <div><button class="primary sm" id="ddDatSach">📚 Đặt sách</button></div></div>`);
+    }
+    if(daDat.length){
+      dong.push(`<div style="color:var(--ok);margin-bottom:6px">✅ ${daDat.map(x=>{
+        const n=ddsNgayCua(x.ten); return `<b>${esc(x.ten)}</b> đã đặt sách${n?" ngày "+ngayVN(n):""}`;
+      }).join(" · ")}</div>`);
+    }
+    if(thi.length){
+      dong.push(`<div style="border-top:1px dashed #e5d9b8;margin:7px 0 5px"></div><div><b>📝 Lớp sắp thi</b></div>`);
+      thi.forEach(l=>{
+        const t=thiCua(l)||{};
+        if(t.xong){
+          dong.push(`<div style="margin-top:4px">✅ <b>${esc(l)}</b> thi xong${t.ngay?" (ngày thi "+ngayVN(t.ngay)+")":""} — chuẩn bị lên lớp
+            <button class="ghost sm" data-thi-bo="${esc(l)}" title="Bỏ xác nhận thi xong">↺</button></div>`);
+        } else if(t.ngay){
+          dong.push(`<div style="margin-top:4px">📅 <b>${esc(l)}</b> thi ngày <b>${ngayVN(t.ngay)}</b>
+            <div style="margin-top:4px"><button class="primary sm" data-thi-xong="${esc(l)}">✅ Đã thi xong</button>
+            <button class="ghost sm" data-thi-ngay="${esc(l)}">đổi ngày</button></div></div>`);
+        } else {
+          dong.push(`<div style="margin-top:4px">📝 <b>${esc(l)}</b> sắp thi — chưa có ngày thi
+            <div style="margin-top:4px"><button class="primary sm" data-thi-ngay="${esc(l)}">📅 Điền ngày thi</button></div></div>`);
+        }
+      });
+    }
+    el.innerHTML=`<div class="sach-nhac">
+        <div class="sach-dau"><b>📚 Sách &amp; thi</b><button id="sachThu" title="Thu gọn thông báo">–</button></div>
+        <div class="sach-than" style="max-height:52vh;overflow:auto">${dong.join("")}</div>
       </div>`;
-  const b=el.querySelector("#ddDatSach"); if(b) b.onclick=()=>moDatSach(het[0].ten);
+  }
+  const b=el.querySelector("#ddDatSach"); if(b) b.onclick=()=>moDatSach(chuaDat.length?chuaDat[0].ten:(daDat.length?daDat[0].ten:""));
   const t=el.querySelector("#sachThu"); if(t) t.onclick=()=>{ localStorage.setItem("sach_nhac_thu","1"); capNhatSapHet(); };
   const m=el.querySelector("#sachMo"); if(m) m.onclick=()=>{ localStorage.setItem("sach_nhac_thu","0"); capNhatSapHet(); };
+  el.querySelectorAll("[data-thi-ngay]").forEach(x=>x.onclick=()=>moNgayThi(x.dataset.thiNgay));
+  el.querySelectorAll("[data-thi-xong]").forEach(x=>x.onclick=()=>thiXong(x.dataset.thiXong));
+  el.querySelectorAll("[data-thi-bo]").forEach(x=>x.onclick=()=>thiBo(x.dataset.thiBo));
 }
 function veDiemDanhQua(){
   const grid=document.getElementById("ddLopGrid"); if(!grid) return;
@@ -5327,7 +5468,10 @@ function moDatSach(tenLopMacDinh){
       <button class="ghost sm" id="dsCopyZa">📋 Copy cho Zalo</button>
       <button class="ghost sm" id="dsDong">Đóng</button>
     </div>
-    <div id="dsCanhBao" class="hint" style="margin:6px 0"></div>
+    <div class="row" style="gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 4px">
+      <div id="dsCanhBao" class="hint" style="margin:0;flex:1;min-width:240px"></div>
+      <button class="primary" id="dsXong" title="Ghi nhận đã đặt sách — web thôi nhắc đặt sách cho lớp/học sinh này">✅ Hoàn thành đặt sách</button>
+    </div>
     <div id="dsBody" style="max-height:58vh;overflow:auto"></div></div>`;
   bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
   const $=q=>bd.querySelector(q);
@@ -5336,19 +5480,38 @@ function moDatSach(tenLopMacDinh){
     const lop=$("#dsLopSel").value, ma=$("#dsHsSel").value;
     dsHien=lop?dsSachCuaLop(lop,ma):[];
     const info=het.find(x=>x.ten===lop);
-    $("#dsCanhBao").innerHTML = !lop ? "Chọn một lớp để xem danh sách đặt sách."
-      : info ? `⚠️ Lớp này đã tới <b>Unit ${info.unit}/${info.maxU} (Unit cuối)</b> — sau đó là <b>Ôn tập</b> và <b>Thi hết sách</b>. Đặt sách ngay để kịp buổi ôn tập.`
-      : `${dsHien.length} học sinh · ${dsHien.filter(h=>!diaChiDayDu(h)).length?`<span style="color:var(--nhan)">${dsHien.filter(h=>!diaChiDayDu(h)).length} em thiếu địa chỉ</span>`:"đủ địa chỉ"}`;
+    const daDat=lop?(ma?!!ddsHVNgay(lop,ma):ddsLopXong(lop)):false;
+    const ngayDat=lop?(ma?ddsHVNgay(lop,ma):(daDat?ddsNgayCua(lop):"")):"";
+    if(!lop){
+      $("#dsCanhBao").innerHTML="Chọn một lớp để xem danh sách đặt sách.";
+    } else if(daDat){
+      const ai=ma?(" — "+esc(hvByMa(ma))):"";
+      $("#dsCanhBao").innerHTML=`✅ <b>${esc(lop)}</b>${ai} <b>đã đặt sách</b>${ngayDat?" ngày "+ngayVN(ngayDat):""} — web không nhắc đặt sách nữa.
+        <button class="ghost sm" id="dsBoXong" style="margin-left:6px">↺ Bỏ xác nhận</button>`;
+    } else if(info){
+      $("#dsCanhBao").innerHTML=`⚠️ Lớp này đã tới <b>Unit ${info.unit}/${info.maxU} (Unit cuối)</b> — sau đó là <b>Ôn tập</b> và <b>Thi hết sách</b>. Đặt sách ngay để kịp buổi ôn tập.`;
+    } else {
+      const thieu=dsHien.filter(h=>!diaChiDayDu(h)).length;
+      $("#dsCanhBao").innerHTML=`${dsHien.length} học sinh · ${thieu?`<span style="color:var(--nhan)">${thieu} em thiếu địa chỉ</span>`:"đủ địa chỉ"}`;
+    }
+    const bo=$("#dsBoXong");
+    if(bo) bo.onclick=()=>{
+      if(!confirm(`Bỏ xác nhận đã đặt sách của ${ma?hvByMa(ma):("lớp "+lop)}?`)) return;
+      ddsBoGhiNhan(lop,ma); ve(); capNhatSapHet(); capNhatGhiChuSach();
+    };
     if(!dsHien.length){ $("#dsBody").innerHTML=lop?'<p class="hint">Lớp này chưa có học sinh.</p>':""; return; }
     const td='padding:6px;border-bottom:1px solid var(--line);vertical-align:top';
     $("#dsBody").innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px">
       <thead><tr>${["#","Học sinh","Phụ huynh","SĐT","Địa chỉ nhận sách"].map(x=>`<th style="text-align:left;padding:6px;border-bottom:2px solid var(--line)">${x}</th>`).join("")}</tr></thead>
-      <tbody>${dsHien.map((h,i)=>`<tr>
+      <tbody>${dsHien.map((h,i)=>{
+        const n=ddsHVNgay(lop,h.ma_hv);
+        const chip=n?`<div><span class="chip" style="border-color:var(--ok);color:var(--ok)">✅ đã đặt ${ngayVNngan(n)}</span></div>`:"";
+        return `<tr>
         <td style="${td}">${i+1}</td>
-        <td style="${td}"><b>${esc(h.ho_ten)}</b>${h.ten_goi_trong_lop?` <span class="hint">(${esc(h.ten_goi_trong_lop)})</span>`:""}</td>
+        <td style="${td}"><b>${esc(h.ho_ten)}</b>${h.ten_goi_trong_lop?` <span class="hint">(${esc(h.ten_goi_trong_lop)})</span>`:""}${chip}</td>
         <td style="${td}">${esc(h.phu_huynh||"")}</td>
         <td style="${td};white-space:nowrap">${esc(h.sdt_phu_huynh||"")}</td>
-        <td style="${td}">${esc(diaChiDayDu(h))}</td></tr>`).join("")}</tbody></table>`;
+        <td style="${td}">${esc(diaChiDayDu(h))}</td></tr>`;}).join("")}</tbody></table>`;
   }
   function napHs(){
     const lop=$("#dsLopSel").value;
@@ -5358,6 +5521,17 @@ function moDatSach(tenLopMacDinh){
   }
   $("#dsLopSel").onchange=napHs; $("#dsHsSel").onchange=ve;
   $("#dsDong").onclick=()=>bd.remove();
+  $("#dsXong").onclick=()=>{
+    if(typeof VAI!=="undefined"&&VAI==="khach"){ alert("Chế độ khách — chỉ xem."); return; }
+    const lop=$("#dsLopSel").value, ma=$("#dsHsSel").value;
+    if(!lop) return alert("Chọn lớp trước đã.");
+    const hs=ma?dsHien.filter(h=>h.ma_hv===ma):dsHien;
+    if(!hs.length) return alert("Lớp này chưa có học sinh.");
+    const nhan=ma?hvByMa(ma):("cả lớp "+lop);
+    if(!confirm(`Ghi nhận ĐÃ ĐẶT SÁCH cho ${nhan} (${hs.length} em)?\n\nTừ giờ web không nhắc đặt sách cho ${ma?nhan:"lớp này"} nữa.`)) return;
+    ddsGhiNhan(lop,ma);
+    ve(); capNhatSapHet(); capNhatGhiChuSach();
+  };
   $("#dsCopyXl").onclick=()=>{
     if(!dsHien.length) return alert("Chọn lớp trước đã.");
     const hang=[["Học sinh","Phụ huynh","SĐT","Địa chỉ"].join("\t")]
