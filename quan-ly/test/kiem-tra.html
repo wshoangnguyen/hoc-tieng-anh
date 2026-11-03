@@ -1,0 +1,113 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Kiểm tra web quản lý</title>
+<pre id="out" style="font:13px/1.5 monospace;white-space:pre-wrap">…</pre>
+<iframe id="f" src="../index.html" style="width:1200px;height:600px;border:0;visibility:hidden"></iframe>
+<script>
+/* Bộ kiểm tra 5 luồng chính: điểm danh · học phí · lưu trữ · đặt sách · ngày thi */
+const out = document.getElementById("out");
+const f = document.getElementById("f");
+const kq = [];
+function ok(ten, dieu, chiTiet) { kq.push((dieu ? "PASS " : "FAIL ") + ten + (chiTiet ? "  [" + chiTiet + "]" : "")); }
+function bang(ten, thuc, mong) { ok(ten, String(thuc) === String(mong), "được " + thuc + " · mong " + mong); }
+
+f.onload = () => setTimeout(chayHet, 600);
+
+function chayHet() {
+  const w = f.contentWindow, d = f.contentDocument;
+  try {
+    /* mở cửa vào ruột ứng dụng: script chèn vào iframe chạy cùng phạm vi toàn cục */
+    const sc = d.createElement("script");
+    sc.textContent = `window.__T = {
+      setS(v){ S = v; }, getS(){ return S; },
+      hvDangHoc, hvTatCa, hocVienCuaLop, tinhHV, ddDat, ddLay, roiLop,
+      veHocVien, veLuuTru, veCongNo, hvKhoiPhuc,
+      ddsGhiNhan, ddsBoGhiNhan, ddsLopXong, ddsNgayCua,
+      thiCua, thiXong, dsLopSapThi, iso, THANG_NAY
+    };`;
+    d.head.appendChild(sc);
+    const T = w.__T;
+
+    /* máy không có hộp thoại: confirm luôn đồng ý */
+    w.confirm = () => true;
+    w.alert = () => {};
+
+    const T0 = T.THANG_NAY();
+    const HS = [
+      { ma_hv: "HV01", ho_ten: "An", lop: "SM3 Juny", trang_thai: "đang học", hoc_phi_thang: 600000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0 - 1, lich_su_thu: [] },
+      { ma_hv: "HV02", ho_ten: "Bình", lop: "SM3 Juny", trang_thai: "đang học", hoc_phi_thang: 600000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0, lich_su_thu: [] },
+      { ma_hv: "HV03", ho_ten: "Dũng", lop: "SM3 Juny", trang_thai: "nghỉ", hoc_phi_thang: 600000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0, lich_su_thu: [] },
+      { ma_hv: "HV04", ho_ten: "Vũ Em", lop: "SM1a", trang_thai: "bảo lưu", hoc_phi_thang: 500000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0, no_chot_thang: 0, lich_su_thu: [] },
+      { ma_hv: "HV05", ho_ten: "Chi", lop: "SM3 Juny", trang_thai: "đang học", hoc_phi_thang: 600000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0, lich_su_thu: [] },
+      { ma_hv: "HV06", ho_ten: "Khang", lop: "SM1a", trang_thai: "đang học", hoc_phi_thang: 500000, km_kieu: "khong", km_tri: 0, da_dong_den_thang: T0, lich_su_thu: [] }
+    ];
+    const LOP = [
+      { id: "L1", ten: "SM3 Juny", gv: "Harvey", gio: [{ thu: 2, ca: "15:00" }], ghi: "" },
+      { id: "L2", ten: "SM1a", gv: "Huỳnh", gio: [{ thu: 2, ca: "19:00" }], ghi: "" }
+    ];
+    const trong = { hoc_vien: HS, lop: LOP, buoi: [], giao_vien: [{ ten: "Harvey" }], buoi_them: {}, nghi: {}, lop_sach: {},
+      sach_nhac: {}, tien_do: {}, diem: {}, diem_danh: {}, nhan_xet: {}, sticker: {}, lich_thi: {}, dat_sach: {},
+      anh: {}, muc_them: {}, ghi_chu: [], buoi_day: [], trang_muc: {}, lich_su: [] };
+    T.setS(JSON.parse(JSON.stringify(trong)));
+    d.getElementById("dn").hidden = true;
+
+    /* ───── 1. ĐIỂM DANH ───── */
+    bang("1.1 học sinh đang học = 4", T.hvDangHoc().length, 4);
+    bang("1.2 lớp SM3 Juny chỉ còn 3 em đang học", T.hocVienCuaLop("L1").map(x => x.ma_hv).join(","), "HV01,HV02,HV05");
+    const hom = T.iso(new Date());
+    T.ddDat(hom, "SM3 Juny", "HV01", "co");
+    bang("1.3 ghi điểm danh rồi đọc lại", T.ddLay(hom, "SM3 Juny", "HV01"), "co");
+    bang("1.4 em chưa ghi trả về rỗng", T.ddLay(hom, "SM3 Juny", "HV02"), "");
+    T.ddDat(hom, "SM3 Juny", "HV01", "");
+    bang("1.5 xoá điểm danh", T.ddLay(hom, "SM3 Juny", "HV01"), "");
+    const roi = T.roiLop("SM3 Juny");
+    ok("1.6 danh sách lớp không có em đã nghỉ", roi.indexOf("HV03") < 0 && roi.indexOf("HV04") < 0);
+
+    /* ───── 2. HỌC PHÍ / CÔNG NỢ ───── */
+    const s = T.getS();
+    const h1 = T.tinhHV(s.hoc_vien[0]);
+    const h2 = T.tinhHV(s.hoc_vien[1]);
+    bang("2.1 nợ 1 tháng = 600.000", h1.no_tien, 600000);
+    bang("2.2 đóng đủ tháng này = 0", h2.no_tien, 0);
+    const tongNo = s.hoc_vien.map(T.tinhHV).filter(h => h.trang_thai === "đang học").reduce((n, h) => n + h.no_tien, 0);
+    bang("2.3 tổng nợ chỉ tính em đang học", tongNo, 600000);
+
+    /* ───── 3. LƯU TRỮ ───── */
+    T.veHocVien(); T.veLuuTru();
+    bang("3.1 tổng sĩ số trên đầu trang = 4", d.getElementById("hvTong").textContent.trim(), "4");
+    const khuvuc = d.getElementById("hvSubNghi").textContent;
+    ok("3.2 mục lưu trữ có em nghỉ + bảo lưu", khuvuc.indexOf("Dũng") >= 0 && khuvuc.indexOf("Vũ Em") >= 0);
+    ok("3.3 mục lưu trữ không có em đang học", khuvuc.indexOf("Bình") < 0);
+    try { T.hvKhoiPhuc("HV03"); } catch (e) { /* giao diện phụ có thể thiếu trong khung test */ }
+    bang("3.4 đưa lại lớp → đang học", T.getS().hoc_vien.find(x => x.ma_hv === "HV03").trang_thai, "đang học");
+    bang("3.5 sau khi đưa lại, sĩ số = 5", T.hvDangHoc().length, 5);
+    T.getS().hoc_vien.find(x => x.ma_hv === "HV03").trang_thai = "nghỉ";
+
+    /* ───── 4. ĐẶT SÁCH ───── */
+    bang("4.1 chưa đặt sách", T.ddsLopXong("SM3 Juny"), false);
+    const ngayDat = T.ddsGhiNhan("SM3 Juny");
+    bang("4.2 ghi nhận đã đặt sách", T.ddsLopXong("SM3 Juny"), true);
+    bang("4.3 ngày đặt = hôm nay", T.ddsNgayCua("SM3 Juny"), ngayDat);
+    T.ddsBoGhiNhan("SM3 Juny");
+    bang("4.4 bỏ ghi nhận", T.ddsLopXong("SM3 Juny"), false);
+
+    /* ───── 5. NGÀY THI ───── */
+    T.getS().lich_thi = { "SM3 Juny": { ngay: "2026-11-20", xong: false } };
+    bang("5.1 đọc ngày thi", T.thiCua("SM3 Juny").ngay, "2026-11-20");
+    ok("5.2 lớp sắp thi có trong danh sách nhắc", T.dsLopSapThi().indexOf("SM3 Juny") >= 0);
+    T.thiXong("SM3 Juny");
+    bang("5.3 xác nhận thi xong", T.thiCua("SM3 Juny").xong, true);
+    bang("5.4 ngày xác nhận = hôm nay", T.thiCua("SM3 Juny").ngay_xong, hom);
+    ok("5.5 thi xong thì thôi nhắc", T.dsLopSapThi().indexOf("SM3 Juny") < 0);
+
+    /* ───── 6. TOÀN VẸN DỮ LIỆU ───── */
+    let json = "";
+    try { json = JSON.stringify(T.getS()); } catch (e) { json = ""; }
+    ok("6.1 dữ liệu lưu được thành JSON", json.length > 100, json.length + " ký tự");
+  } catch (e) {
+    kq.push("LỖI " + (e && e.message ? e.message : e));
+  }
+  const hong = kq.filter(x => x.indexOf("PASS ") !== 0).length;
+  out.textContent = kq.join("\n") + "\n\n" + (hong ? "❌ " + hong + "/" + kq.length + " mục lỗi" : "✅ Đạt tất cả " + kq.length + " mục");
+}
+</script>
