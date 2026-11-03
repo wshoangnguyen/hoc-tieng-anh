@@ -3691,6 +3691,9 @@ function bdDong(){ const m=document.getElementById("bdModal"); if(m){ m.style.di
 
 function veBaiDayModal(){
   const m=document.getElementById("bdModal"); if(!m||!BD.lopId) return;
+  { const hopCu=m.querySelector(".modal");
+    BD._cuon = (BD.giuCuon===false) ? 0 : (hopCu?hopCu.scrollTop:0);
+    BD.giuCuon = true; }
   const lop=lopTheoId(BD.lopId), sach=sachCuaLop(BD.lopId), hvs=hocVienCuaLop(BD.lopId);
   const tmS=sach?tmSach(sach):{sb:"",wb:""};
   let h=`<div class="modal" style="max-width:920px">`;
@@ -3750,10 +3753,11 @@ function veBaiDayModal(){
   }
   h+=`<div style="text-align:right;margin-top:10px"><button class="ghost sm" id="bdBoNd2" style="color:#b3261e;border-color:#e3b3ae">🗑 Bỏ nội dung buổi</button> <button class="ghost sm" id="bdX2">Đóng</button></div></div>`;
   m.innerHTML=h;
+  { const hopMoi=m.querySelector(".modal"); if(hopMoi) hopMoi.scrollTop=BD._cuon||0; }
   const X=()=>{const b=document.getElementById("bdX");if(b)b.onclick=bdDong; const b2=document.getElementById("bdX2"); if(b2) b2.onclick=bdDong;};
   const _ll=document.getElementById("bdLenLop"); if(_ll) _ll.onclick=()=>bdLenLop();
   X();
-  m.querySelectorAll("[data-mu]").forEach(b=>b.onclick=()=>{BD.unit=+b.dataset.mu;BD.chon.clear();veBaiDayModal();});
+  m.querySelectorAll("[data-mu]").forEach(b=>b.onclick=()=>{BD.unit=+b.dataset.mu;BD.chon.clear();BD.giuCuon=false;veBaiDayModal();});
   m.querySelectorAll("[data-mi]").forEach(c=>c.onchange=()=>{const id=+c.dataset.mi; if(c.checked)BD.chon.add(id); else BD.chon.delete(id);
     c.closest(".bd-m").classList.toggle("chon",c.checked); veBaiDayModal();});
   const them=document.getElementById("bdThem2"); if(them) them.onclick=()=>{const v=(document.getElementById("bdMoi2").value||"").trim(); if(!v)return;
