@@ -239,7 +239,7 @@
     var m = /(?:^|\/)(tre|nu)(\d)\.svg$/.exec(src);
     if (m && !laThay) {                    // học sinh: 4 khung chạy có động tác thật
       var khoa = m[1] + m[2], dsAnh = [];
-      for (var f = 1; f <= 4; f++) {
+      for (var f = 1; f <= 3; f++) {        // 3 khung là đủ mượt
         var im = document.createElement('img');
         im.src = 'vat-the/khung/' + khoa + '-' + f + '.png';
         im.alt = '';
@@ -366,7 +366,7 @@
       else { o.cho=0; o.vx*=0.3; o.vy*=0.3; }
       if(o.vx>38) o.huong=1; else if(o.vx<-38) o.huong=-1;
       o.dem+=dt*1000*Math.min(1.6, sp/110);
-      if(o.dem>112){ o.dem=0; hienKhung(o,(o.khung+1)%(o.frames.length||4)); }
+      if(o.dem>104){ o.dem=0; hienKhung(o,(o.khung+1)%(o.frames.length||3)); }
     }
     veBe(o);
   }
