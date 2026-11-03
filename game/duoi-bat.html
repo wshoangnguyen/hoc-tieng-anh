@@ -237,18 +237,23 @@
     o.nhan.textContent=tenBe;
     BE.push(o);
     var m = /(?:^|\/)(tre|nu)(\d)\.svg$/.exec(src);
-    if (m && !laThay) {                    // học sinh: 4 khung chạy có động tác thật
+    if (m && !laThay) {                    // học sinh: 3 khung (đứng + 2 chạy)
       var khoa = m[1] + m[2], dsAnh = [];
-      for (var f = 1; f <= 3; f++) {        // 3 khung là đủ mượt
+      var laMoi = (khoa === 'tre3');        // bạn tóc cam áo xanh: bộ SVG mới
+      var tenF = laMoi
+        ? ['tre3-dung.svg', 'tre3-chay1.svg', 'tre3-chay2.svg']
+        : [1, 2, 3].map(function (f) { return khoa + '-' + f + '.png'; });
+      for (var f = 0; f < tenF.length; f++) {
         var im = document.createElement('img');
-        im.src = 'vat-the/khung/' + khoa + '-' + f + '.png';
+        im.src = 'vat-the/khung/' + tenF[f];
         im.alt = '';
         im.draggable = false;
-        if (f > 1) im.style.display = 'none';
+        if (f > 0) im.style.display = 'none';
         o.sp.appendChild(im);
         dsAnh.push(im);
       }
       o.frames = dsAnh;
+      o.moiChay = laMoi;
       return Promise.resolve(true);
     }
     return fetch(src).then(function(r){return r.text();}).then(function(txt){
@@ -366,8 +371,11 @@
       else { o.cho=0; o.vx*=0.3; o.vy*=0.3; }
       if(o.vx>38) o.huong=1; else if(o.vx<-38) o.huong=-1;
       o.dem+=dt*1000*Math.min(1.6, sp/110);
-      if(o.dem>104){ o.dem=0; hienKhung(o,(o.khung+1)%(o.frames.length||3)); }
-    }
+      if(o.dem>104){ o.dem=0;
+        if(o.moiChay) hienKhung(o, o.khung === 1 ? 2 : 1);       // chỉ chạy giữa 2 khung chạy
+        else hienKhung(o,(o.khung+1)%(o.frames.length||3));
+      }
+    } else if(o.moiChay && o.khung !== 0){ hienKhung(o,0); }     // đứng yên → khung đứng
     veBe(o);
   }
 
