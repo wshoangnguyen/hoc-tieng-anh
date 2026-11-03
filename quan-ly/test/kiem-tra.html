@@ -23,7 +23,9 @@ function chayHet() {
       hvDangHoc, hvTatCa, hocVienCuaLop, tinhHV, ddDat, ddLay, roiLop,
       veHocVien, veLuuTru, veCongNo, hvKhoiPhuc,
       ddsGhiNhan, ddsBoGhiNhan, ddsLopXong, ddsNgayCua,
-      thiCua, thiXong, dsLopSapThi, iso, THANG_NAY
+      thiCua, thiXong, dsLopSapThi, iso, THANG_NAY,
+      gop3, layXd(){ return __xungDot.slice(); }, xoaXd(){ __xungDot=[]; },
+      ghiNhatKy, moNhatKy
     };`;
     d.head.appendChild(sc);
     const T = w.__T;
@@ -100,10 +102,53 @@ function chayHet() {
     bang("5.4 ngày xác nhận = hôm nay", T.thiCua("SM3 Juny").ngay_xong, hom);
     ok("5.5 thi xong thì thôi nhắc", T.dsLopSapThi().indexOf("SM3 Juny") < 0);
 
-    /* ───── 6. TOÀN VẸN DỮ LIỆU ───── */
+    /* ───── 6. ĐỒNG BỘ NHIỀU MÁY (gộp 3 chiều) ───── */
+    T.xoaXd();
+    let r = T.gop3({ a: 1 }, { a: 2 }, { a: 3 }, "");
+    ok("6.1 máy này sửa, máy kia cũng sửa → giữ bản máy này", r.a === 2, "a=" + r.a);
+    ok("6.2 có báo xung đột", T.layXd().length === 1, JSON.stringify(T.layXd()));
+    T.xoaXd();
+    r = T.gop3({ a: 1, b: 1 }, { a: 2, b: 1 }, { a: 1, b: 9 }, "");
+    ok("6.3 hai máy sửa hai chỗ khác nhau → gộp đủ cả hai", r.a === 2 && r.b === 9, JSON.stringify(r));
+    ok("6.4 không báo xung đột khi không trùng", T.layXd().length === 0, JSON.stringify(T.layXd()));
+    T.xoaXd();
+    const goc = [{ id: "HV01", hoc_phi_thang: 600000 }];
+    const mayNay = [{ id: "HV01", hoc_phi_thang: 700000 }];
+    const mayKia = [{ id: "HV01", hoc_phi_thang: 650000 }];
+    r = T.gop3(goc, mayNay, mayKia, "hoc_vien");
+    ok("6.5 sửa cùng một học viên ở hai máy → giữ bản máy này", r[0].hoc_phi_thang === 700000);
+    ok("6.6 báo đúng chỗ xung đột", T.layXd().length === 1 && T.layXd()[0].indexOf("hoc_phi_thang") >= 0, JSON.stringify(T.layXd()));
+    T.xoaXd();
+    r = T.gop3([{ id: "A", x: 1 }, { id: "B", x: 1 }], [{ id: "A", x: 2 }, { id: "B", x: 1 }], [{ id: "A", x: 1 }, { id: "B", x: 3 }], "ds");
+    ok("6.7 mảng: mỗi máy sửa một em → gộp đủ", r.find(z => z.id === "A").x === 2 && r.find(z => z.id === "B").x === 3);
+    ok("6.8 mảng: không báo xung đột", T.layXd().length === 0, JSON.stringify(T.layXd()));
+
+    /* ───── 7. NHẬT KÝ THAO TÁC ───── */
+    T.getS().nhat_ky = [];
+    T.ddDat(hom, "SM3 Juny", "HV02", "vang");
+    const nk = T.getS().nhat_ky;
+    ok("7.1 điểm danh có ghi nhật ký", nk.length === 1 && nk[0].viec === "điểm danh", JSON.stringify(nk[0] || {}));
+    ok("7.2 nhật ký ghi tên người làm", !!(nk[0] && nk[0].ai), nk[0] && nk[0].ai);
+    ok("7.3 nhật ký ghi đúng em và lớp", nk[0] && nk[0].mo_ta.indexOf("HV02") >= 0 && nk[0].mo_ta.indexOf("SM3 Juny") >= 0, nk[0] && nk[0].mo_ta);
+    T.ddsGhiNhan("SM3 Juny");
+    ok("7.4 đặt sách có ghi nhật ký", T.getS().nhat_ky.some(x => x.viec === "đặt sách"));
+    for (let i = 0; i < 1005; i++) T.ghiNhatKy("thử", "mục " + i);
+    bang("7.5 nhật ký giữ tối đa 1000 mục", T.getS().nhat_ky.length, 1000);
+    ok("7.6 mục mới nhất còn nguyên", T.getS().nhat_ky[T.getS().nhat_ky.length - 1].mo_ta === "mục 1004");
+    T.getS().nhat_ky = [{ id: "nk1", luc: new Date().toISOString(), ai: "Harvey", vai: "quan_ly", viec: "điểm danh", mo_ta: "HV01 · SM3 Juny · có mặt" },
+                        { id: "nk2", luc: new Date().toISOString(), ai: "Huỳnh", vai: "giao_vien", viec: "học phí", mo_ta: "thu 600.000 đ" }];
+    try { T.moNhatKy(); } catch (e) { kq.push("LỖI mở nhật ký: " + e.message); }
+    const hopNk = d.getElementById("nkDs");
+    ok("7.7 hộp nhật ký hiện đủ 2 mục", hopNk && /HV01/.test(hopNk.textContent) && /600\.000/.test(hopNk.textContent));
+    const sel = d.getElementById("nkAi");
+    if (sel) { sel.value = "Huỳnh"; sel.dispatchEvent(new w.Event("change")); }
+    ok("7.8 lọc theo người dùng", hopNk && !/HV01/.test(hopNk.textContent) && /600\.000/.test(hopNk.textContent));
+    const mo = d.getElementById("bdModal"); if (mo) mo.style.display = "none";
+
+    /* ───── 8. TOÀN VẸN DỮ LIỆU ───── */
     let json = "";
     try { json = JSON.stringify(T.getS()); } catch (e) { json = ""; }
-    ok("6.1 dữ liệu lưu được thành JSON", json.length > 100, json.length + " ký tự");
+    ok("8.1 dữ liệu lưu được thành JSON", json.length > 100, json.length + " ký tự");
   } catch (e) {
     kq.push("LỖI " + (e && e.message ? e.message : e));
   }
