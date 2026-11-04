@@ -519,7 +519,9 @@ header{padding:6px 10px}
   </div>
   <div id="thanhTuan">
     <span class="row" id="tuanBar" style="gap:6px;margin:0">
+      <button id="btnTuanTruoc" class="ghost sm" title="Tuần trước" style="padding:0 8px">‹</button>
       <select id="selTuan" title="Chọn tuần đang xem"></select>
+      <button id="btnTuanSau" class="ghost sm" title="Tuần sau" style="padding:0 8px">›</button>
       <button id="btnLamMoi" class="ghost sm" title="Tải lại dữ liệu mới nhất từ máy chủ">🔄 Làm mới</button>
       <span class="seg" id="segXemTheo" title="Cách hiển thị lịch tổng — chỉ đổi cách xem, không đổi dữ liệu">
         <button data-xem="lop" class="on">Theo lớp</button>
@@ -1141,7 +1143,7 @@ function moThemHocBu(){
     }; });
   }
   const dk=document.getElementById("selTuanDk");
-  if(dk) dk.onchange=()=>{ tuanDangXem=+dk.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
+  if(dk) dk.onchange=()=>{ if(dk.value==="__more"){ moTatCaTuan=true; render(); return; } tuanDangXem=+dk.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
 })();
 /* ================= LÀM MỚI DỮ LIỆU ================= */
 async function lamMoiDuLieu(){
@@ -2729,12 +2731,30 @@ function moLopDiemDanh(ten){
   setTimeout(()=>{ const s=document.getElementById("tab-diemdanh"); if(s) s.scrollIntoView({behavior:"smooth",block:"start"}); },60);
 }
 
-function veDangKy(){
-  const ds=S.tuan.map((x,i)=>{ const [y,m,d]=x.bat_dau.split("-");
+let moTatCaTuan=false;   // mặc định chỉ hiện 8 tuần gần nhất cho danh sách gọn
+function dsTuanOptions(){
+  const moc=cong(iso(new Date()),-56);
+  const anCu=!moTatCaTuan;
+  let out="", nhom="", an=0;
+  S.tuan.forEach((x,i)=>{
+    if(anCu&&x.bat_dau<moc){ an++; return; }
+    const [y,m,d]=x.bat_dau.split("-"), tenThang=`Tháng ${m}/${y}`;
+    if(tenThang!==nhom){ if(nhom) out+="</optgroup>"; out+=`<optgroup label="${tenThang}">`; nhom=tenThang; }
     const khoa=S.tuan_chot&&S.tuan_chot[x.bat_dau]?" 🔒":"";
-    return `<option value="${i}" ${i===tuanDangXem?"selected":""}>Tuần ${d}/${m}/${y}${khoa}</option>`; }).join("");
-  ["selTuan","selTuanDk"].forEach(id=>{ const sel=document.getElementById(id); if(sel) sel.innerHTML=ds; });
+    out+=`<option value="${i}" ${i===tuanDangXem?"selected":""}>Tuần ${d}/${m}/${y}${khoa}</option>`;
+  });
+  if(nhom) out+="</optgroup>";
+  if(an) out+=`<option value="__more">⏷ Tuần cũ hơn (${an})…</option>`;
+  return out;
 }
+function veDangKy(){
+  const ds=dsTuanOptions();
+  ["selTuan","selTuanDk"].forEach(id=>{ const sel=document.getElementById(id); if(sel) sel.innerHTML=ds; });
+  const t=document.getElementById("btnTuanTruoc"), sa=document.getElementById("btnTuanSau");
+  if(t) t.disabled=tuanDangXem<=0;
+  if(sa) sa.disabled=tuanDangXem>=S.tuan.length-1;
+}
+function doiTuan(i){ if(i<0||i>=S.tuan.length) return; tuanDangXem=i; S.tuan_hien_tai=i; save(); render(); }
 function render(){
   if(typeof bdKhoiTao==="function") bdKhoiTao();
   const w=tuan();
@@ -2937,7 +2957,12 @@ function capNhatChatNut(){
 }
 function chonTrang(p){ const ds=(TABCON_HIEN[p]||[]).map(x=>x[0]); if(!ds.length) return; trangDangXem=p; tabDangXem=ds[0]; veNav(); apDungTab(); }
 function chonTab(t){ tabDangXem=t; apDungTab(); capNhatThanhTuan(); }
-document.getElementById("selTuan").onchange=e=>{ tuanDangXem=+e.target.value; S.tuan_hien_tai=tuanDangXem; save(); render(); };
+document.getElementById("selTuan").onchange=e=>{
+  if(e.target.value==="__more"){ moTatCaTuan=true; render(); return; }
+  doiTuan(+e.target.value);
+};
+document.getElementById("btnTuanTruoc").onclick=()=>doiTuan(tuanDangXem-1);
+document.getElementById("btnTuanSau").onclick=()=>doiTuan(tuanDangXem+1);
 document.getElementById("btnTuanMoi").onclick=()=>{
   const cuoi=[...S.tuan].sort((a,b)=>a.bat_dau<b.bat_dau?1:-1)[0];
   const moi=cong(cuoi.bat_dau,7);

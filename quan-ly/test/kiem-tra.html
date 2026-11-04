@@ -26,7 +26,8 @@ function chayHet() {
       thiCua, thiXong, dsLopSapThi, iso, THANG_NAY,
       gop3, layXd(){ return __xungDot.slice(); }, xoaXd(){ __xungDot=[]; },
       ghiNhatKy, moNhatKy,
-      buoiTuan, buoiTuLop, chotTuanCu, chotMotTuan, doiTenLop, cong, t2CuaNgay, veLuoi, datGhiDe,
+      buoiTuan, buoiTuLop, chotTuanCu, chotMotTuan, doiTenLop, cong, t2CuaNgay, veLuoi, datGhiDe, veDangKy, doiTuan,
+      moTatCaTuan(){ moTatCaTuan = true; },
       datTuan(i){ tuanDangXem = i; S.tuan_hien_tai = i; }
     };`;
     d.head.appendChild(sc);
@@ -214,6 +215,21 @@ function chayHet() {
     T.datTuan(0); T.veLuoi();
     ok("10.13 lưới tuần cũ vẫn còn lớp sau khi xoá", /SM3 Juny/.test(d.getElementById("grid").textContent));
     bang("10.14 lương tháng cũ vẫn còn buổi của Harvey", w.luongChiTiet(ngayCu.slice(0, 7), "Harvey").tongThang >= 1, true);
+
+    /* ───── 11. DANH SÁCH TUẦN GỌN: 8 tuần gần nhất + mở rộng ───── */
+    const S11 = T.getS();
+    const moc11 = T.t2CuaNgay(T.cong(hom10, -7 * 19));
+    S11.tuan = Array.from({ length: 20 }, (_, i) => ({ id: "w" + i, bat_dau: T.cong(moc11, 7 * i) }));
+    S11.tuan_hien_tai = 19; S11.lop = []; S11.tuan_chot = {};
+    T.datTuan(19); T.veDangKy();
+    const so11 = d.querySelectorAll("#selTuan option").length;
+    ok("11.1 danh sách tuần mặc định không quá 10 mục", so11 <= 10, so11 + " mục");
+    ok("11.2 có mục «Tuần cũ hơn»", !!d.querySelector('#selTuan option[value="__more"]'));
+    T.moTatCaTuan(); T.veDangKy();
+    bang("11.3 mở rộng ra đủ 20 tuần", d.querySelectorAll("#selTuan option").length, 20);
+    T.doiTuan(18);
+    ok("11.4 nút tuần trước/sau đổi tuần", T.getS().tuan_hien_tai === 18);
+
   } catch (e) {
     kq.push("LỖI " + (e && e.message ? e.message : e));
   }
