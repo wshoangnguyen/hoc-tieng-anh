@@ -25,7 +25,9 @@ function chayHet() {
       ddsGhiNhan, ddsBoGhiNhan, ddsLopXong, ddsNgayCua,
       thiCua, thiXong, dsLopSapThi, iso, THANG_NAY,
       gop3, layXd(){ return __xungDot.slice(); }, xoaXd(){ __xungDot=[]; },
-      ghiNhatKy, moNhatKy
+      ghiNhatKy, moNhatKy,
+      buoiTuan, buoiTuLop, chotTuanCu, chotMotTuan, doiTenLop, cong, t2CuaNgay, veLuoi, datGhiDe,
+      datTuan(i){ tuanDangXem = i; S.tuan_hien_tai = i; }
     };`;
     d.head.appendChild(sc);
     const T = w.__T;
@@ -163,6 +165,55 @@ function chayHet() {
     bang("9.3 số buổi trong tháng 11", luong.tongThang, 9);
     bang("9.4 nếu đếm cả tuần (chỉ tuần vắt qua tháng)", luong.tongCaTuan, 10);
     bang("9.5 chênh lệch", luong.tongCaTuan - luong.tongThang, 1);
+
+    /* ───── 10. TUẦN CŨ ĐÓNG BĂNG: sửa hôm nay không đổi quá khứ ───── */
+    const hom10 = T.iso(new Date());
+    const tuanNay = T.t2CuaNgay(hom10);
+    const tuanCu = T.t2CuaNgay(T.cong(hom10, -14));
+    const S10 = T.getS();
+    S10.lop = [{ id: "L1", ten: "SM3 Juny", gv: "Harvey", gio: [{ thu: "T2", ca: "15:00" }], ghi: "" }];
+    S10.giao_vien = [{ ten: "Harvey", don_gia: 100000 }, { ten: "Huỳnh", don_gia: 100000 }];
+    S10.ca = ["15:00", "19:00"]; S10.buoi_them = {}; S10.nghi = {}; S10.nhat_ky = [];
+    S10.buoi = {}; S10.tuan_chot = {}; S10.diem_danh = {}; S10.dat_sach = {}; S10.lich_thi = {}; S10.sach_nhac = {};
+    S10.tuan = [{ id: "w1", bat_dau: tuanCu }, { id: "w2", bat_dau: tuanNay }];
+
+    bang("10.1 chốt được 1 tuần cũ", T.chotTuanCu(), 1);
+    ok("10.2 tuần đang chạy không bị chốt", !S10.tuan_chot[tuanNay]);
+    const buoiCu0 = T.buoiTuan({ bat_dau: tuanCu });
+    bang("10.3 tuần cũ có 1 buổi", buoiCu0.length, 1);
+    ok("10.4 tuần cũ đánh dấu đã chốt", buoiCu0[0].chot === true);
+
+    /* điểm danh buổi cũ trước khi đổi tên */
+    const ngayCu = T.cong(tuanCu, 1);
+    T.ddDat(ngayCu, "SM3 Juny", "HV01", "co");
+
+    /* hôm nay: đổi tên lớp + đổi giáo viên */
+    T.doiTenLop("SM3 Juny", "SM3 Mới");
+    S10.lop[0].ten = "SM3 Mới"; S10.lop[0].gv = "Huỳnh";
+
+    ok("10.5 tuần cũ vẫn giữ tên lớp cũ", T.buoiTuan({ bat_dau: tuanCu })[0].lop.ten === "SM3 Juny");
+    ok("10.6 tuần cũ vẫn giữ giáo viên cũ", T.buoiTuan({ bat_dau: tuanCu })[0].gv === "Harvey");
+    ok("10.7 tuần hiện tại theo tên mới", T.buoiTuan({ bat_dau: tuanNay })[0].lop.ten === "SM3 Mới");
+    bang("10.8 điểm danh cũ chuyển theo tên mới", T.ddLay(ngayCu, "SM3 Mới", "HV01"), "co");
+
+    /* sửa tay một buổi của tuần đã chốt: phải ghi được vào bản chốt */
+    T.datGhiDe(tuanCu + "|L1|T2|15:00", { ghi: "học bù vì lũ" });
+    bang("10.8b sửa buổi trong tuần đã chốt", T.buoiTuan({ bat_dau: tuanCu })[0].ghi, "học bù vì lũ");
+
+    /* lưới lịch: tuần cũ giữ tên cũ, tuần này theo tên mới */
+    T.datTuan(1); T.veLuoi();
+    ok("10.9 lưới tuần này hiện tên mới", /SM3 Mới/.test(d.getElementById("grid").textContent));
+    T.datTuan(0); T.veLuoi();
+    const luoiCu = d.getElementById("grid").textContent.replace(/\s+/g, " ");
+    ok("10.10 lưới tuần cũ hiện tên lớp cũ", /SM3 Juny/.test(luoiCu) && !/SM3 Mới/.test(luoiCu), luoiCu.slice(-60));
+    ok("10.11 có nhãn «tuần đã chốt»", (d.getElementById("nhanChot") || {}).hidden === false);
+
+    /* xoá lớp hôm nay: quá khứ vẫn còn */
+    S10.lop = [];
+    ok("10.12 xoá lớp không làm mất lịch quá khứ", T.buoiTuan({ bat_dau: tuanCu }).length === 1);
+    T.datTuan(0); T.veLuoi();
+    ok("10.13 lưới tuần cũ vẫn còn lớp sau khi xoá", /SM3 Juny/.test(d.getElementById("grid").textContent));
+    bang("10.14 lương tháng cũ vẫn còn buổi của Harvey", w.luongChiTiet(ngayCu.slice(0, 7), "Harvey").tongThang >= 1, true);
   } catch (e) {
     kq.push("LỖI " + (e && e.message ? e.message : e));
   }

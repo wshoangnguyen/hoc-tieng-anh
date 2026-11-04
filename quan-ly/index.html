@@ -527,6 +527,7 @@ header{padding:6px 10px}
       </span>
       <button id="btnThemBu" class="ghost sm" title="Thêm một buổi học bù — chỉ có trong tuần này">➕ Học bù</button>
       <button id="btnTuanMoi" class="ghost sm" title="Tạo tuần kế tiếp bằng cách nhân bản tuần đang xem">＋ Tuần kế</button>
+      <span id="nhanChot" hidden style="font:600 11.5px/1 inherit;padding:5px 9px;border-radius:999px;background:#FBF1DC;color:#8A6A2F;border:1px solid #E8D3A6">🔒 tuần đã chốt</span>
       <button id="btnXoaTuan" class="ghost sm" style="border-color:var(--del);color:var(--del)" title="Xoá tuần đang xem">🗑 Xoá tuần</button>
     </span>
   </div>
@@ -842,7 +843,8 @@ function load(){
   if(!S.sticker||typeof S.sticker!=="object") S.sticker={};
   if(!S.diem_ngay||typeof S.diem_ngay!=="object") S.diem_ngay={};
   if(!S.dat_sach||typeof S.dat_sach!=="object") S.dat_sach={};
-  if(!Array.isArray(S.nhat_ky)) S.nhat_ky=[];   /* {lop:{lop:{ngay},hv:{ma:{ngay}}}} */
+  if(!Array.isArray(S.nhat_ky)) S.nhat_ky=[];
+  if(!S.tuan_chot||typeof S.tuan_chot!=="object") S.tuan_chot={};   /* {lop:{lop:{ngay},hv:{ma:{ngay}}}} */
   if(!S.lich_thi||typeof S.lich_thi!=="object") S.lich_thi={};   /* {lop:{ngay,xong,ngay_xong}} */
   if(!S.tuan||!S.tuan.length) S.tuan=[{id:"w1",bat_dau:t2CuaNgay(iso(new Date()))}];
   S.tuan.forEach(w=>{ if(!w.bat_dau) w.bat_dau=t2CuaNgay(iso(new Date())); });
@@ -852,17 +854,32 @@ function load(){
     THU.forEach(t=>{ if(!g.ranh[t]) g.ranh[t]=[]; }); });
   if(S.tuan_hien_tai==null||S.tuan_hien_tai>=S.tuan.length) S.tuan_hien_tai=0;
   tuanDangXem=S.tuan_hien_tai;
+  try{ chotTuanCu(); }catch(e){}
 }
 const save=()=>{ if(VAI==="khach") return; try{ localStorage.setItem(KEY,JSON.stringify(S)); try{ window.__chupNhanh&&__chupNhanh(); }catch(e){} henDayLenMayChu(); setTimeout(function(){ try{ window.dayMucTieuGame && dayMucTieuGame(true); }catch(e){} }, 2500); }
   catch(e){ alert("Máy không lưu được nữa (bộ nhớ trình duyệt đầy — thường do ảnh học viên).\nHãy bấm ⬇ Xuất JSON để giữ dữ liệu, rồi bỏ bớt ảnh."); } };
 const tuan=()=>S.tuan[tuanDangXem];
 const lopTheoId=id=>(S.lop||[]).find(l=>l.id===id);
+/* Đổi tên lớp phải mang theo dữ liệu khoá bằng TÊN lớp (điểm danh, đặt sách, ngày thi, nhắc sách),
+   nếu không thì lịch sử cũ mất liên kết ngay khi đổi tên. */
+function doiTenLop(cu,moi){
+  if(!cu||!moi||cu===moi) return 0;
+  let n=0;
+  Object.keys(S.diem_danh||{}).forEach(k=>{
+    const p=String(k).split("|"); if(p.length<3||p[1]!==cu) return;
+    S.diem_danh[p[0]+"|"+moi+"|"+p[2]]=S.diem_danh[k]; delete S.diem_danh[k]; n++;
+  });
+  ["dat_sach","lich_thi","sach_nhac"].forEach(o=>{
+    const m=S[o]; if(m&&typeof m==="object"&&m[cu]!==undefined){ m[moi]=m[cu]; delete m[cu]; n++; }
+  });
+  return n;
+}
 function mauGV(ten){ const i=S.giao_vien.findIndex(g=>g.ten===ten); return i<0?"var(--dim)":`var(${MAU[i%MAU.length]})`; }
 function cacCa(){ return [...new Set([...S.ca,...(S.lop||[]).flatMap(l=>l.gio.map(g=>g.ca))])].filter(c=>c&&c!=="?").sort((a,b)=>gioSapXep(a)-gioSapXep(b)); }
 function cacCaFull(){ const alt=[...new Set([...S.ca,...S.lop.flatMap(l=>l.gio.map(g=>g.ca)),...Object.keys(S.buoi||{}).map(k=>k.split("|")[3])])].filter(c=>c&&c!=="?"); return alt.sort((a,b)=>gioSapXep(a)-gioSapXep(b)); }
 const soBuoiLop=l=>(l.gio||[]).length;
 /* buổi thực tế của một tuần (sinh ra từ kho lớp + phần ghi đè) */
-function buoiTuan(w){
+function buoiTuLop(w){
   const out=[];
   (S.lop||[]).forEach(l=>(l.gio||[]).forEach(g=>{
     const k=`${w.bat_dau}|${l.id}|${g.thu}|${g.ca}`;
@@ -878,8 +895,48 @@ function buoiTuan(w){
   });
   return out;
 }
+/* Tuần đã qua thì đọc bản CHỐT (đóng băng), không suy ra từ lớp hiện tại nữa.
+   Nhờ vậy đổi tên lớp / đổi giáo viên / xoá lớp hôm nay không sửa được lịch quá khứ. */
+function buoiTuan(w){
+  const bd=w&&w.bat_dau;
+  const c=bd&&S.tuan_chot&&S.tuan_chot[bd];
+  if(c&&Array.isArray(c.buoi)){
+    return c.buoi.map(b=>({
+      k:b.k||(bd+"|"+(b.lopId||"")+"|"+b.thu+"|"+b.ca),
+      lop:{id:b.lopId||"", ten:b.lopTen||"", gv:(b.lopGv!==undefined?b.lopGv:(()=>{const z=(S.lop||[]).find(x=>x.id===b.lopId);return z?z.gv||"":"";})()), gio:[]},
+      thu:b.thu, ca:b.ca, ngay:b.ngay, gv:b.gv||"", ghi:b.ghi||"",
+      tt:b.tt||"binh_thuong", them:!!b.them, buId:b.buId||"", chot:true
+    }));
+  }
+  return buoiTuLop(w);
+}
+function tuanDaQua(w){ return !!(w&&w.bat_dau&&cong(w.bat_dau,6)<iso(new Date())); }
+function chotMotTuan(w,tuDong){
+  if(!w||!w.bat_dau) return false;
+  S.tuan_chot=S.tuan_chot||{};
+  if(S.tuan_chot[w.bat_dau]) return false;
+  const ds=buoiTuLop(w).map(b=>({k:b.k, lopId:(b.lop&&b.lop.id)||"", lopTen:(b.lop&&b.lop.ten)||"",
+    lopGv:(b.lop&&b.lop.gv)||"", lopGhi:(b.lop&&b.lop.ghi)||"",
+    gv:b.gv||"", thu:b.thu, ca:b.ca, ngay:b.ngay, tt:b.tt||"binh_thuong",
+    ghi:b.ghi||"", them:!!b.them, buId:b.buId||""}));
+  S.tuan_chot[w.bat_dau]={luc:new Date().toISOString(), tu_dong:!!tuDong, buoi:ds};
+  return true;
+}
+function chotTuanCu(){
+  if(typeof VAI!=="undefined" && VAI==="khach") return 0;
+  let n=0; (S.tuan||[]).forEach(w=>{ if(tuanDaQua(w)&&chotMotTuan(w,true)) n++; });
+  return n;
+}
 const buoiTuanNay=()=>buoiTuan(tuan());
-function datGhiDe(k,phan){ S.buoi[k]=Object.assign({},S.buoi[k]||{},phan); save(); }
+function datGhiDe(k,phan){
+  const [bd,lopId,thu,ca]=String(k).split("|");
+  const ck=S.tuan_chot&&S.tuan_chot[bd];
+  if(ck&&Array.isArray(ck.buoi)&&lopId){
+    const b=ck.buoi.find(x=>x.lopId===lopId&&x.thu===thu&&x.ca===ca);
+    if(b){ Object.assign(b,phan); ghiNhatKy("sửa tuần đã chốt", `${bd} · ${b.lopTen||""} · ${thu} ${ca}`); }
+  }
+  S.buoi[k]=Object.assign({},S.buoi[k]||{},phan); save();
+}
 
 /* ================= KIỂM TRA ================= */
 function trungGV(ds,thu,ca,gv,boKey){ return ds.some(b=>b.k!==boKey&&b.thu===thu&&b.ca===ca&&b.gv===gv&&b.tt!=="huy"); }
@@ -1150,6 +1207,10 @@ function veTomTat(){
 }
 function veLuoi(){
   const w=tuan(), ds=buoiTuanNay();
+  const daChot=!!(S.tuan_chot&&S.tuan_chot[w.bat_dau]);
+  const nc=document.getElementById("nhanChot"); if(nc) nc.hidden=!daChot;
+  const tb=document.getElementById("btnThemBu"); if(tb) tb.style.display=daChot?"none":"";
+  const bt=document.getElementById("btnThemBu"); if(bt&&daChot) bt.title="Tuần đã chốt — không thêm học bù vào quá khứ";
   const homNay=iso(new Date());
   let h=`<div class="gh"></div>`;
   THU.forEach((t,i)=>{ const ngay=cong(w.bat_dau,i);
@@ -1162,7 +1223,7 @@ function veLuoi(){
         ? String(a.gv||"~").localeCompare(String(b.gv||"~"),"vi")||soSanhLop(a.lop.ten,b.lop.ten)
         : soSanhLop(a.lop.ten,b.lop.ten)||gioSapXep(a.ca)-gioSapXep(b.ca));
       let items=o.map(b=>{ const chuaGV=!b.gv;
-        const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!gvRanh(b.gv,t,ca,w);
+        const loi=b.gv&&trungGV(ds,t,ca,b.gv,b.k), khongRanh=b.gv&&!b.chot&&!gvRanh(b.gv,t,ca,w);
         const nhan=b.them?'<span class="nhan-bu">học bù</span>':"";
         return `<div class="b ${b.tt==='huy'?'huy':''} ${chuaGV?'chua-gv':''} ${khongRanh?'khong-ranh':''} ${b.them?'hoc-bu':''}" data-k="${esc(b.k)}"
           title="${chuaGV?"Chưa sắp giáo viên":(loi?"TRÙNG GIỜ":(khongRanh?"Giáo viên không có trong lịch rảnh CỦA TUẦN NÀY (mặc định vẫn đăng ký) — cần người dạy bù":""))}">
@@ -1309,20 +1370,27 @@ function veKho(){
         <select class="themca" data-ca="${l.id}" style="width:auto">${cacCaFull().map(c=>`<option>${esc(c)}</option>`).join("")}</select>
         <button class="ghost sm" data-themgio="${l.id}">＋ thêm giờ</button></div></div>`;
   }).join("")||`<p class="hint">Chưa có lớp nào — dán danh sách ở ô phía trên.</p>`;
-  document.querySelectorAll("[data-lopten]").forEach(i=>{ i.onchange=()=>{ lopTheoId(i.dataset.lopten).ten=i.value.trim(); save(); render(); }; });
-  document.querySelectorAll("[data-lopso]").forEach(i=>{ i.onchange=()=>{ const l=lopTheoId(i.dataset.lopso), n=+i.value||0;
+  document.querySelectorAll("[data-lopten]").forEach(i=>{ i.onchange=()=>{
+    const l=lopTheoId(i.dataset.lopten), tenCu=l.ten, tenMoi=i.value.trim();
+    if(!tenMoi||tenMoi===tenCu){ i.value=tenCu; return; }
+    chotTuanCu(); const so=doiTenLop(tenCu,tenMoi); l.ten=tenMoi;
+    ghiNhatKy("đổi tên lớp", `${tenCu} → ${tenMoi}${so?" · chuyển "+so+" mục dữ liệu cũ":""}`);
+    save(); render(); }; });
+  document.querySelectorAll("[data-lopso]").forEach(i=>{ i.onchange=()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopso), n=+i.value||0;
     while((l.gio||[]).length>n) l.gio.pop(); save(); render(); }; });
-  document.querySelectorAll("[data-lopgv]").forEach(i=>{ i.onchange=()=>{ const l=lopTheoId(i.dataset.lopgv); l.gv=i.value; save(); render(); }; });
+  document.querySelectorAll("[data-lopgv]").forEach(i=>{ i.onchange=()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopgv);
+    ghiNhatKy("đổi giáo viên lớp", `${l.ten} · ${l.gv||"—"} → ${i.value||"—"}`); l.gv=i.value; save(); render(); }; });
   document.querySelectorAll("[data-lopghi]").forEach(i=>{ i.onchange=()=>{ lopTheoId(i.dataset.lopghi).ghi=i.value.trim(); save(); veKho(); }; });
   document.querySelectorAll("[data-xoalop]").forEach(b=>{ b.onclick=()=>{ const l=lopTheoId(b.dataset.xoalop);
-    if(!confirm(`Xoá lớp ${l.ten} khỏi kho? Buổi của lớp này biến mất khỏi lịch tuần.`)) return;
+    if(!confirm(`Xoá lớp ${l.ten} khỏi kho?\nCác tuần ĐÃ QUA vẫn giữ nguyên trong lịch sử (đã chốt), giờ dạy và lương cũ không đổi.`)) return;
+    chotTuanCu(); ghiNhatKy("xoá lớp", `${l.ten} · lịch quá khứ vẫn giữ`);
     Object.keys(S.buoi).forEach(k=>{ if(k.split("|")[1]===l.id) delete S.buoi[k]; });
     S.lop=S.lop.filter(x=>x.id!==l.id); save(); render(); }; });
-  document.querySelectorAll("[data-themgio]").forEach(b=>{ b.onclick=()=>{ const id=b.dataset.themgio, l=lopTheoId(id);
+  document.querySelectorAll("[data-themgio]").forEach(b=>{ b.onclick=()=>{ chotTuanCu(); const id=b.dataset.themgio, l=lopTheoId(id);
     const thu=document.querySelector(`[data-thu="${id}"]`).value, ca=document.querySelector(`[data-ca="${id}"]`).value;
     if((l.gio||[]).some(g=>g.thu===thu&&g.ca===ca)) return alert("Giờ này đã có trong danh sách.");
     l.gio.push({thu,ca}); save(); render(); }; });
-  document.querySelectorAll("[data-xoagio]").forEach(b=>{ b.onclick=()=>{ const [id,i]=b.dataset.xoagio.split("|");
+  document.querySelectorAll("[data-xoagio]").forEach(b=>{ b.onclick=()=>{ chotTuanCu(); const [id,i]=b.dataset.xoagio.split("|");
     lopTheoId(id).gio.splice(+i,1); save(); render(); }; });
 }
 /* ---------- bộ đọc văn bản dán từ Sheet ---------- */
@@ -2663,7 +2731,8 @@ function moLopDiemDanh(ten){
 
 function veDangKy(){
   const ds=S.tuan.map((x,i)=>{ const [y,m,d]=x.bat_dau.split("-");
-    return `<option value="${i}" ${i===tuanDangXem?"selected":""}>Tuần ${d}/${m}/${y}</option>`; }).join("");
+    const khoa=S.tuan_chot&&S.tuan_chot[x.bat_dau]?" 🔒":"";
+    return `<option value="${i}" ${i===tuanDangXem?"selected":""}>Tuần ${d}/${m}/${y}${khoa}</option>`; }).join("");
   ["selTuan","selTuanDk"].forEach(id=>{ const sel=document.getElementById(id); if(sel) sel.innerHTML=ds; });
 }
 function render(){
@@ -2880,6 +2949,7 @@ document.getElementById("btnTuanMoi").onclick=()=>{
 };
 document.getElementById("btnXoaTuan").onclick=()=>{
   if(S.tuan.length<2) return alert("Phải còn ít nhất 1 tuần.");
+  if(S.tuan_chot&&S.tuan_chot[tuan().bat_dau]) return alert("Tuần "+ngayVN(tuan().bat_dau)+" đã chốt (đã qua) nên không xoá được — giữ lại để tính lương và tra cứu sau này.");
   if(!confirm("Xoá tuần "+ngayVN(tuan().bat_dau)+"? (phần chỉnh riêng của tuần này cũng mất)")) return;
   const bd=tuan().bat_dau;
   Object.keys(S.buoi).forEach(k=>{ if(k.startsWith(bd+"|")) delete S.buoi[k]; });
@@ -2941,7 +3011,7 @@ document.getElementById("btnThemLop").onclick=()=>{
 };
 document.getElementById("btnLopTuLich").onclick=()=>{
   let n=0; const w=tuan();
-  buoiTuan(w).forEach(b=>{ let l=S.lop.find(x=>x.ten===b.lop.ten);
+  buoiTuan(w).forEach(b=>{ if(b.chot) return; let l=S.lop.find(x=>x.ten===b.lop.ten);
     if(!l){ l={id:uid("L"),ten:b.lop.ten,ghi:"",gv:b.gv||"",gio:[]}; S.lop.push(l); n++; }
     if(!l.gio.some(g=>g.thu===b.thu&&g.ca===b.ca)) l.gio.push({thu:b.thu,ca:b.ca}); });
   save(); render(); alert(`Đã nhập ${n} lớp mới vào kho.`);
