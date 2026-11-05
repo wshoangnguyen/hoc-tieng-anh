@@ -5089,13 +5089,6 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
 </div>
 
 <div class="sang">
-<h2>Chi tiết các buổi dạy trong tháng (${ngayVN("01-" + m + "-" + y)} – ${cuoiThang}/${m}/${y})</h2>
-<table class="ds"><thead><tr><th style="width:32px">STT</th><th style="width:52px">Ngày</th><th style="width:36px">Thứ</th>
-<th style="width:46px">Giờ</th><th>Lớp</th><th style="width:30%">Ghi chú</th></tr></thead>
-<tbody>${dong || `<tr><td colspan="6" class="c">Không có buổi dạy nào</td></tr>`}</tbody>
-<tfoot><tr><td colspan="4" style="font-weight:700">TỔNG</td><td colspan="2"><b>${tongBuoi} buổi × ${tien(gia)} = ${tien(thanhTien)}</b>${khac ? " · cộng khác " + tien(khac) + " ⇒ " + tien(thanhTien + khac) : ""}</td></tr></tfoot>
-</table>
-<p class="ghi">Mỗi buổi tính 1 giờ; buổi “đã huỷ” không tính. Số giờ và thành tiền do máy tính từ lịch dạy đã lưu, không nhập tay.</p>
 <div class="ky"><div><b>Người lập</b>(ký, ghi rõ họ tên)</div><div><b>Giáo viên</b>(ký, ghi rõ họ tên)</div></div>
 </div>
 </body></html>`;

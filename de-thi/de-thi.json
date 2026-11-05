@@ -148,6 +148,114 @@
    "ten": "Open World B1 · B1 Preliminary",
    "muc": "Đang soạn",
    "bai": []
+  },
+  {
+   "ma": "CAM",
+   "ten": "Cambridge English",
+   "muc": "Starters · Movers · Flyers · KET · PET",
+   "bai": [
+    {
+     "ten": "Pre A1 Starters",
+     "mo_ta": "Young Learners · bé mới bắt đầu (6–8 tuổi) · tự chấm 35 câu",
+     "nhan": [
+      "Làm trên web · tự chấm 35 câu",
+      "Nghe 1 file",
+      "2 bài vẽ – tô màu"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/starters/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/starters/starters-2018.pdf"
+    },
+    {
+     "ten": "A1 Movers",
+     "mo_ta": "Young Learners · trình độ A1 · tự chấm 44 câu",
+     "nhan": [
+      "Làm trên web · tự chấm 44 câu",
+      "Nghe 1 file",
+      "2 bài vẽ – tô màu"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/movers/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/movers/movers-2018.pdf"
+    },
+    {
+     "ten": "A2 Flyers",
+     "mo_ta": "Young Learners · trình độ A2 · 3 đề thực tế (Authentic 1) + 1 đề mẫu Cambridge",
+     "nhan": [
+      "Tự chấm trên web",
+      "Có file nghe riêng từng đề"
+     ],
+     "tests": [
+      {
+       "ten": "Test sample",
+       "mo_ta": "Đề mẫu Cambridge 2018 · tự chấm 58 câu",
+       "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/flyers/lam-bai/index.html?v=1",
+       "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/flyers/flyers-2018.pdf",
+       "nghe": "https://hoctienganhdelam.com/de-thi/cambridge/flyers/flyers.mp3"
+      },
+      {
+       "ten": "Test 1",
+       "mo_ta": "Authentic 1 · tự chấm 58 câu · 5 file nghe",
+       "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t1/lam-bai/index.html?v=1",
+       "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t1/flyers-t1.pdf",
+       "nghe": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t1/flyers-t1-nghe.mp3"
+      },
+      {
+       "ten": "Test 2",
+       "mo_ta": "Authentic 1 · tự chấm 58 câu · 5 file nghe",
+       "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t2/lam-bai/index.html?v=1",
+       "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t2/flyers-t2.pdf",
+       "nghe": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t2/flyers-t2-nghe.mp3"
+      },
+      {
+       "ten": "Test 3",
+       "mo_ta": "Authentic 1 · tự chấm 58 câu · 5 file nghe",
+       "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t3/lam-bai/index.html?v=1",
+       "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t3/flyers-t3.pdf",
+       "nghe": "https://hoctienganhdelam.com/de-thi/cambridge/flyers-t3/flyers-t3-nghe.mp3"
+      }
+     ]
+    },
+    {
+     "ten": "A2 Key (KET)",
+     "mo_ta": "Bản tiêu chuẩn (thiếu nhi & người lớn) · Nghe 25 câu + Đọc & Viết 30 câu tự chấm, 2 bài viết GV chấm",
+     "nhan": [
+      "Làm trên web · tự chấm 55 câu",
+      "2 bài viết (GV chấm)"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/ket/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/ket/ket-2020-reading-writing.pdf",
+     "pdf2": "https://hoctienganhdelam.com/de-thi/cambridge/ket/ket-2020-listening.pdf"
+    },
+    {
+     "ten": "A2 Key for Schools (KET for Schools)",
+     "mo_ta": "Bản dành cho học sinh phổ thông · cùng trình độ A2, nội dung gần lứa tuổi · tự chấm 55 câu, 2 bài viết GV chấm",
+     "nhan": [
+      "Làm trên web · tự chấm 55 câu",
+      "2 bài viết (GV chấm)"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/ket-schools/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/ket-schools/ket-schools-2020-reading-writing.pdf"
+    },
+    {
+     "ten": "B1 Preliminary (PET)",
+     "mo_ta": "Bản tiêu chuẩn · Nghe 25 câu + Đọc 32 câu tự chấm, 2 bài viết GV chấm",
+     "nhan": [
+      "Làm trên web · tự chấm 57 câu",
+      "2 bài viết (GV chấm)"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/pet/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/pet/pet-2020-reading.pdf"
+    },
+    {
+     "ten": "B1 Preliminary for Schools (PET for Schools)",
+     "mo_ta": "Bản dành cho học sinh phổ thông · cùng trình độ B1, nội dung gần lứa tuổi · tự chấm 57 câu, 2 bài viết GV chấm",
+     "nhan": [
+      "Làm trên web · tự chấm 57 câu",
+      "2 bài viết (GV chấm)"
+     ],
+     "lam_bai": "https://hoctienganhdelam.com/de-thi/cambridge/pet-schools/lam-bai/index.html?v=1",
+     "pdf": "https://hoctienganhdelam.com/de-thi/cambridge/pet-schools/pet-schools-2020-reading.pdf"
+    }
+   ]
   }
  ]
 }

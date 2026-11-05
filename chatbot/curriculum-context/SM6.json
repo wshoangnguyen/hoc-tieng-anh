@@ -1,78 +1,283 @@
 {
-  "level": 6,
-  "name": "Super Minds 6 — 2nd Edition",
-  "age": "11-12 tuổi",
-  "source": "Teacher's Book (620K chars) + Student's Book (172K chars)",
-  "units": [
-    {
-      "unit": 0, "title": "Back to School (Starter)", "topic": "Revision: review tenses, comparatives, abilities",
-      "vocabulary": ["calculator", "dictionary", "encyclopedia", "atlas", "headphones", "microphone", "flash drive", "laptop", "projector", "interactive whiteboard"],
-      "grammar": "Revision: present simple, present continuous, past simple, present perfect, comparatives.",
-      "key_phrases": ["I've been learning English for five years.", "What did you do over the holiday?", "How long have you studied English?"],
-      "song": null, "story": "The Explorers Return", "clil": null, "phonics": null, "values": "Setting goals"
-    },
-    {
-      "unit": 1, "title": "High-Tech World", "topic": "Technology, future with will, going to, present continuous for future",
-      "vocabulary": ["artificial intelligence", "robot", "drone", "virtual reality", "3D printer", "smart home", "wearable", "app", "download", "upload", "wi-fi"],
-      "grammar": "Will, going to, present continuous for future plans. / I'm going to study robotics. / We'll use AI more.",
-      "key_phrases": ["Robots will help us in the future.", "I'm going to buy a drone.", "The train leaves at 3pm."],
-      "song": null, "story": "The Robot Scientist", "clil": "Science: Future technology", "phonics": null, "values": "Responsible technology use"
-    },
-    {
-      "unit": 2, "title": "Amazing Animals", "topic": "Animal abilities, passive voice (present simple)",
-      "vocabulary": ["predator", "prey", "camouflage", "venomous", "nocturnal", "mammal", "reptile", "amphibian", "migration", "hibernate", "echolocation"],
-      "grammar": "Cheetahs are found in Africa. / Passive voice (present simple). / is/are + past participle",
-      "key_phrases": ["Coffee is grown in Brazil.", "Penguins are found in Antarctica.", "Is English spoken here?"],
-      "song": null, "story": "The Wildlife Documentary", "clil": "Science: Animal adaptations", "phonics": null, "values": "Respect for animals"
-    },
-    {
-      "unit": 3, "title": "Ancient Egypt", "topic": "Ancient civilizations, passive voice (past simple)",
-      "vocabulary": ["pharaoh", "pyramid", "mummy", "hieroglyphics", "temple", "tomb", "sarcophagus", "papyrus", "Nile", "archaeologist", "artifact", "civilization"],
-      "grammar": "The pyramids were built thousands of years ago. / Passive voice (past simple). / was/were + past participle",
-      "key_phrases": ["The pyramids were built by the Egyptians.", "Was this tomb discovered recently?", "These artifacts were found in the desert."],
-      "song": null, "story": "The Tomb of the Pharaoh", "clil": "History: Daily life in Ancient Egypt", "phonics": null, "values": "Learning from the past"
-    },
-    {
-      "unit": 4, "title": "The Environment", "topic": "Environmental issues, conditionals (0, 1, 2), should/shouldn't",
-      "vocabulary": ["pollution", "recycling", "global warming", "climate change", "carbon footprint", "renewable energy", "solar power", "endangered species", "conservation", "sustainable"],
-      "grammar": "If we recycle more, the planet will be cleaner. / You should save water. / You shouldn't waste energy.",
-      "key_phrases": ["We should turn off lights.", "If the ice caps melt, sea levels will rise.", "What would you do to help the planet?"],
-      "song": null, "story": "The Eco Warriors", "clil": "Science: Climate change and solutions", "phonics": null, "values": "Environmental responsibility"
-    },
-    {
-      "unit": 5, "title": "At the TV Studio", "topic": "Media, reported speech, question tags",
-      "vocabulary": ["reporter", "interview", "broadcast", "headline", "audience", "channel", "episode", "series", "documentary", "commercial", "script", "cameraman"],
-      "grammar": "He said (that) he was tired. / She told me (that) the show was great. / Reported speech. / You like TV, don't you? / Question tags",
-      "key_phrases": ["She said she loved the show.", "He told me he wanted to be a reporter.", "It's a great episode, isn't it?"],
-      "song": null, "story": "The Big Interview", "clil": "Media Studies: How TV programmes are made", "phonics": null, "values": "Critical thinking about media"
-    },
-    {
-      "unit": 6, "title": "What's It Worth?", "topic": "Money, shopping, relative clauses",
-      "vocabulary": ["currency", "budget", "save", "earn", "spend", "borrow", "lend", "pocket money", "discount", "deal", "auction", "expensive", "valuable"],
-      "grammar": "This is the phone that I want. / The boy who sits next to me... / Relative clauses (who, which, that)",
-      "key_phrases": ["The bag that she bought was expensive.", "Do you know someone who collects coins?", "This is the shop which sells cheap books."],
-      "song": null, "story": "The Auction", "clil": "Maths: Budgeting and saving", "phonics": null, "values": "Value of money"
-    },
-    {
-      "unit": 7, "title": "Medical Mysteries", "topic": "Health, past perfect, reported speech review",
-      "vocabulary": ["symptom", "diagnosis", "treatment", "vaccine", "virus", "bacteria", "immune system", "allergy", "surgery", "patient", "recover"],
-      "grammar": "When the doctor arrived, the patient had already recovered. / Past perfect. / He said he had been ill.",
-      "key_phrases": ["He had already taken the medicine.", "She said she had never felt so sick.", "By the time we got to hospital, she had woken up."],
-      "song": null, "story": "The Mystery Illness", "clil": "Science: How vaccines work", "phonics": null, "values": "Taking care of your health"
-    },
-    {
-      "unit": 8, "title": "On Stage", "topic": "Performing arts, wish/if only, modal verbs review",
-      "vocabulary": ["curtain", "stage", "scene", "actor", "actress", "director", "rehearsal", "performance", "applause", "costume", "make-up", "backstage", "drama"],
-      "grammar": "I wish I could sing better. / If only I had more time to practice. / Wish/If only for present wishes",
-      "key_phrases": ["I wish I was a famous actor.", "If only we had more time!", "Break a leg!"],
-      "song": null, "story": "Opening Night", "clil": "Drama: Elements of theatre", "phonics": null, "values": "Confidence and self-expression"
-    },
-    {
-      "unit": 9, "title": "Looking Back", "topic": "Course review, mixed tenses, graduation",
-      "vocabulary": ["achievement", "certificate", "graduate", "proud", "goal", "progress", "improve", "reflect", "memory", "future", "dream"],
-      "grammar": "Review all tenses: present, past, present perfect, future, conditionals, passive, reported speech.",
-      "key_phrases": ["I've learned so much this year.", "What will you remember most?", "I used to be afraid of speaking English."],
-      "song": "Graduation Song", "story": "The Final Adventure", "clil": null, "phonics": null, "values": "Celebrating achievement"
-    }
-  ]
+ "level": 6,
+ "name": "Super Minds 6 — 2nd Edition",
+ "age": "11-12 tuổi",
+ "source": "Teacher's Book (620K chars) + Student's Book (172K chars)",
+ "units": [
+  {
+   "unit": 0,
+   "title": "Back to school",
+   "topic": "Ôn tập: đồ vật ở trường, thì hiện tại hoàn thành với already/yet, mệnh đề quan hệ",
+   "vocabulary": [
+    "basketball hoop",
+    "bell",
+    "net",
+    "football pitch",
+    "running track",
+    "gym",
+    "litter bin",
+    "tennis court",
+    "bike rack",
+    "railings"
+   ],
+   "grammar": "Present perfect với already/yet (ôn). Mệnh đề quan hệ who/which/where. / Have you had some food yet? We have already met. / I'm the leopard who likes to rap.",
+   "key_phrases": [
+    "Have you had some food yet?",
+    "We have already met.",
+    "This is the jungle where I rule."
+   ],
+   "song": "The Time Travellers",
+   "story": "Back in time again",
+   "clil": null,
+   "phonics": "Spelling patterns",
+   "values": "Thinking about what you're doing"
+  },
+  {
+   "unit": 1,
+   "title": "The treasure",
+   "topic": "Cướp biển, hiện tại hoàn thành với for/since",
+   "vocabulary": [
+    "palm tree",
+    "hook",
+    "eye-patch",
+    "binoculars",
+    "key",
+    "hammock",
+    "coins",
+    "spade",
+    "treasure chest",
+    "hole",
+    "stone"
+   ],
+   "grammar": "Present perfect với for và since; How long have you …? / I've had these lovely spots since I was a cub. / How long have you had them? — Since I was thirteen. For eleven weeks.",
+   "key_phrases": [
+    "I've had my big, long tail for eleven years.",
+    "How long have you had them?"
+   ],
+   "song": "Get on board!",
+   "story": "The pirates' treasure",
+   "clil": "Geography: Precious metals",
+   "phonics": "-sure và -ture",
+   "values": "Being honest"
+  },
+  {
+   "unit": 2,
+   "title": "Future transport",
+   "topic": "Phương tiện tương lai, need to, will/won't",
+   "vocabulary": [
+    "hang-glider",
+    "parachute",
+    "monorail",
+    "solar panel",
+    "microlight",
+    "wind turbine",
+    "cable car",
+    "jet pack",
+    "surfboard",
+    "inline skates",
+    "unicycle",
+    "floating skateboard"
+   ],
+   "grammar": "need to; will/won't. / You don't need to drive a car. / All you need to do is climb to get from here to there. / There won't be any trees left.",
+   "key_phrases": [
+    "You don't need to drive a car.",
+    "There will be a lot of noise.",
+    "They'll have to run away."
+   ],
+   "song": null,
+   "story": "A problem for Patrick",
+   "clil": "Environmental science: Renewable energy",
+   "phonics": null,
+   "values": "Listening carefully"
+  },
+  {
+   "unit": 3,
+   "title": "Ancient Egypt",
+   "topic": "Ai Cập cổ đại, bị động quá khứ, lượng từ",
+   "vocabulary": [
+    "Sphinx",
+    "pharaoh",
+    "slaves",
+    "pyramid",
+    "chariot",
+    "rock",
+    "hieroglyphics",
+    "step",
+    "mummy",
+    "tomb"
+   ],
+   "grammar": "Past passive; a lot of / lots of / a few / a little. / Who was this den built by? / The walls weren't built so well. / There were lots of trees in this jungle a few years ago.",
+   "key_phrases": [
+    "Who was this den built by?",
+    "The door was put in upside down."
+   ],
+   "song": "In old Cairo",
+   "story": "The mummy's tomb",
+   "clil": "History: Ancient Egyptian art",
+   "phonics": "-ed endings",
+   "values": "Respecting differences"
+  },
+  {
+   "unit": 4,
+   "title": "Olympic sports",
+   "topic": "Thể thao Olympic, could (khả năng), hiện tại tiếp diễn cho tương lai",
+   "vocabulary": [
+    "long jump",
+    "hurdles",
+    "high jump",
+    "boxing",
+    "archery",
+    "wrestling",
+    "weightlifting",
+    "rowing",
+    "gymnastics",
+    "fencing"
+   ],
+   "grammar": "could (khả năng); present continuous cho kế hoạch tương lai. / We could play some volleyball. / You could try to teach me. / I'm running in the morning.",
+   "key_phrases": [
+    "We could play some volleyball.",
+    "I'm cycling on my bike."
+   ],
+   "song": null,
+   "story": "Not the best day",
+   "clil": "Physical education: Fitness",
+   "phonics": null,
+   "values": "The sporting spirit"
+  },
+  {
+   "unit": 5,
+   "title": "In London",
+   "topic": "London, cửa hàng, hiện tại hoàn thành với ever/never",
+   "vocabulary": [
+    "carpenter's",
+    "jeweller's",
+    "butcher's",
+    "grocer's",
+    "baker's",
+    "barber's",
+    "tailor's",
+    "chemist's"
+   ],
+   "grammar": "Present perfect với ever/never; present perfect và past simple. / Have you ever been to London? — Yes, I have. / She's never been. / I had a swim. I went home.",
+   "key_phrases": [
+    "Have you ever been to London?",
+    "She's never been."
+   ],
+   "song": "Have you …?",
+   "story": "The Great Fire",
+   "clil": "Maths: 3D shapes",
+   "phonics": "Âm s và z",
+   "values": "Thinking of others"
+  },
+  {
+   "unit": 6,
+   "title": "Crazy inventions",
+   "topic": "Phát minh, too many / not enough, câu hỏi gián tiếp",
+   "vocabulary": [
+    "screwdriver",
+    "hammer",
+    "drill",
+    "saw",
+    "lever",
+    "spanner",
+    "paintbrush",
+    "paint pot",
+    "button",
+    "switch",
+    "nails",
+    "workbench"
+   ],
+   "grammar": "too many / not enough; Can you tell me what … is/does? / I've got too many jobs to do. / I haven't got enough time. / Can you tell me what this button does?",
+   "key_phrases": [
+    "I've got too many jobs to do.",
+    "Can you tell me what the machine is for?"
+   ],
+   "song": null,
+   "story": "Professor Potts",
+   "clil": "Science: Simple machines",
+   "phonics": null,
+   "values": "The benefits of technology"
+  },
+  {
+   "unit": 7,
+   "title": "This is Houston",
+   "topic": "Chinh phục Mặt Trăng, danh động từ, câu tường thuật",
+   "vocabulary": [
+    "countdown clock",
+    "lunar module",
+    "space capsule",
+    "spacesuit",
+    "launch pad",
+    "crater",
+    "control panel",
+    "headset",
+    "screen"
+   ],
+   "grammar": "Gerunds; reported speech. / Going on a space trip is exciting! / He said that he was back from the stars. / He said that he didn't know the way.",
+   "key_phrases": [
+    "Going on a space trip is exciting!",
+    "He said that he was back from the stars."
+   ],
+   "song": "Can you hear us?",
+   "story": "Alex, the engineer",
+   "clil": "Science: Space",
+   "phonics": "Cách viết âm /i:/",
+   "values": "Admitting mistakes"
+  },
+  {
+   "unit": 8,
+   "title": "A cold place",
+   "topic": "Bắc Cực, câu hỏi đuôi, may/might",
+   "vocabulary": [
+    "Northern Lights",
+    "iceberg",
+    "polar bear",
+    "polar bear cub",
+    "ice floe",
+    "seal",
+    "seal pup",
+    "igloo",
+    "mittens",
+    "sledge"
+   ],
+   "grammar": "Question tags với be; may/might. / It's cold at the poles, isn't it? / The jungle may be in danger. / They might take our home away.",
+   "key_phrases": [
+    "It's cold at the poles, isn't it?",
+    "They might take our home away."
+   ],
+   "song": null,
+   "story": "Rescuing the seal pups",
+   "clil": "Geography: The Arctic",
+   "phonics": null,
+   "values": "Looking after wildlife"
+  },
+  {
+   "unit": 9,
+   "title": "The Jurassic Age",
+   "topic": "Thời tiền sử, câu điều kiện loại 2",
+   "vocabulary": [
+    "sunrise",
+    "horizon",
+    "pond",
+    "grassland",
+    "valley",
+    "bush",
+    "stream",
+    "swamp",
+    "log"
+   ],
+   "grammar": "Second conditional; second conditional questions. / If I had a time machine, I'd go back to the past. / What would you do if you saw a dinosaur? / If I met a dinosaur, I wouldn't stop to say hello.",
+   "key_phrases": [
+    "If I had a time machine, I'd go back to the past.",
+    "What would you do if you saw a dinosaur?"
+   ],
+   "song": "I'd like to be",
+   "story": "The chase",
+   "clil": "History: The Stone Age",
+   "phonics": "Âm /ə/ và ngữ điệu câu hỏi",
+   "values": "Taking an interest in nature"
+  }
+ ],
+ "cap_nhat": "2026-10-31",
+ "nguon": "Super Minds 6 (2nd ed.) — Map of the course, TB Ucalearn"
 }
