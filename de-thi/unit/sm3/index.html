@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Minds 3 · Unit Test — Học Tiếng Anh Dễ Lắm</title>
+<link rel="icon" href="/logo.png">
+<style>
+:root{--nau:#3b2f1c;--nau2:#6d5c3d;--tim:#6b4fa1;--vien:#e3d6bb;--nen:#fffdf7;--xanh:#2f6b28;--do:#a8322b}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--nau);
+background:linear-gradient(160deg,#fbf6ea,#f2e8d5 60%,#efe3cc);min-height:100vh}
+.wrap{max-width:880px;margin:0 auto;padding:16px 14px 80px}
+header{display:flex;align-items:center;gap:12px}
+header img{width:110px;height:48px;object-fit:contain}
+header b{display:block;font-size:13px;color:var(--nau2)} header span{font-size:12px;color:var(--nau2)}
+.crumb{font-size:13px;color:var(--nau2);margin:10px 0 0}
+.crumb a{color:var(--tim);text-decoration:none}
+h1{font-size:22px;margin:6px 0 2px}
+.sub{color:var(--nau2);font-size:14px;margin:0 0 12px}
+.card{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:14px;margin:0 0 14px;
+box-shadow:0 8px 20px rgba(120,90,20,.07)}
+.card h2{font-size:16px;margin:0 0 8px}
+.thongtin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.thongtin .rong{grid-column:1/-1}
+label{display:block;font-size:12.5px;color:var(--nau2);margin-bottom:3px;font-weight:600}
+input[type=text]{width:100%;padding:10px;border:1.5px solid var(--vien);border-radius:10px;font-size:15px;background:#fff}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--tim)}
+select.chon-o{padding:9px;border:1.5px solid var(--vien);border-radius:10px;font-size:14px;background:#fff;max-width:420px}
+img.anhde{width:100%;border:1px solid var(--vien);border-radius:12px;background:#fff;display:block}
+.act{margin:16px 0 0}
+.act h3{font-size:15px;margin:0 0 8px;padding:6px 10px;background:#f3ecdc;border-left:4px solid var(--tim);border-radius:6px}
+.cau{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed #eee6d4}
+.socau{flex:0 0 26px;height:26px;border-radius:50%;background:#efe6d2;color:var(--nau2);
+font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:6px}
+.cau .than{flex:1;min-width:0}
+.cau p.hoi{margin:0 0 4px;font-size:14px}
+.cau input[type=text]{max-width:420px}
+.cau.dung input{border-color:#7fb069;background:#f2f8ee}
+.cau.sai input{border-color:#e0a09a;background:#fdf1f0}
+.kq{font-weight:700;margin-left:6px}
+.cau.dung .kq{color:var(--xanh)} .cau.sai .kq{color:var(--do)}
+.cham{display:flex;gap:8px;flex-wrap:wrap}
+.nut{border:none;border-radius:12px;padding:11px 16px;font-size:15px;font-weight:700;cursor:pointer}
+.nut.chinh{background:var(--tim);color:#fff} .nut.phu{background:#efe6d2;color:var(--nau)}
+.nut.zalo{background:#1f7ae0;color:#fff}
+.kqhop{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#fff8e6;border:1px solid var(--vien)}
+.kqhop.on{display:block}
+.diem{font-size:17px;font-weight:800;margin-bottom:6px}
+.nho{font-size:12.5px;color:var(--nau2);margin:0}
+.lu{margin-top:10px;font-size:13.5px;padding:10px;border-radius:10px;background:#f6f2e7}
+.lu.ok{background:#eef7ea;color:#2f6b28} .lu.loi{background:#fdeeec;color:#a8322b}
+.ds{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.o{display:block;text-decoration:none;color:var(--nau);background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px}
+.o b{display:block;font-size:15px} .o span{font-size:12.5px;color:var(--nau2)}
+.o:hover{border-color:var(--tim)}
+</style></head><body><div class="wrap">
+<header><img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm"><div><b>Học Tiếng Anh Dễ Lắm</b><span>hoctienganhdelam.com</span></div></header>
+
+<div class="crumb"><a href="/de-thi/">Đề thi &amp; kiểm tra</a> › Unit Test</div>
+<h1>Super Minds 3 — Unit Test</h1>
+<p class="sub">10 bài · mỗi bài 15 phút · tự chấm và lưu bài vào Drive</p>
+<div class="card"><div class="ds"><a class="o" href="u0/"><b>Unit 0</b><span>Meet The Explorers · 15 câu</span></a><a class="o" href="u1/"><b>Unit 1</b><span>Our school · 15 câu</span></a><a class="o" href="u2/"><b>Unit 2</b><span>The picnic · 15 câu</span></a><a class="o" href="u3/"><b>Unit 3</b><span>Daily tasks · 15 câu</span></a><a class="o" href="u4/"><b>Unit 4</b><span>Around town · 15 câu</span></a><a class="o" href="u5/"><b>Unit 5</b><span>Under the sea · 15 câu</span></a><a class="o" href="u6/"><b>Unit 6</b><span>Gadgets · 15 câu</span></a><a class="o" href="u7/"><b>Unit 7</b><span>In the hospital · 15 câu</span></a><a class="o" href="u8/"><b>Unit 8</b><span>Around the world · 19 câu</span></a><a class="o" href="u9/"><b>Unit 9</b><span>Holiday plans · 15 câu</span></a></div></div>
+</div>
+<script></script>
+</body></html>
