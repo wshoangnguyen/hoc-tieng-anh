@@ -114,13 +114,17 @@ function cham(){
     const diem = (p.diem||p.cau.length);
     tong += diem;
     let nd=0;
+    const nhom = (p.kieu==="nhom") ? (document.getElementById("g-"+p.ma).value||"") : null;
+    const tu = nhom===null ? null : new Set(nhom.toLowerCase().split(/[,;\n]+/).map(x=>chuan(x)).filter(Boolean));
     p.cau.forEach(c=>{
-      const o=document.getElementById(c.id); const v=chuan(o.value);
-      const ok=dungCau(c,v);
-      const hang=o.closest(".cau"); hang.classList.toggle("dung",ok); hang.classList.toggle("sai",!ok);
+      const o=document.getElementById(c.id);
+      const v = nhom===null ? chuan(o.value) : chuan(c.dap[0]);
+      const ok = nhom===null ? dungCau(c,v) : (tu.has(v) || [...tu].some(t=>t.split(" ").includes(v)||v.split(" ").includes(t)));
+      const tra = nhom===null ? o.value : c.dap[0];
+      const hang=(o||document.getElementById("kq-"+c.id)).closest(".cau"); hang.classList.toggle("dung",ok); hang.classList.toggle("sai",!ok);
       document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
       if(ok){ nd++; }
-      items.push({so:c.id, hoi:c.hoi, tra_loi:o.value, dap:c.dap[0], dung:ok});
+      items.push({so:c.id, hoi:c.hoi, tra_loi:tra, dap:c.dap[0], dung:ok});
     });
     p.__dung = p.cau.length ? nd/p.cau.length*diem : 0;
     if(nd===p.cau.length) dung += diem; else dung += p.__dung;
@@ -143,7 +147,10 @@ function nhanh(){
   const sai={};
   DU.phan.forEach(p=>{
     let n=0;
+    const nhomEl = p.kieu==="nhom" ? document.getElementById("g-"+p.ma) : null;
+    const tu = nhomEl ? new Set((nhomEl.value||"").toLowerCase().split(/[,;\n]+/).map(x=>chuan(x)).filter(Boolean)) : null;
     p.cau.forEach(c=>{ const o=document.getElementById(c.id);
+      if(tu){ if(!tu.has(chuan(c.dap[0]))) n++; return; }
       const v=chuan(o.value); if(!dungCau(c,v)) n++; });
     if(n) sai[p.ten]=n;
   });
