@@ -5074,9 +5074,8 @@ window.addEventListener("load", function () { setTimeout(batDauTaiDiemGame, 400)
   <div class="trai">
     <table class="cal">
       <thead><tr><th class="goc">Tuần</th>${THU7.map((t) => `<th><b>${t}</b></th>`).join("")}<th class="tongh">Tổng</th></tr></thead>
-      <tbody>${hangTuan}${hangDem}</tbody>
+      <tbody>${hangTuan}</tbody>
     </table>
-    <p class="ghi">Ô vàng nhạt ở cột cuối là số buổi của tuần. Ô xám là ngày thuộc tháng khác (không tính vào tháng ${m}/${y}).</p>
   </div>
   <aside class="phai">
     <table class="info"><tbody>${dongInfo}
