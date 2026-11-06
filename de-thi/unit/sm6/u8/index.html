@@ -91,7 +91,7 @@ font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:c
 </style></head><body>
 <div class="cong" id="cong"><div class="hop">
   <h2>Chào con! 👋</h2>
-  <p class="moi">Điền tên và lớp trước khi làm bài nhé. Cô cần biết bài này của bạn nào.</p>
+  <p class="moi">Điền tên và lớp trước khi làm bài nhé. Giáo viên cần biết bài này của bạn nào.</p>
   <div class="o"><label>Họ và tên</label><input type="text" id="ten" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="off"></div>
   <div class="o"><label>Lớp</label><input type="text" id="lop" placeholder="Ví dụ: SM3b" autocomplete="off"></div>
   <div class="o"><label>Mã học viên (nếu có)</label><input type="text" id="ma" placeholder="Ví dụ: HV12" autocomplete="off"></div>
@@ -178,7 +178,7 @@ function moCong(){
 function dongCong(){
   const ten = $("#ten").value.trim(), lop = $("#lop").value.trim();
   if(!ten || !lop){
-    $("#congLoi").textContent = "Con điền đủ họ tên và lớp giúp cô nhé.";
+    $("#congLoi").textContent = "Con điền đủ họ tên và lớp giúp giáo viên nhé.";
     (!ten ? $("#ten") : $("#lop")).focus();
     return;
   }
@@ -407,7 +407,7 @@ function poll(ma, lan){
       if(d && d.file){
         const o=document.getElementById("lu");
         o.className="lu ok";
-        o.innerHTML="✅ Bài đã lưu vào Drive của cô · tệp: <b>"+d.file+"</b>"+
+        o.innerHTML="✅ Bài đã lưu vào Drive của giáo viên · tệp: <b>"+d.file+"</b>"+
           (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở bài</a>':"")+
           "<br><span class='nho'>Nhận xét của giáo viên nằm trong phiếu PDF.</span>";
       } else poll(ma, lan+1);
@@ -417,7 +417,7 @@ function poll(ma, lan){
 function nopBai(){
   if(!TEN || !LOP) return moCong();
   const o = document.getElementById("lu");
-  if(!confirm("Nộp bài cho cô nhé?")) return;
+  if(!confirm("Nộp bài cho giáo viên nhé?")) return;
   const go = coGoDap();
   let dung = 0, tong = 0, items = [];
   if(go){ cham(); dung = window.__kq.dung; tong = window.__kq.tong; items = window.__kq.items; }
@@ -429,7 +429,7 @@ function nopBai(){
   fetch(API+"/luu-bai-sm",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(than)})
    .then(r=>r.json()).then(d=>{
      if(d && d.ok && d.ma_cho){
-       o.className="lu"; o.textContent="✅ Đã nhận bài. Cô chấm và phiếu PDF sẽ có sau 1–2 phút…";
+       o.className="lu"; o.textContent="✅ Đã nhận bài. Giáo viên chấm và phiếu PDF sẽ có sau 1–2 phút…";
        daNop = true; poll(d.ma_cho,0);
      } else if(d && d.ok && d.file){
        o.className="lu ok"; o.innerHTML="✅ Đã lưu phiếu: <b>"+d.file+"</b>"+(d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở phiếu</a>':"");
