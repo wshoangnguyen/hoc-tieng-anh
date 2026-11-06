@@ -244,7 +244,7 @@
       var dsT = [];
       for (var t = 0; t < boThay.length; t++) {
         var imt = document.createElement('img');
-        imt.src = 'vat-the/khung/' + boThay[t];
+        imt.src = (window.__KHUNG__||{})[boThay[t]] || ('vat-the/khung/' + boThay[t]);
         imt.alt = ''; imt.draggable = false;
         if (t > 0) imt.style.display = 'none';
         o.sp.appendChild(imt); dsT.push(imt);
@@ -347,9 +347,8 @@
   }
 
   function buocBe(o,dt,ts){
-    if(o.biBat){ veBe(o); return; }
     var dDog=Math.sqrt((o.x-cx)*(o.x-cx)+(o.y-cy)*(o.y-cy))||1;
-    var dangDuoi=(trangThai==='duoi'||trangThai==='tangtoc');
+    var dangDuoi=(trangThai==='duoi'||trangThai==='tangtoc'||trangThai==='bat');
 
     if(dangDuoi && !o.quay && dDog>430 && ts>(o.hetQuay||0)){ o.quay=ts+1200; o.cho=0; }
     if(o.quay && (ts>o.quay || dDog<150)){ o.quay=0; o.hetQuay=ts+1900; o.cho=0; }
@@ -359,7 +358,7 @@
 
     var dx=o.tx-o.x, dy=o.ty-o.y, d=Math.sqrt(dx*dx+dy*dy)||1;
     var s0=doXa(zTuY(o.y));
-    var vt=(90+52*s0)*(o.quay?0.9:1.0);
+    var vt=(90+52*s0)*(o.quay?0.9:1.0)*(o.biBat?0.82:1.0);   // bạn đã bị bắt chạy chậm hơn chút
     // giữ khoảng cách: bạn nào sát quá thì chạy chậm lại (không đổi hướng -> không lắc)
     var chen=0;
     for(var q=0;q<BE.length;q++){
@@ -412,6 +411,12 @@
     for(var i=0;i<dsKhung.length;i++)
       dsKhung[i].style.display = dsKhung[i].classList.contains(k) ? '' : 'none';
   }
+  function chonDich(){
+    var ds=[];
+    for(var q=0;q<BE.length;q++){ if(!BE[q].biBat && !BE[q].laThay) ds.push(BE[q]); }
+    if(!ds.length) ds=BE.slice();
+    return ds[Math.floor(Math.random()*ds.length)];
+  }
   function sua1(){
     demSua=700; hienDog('k8');
     try{ tieng.currentTime=0; tieng.play(); }catch(e){}
@@ -432,7 +437,7 @@
         if(demPha<1.0){ dangChay=true; }
         else if(demPha<1.6){ if(!daSua){ daSua=true; sua1(); } }
         else if(demPha<3.0){ dangChay=true; }
-        else { dich=BE[Math.floor(Math.random()*BE.length)]; trangThai='tangtoc'; demPha=0; demSan=0; dangChay=true; }
+        else { dich=chonDich(); trangThai='tangtoc'; demPha=0; demSan=0; dangChay=true; }
       } else { dangChay=true; demSan+=dt; }
 
       var z=dich?dich:BE[0];
@@ -457,13 +462,12 @@
         trangThai='bat'; demSua=700;
         cx-=dx/d*48; cy-=dy/d*28;
         sua1();
-        z.biBat=true;                                   // bạn bị bắt đứng lại
+        z.biBat=true;                                   // bạn bị bắt: vẫn chạy tiếp
         // bước ra phía trước một bước để không bị cây/ghế che mất
         z.y=Math.min(dayToiDa(), z.y+55);
         var thu=0;
         while(biChan(z.x,zTuY(z.y)) && thu<12){ z.y=Math.max(toaDoY(ZMIN)+10, z.y-10); thu++; }
         z.el.classList.add('bi-bat');
-        hienKhung(z,0);
         document.getElementById('bTen').textContent=z.ten;
         var b2=document.getElementById('banner'); b2.classList.add('hien');
         setTimeout(function(){ b2.classList.remove('hien'); }, 6000);
@@ -523,8 +527,13 @@
       tatNhac();
       this.textContent='Bắt đầu đuổi'; return;
     }
-    for(var i=0;i<BE.length;i++){ BE[i].biBat=false; BE[i].el.classList.remove('bi-bat'); }
-    dich=BE[Math.floor(Math.random()*BE.length)];
+    var conLai=[];
+    for(var i=0;i<BE.length;i++){ if(!BE[i].biBat && !BE[i].laThay) conLai.push(BE[i]); }
+    if(!conLai.length){
+      for(var i=0;i<BE.length;i++){ BE[i].biBat=false; BE[i].el.classList.remove('bi-bat'); }
+      for(var i=0;i<BE.length;i++){ if(!BE[i].laThay) conLai.push(BE[i]); }
+    }
+    dich=conLai[Math.floor(Math.random()*conLai.length)];
     trangThai='duoi'; demPha=0; daSua=false;
     batNhac();
     this.textContent='Dừng';
@@ -597,7 +606,7 @@
   // nút tắt/bật âm thanh
   var nutTieng=document.getElementById('btnTieng');
   nutTieng.onclick=function(){
-    tiengBat=!tiengBat;
+    tiengBat=!tiengBat; window.__amOff=!tiengBat;
     if(!tiengBat){
       tatNhac(); try{ tiengTre.pause(); }catch(e){}
       this.textContent='🔇'; this.title='Đang tắt tiếng — bấm để bật';
