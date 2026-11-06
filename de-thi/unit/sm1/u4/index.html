@@ -57,8 +57,8 @@ font-size:15px;padding:12px 18px;cursor:pointer}
 .to canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
 .to .so{position:absolute;left:8px;top:8px;background:rgba(255,255,255,.92);border:1px solid var(--vien);
 border-radius:8px;padding:2px 8px;font-size:12px;color:var(--nau2);pointer-events:none}
-.to .okchu{position:absolute;border:2px dashed var(--tim);border-radius:6px;background:rgba(255,255,255,.92);
-font:inherit;font-size:16px;padding:4px 6px;min-width:90px;z-index:5}
+.to .okchu{position:absolute;width:120px;max-width:42%;border:2px dashed var(--tim);border-radius:6px;
+background:rgba(255,255,255,.94);font:inherit;font-size:15px;padding:3px 5px;z-index:5}
 
 /* ---- gõ đáp án (tuỳ chọn) ---- */
 details.go{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:12px 14px;margin:0 0 14px}
@@ -150,10 +150,7 @@ font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:c
 </div>
 
 <details class="go"><summary>⌨️ Gõ đáp án</summary>
-<div class="act"><h3>Activity 1 · Find the food.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Từ 2</p><input type="text" id="U4-A1-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Từ 3</p><input type="text" id="U4-A1-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Từ 4</p><input type="text" id="U4-A1-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Từ 5</p><input type="text" id="U4-A1-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Từ 6</p><input type="text" id="U4-A1-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-6"></span></div></div></div><div class="act"><h3>Activity 2 · Read and tick (✓) the box.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2</p><select id="U4-A2-2" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3</p><select id="U4-A2-3" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4</p><select id="U4-A2-4" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5</p><select id="U4-A2-5" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6</p><select id="U4-A2-6" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-6"></span></div></div></div>
-<div style="margin-top:12px"><button class="nut phu" id="btCham">Chấm thử</button>
-<button class="nut phu" id="btLai" style="margin-left:6px">Làm lại</button></div>
-<div class="kqhop" id="kqhop"><div class="diem" id="diem"></div></div>
+<div class="act"><div class="cau"><div class="socau">1</div><div class="than"><input type="text" id="U4-A1-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><input type="text" id="U4-A1-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><input type="text" id="U4-A1-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><input type="text" id="U4-A1-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><input type="text" id="U4-A1-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U4-A1-6"></span></div></div></div><div class="act"><div class="cau"><div class="socau">6</div><div class="than"><select id="U4-A2-2" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-2"></span></div></div><div class="cau"><div class="socau">7</div><div class="than"><select id="U4-A2-3" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-3"></span></div></div><div class="cau"><div class="socau">8</div><div class="than"><select id="U4-A2-4" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-4"></span></div></div><div class="cau"><div class="socau">9</div><div class="than"><select id="U4-A2-5" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-5"></span></div></div><div class="cau"><div class="socau">10</div><div class="than"><select id="U4-A2-6" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option></select><span class="kq" id="kq-U4-A2-6"></span></div></div></div>
 </details>
 </div>
 
@@ -384,8 +381,10 @@ function cham(){
     const d = Math.round(p.__dung*2)/2;
     loi += "<br>"+p.ten+": <b>"+d+"/"+(p.diem||p.cau.length)+"</b>";
   });
-  document.getElementById("diem").innerHTML = loi;
-  document.getElementById("kqhop").classList.add("on");
+  const oDiem = document.getElementById("diem");
+  if(oDiem) oDiem.innerHTML = loi;
+  const hop = document.getElementById("kqhop");
+  if(hop) hop.classList.add("on");
   window.__kq={dung,tong,items};
 }
 function coGoDap(){
@@ -470,17 +469,8 @@ document.getElementById("btNop").onclick = nopBai;
 const hopGo = document.querySelector("details.go");
 if(hopGo && window.innerWidth >= 1000) hopGo.open = true;
 if(hopGo) window.addEventListener("resize", ()=>{ if(window.innerWidth >= 1000) hopGo.open = true; });
-const btCham = document.getElementById("btCham");
-if(btCham) btCham.onclick = cham;
-const btLai = document.getElementById("btLai");
-if(btLai) btLai.onclick = () => {
-  if(confirm("Xoá hết bài làm và làm lại từ đầu?")){
-    localStorage.removeItem(KHOA_NHAP); localStorage.removeItem(KHOA);
-    location.reload();
-  }
-};
-document.querySelectorAll("input[data-cau], textarea[data-nhom]").forEach(i=>{
-  i.addEventListener("input", ()=>{});
+document.querySelectorAll("textarea[data-nhom]").forEach(t => {
+  t.addEventListener("input", () => { t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; });
 });
 </script>
 </body></html>
