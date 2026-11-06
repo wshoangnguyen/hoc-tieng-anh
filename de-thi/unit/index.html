@@ -63,6 +63,23 @@ font:inherit;font-size:16px;padding:4px 6px;min-width:90px;z-index:5}
 /* ---- gõ đáp án (tuỳ chọn) ---- */
 details.go{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:12px 14px;margin:0 0 14px}
 details.go summary{cursor:pointer;font-weight:700;font-size:15px;color:var(--tim)}
+.bo{display:grid;gap:14px}
+@media(min-width:1000px){
+  .bo{grid-template-columns:minmax(0,1fr) 310px;align-items:start}
+  .bo .go{position:sticky;top:74px;margin:0;max-height:calc(100vh - 92px);overflow:auto}
+  .card:has(.to){margin:0}
+}
+.go{padding:10px 12px}
+.go summary{font-size:14px}
+.go .act{margin:10px 0 0}
+.go .act h3{font-size:12.5px;padding:4px 7px;margin:0 0 4px}
+.go .cau{padding:3px 0;gap:6px}
+.go .cau p.hoi{font-size:12.5px;margin:0 0 2px}
+.go .cau input[type=text]{padding:5px 7px;font-size:13px;max-width:100%}
+.go select.chon-o{padding:5px 7px;font-size:13px;max-width:100%}
+.go .socau{flex:0 0 19px;width:19px;height:19px;font-size:10.5px;margin-top:2px}
+.go .nut{padding:7px 12px;font-size:13px;border-radius:10px}
+.go .nho{font-size:11.5px}
 .act{margin:14px 0 0}
 .act h3{font-size:14.5px;margin:0 0 8px;padding:6px 10px;background:#f3ecdc;border-left:4px solid var(--tim);border-radius:6px}
 .cau{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed #eee6d4}

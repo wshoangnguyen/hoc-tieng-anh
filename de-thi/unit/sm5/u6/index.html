@@ -63,6 +63,23 @@ font:inherit;font-size:16px;padding:4px 6px;min-width:90px;z-index:5}
 /* ---- gõ đáp án (tuỳ chọn) ---- */
 details.go{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:12px 14px;margin:0 0 14px}
 details.go summary{cursor:pointer;font-weight:700;font-size:15px;color:var(--tim)}
+.bo{display:grid;gap:14px}
+@media(min-width:1000px){
+  .bo{grid-template-columns:minmax(0,1fr) 310px;align-items:start}
+  .bo .go{position:sticky;top:74px;margin:0;max-height:calc(100vh - 92px);overflow:auto}
+  .card:has(.to){margin:0}
+}
+.go{padding:10px 12px}
+.go summary{font-size:14px}
+.go .act{margin:10px 0 0}
+.go .act h3{font-size:12.5px;padding:4px 7px;margin:0 0 4px}
+.go .cau{padding:3px 0;gap:6px}
+.go .cau p.hoi{font-size:12.5px;margin:0 0 2px}
+.go .cau input[type=text]{padding:5px 7px;font-size:13px;max-width:100%}
+.go select.chon-o{padding:5px 7px;font-size:13px;max-width:100%}
+.go .socau{flex:0 0 19px;width:19px;height:19px;font-size:10.5px;margin-top:2px}
+.go .nut{padding:7px 12px;font-size:13px;border-radius:10px}
+.go .nho{font-size:11.5px}
 .act{margin:14px 0 0}
 .act h3{font-size:14.5px;margin:0 0 8px;padding:6px 10px;background:#f3ecdc;border-left:4px solid var(--tim);border-radius:6px}
 .cau{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed #eee6d4}
@@ -122,22 +139,23 @@ font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:c
   <button class="cc" data-cc="lui" title="Hoàn tác">↩️</button>
   <button class="cc" data-cc="xoa" title="Xoá trang">🗑️</button>
   <button class="nop" id="btNop">✅ Nộp bài</button>
-  <p class="gchu">Chọn ✏️ rồi viết/vẽ trực tiếp lên đề. Chọn 🅰️ rồi bấm vào chỗ trống để gõ chữ.</p>
+  <p class="gchu">Chọn ✏️ để viết/vẽ lên đề · 🅰️ để gõ chữ.</p>
 </div>
 
+<div class="bo">
 <div class="card"><h2 style="font-size:16px;margin:0 0 6px">Đề bài</h2>
 
-<div class="to" data-i="0"><img src="trang/p-1.jpg" alt="Đề trang 1"><canvas></canvas><span class="so">Trang 1 · viết/vẽ trực tiếp lên đây</span></div><div class="to" data-i="1"><img src="trang/p-2.jpg" alt="Đề trang 2"><canvas></canvas><span class="so">Trang 2 · viết/vẽ trực tiếp lên đây</span></div>
+<div class="to" data-i="0"><img src="trang/p-1.jpg" alt="Đề trang 1"><canvas></canvas></div><div class="to" data-i="1"><img src="trang/p-2.jpg" alt="Đề trang 2"><canvas></canvas></div>
 <div class="lu" id="lu" style="display:none"></div>
 </div>
 
-<details class="go"><summary>⌨️ Gõ đáp án để chấm tự động (dành cho bạn nào muốn thử)</summary>
-<p class="nho" style="margin:8px 0 0">Không bắt buộc — con có thể chỉ viết tay ở trên rồi bấm Nộp bài.</p>
+<details class="go"><summary>⌨️ Gõ đáp án</summary>
 <div class="act"><h3>Activity 1 · Read and tick the correct word.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · ‘That cushion is really pretty! It will look nice in my bedroom.’ → viết tên đồ vật: ___</p><input type="text" id="U6-A1-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · ‘What’s the ring made of?’ ‘It’s made of silver. Would you like to buy it?’ → ___</p><input type="text" id="U6-A1-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · ‘I can put my computer games in that basket.’ ‘That’s a good idea!’ → ___</p><input type="text" id="U6-A1-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · ‘I’m going to buy those sunglasses. They look great!’ → ___</p><input type="text" id="U6-A1-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · ‘Do you like these earrings?’ ‘Yes, they’re lovely!’ → ___</p><input type="text" id="U6-A1-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-6"></span></div></div><div class="cau"><div class="socau">6</div><div class="than"><p class="hoi">Câu 7 · ‘That cup and saucer are a great present for my mum.’ ‘You should buy them for her birthday next month.’ → ___</p><input type="text" id="U6-A1-7" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-7"></span></div></div><div class="cau"><div class="socau">7</div><div class="than"><p class="hoi">Câu 8 · ‘How much is the carpet? Is it made of wool?’ → ___</p><input type="text" id="U6-A1-8" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A1-8"></span></div></div></div><div class="act"><h3>Activity 2 · Read the text and complete the sentences with should or shouldn’t.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · We’re going to walk a lot. You ___ wear sandals because it may rain.</p><select id="U6-A2-2" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · It rains a lot in London, so you ___ take your umbrellas.</p><select id="U6-A2-3" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · It may be cold too, so you ___ take a coat.</p><select id="U6-A2-4" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · You ___ go out without the teachers.</p><select id="U6-A2-5" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · You ___ write the name and address of the hotel on a piece of paper.</p><select id="U6-A2-6" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-6"></span></div></div><div class="cau"><div class="socau">6</div><div class="than"><p class="hoi">Câu 7 · And you ___ take a map.</p><select id="U6-A2-7" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-7"></span></div></div><div class="cau"><div class="socau">7</div><div class="than"><p class="hoi">Câu 8 · You ___ take photographs without asking permission.</p><select id="U6-A2-8" data-cau class="chon-o"><option value=""></option><option value="should">should</option><option value="shouldn't">shouldn't</option></select><span class="kq" id="kq-U6-A2-8"></span></div></div></div><div class="act"><h3>Activity 3 · Read and match.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · Do you</p><select id="U6-A3-2" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · Could</p><select id="U6-A3-3" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · Do you mind</p><select id="U6-A3-4" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · Could you</p><select id="U6-A3-5" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · Do you mind if</p><select id="U6-A3-6" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-6"></span></div></div><div class="cau"><div class="socau">6</div><div class="than"><p class="hoi">Câu 7 · Could I have</p><select id="U6-A3-7" data-cau class="chon-o"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option><option value="g">g</option></select><span class="kq" id="kq-U6-A3-7"></span></div></div></div>
 <div style="margin-top:12px"><button class="nut phu" id="btCham">Chấm thử</button>
 <button class="nut phu" id="btLai" style="margin-left:6px">Làm lại</button></div>
 <div class="kqhop" id="kqhop"><div class="diem" id="diem"></div></div>
 </details>
+</div>
 
 </div>
 <script>
@@ -246,7 +264,9 @@ function datChu(i, e, cv){
   inp.className = "okchu"; inp.type = "text"; inp.placeholder = "viết…";
   inp.style.left = Math.max(0, e.clientX - r.left - 10) + "px";
   inp.style.top  = Math.max(0, e.clientY - r.top - 12) + "px";
-  to.appendChild(inp); inp.focus();
+  inp.addEventListener("pointerdown", ev => ev.stopPropagation());
+  to.appendChild(inp);
+  setTimeout(() => inp.focus(), 0);
   const xong = () => {
     const t = inp.value.trim();
     if(t){ PAGES[i].chu.push({x:(e.clientX-r.left)/r.width, y:(e.clientY-r.top)/r.height, t, c:mau, s:coNet*0.006+0.018}); ve(i); luuNhap(); }
@@ -278,7 +298,7 @@ document.querySelectorAll(".to").forEach((to, i) => {
   cv.addEventListener("pointerdown", e => {
     if(e.button !== undefined && e.button !== 0) return;
     const [x,y] = toaDo(e, cv);
-    if(congCu === "chu"){ datChu(i, e, cv); return; }
+    if(congCu === "chu"){ e.preventDefault(); return; }   /* chờ nhả tay mới đặt ô chữ */
     if(congCu === "tay"){ dang = "tay"; xoaTai(i, x, y); return; }
     dang = "but";
     try{ cv.setPointerCapture(e.pointerId); }catch(err){}
@@ -294,10 +314,13 @@ document.querySelectorAll(".to").forEach((to, i) => {
     if(Math.hypot(x-cuoi[0], y-cuoi[1]) < 0.0015) return;
     net.p.push([x,y]); ve(i);
   });
-  const thoi = () => { if(dang){ dang = null; luuNhap(); } };
+  const thoi = e => {
+    if(congCu === "chu" && !dang){ datChu(i, e, cv); return; }
+    if(dang){ dang = null; luuNhap(); }
+  };
   cv.addEventListener("pointerup", thoi);
-  cv.addEventListener("pointercancel", thoi);
-  cv.addEventListener("pointerleave", thoi);
+  cv.addEventListener("pointercancel", () => { dang = null; });
+  cv.addEventListener("pointerleave", () => { if(dang){ dang = null; luuNhap(); } });
 });
 
 /* thanh công cụ */
@@ -444,6 +467,9 @@ function nopBai(){
 napNhap();
 PAGES.forEach((p,i)=>{ setTimeout(()=>ve(i), 200); });
 document.getElementById("btNop").onclick = nopBai;
+const hopGo = document.querySelector("details.go");
+if(hopGo && window.innerWidth >= 1000) hopGo.open = true;
+if(hopGo) window.addEventListener("resize", ()=>{ if(window.innerWidth >= 1000) hopGo.open = true; });
 const btCham = document.getElementById("btCham");
 if(btCham) btCham.onclick = cham;
 const btLai = document.getElementById("btLai");
