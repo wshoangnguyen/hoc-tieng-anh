@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Super Minds 6 · Unit 6 — Học Tiếng Anh Dễ Lắm</title>
 <link rel="icon" href="/logo.png">
 <style>
 :root{--nau:#3b2f1c;--nau2:#6d5c3d;--tim:#6b4fa1;--vien:#e3d6bb;--nen:#fffdf7;--xanh:#2f6b28;--do:#a8322b}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--nau);
-background:linear-gradient(160deg,#fbf6ea,#f2e8d5 60%,#efe3cc);min-height:100vh}
-.wrap{max-width:880px;margin:0 auto;padding:16px 14px 80px}
+background:linear-gradient(160deg,#fbf6ea,#f2e8d5 60%,#efe3cc);min-height:100vh;-webkit-text-size-adjust:100%}
+body.khoa{overflow:hidden}
+.wrap{max-width:900px;margin:0 auto;padding:14px 12px 90px}
 header{display:flex;align-items:center;gap:12px}
-header img{width:110px;height:48px;object-fit:contain}
+header img{width:104px;height:46px;object-fit:contain}
 header b{display:block;font-size:13px;color:var(--nau2)} header span{font-size:12px;color:var(--nau2)}
 .crumb{font-size:13px;color:var(--nau2);margin:10px 0 0}
 .crumb a{color:var(--tim);text-decoration:none}
-h1{font-size:22px;margin:6px 0 2px}
-.sub{color:var(--nau2);font-size:14px;margin:0 0 12px}
+h1{font-size:21px;margin:6px 0 2px}
+.sub{color:var(--nau2);font-size:14px;margin:0 0 10px}
 .card{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:14px;margin:0 0 14px;
 box-shadow:0 8px 20px rgba(120,90,20,.07)}
-.card h2{font-size:16px;margin:0 0 8px}
-.thongtin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.thongtin .rong{grid-column:1/-1}
 label{display:block;font-size:12.5px;color:var(--nau2);margin-bottom:3px;font-weight:600}
 input[type=text]{width:100%;padding:10px;border:1.5px solid var(--vien);border-radius:10px;font-size:15px;background:#fff}
-input[type=text]:focus,select:focus{outline:none;border-color:var(--tim)}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--tim)}
 select.chon-o{padding:9px;border:1.5px solid var(--vien);border-radius:10px;font-size:14px;background:#fff;max-width:420px}
-img.anhde{width:100%;border:1px solid var(--vien);border-radius:12px;background:#fff;display:block}
-.act{margin:16px 0 0}
-.act h3{font-size:15px;margin:0 0 8px;padding:6px 10px;background:#f3ecdc;border-left:4px solid var(--tim);border-radius:6px}
+
+/* ---- cổng nhập tên ---- */
+.cong{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;padding:16px;
+background:rgba(48,36,14,.42);backdrop-filter:blur(3px)}
+.cong.khuat{display:none}
+.cong .hop{background:#fffdf7;border:1px solid var(--vien);border-radius:22px;padding:22px;max-width:430px;width:100%;
+box-shadow:0 26px 60px rgba(60,40,0,.3)}
+.cong h2{margin:0 0 4px;font-size:21px}
+.cong .moi{margin:0 0 14px;font-size:13.5px;color:var(--nau2)}
+.cong .o{margin:0 0 10px}
+.cong input{font-size:18px;padding:12px}
+.cong .nut{width:100%;margin-top:6px;padding:15px;font-size:17px;border-radius:14px}
+
+/* ---- thanh công cụ ---- */
+.thanh{position:sticky;top:0;z-index:60;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+background:#fffdf7;border:1px solid var(--vien);border-radius:16px;padding:8px;margin:0 0 12px;
+box-shadow:0 8px 20px rgba(120,90,20,.12)}
+.cc{width:46px;height:46px;border-radius:14px;border:1.5px solid var(--vien);background:#fff;
+font-size:21px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cc.on{background:#f0e9ff;border-color:var(--tim);box-shadow:0 0 0 2px #e3d7ff inset}
+.cc:active{transform:scale(.96)}
+.mau{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px var(--vien);cursor:pointer}
+.mau.on{box-shadow:0 0 0 3px var(--tim)}
+.vach{width:1px;height:30px;background:var(--vien);margin:0 2px}
+.nop{margin-left:auto;border:none;border-radius:14px;background:var(--tim);color:#fff;font-weight:800;
+font-size:15px;padding:12px 18px;cursor:pointer}
+.gchu{font-size:12.5px;color:var(--nau2);width:100%;margin:2px 0 0}
+
+/* ---- trang đề ---- */
+.to{position:relative;margin:0 0 14px;border:1px solid var(--vien);border-radius:12px;overflow:hidden;background:#fff}
+.to img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.to canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.to .so{position:absolute;left:8px;top:8px;background:rgba(255,255,255,.92);border:1px solid var(--vien);
+border-radius:8px;padding:2px 8px;font-size:12px;color:var(--nau2);pointer-events:none}
+.to .okchu{position:absolute;border:2px dashed var(--tim);border-radius:6px;background:rgba(255,255,255,.92);
+font:inherit;font-size:16px;padding:4px 6px;min-width:90px;z-index:5}
+
+/* ---- gõ đáp án (tuỳ chọn) ---- */
+details.go{background:var(--nen);border:1px solid var(--vien);border-radius:16px;padding:12px 14px;margin:0 0 14px}
+details.go summary{cursor:pointer;font-weight:700;font-size:15px;color:var(--tim)}
+.act{margin:14px 0 0}
+.act h3{font-size:14.5px;margin:0 0 8px;padding:6px 10px;background:#f3ecdc;border-left:4px solid var(--tim);border-radius:6px}
 .cau{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed #eee6d4}
 .socau{flex:0 0 26px;height:26px;border-radius:50%;background:#efe6d2;color:var(--nau2);
 font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:6px}
@@ -38,10 +75,8 @@ font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:c
 .cau.sai input{border-color:#e0a09a;background:#fdf1f0}
 .kq{font-weight:700;margin-left:6px}
 .cau.dung .kq{color:var(--xanh)} .cau.sai .kq{color:var(--do)}
-.cham{display:flex;gap:8px;flex-wrap:wrap}
 .nut{border:none;border-radius:12px;padding:11px 16px;font-size:15px;font-weight:700;cursor:pointer}
 .nut.chinh{background:var(--tim);color:#fff} .nut.phu{background:#efe6d2;color:var(--nau)}
-.nut.zalo{background:#1f7ae0;color:#fff}
 .kqhop{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#fff8e6;border:1px solid var(--vien)}
 .kqhop.on{display:block}
 .diem{font-size:17px;font-weight:800;margin-bottom:6px}
@@ -52,49 +87,75 @@ font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:c
 .o{display:block;text-decoration:none;color:var(--nau);background:#fff;border:1px solid var(--vien);border-radius:12px;padding:12px}
 .o b{display:block;font-size:15px} .o span{font-size:12.5px;color:var(--nau2)}
 .o:hover{border-color:var(--tim)}
-</style></head><body><div class="wrap">
+@media(max-width:520px){.cc{width:42px;height:42px;font-size:19px}.nop{padding:11px 14px;font-size:14px}}
+</style></head><body>
+<div class="cong" id="cong"><div class="hop">
+  <h2>Chào con! 👋</h2>
+  <p class="moi">Điền tên và lớp trước khi làm bài nhé. Cô cần biết bài này của bạn nào.</p>
+  <div class="o"><label>Họ và tên</label><input type="text" id="ten" placeholder="Ví dụ: Nguyễn Minh An" autocomplete="off"></div>
+  <div class="o"><label>Lớp</label><input type="text" id="lop" placeholder="Ví dụ: SM3b" autocomplete="off"></div>
+  <div class="o"><label>Mã học viên (nếu có)</label><input type="text" id="ma" placeholder="Ví dụ: HV12" autocomplete="off"></div>
+  <button class="nut chinh" id="btVao">Bắt đầu làm bài →</button>
+  <p class="nho" id="congLoi" style="color:#a8322b;margin:8px 0 0"></p>
+</div></div>
+<div class="wrap">
 <header><img src="/logo.png" alt="Học Tiếng Anh Dễ Lắm"><div><b>Học Tiếng Anh Dễ Lắm</b><span>hoctienganhdelam.com</span></div></header>
 
 <div class="crumb"><a href="/de-thi/">Đề thi &amp; kiểm tra</a> › <a href="../../">Unit Test</a> › <a href="../">SM6</a> › Unit 6</div>
 <h1>Super Minds 6 · Unit 6 — Crazy inventions</h1>
-<p class="sub">Bài kiểm tra 15 phút · 25 câu · tự chấm ngay trên web</p>
-<div class="card"><h2>Thông tin học sinh</h2><div class="thongtin">
-<div><label>Họ và tên</label><input type="text" id="ten" placeholder="Ví dụ: Nguyễn Minh An"></div>
-<div><label>Lớp</label><input type="text" id="lop" placeholder="Ví dụ: SM3b"></div>
-<div class="rong"><label>Mã học viên (nếu có)</label><input type="text" id="ma" placeholder="Ví dụ: HV12"></div>
-</div></div>
-<div class="card"><h2>Đề bài</h2><img class="anhde" src="trang/p-1.jpg" alt="Đề trang 1" loading="lazy"><img class="anhde" src="trang/p-2.jpg" alt="Đề trang 2" loading="lazy"><div class="act"><h3>Activity 1 · Look at the picture. Circle the correct word.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · Hình 2 — chọn từ đúng</p><select id="U6-A1-2" data-cau class="chon-o"><option value=""></option><option value="lever">lever</option><option value="switch">switch</option></select><span class="kq" id="kq-U6-A1-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · Hình 3 — chọn từ đúng</p><select id="U6-A1-3" data-cau class="chon-o"><option value=""></option><option value="lever">lever</option><option value="screwdriver">screwdriver</option></select><span class="kq" id="kq-U6-A1-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · Hình 4 — chọn từ đúng</p><select id="U6-A1-4" data-cau class="chon-o"><option value=""></option><option value="drill">drill</option><option value="button">button</option></select><span class="kq" id="kq-U6-A1-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · Hình 5 — chọn từ đúng</p><select id="U6-A1-5" data-cau class="chon-o"><option value=""></option><option value="drill">drill</option><option value="hammer">hammer</option></select><span class="kq" id="kq-U6-A1-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · Hình 6 — chọn từ đúng</p><select id="U6-A1-6" data-cau class="chon-o"><option value=""></option><option value="screwdriver">screwdriver</option><option value="paintbrush">paintbrush</option></select><span class="kq" id="kq-U6-A1-6"></span></div></div><div class="cau"><div class="socau">6</div><div class="than"><p class="hoi">Câu 7 · Hình 7 — chọn từ đúng</p><select id="U6-A1-7" data-cau class="chon-o"><option value=""></option><option value="table">table</option><option value="workbench">workbench</option></select><span class="kq" id="kq-U6-A1-7"></span></div></div><div class="cau"><div class="socau">7</div><div class="than"><p class="hoi">Câu 8 · Hình 8 — chọn từ đúng</p><select id="U6-A1-8" data-cau class="chon-o"><option value=""></option><option value="hammer">hammer</option><option value="saw">saw</option></select><span class="kq" id="kq-U6-A1-8"></span></div></div><div class="cau"><div class="socau">8</div><div class="than"><p class="hoi">Câu 9 · Hình 9 — chọn từ đúng</p><select id="U6-A1-9" data-cau class="chon-o"><option value=""></option><option value="paintbrush">paintbrush</option><option value="nails">nails</option></select><span class="kq" id="kq-U6-A1-9"></span></div></div><div class="cau"><div class="socau">9</div><div class="than"><p class="hoi">Câu 10 · Hình 10 — chọn từ đúng</p><select id="U6-A1-10" data-cau class="chon-o"><option value=""></option><option value="saw">saw</option><option value="hammer">hammer</option></select><span class="kq" id="kq-U6-A1-10"></span></div></div><div class="cau"><div class="socau">10</div><div class="than"><p class="hoi">Câu 11 · Hình 11 — chọn từ đúng</p><select id="U6-A1-11" data-cau class="chon-o"><option value=""></option><option value="paint pot">paint pot</option><option value="paintbrush">paintbrush</option></select><span class="kq" id="kq-U6-A1-11"></span></div></div></div><div class="act"><h3>Activity 2 · Find words from Activity 1 to match the definitions.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · I use this to turn on the lights.</p><input type="text" id="U6-A2-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · You can make holes in the walls or in wood with it.</p><input type="text" id="U6-A2-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · This is used for cutting wood.</p><input type="text" id="U6-A2-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · If you press it, you start your computer.</p><input type="text" id="U6-A2-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · You use this for hitting nails. It’s made of wood and metal.</p><input type="text" id="U6-A2-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-6"></span></div></div></div><div class="act"><h3>Activity 3 · Look at the pictures and complete the sentences. Use words from the box and too or enough.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · The spider ______. (legs) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · The duck ______. (feet) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · The crocodile ______. (teeth) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · The bird ______. (wings) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · The clock ______. (numbers) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-6"></span></div></div></div><div class="act"><h3>Activity 4 · Write the questions. Use the words in brackets.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · ______? (button)  It’s for starting the computer.</p><input type="text" id="U6-A4-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · ______? (lever / do)  When you push it, the car moves.</p><input type="text" id="U6-A4-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · ______? (animal)  It’s a sloth from the Amazon rainforest.</p><input type="text" id="U6-A4-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · ______? (flying machine)  It’s for climbing tall trees.</p><input type="text" id="U6-A4-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · ______? (switch / do)  It turns on the machine.</p><input type="text" id="U6-A4-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-6"></span></div></div></div></div>
-<div class="card"><div class="cham">
-<button class="nut chinh" id="btCham">Chấm bài</button>
-<button class="nut phu" id="btLai">Làm lại</button></div>
-<div class="kqhop" id="kqhop"><div class="diem" id="diem"></div><p class="nho" id="ghicham"></p>
-<div class="lu" id="lu"></div><div class="lu" id="nx" style="display:none"></div></div></div>
+<p class="sub">Bài kiểm tra 15 phút · 25 câu · <span id="tenNho"></span></p>
+
+<div class="thanh">
+  <button class="cc on" data-cc="but" title="Bút">✏️</button>
+  <button class="cc" data-cc="chu" title="Viết chữ">🅰️</button>
+  <button class="cc" data-cc="tay" title="Tẩy">🧽</button>
+  <span class="vach"></span>
+  <button class="mau on" data-mau="#d92b2b" style="background:#d92b2b" title="Bút đỏ"></button>
+  <button class="mau" data-mau="#1a56c4" style="background:#1a56c4" title="Bút xanh"></button>
+  <button class="mau" data-mau="#7b3fe4" style="background:#7b3fe4" title="Bút tím"></button>
+  <button class="mau" data-mau="#222222" style="background:#222222" title="Bút đen"></button>
+  <span class="vach"></span>
+  <button class="cc co on" data-co="3" title="Nét nhỏ"><span style="font-size:13px">•</span></button>
+  <button class="cc co" data-co="5" title="Nét vừa"><span style="font-size:18px">•</span></button>
+  <button class="cc co" data-co="8" title="Nét to"><span style="font-size:24px">•</span></button>
+  <span class="vach"></span>
+  <button class="cc" data-cc="lui" title="Hoàn tác">↩️</button>
+  <button class="cc" data-cc="xoa" title="Xoá trang">🗑️</button>
+  <button class="nop" id="btNop">✅ Nộp bài</button>
+  <p class="gchu">Chọn ✏️ rồi viết/vẽ trực tiếp lên đề. Chọn 🅰️ rồi bấm vào chỗ trống để gõ chữ.</p>
+</div>
+
+<div class="card"><h2 style="font-size:16px;margin:0 0 6px">Đề bài</h2>
+
+<div class="to" data-i="0"><img src="trang/p-1.jpg" alt="Đề trang 1"><canvas></canvas><span class="so">Trang 1 · viết/vẽ trực tiếp lên đây</span></div><div class="to" data-i="1"><img src="trang/p-2.jpg" alt="Đề trang 2"><canvas></canvas><span class="so">Trang 2 · viết/vẽ trực tiếp lên đây</span></div>
+<div class="lu" id="lu" style="display:none"></div>
+</div>
+
+<details class="go"><summary>⌨️ Gõ đáp án để chấm tự động (dành cho bạn nào muốn thử)</summary>
+<p class="nho" style="margin:8px 0 0">Không bắt buộc — con có thể chỉ viết tay ở trên rồi bấm Nộp bài.</p>
+<div class="act"><h3>Activity 1 · Look at the picture. Circle the correct word.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · Hình 2 — chọn từ đúng</p><select id="U6-A1-2" data-cau class="chon-o"><option value=""></option><option value="lever">lever</option><option value="switch">switch</option></select><span class="kq" id="kq-U6-A1-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · Hình 3 — chọn từ đúng</p><select id="U6-A1-3" data-cau class="chon-o"><option value=""></option><option value="lever">lever</option><option value="screwdriver">screwdriver</option></select><span class="kq" id="kq-U6-A1-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · Hình 4 — chọn từ đúng</p><select id="U6-A1-4" data-cau class="chon-o"><option value=""></option><option value="drill">drill</option><option value="button">button</option></select><span class="kq" id="kq-U6-A1-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · Hình 5 — chọn từ đúng</p><select id="U6-A1-5" data-cau class="chon-o"><option value=""></option><option value="drill">drill</option><option value="hammer">hammer</option></select><span class="kq" id="kq-U6-A1-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · Hình 6 — chọn từ đúng</p><select id="U6-A1-6" data-cau class="chon-o"><option value=""></option><option value="screwdriver">screwdriver</option><option value="paintbrush">paintbrush</option></select><span class="kq" id="kq-U6-A1-6"></span></div></div><div class="cau"><div class="socau">6</div><div class="than"><p class="hoi">Câu 7 · Hình 7 — chọn từ đúng</p><select id="U6-A1-7" data-cau class="chon-o"><option value=""></option><option value="table">table</option><option value="workbench">workbench</option></select><span class="kq" id="kq-U6-A1-7"></span></div></div><div class="cau"><div class="socau">7</div><div class="than"><p class="hoi">Câu 8 · Hình 8 — chọn từ đúng</p><select id="U6-A1-8" data-cau class="chon-o"><option value=""></option><option value="hammer">hammer</option><option value="saw">saw</option></select><span class="kq" id="kq-U6-A1-8"></span></div></div><div class="cau"><div class="socau">8</div><div class="than"><p class="hoi">Câu 9 · Hình 9 — chọn từ đúng</p><select id="U6-A1-9" data-cau class="chon-o"><option value=""></option><option value="paintbrush">paintbrush</option><option value="nails">nails</option></select><span class="kq" id="kq-U6-A1-9"></span></div></div><div class="cau"><div class="socau">9</div><div class="than"><p class="hoi">Câu 10 · Hình 10 — chọn từ đúng</p><select id="U6-A1-10" data-cau class="chon-o"><option value=""></option><option value="saw">saw</option><option value="hammer">hammer</option></select><span class="kq" id="kq-U6-A1-10"></span></div></div><div class="cau"><div class="socau">10</div><div class="than"><p class="hoi">Câu 11 · Hình 11 — chọn từ đúng</p><select id="U6-A1-11" data-cau class="chon-o"><option value=""></option><option value="paint pot">paint pot</option><option value="paintbrush">paintbrush</option></select><span class="kq" id="kq-U6-A1-11"></span></div></div></div><div class="act"><h3>Activity 2 · Find words from Activity 1 to match the definitions.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · I use this to turn on the lights.</p><input type="text" id="U6-A2-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · You can make holes in the walls or in wood with it.</p><input type="text" id="U6-A2-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · This is used for cutting wood.</p><input type="text" id="U6-A2-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · If you press it, you start your computer.</p><input type="text" id="U6-A2-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · You use this for hitting nails. It’s made of wood and metal.</p><input type="text" id="U6-A2-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A2-6"></span></div></div></div><div class="act"><h3>Activity 3 · Look at the pictures and complete the sentences. Use words from the box and too or enough.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · The spider ______. (legs) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · The duck ______. (feet) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · The crocodile ______. (teeth) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · The bird ______. (wings) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · The clock ______. (numbers) — dùng từ trong khung và too / enough</p><input type="text" id="U6-A3-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A3-6"></span></div></div></div><div class="act"><h3>Activity 4 · Write the questions. Use the words in brackets.</h3><div class="cau"><div class="socau">1</div><div class="than"><p class="hoi">Câu 2 · ______? (button)  It’s for starting the computer.</p><input type="text" id="U6-A4-2" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-2"></span></div></div><div class="cau"><div class="socau">2</div><div class="than"><p class="hoi">Câu 3 · ______? (lever / do)  When you push it, the car moves.</p><input type="text" id="U6-A4-3" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-3"></span></div></div><div class="cau"><div class="socau">3</div><div class="than"><p class="hoi">Câu 4 · ______? (animal)  It’s a sloth from the Amazon rainforest.</p><input type="text" id="U6-A4-4" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-4"></span></div></div><div class="cau"><div class="socau">4</div><div class="than"><p class="hoi">Câu 5 · ______? (flying machine)  It’s for climbing tall trees.</p><input type="text" id="U6-A4-5" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-5"></span></div></div><div class="cau"><div class="socau">5</div><div class="than"><p class="hoi">Câu 6 · ______? (switch / do)  It turns on the machine.</p><input type="text" id="U6-A4-6" data-cau autocomplete="off" spellcheck="false"><span class="kq" id="kq-U6-A4-6"></span></div></div></div>
+<div style="margin-top:12px"><button class="nut phu" id="btCham">Chấm thử</button>
+<button class="nut phu" id="btLai" style="margin-left:6px">Làm lại</button></div>
+<div class="kqhop" id="kqhop"><div class="diem" id="diem"></div></div>
+</details>
 
 </div>
 <script>
 const DU = {"level": 6, "unit": 6, "ten": "Super Minds 6", "ten_unit": "Crazy inventions", "thoi_gian": "15 phút", "trang": [{"so": 1, "anh": "trang/p-1.jpg"}, {"so": 2, "anh": "trang/p-2.jpg"}], "phan": [{"ma": "A1", "ten": "Activity 1 · Look at the picture. Circle the correct word.", "cau": [{"id": "U6-A1-2", "hoi": "Câu 2 · Hình 2 — chọn từ đúng", "lua": ["lever", "switch"], "dap": ["switch"]}, {"id": "U6-A1-3", "hoi": "Câu 3 · Hình 3 — chọn từ đúng", "lua": ["lever", "screwdriver"], "dap": ["lever"]}, {"id": "U6-A1-4", "hoi": "Câu 4 · Hình 4 — chọn từ đúng", "lua": ["drill", "button"], "dap": ["button"]}, {"id": "U6-A1-5", "hoi": "Câu 5 · Hình 5 — chọn từ đúng", "lua": ["drill", "hammer"], "dap": ["drill"]}, {"id": "U6-A1-6", "hoi": "Câu 6 · Hình 6 — chọn từ đúng", "lua": ["screwdriver", "paintbrush"], "dap": ["screwdriver"]}, {"id": "U6-A1-7", "hoi": "Câu 7 · Hình 7 — chọn từ đúng", "lua": ["table", "workbench"], "dap": ["workbench"]}, {"id": "U6-A1-8", "hoi": "Câu 8 · Hình 8 — chọn từ đúng", "lua": ["hammer", "saw"], "dap": ["hammer"]}, {"id": "U6-A1-9", "hoi": "Câu 9 · Hình 9 — chọn từ đúng", "lua": ["paintbrush", "nails"], "dap": ["nails"]}, {"id": "U6-A1-10", "hoi": "Câu 10 · Hình 10 — chọn từ đúng", "lua": ["saw", "hammer"], "dap": ["saw"]}, {"id": "U6-A1-11", "hoi": "Câu 11 · Hình 11 — chọn từ đúng", "lua": ["paint pot", "paintbrush"], "dap": ["paint pot"]}], "diem": 5}, {"ma": "A2", "ten": "Activity 2 · Find words from Activity 1 to match the definitions.", "cau": [{"id": "U6-A2-2", "hoi": "Câu 2 · I use this to turn on the lights.", "dap": ["switch"]}, {"id": "U6-A2-3", "hoi": "Câu 3 · You can make holes in the walls or in wood with it.", "dap": ["drill"]}, {"id": "U6-A2-4", "hoi": "Câu 4 · This is used for cutting wood.", "dap": ["saw"]}, {"id": "U6-A2-5", "hoi": "Câu 5 · If you press it, you start your computer.", "dap": ["button"]}, {"id": "U6-A2-6", "hoi": "Câu 6 · You use this for hitting nails. It’s made of wood and metal.", "dap": ["hammer"]}], "diem": 5}, {"ma": "A3", "ten": "Activity 3 · Look at the pictures and complete the sentences. Use words from the box and too or enough.", "cau": [{"id": "U6-A3-2", "hoi": "Câu 2 · The spider ______. (legs) — dùng từ trong khung và too / enough", "dap": ["hasn’t got enough legs"]}, {"id": "U6-A3-3", "hoi": "Câu 3 · The duck ______. (feet) — dùng từ trong khung và too / enough", "dap": ["has got too many feet"]}, {"id": "U6-A3-4", "hoi": "Câu 4 · The crocodile ______. (teeth) — dùng từ trong khung và too / enough", "dap": ["hasn’t got enough teeth"]}, {"id": "U6-A3-5", "hoi": "Câu 5 · The bird ______. (wings) — dùng từ trong khung và too / enough", "dap": ["has got too many wings"]}, {"id": "U6-A3-6", "hoi": "Câu 6 · The clock ______. (numbers) — dùng từ trong khung và too / enough", "dap": ["hasn’t got enough numbers"]}], "diem": 5}, {"ma": "A4", "ten": "Activity 4 · Write the questions. Use the words in brackets.", "cau": [{"id": "U6-A4-2", "hoi": "Câu 2 · ______? (button)  It’s for starting the computer.", "dap": ["Can you tell me what this button is for?"]}, {"id": "U6-A4-3", "hoi": "Câu 3 · ______? (lever / do)  When you push it, the car moves.", "dap": ["Can you tell me what this lever does?"]}, {"id": "U6-A4-4", "hoi": "Câu 4 · ______? (animal)  It’s a sloth from the Amazon rainforest.", "dap": ["Can you tell me what this animal is?"]}, {"id": "U6-A4-5", "hoi": "Câu 5 · ______? (flying machine)  It’s for climbing tall trees.", "dap": ["Can you tell me what this flying machine is for?"]}, {"id": "U6-A4-6", "hoi": "Câu 6 · ______? (switch / do)  It turns on the machine.", "dap": ["Can you tell me what this switch does?"]}], "diem": 5}]};
 const KHOA = "ut_sm" + DU.level + "_u" + DU.unit;
+const KHOA_NHAP = KHOA + "_nhap";
 const API = "https://vm-4-13-ubuntu.tailcfa324.ts.net:8443";
-let dap = {}; let batDau = Date.now(); let daNop = false;
+const PAGES = (DU.trang || []).map(() => ({ net: [], chu: [] }));
+let congCu = "but", mau = "#d92b2b", coNet = 3, batDau = Date.now(), daNop = false;
+let TEN = "", LOP = "", MA = "";
+const $ = s => document.querySelector(s);
 
+/* ---------- tiện ích ---------- */
 function chuan(s){
   return String(s||"").toLowerCase().trim()
-    .replace(/[.,!?;:"'`´’]/g,"").replace(/\s+/g," ")
+    .replace(/[.,!?;:\"'`´’]/g,"").replace(/\s+/g," ")
     .replace(/^(a|an|the)\s+/,"");
 }
-function luu(){
-  try{localStorage.setItem(KHOA, JSON.stringify({ten:document.getElementById("ten").value,
-    lop:document.getElementById("lop").value, ma:document.getElementById("ma").value, dap:dap}));}catch(e){}
-}
-function nap(){
-  let tt=null; try{tt=JSON.parse(localStorage.getItem(KHOA)||"null");}catch(e){}
-  if(!tt) return;
-  ten.value=tt.ten||""; lop.value=tt.lop||""; ma.value=tt.ma||""; dap=tt.dap||{};
-  document.querySelectorAll("input[data-cau]").forEach(i=>{ if(dap[i.id]!==undefined) i.value=dap[i.id]; });
-}
-document.querySelectorAll("input[data-cau]").forEach(i=>{
-  i.addEventListener("input",()=>{ dap[i.id]=i.value; luu(); });
-});
 function giong(a,b){
   const A=a.split(/\s+/).filter(Boolean), B=b.split(/\s+/).filter(Boolean);
   if(!A.length||!B.length) return 0;
@@ -105,9 +166,173 @@ function giong(a,b){
 function dungCau(c, v){
   if(!v) return false;
   if(c.dap.some(x=>chuan(x)===v)) return true;
-  // câu dài: chấp nhận khi khớp >=80% từ (cách diễn đạt hơi khác)
   return c.dap.some(x=>{ const t=chuan(x); return t.split(" ").length>=4 && giong(v,t)>=0.8; });
 }
+
+/* ---------- cổng nhập tên ---------- */
+function moCong(){
+  $("#cong").classList.remove("khuat");
+  document.body.classList.add("khoa");
+  setTimeout(()=>$("#ten").focus(), 120);
+}
+function dongCong(){
+  const ten = $("#ten").value.trim(), lop = $("#lop").value.trim();
+  if(!ten || !lop){
+    $("#congLoi").textContent = "Con điền đủ họ tên và lớp giúp cô nhé.";
+    (!ten ? $("#ten") : $("#lop")).focus();
+    return;
+  }
+  TEN = ten; LOP = lop; MA = $("#ma").value.trim();
+  try{ localStorage.setItem(KHOA + "_hs", JSON.stringify({ten:TEN, lop:LOP, ma:MA})); }catch(e){}
+  $("#cong").classList.add("khuat");
+  document.body.classList.remove("khoa");
+  batDau = Date.now();
+  capNhatTen();
+}
+function capNhatTen(){
+  const e = $("#tenNho"); if(e) e.textContent = TEN ? (TEN + " · " + LOP) : "";
+}
+$("#btVao").onclick = dongCong;
+["ten","lop","ma"].forEach(id => { const i=$("#"+id); i.onkeydown = e => { if(e.key==="Enter") dongCong(); }; });
+(function khoiPhucTen(){
+  try{
+    const o = JSON.parse(localStorage.getItem(KHOA + "_hs") || "null");
+    if(o){ $("#ten").value=o.ten||""; $("#lop").value=o.lop||""; $("#ma").value=o.ma||""; }
+  }catch(e){}
+  moCong();
+})();
+
+/* ---------- vẽ / viết trên đề ---------- */
+const DPR = Math.min(2, window.devicePixelRatio || 1);
+function toaDo(e, cv){
+  const r = cv.getBoundingClientRect();
+  return [ (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height ];
+}
+function ve(i){
+  const to = document.querySelectorAll(".to")[i]; if(!to) return;
+  const cv = to.querySelector("canvas"), ctx = cv.getContext("2d");
+  const w = cv.width, h = cv.height, p = PAGES[i];
+  ctx.clearRect(0,0,w,h);
+  ctx.lineCap = "round"; ctx.lineJoin = "round";
+  p.net.forEach(net => {
+    if(net.p.length < 2) return;
+    ctx.strokeStyle = net.m; ctx.lineWidth = Math.max(1.4, net.d * (w/900) * 2.2);
+    ctx.beginPath();
+    ctx.moveTo(net.p[0][0]*w, net.p[0][1]*h);
+    for(let k=1;k<net.p.length;k++) ctx.lineTo(net.p[k][0]*w, net.p[k][1]*h);
+    ctx.stroke();
+  });
+  p.chu.forEach(t => {
+    const fs = Math.max(13, t.s * w);
+    ctx.fillStyle = t.c;
+    ctx.font = "600 " + fs + "px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif";
+    ctx.textBaseline = "top";
+    ctx.fillText(t.t, t.x*w, t.y*h);
+  });
+}
+function luuNhap(){
+  try{ localStorage.setItem(KHOA_NHAP, JSON.stringify(PAGES)); }catch(e){}
+}
+function napNhap(){
+  try{
+    const o = JSON.parse(localStorage.getItem(KHOA_NHAP) || "null");
+    if(Array.isArray(o)) o.forEach((p,i)=>{ if(PAGES[i]){ PAGES[i].net = p.net||[]; PAGES[i].chu = p.chu||[]; } });
+  }catch(e){}
+}
+function datChu(i, e, cv){
+  const to = document.querySelectorAll(".to")[i];
+  const r = cv.getBoundingClientRect();
+  const inp = document.createElement("input");
+  inp.className = "okchu"; inp.type = "text"; inp.placeholder = "viết…";
+  inp.style.left = Math.max(0, e.clientX - r.left - 10) + "px";
+  inp.style.top  = Math.max(0, e.clientY - r.top - 12) + "px";
+  to.appendChild(inp); inp.focus();
+  const xong = () => {
+    const t = inp.value.trim();
+    if(t){ PAGES[i].chu.push({x:(e.clientX-r.left)/r.width, y:(e.clientY-r.top)/r.height, t, c:mau, s:coNet*0.006+0.018}); ve(i); luuNhap(); }
+    inp.remove();
+  };
+  inp.onblur = xong;
+  inp.onkeydown = ev => { if(ev.key==="Enter"){ ev.preventDefault(); xong(); } if(ev.key==="Escape"){ inp.value=""; inp.blur(); } };
+}
+function xoaTai(i, x, y){
+  const p = PAGES[i], bk = p.net.length;
+  const ban = 0.02 + coNet*0.004;
+  p.net = p.net.filter(n => !n.p.some(q => Math.hypot(q[0]-x, q[1]-y) < ban));
+  const bk2 = p.chu.length;
+  p.chu = p.chu.filter(t => Math.hypot(t.x-x, t.y-y) > ban*1.6);
+  if(p.net.length!==bk || p.chu.length!==bk2){ ve(i); luuNhap(); }
+}
+document.querySelectorAll(".to").forEach((to, i) => {
+  const cv = to.querySelector("canvas"), img = to.querySelector("img");
+  const co = () => {
+    const r = to.getBoundingClientRect();
+    if(!r.width) return;
+    cv.width = Math.round(r.width*DPR); cv.height = Math.round(r.height*DPR);
+    ve(i);
+  };
+  if(img.complete) co(); else img.onload = co;
+  window.addEventListener("resize", () => { clearTimeout(to._t); to._t = setTimeout(co, 160); });
+
+  let dang = null;
+  cv.addEventListener("pointerdown", e => {
+    if(e.button !== undefined && e.button !== 0) return;
+    const [x,y] = toaDo(e, cv);
+    if(congCu === "chu"){ datChu(i, e, cv); return; }
+    if(congCu === "tay"){ dang = "tay"; xoaTai(i, x, y); return; }
+    dang = "but";
+    try{ cv.setPointerCapture(e.pointerId); }catch(err){}
+    PAGES[i].net.push({m:mau, d:coNet, p:[[x,y]]});
+    ve(i);
+  });
+  cv.addEventListener("pointermove", e => {
+    if(!dang) return;
+    const [x,y] = toaDo(e, cv);
+    if(dang === "tay"){ xoaTai(i, x, y); return; }
+    const net = PAGES[i].net[PAGES[i].net.length-1];
+    const cuoi = net.p[net.p.length-1];
+    if(Math.hypot(x-cuoi[0], y-cuoi[1]) < 0.0015) return;
+    net.p.push([x,y]); ve(i);
+  });
+  const thoi = () => { if(dang){ dang = null; luuNhap(); } };
+  cv.addEventListener("pointerup", thoi);
+  cv.addEventListener("pointercancel", thoi);
+  cv.addEventListener("pointerleave", thoi);
+});
+
+/* thanh công cụ */
+document.querySelectorAll(".cc[data-cc]").forEach(b => b.onclick = () => {
+  const cc = b.dataset.cc;
+  if(cc === "lui"){
+    const i = trangDangChon();
+    const p = PAGES[i];
+    if(p.chu.length) p.chu.pop(); else p.net.pop();
+    ve(i); luuNhap(); return;
+  }
+  if(cc === "xoa"){
+    if(!confirm("Xoá hết chữ và nét vẽ trên trang này?")) return;
+    const i = trangDangChon(); PAGES[i].net = []; PAGES[i].chu = []; ve(i); luuNhap(); return;
+  }
+  congCu = cc;
+  document.querySelectorAll(".cc[data-cc]").forEach(x => x.classList.toggle("on", x === b));
+});
+document.querySelectorAll(".mau").forEach(m => m.onclick = () => {
+  mau = m.dataset.mau;
+  document.querySelectorAll(".mau").forEach(x => x.classList.toggle("on", x === m));
+  if(congCu === "tay"){ congCu = "but"; document.querySelector('.cc[data-cc="but"]').classList.add("on"); }
+});
+document.querySelectorAll(".co").forEach(c => c.onclick = () => {
+  coNet = Number(c.dataset.co);
+  document.querySelectorAll(".co").forEach(x => x.classList.toggle("on", x === c));
+});
+function trangDangChon(){
+  const tos = [...document.querySelectorAll(".to")];
+  let gan = 0, kc = 1e9;
+  tos.forEach((t,i) => { const r = t.getBoundingClientRect(); const d = Math.abs(r.top - 70); if(d < kc){ kc = d; gan = i; } });
+  return gan;
+}
+
+/* ---------- chấm phần gõ (tuỳ chọn) ---------- */
 function cham(){
   let items=[], tong=0, dung=0;
   DU.phan.forEach(p=>{
@@ -121,9 +346,9 @@ function cham(){
       const v = nhom===null ? chuan(o.value) : chuan(c.dap[0]);
       const ok = nhom===null ? dungCau(c,v) : (tu.has(v) || [...tu].some(t=>t.split(" ").includes(v)||v.split(" ").includes(t)));
       const tra = nhom===null ? o.value : c.dap[0];
-      const hang=(o||document.getElementById("kq-"+c.id)).closest(".cau"); hang.classList.toggle("dung",ok); hang.classList.toggle("sai",!ok);
+      const hang=o.closest(".cau"); hang.classList.toggle("dung",ok); hang.classList.toggle("sai",!ok);
       document.getElementById("kq-"+c.id).textContent = ok?"✓":"✗";
-      if(ok){ nd++; }
+      if(ok) nd++;
       items.push({so:c.id, hoi:c.hoi, tra_loi:tra, dap:c.dap[0], dung:ok});
     });
     p.__dung = p.cau.length ? nd/p.cau.length*diem : 0;
@@ -136,35 +361,45 @@ function cham(){
     const d = Math.round(p.__dung*2)/2;
     loi += "<br>"+p.ten+": <b>"+d+"/"+(p.diem||p.cau.length)+"</b>";
   });
-  document.getElementById("diem").innerHTML = (ten.value?("<b>"+ten.value+"</b> · "):"")+loi;
+  document.getElementById("diem").innerHTML = loi;
   document.getElementById("kqhop").classList.add("on");
-  document.getElementById("ghicham").textContent = "Ô xanh là đúng, ô đỏ là chưa đúng. Bài được lưu vào Drive của thầy kèm nhận xét.";
   window.__kq={dung,tong,items};
-  nhanh();
-  if(!daNop) nopBai();
 }
-function nhanh(){
-  const sai={};
-  DU.phan.forEach(p=>{
-    let n=0;
-    const nhomEl = p.kieu==="nhom" ? document.getElementById("g-"+p.ma) : null;
-    const tu = nhomEl ? new Set((nhomEl.value||"").toLowerCase().split(/[,;\n]+/).map(x=>chuan(x)).filter(Boolean)) : null;
-    p.cau.forEach(c=>{ const o=document.getElementById(c.id);
-      if(tu){ if(!tu.has(chuan(c.dap[0]))) n++; return; }
-      const v=chuan(o.value); if(!dungCau(c,v)) n++; });
-    if(n) sai[p.ten]=n;
-  });
-  const ten=[...Object.keys(sai)];
-  let t="";
-  if(!ten.length) t="Con làm đúng hết cả bài — rất chắc. Hôm sau mình tăng tốc độ làm bài nhé.";
-  else {
-    t="Cần ôn lại: "+ten.map(k=>k.replace(/^Activity \d+ · /,"")+" ("+sai[k]+" câu)").join(" · ")+
-      ". Con xem lại đúng những câu bị ✗ rồi làm lại một lần.";
+function coGoDap(){
+  return [...document.querySelectorAll("input[data-cau], textarea[data-nhom]")].some(i => (i.value||"").trim());
+}
+
+/* ---------- xuất ảnh bài làm ---------- */
+function xuatAnh(){
+  const ra = [];
+  const tos = [...document.querySelectorAll(".to")];
+  for(let i=0;i<tos.length;i++){
+    const img = tos[i].querySelector("img");
+    if(!img || !img.naturalWidth) continue;
+    const w = img.naturalWidth, h = img.naturalHeight;
+    const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+    const ctx = cv.getContext("2d");
+    ctx.drawImage(img, 0, 0, w, h);
+    ctx.lineCap="round"; ctx.lineJoin="round";
+    PAGES[i].net.forEach(net => {
+      if(net.p.length<2) return;
+      ctx.strokeStyle=net.m; ctx.lineWidth=Math.max(1.6, net.d*(w/900)*2.2);
+      ctx.beginPath(); ctx.moveTo(net.p[0][0]*w, net.p[0][1]*h);
+      for(let k=1;k<net.p.length;k++) ctx.lineTo(net.p[k][0]*w, net.p[k][1]*h);
+      ctx.stroke();
+    });
+    PAGES[i].chu.forEach(t => {
+      const fs = Math.max(14, t.s*w);
+      ctx.fillStyle=t.c; ctx.font="600 "+fs+"px system-ui,sans-serif"; ctx.textBaseline="top";
+      ctx.fillText(t.t, t.x*w, t.y*h);
+    });
+    try{ ra.push({ten:"trang "+(i+1), data: cv.toDataURL("image/jpeg", 0.85)}); }
+    catch(e){ /* ảnh khác nguồn thì bỏ qua */ }
   }
-  const nx=document.getElementById("nx");
-  nx.innerHTML="<b>Nhận xét nhanh:</b> "+t;
-  nx.style.display="block";
+  return ra;
 }
+
+/* ---------- nộp bài ---------- */
 function poll(ma, lan){
   if(lan>60) return;
   setTimeout(()=>{
@@ -172,34 +407,54 @@ function poll(ma, lan){
       if(d && d.file){
         const o=document.getElementById("lu");
         o.className="lu ok";
-        o.innerHTML="✅ Phiếu bài làm đã lưu vào Drive của thầy · tệp: <b>"+d.file+"</b>"+
-          (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở phiếu</a>':"")+
-          "<br><span class='nho'>Nhận xét chi tiết của giáo viên nằm trong phiếu PDF.</span>";
+        o.innerHTML="✅ Bài đã lưu vào Drive của cô · tệp: <b>"+d.file+"</b>"+
+          (d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở bài</a>':"")+
+          "<br><span class='nho'>Nhận xét của giáo viên nằm trong phiếu PDF.</span>";
       } else poll(ma, lan+1);
     }).catch(()=>poll(ma, lan+1));
   }, 5000);
 }
 function nopBai(){
-  const {items}=window.__kq||{items:[]};
-  const phut=Math.max(1, Math.round((Date.now()-batDau)/60000));
-  const o=document.getElementById("lu");
-  o.className="lu"; o.textContent="Đang gửi bài…"; daNop=true;
-  const than={sach:"Super Minds "+DU.level, ten:ten.value.trim(), lop:lop.value.trim(), ma:ma.value.trim(),
-    de:"Unit "+DU.unit, dung:window.__kq.dung, tong:window.__kq.tong, phut:phut+" phút", tra_loi:items, anh:[]};
+  if(!TEN || !LOP) return moCong();
+  const o = document.getElementById("lu");
+  if(!confirm("Nộp bài cho cô nhé?")) return;
+  const go = coGoDap();
+  let dung = 0, tong = 0, items = [];
+  if(go){ cham(); dung = window.__kq.dung; tong = window.__kq.tong; items = window.__kq.items; }
+  const anh = xuatAnh();
+  const phut = Math.max(1, Math.round((Date.now()-batDau)/60000));
+  o.className = "lu"; o.textContent = "Đang gửi bài…";
+  const than = { sach:"Super Minds "+DU.level, ten:TEN, lop:LOP, ma:MA, de:"Unit "+DU.unit,
+    dung, tong, phut: phut+" phút", tra_loi: items, anh, cham_tay: !go };
   fetch(API+"/luu-bai-sm",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(than)})
    .then(r=>r.json()).then(d=>{
      if(d && d.ok && d.ma_cho){
-       o.className="lu"; o.textContent="✅ Đã nhận bài. Thầy đang chấm, phiếu PDF và nhận xét sẽ có sau 1–2 phút…";
-       poll(d.ma_cho,0);
+       o.className="lu"; o.textContent="✅ Đã nhận bài. Cô chấm và phiếu PDF sẽ có sau 1–2 phút…";
+       daNop = true; poll(d.ma_cho,0);
      } else if(d && d.ok && d.file){
        o.className="lu ok"; o.innerHTML="✅ Đã lưu phiếu: <b>"+d.file+"</b>"+(d.drive?' · <a href="'+d.drive+'" target="_blank" rel="noopener">mở phiếu</a>':"");
+       daNop = true;
      } else {
-       o.className="lu loi"; o.textContent="Chưa gửi được ("+((d&&d.loi)||"lỗi mạng")+"). Bấm “Chấm bài” lần nữa để gửi lại."; daNop=false;
+       o.className="lu loi"; o.textContent="Chưa gửi được ("+((d&&d.loi)||"lỗi mạng")+"). Bấm Nộp bài lần nữa nhé.";
      }
-   }).catch(e=>{ o.className="lu loi"; o.textContent="Mất mạng nên chưa gửi được. Bài vẫn lưu trên máy, bấm “Chấm bài” để gửi lại."; daNop=false; });
+   }).catch(()=>{ o.className="lu loi"; o.textContent="Mất mạng nên chưa gửi được. Bài vẫn lưu trên máy, bấm Nộp bài để gửi lại."; });
 }
-document.getElementById("btCham").onclick=cham;
-document.getElementById("btLai").onclick=()=>{ if(confirm("Xoá hết câu trả lời và làm lại?")){ localStorage.removeItem(KHOA); location.reload(); } };
-nap();
+
+/* ---------- khởi động ---------- */
+napNhap();
+PAGES.forEach((p,i)=>{ setTimeout(()=>ve(i), 200); });
+document.getElementById("btNop").onclick = nopBai;
+const btCham = document.getElementById("btCham");
+if(btCham) btCham.onclick = cham;
+const btLai = document.getElementById("btLai");
+if(btLai) btLai.onclick = () => {
+  if(confirm("Xoá hết bài làm và làm lại từ đầu?")){
+    localStorage.removeItem(KHOA_NHAP); localStorage.removeItem(KHOA);
+    location.reload();
+  }
+};
+document.querySelectorAll("input[data-cau], textarea[data-nhom]").forEach(i=>{
+  i.addEventListener("input", ()=>{});
+});
 </script>
 </body></html>
