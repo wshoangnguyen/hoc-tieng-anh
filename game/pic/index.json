@@ -3,8 +3,8 @@
  "nguon_tu": "2026-10-29",
  "base": "https://hoctienganhdelam.com/game/pic/",
  "quy_tac": "Ảnh của một từ nằm ở base + tên file đã mã hoá. Tên file = từ tiếng Anh viết thường + .jpg, giữ nguyên dấu cách (ví dụ 'a cup of coffee.jpg' → a%20cup%20of%20coffee.jpg). Dùng đúng trường u trong bảng này, đừng tự đoán tên.",
- "so_tu": 734,
- "so_anh": 732,
+ "so_tu": 736,
+ "so_anh": 736,
  "so_anh_le": 23,
  "tu": {
   "a cup of coffee": {
@@ -39,7 +39,9 @@
    "sach": "SM3",
    "unit": 1,
    "unit_ten": "Our school",
-   "co_anh": false
+   "co_anh": true,
+   "f": "after.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/after.jpg"
   },
   "air": {
    "vi": "không khí",
@@ -541,7 +543,9 @@
    "sach": "SM3",
    "unit": 1,
    "unit_ten": "Our school",
-   "co_anh": false
+   "co_anh": true,
+   "f": "before.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/before.jpg"
   },
   "bell": {
    "vi": "chuông",
@@ -6608,6 +6612,26 @@
    "co_anh": true,
    "f": "zigzags.jpg",
    "u": "https://hoctienganhdelam.com/game/pic/zigzags.jpg"
+  },
+  "gate": {
+   "vi": "cổng",
+   "sach": "GS1",
+   "unit": 7,
+   "unit_ten": "In the park",
+   "co_anh": true,
+   "nguon": "ngoài 6 sách",
+   "f": "gate.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/gate.jpg"
+  },
+  "garden": {
+   "vi": "khu vườn",
+   "sach": "GS1",
+   "unit": 7,
+   "unit_ten": "In the park",
+   "co_anh": true,
+   "nguon": "ngoài 6 sách",
+   "f": "garden.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/garden.jpg"
   }
  },
  "anh_le": [

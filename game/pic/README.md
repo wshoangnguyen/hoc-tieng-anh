@@ -1,6 +1,6 @@
 # Kho hình flashcard
 
-732 ảnh cho 734 từ vựng Super Minds 1–6 (ảnh AI vẽ, dùng tự do).
+736 ảnh cho 736 từ vựng Super Minds 1–6 (ảnh AI vẽ, dùng tự do).
 Cập nhật: 2026-11-09
 
 ## Cách lấy ảnh cho một từ
@@ -19,6 +19,10 @@ Ví dụ: `tu["apple"].u` = https://hoctienganhdelam.com/game/pic/apple.jpg
 - Ảnh 512×512, nền trắng, phù hợp thẻ từ vựng và slide.
 - Danh sách `anh_le` là ảnh có trong kho nhưng không nằm trong bộ từ của 6 sách.
 
-## Thiếu ảnh hiện tại
+## Ảnh vẽ tay bằng SVG
 
-after, before.
+`gate`, `garden`, `before`, `after` được vẽ lại bằng SVG (không phải ảnh AI) để bổ sung chỗ thiếu.
+Bản gốc sửa được nằm ở `svg/*.svg` cùng thư mục; sửa xong chạy lại bộ sinh bảng tra để cập nhật ảnh JPG.
+
+- `before` / `after`: vẽ theo cặp tình huống — rửa tay **trước** khi ăn / đánh răng **sau** khi ăn
+  (từ chỉ thời điểm nên hình chỉ mang tính gợi nhớ, nghĩa do chữ trên thẻ quyết định).
