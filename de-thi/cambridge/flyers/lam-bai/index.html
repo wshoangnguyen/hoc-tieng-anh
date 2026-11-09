@@ -66,6 +66,7 @@ h1{font-size:21px;margin:4px 0 2px}
 .cot-hoi{min-width:0}
 .than2.hai-cot{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
 .than2.mot-cot{grid-template-columns:1fr}
+.than2.mot-cot .cot-anh{text-align:center}
 @media(max-width:640px){
   .than2{grid-template-columns:1fr;gap:8px}
   .than2.hai-cot{grid-template-columns:1fr}
@@ -341,7 +342,7 @@ function ve(){
       } else {
       const hai = document.createElement("div"); hai.className="than2";
       // cột ảnh
-      const cotAnh = document.createElement("div");
+      const cotAnh = document.createElement("div"); cotAnh.className="cot-anh";
       if(bai.anh){
         if(bai.ve){
           const bar=document.createElement("div"); bar.className="butve";
