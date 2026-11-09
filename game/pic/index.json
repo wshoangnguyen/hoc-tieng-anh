@@ -1,0 +1,6707 @@
+{
+ "cap_nhat": "2026-11-09",
+ "nguon_tu": "2026-10-29",
+ "base": "https://hoctienganhdelam.com/game/pic/",
+ "quy_tac": "Ảnh của một từ nằm ở base + tên file đã mã hoá. Tên file = từ tiếng Anh viết thường + .jpg, giữ nguyên dấu cách (ví dụ 'a cup of coffee.jpg' → a%20cup%20of%20coffee.jpg). Dùng đúng trường u trong bảng này, đừng tự đoán tên.",
+ "so_tu": 734,
+ "so_anh": 732,
+ "so_anh_le": 23,
+ "tu": {
+  "a cup of coffee": {
+   "vi": "một tách cà phê",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "a cup of coffee.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/a%20cup%20of%20coffee.jpg"
+  },
+  "a cup of tea": {
+   "vi": "một tách trà",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "a cup of tea.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/a%20cup%20of%20tea.jpg"
+  },
+  "actor": {
+   "vi": "diễn viên",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "actor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/actor.jpg"
+  },
+  "after": {
+   "vi": "sau",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": false
+  },
+  "air": {
+   "vi": "không khí",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "air.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/air.jpg"
+  },
+  "album": {
+   "vi": "an bum",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "album.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/album.jpg"
+  },
+  "ambulance": {
+   "vi": "xe cứu thương",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "ambulance.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ambulance.jpg"
+  },
+  "anaconda": {
+   "vi": "trăn anaconda",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "anaconda.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/anaconda.jpg"
+  },
+  "anchor": {
+   "vi": "mỏ neo",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "anchor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/anchor.jpg"
+  },
+  "ancient rome": {
+   "vi": "La Mã cổ đại",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "ancient Rome.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ancient%20Rome.jpg"
+  },
+  "angry": {
+   "vi": "tức giận",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "angry.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/angry.jpg"
+  },
+  "apple": {
+   "vi": "quả táo",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "apple.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/apple.jpg"
+  },
+  "apple juice": {
+   "vi": "nước ép táo",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "apple juice.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/apple%20juice.jpg"
+  },
+  "apples": {
+   "vi": "những quả táo",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "apples.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/apples.jpg"
+  },
+  "apron": {
+   "vi": "tạp dề",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "apron.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/apron.jpg"
+  },
+  "archery": {
+   "vi": "bắn cung",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "archery.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/archery.jpg"
+  },
+  "argentina": {
+   "vi": "ác-hen-ti-na",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Argentina.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Argentina.jpg"
+  },
+  "arm": {
+   "vi": "cánh tay",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "arm.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/arm.jpg"
+  },
+  "armchair": {
+   "vi": "ghế bành",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "armchair.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/armchair.jpg"
+  },
+  "art": {
+   "vi": "mỹ thuật",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "Art.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Art.jpg"
+  },
+  "artist": {
+   "vi": "hoạ sĩ",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "artist.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/artist.jpg"
+  },
+  "ash": {
+   "vi": "tro",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "ash.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ash.jpg"
+  },
+  "astronaut": {
+   "vi": "phi hành gia",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "astronaut.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/astronaut.jpg"
+  },
+  "athletics": {
+   "vi": "điền kinh",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "athletics.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/athletics.jpg"
+  },
+  "audience": {
+   "vi": "khán giả",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "audience.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/audience.jpg"
+  },
+  "aunt": {
+   "vi": "dì",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "aunt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/aunt.jpg"
+  },
+  "australia": {
+   "vi": "úc",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Australia.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Australia.jpg"
+  },
+  "back": {
+   "vi": "cái lưng",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "back.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/back.jpg"
+  },
+  "backing singers": {
+   "vi": "ca sĩ hát bè",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "backing singers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/backing%20singers.jpg"
+  },
+  "backwards": {
+   "vi": "về phía sau",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "backwards.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/backwards.jpg"
+  },
+  "badge": {
+   "vi": "huy hiệu",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "badge.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/badge.jpg"
+  },
+  "badminton": {
+   "vi": "cầu lông",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "badminton.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/badminton.jpg"
+  },
+  "bag": {
+   "vi": "cặp sách",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "bag.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bag.jpg"
+  },
+  "baker's": {
+   "vi": "tiệm bánh mì",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "baker's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/baker%27s.jpg"
+  },
+  "ball": {
+   "vi": "quả bóng",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "ball.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ball.jpg"
+  },
+  "banana": {
+   "vi": "quả chuối",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "banana.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/banana.jpg"
+  },
+  "bananas": {
+   "vi": "những quả chuối",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "bananas.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bananas.jpg"
+  },
+  "band": {
+   "vi": "ban nhạc",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "band.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/band.jpg"
+  },
+  "bank": {
+   "vi": "ngân hàng",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "bank.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bank.jpg"
+  },
+  "barber's": {
+   "vi": "tiệm cắt tóc",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "barber's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/barber%27s.jpg"
+  },
+  "barometer": {
+   "vi": "khí áp kế",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "barometer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/barometer.jpg"
+  },
+  "barrel": {
+   "vi": "thùng phi",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "barrel.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/barrel.jpg"
+  },
+  "baseball": {
+   "vi": "bóng chày",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "baseball.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/baseball.jpg"
+  },
+  "baseball cap": {
+   "vi": "mũ lưỡi trai",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "baseball cap.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/baseball%20cap.jpg"
+  },
+  "basket": {
+   "vi": "cái giỏ",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "basket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/basket.jpg"
+  },
+  "basketball": {
+   "vi": "bóng rổ",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "basketball.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/basketball.jpg"
+  },
+  "basketball hoop": {
+   "vi": "rổ bóng rổ",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "basketball hoop.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/basketball%20hoop.jpg"
+  },
+  "bass guitar": {
+   "vi": "ghi ta bass",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "bass guitar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bass%20guitar.jpg"
+  },
+  "bat": {
+   "vi": "gậy bóng chày",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "bat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bat.jpg"
+  },
+  "bathroom": {
+   "vi": "phòng tắm",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "bathroom.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bathroom.jpg"
+  },
+  "beach": {
+   "vi": "bãi biển",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "beach.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beach.jpg"
+  },
+  "beak": {
+   "vi": "mỏ chim",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "beak.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beak.jpg"
+  },
+  "beans": {
+   "vi": "đậu",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "beans.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beans.jpg"
+  },
+  "bear": {
+   "vi": "con gấu",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "bear.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bear.jpg"
+  },
+  "beard": {
+   "vi": "râu",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "beard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beard.jpg"
+  },
+  "beautiful": {
+   "vi": "đẹp",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "beautiful.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beautiful.jpg"
+  },
+  "bed": {
+   "vi": "cái giường",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "bed.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bed.jpg"
+  },
+  "bedroom": {
+   "vi": "phòng ngủ",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "bedroom.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bedroom.jpg"
+  },
+  "beetle": {
+   "vi": "bọ cánh cứng",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "beetle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/beetle.jpg"
+  },
+  "before": {
+   "vi": "trước",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": false
+  },
+  "bell": {
+   "vi": "chuông",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "bell.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bell.jpg"
+  },
+  "belt": {
+   "vi": "thắt lưng",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "belt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/belt.jpg"
+  },
+  "bermuda triangle": {
+   "vi": "tam giác quỷ Bermuda",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "Bermuda Triangle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Bermuda%20Triangle.jpg"
+  },
+  "big": {
+   "vi": "to",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "big.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/big.jpg"
+  },
+  "big wheel": {
+   "vi": "đu quay lớn",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "big wheel.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/big%20wheel.jpg"
+  },
+  "bike": {
+   "vi": "xe đạp",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "bike.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bike.jpg"
+  },
+  "bike rack": {
+   "vi": "giá để xe đạp",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "bike rack.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bike%20rack.jpg"
+  },
+  "bill": {
+   "vi": "hoá đơn",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "bill.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bill.jpg"
+  },
+  "binoculars": {
+   "vi": "ống nhòm",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "binoculars.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/binoculars.jpg"
+  },
+  "biscuits": {
+   "vi": "bánh quy",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "biscuits.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/biscuits.jpg"
+  },
+  "black": {
+   "vi": "đen",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "black.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/black.jpg"
+  },
+  "blonde": {
+   "vi": "tóc vàng",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "blonde.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/blonde.jpg"
+  },
+  "blue": {
+   "vi": "xanh dương",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "blue.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/blue.jpg"
+  },
+  "board": {
+   "vi": "bảng",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "board.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/board.jpg"
+  },
+  "boat": {
+   "vi": "thuyền",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "boat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/boat.jpg"
+  },
+  "bodyguards": {
+   "vi": "vệ sĩ",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "bodyguards.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bodyguards.jpg"
+  },
+  "book": {
+   "vi": "sách",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "book.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/book.jpg"
+  },
+  "bookcase": {
+   "vi": "giá sách",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "bookcase.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bookcase.jpg"
+  },
+  "boots": {
+   "vi": "ủng",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "boots.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/boots.jpg"
+  },
+  "bow and arrow": {
+   "vi": "cung tên",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "bow and arrow.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bow%20and%20arrow.jpg"
+  },
+  "box": {
+   "vi": "cái hộp",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "box.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/box.jpg"
+  },
+  "boxing": {
+   "vi": "đấm bốc",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "boxing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/boxing.jpg"
+  },
+  "bracelet": {
+   "vi": "vòng tay",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "bracelet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bracelet.jpg"
+  },
+  "branch": {
+   "vi": "cành cây",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "branch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/branch.jpg"
+  },
+  "brazil": {
+   "vi": "bra-xin",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Brazil.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Brazil.jpg"
+  },
+  "bread": {
+   "vi": "bánh mì",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "bread.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bread.jpg"
+  },
+  "brush your teeth": {
+   "vi": "đánh răng",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "brush your teeth.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/brush%20your%20teeth.jpg"
+  },
+  "bubbles": {
+   "vi": "bong bóng",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "bubbles.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bubbles.jpg"
+  },
+  "build a tree house": {
+   "vi": "làm nhà trên cây",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "build a tree house.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/build%20a%20tree%20house.jpg"
+  },
+  "bus": {
+   "vi": "xe buýt",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "bus.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bus.jpg"
+  },
+  "bus station": {
+   "vi": "bến xe buýt",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "bus station.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bus%20station.jpg"
+  },
+  "bus stop": {
+   "vi": "trạm xe buýt",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "bus stop.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bus%20stop.jpg"
+  },
+  "bush": {
+   "vi": "bụi cây",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "bush.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bush.jpg"
+  },
+  "businessman": {
+   "vi": "doanh nhân",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "businessman.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/businessman.jpg"
+  },
+  "businesswoman": {
+   "vi": "nữ doanh nhân",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "businesswoman.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/businesswoman.jpg"
+  },
+  "butcher's": {
+   "vi": "cửa hàng thịt",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "butcher's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/butcher%27s.jpg"
+  },
+  "butterfly": {
+   "vi": "con bướm",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "butterfly.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/butterfly.jpg"
+  },
+  "button": {
+   "vi": "cái nút",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "button.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/button.jpg"
+  },
+  "cabin": {
+   "vi": "ca bin",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "cabin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cabin.jpg"
+  },
+  "cable car": {
+   "vi": "cáp treo",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "cable car.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cable%20car.jpg"
+  },
+  "café": {
+   "vi": "quán cà phê",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "café.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/caf%C3%A9.jpg"
+  },
+  "cake": {
+   "vi": "bánh ngọt",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "cake.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cake.jpg"
+  },
+  "campsite": {
+   "vi": "khu cắm trại",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "campsite.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/campsite.jpg"
+  },
+  "candles": {
+   "vi": "nến",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "candles.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/candles.jpg"
+  },
+  "canoe": {
+   "vi": "xuồng",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "canoe.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/canoe.jpg"
+  },
+  "captain": {
+   "vi": "thuyền trưởng",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "captain.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/captain.jpg"
+  },
+  "car": {
+   "vi": "ô tô (đồ chơi)",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "car.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/car.jpg"
+  },
+  "car park": {
+   "vi": "bãi đỗ xe",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "car park.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/car%20park.jpg"
+  },
+  "carpenter's": {
+   "vi": "hiệu thợ mộc",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "carpenter's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/carpenter%27s.jpg"
+  },
+  "carpet": {
+   "vi": "thảm",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "carpet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/carpet.jpg"
+  },
+  "carrots": {
+   "vi": "cà rốt",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "carrots.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/carrots.jpg"
+  },
+  "cat": {
+   "vi": "con mèo",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "cat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cat.jpg"
+  },
+  "catch a fish": {
+   "vi": "câu cá",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "catch a fish.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/catch%20a%20fish.jpg"
+  },
+  "cave house": {
+   "vi": "nhà trong hang",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "cave house.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cave%20house.jpg"
+  },
+  "cellar": {
+   "vi": "tầng hầm",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "cellar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cellar.jpg"
+  },
+  "chair": {
+   "vi": "ghế",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "chair.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chair.jpg"
+  },
+  "chariot": {
+   "vi": "xe ngựa chiến",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "chariot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chariot.jpg"
+  },
+  "cheeks": {
+   "vi": "đôi má",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "cheeks.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cheeks.jpg"
+  },
+  "cheese": {
+   "vi": "phô mai",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "cheese.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cheese.jpg"
+  },
+  "cheese sandwich": {
+   "vi": "bánh mì kẹp phô mai",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "cheese sandwich.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cheese%20sandwich.jpg"
+  },
+  "chemist's": {
+   "vi": "hiệu thuốc",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "chemist's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chemist%27s.jpg"
+  },
+  "chicken": {
+   "vi": "thịt gà",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "chicken.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chicken.jpg"
+  },
+  "chile": {
+   "vi": "chi lê",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Chile.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Chile.jpg"
+  },
+  "chin": {
+   "vi": "cằm",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "chin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chin.jpg"
+  },
+  "china": {
+   "vi": "trung quốc",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "China.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/China.jpg"
+  },
+  "chopsticks": {
+   "vi": "đũa",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "chopsticks.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/chopsticks.jpg"
+  },
+  "cinema": {
+   "vi": "rạp chiếu phim",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "cinema.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cinema.jpg"
+  },
+  "city": {
+   "vi": "thành phố",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "city.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/city.jpg"
+  },
+  "cleaner": {
+   "vi": "người dọn dẹp",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "cleaner.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cleaner.jpg"
+  },
+  "climbing trees": {
+   "vi": "trèo cây",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "climbing trees.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/climbing%20trees.jpg"
+  },
+  "clock": {
+   "vi": "đồng hồ",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "clock.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/clock.jpg"
+  },
+  "cloudy": {
+   "vi": "nhiều mây",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "cloudy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cloudy.jpg"
+  },
+  "coconut": {
+   "vi": "quả dừa",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "coconut.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/coconut.jpg"
+  },
+  "coins": {
+   "vi": "đồng xu",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "coins.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/coins.jpg"
+  },
+  "cold": {
+   "vi": "cảm lạnh",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "cold.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cold.jpg"
+  },
+  "collect wood": {
+   "vi": "nhặt củi",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "collect wood.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/collect%20wood.jpg"
+  },
+  "columns": {
+   "vi": "cột",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "columns.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/columns.jpg"
+  },
+  "comb": {
+   "vi": "cái lược",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "comb.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/comb.jpg"
+  },
+  "comedy": {
+   "vi": "hài kịch",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "comedy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/comedy.jpg"
+  },
+  "comet": {
+   "vi": "sao chổi",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "comet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/comet.jpg"
+  },
+  "computer game": {
+   "vi": "trò chơi điện tử",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "computer game.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/computer%20game.jpg"
+  },
+  "computer programmer": {
+   "vi": "lập trình viên máy tính",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "computer programmer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/computer%20programmer.jpg"
+  },
+  "control panel": {
+   "vi": "bảng điều khiển",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "control panel.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/control%20panel.jpg"
+  },
+  "cook the dinner": {
+   "vi": "nấu bữa tối",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "cook the dinner.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cook%20the%20dinner.jpg"
+  },
+  "costume": {
+   "vi": "trang phục",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "costume.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/costume.jpg"
+  },
+  "cough": {
+   "vi": "ho",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "cough.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cough.jpg"
+  },
+  "countdown clock": {
+   "vi": "đồng hồ đếm ngược",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "countdown clock.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/countdown%20clock.jpg"
+  },
+  "countryside": {
+   "vi": "vùng quê",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "countryside.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/countryside.jpg"
+  },
+  "court": {
+   "vi": "sân",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "court.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/court.jpg"
+  },
+  "cousin": {
+   "vi": "anh chị em họ",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "cousin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cousin.jpg"
+  },
+  "crater": {
+   "vi": "miệng núi lửa",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "crater.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/crater.jpg"
+  },
+  "crayon": {
+   "vi": "bút sáp",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "crayon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/crayon.jpg"
+  },
+  "creeper": {
+   "vi": "cây leo",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "creeper.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/creeper.jpg"
+  },
+  "crocodile": {
+   "vi": "cá sấu",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "crocodile.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/crocodile.jpg"
+  },
+  "crown": {
+   "vi": "vương miện",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "crown.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/crown.jpg"
+  },
+  "cup and saucer": {
+   "vi": "tách và đĩa",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "cup and saucer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cup%20and%20saucer.jpg"
+  },
+  "cupboard": {
+   "vi": "tủ",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "cupboard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cupboard.jpg"
+  },
+  "curly": {
+   "vi": "xoăn",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "curly.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/curly.jpg"
+  },
+  "cushion": {
+   "vi": "đệm",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "cushion.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cushion.jpg"
+  },
+  "dance": {
+   "vi": "nhảy múa",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "dance.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dance.jpg"
+  },
+  "dancer": {
+   "vi": "vũ công",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "dancer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dancer.jpg"
+  },
+  "dark": {
+   "vi": "tối",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "dark.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dark.jpg"
+  },
+  "dentist": {
+   "vi": "nha sĩ",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "dentist.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dentist.jpg"
+  },
+  "designer": {
+   "vi": "nhà thiết kế",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "designer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/designer.jpg"
+  },
+  "desk": {
+   "vi": "bàn học",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "desk.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/desk.jpg"
+  },
+  "dessert": {
+   "vi": "món tráng miệng",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "dessert.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dessert.jpg"
+  },
+  "dining room": {
+   "vi": "phòng ăn",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "dining room.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dining%20room.jpg"
+  },
+  "dive into the water": {
+   "vi": "lặn xuống nước",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "dive into the water.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dive%20into%20the%20water.jpg"
+  },
+  "do the shopping": {
+   "vi": "đi mua sắm",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "do the shopping.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/do%20the%20shopping.jpg"
+  },
+  "doctor": {
+   "vi": "bác sĩ",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "doctor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/doctor.jpg"
+  },
+  "dodgem cars": {
+   "vi": "xe đụng",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "dodgem cars.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dodgem%20cars.jpg"
+  },
+  "dog": {
+   "vi": "con chó",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "dog.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dog.jpg"
+  },
+  "doing puzzles": {
+   "vi": "xếp hình",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "doing puzzles.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/doing%20puzzles.jpg"
+  },
+  "doll": {
+   "vi": "búp bê",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "doll.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/doll.jpg"
+  },
+  "dolphin": {
+   "vi": "cá heo",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "dolphin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dolphin.jpg"
+  },
+  "donkey": {
+   "vi": "con lừa",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "donkey.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/donkey.jpg"
+  },
+  "door": {
+   "vi": "cửa",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "door.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/door.jpg"
+  },
+  "downstairs": {
+   "vi": "dưới nhà",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "downstairs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/downstairs.jpg"
+  },
+  "drill": {
+   "vi": "máy khoan",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "drill.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/drill.jpg"
+  },
+  "drum kit": {
+   "vi": "bộ trống",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "drum kit.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/drum%20kit.jpg"
+  },
+  "drums": {
+   "vi": "trống",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "drums.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/drums.jpg"
+  },
+  "dry the dishes": {
+   "vi": "lau khô bát",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "dry the dishes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dry%20the%20dishes.jpg"
+  },
+  "dry your clothes": {
+   "vi": "phơi quần áo",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "dry your clothes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/dry%20your%20clothes.jpg"
+  },
+  "duck": {
+   "vi": "con vịt",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "duck.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/duck.jpg"
+  },
+  "earache": {
+   "vi": "đau tai",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "earache.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/earache.jpg"
+  },
+  "earrings": {
+   "vi": "hoa tai",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "earrings.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/earrings.jpg"
+  },
+  "ears": {
+   "vi": "đôi tai",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "ears.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ears.jpg"
+  },
+  "earthquake": {
+   "vi": "động đất",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "earthquake.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/earthquake.jpg"
+  },
+  "eat ice cream": {
+   "vi": "ăn kem",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "eat ice cream.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eat%20ice%20cream.jpg"
+  },
+  "ecosystem": {
+   "vi": "hệ sinh thái",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "ecosystem.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ecosystem.jpg"
+  },
+  "eggs": {
+   "vi": "trứng",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "eggs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eggs.jpg"
+  },
+  "egypt": {
+   "vi": "ai cập",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Egypt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Egypt.jpg"
+  },
+  "eight": {
+   "vi": "tám",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "eight.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eight.jpg"
+  },
+  "eighteen": {
+   "vi": "mười tám",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "eighteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eighteen.jpg"
+  },
+  "eighty": {
+   "vi": "tám mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "eighty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eighty.jpg"
+  },
+  "electric fan": {
+   "vi": "quạt điện",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "electric fan.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/electric%20fan.jpg"
+  },
+  "electric guitar": {
+   "vi": "ghi ta điện",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "electric guitar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/electric%20guitar.jpg"
+  },
+  "electric toothbrush": {
+   "vi": "bàn chải điện",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "electric toothbrush.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/electric%20toothbrush.jpg"
+  },
+  "elephant": {
+   "vi": "con voi",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "elephant.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/elephant.jpg"
+  },
+  "eleven": {
+   "vi": "mười một",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "eleven.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eleven.jpg"
+  },
+  "emergency services": {
+   "vi": "dịch vụ khẩn cấp",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "emergency services.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/emergency%20services.jpg"
+  },
+  "engineer": {
+   "vi": "kỹ sư",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "engineer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/engineer.jpg"
+  },
+  "english": {
+   "vi": "tiếng anh",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "English.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/English.jpg"
+  },
+  "erupt": {
+   "vi": "phun trào",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "erupt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/erupt.jpg"
+  },
+  "escalator": {
+   "vi": "thang cuốn",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "escalator.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/escalator.jpg"
+  },
+  "excited": {
+   "vi": "háo hức",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "excited.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/excited.jpg"
+  },
+  "experiment": {
+   "vi": "thí nghiệm",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "experiment.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/experiment.jpg"
+  },
+  "explosion": {
+   "vi": "vụ nổ",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "explosion.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/explosion.jpg"
+  },
+  "eye-patch": {
+   "vi": "băng che mắt",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "eye-patch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eye-patch.jpg"
+  },
+  "eyes": {
+   "vi": "đôi mắt",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "eyes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/eyes.jpg"
+  },
+  "face": {
+   "vi": "khuôn mặt",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "face.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/face.jpg"
+  },
+  "fair": {
+   "vi": "sáng màu",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "fair.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fair.jpg"
+  },
+  "fans": {
+   "vi": "người hâm mộ",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "fans.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fans.jpg"
+  },
+  "farmer": {
+   "vi": "nông dân",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "farmer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/farmer.jpg"
+  },
+  "feathers": {
+   "vi": "lông vũ",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "feathers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/feathers.jpg"
+  },
+  "feed the dog": {
+   "vi": "cho chó ăn",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "feed the dog.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/feed%20the%20dog.jpg"
+  },
+  "fencing": {
+   "vi": "đấu kiếm",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "fencing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fencing.jpg"
+  },
+  "field": {
+   "vi": "cánh đồng",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "field.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/field.jpg"
+  },
+  "fifteen": {
+   "vi": "mười lăm",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "fifteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fifteen.jpg"
+  },
+  "fifty": {
+   "vi": "năm mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "fifty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fifty.jpg"
+  },
+  "fingers": {
+   "vi": "các ngón tay",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "fingers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fingers.jpg"
+  },
+  "fire": {
+   "vi": "ngọn lửa",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "fire.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fire.jpg"
+  },
+  "fire engine": {
+   "vi": "xe cứu hỏa",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "fire engine.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fire%20engine.jpg"
+  },
+  "firefighter": {
+   "vi": "lính cứu hỏa",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "firefighter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/firefighter.jpg"
+  },
+  "fish": {
+   "vi": "cá",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "fish.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fish.jpg"
+  },
+  "five": {
+   "vi": "năm",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "five.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/five.jpg"
+  },
+  "flag": {
+   "vi": "lá cờ",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "flag.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/flag.jpg"
+  },
+  "flash": {
+   "vi": "tên nhân vật (chó)",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "Flash.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Flash.jpg"
+  },
+  "flat": {
+   "vi": "căn hộ",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "flat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/flat.jpg"
+  },
+  "floating skateboard": {
+   "vi": "ván trượt bay",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "floating skateboard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/floating%20skateboard.jpg"
+  },
+  "flood": {
+   "vi": "lũ lụt",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "flood.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/flood.jpg"
+  },
+  "floor": {
+   "vi": "sàn nhà",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "floor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/floor.jpg"
+  },
+  "flowers": {
+   "vi": "hoa",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "flowers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/flowers.jpg"
+  },
+  "fly a kite": {
+   "vi": "thả diều",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "fly a kite.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fly%20a%20kite.jpg"
+  },
+  "flying a kite": {
+   "vi": "thả diều",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "flying a kite.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/flying%20a%20kite.jpg"
+  },
+  "foggy": {
+   "vi": "sương mù",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "foggy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/foggy.jpg"
+  },
+  "food": {
+   "vi": "thức ăn",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "food.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/food.jpg"
+  },
+  "foot": {
+   "vi": "bàn chân",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "foot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/foot.jpg"
+  },
+  "football": {
+   "vi": "bóng đá",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "football.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/football.jpg"
+  },
+  "football pitch": {
+   "vi": "sân bóng đá",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "football pitch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/football%20pitch.jpg"
+  },
+  "forest": {
+   "vi": "khu rừng",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "forest.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/forest.jpg"
+  },
+  "fork": {
+   "vi": "cái nĩa",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "fork.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fork.jpg"
+  },
+  "forty": {
+   "vi": "bốn mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "forty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/forty.jpg"
+  },
+  "forwards": {
+   "vi": "về phía trước",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "forwards.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/forwards.jpg"
+  },
+  "fountain": {
+   "vi": "đài phun nước",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "fountain.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fountain.jpg"
+  },
+  "four": {
+   "vi": "bốn",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "four.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/four.jpg"
+  },
+  "fourteen": {
+   "vi": "mười bốn",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "fourteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fourteen.jpg"
+  },
+  "friday": {
+   "vi": "thứ Sáu",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Friday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Friday.jpg"
+  },
+  "frog": {
+   "vi": "con ếch",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "frog.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/frog.jpg"
+  },
+  "fruit": {
+   "vi": "trái cây",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "fruit.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fruit.jpg"
+  },
+  "funfair": {
+   "vi": "hội chợ",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "funfair.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/funfair.jpg"
+  },
+  "games console": {
+   "vi": "máy chơi game",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "games console.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/games%20console.jpg"
+  },
+  "geography": {
+   "vi": "địa lý",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "Geography.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Geography.jpg"
+  },
+  "get dressed": {
+   "vi": "mặc quần áo",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "get dressed.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/get%20dressed.jpg"
+  },
+  "get up": {
+   "vi": "thức dậy",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "get up.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/get%20up.jpg"
+  },
+  "glasses": {
+   "vi": "kính",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "glasses.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/glasses.jpg"
+  },
+  "gloves": {
+   "vi": "găng tay",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "gloves.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/gloves.jpg"
+  },
+  "go camping": {
+   "vi": "đi cắm trại",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "go camping.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20camping.jpg"
+  },
+  "go fishing": {
+   "vi": "đi câu cá",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "go fishing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20fishing.jpg"
+  },
+  "go hiking": {
+   "vi": "đi leo núi",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "go hiking.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20hiking.jpg"
+  },
+  "go swimming": {
+   "vi": "đi bơi",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "go swimming.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20swimming.jpg"
+  },
+  "go to bed": {
+   "vi": "đi ngủ",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "go to bed.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20to%20bed.jpg"
+  },
+  "go to school": {
+   "vi": "đi học",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "go to school.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go%20to%20school.jpg"
+  },
+  "go-kart": {
+   "vi": "xe kart",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "go-kart.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/go-kart.jpg"
+  },
+  "goal": {
+   "vi": "khung thành",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "goal.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/goal.jpg"
+  },
+  "goggles": {
+   "vi": "kính bơi",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "goggles.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/goggles.jpg"
+  },
+  "granddaughter": {
+   "vi": "cháu gái",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "granddaughter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/granddaughter.jpg"
+  },
+  "grandparents": {
+   "vi": "ông bà",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "grandparents.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/grandparents.jpg"
+  },
+  "grandson": {
+   "vi": "cháu trai",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "grandson.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/grandson.jpg"
+  },
+  "grapes": {
+   "vi": "chùm nho",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "grapes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/grapes.jpg"
+  },
+  "grassland": {
+   "vi": "đồng cỏ",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "grassland.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/grassland.jpg"
+  },
+  "green": {
+   "vi": "xanh lá",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "green.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/green.jpg"
+  },
+  "greens": {
+   "vi": "rau xanh",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "greens.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/greens.jpg"
+  },
+  "grocer's": {
+   "vi": "cửa hàng tạp hoá",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "grocer's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/grocer%27s.jpg"
+  },
+  "gun": {
+   "vi": "súng",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "gun.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/gun.jpg"
+  },
+  "gym": {
+   "vi": "phòng tập",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "gym.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/gym.jpg"
+  },
+  "gymnastics": {
+   "vi": "thể dục dụng cụ",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "gymnastics.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/gymnastics.jpg"
+  },
+  "hair": {
+   "vi": "mái tóc",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "hair.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hair.jpg"
+  },
+  "hall": {
+   "vi": "sảnh/hành lang",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "hall.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hall.jpg"
+  },
+  "hammer": {
+   "vi": "cái búa",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "hammer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hammer.jpg"
+  },
+  "hammock": {
+   "vi": "cái võng",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "hammock.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hammock.jpg"
+  },
+  "hand": {
+   "vi": "bàn tay",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "hand.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hand.jpg"
+  },
+  "handcuffs": {
+   "vi": "còng tay",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "handcuffs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/handcuffs.jpg"
+  },
+  "hang-glider": {
+   "vi": "dù lượn",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "hang-glider.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hang-glider.jpg"
+  },
+  "happy": {
+   "vi": "vui vẻ",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "happy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/happy.jpg"
+  },
+  "harp": {
+   "vi": "đàn hạc",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "harp.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/harp.jpg"
+  },
+  "hat": {
+   "vi": "cái mũ",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "hat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hat.jpg"
+  },
+  "have breakfast": {
+   "vi": "ăn sáng",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "have breakfast.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/have%20breakfast.jpg"
+  },
+  "have dinner": {
+   "vi": "ăn tối",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "have dinner.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/have%20dinner.jpg"
+  },
+  "have lunch": {
+   "vi": "ăn trưa",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "have lunch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/have%20lunch.jpg"
+  },
+  "head": {
+   "vi": "cái đầu",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "head.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/head.jpg"
+  },
+  "headache": {
+   "vi": "đau đầu",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "headache.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/headache.jpg"
+  },
+  "headset": {
+   "vi": "tai nghe",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "headset.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/headset.jpg"
+  },
+  "helicopter": {
+   "vi": "máy bay trực thăng",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "helicopter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/helicopter.jpg"
+  },
+  "helmet": {
+   "vi": "mũ bảo hiểm",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "helmet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/helmet.jpg"
+  },
+  "help in the garden": {
+   "vi": "giúp việc vườn",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "help in the garden.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/help%20in%20the%20garden.jpg"
+  },
+  "hieroglyphics": {
+   "vi": "chữ tượng hình",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "hieroglyphics.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hieroglyphics.jpg"
+  },
+  "high jump": {
+   "vi": "nhảy cao",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "high jump.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/high%20jump.jpg"
+  },
+  "hippo": {
+   "vi": "hà mã",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "hippo.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hippo.jpg"
+  },
+  "history": {
+   "vi": "lịch sử",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "History.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/History.jpg"
+  },
+  "hit record": {
+   "vi": "đĩa nhạc hit",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "hit record.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hit%20record.jpg"
+  },
+  "hockey": {
+   "vi": "khúc côn cầu",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "hockey.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hockey.jpg"
+  },
+  "hole": {
+   "vi": "cái hố",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "hole.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hole.jpg"
+  },
+  "holster": {
+   "vi": "bao súng",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "holster.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/holster.jpg"
+  },
+  "hook": {
+   "vi": "cái móc",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "hook.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hook.jpg"
+  },
+  "horizon": {
+   "vi": "đường chân trời",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "horizon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/horizon.jpg"
+  },
+  "horn": {
+   "vi": "cái sừng",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "horn.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/horn.jpg"
+  },
+  "horse and cart": {
+   "vi": "xe ngựa",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "horse and cart.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/horse%20and%20cart.jpg"
+  },
+  "hospital": {
+   "vi": "bệnh viện",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "hospital.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hospital.jpg"
+  },
+  "house": {
+   "vi": "ngôi nhà",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "house.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/house.jpg"
+  },
+  "house boat": {
+   "vi": "nhà thuyền",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "house boat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/house%20boat.jpg"
+  },
+  "hungry": {
+   "vi": "đói",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "hungry.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hungry.jpg"
+  },
+  "hurdles": {
+   "vi": "chạy vượt rào",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "hurdles.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/hurdles.jpg"
+  },
+  "i.t.": {
+   "vi": "tin học",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "I.T..jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/I.T..jpg"
+  },
+  "ice floe": {
+   "vi": "tảng băng nổi",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "ice floe.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ice%20floe.jpg"
+  },
+  "iceberg": {
+   "vi": "tảng băng trôi",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "iceberg.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/iceberg.jpg"
+  },
+  "igloo": {
+   "vi": "lều tuyết",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "igloo.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/igloo.jpg"
+  },
+  "india": {
+   "vi": "ấn độ",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "India.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/India.jpg"
+  },
+  "inline skates": {
+   "vi": "giày trượt patin",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "inline skates.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/inline%20skates.jpg"
+  },
+  "instructions": {
+   "vi": "hướng dẫn",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "instructions.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/instructions.jpg"
+  },
+  "island": {
+   "vi": "hòn đảo",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "island.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/island.jpg"
+  },
+  "jacket": {
+   "vi": "áo khoác",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "jacket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jacket.jpg"
+  },
+  "jaguar": {
+   "vi": "báo đốm",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "jaguar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jaguar.jpg"
+  },
+  "jail": {
+   "vi": "nhà tù",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "jail.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jail.jpg"
+  },
+  "jeans": {
+   "vi": "quần jeans",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "jeans.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jeans.jpg"
+  },
+  "jet pack": {
+   "vi": "ba lô phản lực",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "jet pack.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jet%20pack.jpg"
+  },
+  "jeweller's": {
+   "vi": "hiệu kim hoàn",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "jeweller's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jeweller%27s.jpg"
+  },
+  "journalist": {
+   "vi": "nhà báo",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "journalist.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/journalist.jpg"
+  },
+  "jump": {
+   "vi": "nhảy",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "jump.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/jump.jpg"
+  },
+  "keep a scrapbook": {
+   "vi": "làm sổ lưu niệm",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "keep a scrapbook.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/keep%20a%20scrapbook.jpg"
+  },
+  "key": {
+   "vi": "chìa khoá",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "key.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/key.jpg"
+  },
+  "key ring": {
+   "vi": "móc khoá",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "key ring.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/key%20ring.jpg"
+  },
+  "keyboard": {
+   "vi": "đàn phím",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "keyboard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/keyboard.jpg"
+  },
+  "kitchen": {
+   "vi": "nhà bếp",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "kitchen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/kitchen.jpg"
+  },
+  "kite": {
+   "vi": "cái diều",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "kite.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/kite.jpg"
+  },
+  "kiwis": {
+   "vi": "quả kiwi",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "kiwis.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/kiwis.jpg"
+  },
+  "knee": {
+   "vi": "đầu gối",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "knee.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/knee.jpg"
+  },
+  "knife": {
+   "vi": "con dao",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "knife.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/knife.jpg"
+  },
+  "knight": {
+   "vi": "hiệp sĩ",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "knight.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/knight.jpg"
+  },
+  "kraken": {
+   "vi": "quái vật Kraken",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "Kraken.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Kraken.jpg"
+  },
+  "lake": {
+   "vi": "cái hồ",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "lake.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lake.jpg"
+  },
+  "lamp": {
+   "vi": "đèn",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "lamp.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lamp.jpg"
+  },
+  "land": {
+   "vi": "đất liền",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "land.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/land.jpg"
+  },
+  "laptop": {
+   "vi": "máy tính xách tay",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "laptop.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/laptop.jpg"
+  },
+  "launch pad": {
+   "vi": "bệ phóng",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "launch pad.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/launch%20pad.jpg"
+  },
+  "lava": {
+   "vi": "dung nham",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "lava.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lava.jpg"
+  },
+  "learn to swim": {
+   "vi": "học bơi",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "learn to swim.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/learn%20to%20swim.jpg"
+  },
+  "leaves": {
+   "vi": "lá",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "leaves.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/leaves.jpg"
+  },
+  "leg": {
+   "vi": "chân",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "leg.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/leg.jpg"
+  },
+  "lemonade": {
+   "vi": "nước chanh",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "lemonade.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lemonade.jpg"
+  },
+  "lemons": {
+   "vi": "quả chanh",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "lemons.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lemons.jpg"
+  },
+  "lever": {
+   "vi": "đòn bẩy",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "lever.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lever.jpg"
+  },
+  "librarian": {
+   "vi": "thủ thư",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "librarian.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/librarian.jpg"
+  },
+  "library": {
+   "vi": "thư viện",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "library.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/library.jpg"
+  },
+  "lifeboat": {
+   "vi": "xuồng cứu sinh",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "lifeboat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lifeboat.jpg"
+  },
+  "lift": {
+   "vi": "thang máy",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "lift.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lift.jpg"
+  },
+  "lightning": {
+   "vi": "tia chớp",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "lightning.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lightning.jpg"
+  },
+  "liquid": {
+   "vi": "chất lỏng",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "liquid.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/liquid.jpg"
+  },
+  "listen": {
+   "vi": "nghe",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "listen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/listen.jpg"
+  },
+  "listen to music": {
+   "vi": "nghe nhạc",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "listen to music.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/listen%20to%20music.jpg"
+  },
+  "litter bin": {
+   "vi": "thùng rác",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "litter bin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/litter%20bin.jpg"
+  },
+  "living room": {
+   "vi": "phòng khách",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "living room.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/living%20room.jpg"
+  },
+  "lizard": {
+   "vi": "con thằn lằn",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "lizard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lizard.jpg"
+  },
+  "loch ness monster": {
+   "vi": "quái vật Loch Ness",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "Loch Ness Monster.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Loch%20Ness%20Monster.jpg"
+  },
+  "log": {
+   "vi": "khúc gỗ",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "log.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/log.jpg"
+  },
+  "long": {
+   "vi": "dài",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "long.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/long.jpg"
+  },
+  "long jump": {
+   "vi": "nhảy xa",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "long jump.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/long%20jump.jpg"
+  },
+  "look": {
+   "vi": "nhìn",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "look.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/look.jpg"
+  },
+  "look for shells": {
+   "vi": "tìm vỏ sò",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "look for shells.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/look%20for%20shells.jpg"
+  },
+  "lorry": {
+   "vi": "xe tải",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "lorry.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lorry.jpg"
+  },
+  "lunar module": {
+   "vi": "mô-đun mặt trăng",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "lunar module.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lunar%20module.jpg"
+  },
+  "lunch": {
+   "vi": "bữa trưa",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "lunch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lunch.jpg"
+  },
+  "lute": {
+   "vi": "đàn luýt",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "lute.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lute.jpg"
+  },
+  "machine": {
+   "vi": "máy móc",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "machine.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/machine.jpg"
+  },
+  "main course": {
+   "vi": "món chính",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "main course.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/main%20course.jpg"
+  },
+  "make a fire": {
+   "vi": "nhóm lửa",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "make a fire.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/make%20a%20fire.jpg"
+  },
+  "make a raft": {
+   "vi": "làm bè",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "make a raft.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/make%20a%20raft.jpg"
+  },
+  "make a sandcastle": {
+   "vi": "xây lâu đài cát",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "make a sandcastle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/make%20a%20sandcastle.jpg"
+  },
+  "make-up": {
+   "vi": "trang điểm",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "make-up.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/make-up.jpg"
+  },
+  "mangoes": {
+   "vi": "quả xoài",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "mangoes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mangoes.jpg"
+  },
+  "map": {
+   "vi": "bản đồ",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "map.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/map.jpg"
+  },
+  "market square": {
+   "vi": "quảng trường chợ",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "market square.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/market%20square.jpg"
+  },
+  "marketplace": {
+   "vi": "khu chợ",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "marketplace.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/marketplace.jpg"
+  },
+  "mask": {
+   "vi": "mặt nạ",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "mask.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mask.jpg"
+  },
+  "mast": {
+   "vi": "cột buồm",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "mast.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mast.jpg"
+  },
+  "maths": {
+   "vi": "toán",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "Maths.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Maths.jpg"
+  },
+  "mayor": {
+   "vi": "thị trưởng",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "mayor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mayor.jpg"
+  },
+  "meat": {
+   "vi": "thịt",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "meat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/meat.jpg"
+  },
+  "mechanic": {
+   "vi": "thợ sửa máy",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "mechanic.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mechanic.jpg"
+  },
+  "menu": {
+   "vi": "thực đơn",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "menu.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/menu.jpg"
+  },
+  "mexico": {
+   "vi": "mê-xi-cô",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Mexico.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Mexico.jpg"
+  },
+  "microlight": {
+   "vi": "máy bay siêu nhẹ",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "microlight.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/microlight.jpg"
+  },
+  "microphone": {
+   "vi": "micrô",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "microphone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/microphone.jpg"
+  },
+  "mirror": {
+   "vi": "gương",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "mirror.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mirror.jpg"
+  },
+  "misty": {
+   "vi": "tên nhân vật (mèo)",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "Misty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Misty.jpg"
+  },
+  "mittens": {
+   "vi": "găng tay",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "mittens.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mittens.jpg"
+  },
+  "mobile phone": {
+   "vi": "điện thoại",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "mobile phone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mobile%20phone.jpg"
+  },
+  "monday": {
+   "vi": "thứ Hai",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Monday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Monday.jpg"
+  },
+  "monkey": {
+   "vi": "con khỉ",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "monkey.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/monkey.jpg"
+  },
+  "monorail": {
+   "vi": "tàu một ray",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "monorail.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/monorail.jpg"
+  },
+  "monster": {
+   "vi": "quái vật",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "monster.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/monster.jpg"
+  },
+  "moon": {
+   "vi": "mặt trăng",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "moon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/moon.jpg"
+  },
+  "motorbike": {
+   "vi": "xe máy",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "motorbike.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/motorbike.jpg"
+  },
+  "mountain": {
+   "vi": "ngọn núi",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "mountain.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mountain.jpg"
+  },
+  "mountains": {
+   "vi": "núi",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "mountains.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mountains.jpg"
+  },
+  "moustache": {
+   "vi": "ria mép",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "moustache.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/moustache.jpg"
+  },
+  "mouth": {
+   "vi": "cái miệng",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "mouth.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mouth.jpg"
+  },
+  "mummy": {
+   "vi": "xác ướp",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "mummy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mummy.jpg"
+  },
+  "music": {
+   "vi": "âm nhạc",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "Music.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Music.jpg"
+  },
+  "nails": {
+   "vi": "đinh",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "nails.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/nails.jpg"
+  },
+  "napkin": {
+   "vi": "khăn ăn",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "napkin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/napkin.jpg"
+  },
+  "neck": {
+   "vi": "cái cổ",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "neck.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/neck.jpg"
+  },
+  "necklace": {
+   "vi": "vòng cổ",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "necklace.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/necklace.jpg"
+  },
+  "net": {
+   "vi": "lưới",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "net.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/net.jpg"
+  },
+  "new": {
+   "vi": "mới",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "new.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/new.jpg"
+  },
+  "nine": {
+   "vi": "chín",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "nine.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/nine.jpg"
+  },
+  "nineteen": {
+   "vi": "mười chín",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "nineteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/nineteen.jpg"
+  },
+  "ninety": {
+   "vi": "chín mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "ninety.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ninety.jpg"
+  },
+  "northern lights": {
+   "vi": "cực quang",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "Northern Lights.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Northern%20Lights.jpg"
+  },
+  "nose": {
+   "vi": "cái mũi",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "nose.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/nose.jpg"
+  },
+  "notebook": {
+   "vi": "vở",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "notebook.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/notebook.jpg"
+  },
+  "numbers 21-100": {
+   "vi": "các số 21-100",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "numbers 21-100.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/numbers%2021-100.jpg"
+  },
+  "nurse": {
+   "vi": "y tá",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "nurse.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/nurse.jpg"
+  },
+  "octopus": {
+   "vi": "bạch tuộc",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "octopus.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/octopus.jpg"
+  },
+  "old": {
+   "vi": "cũ",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "old.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/old.jpg"
+  },
+  "one": {
+   "vi": "một",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "one.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/one.jpg"
+  },
+  "one hundred": {
+   "vi": "một trăm",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "one hundred.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/one%20hundred.jpg"
+  },
+  "orange": {
+   "vi": "cam",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "orange.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/orange.jpg"
+  },
+  "p.e.": {
+   "vi": "thể dục",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "P.E..jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/P.E..jpg"
+  },
+  "paint a picture": {
+   "vi": "vẽ tranh",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "paint a picture.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/paint%20a%20picture.jpg"
+  },
+  "paint pot": {
+   "vi": "hộp sơn",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "paint pot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/paint%20pot.jpg"
+  },
+  "paintbrush": {
+   "vi": "chổi sơn",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "paintbrush.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/paintbrush.jpg"
+  },
+  "palm tree": {
+   "vi": "cây cọ",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "palm tree.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/palm%20tree.jpg"
+  },
+  "paper": {
+   "vi": "giấy",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "paper.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/paper.jpg"
+  },
+  "parachute": {
+   "vi": "dù nhảy",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "parachute.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/parachute.jpg"
+  },
+  "paramedic": {
+   "vi": "nhân viên cấp cứu",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "paramedic.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/paramedic.jpg"
+  },
+  "parents": {
+   "vi": "bố mẹ",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "parents.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/parents.jpg"
+  },
+  "park": {
+   "vi": "công viên",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "park.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/park.jpg"
+  },
+  "parrot": {
+   "vi": "con vẹt",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "parrot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/parrot.jpg"
+  },
+  "path": {
+   "vi": "lối đi",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "path.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/path.jpg"
+  },
+  "peas": {
+   "vi": "đậu Hà Lan",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "peas.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/peas.jpg"
+  },
+  "pen": {
+   "vi": "bút mực",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "pen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pen.jpg"
+  },
+  "pencil": {
+   "vi": "bút chì",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "pencil.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pencil.jpg"
+  },
+  "pencil case": {
+   "vi": "hộp bút",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "pencil case.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pencil%20case.jpg"
+  },
+  "pepper": {
+   "vi": "hạt tiêu",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "pepper.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pepper.jpg"
+  },
+  "pharaoh": {
+   "vi": "pha-ra-ông",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "pharaoh.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pharaoh.jpg"
+  },
+  "photographer": {
+   "vi": "nhiếp ảnh gia",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "photographer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/photographer.jpg"
+  },
+  "picnic": {
+   "vi": "dã ngoại",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "picnic.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/picnic.jpg"
+  },
+  "pink": {
+   "vi": "hồng",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "pink.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pink.jpg"
+  },
+  "pistol": {
+   "vi": "súng ngắn",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "pistol.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pistol.jpg"
+  },
+  "pitch": {
+   "vi": "sân bóng",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "pitch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pitch.jpg"
+  },
+  "pizza": {
+   "vi": "bánh pizza",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "pizza.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pizza.jpg"
+  },
+  "plain": {
+   "vi": "trơn (không hoa văn)",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "plain.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/plain.jpg"
+  },
+  "plane": {
+   "vi": "máy bay (đồ chơi)",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "plane.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/plane.jpg"
+  },
+  "planet": {
+   "vi": "hành tinh",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "planet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/planet.jpg"
+  },
+  "plant": {
+   "vi": "cây / trồng",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "plant.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/plant.jpg"
+  },
+  "plate": {
+   "vi": "cái đĩa",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "plate.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/plate.jpg"
+  },
+  "platform": {
+   "vi": "sân ga",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "platform.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/platform.jpg"
+  },
+  "play": {
+   "vi": "vở kịch",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "play.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play.jpg"
+  },
+  "play board games": {
+   "vi": "chơi cờ/trò chơi bàn",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "play board games.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20board%20games.jpg"
+  },
+  "play computer games": {
+   "vi": "chơi game máy tính",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "play computer games.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20computer%20games.jpg"
+  },
+  "play football": {
+   "vi": "chơi bóng đá",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "play football.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20football.jpg"
+  },
+  "play in the park": {
+   "vi": "chơi ở công viên",
+   "sach": "SM2",
+   "unit": 1,
+   "unit_ten": "My Day",
+   "co_anh": true,
+   "f": "play in the park.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20in%20the%20park.jpg"
+  },
+  "play tennis": {
+   "vi": "chơi tennis",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "play tennis.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20tennis.jpg"
+  },
+  "play the guitar": {
+   "vi": "chơi đàn ghi-ta",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "play the guitar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20the%20guitar.jpg"
+  },
+  "play the piano": {
+   "vi": "chơi đàn piano",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "play the piano.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/play%20the%20piano.jpg"
+  },
+  "playground": {
+   "vi": "sân chơi",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "playground.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/playground.jpg"
+  },
+  "playing the guitar": {
+   "vi": "chơi ghi ta",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "playing the guitar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/playing%20the%20guitar.jpg"
+  },
+  "polar bear": {
+   "vi": "gấu bắc cực",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "polar bear.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/polar%20bear.jpg"
+  },
+  "polar bear cub": {
+   "vi": "gấu bắc cực con",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "polar bear cub.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/polar%20bear%20cub.jpg"
+  },
+  "police car": {
+   "vi": "xe cảnh sát",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "police car.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/police%20car.jpg"
+  },
+  "police officer": {
+   "vi": "cảnh sát",
+   "sach": "SM4",
+   "unit": 3,
+   "unit_ten": "Danger!",
+   "co_anh": true,
+   "f": "police officer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/police%20officer.jpg"
+  },
+  "pond": {
+   "vi": "cái ao",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "pond.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pond.jpg"
+  },
+  "porthole": {
+   "vi": "cửa sổ tròn",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "porthole.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/porthole.jpg"
+  },
+  "postcard": {
+   "vi": "bưu thiếp",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "postcard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/postcard.jpg"
+  },
+  "poster": {
+   "vi": "áp phích",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "poster.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/poster.jpg"
+  },
+  "potatoes": {
+   "vi": "khoai tây",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "potatoes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/potatoes.jpg"
+  },
+  "powder": {
+   "vi": "bột",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "powder.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/powder.jpg"
+  },
+  "props": {
+   "vi": "đạo cụ",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "props.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/props.jpg"
+  },
+  "purple": {
+   "vi": "tím",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "purple.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/purple.jpg"
+  },
+  "put up a tent": {
+   "vi": "dựng lều",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "put up a tent.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/put%20up%20a%20tent.jpg"
+  },
+  "puzzle": {
+   "vi": "trò xếp hình",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "puzzle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/puzzle.jpg"
+  },
+  "pyramid": {
+   "vi": "kim tự tháp",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "pyramid.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pyramid.jpg"
+  },
+  "queen": {
+   "vi": "nữ hoàng",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "queen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/queen.jpg"
+  },
+  "racket": {
+   "vi": "vợt",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "racket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/racket.jpg"
+  },
+  "railings": {
+   "vi": "lan can",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "railings.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/railings.jpg"
+  },
+  "raincoat": {
+   "vi": "áo mưa",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "raincoat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/raincoat.jpg"
+  },
+  "rainy": {
+   "vi": "mưa",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "rainy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rainy.jpg"
+  },
+  "rat": {
+   "vi": "con chuột",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "rat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rat.jpg"
+  },
+  "read a book": {
+   "vi": "đọc sách",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "read a book.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/read%20a%20book.jpg"
+  },
+  "read a comic": {
+   "vi": "đọc truyện tranh",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "read a comic.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/read%20a%20comic.jpg"
+  },
+  "red": {
+   "vi": "đỏ",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "red.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/red.jpg"
+  },
+  "ride a horse": {
+   "vi": "cưỡi ngựa",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "ride a horse.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ride%20a%20horse.jpg"
+  },
+  "ride my bike": {
+   "vi": "đi xe đạp",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "ride my bike.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ride%20my%20bike.jpg"
+  },
+  "ride my pony": {
+   "vi": "cưỡi ngựa nhỏ",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "ride my pony.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ride%20my%20pony.jpg"
+  },
+  "riding bikes": {
+   "vi": "đạp xe",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "riding bikes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/riding%20bikes.jpg"
+  },
+  "rings": {
+   "vi": "nhẫn",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "rings.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rings.jpg"
+  },
+  "river": {
+   "vi": "dòng sông",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "river.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/river.jpg"
+  },
+  "robbers": {
+   "vi": "kẻ cướp",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "robbers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/robbers.jpg"
+  },
+  "robot": {
+   "vi": "người máy",
+   "sach": "SM5",
+   "unit": 8,
+   "unit_ten": "Museum of the future",
+   "co_anh": true,
+   "f": "robot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/robot.jpg"
+  },
+  "rock": {
+   "vi": "tảng đá",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "rock.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rock.jpg"
+  },
+  "rock 'n' roll": {
+   "vi": "nhạc rock",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "rock 'n' roll.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rock%20%27n%27%20roll.jpg"
+  },
+  "rocket": {
+   "vi": "tên lửa",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "rocket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rocket.jpg"
+  },
+  "roller coaster": {
+   "vi": "tàu lượn",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "roller coaster.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/roller%20coaster.jpg"
+  },
+  "rolls": {
+   "vi": "bánh mì tròn",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "rolls.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rolls.jpg"
+  },
+  "roots": {
+   "vi": "rễ cây",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "roots.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/roots.jpg"
+  },
+  "rope": {
+   "vi": "dây thừng",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "rope.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rope.jpg"
+  },
+  "roundabout": {
+   "vi": "vòng xoay",
+   "sach": "SM4",
+   "unit": 0,
+   "unit_ten": "Well done, Ben and Lucy!",
+   "co_anh": true,
+   "f": "roundabout.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/roundabout.jpg"
+  },
+  "row a boat": {
+   "vi": "chèo thuyền",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "row a boat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/row%20a%20boat.jpg"
+  },
+  "rowing": {
+   "vi": "chèo thuyền",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "rowing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rowing.jpg"
+  },
+  "rubber": {
+   "vi": "cục tẩy",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "rubber.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rubber.jpg"
+  },
+  "rucksack": {
+   "vi": "ba lô",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "rucksack.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rucksack.jpg"
+  },
+  "rug": {
+   "vi": "thảm",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "rug.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rug.jpg"
+  },
+  "rule": {
+   "vi": "quy định",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "rule.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rule.jpg"
+  },
+  "ruler": {
+   "vi": "thước kẻ",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "ruler.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ruler.jpg"
+  },
+  "running track": {
+   "vi": "đường chạy",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "running track.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/running%20track.jpg"
+  },
+  "running water": {
+   "vi": "nước chảy",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "running water.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/running%20water.jpg"
+  },
+  "sad": {
+   "vi": "buồn",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "sad.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sad.jpg"
+  },
+  "saddle": {
+   "vi": "yên ngựa",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "saddle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/saddle.jpg"
+  },
+  "sail": {
+   "vi": "cánh buồm",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "sail.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sail.jpg"
+  },
+  "sail a boat": {
+   "vi": "lái thuyền buồm",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "sail a boat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sail%20a%20boat.jpg"
+  },
+  "sailor": {
+   "vi": "thuỷ thủ",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "sailor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sailor.jpg"
+  },
+  "salad": {
+   "vi": "sa lát",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "salad.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/salad.jpg"
+  },
+  "saloon": {
+   "vi": "quán rượu",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "saloon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/saloon.jpg"
+  },
+  "salt": {
+   "vi": "muối",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "salt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/salt.jpg"
+  },
+  "saturday": {
+   "vi": "thứ Bảy",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Saturday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Saturday.jpg"
+  },
+  "sausage": {
+   "vi": "xúc xích",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "sausage.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sausage.jpg"
+  },
+  "saw": {
+   "vi": "cái cưa",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "saw.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/saw.jpg"
+  },
+  "saxophone": {
+   "vi": "kèn saxophone",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "saxophone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/saxophone.jpg"
+  },
+  "scales": {
+   "vi": "vảy",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "scales.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/scales.jpg"
+  },
+  "scar": {
+   "vi": "vết sẹo",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "scar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/scar.jpg"
+  },
+  "scared": {
+   "vi": "sợ hãi",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "scared.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/scared.jpg"
+  },
+  "school": {
+   "vi": "trường học",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "school.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/school.jpg"
+  },
+  "science": {
+   "vi": "khoa học",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "Science.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Science.jpg"
+  },
+  "scooter": {
+   "vi": "xe ga",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "scooter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/scooter.jpg"
+  },
+  "screen": {
+   "vi": "màn hình",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "screen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/screen.jpg"
+  },
+  "screwdriver": {
+   "vi": "tua vít",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "screwdriver.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/screwdriver.jpg"
+  },
+  "seahorse": {
+   "vi": "cá ngựa",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "seahorse.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seahorse.jpg"
+  },
+  "seal": {
+   "vi": "hải cẩu",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "seal.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seal.jpg"
+  },
+  "seal pup": {
+   "vi": "hải cẩu con",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "seal pup.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seal%20pup.jpg"
+  },
+  "seaside": {
+   "vi": "bờ biển",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "seaside.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seaside.jpg"
+  },
+  "servant": {
+   "vi": "người hầu",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "servant.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/servant.jpg"
+  },
+  "seven": {
+   "vi": "bảy",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "seven.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seven.jpg"
+  },
+  "seventeen": {
+   "vi": "mười bảy",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "seventeen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seventeen.jpg"
+  },
+  "seventy": {
+   "vi": "bảy mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "seventy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/seventy.jpg"
+  },
+  "shake": {
+   "vi": "rung lắc",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "shake.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shake.jpg"
+  },
+  "shelf": {
+   "vi": "cái kệ",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "shelf.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shelf.jpg"
+  },
+  "shell": {
+   "vi": "vỏ sò",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "shell.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shell.jpg"
+  },
+  "shelter": {
+   "vi": "chỗ trú/nơi ở",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "shelter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shelter.jpg"
+  },
+  "sheriff": {
+   "vi": "cảnh sát trưởng",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "sheriff.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sheriff.jpg"
+  },
+  "shield": {
+   "vi": "cái khiên",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "shield.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shield.jpg"
+  },
+  "ship": {
+   "vi": "tàu thủy",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "ship.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ship.jpg"
+  },
+  "shoes": {
+   "vi": "giày",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "shoes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shoes.jpg"
+  },
+  "shop": {
+   "vi": "cửa hàng",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "shop.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shop.jpg"
+  },
+  "short": {
+   "vi": "ngắn",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "short.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/short.jpg"
+  },
+  "shorts": {
+   "vi": "quần đùi",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "shorts.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shorts.jpg"
+  },
+  "sideways": {
+   "vi": "sang ngang",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "sideways.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sideways.jpg"
+  },
+  "sing": {
+   "vi": "hát",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "sing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sing.jpg"
+  },
+  "sing songs": {
+   "vi": "hát",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "sing songs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sing%20songs.jpg"
+  },
+  "siren": {
+   "vi": "nàng tiên cá",
+   "sach": "SM5",
+   "unit": 9,
+   "unit_ten": "Mystery at sea",
+   "co_anh": true,
+   "f": "siren.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/siren.jpg"
+  },
+  "six": {
+   "vi": "sáu",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "six.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/six.jpg"
+  },
+  "sixteen": {
+   "vi": "mười sáu",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "sixteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sixteen.jpg"
+  },
+  "sixty": {
+   "vi": "sáu mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "sixty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sixty.jpg"
+  },
+  "skateboard": {
+   "vi": "ván trượt",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "skateboard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/skateboard.jpg"
+  },
+  "skip": {
+   "vi": "nhảy lò cò",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "skip.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/skip.jpg"
+  },
+  "skirt": {
+   "vi": "chân váy",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "skirt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/skirt.jpg"
+  },
+  "slaves": {
+   "vi": "nô lệ",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "slaves.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/slaves.jpg"
+  },
+  "sledge": {
+   "vi": "xe trượt tuyết",
+   "sach": "SM6",
+   "unit": 8,
+   "unit_ten": "A cold place",
+   "co_anh": true,
+   "f": "sledge.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sledge.jpg"
+  },
+  "sloth": {
+   "vi": "con lười",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "sloth.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sloth.jpg"
+  },
+  "small": {
+   "vi": "nhỏ",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "small.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/small.jpg"
+  },
+  "smell": {
+   "vi": "ngửi",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "smell.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/smell.jpg"
+  },
+  "smoke": {
+   "vi": "khói",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "smoke.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/smoke.jpg"
+  },
+  "snake": {
+   "vi": "con rắn",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "snake.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/snake.jpg"
+  },
+  "snorkelling": {
+   "vi": "lặn biển",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "snorkelling.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/snorkelling.jpg"
+  },
+  "soap": {
+   "vi": "xà phòng",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "soap.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/soap.jpg"
+  },
+  "socks": {
+   "vi": "tất",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "socks.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/socks.jpg"
+  },
+  "sofa": {
+   "vi": "ghế sofa",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "sofa.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sofa.jpg"
+  },
+  "soil": {
+   "vi": "đất",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "soil.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/soil.jpg"
+  },
+  "solar panel": {
+   "vi": "tấm pin mặt trời",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "solar panel.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/solar%20panel.jpg"
+  },
+  "soup": {
+   "vi": "súp",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "soup.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/soup.jpg"
+  },
+  "space capsule": {
+   "vi": "khoang tàu vũ trụ",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "space capsule.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/space%20capsule.jpg"
+  },
+  "space station": {
+   "vi": "trạm không gian",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "space station.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/space%20station.jpg"
+  },
+  "spacesuit": {
+   "vi": "bộ đồ vũ trụ",
+   "sach": "SM6",
+   "unit": 7,
+   "unit_ten": "This is Houston",
+   "co_anh": true,
+   "f": "spacesuit.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spacesuit.jpg"
+  },
+  "spade": {
+   "vi": "cái xẻng",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "spade.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spade.jpg"
+  },
+  "spain": {
+   "vi": "tây ban nha",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Spain.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Spain.jpg"
+  },
+  "spanner": {
+   "vi": "cờ lê",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "spanner.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spanner.jpg"
+  },
+  "species": {
+   "vi": "loài",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "species.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/species.jpg"
+  },
+  "sphinx": {
+   "vi": "tượng nhân sư",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "Sphinx.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Sphinx.jpg"
+  },
+  "spider": {
+   "vi": "con nhện",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "spider.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spider.jpg"
+  },
+  "spoon": {
+   "vi": "cái thìa",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "spoon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spoon.jpg"
+  },
+  "sports centre": {
+   "vi": "trung tâm thể thao",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "sports centre.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sports%20centre.jpg"
+  },
+  "spotlight": {
+   "vi": "đèn sân khấu",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "spotlight.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spotlight.jpg"
+  },
+  "spots": {
+   "vi": "chấm bi",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "spots.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/spots.jpg"
+  },
+  "stage": {
+   "vi": "sân khấu",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "stage.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stage.jpg"
+  },
+  "stagecoach": {
+   "vi": "xe ngựa chở khách",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "stagecoach.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stagecoach.jpg"
+  },
+  "stairs": {
+   "vi": "cầu thang",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "stairs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stairs.jpg"
+  },
+  "stamp": {
+   "vi": "tem",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "stamp.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stamp.jpg"
+  },
+  "stand on one leg": {
+   "vi": "đứng một chân",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "stand on one leg.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stand%20on%20one%20leg.jpg"
+  },
+  "star": {
+   "vi": "ngôi sao",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "star.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/star.jpg"
+  },
+  "starfish": {
+   "vi": "sao biển",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "starfish.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/starfish.jpg"
+  },
+  "starter": {
+   "vi": "món khai vị",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "starter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/starter.jpg"
+  },
+  "station": {
+   "vi": "nhà ga",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "station.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/station.jpg"
+  },
+  "statue": {
+   "vi": "tượng",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "statue.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/statue.jpg"
+  },
+  "steak": {
+   "vi": "bít tết",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "steak.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/steak.jpg"
+  },
+  "steam train": {
+   "vi": "tàu hơi nước",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "steam train.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/steam%20train.jpg"
+  },
+  "step": {
+   "vi": "bước",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "step.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/step.jpg"
+  },
+  "stomach-ache": {
+   "vi": "đau bụng",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "stomach-ache.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stomach-ache.jpg"
+  },
+  "stone": {
+   "vi": "hòn đá",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "stone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stone.jpg"
+  },
+  "straight": {
+   "vi": "thẳng",
+   "sach": "SM4",
+   "unit": 5,
+   "unit_ten": "Police!",
+   "co_anh": true,
+   "f": "straight.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/straight.jpg"
+  },
+  "strawberries": {
+   "vi": "dâu tây",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "strawberries.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/strawberries.jpg"
+  },
+  "stream": {
+   "vi": "con suối",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "stream.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stream.jpg"
+  },
+  "street": {
+   "vi": "con phố",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "street.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/street.jpg"
+  },
+  "stretch": {
+   "vi": "vươn vai",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "stretch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stretch.jpg"
+  },
+  "stripes": {
+   "vi": "sọc",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "stripes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/stripes.jpg"
+  },
+  "suitcase": {
+   "vi": "va li",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "suitcase.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/suitcase.jpg"
+  },
+  "sunday": {
+   "vi": "Chủ nhật",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Sunday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Sunday.jpg"
+  },
+  "sunglasses": {
+   "vi": "kính râm",
+   "sach": "SM5",
+   "unit": 6,
+   "unit_ten": "In Istanbul",
+   "co_anh": true,
+   "f": "sunglasses.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sunglasses.jpg"
+  },
+  "sunrise": {
+   "vi": "bình minh",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "sunrise.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sunrise.jpg"
+  },
+  "supermarket": {
+   "vi": "siêu thị",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "supermarket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/supermarket.jpg"
+  },
+  "superstar": {
+   "vi": "siêu sao",
+   "sach": "SM5",
+   "unit": 3,
+   "unit_ten": "The rock 'n' roll show",
+   "co_anh": true,
+   "f": "superstar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/superstar.jpg"
+  },
+  "surfboard": {
+   "vi": "ván lướt sóng",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "surfboard.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/surfboard.jpg"
+  },
+  "swamp": {
+   "vi": "đầm lầy",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "swamp.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/swamp.jpg"
+  },
+  "sweater": {
+   "vi": "áo len",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "sweater.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sweater.jpg"
+  },
+  "sweep the floor": {
+   "vi": "quét nhà",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "sweep the floor.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sweep%20the%20floor.jpg"
+  },
+  "swim": {
+   "vi": "bơi",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "swim.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/swim.jpg"
+  },
+  "swimming": {
+   "vi": "bơi lội",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "swimming.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/swimming.jpg"
+  },
+  "swimming pool": {
+   "vi": "bể bơi",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "swimming pool.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/swimming%20pool.jpg"
+  },
+  "swing on a rope": {
+   "vi": "đu dây",
+   "sach": "SM4",
+   "unit": 9,
+   "unit_ten": "At the campsite",
+   "co_anh": true,
+   "f": "swing on a rope.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/swing%20on%20a%20rope.jpg"
+  },
+  "switch": {
+   "vi": "công tắc",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "switch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/switch.jpg"
+  },
+  "sword": {
+   "vi": "thanh kiếm",
+   "sach": "SM4",
+   "unit": 1,
+   "unit_ten": "In the museum",
+   "co_anh": true,
+   "f": "sword.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sword.jpg"
+  },
+  "t-shirt": {
+   "vi": "áo thun",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "T-shirt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/T-shirt.jpg"
+  },
+  "table": {
+   "vi": "cái bàn",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "table.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/table.jpg"
+  },
+  "table tennis": {
+   "vi": "bóng bàn",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "table tennis.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/table%20tennis.jpg"
+  },
+  "tablet": {
+   "vi": "máy tính bảng",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "tablet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tablet.jpg"
+  },
+  "tail": {
+   "vi": "cái đuôi",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "tail.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tail.jpg"
+  },
+  "tailor's": {
+   "vi": "tiệm may",
+   "sach": "SM6",
+   "unit": 5,
+   "unit_ten": "In London",
+   "co_anh": true,
+   "f": "tailor's.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tailor%27s.jpg"
+  },
+  "take a photo": {
+   "vi": "chụp ảnh",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "take a photo.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/take%20a%20photo.jpg"
+  },
+  "take riding lessons": {
+   "vi": "học cưỡi ngựa",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "take riding lessons.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/take%20riding%20lessons.jpg"
+  },
+  "take the dog for a walk": {
+   "vi": "dắt chó đi dạo",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "take the dog for a walk.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/take%20the%20dog%20for%20a%20walk.jpg"
+  },
+  "tambourine": {
+   "vi": "trống lục lạc",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "tambourine.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tambourine.jpg"
+  },
+  "taste": {
+   "vi": "nếm",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "taste.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/taste.jpg"
+  },
+  "taxi": {
+   "vi": "xe taxi",
+   "sach": "SM2",
+   "unit": 7,
+   "unit_ten": "Off we go!",
+   "co_anh": true,
+   "f": "taxi.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/taxi.jpg"
+  },
+  "tears": {
+   "vi": "nước mắt",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "tears.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tears.jpg"
+  },
+  "telescope": {
+   "vi": "kính viễn vọng",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "telescope.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/telescope.jpg"
+  },
+  "temple": {
+   "vi": "đền",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "temple.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/temple.jpg"
+  },
+  "ten": {
+   "vi": "mười",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "ten.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ten.jpg"
+  },
+  "tennis": {
+   "vi": "quần vợt",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "tennis.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tennis.jpg"
+  },
+  "tennis court": {
+   "vi": "sân quần vợt",
+   "sach": "SM6",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "tennis court.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tennis%20court.jpg"
+  },
+  "test tube": {
+   "vi": "ống nghiệm",
+   "sach": "SM5",
+   "unit": 0,
+   "unit_ten": "The Science lesson",
+   "co_anh": true,
+   "f": "test tube.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/test%20tube.jpg"
+  },
+  "theatre": {
+   "vi": "nhà hát",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "theatre.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/theatre.jpg"
+  },
+  "theme park": {
+   "vi": "công viên giải trí",
+   "sach": "SM1",
+   "unit": 9,
+   "unit_ten": "At the beach",
+   "co_anh": true,
+   "f": "theme park.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/theme%20park.jpg"
+  },
+  "thirsty": {
+   "vi": "khát",
+   "sach": "SM3",
+   "unit": 2,
+   "unit_ten": "The picnic",
+   "co_anh": true,
+   "f": "thirsty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/thirsty.jpg"
+  },
+  "thirteen": {
+   "vi": "mười ba",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "thirteen.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/thirteen.jpg"
+  },
+  "thirty": {
+   "vi": "ba mươi",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "thirty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/thirty.jpg"
+  },
+  "three": {
+   "vi": "ba",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "three.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/three.jpg"
+  },
+  "thunder": {
+   "vi": "tên nhân vật",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "Thunder.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Thunder.jpg"
+  },
+  "thunderstorm": {
+   "vi": "giông bão",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "thunderstorm.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/thunderstorm.jpg"
+  },
+  "thursday": {
+   "vi": "thứ Năm",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Thursday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Thursday.jpg"
+  },
+  "ticket": {
+   "vi": "vé",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "ticket.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ticket.jpg"
+  },
+  "ticket office": {
+   "vi": "phòng bán vé",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "ticket office.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ticket%20office.jpg"
+  },
+  "tidy up": {
+   "vi": "dọn dẹp",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "tidy up.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tidy%20up.jpg"
+  },
+  "tiger": {
+   "vi": "con hổ",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "tiger.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tiger.jpg"
+  },
+  "tights": {
+   "vi": "quần bó",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "tights.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tights.jpg"
+  },
+  "tired": {
+   "vi": "mệt",
+   "sach": "SM2",
+   "unit": 6,
+   "unit_ten": "People",
+   "co_anh": true,
+   "f": "tired.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tired.jpg"
+  },
+  "toes": {
+   "vi": "các ngón chân",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "toes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/toes.jpg"
+  },
+  "tomatoes": {
+   "vi": "cà chua",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "tomatoes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tomatoes.jpg"
+  },
+  "tomb": {
+   "vi": "lăng mộ",
+   "sach": "SM6",
+   "unit": 3,
+   "unit_ten": "Ancient Egypt",
+   "co_anh": true,
+   "f": "tomb.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tomb.jpg"
+  },
+  "tongue": {
+   "vi": "cái lưỡi",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "tongue.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tongue.jpg"
+  },
+  "toothache": {
+   "vi": "đau răng",
+   "sach": "SM3",
+   "unit": 7,
+   "unit_ten": "In the hospital",
+   "co_anh": true,
+   "f": "toothache.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/toothache.jpg"
+  },
+  "torch": {
+   "vi": "đèn pin",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "torch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/torch.jpg"
+  },
+  "toucan": {
+   "vi": "chim toucan",
+   "sach": "SM5",
+   "unit": 2,
+   "unit_ten": "In the rainforest",
+   "co_anh": true,
+   "f": "toucan.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/toucan.jpg"
+  },
+  "touch": {
+   "vi": "sờ/chạm",
+   "sach": "SM1",
+   "unit": 1,
+   "unit_ten": "At school",
+   "co_anh": true,
+   "f": "touch.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/touch.jpg"
+  },
+  "touch your toes": {
+   "vi": "chạm ngón chân",
+   "sach": "SM1",
+   "unit": 8,
+   "unit_ten": "The robot",
+   "co_anh": true,
+   "f": "touch your toes.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/touch%20your%20toes.jpg"
+  },
+  "tower": {
+   "vi": "tòa tháp",
+   "sach": "SM3",
+   "unit": 4,
+   "unit_ten": "Around town",
+   "co_anh": true,
+   "f": "tower.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tower.jpg"
+  },
+  "track": {
+   "vi": "đường chạy",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "track.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/track.jpg"
+  },
+  "tragedy": {
+   "vi": "bi kịch",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "tragedy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tragedy.jpg"
+  },
+  "train": {
+   "vi": "tàu hỏa (đồ chơi)",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "train.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/train.jpg"
+  },
+  "train driver": {
+   "vi": "người lái tàu",
+   "sach": "SM4",
+   "unit": 4,
+   "unit_ten": "Two return tickets",
+   "co_anh": true,
+   "f": "train driver.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/train%20driver.jpg"
+  },
+  "train station": {
+   "vi": "ga tàu",
+   "sach": "SM2",
+   "unit": 3,
+   "unit_ten": "Where we live",
+   "co_anh": true,
+   "f": "train station.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/train%20station.jpg"
+  },
+  "travel": {
+   "vi": "du lịch",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "travel.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/travel.jpg"
+  },
+  "treasure chest": {
+   "vi": "rương kho báu",
+   "sach": "SM6",
+   "unit": 1,
+   "unit_ten": "The treasure",
+   "co_anh": true,
+   "f": "treasure chest.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/treasure%20chest.jpg"
+  },
+  "tree": {
+   "vi": "cái cây",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "tree.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tree.jpg"
+  },
+  "tree house": {
+   "vi": "nhà trên cây",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "tree house.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/tree%20house.jpg"
+  },
+  "triangle": {
+   "vi": "kẻng ba góc",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "triangle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/triangle.jpg"
+  },
+  "trombone": {
+   "vi": "kèn trombone",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "trombone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/trombone.jpg"
+  },
+  "trousers": {
+   "vi": "quần dài",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "trousers.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/trousers.jpg"
+  },
+  "trumpet": {
+   "vi": "kèn trumpet",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "trumpet.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/trumpet.jpg"
+  },
+  "tuesday": {
+   "vi": "thứ Ba",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Tuesday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Tuesday.jpg"
+  },
+  "turkey": {
+   "vi": "thổ nhĩ kỳ",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "Turkey.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Turkey.jpg"
+  },
+  "turtle": {
+   "vi": "rùa biển",
+   "sach": "SM3",
+   "unit": 5,
+   "unit_ten": "Under the sea",
+   "co_anh": true,
+   "f": "turtle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/turtle.jpg"
+  },
+  "twelve": {
+   "vi": "mười hai",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "twelve.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/twelve.jpg"
+  },
+  "twenty": {
+   "vi": "hai mươi",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "twenty.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/twenty.jpg"
+  },
+  "two": {
+   "vi": "hai",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "two.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/two.jpg"
+  },
+  "ufo": {
+   "vi": "đĩa bay",
+   "sach": "SM4",
+   "unit": 8,
+   "unit_ten": "In the planetarium",
+   "co_anh": true,
+   "f": "UFO.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/UFO.jpg"
+  },
+  "ugly": {
+   "vi": "xấu",
+   "sach": "SM1",
+   "unit": 2,
+   "unit_ten": "Let's play",
+   "co_anh": true,
+   "f": "ugly.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ugly.jpg"
+  },
+  "umbrella": {
+   "vi": "cái ô",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "umbrella.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/umbrella.jpg"
+  },
+  "uncle": {
+   "vi": "chú",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "uncle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/uncle.jpg"
+  },
+  "unicycle": {
+   "vi": "xe đạp một bánh",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "unicycle.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/unicycle.jpg"
+  },
+  "uniform": {
+   "vi": "đồng phục",
+   "sach": "SM3",
+   "unit": 1,
+   "unit_ten": "Our school",
+   "co_anh": true,
+   "f": "uniform.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/uniform.jpg"
+  },
+  "upstairs": {
+   "vi": "trên lầu",
+   "sach": "SM3",
+   "unit": 0,
+   "unit_ten": "Meet The Explorers",
+   "co_anh": true,
+   "f": "upstairs.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/upstairs.jpg"
+  },
+  "valley": {
+   "vi": "thung lũng",
+   "sach": "SM6",
+   "unit": 9,
+   "unit_ten": "The Jurassic Age",
+   "co_anh": true,
+   "f": "valley.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/valley.jpg"
+  },
+  "vase": {
+   "vi": "bình hoa",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "vase.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/vase.jpg"
+  },
+  "vegetables": {
+   "vi": "rau củ",
+   "sach": "SM1",
+   "unit": 4,
+   "unit_ten": "Lunchtime",
+   "co_anh": true,
+   "f": "vegetables.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/vegetables.jpg"
+  },
+  "village": {
+   "vi": "ngôi làng",
+   "sach": "SM4",
+   "unit": 2,
+   "unit_ten": "The world around us",
+   "co_anh": true,
+   "f": "village.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/village.jpg"
+  },
+  "violin": {
+   "vi": "đàn vĩ cầm",
+   "sach": "SM4",
+   "unit": 7,
+   "unit_ten": "Orchestra practice",
+   "co_anh": true,
+   "f": "violin.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/violin.jpg"
+  },
+  "visit cousins": {
+   "vi": "thăm anh em họ",
+   "sach": "SM2",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "visit cousins.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/visit%20cousins.jpg"
+  },
+  "volcano": {
+   "vi": "núi lửa",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "volcano.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/volcano.jpg"
+  },
+  "volleyball": {
+   "vi": "bóng chuyền",
+   "sach": "SM2",
+   "unit": 8,
+   "unit_ten": "Sports club",
+   "co_anh": true,
+   "f": "volleyball.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/volleyball.jpg"
+  },
+  "wagon": {
+   "vi": "xe chở hàng",
+   "sach": "SM5",
+   "unit": 5,
+   "unit_ten": "The Wild West",
+   "co_anh": true,
+   "f": "wagon.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wagon.jpg"
+  },
+  "waiter": {
+   "vi": "bồi bàn",
+   "sach": "SM5",
+   "unit": 4,
+   "unit_ten": "Space restaurant",
+   "co_anh": true,
+   "f": "waiter.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/waiter.jpg"
+  },
+  "walkie-talkie": {
+   "vi": "bộ đàm",
+   "sach": "SM3",
+   "unit": 6,
+   "unit_ten": "Gadgets",
+   "co_anh": true,
+   "f": "walkie-talkie.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/walkie-talkie.jpg"
+  },
+  "wall": {
+   "vi": "tường",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "wall.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wall.jpg"
+  },
+  "wardrobe": {
+   "vi": "tủ quần áo",
+   "sach": "SM2",
+   "unit": 5,
+   "unit_ten": "My bedroom",
+   "co_anh": true,
+   "f": "wardrobe.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wardrobe.jpg"
+  },
+  "wash up": {
+   "vi": "rửa bát",
+   "sach": "SM3",
+   "unit": 3,
+   "unit_ten": "Daily tasks",
+   "co_anh": true,
+   "f": "wash up.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wash%20up.jpg"
+  },
+  "watch tv": {
+   "vi": "xem tivi",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "watch TV.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/watch%20TV.jpg"
+  },
+  "water": {
+   "vi": "nước",
+   "sach": "SM1",
+   "unit": 3,
+   "unit_ten": "Pet show",
+   "co_anh": true,
+   "f": "water.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/water.jpg"
+  },
+  "watermelons": {
+   "vi": "dưa hấu",
+   "sach": "SM2",
+   "unit": 4,
+   "unit_ten": "The market",
+   "co_anh": true,
+   "f": "watermelons.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/watermelons.jpg"
+  },
+  "wednesday": {
+   "vi": "thứ Tư",
+   "sach": "SM1",
+   "unit": 5,
+   "unit_ten": "Free time",
+   "co_anh": true,
+   "f": "Wednesday.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Wednesday.jpg"
+  },
+  "weightlifting": {
+   "vi": "cử tạ",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "weightlifting.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/weightlifting.jpg"
+  },
+  "whisper": {
+   "vi": "tên nhân vật (mèo)",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "Whisper.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/Whisper.jpg"
+  },
+  "wig": {
+   "vi": "tóc giả",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "wig.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wig.jpg"
+  },
+  "wind turbine": {
+   "vi": "tua bin gió",
+   "sach": "SM6",
+   "unit": 2,
+   "unit_ten": "Future transport",
+   "co_anh": true,
+   "f": "wind turbine.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wind%20turbine.jpg"
+  },
+  "window": {
+   "vi": "cửa sổ",
+   "sach": "SM2",
+   "unit": 0,
+   "unit_ten": "Back to school",
+   "co_anh": true,
+   "f": "window.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/window.jpg"
+  },
+  "windy": {
+   "vi": "gió",
+   "sach": "SM3",
+   "unit": 9,
+   "unit_ten": "Holiday plans",
+   "co_anh": true,
+   "f": "windy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/windy.jpg"
+  },
+  "wing": {
+   "vi": "cánh",
+   "sach": "SM4",
+   "unit": 6,
+   "unit_ten": "Mythical beasts",
+   "co_anh": true,
+   "f": "wing.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wing.jpg"
+  },
+  "wonder": {
+   "vi": "kỳ quan",
+   "sach": "SM3",
+   "unit": 8,
+   "unit_ten": "Around the world",
+   "co_anh": true,
+   "f": "wonder.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wonder.jpg"
+  },
+  "work of art": {
+   "vi": "tác phẩm nghệ thuật",
+   "sach": "SM5",
+   "unit": 1,
+   "unit_ten": "Disaster!",
+   "co_anh": true,
+   "f": "work of art.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/work%20of%20art.jpg"
+  },
+  "workbench": {
+   "vi": "bàn thợ",
+   "sach": "SM6",
+   "unit": 6,
+   "unit_ten": "Crazy inventions",
+   "co_anh": true,
+   "f": "workbench.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/workbench.jpg"
+  },
+  "wrestling": {
+   "vi": "đấu vật",
+   "sach": "SM6",
+   "unit": 4,
+   "unit_ten": "Olympic sports",
+   "co_anh": true,
+   "f": "wrestling.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wrestling.jpg"
+  },
+  "writer": {
+   "vi": "nhà văn",
+   "sach": "SM5",
+   "unit": 7,
+   "unit_ten": "The story teller",
+   "co_anh": true,
+   "f": "writer.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/writer.jpg"
+  },
+  "yellow": {
+   "vi": "vàng",
+   "sach": "SM1",
+   "unit": 0,
+   "unit_ten": "Friends",
+   "co_anh": true,
+   "f": "yellow.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/yellow.jpg"
+  },
+  "yurt": {
+   "vi": "lều du mục",
+   "sach": "SM1",
+   "unit": 6,
+   "unit_ten": "The old house",
+   "co_anh": true,
+   "f": "yurt.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/yurt.jpg"
+  },
+  "zebra": {
+   "vi": "ngựa vằn",
+   "sach": "SM2",
+   "unit": 2,
+   "unit_ten": "The zoo",
+   "co_anh": true,
+   "f": "zebra.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/zebra.jpg"
+  },
+  "zigzags": {
+   "vi": "hình zíc zắc",
+   "sach": "SM1",
+   "unit": 7,
+   "unit_ten": "Get dressed",
+   "co_anh": true,
+   "f": "zigzags.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/zigzags.jpg"
+  }
+ },
+ "anh_le": [
+  {
+   "f": "bird.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/bird.jpg"
+  },
+  {
+   "f": "cow.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/cow.jpg"
+  },
+  {
+   "f": "fabric.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/fabric.jpg"
+  },
+  {
+   "f": "giraffe.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/giraffe.jpg"
+  },
+  {
+   "f": "glass.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/glass.jpg"
+  },
+  {
+   "f": "goat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/goat.jpg"
+  },
+  {
+   "f": "guitar.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/guitar.jpg"
+  },
+  {
+   "f": "horse.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/horse.jpg"
+  },
+  {
+   "f": "kitten.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/kitten.jpg"
+  },
+  {
+   "f": "lion.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lion.jpg"
+  },
+  {
+   "f": "lizard2.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/lizard2.jpg"
+  },
+  {
+   "f": "metal.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/metal.jpg"
+  },
+  {
+   "f": "mouse.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/mouse.jpg"
+  },
+  {
+   "f": "ocean.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/ocean.jpg"
+  },
+  {
+   "f": "pig.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/pig.jpg"
+  },
+  {
+   "f": "plastic.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/plastic.jpg"
+  },
+  {
+   "f": "polar habitat.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/polar%20habitat.jpg"
+  },
+  {
+   "f": "puppy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/puppy.jpg"
+  },
+  {
+   "f": "rabbit.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rabbit.jpg"
+  },
+  {
+   "f": "rainforest.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/rainforest.jpg"
+  },
+  {
+   "f": "shark.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shark.jpg"
+  },
+  {
+   "f": "sheep.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/sheep.jpg"
+  },
+  {
+   "f": "wood.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/wood.jpg"
+  }
+ ]
+}
