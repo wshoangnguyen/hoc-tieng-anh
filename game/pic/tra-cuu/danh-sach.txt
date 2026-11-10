@@ -1,0 +1,739 @@
+# Kho hình flashcard hoctienganhdelam.com — từ | nghĩa | URL ảnh
+# dùng nguyên URL, không tự đoán tên file
+
+a cup of coffee | một tách cà phê | https://hoctienganhdelam.com/game/pic/a%20cup%20of%20coffee.jpg
+a cup of tea | một tách trà | https://hoctienganhdelam.com/game/pic/a%20cup%20of%20tea.jpg
+actor | diễn viên | https://hoctienganhdelam.com/game/pic/actor.jpg
+after | sau | https://hoctienganhdelam.com/game/pic/after.jpg
+air | không khí | https://hoctienganhdelam.com/game/pic/air.jpg
+album | an bum | https://hoctienganhdelam.com/game/pic/album.jpg
+ambulance | xe cứu thương | https://hoctienganhdelam.com/game/pic/ambulance.jpg
+anaconda | trăn anaconda | https://hoctienganhdelam.com/game/pic/anaconda.jpg
+anchor | mỏ neo | https://hoctienganhdelam.com/game/pic/anchor.jpg
+ancient rome | La Mã cổ đại | https://hoctienganhdelam.com/game/pic/ancient%20Rome.jpg
+angry | tức giận | https://hoctienganhdelam.com/game/pic/angry.jpg
+apple | quả táo | https://hoctienganhdelam.com/game/pic/apple.jpg
+apple juice | nước ép táo | https://hoctienganhdelam.com/game/pic/apple%20juice.jpg
+apples | những quả táo | https://hoctienganhdelam.com/game/pic/apples.jpg
+apron | tạp dề | https://hoctienganhdelam.com/game/pic/apron.jpg
+archery | bắn cung | https://hoctienganhdelam.com/game/pic/archery.jpg
+argentina | ác-hen-ti-na | https://hoctienganhdelam.com/game/pic/Argentina.jpg
+arm | cánh tay | https://hoctienganhdelam.com/game/pic/arm.jpg
+armchair | ghế bành | https://hoctienganhdelam.com/game/pic/armchair.jpg
+art | mỹ thuật | https://hoctienganhdelam.com/game/pic/Art.jpg
+artist | hoạ sĩ | https://hoctienganhdelam.com/game/pic/artist.jpg
+ash | tro | https://hoctienganhdelam.com/game/pic/ash.jpg
+astronaut | phi hành gia | https://hoctienganhdelam.com/game/pic/astronaut.jpg
+athletics | điền kinh | https://hoctienganhdelam.com/game/pic/athletics.jpg
+audience | khán giả | https://hoctienganhdelam.com/game/pic/audience.jpg
+aunt | dì | https://hoctienganhdelam.com/game/pic/aunt.jpg
+australia | úc | https://hoctienganhdelam.com/game/pic/Australia.jpg
+back | cái lưng | https://hoctienganhdelam.com/game/pic/back.jpg
+backing singers | ca sĩ hát bè | https://hoctienganhdelam.com/game/pic/backing%20singers.jpg
+backwards | về phía sau | https://hoctienganhdelam.com/game/pic/backwards.jpg
+badge | huy hiệu | https://hoctienganhdelam.com/game/pic/badge.jpg
+badminton | cầu lông | https://hoctienganhdelam.com/game/pic/badminton.jpg
+bag | cặp sách | https://hoctienganhdelam.com/game/pic/bag.jpg
+baker's | tiệm bánh mì | https://hoctienganhdelam.com/game/pic/baker%27s.jpg
+ball | quả bóng | https://hoctienganhdelam.com/game/pic/ball.jpg
+banana | quả chuối | https://hoctienganhdelam.com/game/pic/banana.jpg
+bananas | những quả chuối | https://hoctienganhdelam.com/game/pic/bananas.jpg
+band | ban nhạc | https://hoctienganhdelam.com/game/pic/band.jpg
+bank | ngân hàng | https://hoctienganhdelam.com/game/pic/bank.jpg
+barber's | tiệm cắt tóc | https://hoctienganhdelam.com/game/pic/barber%27s.jpg
+barometer | khí áp kế | https://hoctienganhdelam.com/game/pic/barometer.jpg
+barrel | thùng phi | https://hoctienganhdelam.com/game/pic/barrel.jpg
+baseball | bóng chày | https://hoctienganhdelam.com/game/pic/baseball.jpg
+baseball cap | mũ lưỡi trai | https://hoctienganhdelam.com/game/pic/baseball%20cap.jpg
+basket | cái giỏ | https://hoctienganhdelam.com/game/pic/basket.jpg
+basketball | bóng rổ | https://hoctienganhdelam.com/game/pic/basketball.jpg
+basketball hoop | rổ bóng rổ | https://hoctienganhdelam.com/game/pic/basketball%20hoop.jpg
+bass guitar | ghi ta bass | https://hoctienganhdelam.com/game/pic/bass%20guitar.jpg
+bat | gậy bóng chày | https://hoctienganhdelam.com/game/pic/bat.jpg
+bathroom | phòng tắm | https://hoctienganhdelam.com/game/pic/bathroom.jpg
+beach | bãi biển | https://hoctienganhdelam.com/game/pic/beach.jpg
+beak | mỏ chim | https://hoctienganhdelam.com/game/pic/beak.jpg
+beans | đậu | https://hoctienganhdelam.com/game/pic/beans.jpg
+bear | con gấu | https://hoctienganhdelam.com/game/pic/bear.jpg
+beard | râu | https://hoctienganhdelam.com/game/pic/beard.jpg
+beautiful | đẹp | https://hoctienganhdelam.com/game/pic/beautiful.jpg
+bed | cái giường | https://hoctienganhdelam.com/game/pic/bed.jpg
+bedroom | phòng ngủ | https://hoctienganhdelam.com/game/pic/bedroom.jpg
+beetle | bọ cánh cứng | https://hoctienganhdelam.com/game/pic/beetle.jpg
+before | trước | https://hoctienganhdelam.com/game/pic/before.jpg
+bell | chuông | https://hoctienganhdelam.com/game/pic/bell.jpg
+belt | thắt lưng | https://hoctienganhdelam.com/game/pic/belt.jpg
+bermuda triangle | tam giác quỷ Bermuda | https://hoctienganhdelam.com/game/pic/Bermuda%20Triangle.jpg
+big | to | https://hoctienganhdelam.com/game/pic/big.jpg
+big wheel | đu quay lớn | https://hoctienganhdelam.com/game/pic/big%20wheel.jpg
+bike | xe đạp | https://hoctienganhdelam.com/game/pic/bike.jpg
+bike rack | giá để xe đạp | https://hoctienganhdelam.com/game/pic/bike%20rack.jpg
+bill | hoá đơn | https://hoctienganhdelam.com/game/pic/bill.jpg
+binoculars | ống nhòm | https://hoctienganhdelam.com/game/pic/binoculars.jpg
+biscuits | bánh quy | https://hoctienganhdelam.com/game/pic/biscuits.jpg
+black | đen | https://hoctienganhdelam.com/game/pic/black.jpg
+blonde | tóc vàng | https://hoctienganhdelam.com/game/pic/blonde.jpg
+blue | xanh dương | https://hoctienganhdelam.com/game/pic/blue.jpg
+board | bảng | https://hoctienganhdelam.com/game/pic/board.jpg
+boat | thuyền | https://hoctienganhdelam.com/game/pic/boat.jpg
+bodyguards | vệ sĩ | https://hoctienganhdelam.com/game/pic/bodyguards.jpg
+book | sách | https://hoctienganhdelam.com/game/pic/book.jpg
+bookcase | giá sách | https://hoctienganhdelam.com/game/pic/bookcase.jpg
+boots | ủng | https://hoctienganhdelam.com/game/pic/boots.jpg
+bow and arrow | cung tên | https://hoctienganhdelam.com/game/pic/bow%20and%20arrow.jpg
+box | cái hộp | https://hoctienganhdelam.com/game/pic/box.jpg
+boxing | đấm bốc | https://hoctienganhdelam.com/game/pic/boxing.jpg
+bracelet | vòng tay | https://hoctienganhdelam.com/game/pic/bracelet.jpg
+branch | cành cây | https://hoctienganhdelam.com/game/pic/branch.jpg
+brazil | bra-xin | https://hoctienganhdelam.com/game/pic/Brazil.jpg
+bread | bánh mì | https://hoctienganhdelam.com/game/pic/bread.jpg
+brush your teeth | đánh răng | https://hoctienganhdelam.com/game/pic/brush%20your%20teeth.jpg
+bubbles | bong bóng | https://hoctienganhdelam.com/game/pic/bubbles.jpg
+build a tree house | làm nhà trên cây | https://hoctienganhdelam.com/game/pic/build%20a%20tree%20house.jpg
+bus | xe buýt | https://hoctienganhdelam.com/game/pic/bus.jpg
+bus station | bến xe buýt | https://hoctienganhdelam.com/game/pic/bus%20station.jpg
+bus stop | trạm xe buýt | https://hoctienganhdelam.com/game/pic/bus%20stop.jpg
+bush | bụi cây | https://hoctienganhdelam.com/game/pic/bush.jpg
+businessman | doanh nhân | https://hoctienganhdelam.com/game/pic/businessman.jpg
+businesswoman | nữ doanh nhân | https://hoctienganhdelam.com/game/pic/businesswoman.jpg
+butcher's | cửa hàng thịt | https://hoctienganhdelam.com/game/pic/butcher%27s.jpg
+butterfly | con bướm | https://hoctienganhdelam.com/game/pic/butterfly.jpg
+button | cái nút | https://hoctienganhdelam.com/game/pic/button.jpg
+cabin | ca bin | https://hoctienganhdelam.com/game/pic/cabin.jpg
+cable car | cáp treo | https://hoctienganhdelam.com/game/pic/cable%20car.jpg
+café | quán cà phê | https://hoctienganhdelam.com/game/pic/caf%C3%A9.jpg
+cake | bánh ngọt | https://hoctienganhdelam.com/game/pic/cake.jpg
+campsite | khu cắm trại | https://hoctienganhdelam.com/game/pic/campsite.jpg
+candles | nến | https://hoctienganhdelam.com/game/pic/candles.jpg
+canoe | xuồng | https://hoctienganhdelam.com/game/pic/canoe.jpg
+captain | thuyền trưởng | https://hoctienganhdelam.com/game/pic/captain.jpg
+car | ô tô (đồ chơi) | https://hoctienganhdelam.com/game/pic/car.jpg
+car park | bãi đỗ xe | https://hoctienganhdelam.com/game/pic/car%20park.jpg
+carpenter's | hiệu thợ mộc | https://hoctienganhdelam.com/game/pic/carpenter%27s.jpg
+carpet | thảm | https://hoctienganhdelam.com/game/pic/carpet.jpg
+carrots | cà rốt | https://hoctienganhdelam.com/game/pic/carrots.jpg
+cat | con mèo | https://hoctienganhdelam.com/game/pic/cat.jpg
+catch a fish | câu cá | https://hoctienganhdelam.com/game/pic/catch%20a%20fish.jpg
+cave house | nhà trong hang | https://hoctienganhdelam.com/game/pic/cave%20house.jpg
+cellar | tầng hầm | https://hoctienganhdelam.com/game/pic/cellar.jpg
+chair | ghế | https://hoctienganhdelam.com/game/pic/chair.jpg
+chariot | xe ngựa chiến | https://hoctienganhdelam.com/game/pic/chariot.jpg
+cheeks | đôi má | https://hoctienganhdelam.com/game/pic/cheeks.jpg
+cheese | phô mai | https://hoctienganhdelam.com/game/pic/cheese.jpg
+cheese sandwich | bánh mì kẹp phô mai | https://hoctienganhdelam.com/game/pic/cheese%20sandwich.jpg
+chemist's | hiệu thuốc | https://hoctienganhdelam.com/game/pic/chemist%27s.jpg
+chicken | thịt gà | https://hoctienganhdelam.com/game/pic/chicken.jpg
+chile | chi lê | https://hoctienganhdelam.com/game/pic/Chile.jpg
+chin | cằm | https://hoctienganhdelam.com/game/pic/chin.jpg
+china | trung quốc | https://hoctienganhdelam.com/game/pic/China.jpg
+chopsticks | đũa | https://hoctienganhdelam.com/game/pic/chopsticks.jpg
+cinema | rạp chiếu phim | https://hoctienganhdelam.com/game/pic/cinema.jpg
+city | thành phố | https://hoctienganhdelam.com/game/pic/city.jpg
+cleaner | người dọn dẹp | https://hoctienganhdelam.com/game/pic/cleaner.jpg
+climbing trees | trèo cây | https://hoctienganhdelam.com/game/pic/climbing%20trees.jpg
+clock | đồng hồ | https://hoctienganhdelam.com/game/pic/clock.jpg
+cloudy | nhiều mây | https://hoctienganhdelam.com/game/pic/cloudy.jpg
+coconut | quả dừa | https://hoctienganhdelam.com/game/pic/coconut.jpg
+coins | đồng xu | https://hoctienganhdelam.com/game/pic/coins.jpg
+cold | cảm lạnh | https://hoctienganhdelam.com/game/pic/cold.jpg
+collect wood | nhặt củi | https://hoctienganhdelam.com/game/pic/collect%20wood.jpg
+columns | cột | https://hoctienganhdelam.com/game/pic/columns.jpg
+comb | cái lược | https://hoctienganhdelam.com/game/pic/comb.jpg
+comedy | hài kịch | https://hoctienganhdelam.com/game/pic/comedy.jpg
+comet | sao chổi | https://hoctienganhdelam.com/game/pic/comet.jpg
+computer game | trò chơi điện tử | https://hoctienganhdelam.com/game/pic/computer%20game.jpg
+computer programmer | lập trình viên máy tính | https://hoctienganhdelam.com/game/pic/computer%20programmer.jpg
+control panel | bảng điều khiển | https://hoctienganhdelam.com/game/pic/control%20panel.jpg
+cook the dinner | nấu bữa tối | https://hoctienganhdelam.com/game/pic/cook%20the%20dinner.jpg
+costume | trang phục | https://hoctienganhdelam.com/game/pic/costume.jpg
+cough | ho | https://hoctienganhdelam.com/game/pic/cough.jpg
+countdown clock | đồng hồ đếm ngược | https://hoctienganhdelam.com/game/pic/countdown%20clock.jpg
+countryside | vùng quê | https://hoctienganhdelam.com/game/pic/countryside.jpg
+court | sân | https://hoctienganhdelam.com/game/pic/court.jpg
+cousin | anh chị em họ | https://hoctienganhdelam.com/game/pic/cousin.jpg
+crater | miệng núi lửa | https://hoctienganhdelam.com/game/pic/crater.jpg
+crayon | bút sáp | https://hoctienganhdelam.com/game/pic/crayon.jpg
+creeper | cây leo | https://hoctienganhdelam.com/game/pic/creeper.jpg
+crocodile | cá sấu | https://hoctienganhdelam.com/game/pic/crocodile.jpg
+crown | vương miện | https://hoctienganhdelam.com/game/pic/crown.jpg
+cup and saucer | tách và đĩa | https://hoctienganhdelam.com/game/pic/cup%20and%20saucer.jpg
+cupboard | tủ | https://hoctienganhdelam.com/game/pic/cupboard.jpg
+curly | xoăn | https://hoctienganhdelam.com/game/pic/curly.jpg
+cushion | đệm | https://hoctienganhdelam.com/game/pic/cushion.jpg
+dance | nhảy múa | https://hoctienganhdelam.com/game/pic/dance.jpg
+dancer | vũ công | https://hoctienganhdelam.com/game/pic/dancer.jpg
+dark | tối | https://hoctienganhdelam.com/game/pic/dark.jpg
+dentist | nha sĩ | https://hoctienganhdelam.com/game/pic/dentist.jpg
+designer | nhà thiết kế | https://hoctienganhdelam.com/game/pic/designer.jpg
+desk | bàn học | https://hoctienganhdelam.com/game/pic/desk.jpg
+dessert | món tráng miệng | https://hoctienganhdelam.com/game/pic/dessert.jpg
+dining room | phòng ăn | https://hoctienganhdelam.com/game/pic/dining%20room.jpg
+dive into the water | lặn xuống nước | https://hoctienganhdelam.com/game/pic/dive%20into%20the%20water.jpg
+do the shopping | đi mua sắm | https://hoctienganhdelam.com/game/pic/do%20the%20shopping.jpg
+doctor | bác sĩ | https://hoctienganhdelam.com/game/pic/doctor.jpg
+dodgem cars | xe đụng | https://hoctienganhdelam.com/game/pic/dodgem%20cars.jpg
+dog | con chó | https://hoctienganhdelam.com/game/pic/dog.jpg
+doing puzzles | xếp hình | https://hoctienganhdelam.com/game/pic/doing%20puzzles.jpg
+doll | búp bê | https://hoctienganhdelam.com/game/pic/doll.jpg
+dolphin | cá heo | https://hoctienganhdelam.com/game/pic/dolphin.jpg
+donkey | con lừa | https://hoctienganhdelam.com/game/pic/donkey.jpg
+door | cửa | https://hoctienganhdelam.com/game/pic/door.jpg
+downstairs | dưới nhà | https://hoctienganhdelam.com/game/pic/downstairs.jpg
+drill | máy khoan | https://hoctienganhdelam.com/game/pic/drill.jpg
+drum kit | bộ trống | https://hoctienganhdelam.com/game/pic/drum%20kit.jpg
+drums | trống | https://hoctienganhdelam.com/game/pic/drums.jpg
+dry the dishes | lau khô bát | https://hoctienganhdelam.com/game/pic/dry%20the%20dishes.jpg
+dry your clothes | phơi quần áo | https://hoctienganhdelam.com/game/pic/dry%20your%20clothes.jpg
+duck | con vịt | https://hoctienganhdelam.com/game/pic/duck.jpg
+earache | đau tai | https://hoctienganhdelam.com/game/pic/earache.jpg
+earrings | hoa tai | https://hoctienganhdelam.com/game/pic/earrings.jpg
+ears | đôi tai | https://hoctienganhdelam.com/game/pic/ears.jpg
+earthquake | động đất | https://hoctienganhdelam.com/game/pic/earthquake.jpg
+eat ice cream | ăn kem | https://hoctienganhdelam.com/game/pic/eat%20ice%20cream.jpg
+ecosystem | hệ sinh thái | https://hoctienganhdelam.com/game/pic/ecosystem.jpg
+eggs | trứng | https://hoctienganhdelam.com/game/pic/eggs.jpg
+egypt | ai cập | https://hoctienganhdelam.com/game/pic/Egypt.jpg
+eight | tám | https://hoctienganhdelam.com/game/pic/eight.jpg
+eighteen | mười tám | https://hoctienganhdelam.com/game/pic/eighteen.jpg
+eighty | tám mươi | https://hoctienganhdelam.com/game/pic/eighty.jpg
+electric fan | quạt điện | https://hoctienganhdelam.com/game/pic/electric%20fan.jpg
+electric guitar | ghi ta điện | https://hoctienganhdelam.com/game/pic/electric%20guitar.jpg
+electric toothbrush | bàn chải điện | https://hoctienganhdelam.com/game/pic/electric%20toothbrush.jpg
+elephant | con voi | https://hoctienganhdelam.com/game/pic/elephant.jpg
+eleven | mười một | https://hoctienganhdelam.com/game/pic/eleven.jpg
+emergency services | dịch vụ khẩn cấp | https://hoctienganhdelam.com/game/pic/emergency%20services.jpg
+engineer | kỹ sư | https://hoctienganhdelam.com/game/pic/engineer.jpg
+english | tiếng anh | https://hoctienganhdelam.com/game/pic/English.jpg
+erupt | phun trào | https://hoctienganhdelam.com/game/pic/erupt.jpg
+escalator | thang cuốn | https://hoctienganhdelam.com/game/pic/escalator.jpg
+excited | háo hức | https://hoctienganhdelam.com/game/pic/excited.jpg
+experiment | thí nghiệm | https://hoctienganhdelam.com/game/pic/experiment.jpg
+explosion | vụ nổ | https://hoctienganhdelam.com/game/pic/explosion.jpg
+eye-patch | băng che mắt | https://hoctienganhdelam.com/game/pic/eye-patch.jpg
+eyes | đôi mắt | https://hoctienganhdelam.com/game/pic/eyes.jpg
+face | khuôn mặt | https://hoctienganhdelam.com/game/pic/face.jpg
+fair | sáng màu | https://hoctienganhdelam.com/game/pic/fair.jpg
+fans | người hâm mộ | https://hoctienganhdelam.com/game/pic/fans.jpg
+farmer | nông dân | https://hoctienganhdelam.com/game/pic/farmer.jpg
+feathers | lông vũ | https://hoctienganhdelam.com/game/pic/feathers.jpg
+feed the dog | cho chó ăn | https://hoctienganhdelam.com/game/pic/feed%20the%20dog.jpg
+fencing | đấu kiếm | https://hoctienganhdelam.com/game/pic/fencing.jpg
+field | cánh đồng | https://hoctienganhdelam.com/game/pic/field.jpg
+fifteen | mười lăm | https://hoctienganhdelam.com/game/pic/fifteen.jpg
+fifty | năm mươi | https://hoctienganhdelam.com/game/pic/fifty.jpg
+fingers | các ngón tay | https://hoctienganhdelam.com/game/pic/fingers.jpg
+fire | ngọn lửa | https://hoctienganhdelam.com/game/pic/fire.jpg
+fire engine | xe cứu hỏa | https://hoctienganhdelam.com/game/pic/fire%20engine.jpg
+firefighter | lính cứu hỏa | https://hoctienganhdelam.com/game/pic/firefighter.jpg
+fish | cá | https://hoctienganhdelam.com/game/pic/fish.jpg
+five | năm | https://hoctienganhdelam.com/game/pic/five.jpg
+flag | lá cờ | https://hoctienganhdelam.com/game/pic/flag.jpg
+flash | tên nhân vật (chó) | https://hoctienganhdelam.com/game/pic/Flash.jpg
+flat | căn hộ | https://hoctienganhdelam.com/game/pic/flat.jpg
+floating skateboard | ván trượt bay | https://hoctienganhdelam.com/game/pic/floating%20skateboard.jpg
+flood | lũ lụt | https://hoctienganhdelam.com/game/pic/flood.jpg
+floor | sàn nhà | https://hoctienganhdelam.com/game/pic/floor.jpg
+flowers | hoa | https://hoctienganhdelam.com/game/pic/flowers.jpg
+fly a kite | thả diều | https://hoctienganhdelam.com/game/pic/fly%20a%20kite.jpg
+flying a kite | thả diều | https://hoctienganhdelam.com/game/pic/flying%20a%20kite.jpg
+foggy | sương mù | https://hoctienganhdelam.com/game/pic/foggy.jpg
+food | thức ăn | https://hoctienganhdelam.com/game/pic/food.jpg
+foot | bàn chân | https://hoctienganhdelam.com/game/pic/foot.jpg
+football | bóng đá | https://hoctienganhdelam.com/game/pic/football.jpg
+football pitch | sân bóng đá | https://hoctienganhdelam.com/game/pic/football%20pitch.jpg
+forest | khu rừng | https://hoctienganhdelam.com/game/pic/forest.jpg
+fork | cái nĩa | https://hoctienganhdelam.com/game/pic/fork.jpg
+forty | bốn mươi | https://hoctienganhdelam.com/game/pic/forty.jpg
+forwards | về phía trước | https://hoctienganhdelam.com/game/pic/forwards.jpg
+fountain | đài phun nước | https://hoctienganhdelam.com/game/pic/fountain.jpg
+four | bốn | https://hoctienganhdelam.com/game/pic/four.jpg
+fourteen | mười bốn | https://hoctienganhdelam.com/game/pic/fourteen.jpg
+friday | thứ Sáu | https://hoctienganhdelam.com/game/pic/Friday.jpg
+frog | con ếch | https://hoctienganhdelam.com/game/pic/frog.jpg
+fruit | trái cây | https://hoctienganhdelam.com/game/pic/fruit.jpg
+funfair | hội chợ | https://hoctienganhdelam.com/game/pic/funfair.jpg
+games console | máy chơi game | https://hoctienganhdelam.com/game/pic/games%20console.jpg
+garden | khu vườn | https://hoctienganhdelam.com/game/pic/garden.jpg
+gate | cổng | https://hoctienganhdelam.com/game/pic/gate.jpg
+geography | địa lý | https://hoctienganhdelam.com/game/pic/Geography.jpg
+get dressed | mặc quần áo | https://hoctienganhdelam.com/game/pic/get%20dressed.jpg
+get up | thức dậy | https://hoctienganhdelam.com/game/pic/get%20up.jpg
+glasses | kính | https://hoctienganhdelam.com/game/pic/glasses.jpg
+gloves | găng tay | https://hoctienganhdelam.com/game/pic/gloves.jpg
+go camping | đi cắm trại | https://hoctienganhdelam.com/game/pic/go%20camping.jpg
+go fishing | đi câu cá | https://hoctienganhdelam.com/game/pic/go%20fishing.jpg
+go hiking | đi leo núi | https://hoctienganhdelam.com/game/pic/go%20hiking.jpg
+go swimming | đi bơi | https://hoctienganhdelam.com/game/pic/go%20swimming.jpg
+go to bed | đi ngủ | https://hoctienganhdelam.com/game/pic/go%20to%20bed.jpg
+go to school | đi học | https://hoctienganhdelam.com/game/pic/go%20to%20school.jpg
+go-kart | xe kart | https://hoctienganhdelam.com/game/pic/go-kart.jpg
+goal | khung thành | https://hoctienganhdelam.com/game/pic/goal.jpg
+goggles | kính bơi | https://hoctienganhdelam.com/game/pic/goggles.jpg
+granddaughter | cháu gái | https://hoctienganhdelam.com/game/pic/granddaughter.jpg
+grandparents | ông bà | https://hoctienganhdelam.com/game/pic/grandparents.jpg
+grandson | cháu trai | https://hoctienganhdelam.com/game/pic/grandson.jpg
+grapes | chùm nho | https://hoctienganhdelam.com/game/pic/grapes.jpg
+grassland | đồng cỏ | https://hoctienganhdelam.com/game/pic/grassland.jpg
+green | xanh lá | https://hoctienganhdelam.com/game/pic/green.jpg
+greens | rau xanh | https://hoctienganhdelam.com/game/pic/greens.jpg
+grocer's | cửa hàng tạp hoá | https://hoctienganhdelam.com/game/pic/grocer%27s.jpg
+gun | súng | https://hoctienganhdelam.com/game/pic/gun.jpg
+gym | phòng tập | https://hoctienganhdelam.com/game/pic/gym.jpg
+gymnastics | thể dục dụng cụ | https://hoctienganhdelam.com/game/pic/gymnastics.jpg
+hair | mái tóc | https://hoctienganhdelam.com/game/pic/hair.jpg
+hall | sảnh/hành lang | https://hoctienganhdelam.com/game/pic/hall.jpg
+hammer | cái búa | https://hoctienganhdelam.com/game/pic/hammer.jpg
+hammock | cái võng | https://hoctienganhdelam.com/game/pic/hammock.jpg
+hand | bàn tay | https://hoctienganhdelam.com/game/pic/hand.jpg
+handcuffs | còng tay | https://hoctienganhdelam.com/game/pic/handcuffs.jpg
+hang-glider | dù lượn | https://hoctienganhdelam.com/game/pic/hang-glider.jpg
+happy | vui vẻ | https://hoctienganhdelam.com/game/pic/happy.jpg
+harp | đàn hạc | https://hoctienganhdelam.com/game/pic/harp.jpg
+hat | cái mũ | https://hoctienganhdelam.com/game/pic/hat.jpg
+have breakfast | ăn sáng | https://hoctienganhdelam.com/game/pic/have%20breakfast.jpg
+have dinner | ăn tối | https://hoctienganhdelam.com/game/pic/have%20dinner.jpg
+have lunch | ăn trưa | https://hoctienganhdelam.com/game/pic/have%20lunch.jpg
+head | cái đầu | https://hoctienganhdelam.com/game/pic/head.jpg
+headache | đau đầu | https://hoctienganhdelam.com/game/pic/headache.jpg
+headset | tai nghe | https://hoctienganhdelam.com/game/pic/headset.jpg
+helicopter | máy bay trực thăng | https://hoctienganhdelam.com/game/pic/helicopter.jpg
+helmet | mũ bảo hiểm | https://hoctienganhdelam.com/game/pic/helmet.jpg
+help in the garden | giúp việc vườn | https://hoctienganhdelam.com/game/pic/help%20in%20the%20garden.jpg
+hieroglyphics | chữ tượng hình | https://hoctienganhdelam.com/game/pic/hieroglyphics.jpg
+high jump | nhảy cao | https://hoctienganhdelam.com/game/pic/high%20jump.jpg
+hippo | hà mã | https://hoctienganhdelam.com/game/pic/hippo.jpg
+history | lịch sử | https://hoctienganhdelam.com/game/pic/History.jpg
+hit record | đĩa nhạc hit | https://hoctienganhdelam.com/game/pic/hit%20record.jpg
+hockey | khúc côn cầu | https://hoctienganhdelam.com/game/pic/hockey.jpg
+hole | cái hố | https://hoctienganhdelam.com/game/pic/hole.jpg
+holster | bao súng | https://hoctienganhdelam.com/game/pic/holster.jpg
+hook | cái móc | https://hoctienganhdelam.com/game/pic/hook.jpg
+horizon | đường chân trời | https://hoctienganhdelam.com/game/pic/horizon.jpg
+horn | cái sừng | https://hoctienganhdelam.com/game/pic/horn.jpg
+horse and cart | xe ngựa | https://hoctienganhdelam.com/game/pic/horse%20and%20cart.jpg
+hospital | bệnh viện | https://hoctienganhdelam.com/game/pic/hospital.jpg
+house | ngôi nhà | https://hoctienganhdelam.com/game/pic/house.jpg
+house boat | nhà thuyền | https://hoctienganhdelam.com/game/pic/house%20boat.jpg
+hungry | đói | https://hoctienganhdelam.com/game/pic/hungry.jpg
+hurdles | chạy vượt rào | https://hoctienganhdelam.com/game/pic/hurdles.jpg
+i.t. | tin học | https://hoctienganhdelam.com/game/pic/I.T..jpg
+ice floe | tảng băng nổi | https://hoctienganhdelam.com/game/pic/ice%20floe.jpg
+iceberg | tảng băng trôi | https://hoctienganhdelam.com/game/pic/iceberg.jpg
+igloo | lều tuyết | https://hoctienganhdelam.com/game/pic/igloo.jpg
+india | ấn độ | https://hoctienganhdelam.com/game/pic/India.jpg
+inline skates | giày trượt patin | https://hoctienganhdelam.com/game/pic/inline%20skates.jpg
+instructions | hướng dẫn | https://hoctienganhdelam.com/game/pic/instructions.jpg
+island | hòn đảo | https://hoctienganhdelam.com/game/pic/island.jpg
+jacket | áo khoác | https://hoctienganhdelam.com/game/pic/jacket.jpg
+jaguar | báo đốm | https://hoctienganhdelam.com/game/pic/jaguar.jpg
+jail | nhà tù | https://hoctienganhdelam.com/game/pic/jail.jpg
+jeans | quần jeans | https://hoctienganhdelam.com/game/pic/jeans.jpg
+jet pack | ba lô phản lực | https://hoctienganhdelam.com/game/pic/jet%20pack.jpg
+jeweller's | hiệu kim hoàn | https://hoctienganhdelam.com/game/pic/jeweller%27s.jpg
+journalist | nhà báo | https://hoctienganhdelam.com/game/pic/journalist.jpg
+jump | nhảy | https://hoctienganhdelam.com/game/pic/jump.jpg
+keep a scrapbook | làm sổ lưu niệm | https://hoctienganhdelam.com/game/pic/keep%20a%20scrapbook.jpg
+key | chìa khoá | https://hoctienganhdelam.com/game/pic/key.jpg
+key ring | móc khoá | https://hoctienganhdelam.com/game/pic/key%20ring.jpg
+keyboard | đàn phím | https://hoctienganhdelam.com/game/pic/keyboard.jpg
+kitchen | nhà bếp | https://hoctienganhdelam.com/game/pic/kitchen.jpg
+kite | cái diều | https://hoctienganhdelam.com/game/pic/kite.jpg
+kiwis | quả kiwi | https://hoctienganhdelam.com/game/pic/kiwis.jpg
+knee | đầu gối | https://hoctienganhdelam.com/game/pic/knee.jpg
+knife | con dao | https://hoctienganhdelam.com/game/pic/knife.jpg
+knight | hiệp sĩ | https://hoctienganhdelam.com/game/pic/knight.jpg
+kraken | quái vật Kraken | https://hoctienganhdelam.com/game/pic/Kraken.jpg
+lake | cái hồ | https://hoctienganhdelam.com/game/pic/lake.jpg
+lamp | đèn | https://hoctienganhdelam.com/game/pic/lamp.jpg
+land | đất liền | https://hoctienganhdelam.com/game/pic/land.jpg
+laptop | máy tính xách tay | https://hoctienganhdelam.com/game/pic/laptop.jpg
+launch pad | bệ phóng | https://hoctienganhdelam.com/game/pic/launch%20pad.jpg
+lava | dung nham | https://hoctienganhdelam.com/game/pic/lava.jpg
+learn to swim | học bơi | https://hoctienganhdelam.com/game/pic/learn%20to%20swim.jpg
+leaves | lá | https://hoctienganhdelam.com/game/pic/leaves.jpg
+leg | chân | https://hoctienganhdelam.com/game/pic/leg.jpg
+lemonade | nước chanh | https://hoctienganhdelam.com/game/pic/lemonade.jpg
+lemons | quả chanh | https://hoctienganhdelam.com/game/pic/lemons.jpg
+lever | đòn bẩy | https://hoctienganhdelam.com/game/pic/lever.jpg
+librarian | thủ thư | https://hoctienganhdelam.com/game/pic/librarian.jpg
+library | thư viện | https://hoctienganhdelam.com/game/pic/library.jpg
+lifeboat | xuồng cứu sinh | https://hoctienganhdelam.com/game/pic/lifeboat.jpg
+lift | thang máy | https://hoctienganhdelam.com/game/pic/lift.jpg
+lightning | tia chớp | https://hoctienganhdelam.com/game/pic/lightning.jpg
+liquid | chất lỏng | https://hoctienganhdelam.com/game/pic/liquid.jpg
+listen | nghe | https://hoctienganhdelam.com/game/pic/listen.jpg
+listen to music | nghe nhạc | https://hoctienganhdelam.com/game/pic/listen%20to%20music.jpg
+litter bin | thùng rác | https://hoctienganhdelam.com/game/pic/litter%20bin.jpg
+living room | phòng khách | https://hoctienganhdelam.com/game/pic/living%20room.jpg
+lizard | con thằn lằn | https://hoctienganhdelam.com/game/pic/lizard.jpg
+loch ness monster | quái vật Loch Ness | https://hoctienganhdelam.com/game/pic/Loch%20Ness%20Monster.jpg
+log | khúc gỗ | https://hoctienganhdelam.com/game/pic/log.jpg
+long | dài | https://hoctienganhdelam.com/game/pic/long.jpg
+long jump | nhảy xa | https://hoctienganhdelam.com/game/pic/long%20jump.jpg
+look | nhìn | https://hoctienganhdelam.com/game/pic/look.jpg
+look for shells | tìm vỏ sò | https://hoctienganhdelam.com/game/pic/look%20for%20shells.jpg
+lorry | xe tải | https://hoctienganhdelam.com/game/pic/lorry.jpg
+lunar module | mô-đun mặt trăng | https://hoctienganhdelam.com/game/pic/lunar%20module.jpg
+lunch | bữa trưa | https://hoctienganhdelam.com/game/pic/lunch.jpg
+lute | đàn luýt | https://hoctienganhdelam.com/game/pic/lute.jpg
+machine | máy móc | https://hoctienganhdelam.com/game/pic/machine.jpg
+main course | món chính | https://hoctienganhdelam.com/game/pic/main%20course.jpg
+make a fire | nhóm lửa | https://hoctienganhdelam.com/game/pic/make%20a%20fire.jpg
+make a raft | làm bè | https://hoctienganhdelam.com/game/pic/make%20a%20raft.jpg
+make a sandcastle | xây lâu đài cát | https://hoctienganhdelam.com/game/pic/make%20a%20sandcastle.jpg
+make-up | trang điểm | https://hoctienganhdelam.com/game/pic/make-up.jpg
+mangoes | quả xoài | https://hoctienganhdelam.com/game/pic/mangoes.jpg
+map | bản đồ | https://hoctienganhdelam.com/game/pic/map.jpg
+market square | quảng trường chợ | https://hoctienganhdelam.com/game/pic/market%20square.jpg
+marketplace | khu chợ | https://hoctienganhdelam.com/game/pic/marketplace.jpg
+mask | mặt nạ | https://hoctienganhdelam.com/game/pic/mask.jpg
+mast | cột buồm | https://hoctienganhdelam.com/game/pic/mast.jpg
+maths | toán | https://hoctienganhdelam.com/game/pic/Maths.jpg
+mayor | thị trưởng | https://hoctienganhdelam.com/game/pic/mayor.jpg
+meat | thịt | https://hoctienganhdelam.com/game/pic/meat.jpg
+mechanic | thợ sửa máy | https://hoctienganhdelam.com/game/pic/mechanic.jpg
+menu | thực đơn | https://hoctienganhdelam.com/game/pic/menu.jpg
+mexico | mê-xi-cô | https://hoctienganhdelam.com/game/pic/Mexico.jpg
+microlight | máy bay siêu nhẹ | https://hoctienganhdelam.com/game/pic/microlight.jpg
+microphone | micrô | https://hoctienganhdelam.com/game/pic/microphone.jpg
+mirror | gương | https://hoctienganhdelam.com/game/pic/mirror.jpg
+misty | tên nhân vật (mèo) | https://hoctienganhdelam.com/game/pic/Misty.jpg
+mittens | găng tay | https://hoctienganhdelam.com/game/pic/mittens.jpg
+mobile phone | điện thoại | https://hoctienganhdelam.com/game/pic/mobile%20phone.jpg
+monday | thứ Hai | https://hoctienganhdelam.com/game/pic/Monday.jpg
+monkey | con khỉ | https://hoctienganhdelam.com/game/pic/monkey.jpg
+monorail | tàu một ray | https://hoctienganhdelam.com/game/pic/monorail.jpg
+monster | quái vật | https://hoctienganhdelam.com/game/pic/monster.jpg
+moon | mặt trăng | https://hoctienganhdelam.com/game/pic/moon.jpg
+motorbike | xe máy | https://hoctienganhdelam.com/game/pic/motorbike.jpg
+mountain | ngọn núi | https://hoctienganhdelam.com/game/pic/mountain.jpg
+mountains | núi | https://hoctienganhdelam.com/game/pic/mountains.jpg
+moustache | ria mép | https://hoctienganhdelam.com/game/pic/moustache.jpg
+mouth | cái miệng | https://hoctienganhdelam.com/game/pic/mouth.jpg
+mummy | xác ướp | https://hoctienganhdelam.com/game/pic/mummy.jpg
+music | âm nhạc | https://hoctienganhdelam.com/game/pic/Music.jpg
+nails | đinh | https://hoctienganhdelam.com/game/pic/nails.jpg
+napkin | khăn ăn | https://hoctienganhdelam.com/game/pic/napkin.jpg
+neck | cái cổ | https://hoctienganhdelam.com/game/pic/neck.jpg
+necklace | vòng cổ | https://hoctienganhdelam.com/game/pic/necklace.jpg
+net | lưới | https://hoctienganhdelam.com/game/pic/net.jpg
+new | mới | https://hoctienganhdelam.com/game/pic/new.jpg
+nine | chín | https://hoctienganhdelam.com/game/pic/nine.jpg
+nineteen | mười chín | https://hoctienganhdelam.com/game/pic/nineteen.jpg
+ninety | chín mươi | https://hoctienganhdelam.com/game/pic/ninety.jpg
+northern lights | cực quang | https://hoctienganhdelam.com/game/pic/Northern%20Lights.jpg
+nose | cái mũi | https://hoctienganhdelam.com/game/pic/nose.jpg
+notebook | vở | https://hoctienganhdelam.com/game/pic/notebook.jpg
+numbers 21-100 | các số 21-100 | https://hoctienganhdelam.com/game/pic/numbers%2021-100.jpg
+nurse | y tá | https://hoctienganhdelam.com/game/pic/nurse.jpg
+octopus | bạch tuộc | https://hoctienganhdelam.com/game/pic/octopus.jpg
+old | cũ | https://hoctienganhdelam.com/game/pic/old.jpg
+one | một | https://hoctienganhdelam.com/game/pic/one.jpg
+one hundred | một trăm | https://hoctienganhdelam.com/game/pic/one%20hundred.jpg
+orange | cam | https://hoctienganhdelam.com/game/pic/orange.jpg
+p.e. | thể dục | https://hoctienganhdelam.com/game/pic/P.E..jpg
+paint a picture | vẽ tranh | https://hoctienganhdelam.com/game/pic/paint%20a%20picture.jpg
+paint pot | hộp sơn | https://hoctienganhdelam.com/game/pic/paint%20pot.jpg
+paintbrush | chổi sơn | https://hoctienganhdelam.com/game/pic/paintbrush.jpg
+palm tree | cây cọ | https://hoctienganhdelam.com/game/pic/palm%20tree.jpg
+paper | giấy | https://hoctienganhdelam.com/game/pic/paper.jpg
+parachute | dù nhảy | https://hoctienganhdelam.com/game/pic/parachute.jpg
+paramedic | nhân viên cấp cứu | https://hoctienganhdelam.com/game/pic/paramedic.jpg
+parents | bố mẹ | https://hoctienganhdelam.com/game/pic/parents.jpg
+park | công viên | https://hoctienganhdelam.com/game/pic/park.jpg
+parrot | con vẹt | https://hoctienganhdelam.com/game/pic/parrot.jpg
+path | lối đi | https://hoctienganhdelam.com/game/pic/path.jpg
+peas | đậu Hà Lan | https://hoctienganhdelam.com/game/pic/peas.jpg
+pen | bút mực | https://hoctienganhdelam.com/game/pic/pen.jpg
+pencil | bút chì | https://hoctienganhdelam.com/game/pic/pencil.jpg
+pencil case | hộp bút | https://hoctienganhdelam.com/game/pic/pencil%20case.jpg
+pepper | hạt tiêu | https://hoctienganhdelam.com/game/pic/pepper.jpg
+pharaoh | pha-ra-ông | https://hoctienganhdelam.com/game/pic/pharaoh.jpg
+photographer | nhiếp ảnh gia | https://hoctienganhdelam.com/game/pic/photographer.jpg
+picnic | dã ngoại | https://hoctienganhdelam.com/game/pic/picnic.jpg
+pink | hồng | https://hoctienganhdelam.com/game/pic/pink.jpg
+pistol | súng ngắn | https://hoctienganhdelam.com/game/pic/pistol.jpg
+pitch | sân bóng | https://hoctienganhdelam.com/game/pic/pitch.jpg
+pizza | bánh pizza | https://hoctienganhdelam.com/game/pic/pizza.jpg
+plain | trơn (không hoa văn) | https://hoctienganhdelam.com/game/pic/plain.jpg
+plane | máy bay (đồ chơi) | https://hoctienganhdelam.com/game/pic/plane.jpg
+planet | hành tinh | https://hoctienganhdelam.com/game/pic/planet.jpg
+plant | cây / trồng | https://hoctienganhdelam.com/game/pic/plant.jpg
+plate | cái đĩa | https://hoctienganhdelam.com/game/pic/plate.jpg
+platform | sân ga | https://hoctienganhdelam.com/game/pic/platform.jpg
+play | vở kịch | https://hoctienganhdelam.com/game/pic/play.jpg
+play board games | chơi cờ/trò chơi bàn | https://hoctienganhdelam.com/game/pic/play%20board%20games.jpg
+play computer games | chơi game máy tính | https://hoctienganhdelam.com/game/pic/play%20computer%20games.jpg
+play football | chơi bóng đá | https://hoctienganhdelam.com/game/pic/play%20football.jpg
+play in the park | chơi ở công viên | https://hoctienganhdelam.com/game/pic/play%20in%20the%20park.jpg
+play tennis | chơi tennis | https://hoctienganhdelam.com/game/pic/play%20tennis.jpg
+play the guitar | chơi đàn ghi-ta | https://hoctienganhdelam.com/game/pic/play%20the%20guitar.jpg
+play the piano | chơi đàn piano | https://hoctienganhdelam.com/game/pic/play%20the%20piano.jpg
+playground | sân chơi | https://hoctienganhdelam.com/game/pic/playground.jpg
+playing the guitar | chơi ghi ta | https://hoctienganhdelam.com/game/pic/playing%20the%20guitar.jpg
+polar bear | gấu bắc cực | https://hoctienganhdelam.com/game/pic/polar%20bear.jpg
+polar bear cub | gấu bắc cực con | https://hoctienganhdelam.com/game/pic/polar%20bear%20cub.jpg
+police car | xe cảnh sát | https://hoctienganhdelam.com/game/pic/police%20car.jpg
+police officer | cảnh sát | https://hoctienganhdelam.com/game/pic/police%20officer.jpg
+pond | cái ao | https://hoctienganhdelam.com/game/pic/pond.jpg
+porthole | cửa sổ tròn | https://hoctienganhdelam.com/game/pic/porthole.jpg
+postcard | bưu thiếp | https://hoctienganhdelam.com/game/pic/postcard.jpg
+poster | áp phích | https://hoctienganhdelam.com/game/pic/poster.jpg
+potatoes | khoai tây | https://hoctienganhdelam.com/game/pic/potatoes.jpg
+powder | bột | https://hoctienganhdelam.com/game/pic/powder.jpg
+props | đạo cụ | https://hoctienganhdelam.com/game/pic/props.jpg
+purple | tím | https://hoctienganhdelam.com/game/pic/purple.jpg
+put up a tent | dựng lều | https://hoctienganhdelam.com/game/pic/put%20up%20a%20tent.jpg
+puzzle | trò xếp hình | https://hoctienganhdelam.com/game/pic/puzzle.jpg
+pyramid | kim tự tháp | https://hoctienganhdelam.com/game/pic/pyramid.jpg
+queen | nữ hoàng | https://hoctienganhdelam.com/game/pic/queen.jpg
+racket | vợt | https://hoctienganhdelam.com/game/pic/racket.jpg
+railings | lan can | https://hoctienganhdelam.com/game/pic/railings.jpg
+raincoat | áo mưa | https://hoctienganhdelam.com/game/pic/raincoat.jpg
+rainy | mưa | https://hoctienganhdelam.com/game/pic/rainy.jpg
+rat | con chuột | https://hoctienganhdelam.com/game/pic/rat.jpg
+read a book | đọc sách | https://hoctienganhdelam.com/game/pic/read%20a%20book.jpg
+read a comic | đọc truyện tranh | https://hoctienganhdelam.com/game/pic/read%20a%20comic.jpg
+red | đỏ | https://hoctienganhdelam.com/game/pic/red.jpg
+ride a horse | cưỡi ngựa | https://hoctienganhdelam.com/game/pic/ride%20a%20horse.jpg
+ride my bike | đi xe đạp | https://hoctienganhdelam.com/game/pic/ride%20my%20bike.jpg
+ride my pony | cưỡi ngựa nhỏ | https://hoctienganhdelam.com/game/pic/ride%20my%20pony.jpg
+riding bikes | đạp xe | https://hoctienganhdelam.com/game/pic/riding%20bikes.jpg
+rings | nhẫn | https://hoctienganhdelam.com/game/pic/rings.jpg
+river | dòng sông | https://hoctienganhdelam.com/game/pic/river.jpg
+robbers | kẻ cướp | https://hoctienganhdelam.com/game/pic/robbers.jpg
+robot | người máy | https://hoctienganhdelam.com/game/pic/robot.jpg
+rock | tảng đá | https://hoctienganhdelam.com/game/pic/rock.jpg
+rock 'n' roll | nhạc rock | https://hoctienganhdelam.com/game/pic/rock%20%27n%27%20roll.jpg
+rocket | tên lửa | https://hoctienganhdelam.com/game/pic/rocket.jpg
+roller coaster | tàu lượn | https://hoctienganhdelam.com/game/pic/roller%20coaster.jpg
+rolls | bánh mì tròn | https://hoctienganhdelam.com/game/pic/rolls.jpg
+roots | rễ cây | https://hoctienganhdelam.com/game/pic/roots.jpg
+rope | dây thừng | https://hoctienganhdelam.com/game/pic/rope.jpg
+roundabout | vòng xoay | https://hoctienganhdelam.com/game/pic/roundabout.jpg
+row a boat | chèo thuyền | https://hoctienganhdelam.com/game/pic/row%20a%20boat.jpg
+rowing | chèo thuyền | https://hoctienganhdelam.com/game/pic/rowing.jpg
+rubber | cục tẩy | https://hoctienganhdelam.com/game/pic/rubber.jpg
+rucksack | ba lô | https://hoctienganhdelam.com/game/pic/rucksack.jpg
+rug | thảm | https://hoctienganhdelam.com/game/pic/rug.jpg
+rule | quy định | https://hoctienganhdelam.com/game/pic/rule.jpg
+ruler | thước kẻ | https://hoctienganhdelam.com/game/pic/ruler.jpg
+running track | đường chạy | https://hoctienganhdelam.com/game/pic/running%20track.jpg
+running water | nước chảy | https://hoctienganhdelam.com/game/pic/running%20water.jpg
+sad | buồn | https://hoctienganhdelam.com/game/pic/sad.jpg
+saddle | yên ngựa | https://hoctienganhdelam.com/game/pic/saddle.jpg
+sail | cánh buồm | https://hoctienganhdelam.com/game/pic/sail.jpg
+sail a boat | lái thuyền buồm | https://hoctienganhdelam.com/game/pic/sail%20a%20boat.jpg
+sailor | thuỷ thủ | https://hoctienganhdelam.com/game/pic/sailor.jpg
+salad | sa lát | https://hoctienganhdelam.com/game/pic/salad.jpg
+saloon | quán rượu | https://hoctienganhdelam.com/game/pic/saloon.jpg
+salt | muối | https://hoctienganhdelam.com/game/pic/salt.jpg
+saturday | thứ Bảy | https://hoctienganhdelam.com/game/pic/Saturday.jpg
+sausage | xúc xích | https://hoctienganhdelam.com/game/pic/sausage.jpg
+saw | cái cưa | https://hoctienganhdelam.com/game/pic/saw.jpg
+saxophone | kèn saxophone | https://hoctienganhdelam.com/game/pic/saxophone.jpg
+scales | vảy | https://hoctienganhdelam.com/game/pic/scales.jpg
+scar | vết sẹo | https://hoctienganhdelam.com/game/pic/scar.jpg
+scared | sợ hãi | https://hoctienganhdelam.com/game/pic/scared.jpg
+school | trường học | https://hoctienganhdelam.com/game/pic/school.jpg
+science | khoa học | https://hoctienganhdelam.com/game/pic/Science.jpg
+scooter | xe ga | https://hoctienganhdelam.com/game/pic/scooter.jpg
+screen | màn hình | https://hoctienganhdelam.com/game/pic/screen.jpg
+screwdriver | tua vít | https://hoctienganhdelam.com/game/pic/screwdriver.jpg
+seahorse | cá ngựa | https://hoctienganhdelam.com/game/pic/seahorse.jpg
+seal | hải cẩu | https://hoctienganhdelam.com/game/pic/seal.jpg
+seal pup | hải cẩu con | https://hoctienganhdelam.com/game/pic/seal%20pup.jpg
+seaside | bờ biển | https://hoctienganhdelam.com/game/pic/seaside.jpg
+servant | người hầu | https://hoctienganhdelam.com/game/pic/servant.jpg
+seven | bảy | https://hoctienganhdelam.com/game/pic/seven.jpg
+seventeen | mười bảy | https://hoctienganhdelam.com/game/pic/seventeen.jpg
+seventy | bảy mươi | https://hoctienganhdelam.com/game/pic/seventy.jpg
+shake | rung lắc | https://hoctienganhdelam.com/game/pic/shake.jpg
+shelf | cái kệ | https://hoctienganhdelam.com/game/pic/shelf.jpg
+shell | vỏ sò | https://hoctienganhdelam.com/game/pic/shell.jpg
+shelter | chỗ trú/nơi ở | https://hoctienganhdelam.com/game/pic/shelter.jpg
+sheriff | cảnh sát trưởng | https://hoctienganhdelam.com/game/pic/sheriff.jpg
+shield | cái khiên | https://hoctienganhdelam.com/game/pic/shield.jpg
+ship | tàu thủy | https://hoctienganhdelam.com/game/pic/ship.jpg
+shoes | giày | https://hoctienganhdelam.com/game/pic/shoes.jpg
+shop | cửa hàng | https://hoctienganhdelam.com/game/pic/shop.jpg
+short | ngắn | https://hoctienganhdelam.com/game/pic/short.jpg
+shorts | quần đùi | https://hoctienganhdelam.com/game/pic/shorts.jpg
+sideways | sang ngang | https://hoctienganhdelam.com/game/pic/sideways.jpg
+sing | hát | https://hoctienganhdelam.com/game/pic/sing.jpg
+sing songs | hát | https://hoctienganhdelam.com/game/pic/sing%20songs.jpg
+siren | nàng tiên cá | https://hoctienganhdelam.com/game/pic/siren.jpg
+six | sáu | https://hoctienganhdelam.com/game/pic/six.jpg
+sixteen | mười sáu | https://hoctienganhdelam.com/game/pic/sixteen.jpg
+sixty | sáu mươi | https://hoctienganhdelam.com/game/pic/sixty.jpg
+skateboard | ván trượt | https://hoctienganhdelam.com/game/pic/skateboard.jpg
+skip | nhảy lò cò | https://hoctienganhdelam.com/game/pic/skip.jpg
+skirt | chân váy | https://hoctienganhdelam.com/game/pic/skirt.jpg
+slaves | nô lệ | https://hoctienganhdelam.com/game/pic/slaves.jpg
+sledge | xe trượt tuyết | https://hoctienganhdelam.com/game/pic/sledge.jpg
+sloth | con lười | https://hoctienganhdelam.com/game/pic/sloth.jpg
+small | nhỏ | https://hoctienganhdelam.com/game/pic/small.jpg
+smell | ngửi | https://hoctienganhdelam.com/game/pic/smell.jpg
+smoke | khói | https://hoctienganhdelam.com/game/pic/smoke.jpg
+snake | con rắn | https://hoctienganhdelam.com/game/pic/snake.jpg
+snorkelling | lặn biển | https://hoctienganhdelam.com/game/pic/snorkelling.jpg
+soap | xà phòng | https://hoctienganhdelam.com/game/pic/soap.jpg
+socks | tất | https://hoctienganhdelam.com/game/pic/socks.jpg
+sofa | ghế sofa | https://hoctienganhdelam.com/game/pic/sofa.jpg
+soil | đất | https://hoctienganhdelam.com/game/pic/soil.jpg
+solar panel | tấm pin mặt trời | https://hoctienganhdelam.com/game/pic/solar%20panel.jpg
+soup | súp | https://hoctienganhdelam.com/game/pic/soup.jpg
+space capsule | khoang tàu vũ trụ | https://hoctienganhdelam.com/game/pic/space%20capsule.jpg
+space station | trạm không gian | https://hoctienganhdelam.com/game/pic/space%20station.jpg
+spacesuit | bộ đồ vũ trụ | https://hoctienganhdelam.com/game/pic/spacesuit.jpg
+spade | cái xẻng | https://hoctienganhdelam.com/game/pic/spade.jpg
+spain | tây ban nha | https://hoctienganhdelam.com/game/pic/Spain.jpg
+spanner | cờ lê | https://hoctienganhdelam.com/game/pic/spanner.jpg
+species | loài | https://hoctienganhdelam.com/game/pic/species.jpg
+sphinx | tượng nhân sư | https://hoctienganhdelam.com/game/pic/Sphinx.jpg
+spider | con nhện | https://hoctienganhdelam.com/game/pic/spider.jpg
+spoon | cái thìa | https://hoctienganhdelam.com/game/pic/spoon.jpg
+sports centre | trung tâm thể thao | https://hoctienganhdelam.com/game/pic/sports%20centre.jpg
+spotlight | đèn sân khấu | https://hoctienganhdelam.com/game/pic/spotlight.jpg
+spots | chấm bi | https://hoctienganhdelam.com/game/pic/spots.jpg
+stage | sân khấu | https://hoctienganhdelam.com/game/pic/stage.jpg
+stagecoach | xe ngựa chở khách | https://hoctienganhdelam.com/game/pic/stagecoach.jpg
+stairs | cầu thang | https://hoctienganhdelam.com/game/pic/stairs.jpg
+stamp | tem | https://hoctienganhdelam.com/game/pic/stamp.jpg
+stand on one leg | đứng một chân | https://hoctienganhdelam.com/game/pic/stand%20on%20one%20leg.jpg
+star | ngôi sao | https://hoctienganhdelam.com/game/pic/star.jpg
+starfish | sao biển | https://hoctienganhdelam.com/game/pic/starfish.jpg
+starter | món khai vị | https://hoctienganhdelam.com/game/pic/starter.jpg
+station | nhà ga | https://hoctienganhdelam.com/game/pic/station.jpg
+statue | tượng | https://hoctienganhdelam.com/game/pic/statue.jpg
+steak | bít tết | https://hoctienganhdelam.com/game/pic/steak.jpg
+steam train | tàu hơi nước | https://hoctienganhdelam.com/game/pic/steam%20train.jpg
+step | bước | https://hoctienganhdelam.com/game/pic/step.jpg
+stomach-ache | đau bụng | https://hoctienganhdelam.com/game/pic/stomach-ache.jpg
+stone | hòn đá | https://hoctienganhdelam.com/game/pic/stone.jpg
+straight | thẳng | https://hoctienganhdelam.com/game/pic/straight.jpg
+strawberries | dâu tây | https://hoctienganhdelam.com/game/pic/strawberries.jpg
+stream | con suối | https://hoctienganhdelam.com/game/pic/stream.jpg
+street | con phố | https://hoctienganhdelam.com/game/pic/street.jpg
+stretch | vươn vai | https://hoctienganhdelam.com/game/pic/stretch.jpg
+stripes | sọc | https://hoctienganhdelam.com/game/pic/stripes.jpg
+suitcase | va li | https://hoctienganhdelam.com/game/pic/suitcase.jpg
+sunday | Chủ nhật | https://hoctienganhdelam.com/game/pic/Sunday.jpg
+sunglasses | kính râm | https://hoctienganhdelam.com/game/pic/sunglasses.jpg
+sunrise | bình minh | https://hoctienganhdelam.com/game/pic/sunrise.jpg
+supermarket | siêu thị | https://hoctienganhdelam.com/game/pic/supermarket.jpg
+superstar | siêu sao | https://hoctienganhdelam.com/game/pic/superstar.jpg
+surfboard | ván lướt sóng | https://hoctienganhdelam.com/game/pic/surfboard.jpg
+swamp | đầm lầy | https://hoctienganhdelam.com/game/pic/swamp.jpg
+sweater | áo len | https://hoctienganhdelam.com/game/pic/sweater.jpg
+sweep the floor | quét nhà | https://hoctienganhdelam.com/game/pic/sweep%20the%20floor.jpg
+swim | bơi | https://hoctienganhdelam.com/game/pic/swim.jpg
+swimming | bơi lội | https://hoctienganhdelam.com/game/pic/swimming.jpg
+swimming pool | bể bơi | https://hoctienganhdelam.com/game/pic/swimming%20pool.jpg
+swing on a rope | đu dây | https://hoctienganhdelam.com/game/pic/swing%20on%20a%20rope.jpg
+switch | công tắc | https://hoctienganhdelam.com/game/pic/switch.jpg
+sword | thanh kiếm | https://hoctienganhdelam.com/game/pic/sword.jpg
+t-shirt | áo thun | https://hoctienganhdelam.com/game/pic/T-shirt.jpg
+table | cái bàn | https://hoctienganhdelam.com/game/pic/table.jpg
+table tennis | bóng bàn | https://hoctienganhdelam.com/game/pic/table%20tennis.jpg
+tablet | máy tính bảng | https://hoctienganhdelam.com/game/pic/tablet.jpg
+tail | cái đuôi | https://hoctienganhdelam.com/game/pic/tail.jpg
+tailor's | tiệm may | https://hoctienganhdelam.com/game/pic/tailor%27s.jpg
+take a photo | chụp ảnh | https://hoctienganhdelam.com/game/pic/take%20a%20photo.jpg
+take riding lessons | học cưỡi ngựa | https://hoctienganhdelam.com/game/pic/take%20riding%20lessons.jpg
+take the dog for a walk | dắt chó đi dạo | https://hoctienganhdelam.com/game/pic/take%20the%20dog%20for%20a%20walk.jpg
+tambourine | trống lục lạc | https://hoctienganhdelam.com/game/pic/tambourine.jpg
+taste | nếm | https://hoctienganhdelam.com/game/pic/taste.jpg
+taxi | xe taxi | https://hoctienganhdelam.com/game/pic/taxi.jpg
+tears | nước mắt | https://hoctienganhdelam.com/game/pic/tears.jpg
+telescope | kính viễn vọng | https://hoctienganhdelam.com/game/pic/telescope.jpg
+temple | đền | https://hoctienganhdelam.com/game/pic/temple.jpg
+ten | mười | https://hoctienganhdelam.com/game/pic/ten.jpg
+tennis | quần vợt | https://hoctienganhdelam.com/game/pic/tennis.jpg
+tennis court | sân quần vợt | https://hoctienganhdelam.com/game/pic/tennis%20court.jpg
+test tube | ống nghiệm | https://hoctienganhdelam.com/game/pic/test%20tube.jpg
+theatre | nhà hát | https://hoctienganhdelam.com/game/pic/theatre.jpg
+theme park | công viên giải trí | https://hoctienganhdelam.com/game/pic/theme%20park.jpg
+thirsty | khát | https://hoctienganhdelam.com/game/pic/thirsty.jpg
+thirteen | mười ba | https://hoctienganhdelam.com/game/pic/thirteen.jpg
+thirty | ba mươi | https://hoctienganhdelam.com/game/pic/thirty.jpg
+three | ba | https://hoctienganhdelam.com/game/pic/three.jpg
+thunder | tên nhân vật | https://hoctienganhdelam.com/game/pic/Thunder.jpg
+thunderstorm | giông bão | https://hoctienganhdelam.com/game/pic/thunderstorm.jpg
+thursday | thứ Năm | https://hoctienganhdelam.com/game/pic/Thursday.jpg
+ticket | vé | https://hoctienganhdelam.com/game/pic/ticket.jpg
+ticket office | phòng bán vé | https://hoctienganhdelam.com/game/pic/ticket%20office.jpg
+tidy up | dọn dẹp | https://hoctienganhdelam.com/game/pic/tidy%20up.jpg
+tiger | con hổ | https://hoctienganhdelam.com/game/pic/tiger.jpg
+tights | quần bó | https://hoctienganhdelam.com/game/pic/tights.jpg
+tired | mệt | https://hoctienganhdelam.com/game/pic/tired.jpg
+toes | các ngón chân | https://hoctienganhdelam.com/game/pic/toes.jpg
+tomatoes | cà chua | https://hoctienganhdelam.com/game/pic/tomatoes.jpg
+tomb | lăng mộ | https://hoctienganhdelam.com/game/pic/tomb.jpg
+tongue | cái lưỡi | https://hoctienganhdelam.com/game/pic/tongue.jpg
+toothache | đau răng | https://hoctienganhdelam.com/game/pic/toothache.jpg
+torch | đèn pin | https://hoctienganhdelam.com/game/pic/torch.jpg
+toucan | chim toucan | https://hoctienganhdelam.com/game/pic/toucan.jpg
+touch | sờ/chạm | https://hoctienganhdelam.com/game/pic/touch.jpg
+touch your toes | chạm ngón chân | https://hoctienganhdelam.com/game/pic/touch%20your%20toes.jpg
+tower | tòa tháp | https://hoctienganhdelam.com/game/pic/tower.jpg
+track | đường chạy | https://hoctienganhdelam.com/game/pic/track.jpg
+tragedy | bi kịch | https://hoctienganhdelam.com/game/pic/tragedy.jpg
+train | tàu hỏa (đồ chơi) | https://hoctienganhdelam.com/game/pic/train.jpg
+train driver | người lái tàu | https://hoctienganhdelam.com/game/pic/train%20driver.jpg
+train station | ga tàu | https://hoctienganhdelam.com/game/pic/train%20station.jpg
+travel | du lịch | https://hoctienganhdelam.com/game/pic/travel.jpg
+treasure chest | rương kho báu | https://hoctienganhdelam.com/game/pic/treasure%20chest.jpg
+tree | cái cây | https://hoctienganhdelam.com/game/pic/tree.jpg
+tree house | nhà trên cây | https://hoctienganhdelam.com/game/pic/tree%20house.jpg
+triangle | kẻng ba góc | https://hoctienganhdelam.com/game/pic/triangle.jpg
+trombone | kèn trombone | https://hoctienganhdelam.com/game/pic/trombone.jpg
+trousers | quần dài | https://hoctienganhdelam.com/game/pic/trousers.jpg
+trumpet | kèn trumpet | https://hoctienganhdelam.com/game/pic/trumpet.jpg
+tuesday | thứ Ba | https://hoctienganhdelam.com/game/pic/Tuesday.jpg
+turkey | thổ nhĩ kỳ | https://hoctienganhdelam.com/game/pic/Turkey.jpg
+turtle | rùa biển | https://hoctienganhdelam.com/game/pic/turtle.jpg
+twelve | mười hai | https://hoctienganhdelam.com/game/pic/twelve.jpg
+twenty | hai mươi | https://hoctienganhdelam.com/game/pic/twenty.jpg
+two | hai | https://hoctienganhdelam.com/game/pic/two.jpg
+ufo | đĩa bay | https://hoctienganhdelam.com/game/pic/UFO.jpg
+ugly | xấu | https://hoctienganhdelam.com/game/pic/ugly.jpg
+umbrella | cái ô | https://hoctienganhdelam.com/game/pic/umbrella.jpg
+uncle | chú | https://hoctienganhdelam.com/game/pic/uncle.jpg
+unicycle | xe đạp một bánh | https://hoctienganhdelam.com/game/pic/unicycle.jpg
+uniform | đồng phục | https://hoctienganhdelam.com/game/pic/uniform.jpg
+upstairs | trên lầu | https://hoctienganhdelam.com/game/pic/upstairs.jpg
+valley | thung lũng | https://hoctienganhdelam.com/game/pic/valley.jpg
+vase | bình hoa | https://hoctienganhdelam.com/game/pic/vase.jpg
+vegetables | rau củ | https://hoctienganhdelam.com/game/pic/vegetables.jpg
+village | ngôi làng | https://hoctienganhdelam.com/game/pic/village.jpg
+violin | đàn vĩ cầm | https://hoctienganhdelam.com/game/pic/violin.jpg
+visit cousins | thăm anh em họ | https://hoctienganhdelam.com/game/pic/visit%20cousins.jpg
+volcano | núi lửa | https://hoctienganhdelam.com/game/pic/volcano.jpg
+volleyball | bóng chuyền | https://hoctienganhdelam.com/game/pic/volleyball.jpg
+wagon | xe chở hàng | https://hoctienganhdelam.com/game/pic/wagon.jpg
+waiter | bồi bàn | https://hoctienganhdelam.com/game/pic/waiter.jpg
+walkie-talkie | bộ đàm | https://hoctienganhdelam.com/game/pic/walkie-talkie.jpg
+wall | tường | https://hoctienganhdelam.com/game/pic/wall.jpg
+wardrobe | tủ quần áo | https://hoctienganhdelam.com/game/pic/wardrobe.jpg
+wash up | rửa bát | https://hoctienganhdelam.com/game/pic/wash%20up.jpg
+watch tv | xem tivi | https://hoctienganhdelam.com/game/pic/watch%20TV.jpg
+water | nước | https://hoctienganhdelam.com/game/pic/water.jpg
+watermelons | dưa hấu | https://hoctienganhdelam.com/game/pic/watermelons.jpg
+wednesday | thứ Tư | https://hoctienganhdelam.com/game/pic/Wednesday.jpg
+weightlifting | cử tạ | https://hoctienganhdelam.com/game/pic/weightlifting.jpg
+whisper | tên nhân vật (mèo) | https://hoctienganhdelam.com/game/pic/Whisper.jpg
+wig | tóc giả | https://hoctienganhdelam.com/game/pic/wig.jpg
+wind turbine | tua bin gió | https://hoctienganhdelam.com/game/pic/wind%20turbine.jpg
+window | cửa sổ | https://hoctienganhdelam.com/game/pic/window.jpg
+windy | gió | https://hoctienganhdelam.com/game/pic/windy.jpg
+wing | cánh | https://hoctienganhdelam.com/game/pic/wing.jpg
+wonder | kỳ quan | https://hoctienganhdelam.com/game/pic/wonder.jpg
+work of art | tác phẩm nghệ thuật | https://hoctienganhdelam.com/game/pic/work%20of%20art.jpg
+workbench | bàn thợ | https://hoctienganhdelam.com/game/pic/workbench.jpg
+wrestling | đấu vật | https://hoctienganhdelam.com/game/pic/wrestling.jpg
+writer | nhà văn | https://hoctienganhdelam.com/game/pic/writer.jpg
+yellow | vàng | https://hoctienganhdelam.com/game/pic/yellow.jpg
+yurt | lều du mục | https://hoctienganhdelam.com/game/pic/yurt.jpg
+zebra | ngựa vằn | https://hoctienganhdelam.com/game/pic/zebra.jpg
+zigzags | hình zíc zắc | https://hoctienganhdelam.com/game/pic/zigzags.jpg
