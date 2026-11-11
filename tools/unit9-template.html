@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Đi tìm đồ vật · Unit 9 — In the shop</title>
+<title>Find the things · Unit 9 — In the shop</title>
 <style>
 :root{
   --cream:#fdf8ee; --ink:#221f1a; --muted:#6f6656; --line:#e6dcc7; --gold:#c8961e;
@@ -18,7 +18,7 @@ button{font:inherit;cursor:pointer}
 .screen{position:fixed;inset:0;display:flex;flex-direction:column}
 .hidden{display:none !important}
 
-/* ---------- màn hình chọn nơi ---------- */
+/* ---------- place picker ---------- */
 #start{align-items:center;justify-content:center;padding:24px;gap:8px;
   background:radial-gradient(circle at 50% 0%,#fff6e0 0,#fdf8ee 60%)}
 #start h1{margin:0;font-size:clamp(22px,3.2vw,38px);letter-spacing:-.01em}
@@ -70,7 +70,7 @@ button{font:inherit;cursor:pointer}
 .navbar .btn{flex:1;justify-content:center;min-width:110px}
 .navbar .btn[aria-current="true"]{border-color:#f0c14b;background:rgba(240,193,75,.22);color:#ffe6a8}
 
-/* ---------- panel danh sách ---------- */
+/* ---------- checklist panel ---------- */
 #panel{position:absolute;top:0;right:0;bottom:0;width:min(420px,92vw);z-index:7;
   background:#fffdf7;border-left:3px solid var(--line);display:flex;flex-direction:column;
   transform:translateX(102%);transition:transform .22s ease;box-shadow:-18px 0 40px rgba(0,0,0,.3)}
@@ -121,46 +121,46 @@ button{font:inherit;cursor:pointer}
 <!-- ======= CHỌN NƠI ======= -->
 <section id="start" class="screen">
   <h1>Where do you want to go?</h1>
-  <p class="sub">Unit 9 · In the shop — đi tìm đồ vật và đếm thật kỹ nhé!</p>
+  <p class="sub">Unit 9 · In the shop — let's find things and count them!</p>
   <div class="places" id="placeCards"></div>
-  <p class="tip">Rê chuột (hoặc kéo tay) để soi đèn pin. Bấm <b>📋 Danh sách</b> ở góc phải để mở câu hỏi.</p>
+  <p class="tip">Move the mouse (or drag your finger) to shine the torch. Tap <b>📋 List</b> at the top right to open the questions.</p>
 </section>
 
 <!-- ======= PHÒNG ======= -->
 <section id="play" class="screen hidden">
   <div class="topbar">
-    <span class="t" id="placeName">Khu vườn</span>
+    <span class="t" id="placeName">Garden</span>
     <span class="sp"></span>
-    <button class="btn back" id="btnHome">◀ Chọn nơi khác</button>
-    <button class="btn list" id="btnList">📋 Danh sách</button>
+    <button class="btn back" id="btnHome">◀ Another place</button>
+    <button class="btn list" id="btnList">📋 List</button>
   </div>
 
   <div class="stage" id="stage">
     <div class="room" id="room"></div>
     <div class="deco" id="deco"></div>
     <div id="dark"></div>
-    <div class="hintbar" id="hintbar">Rê chuột để soi · bấm 📋 để mở danh sách</div>
+    <div class="hintbar" id="hintbar">Move the mouse to shine · tap 📋 for the list</div>
 
     <aside id="panel">
       <header>
-        <h2>Đồ vật cần tìm</h2>
-        <button class="x" id="btnClose" aria-label="Đóng">✕</button>
+        <h2>Things to find</h2>
+        <button class="x" id="btnClose" aria-label="Close">✕</button>
       </header>
       <div class="body">
-        <p class="bank">Viết số bằng chữ: <b>one · two · three · four · five · six</b></p>
+        <p class="bank">Write the number in words: <b>one · two · three · four · five · six</b></p>
         <div id="qlist"></div>
       </div>
       <footer>
-        <span class="score" id="score">0/4 đúng</span>
+        <span class="score" id="score">0/4 correct</span>
         <button class="ghost hidden" id="btnRetry">Try again</button>
         <button class="primary" id="btnCheck">Check</button>
       </footer>
     </aside>
 
     <div id="win">
-      <h3>🌟 Tuyệt vời!</h3>
-      <p id="winMsg">Em đếm đúng hết rồi!</p>
-      <button class="primary" id="btnNext">Đi nơi khác ▶</button>
+      <h3>🌟 Well done!</h3>
+      <p id="winMsg">You counted everything!</p>
+      <button class="primary" id="btnNext">Next place ▶</button>
     </div>
   </div>
 
@@ -192,11 +192,11 @@ function media(k){
   return SVGS[k] || "";
 }
 
-/* ------- màn hình chọn nơi ------- */
+/* ------- place picker ------- */
 $("#placeCards").innerHTML = ORDER.map(p=>`
   <button class="place" data-place="${p}" aria-label="${DATA[p].title}">
     <img src="${IMAGES[p]}" alt="">
-    <span class="cap">${DATA[p].title}<small>${DATA[p].qs.length} câu hỏi</small></span>
+    <span class="cap">${DATA[p].title}<small>${DATA[p].qs.length} questions</small></span>
   </button>`).join("");
 
 document.querySelectorAll(".place").forEach(b=>{
@@ -205,7 +205,7 @@ document.querySelectorAll(".place").forEach(b=>{
 
 $("#navbar").innerHTML = ORDER.map(p=>`
   <button class="btn" data-place="${p}">${DATA[p].emoji} ${DATA[p].title}</button>`).join("")
-  + `<button class="btn" id="btnList2">📋 Danh sách</button>`;
+  + `<button class="btn" id="btnList2">📋 List</button>`;
 
 document.querySelectorAll("#navbar [data-place]").forEach(b=>{
   b.addEventListener("click",()=>go(b.dataset.place));
@@ -222,7 +222,7 @@ const DECO = {
            <div style="position:absolute;left:0;right:0;top:73%;height:6px;background:rgba(90,110,120,.25)"></div>`
 };
 
-/* ------- vào phòng ------- */
+/* ------- enter a room ------- */
 function go(p){
   state.place = p;
   $("#start").classList.add("hidden");
@@ -246,7 +246,7 @@ $("#btnHome").addEventListener("click",()=>{
   panel.classList.remove("open"); state.open=false;
 });
 
-/* ------- đèn pin ------- */
+/* ------- torch ------- */
 function moveLight(x,y){
   const r = stage.getBoundingClientRect();
   $("#dark").style.setProperty("--mx", (x-r.left)+"px");
@@ -254,7 +254,7 @@ function moveLight(x,y){
 }
 stage.addEventListener("pointermove", e=>{ moveLight(e.clientX,e.clientY); });
 stage.addEventListener("pointerdown", e=>{ moveLight(e.clientX,e.clientY); });
-// lần đầu: đưa đèn vào giữa
+// first paint: put the light in the middle
 stage.addEventListener("pointerenter", e=>moveLight(e.clientX,e.clientY));
 
 /* ------- panel ------- */
@@ -277,7 +277,7 @@ function renderList(){
       <div class="thumb">${media(q.k)}</div>
       <div>
         <div class="text"><span>${q.text}</span>
-          <button class="say" data-say="${q.text}" title="Đọc câu hỏi">🔊</button></div>
+          <button class="say" data-say="${q.text}" title="Listen">🔊</button></div>
         <div class="row">
           <input type="text" inputmode="text" autocomplete="off" spellcheck="false"
                  placeholder="one, two, three…" value="${a.value?esc(a.value):""}"
@@ -317,7 +317,7 @@ function speak(t){
   }catch(e){}
 }
 
-/* ------- chấm ------- */
+/* ------- marking ------- */
 const norm = s => s.trim().toLowerCase()
   .replace(/[.,!?;]+$/,"").replace(/\s+/g," ");
 
@@ -337,7 +337,7 @@ function check(){
     if(!v){ return; }
 
     if(/^\d+$/.test(v)){
-      warn.textContent = `Viết bằng chữ nhé — ${v} = ${WORDNUM[+v] || "…"}`;
+      warn.textContent = `Write it in words — ${v} = ${WORDNUM[+v] || "…"}`;
       warn.classList.remove("hidden");
       state.ans[p][q.k] = {value: inp.value, st: null};
       return;
@@ -360,7 +360,7 @@ function check(){
   updateScore(ok);
   btnRetry.classList.toggle("hidden", ok === total || !qlist.querySelector(".q.bad"));
   if(ok === total){
-    $("#winMsg").textContent = `Em đếm đúng cả ${total} câu ở ${DATA[p].title.toLowerCase()}!`;
+    $("#winMsg").textContent = `You counted all ${total} things in the ${DATA[p].title.toLowerCase()}!`;
     win.classList.add("show");
     confetti();
   }
@@ -371,7 +371,7 @@ function updateScore(okOverride){
   const total = DATA[p].qs.length;
   const ok = okOverride!=null ? okOverride
     : DATA[p].qs.filter(q=>state.ans[p][q.k]?.st==="ok").length;
-  scoreEl.textContent = `${ok}/${total} đúng`;
+  scoreEl.textContent = `${ok}/${total} correct`;
   scoreEl.style.color = ok===total ? "var(--ok)" : "var(--ink)";
 }
 
@@ -396,7 +396,7 @@ $("#btnNext").addEventListener("click",()=>{
   go(ORDER[(i+1)%ORDER.length]);
 });
 
-/* ------- hiệu ứng thắng nhẹ ------- */
+/* ------- small win effect ------- */
 function confetti(){
   const n = 26;
   for(let i=0;i<n;i++){

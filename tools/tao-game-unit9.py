@@ -71,7 +71,7 @@ SVG = {
 DATA = {
  # x,y: tâm đồ vật (% khung) · h: chiều cao (% chiều cao khung) · r: xoay độ
  "garden": {
-   "title": "Khu vườn", "emoji": "🌳",
+   "title": "Garden", "emoji": "🌳",
    "bg": "linear-gradient(#bfe4f7 0 44%, #9ec97c 44% 100%)",
    "objs": [
      {"k":"tree","x":18,"y":32,"h":40,"r":-2},
@@ -91,7 +91,7 @@ DATA = {
    "qs": [("tree","trees"),("duck","ducks"),("ball","balls"),("flower","flowers")],
  },
  "house": {
-   "title": "Ngôi nhà", "emoji": "🏠",
+   "title": "House", "emoji": "🏠",
    "bg": "linear-gradient(#f6e5cb 0 72%, #c8a179 72% 100%)",
    "objs": [
      {"k":"clock","x":20,"y":24,"h":14,"r":0},
@@ -113,7 +113,7 @@ DATA = {
    "qs": [("clock","clocks"),("lock","locks"),("pot","pots"),("mop","mops")],
  },
  "school": {
-   "title": "Trường học", "emoji": "🏫",
+   "title": "School", "emoji": "🏫",
    "bg": "linear-gradient(#eaf1f6 0 74%, #cdd7dc 74% 100%)",
    "objs": [
      {"k":"clock","x":88,"y":20,"h":13,"r":0},
