@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đi tìm đồ vật · Unit 9 — In the shop</title>
+<style>
+:root{
+  --cream:#fdf8ee; --ink:#221f1a; --muted:#6f6656; --line:#e6dcc7; --gold:#c8961e;
+  --ok:#1f8a4c; --bad:#c0392b; --warn:#b07d14;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  overflow:hidden}
+button{font:inherit;cursor:pointer}
+.screen{position:fixed;inset:0;display:flex;flex-direction:column}
+.hidden{display:none !important}
+
+/* ---------- màn hình chọn nơi ---------- */
+#start{align-items:center;justify-content:center;padding:24px;gap:8px;
+  background:radial-gradient(circle at 50% 0%,#fff6e0 0,#fdf8ee 60%)}
+#start h1{margin:0;font-size:clamp(22px,3.2vw,38px);letter-spacing:-.01em}
+#start p.sub{margin:2px 0 26px;color:var(--muted);font-size:clamp(14px,1.5vw,18px)}
+.places{display:flex;gap:clamp(14px,2vw,30px);flex-wrap:wrap;justify-content:center}
+.place{border:3px solid var(--line);background:#fff;border-radius:22px;padding:0;overflow:hidden;
+  width:clamp(200px,24vw,290px);transition:transform .12s ease,border-color .12s ease,box-shadow .12s}
+.place:hover,.place:focus-visible{transform:translateY(-4px);border-color:var(--gold);
+  box-shadow:0 14px 30px rgba(0,0,0,.12);outline:none}
+.place img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff}
+.place .cap{display:block;padding:14px 10px 18px;font-size:clamp(18px,2vw,24px);font-weight:800}
+.place .cap small{display:block;font-weight:500;color:var(--muted);font-size:14px;margin-top:2px}
+.tip{margin-top:26px;color:var(--muted);font-size:13px;text-align:center;max-width:640px}
+
+/* ---------- phòng ---------- */
+#play{background:#0a0d14}
+.topbar{display:flex;align-items:center;gap:10px;padding:8px 14px;background:#111725;color:#f4efe3;
+  font-size:15px;z-index:6}
+.topbar .t{font-weight:800;letter-spacing:.02em}
+.topbar .sp{flex:1}
+.btn{border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#f4efe3;
+  border-radius:12px;padding:9px 14px;font-weight:700;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:rgba(255,255,255,.18)}
+.btn.list{border-color:#f0c14b;background:#f0c14b;color:#3a2a00}
+.btn.list:hover{background:#ffd873}
+.btn.back{border-color:rgba(255,255,255,.3)}
+
+.stage{position:relative;flex:1;overflow:hidden}
+.room{position:absolute;inset:0;overflow:hidden}
+.room .deco{position:absolute;inset:0;pointer-events:none}
+.obj{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg));
+  pointer-events:none;height:var(--h,12%)}
+.obj img,.obj svg{display:block;height:100%;width:auto}
+
+.deco{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.cloud{position:absolute;height:34px;width:110px;background:#fff;border-radius:999px;opacity:.8}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud:before{width:52px;height:52px;left:14px;top:-22px}
+.cloud:after{width:38px;height:38px;right:16px;top:-16px}
+.board{position:absolute;left:32%;top:9%;width:36%;height:30%;background:#2f5d4a;
+  border:9px solid #b98b52;border-radius:10px;box-shadow:inset 0 0 40px rgba(0,0,0,.25)}
+#dark{position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:radial-gradient(circle 250px at var(--mx,50%) var(--my,50%),
+    rgba(6,9,16,0) 0,rgba(6,9,16,0) 120px,rgba(6,9,16,.42) 172px,rgba(6,9,16,.9) 232px,rgba(6,9,16,.97) 300px)}
+
+.hintbar{position:absolute;left:14px;bottom:12px;z-index:5;color:#e9e2d2;font-size:13px;
+  background:rgba(10,14,22,.55);padding:7px 12px;border-radius:10px;pointer-events:none}
+.navbar{display:flex;gap:8px;padding:10px 14px;background:#111725;z-index:6;flex-wrap:wrap}
+.navbar .btn{flex:1;justify-content:center;min-width:110px}
+.navbar .btn[aria-current="true"]{border-color:#f0c14b;background:rgba(240,193,75,.22);color:#ffe6a8}
+
+/* ---------- panel danh sách ---------- */
+#panel{position:absolute;top:0;right:0;bottom:0;width:min(420px,92vw);z-index:7;
+  background:#fffdf7;border-left:3px solid var(--line);display:flex;flex-direction:column;
+  transform:translateX(102%);transition:transform .22s ease;box-shadow:-18px 0 40px rgba(0,0,0,.3)}
+#panel.open{transform:translateX(0)}
+#panel header{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:2px solid var(--line)}
+#panel header h2{margin:0;font-size:18px;flex:1}
+#panel .x{border:none;background:#f1e9d8;border-radius:10px;width:38px;height:38px;font-size:20px}
+#panel .body{overflow:auto;padding:8px 10px;flex:1}
+.q{display:grid;grid-template-columns:46px 1fr;gap:8px;align-items:center;
+  border:2px solid var(--line);border-radius:12px;padding:7px 9px;margin:0 0 8px;background:#fff}
+.q .thumb{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:#faf6ec;border-radius:9px}
+.q .thumb img,.q .thumb svg{max-width:42px;max-height:42px;width:auto;height:auto}
+.q .text{font-weight:700;font-size:16px;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.q .say{border:none;background:#eef3ff;border-radius:8px;width:30px;height:30px;font-size:15px;line-height:1}
+.q .row{display:flex;align-items:center;gap:8px}
+.q input{flex:1;min-width:0;font:inherit;font-size:17px;padding:5px 9px;border:2px solid var(--line);
+  border-radius:10px;background:#fff;letter-spacing:.02em}
+.q input:focus{outline:none;border-color:var(--gold)}
+.q .mark{font-size:22px;width:26px;text-align:center}
+.q.ok{border-color:var(--ok);background:#f2fbf5}
+.q.ok input{border-color:var(--ok);color:var(--ok);font-weight:700}
+.q.bad{border-color:var(--bad);background:#fdf2f0}
+.q.bad input{border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.q .warn{grid-column:1/-1;color:var(--warn);font-size:13px;margin-top:-2px}
+.bank{margin:2px 0 8px;font-size:13px;color:var(--muted)}
+.bank b{color:var(--ink)}
+#panel footer{border-top:2px solid var(--line);padding:10px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.score{font-weight:800;font-size:15px;margin-right:auto}
+.primary{border:none;border-radius:12px;padding:11px 18px;font-weight:800;font-size:16px;
+  background:var(--gold);color:#2c1f00}
+.primary:hover{filter:brightness(1.06)}
+.ghost{border:2px solid var(--bad);color:var(--bad);background:#fff;border-radius:12px;padding:9px 14px;font-weight:800;font-size:15px}
+#win{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);z-index:8;
+  background:#fffdf7;border:3px solid var(--ok);border-radius:20px;padding:22px 26px;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.18s}
+#win.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+#win h3{margin:0 0 6px;font-size:22px;color:var(--ok)}
+#win p{margin:0 0 14px;color:var(--muted)}
+@media(max-width:700px){
+  .topbar{font-size:13px}
+  .hintbar{font-size:11px}
+  .q .text{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======= CHỌN NƠI ======= -->
+<section id="start" class="screen">
+  <h1>Where do you want to go?</h1>
+  <p class="sub">Unit 9 · In the shop — đi tìm đồ vật và đếm thật kỹ nhé!</p>
+  <div class="places" id="placeCards"></div>
+  <p class="tip">Rê chuột (hoặc kéo tay) để soi đèn pin. Bấm <b>📋 Danh sách</b> ở góc phải để mở câu hỏi.</p>
+</section>
+
+<!-- ======= PHÒNG ======= -->
+<section id="play" class="screen hidden">
+  <div class="topbar">
+    <span class="t" id="placeName">Khu vườn</span>
+    <span class="sp"></span>
+    <button class="btn back" id="btnHome">◀ Chọn nơi khác</button>
+    <button class="btn list" id="btnList">📋 Danh sách</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="room" id="room"></div>
+    <div class="deco" id="deco"></div>
+    <div id="dark"></div>
+    <div class="hintbar" id="hintbar">Rê chuột để soi · bấm 📋 để mở danh sách</div>
+
+    <aside id="panel">
+      <header>
+        <h2>Đồ vật cần tìm</h2>
+        <button class="x" id="btnClose" aria-label="Đóng">✕</button>
+      </header>
+      <div class="body">
+        <p class="bank">Viết số bằng chữ: <b>one · two · three · four · five · six</b></p>
+        <div id="qlist"></div>
+      </div>
+      <footer>
+        <span class="score" id="score">0/4 đúng</span>
+        <button class="ghost hidden" id="btnRetry">Try again</button>
+        <button class="primary" id="btnCheck">Check</button>
+      </footer>
+    </aside>
+
+    <div id="win">
+      <h3>🌟 Tuyệt vời!</h3>
+      <p id="winMsg">Em đếm đúng hết rồi!</p>
+      <button class="primary" id="btnNext">Đi nơi khác ▶</button>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar"></nav>
+</section>
+
+<script>
+const DATA = __DATA__;
+const IMAGES = __IMAGES__;
+const SVGS = __SVGS__;
+
+const ORDER = ["garden","house","school"];
+const WORDNUM = {1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight"};
+
+const state = {
+  place: null,
+  open: false,
+  ans: {}   // ans[place][key] = {value, st}
+};
+ORDER.forEach(p => { state.ans[p] = {}; });
+
+const $ = s => document.querySelector(s);
+const stage = $("#stage"), room = $("#room"), panel = $("#panel"),
+      qlist = $("#qlist"), scoreEl = $("#score"),
+      btnRetry = $("#btnRetry"), btnCheck = $("#btnCheck"), win = $("#win");
+
+function media(k){
+  if (IMAGES[k]) return `<img src="${IMAGES[k]}" alt="">`;
+  return SVGS[k] || "";
+}
+
+/* ------- màn hình chọn nơi ------- */
+$("#placeCards").innerHTML = ORDER.map(p=>`
+  <button class="place" data-place="${p}" aria-label="${DATA[p].title}">
+    <img src="${IMAGES[p]}" alt="">
+    <span class="cap">${DATA[p].title}<small>${DATA[p].qs.length} câu hỏi</small></span>
+  </button>`).join("");
+
+document.querySelectorAll(".place").forEach(b=>{
+  b.addEventListener("click",()=>go(b.dataset.place));
+});
+
+$("#navbar").innerHTML = ORDER.map(p=>`
+  <button class="btn" data-place="${p}">${DATA[p].emoji} ${DATA[p].title}</button>`).join("")
+  + `<button class="btn" id="btnList2">📋 Danh sách</button>`;
+
+document.querySelectorAll("#navbar [data-place]").forEach(b=>{
+  b.addEventListener("click",()=>go(b.dataset.place));
+});
+$("#btnList2").addEventListener("click",togglePanel);
+
+const DECO = {
+  garden: `<div class="cloud" style="left:8%;top:9%"></div>
+           <div class="cloud" style="left:58%;top:6%;transform:scale(.8)"></div>`,
+  house:  `<div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,
+             rgba(120,90,55,.08) 0 3px,rgba(0,0,0,0) 3px 54px)"></div>
+           <div style="position:absolute;left:0;right:0;top:71%;height:8px;background:rgba(120,90,55,.35)"></div>`,
+  school: `<div class="board"></div>
+           <div style="position:absolute;left:0;right:0;top:73%;height:6px;background:rgba(90,110,120,.25)"></div>`
+};
+
+/* ------- vào phòng ------- */
+function go(p){
+  state.place = p;
+  $("#start").classList.add("hidden");
+  $("#play").classList.remove("hidden");
+  $("#placeName").textContent = `${DATA[p].emoji}  ${DATA[p].title}`;
+  document.querySelectorAll("#navbar [data-place]").forEach(b=>
+    b.setAttribute("aria-current", b.dataset.place===p ? "true":"false"));
+  room.style.background = DATA[p].bg;
+  $("#deco").innerHTML = DECO[p] || "";
+  room.innerHTML = DATA[p].objs.map(o=>`
+    <div class="obj" style="left:${o.x}%;top:${o.y}%;--h:${o.h}%;--r:${o.r}deg">${media(o.k)}</div>`
+  ).join("");
+  win.classList.remove("show");
+  renderList();
+  moveLight(innerWidth*0.5, innerHeight*0.45);
+}
+
+$("#btnHome").addEventListener("click",()=>{
+  $("#play").classList.add("hidden");
+  $("#start").classList.remove("hidden");
+  panel.classList.remove("open"); state.open=false;
+});
+
+/* ------- đèn pin ------- */
+function moveLight(x,y){
+  const r = stage.getBoundingClientRect();
+  $("#dark").style.setProperty("--mx", (x-r.left)+"px");
+  $("#dark").style.setProperty("--my", (y-r.top)+"px");
+}
+stage.addEventListener("pointermove", e=>{ moveLight(e.clientX,e.clientY); });
+stage.addEventListener("pointerdown", e=>{ moveLight(e.clientX,e.clientY); });
+// lần đầu: đưa đèn vào giữa
+stage.addEventListener("pointerenter", e=>moveLight(e.clientX,e.clientY));
+
+/* ------- panel ------- */
+function togglePanel(){
+  state.open = !state.open;
+  panel.classList.toggle("open", state.open);
+}
+$("#btnList").addEventListener("click",togglePanel);
+$("#btnClose").addEventListener("click",()=>{ panel.classList.remove("open"); state.open=false; });
+document.addEventListener("keydown",e=>{
+  if(e.key==="l"||e.key==="L") togglePanel();
+  if(e.key==="Escape"){ panel.classList.remove("open"); state.open=false; }
+});
+
+function renderList(){
+  const p = state.place, qs = DATA[p].qs;
+  qlist.innerHTML = qs.map((q,i)=>{
+    const a = state.ans[p][q.k] || {};
+    return `<div class="q ${a.st||""}" data-key="${q.k}">
+      <div class="thumb">${media(q.k)}</div>
+      <div>
+        <div class="text"><span>${q.text}</span>
+          <button class="say" data-say="${q.text}" title="Đọc câu hỏi">🔊</button></div>
+        <div class="row">
+          <input type="text" inputmode="text" autocomplete="off" spellcheck="false"
+                 placeholder="one, two, three…" value="${a.value?esc(a.value):""}"
+                 ${a.st==="ok"?"readonly":""} data-i="${i}">
+          <span class="mark">${a.st==="ok"?"✓":a.st==="bad"?"✗":""}</span>
+        </div>
+        <div class="warn hidden"></div>
+      </div>
+    </div>`;
+  }).join("");
+
+  qlist.querySelectorAll("input").forEach(inp=>{
+    inp.addEventListener("input",()=>{
+      const row = inp.closest(".q");
+      state.ans[p][row.dataset.key] = {value: inp.value, st: null};
+      row.classList.remove("ok","bad");
+      row.querySelector(".mark").textContent = "";
+      row.querySelector(".warn").classList.add("hidden");
+      updateScore();
+    });
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter") check(); });
+  });
+  qlist.querySelectorAll("[data-say]").forEach(b=>{
+    b.addEventListener("click",()=>speak(b.dataset.say));
+  });
+  updateScore();
+}
+
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function speak(t){
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "en-US"; u.rate = .85;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* ------- chấm ------- */
+const norm = s => s.trim().toLowerCase()
+  .replace(/[.,!?;]+$/,"").replace(/\s+/g," ");
+
+function check(){
+  const p = state.place;
+  let ok = 0;
+  DATA[p].qs.forEach(q=>{
+    const row = qlist.querySelector(`.q[data-key="${q.k}"]`);
+    const inp = row.querySelector("input");
+    const warn = row.querySelector(".warn");
+    const v = norm(inp.value);
+
+    row.classList.remove("ok","bad");
+    warn.classList.add("hidden");
+    row.querySelector(".mark").textContent = "";
+
+    if(!v){ return; }
+
+    if(/^\d+$/.test(v)){
+      warn.textContent = `Viết bằng chữ nhé — ${v} = ${WORDNUM[+v] || "…"}`;
+      warn.classList.remove("hidden");
+      state.ans[p][q.k] = {value: inp.value, st: null};
+      return;
+    }
+
+    if(v === q.ans){
+      row.classList.add("ok");
+      row.querySelector(".mark").textContent = "✓";
+      inp.readOnly = true;
+      state.ans[p][q.k] = {value: inp.value, st:"ok"};
+      ok++;
+    } else {
+      row.classList.add("bad");
+      row.querySelector(".mark").textContent = "✗";
+      state.ans[p][q.k] = {value: inp.value, st:"bad"};
+    }
+  });
+
+  const total = DATA[p].qs.length;
+  updateScore(ok);
+  btnRetry.classList.toggle("hidden", ok === total || !qlist.querySelector(".q.bad"));
+  if(ok === total){
+    $("#winMsg").textContent = `Em đếm đúng cả ${total} câu ở ${DATA[p].title.toLowerCase()}!`;
+    win.classList.add("show");
+    confetti();
+  }
+}
+
+function updateScore(okOverride){
+  const p = state.place; if(!p) return;
+  const total = DATA[p].qs.length;
+  const ok = okOverride!=null ? okOverride
+    : DATA[p].qs.filter(q=>state.ans[p][q.k]?.st==="ok").length;
+  scoreEl.textContent = `${ok}/${total} đúng`;
+  scoreEl.style.color = ok===total ? "var(--ok)" : "var(--ink)";
+}
+
+btnCheck.addEventListener("click",check);
+
+btnRetry.addEventListener("click",()=>{
+  const p = state.place;
+  qlist.querySelectorAll(".q.bad").forEach(row=>{
+    const inp = row.querySelector("input");
+    inp.value = "";
+    row.classList.remove("bad");
+    row.querySelector(".mark").textContent = "";
+    state.ans[p][row.dataset.key] = {value:"", st:null};
+  });
+  btnRetry.classList.add("hidden");
+  updateScore();
+  qlist.querySelector(".q.bad input")?.focus();
+});
+
+$("#btnNext").addEventListener("click",()=>{
+  const i = ORDER.indexOf(state.place);
+  go(ORDER[(i+1)%ORDER.length]);
+});
+
+/* ------- hiệu ứng thắng nhẹ ------- */
+function confetti(){
+  const n = 26;
+  for(let i=0;i<n;i++){
+    const s = document.createElement("div");
+    const c = ["#f0c14b","#5aa34a","#f2789f","#4a90d9"][i%4];
+    s.style.cssText = `position:absolute;left:${50+(Math.random()*20-10)}%;top:45%;width:9px;height:9px;
+      background:${c};border-radius:2px;z-index:9;pointer-events:none;opacity:.95;
+      transform:rotate(${Math.random()*360}deg)`;
+    stage.appendChild(s);
+    const dx = (Math.random()*2-1)*260, dy = -120-Math.random()*180;
+    s.animate([{transform:"translate(0,0)",opacity:1},
+               {transform:`translate(${dx}px,${dy}px) rotate(${Math.random()*720}deg)`,opacity:0}],
+              {duration:900+Math.random()*500,easing:"cubic-bezier(.2,.7,.4,1)"})
+     .onfinish = ()=>s.remove();
+  }
+}
+</script>
+</body>
+</html>
