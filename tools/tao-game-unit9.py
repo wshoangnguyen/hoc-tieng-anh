@@ -28,8 +28,10 @@ def img64(word):
     w, h = rgb.size
     KEY = (255, 0, 255)
     for pt in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]:
-        if sum(rgb.getpixel(pt)) > 690:          # gần trắng mới xoá
-            ImageDraw.floodfill(rgb, pt, KEY, thresh=34)
+        r0, g0, b0 = rgb.getpixel(pt)
+        luma = 0.299 * r0 + 0.587 * g0 + 0.114 * b0
+        if luma > 195:                            # nền sáng (trắng, kem, xanh nhạt) mới xoá
+            ImageDraw.floodfill(rgb, pt, KEY, thresh=38)
     px = rgb.load()
     out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     src = im.load()
@@ -112,6 +114,25 @@ DATA = {
    ],
    "qs": [("clock","clocks"),("lock","locks"),("pot","pots"),("mop","mops")],
  },
+ "shop": {
+   "title": "Shop", "emoji": "🏪",
+   "bg": "linear-gradient(#f7ecd9 0 58%, #e2c9a4 58% 100%)",
+   "objs": [
+     {"k":"box","x":20,"y":30,"h":12,"r":-3},
+     {"k":"box","x":32,"y":30,"h":12,"r":4},
+     {"k":"box","x":44,"y":30,"h":12,"r":-2},
+     {"k":"pot","x":63,"y":30,"h":13,"r":0},
+     {"k":"pot","x":76,"y":30,"h":13,"r":0},
+     {"k":"clock","x":22,"y":56,"h":14,"r":0},
+     {"k":"clock","x":37,"y":56,"h":14,"r":0},
+     {"k":"lock","x":58,"y":56,"h":11,"r":-6},
+     {"k":"lock","x":69,"y":56,"h":11,"r":5},
+     {"k":"lock","x":80,"y":56,"h":11,"r":-3},
+     {"k":"cake","x":30,"y":80,"h":13,"r":0},
+     {"k":"cake","x":45,"y":80,"h":13,"r":0},
+   ],
+   "qs": [("box","boxes"),("pot","pots"),("clock","clocks"),("lock","locks")],
+ },
  "school": {
    "title": "School", "emoji": "🏫",
    "bg": "linear-gradient(#eaf1f6 0 74%, #cdd7dc 74% 100%)",
@@ -156,7 +177,7 @@ keys = set()
 for p in DATA.values():
     for o in p["objs"]:
         keys.add(o["k"])
-keys |= {"garden", "house", "school"}   # ảnh bìa cho màn hình chọn nơi
+keys |= {"garden", "house", "shop", "school"}   # ảnh bìa cho màn hình chọn nơi
 imgs = {k: img64(k) for k in sorted(keys) if k not in SVG}
 svgs = {k: SVG[k] for k in sorted(keys) if k in SVG}
 
