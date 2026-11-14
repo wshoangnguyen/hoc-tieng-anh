@@ -970,6 +970,48 @@ function chotCua(w){ const x=w||tuan(); return (S.tuan_chot||{})[(x&&x.bat_dau)|
 function duocSuaChot(w){ const x=w||tuan(); return !chotCua(x) || MO_KHOA_CHOT[x.bat_dau]===true; }
 function chanViChot(){ alert("Tuần này đã chốt 🔒 — số buổi đã vào bảng lương nên không sửa được.\nNếu thật sự cần sửa, bấm “🔓 Cho sửa” trên thanh tuần (mọi thay đổi sẽ ghi vào nhật ký)."); }
 
+/* ===== CHỌN PHẠM VI CHO MỌI THAY ĐỔI =====
+   "tuan"  = chỉ tuần đang xem
+   "sau"   = các tuần chưa chốt (từ nay về sau)
+   "tatca" = mọi tuần, kể cả tuần đã chốt (đổi cả lương quá khứ)
+   null    = thôi, không đổi */
+function hoiPhamVi(tieuDe, moTa, coTuanNay){
+  return new Promise(resolve=>{
+    const bd=document.createElement("div"); bd.className="backdrop";
+    bd.innerHTML=`<div class="modal" style="max-width:430px" onclick="event.stopPropagation()">
+      <h3>${esc(tieuDe)}</h3>
+      ${moTa?`<p class="hint">${moTa}</p>`:""}
+      <p class="hint" style="margin:12px 0 8px"><b>Áp dụng cho:</b></p>
+      ${coTuanNay?`<button class="primary" id="pvTuan" style="width:100%;margin-bottom:8px">Chỉ tuần đang xem</button>`:""}
+      <button class="primary" id="pvSau" style="width:100%;margin-bottom:8px">Từ nay về sau</button>
+      <button class="ghost" id="pvTatCa" style="width:100%;margin-bottom:8px">Tất cả các tuần (kể cả tuần đã chốt)</button>
+      <button class="ghost" id="pvHuy" style="width:100%">Thôi, không đổi</button>
+      <p class="hint" id="pvCanh" style="margin:10px 0 0"></p></div>`;
+    document.body.appendChild(bd);
+    const done=v=>{ bd.remove(); resolve(v); };
+    bd.onclick=()=>done(null);
+    bd.querySelector("#pvHuy").onclick=e=>{ e.stopPropagation(); done(null); };
+    const t=bd.querySelector("#pvTuan"); if(t) t.onclick=e=>{ e.stopPropagation(); done("tuan"); };
+    bd.querySelector("#pvSau").onclick=e=>{ e.stopPropagation(); done("sau"); };
+    bd.querySelector("#pvTatCa").onclick=e=>{ e.stopPropagation();
+      bd.querySelector("#pvCanh").textContent="⚠️ Sửa cả tuần đã chốt → bảng lương các tháng trước sẽ thay đổi.";
+      done("tatca"); };
+  });
+}
+/* ghi đè cho mọi tuần CHƯA chốt (từ nay về sau), đúng một lớp + thứ + giờ */
+function datGhiDeTuongLai(lopId, thu, ca, phan){
+  let n=0; (S.tuan||[]).forEach(w=>{ if((S.tuan_chot||{})[w.bat_dau]) return;
+    S.buoi[w.bat_dau+"|"+lopId+"|"+thu+"|"+ca]=Object.assign({},S.buoi[w.bat_dau+"|"+lopId+"|"+thu+"|"+ca]||{},phan); n++; });
+  return n;
+}
+/* sửa thẳng vào các bản chốt (chỉ dùng khi người dùng chọn "tất cả") */
+function suaBanChotGV(lopId, cu, moi){ return suaBanChotTatCa(x=>{ if(x.lopId===lopId && (x.gv||"")===cu){ x.gv=moi; return true; } return false; }); }
+function suaBanChotTatCa(fn){
+  let n=0; Object.keys(S.tuan_chot||{}).forEach(bd=>{ const ck=S.tuan_chot[bd]; if(!ck||!Array.isArray(ck.buoi)) return;
+    ck.buoi.forEach(b=>{ if(fn(b,bd)) n++; }); });
+  return n;
+}
+
 function datGhiDe(k,phan){
   if(!duocSuaChot()) return chanViChot();
   const [bd,lopId,thu,ca]=String(k).split("|");
@@ -1438,27 +1480,59 @@ function veKho(){
     chotTuanCu(); const so=doiTenLop(tenCu,tenMoi); l.ten=tenMoi;
     ghiNhatKy("đổi tên lớp", `${tenCu} → ${tenMoi}${so?" · chuyển "+so+" mục dữ liệu cũ":""}`);
     save(); render(); }; });
-  document.querySelectorAll("[data-lopso]").forEach(i=>{ i.onchange=()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopso), n=+i.value||0;
-    const eff=gioTheoNgay(l, iso(new Date()));
-    while(eff.length>n){ const x=eff.pop(); const k=l.gio.indexOf(x.g); if(k>=0) l.gio.splice(k,1); }
+  document.querySelectorAll("[data-lopso]").forEach(i=>{ i.onchange=async()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopso), n=+i.value||0;
+    const eff=gioTheoNgay(l, iso(new Date())); const bo=[];
+    if(eff.length>n){
+      const pv=await hoiPhamVi("Giảm còn "+n+" buổi/tuần — lớp "+l.ten, "Các khung giờ dư sẽ bị bỏ khỏi lịch của lớp.", false);
+      if(!pv){ i.value=eff.length; return; }
+      while(eff.length>n){ const x=eff.pop(); const k=l.gio.indexOf(x.g); if(k>=0){ l.gio.splice(k,1); bo.push(x.g); } }
+      if(pv==="tatca") Object.keys(S.tuan_chot||{}).forEach(bd=>{ const ck=S.tuan_chot[bd]; if(ck&&Array.isArray(ck.buoi))
+        ck.buoi=ck.buoi.filter(x=>!(x.lopId===l.id&&bo.some(g=>g.thu===x.thu&&g.ca===x.ca))); });
+      ghiNhatKy("giảm buổi/tuần ("+pv+")", `${l.ten} → ${n} buổi`);
+    }
     save(); render(); }; });
-  document.querySelectorAll("[data-lopgv]").forEach(i=>{ i.onchange=()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopgv);
-    ghiNhatKy("đổi giáo viên lớp", `${l.ten} · ${l.gv||"—"} → ${i.value||"—"}`); l.gv=i.value; save(); render(); }; });
+  document.querySelectorAll("[data-lopgv]").forEach(i=>{ i.onchange=async()=>{ chotTuanCu(); const l=lopTheoId(i.dataset.lopgv);
+    const cu=l.gv||"", moi=i.value||"";
+    if(cu===moi) return;
+    const pv=await hoiPhamVi("Đổi giáo viên lớp "+l.ten, `${esc(cu||"—")} → ${esc(moi||"—")}`, false);
+    if(!pv){ i.value=cu; return; }
+    l.gv=moi;
+    if(pv==="tatca") suaBanChotGV(l.id, cu, moi);
+    ghiNhatKy("đổi giáo viên lớp ("+pv+")", `${l.ten} · ${cu||"—"} → ${moi||"—"}`);
+    save(); render(); }; });
   document.querySelectorAll("[data-lopghi]").forEach(i=>{ i.onchange=()=>{ lopTheoId(i.dataset.lopghi).ghi=i.value.trim(); save(); veKho(); }; });
   document.querySelectorAll("[data-xoalop]").forEach(b=>{ b.onclick=()=>{ const l=lopTheoId(b.dataset.xoalop);
     if(!confirm(`Xoá lớp ${l.ten} khỏi kho?\nCác tuần ĐÃ QUA vẫn giữ nguyên trong lịch sử (đã chốt), giờ dạy và lương cũ không đổi.`)) return;
     chotTuanCu(); ghiNhatKy("xoá lớp", `${l.ten} · lịch quá khứ vẫn giữ`);
     Object.keys(S.buoi).forEach(k=>{ if(k.split("|")[1]===l.id) delete S.buoi[k]; });
     S.lop=S.lop.filter(x=>x.id!==l.id); save(); render(); }; });
-  document.querySelectorAll("[data-themgio]").forEach(b=>{ b.onclick=()=>{ chotTuanCu(); const id=b.dataset.themgio, l=lopTheoId(id);
+  document.querySelectorAll("[data-themgio]").forEach(b=>{ b.onclick=async()=>{ chotTuanCu(); const id=b.dataset.themgio, l=lopTheoId(id);
     const thu=document.querySelector(`[data-thu="${id}"]`).value, ca=document.querySelector(`[data-ca="${id}"]`).value;
     if((l.gio||[]).some(g=>g.thu===thu&&g.ca===ca)) return alert("Giờ này đã có trong danh sách.");
-    l.gio.push({thu,ca}); save(); render(); }; });
-  document.querySelectorAll("[data-xoagio]").forEach(b=>{ b.onclick=()=>{ chotTuanCu(); const [id,i]=b.dataset.xoagio.split("|");
+    const pv=await hoiPhamVi("Thêm giờ "+THU_DAI[thu]+" "+ca+" — lớp "+l.ten, "Khung giờ này sẽ có trong lịch của lớp.", false);
+    if(!pv) return;
+    l.gio.push({thu,ca});
+    if(pv==="tatca"){
+      Object.keys(S.tuan_chot||{}).forEach(bd=>{ const ck=S.tuan_chot[bd]; if(!ck||!Array.isArray(ck.buoi)) return;
+        if(ck.buoi.some(x=>x.lopId===l.id&&x.thu===thu&&x.ca===ca)) return;
+        ck.buoi.push({k:`${bd}|${l.id}|${thu}|${ca}`,lopId:l.id,lopTen:l.ten,lopGv:l.gv||"",gv:l.gv||"",
+          thu,ca,ngay:cong(bd,THU.indexOf(thu)),tt:"binh_thuong",ghi:"",them:false,buId:""}); });
+    }
+    ghiNhatKy("thêm giờ ("+pv+")", `${l.ten} · ${THU_DAI[thu]} ${ca}`);
+    save(); render(); }; });
+  document.querySelectorAll("[data-xoagio]").forEach(b=>{ b.onclick=async()=>{ chotTuanCu(); const [id,i]=b.dataset.xoagio.split("|");
     const l=lopTheoId(id), g=l.gio[+i]; if(!g) return;
-    if(!confirm(`Bỏ giờ ${THU_DAI[g.thu]} ${g.ca} của lớp ${l.ten}?\nCác buổi đã qua vẫn giữ nguyên.`)) return;
+    const pv=await hoiPhamVi("Bỏ giờ "+THU_DAI[g.thu]+" "+g.ca+" — lớp "+l.ten,
+      "Bỏ khung giờ này khỏi lịch của lớp.", false);
+    if(!pv) return;
     if(g.tu_ngay){ const truoc=cong(g.tu_ngay,-1); (l.gio||[]).forEach(x=>{ if(x.thu===g.thu && !x.tu_ngay && (!x.den_ngay||x.den_ngay>truoc)) x.den_ngay=truoc; }); }
-    l.gio.splice(+i,1); save(); render(); }; });
+    l.gio.splice(+i,1);
+    if(pv==="tatca"){
+      Object.keys(S.tuan_chot||{}).forEach(bd=>{ const ck=S.tuan_chot[bd]; if(ck&&Array.isArray(ck.buoi))
+        ck.buoi=ck.buoi.filter(x=>!(x.lopId===l.id&&x.thu===g.thu&&x.ca===g.ca)); });
+    }
+    ghiNhatKy("bỏ giờ ("+pv+")", `${l.ten} · ${THU_DAI[g.thu]} ${g.ca}`);
+    save(); render(); }; });
   document.querySelectorAll("[data-doigio]").forEach(a=>{ a.onclick=(ev)=>{ ev.preventDefault(); const [id,i]=a.dataset.doigio.split("|"); moDoiGio(id,+i); }; });
 }
 /* ---------- đổi giờ một buổi của lớp, có hỏi lịch quá khứ ---------- */
@@ -2922,12 +2996,22 @@ function moSua(k){
     $("#mCanh").innerHTML=canh.join("");
   }
   ["#mGV","#mTT"].forEach(s=>{ $(s).onchange=ktra; }); ktra();
-  $("#mOk").onclick=()=>{
+  $("#mOk").onclick=async()=>{
     const gt={gv:$("#mGV").value, ghi:$("#mGhi").value.trim(), tt:$("#mTT").value};
     if(b.them){
       const ds=S.buoi_them[w.bat_dau]||[]; const x=ds.find(z=>z.id===b.buId);
-      if(x) Object.assign(x,gt); S.buoi_them[w.bat_dau]=ds; save();
-    } else datGhiDe(k,gt);
+      if(x) Object.assign(x,gt); S.buoi_them[w.bat_dau]=ds; save(); bd.remove(); render(); return;
+    }
+    const doiGv=(gt.gv||"")!==(b.gv||""), doiTt=(gt.tt||"binh_thuong")!==(b.tt||"binh_thuong");
+    if(!doiGv && !doiTt){ datGhiDe(k,gt); bd.remove(); render(); return; }
+    const pv=await hoiPhamVi("Sửa buổi "+l.ten+" · "+THU_DAI[b.thu]+" "+b.ca,
+      `${ngayVN(ngay)}${doiGv?` · giáo viên ${esc(b.gv||"—")} → ${esc(gt.gv||"—")}`:""}${doiTt?` · ${gt.tt==="huy"?"nghỉ":"dạy bình thường"}`:""}`, true);
+    if(!pv) return;
+    if(pv==="tuan"){ datGhiDe(k,gt); }
+    else if(pv==="sau"){ datGhiDe(k,gt); datGhiDeTuongLai(l.id,b.thu,b.ca,{gv:gt.gv,tt:gt.tt}); }
+    else { S.buoi[k]=Object.assign({},S.buoi[k]||{},gt);
+      suaBanChotTatCa(x=>{ if(x.lopId===l.id&&x.thu===b.thu&&x.ca===b.ca){ x.gv=gt.gv; x.tt=gt.tt; return true; } return false; }); }
+    ghiNhatKy("sửa buổi ("+pv+")", `${l.ten} · ${THU_DAI[b.thu]} ${b.ca} · ${b.gv||"—"}→${gt.gv||"—"}`);
     bd.remove(); render();
   };
 }
