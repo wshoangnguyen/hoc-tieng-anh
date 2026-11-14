@@ -1153,6 +1153,9 @@ function moThemHocBu(){
   $("#buOk").onclick=()=>{
     const i=+$("#buNgay").value, c=$("#buCa").value.trim();
     if(!c) return alert("Chưa có giờ học.");
+    const lopChon=$("#buLop").value, thuChon=THU[i];
+    const daCo=buoiTuanNay().some(b=>b.lop&&b.lop.id===lopChon&&b.thu===thuChon&&b.ca===c&&b.tt!=="huy");
+    if(daCo) return alert("Lớp này đã có buổi "+THU_DAI[thuChon]+" lúc "+c+" trong tuần này — không thêm trùng.\nNếu chỉ cần đổi người dạy hoặc ghi chú, mở chính buổi đó.");
     S.buoi_them=S.buoi_them||{}; S.buoi_them[w.bat_dau]=S.buoi_them[w.bat_dau]||[];
     S.buoi_them[w.bat_dau].push({id:uid("bu"),lopId:$("#buLop").value,thu:THU[i],ca:c,
       gv:$("#buGV").value,ghi:$("#buGhi").value.trim(),tt:"binh_thuong"});
@@ -3043,10 +3046,15 @@ document.getElementById("btnTuanMoi").onclick=()=>{
   const cuoi=[...S.tuan].sort((a,b)=>a.bat_dau<b.bat_dau?1:-1)[0];
   const moi=cong(cuoi.bat_dau,7);
   if(S.tuan.some(w=>w.bat_dau===moi)) return alert("Tuần này đã có trong danh sách.");
-  const nguon=tuan().bat_dau;   // nhân bản tuần đang xem
-  Object.keys(S.buoi).forEach(k=>{ if(k.startsWith(nguon+"|")) S.buoi[moi+"|"+k.slice(nguon.length+1)]=Object.assign({},S.buoi[k]); });
+  /* Tuần mới chỉ lấy LỊCH CHUẨN trong danh sách lớp.
+     Không chép phần chỉnh riêng của tuần đang xem (huỷ buổi, đổi giáo viên, học bù) —
+     nếu chép, một buổi học bù của tuần này sẽ thành buổi cố định của tuần sau. */
+  const nguon=tuan().bat_dau;
+  const soChinhRieng=Object.keys(S.buoi).filter(k=>k.startsWith(nguon+"|")&&S.buoi[k]&&Object.keys(S.buoi[k]).length).length
+    +(((S.buoi_them||{})[nguon]||[]).length);
   S.tuan.push({id:uid("w"),bat_dau:moi}); S.tuan.sort((a,b)=>a.bat_dau<b.bat_dau?-1:1);
   tuanDangXem=S.tuan.findIndex(w=>w.bat_dau===moi); S.tuan_hien_tai=tuanDangXem; save(); render();
+  if(soChinhRieng) alert("Đã tạo tuần "+ngayVN(moi)+" theo lịch chuẩn.\nKhông mang theo "+soChinhRieng+" phần chỉnh riêng của tuần trước (buổi huỷ, đổi giáo viên, học bù).");
 };
 document.getElementById("btnXoaTuan").onclick=()=>{
   if(S.tuan.length<2) return alert("Phải còn ít nhất 1 tuần.");
@@ -3111,11 +3119,29 @@ document.getElementById("btnThemLop").onclick=()=>{
   S.lop.push({id:uid("L"),ten:v,ghi:"",gv:"",gio:[]}); document.getElementById("lopMoi").value=""; save(); render();
 };
 document.getElementById("btnLopTuLich").onclick=()=>{
-  let n=0; const w=tuan();
-  buoiTuan(w).forEach(b=>{ if(b.chot) return; let l=S.lop.find(x=>x.ten===b.lop.ten);
+  /* Chỉ nhập KHUNG GIỜ CHUẨN của lớp. Bỏ qua buổi học bù (chỉ 1 tuần), buổi đã huỷ,
+     và buổi đã chốt — nếu không, một buổi học bù sẽ thành lịch cố định mọi tuần. */
+  const w=tuan(), tatCa=buoiTuan(w);
+  const dung=tatCa.filter(b=>!b.them&&!b.chot&&b.tt!=="huy");
+  const boQua=tatCa.length-dung.length;
+  const seThem=[]; let soLopMoi=0;
+  dung.forEach(b=>{
+    let l=S.lop.find(x=>x.ten===b.lop.ten);
+    if(!l){ soLopMoi++; seThem.push("• "+b.lop.ten+" (lớp mới): "+THU_DAI[b.thu]+" "+b.ca); return; }
+    if(!l.gio.some(g=>g.thu===b.thu&&g.ca===b.ca)) seThem.push("• "+l.ten+": "+THU_DAI[b.thu]+" "+b.ca);
+  });
+  if(!seThem.length) return alert("Không có gì để thêm — lịch chuẩn của các lớp đã khớp tuần này.");
+  const loi="Thêm vào LỊCH CHUẨN của lớp (áp dụng cho MỌI tuần sau):\n\n"
+    +seThem.slice(0,20).join("\n")+(seThem.length>20?"\n… và "+(seThem.length-20)+" dòng nữa":"")
+    +"\n\n"+(boQua?("Bỏ qua "+boQua+" buổi học bù / đã huỷ / đã chốt.\n"):"")
+    +(soLopMoi?("Tạo mới "+soLopMoi+" lớp.\n"):"")
+    +"\nChỉ bấm khi đây đúng là khung giờ cố định. Tiếp tục?";
+  if(!confirm(loi)) return;
+  let n=0;
+  dung.forEach(b=>{ let l=S.lop.find(x=>x.ten===b.lop.ten);
     if(!l){ l={id:uid("L"),ten:b.lop.ten,ghi:"",gv:b.gv||"",gio:[]}; S.lop.push(l); n++; }
     if(!l.gio.some(g=>g.thu===b.thu&&g.ca===b.ca)) l.gio.push({thu:b.thu,ca:b.ca}); });
-  save(); render(); alert(`Đã nhập ${n} lớp mới vào kho.`);
+  save(); render(); alert("Đã nhập "+n+" lớp mới vào kho."+(boQua?(" Bỏ qua "+boQua+" buổi học bù/đã huỷ."):""));
 };
 document.getElementById("btnXemTruoc").onclick=()=>{
   const kq=docDan(document.getElementById("vungDan").value);
@@ -4564,7 +4590,13 @@ function gop3(base, local, server, duong){
     ks.forEach(k=>{
       const lv=local[k], bv=(base||{})[k], sv=server[k];
       if(lv===undefined){ if(sv!==undefined&&__giong(bv,sv)) delete ra[k]; return; }
-      ra[k]=(sv===undefined)?lv:gop3(bv,lv,sv,duong+"."+k);
+      if(sv===undefined){
+        /* máy chủ đã xoá mục này; nếu máy này không sửa gì thì tôn trọng việc xoá —
+           tránh chuyện buổi đã xoá "mọc lại" chỉ vì một tab mở từ hôm trước. */
+        if(bv!==undefined&&__giong(lv,bv)) return;
+        ra[k]=lv; return;
+      }
+      ra[k]=gop3(bv,lv,sv,duong+"."+k);
     });
     return ra;
   }
