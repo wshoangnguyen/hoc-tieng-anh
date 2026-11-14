@@ -530,6 +530,7 @@ header{padding:6px 10px}
       <button id="btnThemBu" class="ghost sm" title="Thêm một buổi học bù — chỉ có trong tuần này">➕ Học bù</button>
       <button id="btnTuanMoi" class="ghost sm" title="Tạo tuần kế tiếp bằng cách nhân bản tuần đang xem">＋ Tuần kế</button>
       <span id="nhanChot" hidden style="font:600 11.5px/1 inherit;padding:5px 9px;border-radius:999px;background:#FBF1DC;color:#8A6A2F;border:1px solid #E8D3A6">🔒 tuần đã chốt</span>
+      <button id="btnSuaChot" hidden class="ghost sm" style="border-color:#E8D3A6;color:#8A6A2F" title="Mở khoá để sửa tuần đã chốt — có ghi nhật ký">🔓 Cho sửa</button>
       <button id="btnXoaTuan" class="ghost sm" style="border-color:var(--del);color:var(--del)" title="Xoá tuần đang xem">🗑 Xoá tuần</button>
     </span>
   </div>
@@ -961,7 +962,16 @@ function chotTuanCu(){
   return n;
 }
 const buoiTuanNay=()=>buoiTuan(tuan());
+/* ===== BẢO VỆ TUẦN ĐÃ QUA =====
+   Tuần đã qua được đóng băng vào S.tuan_chot và mặc định KHÔNG sửa được.
+   Muốn sửa phải bấm "🔓 Cho sửa" trên thanh tuần (chỉ mở cho phiên làm việc này và có ghi nhật ký). */
+const MO_KHOA_CHOT=(window.MO_KHOA_CHOT=window.MO_KHOA_CHOT||{});
+function chotCua(w){ const x=w||tuan(); return (S.tuan_chot||{})[(x&&x.bat_dau)||""]; }
+function duocSuaChot(w){ const x=w||tuan(); return !chotCua(x) || MO_KHOA_CHOT[x.bat_dau]===true; }
+function chanViChot(){ alert("Tuần này đã chốt 🔒 — số buổi đã vào bảng lương nên không sửa được.\nNếu thật sự cần sửa, bấm “🔓 Cho sửa” trên thanh tuần (mọi thay đổi sẽ ghi vào nhật ký)."); }
+
 function datGhiDe(k,phan){
+  if(!duocSuaChot()) return chanViChot();
   const [bd,lopId,thu,ca]=String(k).split("|");
   const ck=S.tuan_chot&&S.tuan_chot[bd];
   if(ck&&Array.isArray(ck.buoi)&&lopId){
@@ -1245,6 +1255,20 @@ function veLuoi(){
   const w=tuan(), ds=buoiTuanNay();
   const daChot=!!(S.tuan_chot&&S.tuan_chot[w.bat_dau]);
   const nc=document.getElementById("nhanChot"); if(nc) nc.hidden=!daChot;
+  const bs=document.getElementById("btnSuaChot");
+  if(bs){
+    bs.hidden=!daChot;
+    const mo=MO_KHOA_CHOT[w.bat_dau]===true;
+    bs.textContent=mo?"🔒 Khoá lại":"🔓 Cho sửa";
+    bs.style.borderColor=mo?"#C46A6A":"#E8D3A6"; bs.style.color=mo?"#A33":"#8A6A2F";
+    bs.onclick=()=>{
+      if(mo){ delete MO_KHOA_CHOT[w.bat_dau]; veLuoi(); return; }
+      if(!confirm("Tuần "+ngayVN(w.bat_dau)+" đã chốt và số buổi đã tính vào bảng lương.\n\nMở khoá để sửa? Mọi thay đổi sẽ được ghi vào nhật ký.")) return;
+      MO_KHOA_CHOT[w.bat_dau]=true;
+      try{ ghiNhatKy("mở khoá tuần đã chốt", ngayVN(w.bat_dau)); }catch(e){}
+      save(); veLuoi();
+    };
+  }
   const tb=document.getElementById("btnThemBu"); if(tb) tb.style.display=daChot?"none":"";
   const bt=document.getElementById("btnThemBu"); if(bt&&daChot) bt.title="Tuần đã chốt — không thêm học bù vào quá khứ";
   const homNay=iso(new Date());
@@ -2015,6 +2039,7 @@ function buoiCuaLop(lop,soNgay){
   return out.sort((a,b)=> a.ngay<b.ngay?1:a.ngay>b.ngay?-1:gioSapXep(a.ca)-gioSapXep(b.ca));
 }
 function datNghiBuoi(lop,nghi){
+  if(!duocSuaChot()) return chanViChot();
   const l=(S.lop||[]).find(x=>x.ten===lop); if(!l) return;
   const ng=iso(new Date()), bd=t2CuaNgay(ng), thu=THU[thuCua(ng)];
   gioHienTai(l).filter(g=>g.thu===thu).forEach(g=>{
@@ -2880,8 +2905,9 @@ function moSua(k){
   bd.onclick=()=>bd.remove(); document.body.appendChild(bd);
   const $=q=>bd.querySelector(q);
   $("#mHuy").onclick=()=>bd.remove();
-  const dl=$("#mDatLai"); if(dl) dl.onclick=()=>{ delete S.buoi[k]; save(); bd.remove(); render(); };
+  const dl=$("#mDatLai"); if(dl) dl.onclick=()=>{ if(!duocSuaChot()) return chanViChot(); delete S.buoi[k]; save(); bd.remove(); render(); };
   const xb=$("#mXoaBu"); if(xb) xb.onclick=()=>{
+    if(!duocSuaChot()) return chanViChot();
     if(!confirm("Xoá buổi học bù này? Chỉ tuần này bị ảnh hưởng.")) return;
     const ds=S.buoi_them[w.bat_dau]||[]; S.buoi_them[w.bat_dau]=ds.filter(x=>x.id!==b.buId);
     if(!S.buoi_them[w.bat_dau].length) delete S.buoi_them[w.bat_dau];
