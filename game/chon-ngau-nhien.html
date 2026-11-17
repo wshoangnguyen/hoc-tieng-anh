@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chọn ngẫu nhiên · INS</title>
+<style>
+  :root{ --do:#b3202a; --muc:#1d1d1b; --nen:#f7f4ec; --vien:#ded7c6; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--nen);color:var(--muc);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+  h1{font-size:24px;margin:0 0 4px;font-weight:900}
+  .phu{color:#6b6558;margin-bottom:18px}
+  .the{background:#fff;border:1px solid var(--vien);border-radius:16px;padding:16px;margin-bottom:16px}
+  .the h2{font-size:17px;margin:0 0 12px}
+  label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}
+  input[type=text],select{width:100%;font-size:16px;padding:11px 12px;border:1.5px solid var(--vien);border-radius:10px}
+  input[type=text]:focus{outline:none;border-color:var(--do)}
+  button{font-size:16px;font-weight:800;padding:12px 18px;border:0;border-radius:12px;background:var(--do);color:#fff;cursor:pointer}
+  button.nhe{background:#ece7da;color:var(--muc)}
+  button:disabled{opacity:.5}
+  .hang{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .congtac{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;margin:10px 0}
+  .congtac input{width:18px;height:18px}
+  .an{display:none}
+  .cot{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:820px){ .cot{grid-template-columns:1fr} }
+  #qr{width:100%;max-width:360px;display:block;border-radius:12px;border:1px solid var(--vien)}
+  .ma{font-size:34px;font-weight:900;letter-spacing:4px;color:var(--do)}
+  .dem{font-size:15px;color:#6b6558}
+  .dem b{font-size:26px;color:var(--muc)}
+  ol.ds{list-style:none;padding:0;margin:0;max-height:340px;overflow:auto}
+  ol.ds li{display:flex;gap:10px;padding:8px 6px;border-bottom:1px dashed var(--vien);font-size:15px}
+  ol.ds li .so{font-weight:900;color:var(--do);min-width:38px}
+  ol.ds li.moi{background:#fff3d6}
+  .ketqua{background:#fff;border:2px solid var(--do);border-radius:18px;padding:22px;text-align:center;margin-bottom:14px}
+  .ketqua .so{font-size:110px;font-weight:900;line-height:1;color:var(--do)}
+  .ketqua .ten{font-size:30px;font-weight:800;margin-top:6px}
+  .nho{font-size:13px;color:#6b6558;margin-top:8px}
+  .qt{display:flex;gap:8px;align-items:center;font-size:14px;margin-top:12px}
+  .q{background:#f3efe4;border-radius:12px;padding:10px;margin-bottom:8px}
+  .q input{margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Chọn ngẫu nhiên</h1>
+  <div class="phu">Khách quét mã QR để tự đăng ký và nhận số thứ tự. Danh sách tự cập nhật.</div>
+
+  <!-- TẠO PHÒNG -->
+  <div class="the" id="khoiTao">
+    <h2>1 · Tạo phòng cho buổi này</h2>
+    <label>Tiêu đề buổi</label>
+    <input type="text" id="tieuDe" placeholder="Ví dụ: Khách mời lớp 20/11">
+    <div class="congtac"><input type="checkbox" id="hoiTen" checked><span>Hỏi tên người tham gia</span></div>
+    <div class="congtac"><input type="checkbox" id="hienTen" checked><span>Khi chọn thì hiện tên kèm số</span></div>
+
+    <label>Câu hỏi thêm (không bắt buộc)</label>
+    <div id="dsCau"></div>
+    <button class="nhe" id="themCau" type="button">+ Thêm câu hỏi</button>
+
+    <div class="hang" style="margin-top:16px"><button id="taoPhong">Tạo mã QR</button></div>
+    <div class="nho">Khách dùng Wi-Fi hay 4G đều quét được. Mã chỉ dùng cho buổi này.</div>
+  </div>
+
+  <!-- PHÒNG ĐÃ TẠO -->
+  <div id="khoiPhong" class="an">
+    <div class="cot">
+      <div class="the">
+        <h2>2 · Mã QR cho khách</h2>
+        <img id="qr" alt="Mã QR đăng ký">
+        <div class="hang" style="margin-top:12px">
+          <div class="ma" id="maPhong">------</div>
+          <button class="nhe" id="inQR" type="button">In mã</button>
+          <button class="nhe" id="phongMoi" type="button">Phòng mới</button>
+        </div>
+        <div class="nho" id="linkDang" style="word-break:break-all"></div>
+        <div class="dem" style="margin-top:10px">Đã đăng ký: <b id="dem">0</b> người</div>
+      </div>
+
+      <div class="the">
+        <h2>3 · Danh sách</h2>
+        <div class="hang" style="margin-bottom:10px">
+          <button class="nhe" id="capNhat" type="button">Cập nhật ngay</button>
+          <span class="nho" id="trangThai">Tự cập nhật mỗi 2 giây</span>
+        </div>
+        <ol class="ds" id="dsNguoi"></ol>
+        <label style="margin-top:14px">Thêm tay</label>
+        <div class="hang">
+          <input type="text" id="tenTay" placeholder="Tên (có thể bỏ trống)" style="flex:1;min-width:140px">
+          <button class="nhe" id="themTay" type="button">+ Thêm</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="the">
+      <h2>4 · Chọn</h2>
+      <div class="ketqua">
+        <div class="so" id="soChon">–</div>
+        <div class="ten" id="tenChon"></div>
+      </div>
+      <div class="hang">
+        <button id="chon" style="font-size:20px;padding:16px 26px">Chọn người tiếp theo</button>
+        <label class="qt"><input type="checkbox" id="khongLap" checked> Không chọn lại người đã gọi</label>
+        <label class="qt"><input type="checkbox" id="hienTenNhanh" checked> Hiện tên kèm số</label>
+      </div>
+      <div class="nho" id="lsText"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'https://vm-4-13-ubuntu.tailcfa324.ts.net/chon-ngau-nhien';
+let PHIEN = null, NGUOI = [], ID_LON_NHAT = 0, DA_CHON = [], DANG_QUAY = false;
+
+/* ---------- câu hỏi ---------- */
+function themOCau(nhan, goiY){
+  const d = document.createElement('div');
+  d.className = 'q';
+  d.innerHTML = '<input type="text" class="nhanCau" placeholder="Câu hỏi, ví dụ: Bạn đến từ đâu?" value="' + esc(nhan || '') + '">' +
+                '<input type="text" class="goiYCau" placeholder="Gợi ý trả lời (không bắt buộc)" value="' + esc(goiY || '') + '">';
+  document.getElementById('dsCau').appendChild(d);
+}
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+document.getElementById('themCau').onclick = () => themOCau('', '');
+
+/* ---------- tạo phòng ---------- */
+document.getElementById('taoPhong').onclick = async () => {
+  const cau = [...document.querySelectorAll('#dsCau .q')].map(d => ({
+    nhan: d.querySelector('.nhanCau').value.trim(),
+    goi_y: d.querySelector('.goiYCau').value.trim()
+  })).filter(q => q.nhan);
+  const body = {
+    tieu_de: document.getElementById('tieuDe').value.trim() || 'Khách mời',
+    cau_hoi: cau,
+    hoi_ten: document.getElementById('hoiTen').checked,
+    hien_ten: document.getElementById('hienTen').checked
+  };
+  const r = await fetch(API + '/api/phien', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+  const j = await r.json();
+  localStorage.setItem('cnn_ma', j.ma);
+  localStorage.setItem('cnn_hien_ten', body.hien_ten ? '1' : '0');
+  moPhong(j.ma);
+};
+
+/* ---------- mở phòng ---------- */
+async function moPhong(ma){
+  const r = await fetch(API + '/api/phien?ma=' + ma);
+  if (!r.ok){ localStorage.removeItem('cnn_ma'); return; }
+  PHIEN = await r.json();
+  document.getElementById('maPhong').textContent = PHIEN.ma;
+  document.getElementById('khoiTao').classList.add('an');
+  document.getElementById('khoiPhong').classList.remove('an');
+  const url = API + '/dang-ky?p=' + PHIEN.ma;
+  document.getElementById('linkDang').textContent = url;
+  document.getElementById('qr').src = API + '/qr.png?ma=' + PHIEN.ma + '&size=560&t=' + Date.now();
+  localStorage.setItem('cnn_hien_ten', PHIEN.hien_ten ? '1' : '0');
+  document.getElementById('hienTenNhanh').checked = !!PHIEN.hien_ten;
+  await capNhat(true);
+  setInterval(() => capNhat(false), 2000);
+}
+
+/* ---------- danh sách ---------- */
+async function capNhat(lanDau){
+  if (!PHIEN || DANG_QUAY) return;
+  try{
+    const r = await fetch(API + '/api/nguoi?ma=' + PHIEN.ma + '&since=' + (lanDau ? 0 : ID_LON_NHAT));
+    const j = await r.json();
+    if (lanDau){
+      NGUOI = j.moi; ID_LON_NHAT = j.moi.length ? j.moi[j.moi.length - 1].id : 0;
+    } else if (j.moi.length){
+      NGUOI = NGUOI.concat(j.moi);
+      ID_LON_NHAT = j.moi[j.moi.length - 1].id;
+      j.moi.forEach(m => vuaVao(m.so));
+    }
+    document.getElementById('dem').textContent = j.tong;
+    veDanhSach();
+    document.getElementById('trangThai').textContent = 'Cập nhật ' + new Date().toLocaleTimeString('vi-VN');
+  }catch(e){
+    document.getElementById('trangThai').textContent = 'Mất mạng — đang thử lại';
+  }
+}
+document.getElementById('capNhat').onclick = () => capNhat(true);
+
+function veDanhSach(moiSo){
+  const ol = document.getElementById('dsNguoi');
+  ol.innerHTML = NGUOI.map(n =>
+    '<li class="' + (moiSo && Number(moiSo) === n.so ? 'moi' : '') + '">' +
+    '<span class="so">' + n.so + '</span><span>' + esc(n.ten || '') + '</span></li>').join('');
+}
+
+function vuaVao(so){ if (navigator.vibrate) navigator.vibrate(40); }
+
+/* ---------- thêm tay ---------- */
+document.getElementById('themTay').onclick = async () => {
+  const ten = document.getElementById('tenTay').value.trim();
+  const r = await fetch(API + '/api/nguoi/them', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ma: PHIEN.ma, ten})});
+  if (r.ok){ document.getElementById('tenTay').value = ''; capNhat(true); }
+};
+
+/* ---------- chọn ---------- */
+document.getElementById('chon').onclick = async () => {
+  if (DANG_QUAY) return;
+  const con = NGUOI.filter(n => !document.getElementById('khongLap').checked || !DA_CHON.includes(n.so));
+  if (!con.length){ document.getElementById('soChon').textContent = '–'; document.getElementById('tenChon').textContent = 'Hết người để chọn'; return; }
+  DANG_QUAY = true;
+  const nut = document.getElementById('chon'); nut.disabled = true;
+  const soEl = document.getElementById('soChon'), tenEl = document.getElementById('tenChon');
+  tenEl.textContent = '';
+  try{
+    const het = Date.now() + 1600;
+    let i = 0;
+    while (Date.now() < het && i < 40){          // chạy theo đồng hồ, không theo số vòng
+      const tam = con[Math.floor(Math.random() * con.length)];
+      soEl.textContent = tam.so;
+      tenEl.textContent = PHIEN.hien_ten ? (tam.ten || '') : '';
+      if (navigator.vibrate) navigator.vibrate(8);
+      await new Promise(r => setTimeout(r, 70 + i * 25));
+      i++;
+    }
+    const kq = con[Math.floor(Math.random() * con.length)];
+    soEl.textContent = kq.so;
+    tenEl.textContent = PHIEN.hien_ten ? (kq.ten || '') : '';
+    DA_CHON.push(kq.so);
+    document.getElementById('lsText').textContent = 'Đã gọi: ' + DA_CHON.join(', ');
+    if (navigator.vibrate) navigator.vibrate([80, 60, 160]);
+  }finally{
+    DANG_QUAY = false; nut.disabled = false;
+  }
+};
+
+document.getElementById('hienTenNhanh').onchange = e => {
+  PHIEN.hien_ten = e.target.checked;
+  localStorage.setItem('cnn_hien_ten', e.target.checked ? '1' : '0');
+  fetch(API + '/api/phien/cau-hoi', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ma: PHIEN.ma, cau_hoi: PHIEN.cau_hoi, hoi_ten: PHIEN.hoi_ten, hien_ten: PHIEN.hien_ten})});
+};
+
+document.getElementById('inQR').onclick = () => {
+  const w = window.open('', '_blank');
+  w.document.write('<img src="' + API + '/qr.png?ma=' + PHIEN.ma + '&size=900" style="width:100%">' +
+                   '<h2 style="font-family:sans-serif;text-align:center">Quét mã để đăng ký · ' + esc(PHIEN.tieu_de) + '</h2>');
+  w.document.close(); setTimeout(() => w.print(), 700);
+};
+
+document.getElementById('phongMoi').onclick = () => {
+  if (!confirm('Tạo phòng mới? Danh sách phòng này vẫn được giữ nhưng trang sẽ chuyển sang phòng mới.')) return;
+  localStorage.removeItem('cnn_ma');
+  location.reload();
+};
+
+/* ---------- vào trang ---------- */
+const maCu = localStorage.getItem('cnn_ma');
+if (maCu) moPhong(maCu); else themOCau('Bạn đến từ đâu?', 'Ví dụ: TP.HCM');
+</script>
+</body>
+</html>
