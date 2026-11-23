@@ -151,6 +151,7 @@
     .foot{flex-direction:column;gap:6px}
   }
 </style>
+<link rel="stylesheet" href="../core.css">
 </head>
 <body>
 <div class="wrap">
@@ -168,6 +169,7 @@
     <h1>Open World B1 · Unit 9</h1>
     <p>Nghe từng câu rồi viết lại từng từ.</p>
   </div>
+  <div class="baodiem" id="baoDiem"></div>
 
   <div class="card">
     <div class="bar"><i id="bar"></i></div>
@@ -217,6 +219,7 @@
 <audio id="audio" preload="auto"></audio>
 <canvas id="fw"></canvas>
 <div id="jserr" style="display:none;margin:14px 0;padding:12px 14px;border:1px solid #e3b4b4;background:#fdf3f3;color:#a33;border-radius:10px;font-size:13px"></div>
+<script src="../core.js?v=20261124d"></script>
 <script>
 window.addEventListener('error', function(e){
   var b = document.getElementById('jserr');
@@ -232,6 +235,16 @@ const $ = id => document.getElementById(id);
 const audio = $('audio');
 let idx = 0, slow = false, plays = 0, revealed = false;
 const PAGE_KEY = 'ins-dictation:' + location.pathname.split('/').pop();
+const BAI = (() => {
+  const f = location.pathname.split('/').pop() || '';
+  let m = f.match(/nghe-chep-chinh-ta-(sm\d)-u(\d\d)/i);
+  if (m) return { sach: m[1].toUpperCase(), unit: Number(m[2]) };
+  m = f.match(/nghe-chep-chinh-ta-ow-([ab]\d)-u(\d\d)/i);
+  if (m) return { sach: 'OW-' + m[1].toUpperCase(), unit: Number(m[2]) };
+  m = f.match(/buddy-c(\d)/i);
+  if (m) return { sach: 'BUDDY', unit: Number(m[1]) + 1 };
+  return { sach: null, unit: null };
+})();
 const saved = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}');
 let clipStart = 0, clipMs = 0, running = false, solved = false, tick = null;
 const clipTimes = [];
@@ -491,6 +504,21 @@ function next(){
   }
 }
 
+function baoDiem(){
+  const el = $('baoDiem');
+  if (!el) return;
+  let coMa = false;
+  try { coMa = !!(window.GAME && GAME.maHV && GAME.maHV()); } catch(e){}
+  if (!coMa) {
+    el.className = 'baodiem';
+    el.innerHTML = 'Nhập <b>mã học viên</b> ở thanh trên để được cộng điểm khi chơi xong.';
+  } else {
+    el.className = 'baodiem ok';
+    const sach = BAI.sach === 'BUDDY' ? 'Buddy stories' : (BAI.sach || '');
+    el.innerHTML = `Bạn đang học <b>${sach} · ${BAI.sach === 'BUDDY' ? 'Chương ' + BAI.unit : 'Unit ' + BAI.unit}</b> — chơi đúng bài để được cộng điểm nhé.`;
+  }
+}
+
 function load(){
   audio.src = CLIPS[idx].audio;
   $('clipTitle').textContent = 'Đoạn ' + (idx + 1);
@@ -502,6 +530,7 @@ function load(){
 
 function finish(){
   stopTimer();
+  try { if (window.GAME && GAME.ketThuc) GAME.ketThuc({ soCau: CLIPS.length, soDung: CLIPS.length }); } catch(e){}
   const total = clipTimes.reduce((a, b) => a + (b || 0), 0);
   let rows = '';
   CLIPS.forEach((c, i) => {
@@ -575,6 +604,10 @@ try { load(); } catch (err) {
   b.style.display = 'block';
   b.textContent = 'Lỗi khởi động: ' + err.message + ' — hãy tải lại trang.';
 }
+try {
+  if (window.GAME && GAME.batDau) GAME.batDau({ game: 'nghe-chep-chinh-ta', sach: BAI.sach, unit: BAI.unit, soCau: CLIPS.length, nac: 1, khoaNac: true });
+} catch(e){}
+baoDiem();
 </script>
 </body>
 </html>

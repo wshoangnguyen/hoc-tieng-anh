@@ -160,6 +160,8 @@
   @media (max-width:380px){
     .chip{font-size:12px;padding:7px 4px}
   }
+  .nhom-sach{margin:0 0 18px}
+  .nhom-sach h3{font-family:'Baloo Bhaina 2',cursive;font-size:17px;margin:0 0 8px;color:#5c5445}
 </style>
 </head>
 <body>
@@ -719,10 +721,28 @@
   $("chonBo").addEventListener("change", function () { datBo(+this.value); });
 
   function veDsBo() {
-    var hop = $("dsBo");
-    hop.innerHTML = (state.data.bo || []).map(function (b, k) {
-      return '<button class="bo" data-k="' + k + '"><b>' + esc(b.ten) + "</b><i>" +
-        esc(b.sach || "Khác") + " · " + b.cau.length + " câu</i></button>";
+    var hop = $("dsBo"), nhom = {}, thu = [];
+    (state.data.bo || []).forEach(function (b, k) {
+      if (/^Mẫu/.test(b.ten)) return;              // bỏ bộ soạn thử
+      var g = b.sach || "Khác";
+      if (!nhom[g]) { nhom[g] = []; thu.push(g); }
+      nhom[g].push({ b: b, k: k });
+    });
+    thu.sort();
+    hop.innerHTML = thu.map(function (g) {
+      var ds = nhom[g].sort(function (x, y) {
+        var ux = x.b.unit == null ? 99 : x.b.unit, uy = y.b.unit == null ? 99 : y.b.unit;
+        return ux - uy;
+      });
+      var ten = g === "SM1" ? "Super Minds 1" : g === "SM2" ? "Super Minds 2" :
+        g === "SM3" ? "Super Minds 3" : g === "SM4" ? "Super Minds 4" :
+        g === "SM5" ? "Super Minds 5" : g === "SM6" ? "Super Minds 6" : g;
+      return '<div class="nhom-sach"><h3>' + esc(ten) + "</h3><div class=\"dsbo\">" +
+        ds.map(function (x) {
+          var nhan = x.b.unit == null ? "Tất cả unit" : ("Unit " + x.b.unit + " · " + x.b.ten.replace(/^SM\d+ · /, ""));
+          return '<button class="bo" data-k="' + x.k + '"><b>' + esc(nhan) + "</b><i>" +
+            x.b.cau.length + " câu</i></button>";
+        }).join("") + "</div></div>";
     }).join("");
   }
   $("dsBo").addEventListener("click", function (e) {
