@@ -736,7 +736,7 @@
       });
       var ten = g === "SM1" ? "Super Minds 1" : g === "SM2" ? "Super Minds 2" :
         g === "SM3" ? "Super Minds 3" : g === "SM4" ? "Super Minds 4" :
-        g === "SM5" ? "Super Minds 5" : g === "SM6" ? "Super Minds 6" : g;
+        g === "SM5" ? "Super Minds 5" : g === "SM6" ? "Super Minds 6" : g === "OW-A2" ? "Open World A2" : g === "OW-B1" ? "Open World B1" : g;
       return '<div class="nhom-sach"><h3>' + esc(ten) + "</h3><div class=\"dsbo\">" +
         ds.map(function (x) {
           var nhan = x.b.unit == null ? "Tất cả unit" : ("Unit " + x.b.unit + " · " + x.b.ten.replace(/^SM\d+ · /, ""));
