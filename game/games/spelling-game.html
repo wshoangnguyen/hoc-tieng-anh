@@ -472,20 +472,12 @@
         }
         
         function levPct(a, b) {
+            // % chữ đúng vị trí liên tiếp từ đầu từ (sai một chữ là phần sau sai hết)
             a = a.toLowerCase(); b = b.toLowerCase();
-            if (a === b) return 100;
             if (!a.length) return 0;
-            const m = a.length, n = b.length;
-            let prev = Array.from({length: n + 1}, (_, j) => j), cur;
-            for (let i = 1; i <= m; i++) {
-                cur = [i];
-                for (let j = 1; j <= n; j++) {
-                    cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
-                }
-                prev = cur;
-            }
-            const d = prev[n], len = Math.max(m, n) || 1;
-            return Math.max(0, Math.round(100 - d * 100 / len));
+            var n = 0;
+            while (n < a.length && n < b.length && a[n] === b[n]) n++;
+            return Math.round(100 * n / (b.length || 1));
         }
 
         function updatePct() {
