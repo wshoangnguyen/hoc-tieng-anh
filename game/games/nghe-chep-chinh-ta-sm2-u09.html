@@ -234,16 +234,34 @@ const audio = $('audio');
 let idx = 0, slow = false, plays = 0, revealed = false;
 const PAGE_KEY = 'ins-dictation:' + location.pathname.split('/').pop();
 const saved = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}');
-let started = false, t0 = 0, elapsed = 0, tick = null;
-const clipT0 = {}, clipTimes = [];
-function fmtT(ms){ const s = Math.max(0, Math.floor(ms/1000)); return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
-function startTimer(){
-  if (started) return;
-  started = true; t0 = Date.now(); elapsed = 0;
-  $('timer').classList.add('run');
-  tick = setInterval(() => { elapsed = Date.now() - t0; $('timer').textContent = fmtT(elapsed); }, 200);
+let clipStart = 0, clipMs = 0, running = false, solved = false, tick = null;
+const clipTimes = [];
+const p2 = n => String(n).padStart(2, '0');
+function fmtT(ms){
+  ms = Math.max(0, ms);
+  const cs = Math.floor(ms / 10) % 100, s = Math.floor(ms / 1000) % 60, m = Math.floor(ms / 60000);
+  return p2(m) + ':' + p2(s) + '.' + p2(cs);
 }
-function stopTimer(){ if (tick) clearInterval(tick); tick = null; $('timer').classList.remove('run'); }
+function startTimer(){
+  if (running || solved) return;
+  running = true; clipStart = performance.now();
+  $('timer').classList.add('run');
+  tick = setInterval(() => { $('timer').textContent = fmtT(performance.now() - clipStart); }, 50);
+}
+function stopTimer(){
+  if (tick) clearInterval(tick);
+  tick = null;
+  if (running && clipStart) clipMs = performance.now() - clipStart;
+  running = false;
+  $('timer').classList.remove('run');
+  if (clipStart) $('timer').textContent = fmtT(clipMs);
+}
+function resetTimer(){
+  if (tick) clearInterval(tick);
+  tick = null; running = false; solved = false; clipStart = 0; clipMs = 0;
+  $('timer').textContent = '00:00.00';
+  $('timer').classList.remove('run');
+}
 
 function norm(s){
   return (s || '')
@@ -351,7 +369,7 @@ function buildLine(){
 
     line.appendChild(cell);
   });
-  if (started && !clipT0[idx]) clipT0[idx] = Date.now();
+  resetTimer();
   updateScore();
   $('nextBtn').disabled = true;
   revealed = false;
@@ -377,7 +395,11 @@ function updateScore(){
   $('headCount').textContent = `Đoạn ${idx + 1}/${CLIPS.length}`;
   if (cells.length && ok === cells.length) {
     $('nextBtn').disabled = false;
-    if (clipTimes[idx] == null && clipT0[idx]) clipTimes[idx] = Date.now() - clipT0[idx];
+    if (!solved){
+      solved = true;
+      if (clipStart) { stopTimer(); clipTimes[idx] = Math.round(clipMs); }
+      else { clipTimes[idx] = 0; $('timer').textContent = '00:00.00'; }
+    }
     if (!revealed){
       $('msg').textContent = 'Chuẩn rồi! Nghe lại một lần cho chắc rồi sang đoạn tiếp.';
       $('msg').className = 'msg ok';
@@ -448,7 +470,6 @@ function reveal(){
 
 function play(){
   startTimer();
-  if (!clipT0[idx]) clipT0[idx] = Date.now();
   audio.currentTime = 0;
   audio.playbackRate = slow ? 0.8 : 1;
   audio.play();
@@ -477,10 +498,10 @@ function load(){
 
 function finish(){
   stopTimer();
-  const total = elapsed;
+  const total = clipTimes.reduce((a, b) => a + (b || 0), 0);
   let rows = '';
   CLIPS.forEach((c, i) => {
-    const t = clipTimes[i] != null ? fmtT(clipTimes[i]) : '—';
+    const t = clipTimes[i] ? fmtT(clipTimes[i]) : '—';
     rows += `<tr><td>${i + 1}. ${c.text.replace(/</g,'&lt;')}</td><td class="t">${t}</td></tr>`;
   });
   $('line').innerHTML = '';
