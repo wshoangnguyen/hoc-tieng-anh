@@ -728,7 +728,8 @@
       if (!nhom[g]) { nhom[g] = []; thu.push(g); }
       nhom[g].push({ b: b, k: k });
     });
-    thu.sort();
+    var THU = { SM1:1, SM2:2, SM3:3, SM4:4, SM5:5, SM6:6, 'OW-A2':7, 'OW-B1':8 };
+    thu.sort(function (a, b) { return (THU[a]||50) - (THU[b]||50); });
     hop.innerHTML = thu.map(function (g) {
       var ds = nhom[g].sort(function (x, y) {
         var ux = x.b.unit == null ? 99 : x.b.unit, uy = y.b.unit == null ? 99 : y.b.unit;
