@@ -4,30 +4,146 @@
  "luat": "Mỗi câu có 3 cột. Chọn đúng 1 ô mỗi cột để ghép thành câu đúng. Trong mỗi cột chỉ có 1 ô đúng; ô sai được ghi rõ vì sao sai.",
  "bo": [
   {
-   "id": "sm1-u3",
-   "ten": "SM1 · Unit 3 · My body",
+   "id": "sm1-u0",
+   "ten": "SM1 · Unit 0 · Back to school",
    "sach": "SM1",
-   "unit": 3,
+   "unit": 0,
    "cau": [
     {
-     "id": "SM1-u3-0",
-     "nghia": "Con mèo ở trên bàn.",
+     "id": "SM1-U0-1",
+     "nghia": "Tên tôi là Sue.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "The cat",
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My name",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "am",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
          "ok": true
         },
         {
-         "t": "The frog",
+         "t": "three",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a chair",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "We",
+         "t": "students",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Sue",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U0-2",
+     "nghia": "Đây là một cái bàn.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "three",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "seven",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "nine",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "students",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a desk",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U0-3",
+     "nghia": "Tôi có ba cây bút.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My name",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "ok": true
         }
        ]
       },
@@ -36,31 +152,31 @@
        "o": [
         {
          "t": "is",
-         "ok": true
-        },
-        {
-         "t": "have got some fish",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "play football",
+         "t": "three",
+         "ok": true
+        },
+        {
+         "t": "is",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "on the table",
+         "t": "pens",
          "ok": true
         },
         {
-         "t": "in the pond",
+         "t": "students",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the fridge",
+         "t": "Sue",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -68,23 +184,81 @@
      ]
     },
     {
-     "id": "SM1-u3-1",
-     "nghia": "Con ếch ở trong ao.",
+     "id": "SM1-U0-4",
+     "nghia": "Có bảy học sinh.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "The frog",
-         "ok": true
-        },
-        {
-         "t": "The cat",
+         "t": "My name",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "We",
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There are",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "seven",
+         "ok": true
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "am",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "Sue",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "nine",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "students",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U0-5",
+     "nghia": "Đó là một cái ghế.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "That",
+         "ok": true
+        },
+        {
+         "t": "There are",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -97,28 +271,1114 @@
          "ok": true
         },
         {
-         "t": "have got some fish",
+         "t": "seven",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "play football",
+         "t": "three",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "in the pond",
+         "t": "a chair",
          "ok": true
         },
         {
-         "t": "on the table",
+         "t": "Sue",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the fridge",
+         "t": "a desk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U0-6",
+     "nghia": "Tôi chín tuổi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "There are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I",
+         "ok": true
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "am",
+         "ok": true
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "students",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a chair",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "nine",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sm1-u1",
+   "ten": "SM1 · Unit 1 · At school",
+   "sach": "SM1",
+   "unit": 1,
+   "cau": [
+    {
+     "id": "SM1-U1-1",
+     "nghia": "Đây là một cục tẩy.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "My pen",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "ok": true
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "one",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a book",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a rubber",
+         "ok": true
+        },
+        {
+         "t": "ruler",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "blue",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U1-2",
+     "nghia": "Đó là một hộp bút.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "That",
+         "ok": true
+        },
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "one",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is not",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "on the desk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a pencil case",
+         "ok": true
+        },
+        {
+         "t": "blue",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U1-3",
+     "nghia": "Tôi có một cây thước.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I have",
+         "ok": true
+        },
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "That",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "one",
+         "ok": true
+        },
+        {
+         "t": "is not",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "ruler",
+         "ok": true
+        },
+        {
+         "t": "blue",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the desk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U1-4",
+     "nghia": "Cái bút của tôi màu xanh.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My pen",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is not",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "a book",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a pencil case",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a desk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "blue",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U1-5",
+     "nghia": "Có một quyển sách trên bàn.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There is",
+         "ok": true
+        },
+        {
+         "t": "My pen",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is not",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a book",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a rubber",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "blue",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the desk",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U1-6",
+     "nghia": "Đây không phải là cái bàn.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "My pen",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "ok": true
+        },
+        {
+         "t": "That",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is not",
+         "ok": true
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a book",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a rubber",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the desk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a desk",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sm1-u2",
+   "ten": "SM1 · Unit 2 · My family",
+   "sach": "SM1",
+   "unit": 2,
+   "cau": [
+    {
+     "id": "SM1-U2-1",
+     "nghia": "Đây là mẹ tôi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "ok": true
+        },
+        {
+         "t": "That",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "His name",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "sister",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "eight",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my mum",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U2-2",
+     "nghia": "Tên anh ấy là Ben.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "His name",
+         "ok": true
+        },
+        {
+         "t": "My brother",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "my mum",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my grandma",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Ben",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U2-3",
+     "nghia": "Tôi có một em gái.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I have",
+         "ok": true
+        },
+        {
+         "t": "His name",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "That",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "eight",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "sister",
+         "ok": true
+        },
+        {
+         "t": "my dad",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U2-4",
+     "nghia": "Đây là bà tôi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "His name",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "ok": true
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "my grandma",
+         "ok": true
+        },
+        {
+         "t": "my mum",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "sister",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U2-5",
+     "nghia": "Anh trai tôi tám tuổi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "That",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My brother",
+         "ok": true
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "eight",
+         "ok": true
+        },
+        {
+         "t": "my grandma",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "sister",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U2-6",
+     "nghia": "Đó là bố tôi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My brother",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "That",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "my grandma",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my dad",
+         "ok": true
+        },
+        {
+         "t": "Ben",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sm1-u3",
+   "ten": "SM1 · Unit 3 · My body",
+   "sach": "SM1",
+   "unit": 3,
+   "cau": [
+    {
+     "id": "SM1-U3-1",
+     "nghia": "Đây là cái mũi của tôi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The lizard",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "This",
+         "ok": true
+        },
+        {
+         "t": "The cat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "my nose",
+         "ok": true
+        },
+        {
+         "t": "big",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the wall",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U3-2",
+     "nghia": "Tôi có hai bàn tay.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "My foot",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "ok": true
+        },
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "two",
+         "ok": true
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "under the table",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "hands",
+         "ok": true
+        },
+        {
+         "t": "in the bag",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U3-3",
+     "nghia": "Bàn chân tôi to.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The lizard",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The cat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My foot",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "big",
+         "ok": true
+        },
+        {
+         "t": "on the wall",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "in the bag",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U3-4",
+     "nghia": "Con mèo ở dưới bàn.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The cat",
+         "ok": true
+        },
+        {
+         "t": "My foot",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "under the table",
+         "ok": true
+        },
+        {
+         "t": "hands",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my nose",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U3-5",
+     "nghia": "Con thằn lằn ở trong cặp.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "This",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The lizard",
+         "ok": true
+        },
+        {
+         "t": "My foot",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "on the wall",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "in the bag",
+         "ok": true
+        },
+        {
+         "t": "hands",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U3-6",
+     "nghia": "Con nhện ở trên tường.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The spider",
+         "ok": true
+        },
+        {
+         "t": "The lizard",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The cat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "in the bag",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the wall",
+         "ok": true
+        },
+        {
+         "t": "my nose",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -134,23 +1394,23 @@
    "unit": 4,
    "cau": [
     {
-     "id": "SM1-u4-0",
-     "nghia": "Chúng ta có một ít cá trong tủ lạnh.",
+     "id": "SM1-U4-1",
+     "nghia": "Tôi thích táo.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "We",
-         "ok": true
-        },
-        {
-         "t": "The cat",
+         "t": "I eat",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "I",
+         "ok": true
+        },
+        {
+         "t": "I have got",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -159,24 +1419,82 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "have got some fish",
+         "t": "like",
          "ok": true
         },
         {
-         "t": "is",
+         "t": "milk",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "play football",
+         "t": "a",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "in the fridge",
+         "t": "apples",
+         "ok": true
+        },
+        {
+         "t": "for dinner",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "sandwich",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U4-2",
+     "nghia": "Tôi có một cái bánh sandwich.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have got",
+         "ok": true
+        },
+        {
+         "t": "I drink",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a",
+         "ok": true
+        },
+        {
+         "t": "don't like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "sandwich",
          "ok": true
         },
         {
@@ -184,7 +1502,239 @@
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "for dinner",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U4-3",
+     "nghia": "Tôi không thích phô mai.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "There is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I eat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "don't like",
+         "ok": true
+        },
+        {
+         "t": "milk",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "for dinner",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "cheese",
+         "ok": true
+        },
+        {
+         "t": "sandwich",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U4-4",
+     "nghia": "Có một quả chuối trên bàn.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I eat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There is",
+         "ok": true
+        },
+        {
+         "t": "I have got",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "fish",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "don't like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a banana",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "sandwich",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the table",
+         "ok": true
+        },
+        {
+         "t": "every morning",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U4-5",
+     "nghia": "Tôi ăn cá vào bữa tối.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I eat",
+         "ok": true
+        },
+        {
+         "t": "There is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "fish",
+         "ok": true
+        },
+        {
+         "t": "don't like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "for dinner",
+         "ok": true
+        },
+        {
+         "t": "apples",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "sandwich",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U4-6",
+     "nghia": "Tôi uống sữa mỗi sáng.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I have got",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I drink",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "don't like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "milk",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "apples",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "every morning",
+         "ok": true
+        },
+        {
+         "t": "sandwich",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -200,23 +1750,23 @@
    "unit": 5,
    "cau": [
     {
-     "id": "SM1-u5-0",
-     "nghia": "Tôi chơi bóng đá vào các ngày Chủ nhật.",
+     "id": "SM1-U5-1",
+     "nghia": "Con chó đang chạy.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "I",
+         "t": "The dog",
          "ok": true
         },
         {
-         "t": "The cat",
+         "t": "The horse",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "I can see",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -225,32 +1775,90 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "play football",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "likes",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "bird",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "in the pond",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "running",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U5-2",
+     "nghia": "Con vịt biết bơi.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The duck",
+         "ok": true
+        },
+        {
+         "t": "The frog",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The dog",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Động từ",
        "o": [
         {
-         "t": "on Sundays",
+         "t": "can",
          "ok": true
         },
         {
-         "t": "on the table",
+         "t": "likes",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "swim",
+         "ok": true
+        },
+        {
+         "t": "bird",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "big",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -258,23 +1866,23 @@
      ]
     },
     {
-     "id": "SM1-u5-1",
-     "nghia": "Cô ấy xem TV vào các ngày thứ Bảy.",
+     "id": "SM1-U5-3",
+     "nghia": "Con ếch ở trong hồ.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "She",
-         "ok": true
-        },
-        {
-         "t": "The cat",
+         "t": "The horse",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
          "t": "The frog",
+         "ok": true
+        },
+        {
+         "t": "The cat",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -283,32 +1891,90 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "watches TV",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "likes",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "a",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "on Saturdays",
-         "ok": true
+         "t": "swim",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "on the table",
+         "t": "running",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
          "t": "in the pond",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U5-4",
+     "nghia": "Con mèo thích cá.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The horse",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The cat",
+         "ok": true
+        },
+        {
+         "t": "The duck",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "likes",
+         "ok": true
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "fish",
+         "ok": true
+        },
+        {
+         "t": "big",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "bird",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -316,24 +1982,24 @@
      ]
     },
     {
-     "id": "SM1-u5-2",
-     "nghia": "Chúng tôi đi câu cá vào các ngày thứ Sáu.",
+     "id": "SM1-U5-5",
+     "nghia": "Con ngựa to.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "We",
+         "t": "The dog",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I can see",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The horse",
          "ok": true
-        },
-        {
-         "t": "The cat",
-         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
-        },
-        {
-         "t": "The frog",
-         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
@@ -341,56 +2007,56 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "go fishing",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "likes",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "can",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "on Fridays",
-         "ok": true
-        },
-        {
-         "t": "on the table",
+         "t": "fish",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
          "t": "in the pond",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "big",
+         "ok": true
         }
        ]
       }
      ]
     },
     {
-     "id": "SM1-u5-3",
-     "nghia": "Anh ấy không chơi trò chơi vào các ngày thứ Hai.",
+     "id": "SM1-U5-6",
+     "nghia": "Tôi thấy một con chim.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "He doesn't",
-         "ok": true
-        },
-        {
          "t": "The cat",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "I can see",
+         "ok": true
+        },
+        {
+         "t": "The horse",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -399,32 +2065,32 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "play games",
-         "ok": true
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
          "t": "is",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
-         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+         "t": "a",
+         "ok": true
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Bổ ngữ",
        "o": [
         {
-         "t": "on Mondays",
+         "t": "bird",
          "ok": true
         },
         {
-         "t": "on the table",
+         "t": "swim",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "fish",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -440,23 +2106,23 @@
    "unit": 6,
    "cau": [
     {
-     "id": "SM1-u6-0",
-     "nghia": "Có hai cái ghế trong nhà bếp.",
+     "id": "SM1-U6-1",
+     "nghia": "Có một phòng ngủ.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "There",
-         "ok": true
-        },
-        {
-         "t": "The cat",
+         "t": "The kitchen",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "There is",
+         "ok": true
+        },
+        {
+         "t": "The stairs",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -465,32 +2131,90 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "are two chairs",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "two",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "in the",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "living rooms",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "downstairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "bedroom",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U6-2",
+     "nghia": "Tôi ngủ trong phòng ngủ.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "There is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I sleep",
+         "ok": true
+        },
+        {
+         "t": "The bathroom",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Động từ",
        "o": [
         {
-         "t": "in the kitchen",
-         "ok": true
-        },
-        {
-         "t": "on the table",
+         "t": "is",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "in the",
+         "ok": true
+        },
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "bedroom",
+         "ok": true
+        },
+        {
+         "t": "downstairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "upstairs",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -498,23 +2222,23 @@
      ]
     },
     {
-     "id": "SM1-u6-1",
-     "nghia": "Có một cầu thang ở sảnh.",
+     "id": "SM1-U6-3",
+     "nghia": "Phòng tắm ở trên lầu.",
      "chu": "",
      "cot": [
       {
        "ten": "Chủ ngữ",
        "o": [
         {
-         "t": "There",
-         "ok": true
-        },
-        {
-         "t": "The cat",
+         "t": "There are",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "The bathroom",
+         "ok": true
+        },
+        {
+         "t": "There is",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -523,33 +2247,919 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "are some stairs",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "in the",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "upstairs",
+         "ok": true
+        },
+        {
+         "t": "bedroom",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "downstairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U6-4",
+     "nghia": "Có hai phòng khách.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The bathroom",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The stairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There are",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "two",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "bedroom",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "upstairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "living rooms",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U6-5",
+     "nghia": "Cầu thang ở cạnh cửa.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The stairs",
+         "ok": true
+        },
+        {
+         "t": "I sleep",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The kitchen",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Động từ",
        "o": [
         {
-         "t": "in the hall",
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "are",
          "ok": true
         },
         {
-         "t": "on the table",
+         "t": "a",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "downstairs",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "next to the door",
+         "ok": true
+        },
+        {
+         "t": "living rooms",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U6-6",
+     "nghia": "Nhà bếp ở dưới nhà.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The kitchen",
+         "ok": true
+        },
+        {
+         "t": "The stairs",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "There are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "two",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "bedroom",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "downstairs",
+         "ok": true
+        },
+        {
+         "t": "next to the door",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sm1-u7",
+   "ten": "SM1 · Unit 7 · Play time",
+   "sach": "SM1",
+   "unit": 7,
+   "cau": [
+    {
+     "id": "SM1-U7-1",
+     "nghia": "Tôi thích chiếc áo phông này.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The shorts",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "She",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I like",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is wearing",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "this",
+         "ok": true
+        },
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "shoes",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the bed",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "T-shirt",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U7-2",
+     "nghia": "Bạn có thích đôi giày này không?",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The shorts",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Do you like",
+         "ok": true
+        },
+        {
+         "t": "I like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "these",
+         "ok": true
+        },
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "jeans",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "shoes",
+         "ok": true
+        },
+        {
+         "t": "T-shirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U7-3",
+     "nghia": "Cô ấy đang mặc váy.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Do you like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "She",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "is",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is wearing",
+         "ok": true
+        },
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "T-shirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the bed",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a skirt",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U7-4",
+     "nghia": "Áo len của tôi màu đỏ.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "She",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My sweater",
+         "ok": true
+        },
+        {
+         "t": "The shorts",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "this",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is",
+         "ok": true
+        },
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "on the bed",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "red",
+         "ok": true
+        },
+        {
+         "t": "a skirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U7-5",
+     "nghia": "Tôi không thích quần bò này.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I don't like",
+         "ok": true
+        },
+        {
+         "t": "I like",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "The shorts",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "are",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "is wearing",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "these",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "jeans",
+         "ok": true
+        },
+        {
+         "t": "a skirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "T-shirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U7-6",
+     "nghia": "Quần soọc ở trên giường.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "The shorts",
+         "ok": true
+        },
+        {
+         "t": "She",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "My sweater",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "are",
+         "ok": true
+        },
+        {
+         "t": "is wearing",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "these",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "jeans",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a skirt",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "on the bed",
+         "ok": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sm1-u8",
+   "ten": "SM1 · Unit 8 · My day",
+   "sach": "SM1",
+   "unit": 8,
+   "cau": [
+    {
+     "id": "SM1-U8-1",
+     "nghia": "Tôi thức dậy lúc bảy giờ.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I go",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I go",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I get up",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "at",
+         "ok": true
+        },
+        {
+         "t": "to bed",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "breakfast",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "every morning",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "seven o'clock",
+         "ok": true
+        },
+        {
+         "t": "in the morning",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U8-2",
+     "nghia": "Tôi đánh răng mỗi sáng.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I brush",
+         "ok": true
+        },
+        {
+         "t": "I go",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "my teeth",
+         "ok": true
+        },
+        {
+         "t": "my face",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "breakfast",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "in the morning",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "every morning",
+         "ok": true
+        },
+        {
+         "t": "seven o'clock",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U8-3",
+     "nghia": "Tôi đi học lúc tám giờ.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I wash",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I go",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "my face",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "to school",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "seven o'clock",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at eight",
+         "ok": true
+        },
+        {
+         "t": "at home",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U8-4",
+     "nghia": "Tôi ăn sáng ở nhà.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I get up",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I wash",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I have",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "my teeth",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my face",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "breakfast",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "at home",
+         "ok": true
+        },
+        {
+         "t": "seven o'clock",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at eight",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U8-5",
+     "nghia": "Tôi đi ngủ lúc chín giờ.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I wash",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I go",
+         "ok": true
+        },
+        {
+         "t": "I brush",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "to school",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "to bed",
+         "ok": true
+        },
+        {
+         "t": "at",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "every morning",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at nine",
+         "ok": true
+        },
+        {
+         "t": "at eight",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U8-6",
+     "nghia": "Tôi rửa mặt vào buổi sáng.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I go",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I brush",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I wash",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "my teeth",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "my face",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "at home",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "at nine",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "in the morning",
+         "ok": true
         }
        ]
       }
@@ -564,8 +3174,8 @@
    "unit": 9,
    "cau": [
     {
-     "id": "SM1-u9-0",
-     "nghia": "Chúng ta hãy tìm vỏ sò trên bãi biển đi.",
+     "id": "SM1-U9-1",
+     "nghia": "Chúng ta hãy đi câu cá.",
      "chu": "",
      "cot": [
       {
@@ -576,11 +3186,11 @@
          "ok": true
         },
         {
-         "t": "The cat",
+         "t": "I",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "The frog",
+         "t": "I",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
@@ -589,33 +3199,323 @@
        "ten": "Động từ",
        "o": [
         {
-         "t": "look for shells",
-         "ok": true
-        },
-        {
-         "t": "is",
+         "t": "eat",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "have got some fish",
+         "t": "paint",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "catch",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "music",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a fish",
+         "ok": true
+        },
+        {
+         "t": "a picture",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U9-2",
+     "nghia": "Tôi chụp một bức ảnh.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "ok": true
+        },
+        {
+         "t": "Let's",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Let's",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         }
        ]
       },
       {
-       "ten": "Cuối câu",
+       "ten": "Động từ",
        "o": [
         {
-         "t": "on the beach",
+         "t": "make",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "listen to",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "take",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a photo",
          "ok": true
         },
         {
-         "t": "on the table",
+         "t": "a sandcastle",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
         },
         {
-         "t": "in the pond",
+         "t": "ice cream",
          "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U9-3",
+     "nghia": "Chúng ta hãy làm lâu đài cát.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Let's",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "eat",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "take",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "make",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "a sandcastle",
+         "ok": true
+        },
+        {
+         "t": "music",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a fish",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U9-4",
+     "nghia": "Tôi ăn kem.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "Let's",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "I",
+         "ok": true
+        },
+        {
+         "t": "Let's",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "catch",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "listen to",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "eat",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "ice cream",
+         "ok": true
+        },
+        {
+         "t": "a sandcastle",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "music",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U9-5",
+     "nghia": "Tôi nghe nhạc.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "ok": true
+        },
+        {
+         "t": "Let's",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Let's",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "listen to",
+         "ok": true
+        },
+        {
+         "t": "paint",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "make",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "music",
+         "ok": true
+        },
+        {
+         "t": "a sandcastle",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a fish",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SM1-U9-6",
+     "nghia": "Chúng ta hãy vẽ một bức tranh.",
+     "chu": "",
+     "cot": [
+      {
+       "ten": "Chủ ngữ",
+       "o": [
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "Let's",
+         "ok": true
+        },
+        {
+         "t": "I",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        }
+       ]
+      },
+      {
+       "ten": "Động từ",
+       "o": [
+        {
+         "t": "make",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "listen to",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "paint",
+         "ok": true
+        }
+       ]
+      },
+      {
+       "ten": "Bổ ngữ",
+       "o": [
+        {
+         "t": "music",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a photo",
+         "sai": "Cụm này thuộc câu khác — nghĩa không khớp với câu tiếng Việt."
+        },
+        {
+         "t": "a picture",
+         "ok": true
         }
        ]
       }
