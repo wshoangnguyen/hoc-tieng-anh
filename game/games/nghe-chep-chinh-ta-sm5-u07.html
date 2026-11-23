@@ -193,7 +193,6 @@
 
     <div class="actions">
       <button class="btn ghost" id="hintBtn">Gợi ý chữ đầu</button>
-      <button class="btn ghost" id="revealBtn">Xem đáp án</button>
       <button class="btn primary" id="nextBtn" disabled>Đoạn tiếp →</button>
       <div class="score" id="score"></div>
     </div>
@@ -209,7 +208,7 @@
   <div class="teacher" id="teacher">
     <b>Cách dùng trên lớp</b><br>
     1. Học sinh nghe từng đoạn 1–2 câu, gõ lại từng từ; đèn xanh báo từ đã đúng.<br>
-    2. Sai thì bấm <b>Gợi ý chữ đầu</b> trước, chỉ xem đáp án khi đã thử ít nhất 2 lần.<br>
+    2. Sai thì bấm <b>Gợi ý chữ đầu</b> rồi nghe lại; đèn vàng là gần đúng.<br>
     3. Có thể cho học sinh nghe chậm 0,8× ở lần đầu, lần hai để tốc độ thật.<br><br>
     <b>Thay bài khác:</b> sửa danh sách câu trong <code>bai.json</code> rồi chạy <code>python3 tao-bai.py</code> — file <code>index.html</code> được tạo lại, âm thanh nhúng sẵn, dùng offline bằng cách mở trực tiếp file.
   </div>
@@ -354,7 +353,10 @@ function buildLine(){
         const prev = line.querySelector(`input[data-i="${i - 1}"]`);
         if (prev) { prev.focus(); prev.setSelectionRange(prev.value.length, prev.value.length); }
       }
-      if (e.key === 'Enter') { e.preventDefault(); play(); }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (!$('nextBtn').disabled) next(); else play();
+      }
     });
 
     cell.appendChild(pct);
@@ -373,6 +375,8 @@ function buildLine(){
   updateScore();
   $('nextBtn').disabled = true;
   revealed = false;
+  const first = line.querySelector('input');
+  if (first) setTimeout(() => first.focus(), 40);
   $('msg').textContent = '';
   $('msg').className = 'msg';
 }
@@ -514,7 +518,6 @@ function finish(){
   $('againBtn').onclick = () => location.reload();
   $('nextBtn').disabled = true;
   $('hintBtn').disabled = true;
-  $('revealBtn').disabled = true;
   $('msg').textContent = 'Hoàn thành ' + CLIPS.length + '/' + CLIPS.length + ' đoạn.';
   $('msg').className = 'msg ok';
   $('bar').style.width = '100%';
@@ -559,7 +562,6 @@ $('slowBtn').onclick = () => {
   audio.playbackRate = slow ? 0.8 : 1;
 };
 $('hintBtn').onclick = hint;
-$('revealBtn').onclick = reveal;
 $('nextBtn').onclick = next;
 $('teacherToggle').onclick = () => {
   const t = $('teacher');

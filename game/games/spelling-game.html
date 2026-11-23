@@ -266,7 +266,9 @@
                 font-size: 1rem;
             }
         }
-    </style>
+      .pct-chip{display:inline-block;margin:8px 0 2px;padding:5px 12px;border-radius:999px;font-weight:800;font-size:14px;background:#efe9db;color:#6b6355}
+  .pct-chip.ok{background:#d9f5e3;color:#0d7a3d}.pct-chip.mid{background:#fff0cc;color:#9a6b00}.pct-chip.bad{background:#fde0e0;color:#b3261e}
+</style>
     <link rel="stylesheet" href="../core.css">
     <script src="../core.js?v=20261031b"></script>
 </head>
@@ -299,9 +301,10 @@
             <div class="input-area">
                 <input type="text" id="answerInput" placeholder="Nhập câu trả lời..." autocomplete="off">
                 <button id="speakBtn">🔊</button>
-                <button id="submitBtn">✅ Kiểm tra</button>
+                <button id="submitBtn" style="display:none">✅ Kiểm tra</button>
             </div>
             
+            <div class="pct-chip" id="pctChip" style="display:none">0%</div>
             <div class="feedback" id="feedback"></div>
             <button class="next-btn" id="nextBtn" style="display: none;">▶️ Câu tiếp theo</button>
         </div>
@@ -416,6 +419,7 @@
             
             // Tạo gợi ý chữ cái
             generateLetterHints(q.word);
+            document.getElementById('pctChip').style.display = 'none';
             
             updateProgress();
         }
@@ -435,13 +439,49 @@
                 letterDiv.className = 'letter';
                 letterDiv.textContent = letter;
                 letterDiv.addEventListener('click', () => {
+                    if (waitingForNext) return;
+                    const target = questions[currentIndex].word;
+                    if (answerInput.value.length >= target.length) return;
                     answerInput.value += letter;
                     answerInput.focus();
+                    updatePct();
                 });
                 lettersHint.appendChild(letterDiv);
             });
         }
         
+        function levPct(a, b) {
+            a = a.toLowerCase(); b = b.toLowerCase();
+            if (a === b) return 100;
+            if (!a.length) return 0;
+            const m = a.length, n = b.length;
+            let prev = Array.from({length: n + 1}, (_, j) => j), cur;
+            for (let i = 1; i <= m; i++) {
+                cur = [i];
+                for (let j = 1; j <= n; j++) {
+                    cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+                }
+                prev = cur;
+            }
+            const d = prev[n], len = Math.max(m, n) || 1;
+            return Math.max(0, Math.round(100 - d * 100 / len));
+        }
+
+        function updatePct() {
+            if (!questions[currentIndex]) return;
+            const target = questions[currentIndex].word.toLowerCase();
+            const v = answerInput.value.trim().toLowerCase();
+            const chip = document.getElementById('pctChip');
+            if (!v) { chip.style.display = 'none'; return; }
+            const pct = levPct(v, target);
+            chip.style.display = 'inline-block';
+            chip.textContent = pct + '%';
+            chip.className = 'pct-chip ' + (pct === 100 ? 'ok' : pct >= 50 ? 'mid' : 'bad');
+            if (pct === 100 && !waitingForNext && v.length === target.length) {
+                setTimeout(() => { if (!waitingForNext && answerInput.value.trim().toLowerCase() === target) checkAnswer(); }, 140);
+            }
+        }
+
         function checkAnswer() {
     if (waitingForNext) return;
     
@@ -526,6 +566,7 @@
                 speakWord(questions[currentIndex].word);
             }
         });
+        answerInput.addEventListener('input', updatePct);
         answerInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !waitingForNext) {
                 checkAnswer();
