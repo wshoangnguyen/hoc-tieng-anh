@@ -1,11 +1,11 @@
 {
- "cap_nhat": "2026-11-09",
+ "cap_nhat": "2026-11-23",
  "nguon_tu": "2026-10-29",
  "base": "https://hoctienganhdelam.com/game/pic/",
  "quy_tac": "Ảnh của một từ nằm ở base + tên file đã mã hoá. Tên file = từ tiếng Anh viết thường + .jpg, giữ nguyên dấu cách (ví dụ 'a cup of coffee.jpg' → a%20cup%20of%20coffee.jpg). Dùng đúng trường u trong bảng này, đừng tự đoán tên.",
  "so_tu": 736,
  "so_anh": 736,
- "so_anh_le": 23,
+ "so_anh_le": 32,
  "tu": {
   "a cup of coffee": {
    "vi": "một tách cà phê",
@@ -6640,6 +6640,14 @@
    "u": "https://hoctienganhdelam.com/game/pic/bird.jpg"
   },
   {
+   "f": "boot.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/boot.jpg"
+  },
+  {
+   "f": "boy.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/boy.jpg"
+  },
+  {
    "f": "cow.jpg",
    "u": "https://hoctienganhdelam.com/game/pic/cow.jpg"
   },
@@ -6648,8 +6656,20 @@
    "u": "https://hoctienganhdelam.com/game/pic/fabric.jpg"
   },
   {
+   "f": "family.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/family.jpg"
+  },
+  {
+   "f": "friend.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/friend.jpg"
+  },
+  {
    "f": "giraffe.jpg",
    "u": "https://hoctienganhdelam.com/game/pic/giraffe.jpg"
+  },
+  {
+   "f": "girl.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/girl.jpg"
   },
   {
    "f": "glass.jpg",
@@ -6692,6 +6712,10 @@
    "u": "https://hoctienganhdelam.com/game/pic/ocean.jpg"
   },
   {
+   "f": "phone.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/phone.jpg"
+  },
+  {
    "f": "pig.jpg",
    "u": "https://hoctienganhdelam.com/game/pic/pig.jpg"
   },
@@ -6722,6 +6746,18 @@
   {
    "f": "sheep.jpg",
    "u": "https://hoctienganhdelam.com/game/pic/sheep.jpg"
+  },
+  {
+   "f": "shoe.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/shoe.jpg"
+  },
+  {
+   "f": "student.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/student.jpg"
+  },
+  {
+   "f": "teacher.jpg",
+   "u": "https://hoctienganhdelam.com/game/pic/teacher.jpg"
   },
   {
    "f": "wood.jpg",

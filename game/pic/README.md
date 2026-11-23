@@ -1,7 +1,7 @@
 # Kho hình flashcard
 
 736 ảnh cho 736 từ vựng Super Minds 1–6 (ảnh AI vẽ, dùng tự do).
-Cập nhật: 2026-11-09
+Cập nhật: 2026-11-23
 
 ## Cách lấy ảnh cho một từ
 
