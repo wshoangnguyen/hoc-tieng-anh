@@ -37,7 +37,15 @@
     text-transform:uppercase;color:#9a8b60;margin-bottom:6px}
   .manchon{position:fixed;inset:0;z-index:60;padding-top:70px;background:radial-gradient(900px 420px at 50% -8%,#fff9e8,transparent 60%),#F5F2E9;overflow:auto;padding:74px 16px 40px}
   .manchon.an{display:none}
-  .manchon .hop{max-width:820px;margin:0 auto}
+  .manchon .hop{max-width:560px;margin:0 auto}
+  details.sach{background:#fffdf8;border:1px solid #e7e0cf;border-radius:14px;margin:0 0 9px;padding:0 12px}
+  details.sach summary{cursor:pointer;padding:11px 2px;font-family:'Baloo Bhaina 2',cursive;font-size:16px;color:#2b2a26;list-style:none}
+  details.sach summary::-webkit-details-marker{display:none}
+  details.sach summary:after{content:"▾";float:right;color:#9a8b60}
+  details.sach[open] summary:after{content:"▴"}
+  details.sach summary i{font-style:normal;font-family:Quicksand,sans-serif;font-size:12px;color:#8a8271;font-weight:600}
+  select.chonunit{width:100%;margin:0 0 11px;padding:10px 12px;border-radius:10px;border:2px solid #e2d9c3;background:#fff;
+    font-family:Quicksand,sans-serif;font-weight:700;font-size:14px;color:#2b2a26}
   .manchon h2{font-family:'Baloo Bhaina 2',cursive;font-size:clamp(22px,5vw,28px);margin:0 0 4px;text-align:center}
   .manchon p.mo{text-align:center;color:#7a7365;font-size:13.5px;margin:0 0 16px}
   .dsbo{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}
@@ -723,34 +731,34 @@
   function veDsBo() {
     var hop = $("dsBo"), nhom = {}, thu = [];
     (state.data.bo || []).forEach(function (b, k) {
-      if (/^Mẫu/.test(b.ten)) return;              // bỏ bộ soạn thử
+      if (/^Mẫu/.test(b.ten)) return;
       var g = b.sach || "Khác";
       if (!nhom[g]) { nhom[g] = []; thu.push(g); }
       nhom[g].push({ b: b, k: k });
     });
     var THU = { SM1:1, SM2:2, SM3:3, SM4:4, SM5:5, SM6:6, 'OW-A2':7, 'OW-B1':8 };
+    var TEN = { SM1:"Super Minds 1", SM2:"Super Minds 2", SM3:"Super Minds 3", SM4:"Super Minds 4",
+      SM5:"Super Minds 5", SM6:"Super Minds 6", "OW-A2":"Open World A2", "OW-B1":"Open World B1" };
     thu.sort(function (a, b) { return (THU[a]||50) - (THU[b]||50); });
     hop.innerHTML = thu.map(function (g) {
       var ds = nhom[g].sort(function (x, y) {
         var ux = x.b.unit == null ? 99 : x.b.unit, uy = y.b.unit == null ? 99 : y.b.unit;
         return ux - uy;
       });
-      var ten = g === "SM1" ? "Super Minds 1" : g === "SM2" ? "Super Minds 2" :
-        g === "SM3" ? "Super Minds 3" : g === "SM4" ? "Super Minds 4" :
-        g === "SM5" ? "Super Minds 5" : g === "SM6" ? "Super Minds 6" : g === "OW-A2" ? "Open World A2" : g === "OW-B1" ? "Open World B1" : g;
-      return '<div class="nhom-sach"><h3>' + esc(ten) + "</h3><div class=\"dsbo\">" +
-        ds.map(function (x) {
-          var nhan = x.b.unit == null ? "Tất cả unit" : ("Unit " + x.b.unit + " · " + x.b.ten.replace(/^SM\d+ · /, ""));
-          return '<button class="bo" data-k="' + x.k + '"><b>' + esc(nhan) + "</b><i>" +
-            x.b.cau.length + " câu</i></button>";
-        }).join("") + "</div></div>";
+      var opts = ds.map(function (x) {
+        var nhan = x.b.unit == null ? "Tất cả unit" : ("Unit " + x.b.unit + " · " + x.b.ten.replace(/^\S+ · /, ""));
+        return '<option value="' + x.k + '">' + esc(nhan) + " — " + x.b.cau.length + " câu</option>";
+      }).join("");
+      return '<details class="sach"' + (g === "SM1" ? " open" : "") + '><summary>' + esc(TEN[g] || g) +
+        " <i>" + ds.length + " bài</i></summary><select class=\"chonunit\" data-sach=\"" + esc(g) + "\">" +
+        opts + "</select></details>";
     }).join("");
   }
-  $("dsBo").addEventListener("click", function (e) {
-    var b = e.target.closest(".bo");
-    if (!b) return;
+  $("dsBo").addEventListener("change", function (e) {
+    var sel = e.target.closest("select.chonunit");
+    if (!sel) return;
     $("manChon").classList.add("an");
-    datBo(+b.dataset.k);
+    datBo(+sel.value);
   });
   $("doiBo").addEventListener("click", function () { $("manChon").classList.remove("an"); });
 
