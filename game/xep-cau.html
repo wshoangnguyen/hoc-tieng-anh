@@ -746,7 +746,8 @@
         return ux - uy;
       });
       var opts = ds.map(function (x) {
-        var nhan = x.b.unit == null ? "Tất cả unit" : ("Unit " + x.b.unit + " · " + x.b.ten.replace(/^\S+ · /, ""));
+        var ngan = x.b.ten.replace(/^\S+ · /, "");
+        var nhan = x.b.unit == null ? "Tất cả unit" : (/^Unit/.test(ngan) ? ngan : ("Unit " + x.b.unit + " · " + ngan));
         return '<option value="' + x.k + '">' + esc(nhan) + " — " + x.b.cau.length + " câu</option>";
       }).join("");
       return '<details class="sach"' + (g === "SM1" ? " open" : "") + '><summary>' + esc(TEN[g] || g) +
