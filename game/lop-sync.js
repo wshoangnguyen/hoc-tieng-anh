@@ -68,7 +68,16 @@
     if (b) setTimeout(guiKetQua, 80);
   }, true);
 
+  function donDep() {
+    var nut = Array.prototype.slice.call(document.querySelectorAll("button")).filter(function (b) {
+      return (b.textContent || "").trim() === "Để sau" && b.offsetParent !== null;
+    })[0];
+    if (nut) nut.click();
+    if (state.bo) { var mc = document.getElementById("manChon"); if (mc) mc.classList.add("an"); }
+  }
+
   // đồng bộ khi giáo viên chuyển câu / mở hoạt động khác
+  setInterval(donDep, 700);
   setInterval(dongBo, 1200);
   dongBo();
 })();
