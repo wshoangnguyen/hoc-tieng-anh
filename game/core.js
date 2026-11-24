@@ -71,6 +71,7 @@ window.GAME = (function () {
   }
   function dungThanh() {
     if (thanh || !document.body) return;
+    if (window.GCORE_KHONG_THANH) return; // trang chơi: không hiện thanh thông tin
     thanh = el("div", "gcore-thanh");
     nutMa = el("button", "gcore-ma"); nutMa.onclick = hoiMa;
     chonSach = el("select", "gcore-chon"); chonSach.title = "Chọn sách";
@@ -204,7 +205,7 @@ window.GAME = (function () {
     daKetThuc = false;
     dungThanh();
     taiTrangThai();
-    if (!maHV() && !localStorage.getItem("game_da_hoi_ma")) {
+    if (!window.GCORE_KHONG_THANH && !maHV() && !localStorage.getItem("game_da_hoi_ma")) {
       localStorage.setItem("game_da_hoi_ma", "1");
       setTimeout(hoiMa, 1200);
     }

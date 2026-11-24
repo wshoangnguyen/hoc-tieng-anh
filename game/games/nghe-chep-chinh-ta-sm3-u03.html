@@ -134,13 +134,15 @@
   .timer.run{color:#b07d00}
 
   .card.done .listen,.card.done .actions,.card.done .hintline,.card.done .rowlabel,.card.done #line{display:none}
-  #summary{display:none;margin-top:6px}
+  #summary{display:none;position:fixed;inset:0;z-index:60;background:rgba(28,24,16,.5);align-items:center;justify-content:center;padding:16px;margin:0}
+  #summary .hop{background:linear-gradient(180deg,#fffdf8,#fff);border-radius:24px;padding:20px 18px 18px;max-width:520px;width:100%;max-height:86vh;overflow:auto;box-shadow:0 30px 70px rgba(40,30,10,.35);animation:swpop .3s ease-out}
+  @keyframes swpop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
   #summary h3{font-family:'Baloo Bhaina 2',cursive;font-size:20px;margin:0 0 8px}
   #summary table{width:100%;border-collapse:collapse;font-size:14px}
   #summary td{padding:7px 6px;border-bottom:1px dashed #e7e0cf;vertical-align:top}
   #summary td.t{text-align:right;white-space:nowrap;font-weight:800;color:#8a5b00}
   #summary .tong{font-size:16px;font-weight:800;margin-top:10px}
-  #fw{position:fixed;inset:0;pointer-events:none;z-index:9;display:none}
+  #fw{position:fixed;inset:0;pointer-events:none;z-index:70;display:none}
 
   @media (max-width:640px){
     .wrap{padding:12px 10px 32px}
@@ -168,7 +170,6 @@
     <h1>Super Minds 3 · Unit 3</h1>
     <p>Nghe từng câu rồi viết lại từng từ.</p>
   </div>
-  <div class="baodiem" id="baoDiem"></div>
 
   <div class="card">
     <div class="bar"><i id="bar"></i></div>
@@ -218,7 +219,8 @@
 <audio id="audio" preload="auto"></audio>
 <canvas id="fw"></canvas>
 <div id="jserr" style="display:none;margin:14px 0;padding:12px 14px;border:1px solid #e3b4b4;background:#fdf3f3;color:#a33;border-radius:10px;font-size:13px"></div>
-<script src="../core.js?v=20261124d"></script>
+<script>window.GCORE_KHONG_THANH=true;</script>
+<script src="../core.js?v=20261125a"></script>
 <script>
 window.addEventListener('error', function(e){
   var b = document.getElementById('jserr');
@@ -541,11 +543,11 @@ function finish(){
   });
   $('line').innerHTML = '';
   document.querySelector('.card').classList.add('done');
-  $('summary').style.display = 'block';
-  $('summary').innerHTML = `<h3>Xong cả bài! 🎉</h3>
+  $('summary').style.display = 'flex';
+  $('summary').innerHTML = `<div class="hop"><h3>Xong cả bài! 🎉</h3>
     <table>${rows}</table>
     <div class="tong">Tổng thời gian: ${fmtT(total)}</div>
-    <div style="margin-top:10px"><button class="btn primary" id="againBtn">Chơi lại</button></div>`;
+    <div style="margin-top:10px"><button class="btn primary" id="againBtn">Chơi lại</button></div></div>`;
   $('againBtn').onclick = () => location.reload();
   $('nextBtn').disabled = true;
   $('hintBtn').disabled = true;
