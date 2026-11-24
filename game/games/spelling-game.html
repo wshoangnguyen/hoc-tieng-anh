@@ -339,6 +339,8 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
 .feedback.wrong{display:inline-block;width:100%;box-sizing:border-box;background:#FFEFEC;border:2px solid #FFB9B0;color:#8F1D15;border-radius:14px;padding:10px 12px}
 .next-btn{display:none;margin:0 0 0 auto;border:0;border-radius:12px;padding:9px 16px;font-family:'Baloo Bhaina 2',cursive;font-size:15px;color:#4A3300;background:linear-gradient(180deg,#FFDC85,#F6C445);box-shadow:0 3px 0 #D19A12;cursor:pointer;white-space:nowrap}
 .next-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #D19A12}
+.feedback.hoanthanh{position:fixed;inset:0;z-index:80;background:rgba(40,30,10,.45);display:flex;align-items:center;justify-content:center;padding:14px;border:0;border-radius:0;width:auto;margin:0}
+.feedback.hoanthanh .ketqua{background:linear-gradient(180deg,#FFFDF6,#FFF);border:2px solid #F2DA9A;border-radius:24px;padding:18px 16px;max-width:520px;width:100%;max-height:86vh;overflow:auto;box-shadow:0 30px 70px rgba(60,40,0,.35);animation:pop .3s ease-out}
 .ketqua{text-align:center}
 .ketqua .bang{max-height:34vh;overflow:auto;margin-top:10px;border:1px solid #EFE2C4;border-radius:12px;background:#FFFDF6}
 .ketqua .bang table{width:100%;border-collapse:collapse;font-size:13px}
@@ -710,7 +712,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
                     ${(function(){try{var m=(localStorage.getItem('game_ma_hv')||'').trim().toUpperCase();return m?'<div class="cong">Đã cộng 1 điểm cho mã '+m+'</div>':'';}catch(e){return '';}})()}
                     <div class="nut"><button class="lai" id="laiBtn">Chơi lại</button><button class="khac" id="khacBtn">Chọn bài khác</button></div>
                 </div>`;
-            feedbackDiv.className = 'feedback correct';
+            feedbackDiv.className = 'feedback hoanthanh';
             try { GAME.phaoHoa && GAME.phaoHoa(); } catch(e){}
             document.getElementById('laiBtn').onclick = () => { score = 0; answered = 0; initGame(); };
             document.getElementById('khacBtn').onclick = moChonBai;
