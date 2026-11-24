@@ -323,7 +323,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF6DC 0%,transparent 6
 #answerInput{flex:1;height:56px;border-radius:16px;border:2.5px solid #CFE9E3;background:#FFFDF7;font-family:'Baloo Bhaina 2',cursive;font-size:24px;letter-spacing:2px;text-align:center;color:#22303a;padding:0 12px;outline:none}
 #answerInput:focus{border-color:#12b3a2;box-shadow:0 0 0 4px rgba(18,179,162,.16)}
 #speakBtn{width:56px;height:56px;border-radius:16px;border:0;font-size:22px;background:linear-gradient(180deg,#E7FBF7,#CFF3EC);box-shadow:0 3px 0 #A9DCD2;cursor:pointer}
-.pct-chip{display:block;width:max-content;margin:10px auto 0;font-family:'Baloo Bhaina 2',cursive;font-size:22px;padding:6px 18px;border-radius:999px;background:#efe9db;color:#6b6355;box-shadow:0 2px 0 rgba(0,0,0,.06);animation:pop .18s ease-out}
+.pct-chip{display:block;width:max-content;margin:10px auto 0;font-family:'Baloo Bhaina 2',cursive;font-size:19px;padding:7px 20px;border-radius:999px;background:#efe9db;color:#6b6355;box-shadow:0 2px 0 rgba(0,0,0,.06);animation:pop .18s ease-out}
 .pct-chip.ok{background:linear-gradient(180deg,#8BE9B4,#2FC97E);color:#0b4a2b;box-shadow:0 3px 0 #1F9E5F}
 .pct-chip.mid{background:linear-gradient(180deg,#FFE9A8,#FFC94D);color:#6b4300;box-shadow:0 3px 0 #D9A32B}
 .pct-chip.bad{background:linear-gradient(180deg,#FFD3CF,#FF9E95);color:#7a1b14;box-shadow:0 3px 0 #D2695F}
@@ -563,7 +563,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF6DC 0%,transparent 6
             if (!v) { chip.style.display = 'none'; return; }
             const pct = levPct(v, target);
             chip.style.display = 'inline-block';
-            chip.textContent = pct + '%';
+            chip.textContent = pct === 100 ? 'Làm tốt lắm!' : pct + '% chính xác';
             chip.className = 'pct-chip ' + (pct === 100 ? 'ok' : pct >= 50 ? 'mid' : 'bad');
             if (pct === 100 && !waitingForNext && v.length === target.length) {
                 setTimeout(() => { if (!waitingForNext && answerInput.value.trim().toLowerCase() === target) checkAnswer(); }, 140);
