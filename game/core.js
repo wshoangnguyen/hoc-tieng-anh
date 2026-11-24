@@ -341,6 +341,7 @@ window.GAME = (function () {
 
   function hienKetQua(kq, d) {
     if (hopCho) { hopCho.remove(); hopCho = null; }
+    if (window.GCORE_KHONG_KETQUA) return; // trò tự hiện bảng kết quả
     const nen = el("div", "gcore-nen");
     const hop = el("div", "gcore-hop gcore-kq");
     const loi = d && d.loi;
