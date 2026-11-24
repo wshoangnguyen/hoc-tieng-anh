@@ -31,6 +31,12 @@
     state.cau = state.bo.cau[state.i];
     t0 = Date.now(); daGui = !!d.da_gui;
     try { LOP.ve(); } catch (e) {}
+    var mc = document.getElementById("manChon"); if (mc) mc.classList.add("an");
+    // đóng hộp thoại "Mã học viên" nếu có (nút Để sau)
+    var nut = Array.prototype.slice.call(document.querySelectorAll("button")).filter(function (b) {
+      return (b.textContent || "").trim() === "Để sau";
+    })[0];
+    if (nut) nut.click();
   }
 
   function dongBo() {
