@@ -312,29 +312,33 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
 .bar-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#FFD873,#EFB233);transition:width .35s ease}
 .dem{font-size:12px;font-weight:800;color:#7A6E52;white-space:nowrap}
 .question-card{background:linear-gradient(180deg,#fffdf7,#fff);border:1px solid #EDE5D3;border-radius:26px;padding:16px 14px 18px;box-shadow:0 3px 0 #EAE2D0,0 22px 40px rgba(80,70,30,.10);margin-top:10px;position:relative;overflow:hidden}
-.question-image{display:flex;justify-content:center;align-items:center;min-height:150px;border-radius:20px;background:radial-gradient(circle at 50% 30%,#FFFAEC,#FFF4D8);padding:10px}
-.question-image img{max-height:180px;max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.10))}
+.question-image{display:flex;justify-content:center;align-items:center;min-height:118px;border-radius:20px;background:radial-gradient(circle at 50% 30%,#FFFAEC,#FFF4D8);padding:10px}
+.question-image img{max-height:148px;max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.10))}
+.nghia-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 2px}
+.nghia-row #speakBtn{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:2px solid #F0DFAE;background:#FFF7E2;font-size:19px;box-shadow:0 2px 0 #E7CE93;cursor:pointer}
 .meaning-hint{font-family:'Baloo Bhaina 2',cursive;font-size:clamp(19px,4.8vw,24px);color:#8A5B00;margin:10px 0 2px;text-align:center}
 .question-text{display:none!important}
 .letters-hint{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 12px}
 .letter{min-width:44px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-family:'Baloo Bhaina 2',cursive;font-size:22px;color:#4A3300;background:linear-gradient(180deg,#FFFDF6,#FFEFC8);border:2px solid #EBD9A6;box-shadow:0 3px 0 #DFC98C;cursor:pointer;user-select:none;transition:transform .08s}
 .letter:active{transform:translateY(3px);box-shadow:0 0 0 #DFC98C}
-.input-area{display:flex;gap:8px;align-items:stretch}
-#answerInput{flex:1;height:56px;border-radius:16px;border:2.5px solid #E7D9B6;background:#FFFDF7;font-family:'Baloo Bhaina 2',cursive;font-size:24px;letter-spacing:2px;text-align:center;color:#3C3427;padding:0 12px;outline:none}
+.input-area{display:flex;gap:6px;align-items:stretch;flex-wrap:nowrap}
+#answerInput{flex:1;min-width:0;height:54px;border-radius:16px;border:2.5px solid #E7D9B6;background:#FFFDF7;font-family:'Baloo Bhaina 2',cursive;font-size:22px;letter-spacing:1px;text-align:center;color:#3C3427;padding:0 10px;outline:none}
 #answerInput:focus{border-color:#E0A94E;box-shadow:0 0 0 4px rgba(240,180,41,.18)}
-#speakBtn{width:56px;height:56px;border-radius:16px;border:0;font-size:22px;background:linear-gradient(180deg,#FFF6DC,#FFE7A6);box-shadow:0 3px 0 #E3C77F;cursor:pointer}
+#speakBtn{width:44px;height:52px;flex:0 0 44px;font-size:19px;border-radius:16px;border:0;font-size:22px;background:linear-gradient(180deg,#FFF6DC,#FFE7A6);box-shadow:0 3px 0 #E3C77F;cursor:pointer}
 .pct-chip{display:block;width:max-content;margin:10px auto 0;font-family:'Baloo Bhaina 2',cursive;font-size:19px;padding:7px 20px;border-radius:999px;background:#EFE9DB;color:#6B6355;box-shadow:0 2px 0 rgba(0,0,0,.06);animation:pop .18s ease-out}
 .pct-chip.ok{background:linear-gradient(180deg,#FFE59B,#F6C445);color:#4A3300;box-shadow:0 3px 0 #D19A12}
 .pct-chip.mid{background:linear-gradient(180deg,#FFF0C2,#FFD873);color:#6B4300;box-shadow:0 3px 0 #E3B24B}
 .pct-chip.bad{background:linear-gradient(180deg,#FFDAD4,#FFB3A8);color:#7A1B14;box-shadow:0 3px 0 #D98A7E}
-.khen{display:none;text-align:center;font-family:'Baloo Bhaina 2',cursive;font-size:22px;color:#B26A00;margin:8px 0 0}
+.dong-khen{display:flex;align-items:center;gap:10px;margin:8px 0 0;min-height:0}
+.khen{display:none;flex:1;font-family:'Baloo Bhaina 2',cursive;font-size:22px;color:#B26A00}
 .khen.hien{display:block;animation:pop .25s ease-out}
+#xoaBtn{width:40px;height:52px;flex:0 0 40px;border-radius:16px;border:2px solid #E7D9B6;background:#FFFDF7;color:#8A7B52;font-size:18px;font-weight:800;cursor:pointer;flex:0 0 48px}
 @keyframes pop{from{transform:scale(.8);opacity:.4}to{transform:scale(1);opacity:1}}
 .feedback{text-align:center;font-weight:800;font-size:15px;margin:10px 0 0;min-height:20px}
 .feedback.correct{display:inline-block;width:100%;box-sizing:border-box;background:#FFF7E2;border:2px solid #F2D48B;color:#7A5200;border-radius:14px;padding:10px 12px}
 .feedback.wrong{display:inline-block;width:100%;box-sizing:border-box;background:#FFEFEC;border:2px solid #FFB9B0;color:#8F1D15;border-radius:14px;padding:10px 12px}
-.next-btn{display:none;width:100%;margin-top:12px;border:0;border-radius:16px;padding:14px;font-family:'Baloo Bhaina 2',cursive;font-size:19px;color:#4A3300;background:linear-gradient(180deg,#FFDC85,#F6C445);box-shadow:0 4px 0 #D19A12,0 12px 22px rgba(200,150,30,.22);cursor:pointer}
-.next-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #D19A12}
+.next-btn{display:none;margin:0 0 0 auto;border:0;border-radius:12px;padding:9px 16px;font-family:'Baloo Bhaina 2',cursive;font-size:15px;color:#4A3300;background:linear-gradient(180deg,#FFDC85,#F6C445);box-shadow:0 3px 0 #D19A12;cursor:pointer;white-space:nowrap}
+.next-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #D19A12}
 .ketqua{text-align:center}
 .ketqua .diem{font-family:'Baloo Bhaina 2',cursive;font-size:32px;color:#B26A00;margin:4px 0}
 .ketqua .nut{display:flex;gap:8px;margin-top:12px}
@@ -384,7 +388,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
             <div class="question-image" id="questionImage">
                 <img src="" alt="Hình ảnh từ vựng" id="wordImage">
             </div>
-            <div class="meaning-hint" id="meaningHint"></div>
+            <div class="nghia-row"><div class="meaning-hint" id="meaningHint"></div><button id="speakBtn" title="Nghe lại"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A5B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg></button></div>
             <div class="question-text">
                 🔤 <span id="questionWord">_____</span> 🔤
             </div>
@@ -393,14 +397,16 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
             
             <div class="input-area">
                 <input type="text" id="answerInput" placeholder="Nhập câu trả lời..." autocomplete="off">
-                <button id="speakBtn">🔊</button>
+                <button id="xoaBtn" title="Xóa chữ vừa điền">✕</button>
                 <button id="submitBtn" style="display:none">✅ Kiểm tra</button>
             </div>
             
             <div class="pct-chip" id="pctChip" style="display:none">0% chính xác</div>
-            <div class="khen" id="khen"></div>
+            <div class="dong-khen">
+                <div class="khen" id="khen"></div>
+                <button class="next-btn" id="nextBtn" style="display: none;">Tiếp →</button>
+            </div>
             <div class="feedback" id="feedback"></div>
-            <button class="next-btn" id="nextBtn" style="display: none;">Câu tiếp theo →</button>
         </div>
         
     </div>
@@ -511,6 +517,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
             questionWord.textContent = '???';
             
             // Tạo gợi ý chữ cái
+            lettersHint.style.display = 'flex';
             generateLetterHints(q.word);
             document.getElementById('pctChip').style.display = 'none';
             const khenCu = document.getElementById('khen'); if (khenCu) { khenCu.textContent = ''; khenCu.classList.remove('hien'); }
@@ -600,8 +607,8 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
         
         score++;
         try { GAME.phaoHoa && GAME.phaoHoa(); } catch(e){}
-        feedbackDiv.innerHTML = 'Chính xác!';
-        feedbackDiv.className = 'feedback correct';
+        feedbackDiv.innerHTML = '';
+        feedbackDiv.className = 'feedback';
         speakWord(correctAnswer);
         questionWord.textContent = correctAnswer;
     } else {
@@ -619,6 +626,7 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
     answerInput.disabled = true;
     submitBtn.disabled = true;
     waitingForNext = true;
+    lettersHint.style.display = 'none';
     nextBtn.style.display = 'inline-block';
     
     // Kiểm tra hoàn thành tất cả câu hỏi
@@ -692,6 +700,16 @@ body{background:radial-gradient(900px 420px at 50% -12%,#FFF3CE 0%,transparent 6
             checkAnswer();
         });
         document.getElementById('doiBaiBtn').addEventListener('click', moChonBai);
+        document.getElementById('xoaBtn').addEventListener('click', function () {
+            if (waitingForNext) return;
+            answerInput.value = '';
+            answerInput.disabled = false;
+            answerInput.focus();
+            const chip = document.getElementById('pctChip');
+            chip.style.display = 'none';
+            const k = document.getElementById('khen');
+            if (k) { k.textContent = ''; k.classList.remove('hien'); }
+        });
         
         // Khởi tạo
         function khoiDong() {
