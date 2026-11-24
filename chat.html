@@ -312,7 +312,10 @@
     // ============================================================
     // CONFIG - Harvey: change this URL after deploying backend
     // ============================================================
-    const BACKEND_URL = 'https://english-owl.onrender.com/chat';
+    const BACKENDS = [
+      'https://vm-4-13-ubuntu.tailcfa324.ts.net/buddy/chat',
+      'https://english-owl.onrender.com/chat'
+    ];
     
     let sessionId = 'student-' + Math.random().toString(36).substring(7);
     let studentName = '';
@@ -363,13 +366,19 @@
       document.getElementById('sendBtn').disabled = true;
       
       try {
-        const response = await fetch(BACKEND_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message, sessionId, studentName }),
-        });
-        
-        if (!response.ok) throw new Error('Server error');
+        let response = null, lastErr = null;
+        for (const url of BACKENDS) {
+          try {
+            const r = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message, sessionId, studentName }),
+            });
+            if (r.ok) { response = r; break; }
+            lastErr = new Error('Server error ' + r.status);
+          } catch (e) { lastErr = e; }
+        }
+        if (!response) throw (lastErr || new Error('Server error'));
         
         const data = await response.json();
         removeTyping();
