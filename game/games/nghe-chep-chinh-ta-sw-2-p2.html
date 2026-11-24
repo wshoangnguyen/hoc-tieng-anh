@@ -303,13 +303,16 @@ function editDist(a, b){
 }
 
 function pctOf(val, target){
-  // Chỉ tính các chữ đúng vị trí liên tiếp từ đầu từ; sai một chữ là phần sau tính sai hết.
+  // Chữ đúng vị trí liên tiếp từ đầu từ; gõ thừa chữ thì bị trừ theo số chữ thừa.
   if (!val) return null;
   if (!target) return 0;
   const a = val.toLowerCase(), b = target.toLowerCase();
   let n = 0;
   while (n < a.length && n < b.length && a[n] === b[n]) n++;
-  return Math.round(100 * n / b.length);
+  let pct = 100 * n / b.length;
+  const du = Math.max(0, a.length - b.length);
+  if (du) pct -= 100 * du / b.length;
+  return Math.max(0, Math.round(pct));
 }
 
 function noteOf(val, target){

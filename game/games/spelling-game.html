@@ -480,12 +480,15 @@
         }
         
         function levPct(a, b) {
-            // % chữ đúng vị trí liên tiếp từ đầu từ (sai một chữ là phần sau sai hết)
+            // % chữ đúng vị trí liên tiếp từ đầu từ; gõ thừa chữ thì bị trừ
             a = a.toLowerCase(); b = b.toLowerCase();
             if (!a.length) return 0;
             var n = 0;
             while (n < a.length && n < b.length && a[n] === b[n]) n++;
-            return Math.round(100 * n / (b.length || 1));
+            var pct = 100 * n / (b.length || 1);
+            var du = Math.max(0, a.length - b.length);
+            if (du) pct -= 100 * du / (b.length || 1);
+            return Math.max(0, Math.round(pct));
         }
 
         function updatePct() {
